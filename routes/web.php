@@ -19,6 +19,7 @@ Route::get('/', [InicioController::class, 'index']);
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('permiso', [PermisoController::class, 'index'])->name('permiso');
+    Route::get('permiso/crear', [PermisoController::class, 'crear'])->name('crear_permiso');
 });
 
 
