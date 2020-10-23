@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\Admin\PermisoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
+Route::get('/', [InicioController::class, 'index']);
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('permiso', [PermisoController::class, 'index'])->name('permiso');
+    Route::get('permiso/crear', [PermisoController::class, 'crear'])->name('crear_permiso');
 });
+
+
