@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\ProjectStatus;
+use App\Models\ProjectSector;
+use App\Models\ProjectType;
+use App\Models\Organization;
 class DashboardController extends Controller
 {
     /**
@@ -20,9 +23,18 @@ class DashboardController extends Controller
 
     public function viewProyecto(){
 
-        $status=DB::table('projectstatus')->select('*')->get();
-
-        return view('admin.proyecto',['status'=>$status]);
+       // $status=DB::table('projectstatus')->select('*')->get();
+        $status=ProjectStatus::all();
+        $sector=ProjectSector::all();
+        $type=ProjectType::all();
+        $autoridadPublica=Organization::all();
+        return view('admin.proyecto',
+        ['status'=>$status,
+        'sectores'=>$sector,
+        'types'=>$type,
+        'autoridadP'=>$autoridadPublica,
+        
+        ]);
     }
 
     public function saveP(Request $request){
@@ -42,6 +54,26 @@ class DashboardController extends Controller
           'durationInDays'=>$request->duracionProyecto
           
       ]);
+      $assetlifetime=DB::table('period')->insertGetId(
+        [
+        
+        'startDate' => $request->assetstart,
+        'endDate' => $request->assetend,
+        'maxExtentDate'=>$request->assetmax,
+        'durationInDays'=>$request->assetduration
+        
+    ]);
+    $completion=DB::table('completion')->insertGetId(
+        [
+            'endDate'=>$request->endDate,
+            'endDateDetails'=>$request->endDateDetails,
+            'finalValue_amount'=>$request->finalValue_amount,
+            'finalValue_currency'=>'mx',
+            'finalValueDetails'=>$request->finalValueDetails,
+            'finalScope'=>$request->finalScope,
+            'finalScopeDetails'=>$request->finalScopeDetails,
+
+        ]);
 
 
       $id_project = DB::table('project')->insertGetId(
@@ -51,16 +83,16 @@ class DashboardController extends Controller
         'description'=>$_POST['descripcionProyecto'],
         'status'=>$_POST['estatusProyecto'],
         'period'=>$id_period,
-        'sector'=>2,
+        'sector'=>$_POST['sectorProyecto'],
         'purpose'=>$_POST['propositoProyecto'],
-        'type'=>2,
-        'assetlifetime'=>2,
+        'type'=>$_POST['tipoProyecto'],
+        'assetlifetime'=>$assetlifetime,
         'budget_amount'=>1000,
         'budget_requestDate'=>$request->fechaInicioProyecto,
         'budget_approvalDate'=>$request->fechaInicioProyecto,
         'publicAuthority_name'=>'derian',
-        'publicAuthority_id'=>2,
-        'id_completion'=>1,
+        'publicAuthority_id'=>$_POST['autoridadP'],
+        'id_completion'=>$completion,
 
 
 
@@ -72,10 +104,16 @@ class DashboardController extends Controller
            
   
   
-      return redirect()->route('proyectos.create')->with(['message'=>'¡Listo! El proyecto ha sido guardado correctamente']);
+      return redirect()->route('project.create')->with(['message'=>'¡Listo! El proyecto ha sido guardado correctamente']);
   
 
 
+
+    }
+
+    public function projectStatus(){
+       
+        
 
     }
 

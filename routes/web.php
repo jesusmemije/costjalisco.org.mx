@@ -20,8 +20,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('proyecto/', [DashboardController::class, 'viewProyecto']);
+    Route::get('proyecto/', [DashboardController::class, 'viewProyecto'])->name('project.create');
     Route::post('saveP/', [DashboardController::class, 'saveP'])->name('project.save');
+    Route::get('projectStatus/', [DashboardController::class, 'projectStatus'])->name('projectStatus');
 });
 
 //Route::resource('admin/proyecto','AdmiDashboardController');
