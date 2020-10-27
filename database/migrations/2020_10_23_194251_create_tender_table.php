@@ -14,7 +14,7 @@ class CreateTenderTable extends Migration
     public function up()
     {
         Schema::create('tender', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('procurementMethod',20);
             $table->text('procurementMethodDetails');
             $table->double('costEstimate_amount',10,2);
@@ -26,6 +26,9 @@ class CreateTenderTable extends Migration
             $table->foreignId('procuringEntity_id');
             $table->string('administrativeEntity_name',100);
             $table->foreignId('administrativeEntity_id');
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

@@ -14,12 +14,16 @@ class CreateLocationsTable extends Migration
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->bigIncrements('id');	
+            $table->id();	
             $table->text('description');
             $table->foreignId('id_geometry');
             $table->foreignId('id_gazetter');
             $table->string('uri',300);
             $table->foreignId('id_address');
+            $table->foreign('id_address')->references('id')->on('address');
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
 
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContrractnatureTable extends Migration
+class AlterTableContractprocessSummaryModifications extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateContrractnatureTable extends Migration
      */
     public function up()
     {
-        Schema::create('contrractnature', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('codigo', 20);
-            $table->string('titulo', 20);
-            $table->string('descripcion', 300);
+        //
+
+        Schema::table('contractprocess_summary_modifications', function (Blueprint $table) {
+            $table->foreign('id_summary')->references('id')->on('summary');
+            $table->foreign('id_modifications')->references('id')->on('modifications');
+           
+
         });
     }
 
@@ -28,6 +30,6 @@ class CreateContrractnatureTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contrractnature');
+        //
     }
 }

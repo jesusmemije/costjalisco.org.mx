@@ -14,9 +14,12 @@ class CreateAdditionalidentifiersTable extends Migration
     public function up()
     {
         Schema::create('additionalidentifiers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('id_organization');
             $table->foreignId('id_identifier');
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

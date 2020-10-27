@@ -14,11 +14,14 @@ class CreatePartyRoleTable extends Migration
     public function up()
     {
         Schema::create('party_role', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('codigo', 20);
             $table->string('titulo', 20);
             $table->string('descripcion', 300);
             $table->string('fuente', 20);
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

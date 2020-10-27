@@ -14,10 +14,11 @@ class CreateSummaryTable extends Migration
     public function up()
     {
         Schema::create('summary', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('ocid',30);
             $table->string('externalReference',100);
             $table->foreignId('nature');
+           
             $table->text('title');
             $table->text('description');
             $table->foreignId('status');
@@ -28,6 +29,10 @@ class CreateSummaryTable extends Migration
             $table->foreignId('contractPeriod');
             $table->double('finalValue_amount',10,2);
             $table->string('finalValue_currency',10);
+
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
 
 
 

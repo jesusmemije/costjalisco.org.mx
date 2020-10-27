@@ -14,9 +14,14 @@ class CreateProjectDocumentsTable extends Migration
     public function up()
     {
         Schema::create('project_documents', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('id_project');
+            $table->foreign('id_project')->references('id')->on('project');
             $table->foreignId('id_document');
+            $table->foreign('id_document')->references('id')->on('documents');
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

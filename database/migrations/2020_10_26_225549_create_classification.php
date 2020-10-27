@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContractprocessSummaryModificationsTable extends Migration
+class CreateClassification extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateContractprocessSummaryModificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contractprocess_summary_modifications', function (Blueprint $table) {
+        Schema::create('classification', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_summary');
-            $table->foreignId('id_modifications');
+            $table->string('scheme',100);
+            $table->string('_id',100);
+            $table->text('description');
             $table->timestamps();
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
@@ -30,6 +29,6 @@ class CreateContractprocessSummaryModificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contractprocess_summary_modifications');
+        Schema::dropIfExists('classification');
     }
 }

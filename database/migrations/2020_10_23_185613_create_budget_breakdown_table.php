@@ -14,7 +14,7 @@ class CreateBudgetBreakdownTable extends Migration
     public function up()
     {
         Schema::create('budget_breakdown', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->text('description');
             $table->double('amount', 10, 2);
             $table->string('currency',10);
@@ -22,7 +22,9 @@ class CreateBudgetBreakdownTable extends Migration
             $table->foreignId('id_period');
             $table->text('sourceParty_name');
             $table->foreignId('sourceParty_id');
-
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
 
         });
     }

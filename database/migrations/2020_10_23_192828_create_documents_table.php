@@ -14,8 +14,9 @@ class CreateDocumentsTable extends Migration
     public function up()
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->bigIncrements('documents');
+            $table->id();
             $table->foreignId('documentType');
+           
             $table->text('description');
             $table->string('url',100);
             $table->dateTime('datePublished', 0);
@@ -26,6 +27,9 @@ class CreateDocumentsTable extends Migration
             $table->string('pageEnd',20);
             $table->text('accessDetails',20);
             $table->string('author',300);
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

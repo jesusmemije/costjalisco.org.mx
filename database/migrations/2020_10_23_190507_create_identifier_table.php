@@ -14,11 +14,14 @@ class CreateIdentifierTable extends Migration
     public function up()
     {
         Schema::create('identifier', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('scheme',30);
-            $table->string('id_',30);
+            $table->string('_id',30);
             $table->text('legalName');
             $table->string('uri',300);
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

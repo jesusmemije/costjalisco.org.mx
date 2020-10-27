@@ -14,10 +14,13 @@ class CreateContractingprocessStatusTable extends Migration
     public function up()
     {
         Schema::create('contractingprocess_status', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('codigo', 20);
             $table->string('titulo', 20);
             $table->string('descripcion', 300);
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

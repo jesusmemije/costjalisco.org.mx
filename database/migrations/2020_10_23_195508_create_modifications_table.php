@@ -14,7 +14,7 @@ class CreateModificationsTable extends Migration
     public function up()
     {
         Schema::create('modifications', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->dateTime('date',0);
             $table->text('description');
             $table->string('rationale',100);
@@ -27,7 +27,9 @@ class CreateModificationsTable extends Migration
             $table->foreignId('oldContracPeriod');
             $table->foreignId('newContractPeriod');
 
-
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
 
         });
     }

@@ -14,9 +14,12 @@ class CreateContractprocessSummaryDocumentsTable extends Migration
     public function up()
     {
         Schema::create('contractprocess_summary_documents', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('id_summary');
             $table->foreignId('id_document');
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

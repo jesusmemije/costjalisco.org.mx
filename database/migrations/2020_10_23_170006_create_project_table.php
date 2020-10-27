@@ -14,12 +14,12 @@ class CreateProjectTable extends Migration
     public function up()
     {
         Schema::create('project', function (Blueprint $table) {
-            $table->bigIncrements('id');	
+            $table->id();		
             $table->string('ocid', 50);
             $table->dateTime('updated', 0);	
             $table->text('title');
-            $table->text('description');
-            $table->foreignId('status');
+            $table->text('description');  
+            $table->foreignId('status');           
             $table->foreignId('period');
             $table->foreignId('sector');
             $table->text('purpose');
@@ -28,13 +28,20 @@ class CreateProjectTable extends Migration
             $table->double('budget_amount', 10, 2);	
             $table->dateTime('budget_requestDate', 0);
             $table->dateTime('budget_approvalDate', 0);
-            $table->foreignId('id_budget_breakdown');
+           
             $table->text('publicAuthority_name');
             $table->foreignId('publicAuthority_id');
             $table->foreignId('id_completion');
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
 
 
         });
+
+       
+       
+      
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectLocationsTable extends Migration
+class CreateRelatedProjects extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateProjectLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_locations', function (Blueprint $table) {
+        Schema::create('related_projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_project');
             $table->foreign('id_project')->references('id')->on('project');
-            $table->foreignId('id_location');
-            $table->foreign('id_location')->references('id')->on('locations');
+            $table->string('scheme',100);
+            $table->string('identifier',100);
+            $table->string('relationship',20);
+            $table->text('title');
+            $table->string('uri',100);
             $table->timestamps();
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
@@ -32,6 +33,6 @@ class CreateProjectLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_locations');
+        Schema::dropIfExists('related_projects');
     }
 }

@@ -14,10 +14,14 @@ class CreatePeriodTable extends Migration
     public function up()
     {
         Schema::create('period', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->dateTime('startDate', 0);
+            $table->dateTime('endDate', 0);
             $table->dateTime('maxExtentDate', 0);
             $table->integer('durationInDays');	
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

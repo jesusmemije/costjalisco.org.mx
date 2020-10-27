@@ -14,12 +14,15 @@ class CreateContactPointTable extends Migration
     public function up()
     {
         Schema::create('contact_point', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name',100);
             $table->string('email',100);
             $table->string('telephone',100);
             $table->string('faxNumber',100);
             $table->string('url',100);
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 

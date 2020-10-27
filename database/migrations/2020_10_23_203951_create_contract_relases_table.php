@@ -14,11 +14,14 @@ class CreateContractRelasesTable extends Migration
     public function up()
     {
         Schema::create('contract_relases', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('_id');
             $table->foreignId('tag');
             $table->dateTime('date',0);
             $table->string('url',300);
+            $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
