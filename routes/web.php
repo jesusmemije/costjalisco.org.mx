@@ -19,9 +19,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 /*Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('users', [DashboardController::class]);
 });*/
+=======
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('proyecto/', [DashboardController::class, 'viewProyecto'])->name('project.create');
+    Route::post('saveP/', [DashboardController::class, 'saveP'])->name('project.save');
+    Route::get('projectStatus/', [DashboardController::class, 'projectStatus'])->name('projectStatus');
+});
+
+//Route::resource('admin/proyecto','AdmiDashboardController');
+
+//Route::resource('administador/proyectos','administrador\ProyectoController');
+
+>>>>>>> b44e1230d3444a348d09a44e4d7815c7c6641057
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Dashboard
