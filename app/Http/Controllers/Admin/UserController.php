@@ -31,7 +31,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view("admin.users.create");
+        $roles = Role::orderBy('created_at', 'desc')->get();
+
+        return view("admin.users.create", ['user' => new User(), 'roles' => $roles]);
     }
 
     /**

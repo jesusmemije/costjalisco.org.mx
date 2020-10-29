@@ -28,9 +28,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
     //Projects
-    Route::get('proyecto/', [DashboardController::class, 'viewProyecto'])->name('project.create');
-    Route::post('saveP/', [DashboardController::class, 'saveP'])->name('project.save');
-    Route::get('projectStatus/', [DashboardController::class, 'projectStatus'])->name('projectStatus');
+    Route::get('admin/proyecto', [DashboardController::class, 'viewProyecto'])->name('project.create');
+    Route::post('admin/saveP', [DashboardController::class, 'saveP'])->name('project.save');
+    Route::get('admin/projectStatus', [DashboardController::class, 'projectStatus'])->name('projectStatus');
 
     //Users
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');

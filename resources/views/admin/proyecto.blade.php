@@ -1,9 +1,6 @@
-@extends("admin/layouts/layout")
+@extends("admin/layouts/app")
 
-@section('contenido')
-
-
-
+@section('content')
 
 <div>
 <form method="POST" action="{{route('project.save')}}">
