@@ -18,9 +18,7 @@ use App\Http\Controllers\Admin\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -34,8 +32,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 //Route::resource('administador/proyectos','administrador\ProyectoController');
 
 
->>>>>>> Stashed changes
-=======
 
 /*Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('users', [DashboardController::class]);
@@ -59,4 +55,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
->>>>>>> development

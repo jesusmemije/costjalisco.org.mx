@@ -11,7 +11,6 @@ class Project extends Model
 
     protected $table = 'project';
 
-<<<<<<< HEAD
     public function status()
     {
         return $this->hasOne('App\Models\ProjectStatus');
@@ -21,6 +20,4 @@ class Project extends Model
         return $this->hasOne('App\Models\Period');
     }
 
-=======
->>>>>>> development
 }
