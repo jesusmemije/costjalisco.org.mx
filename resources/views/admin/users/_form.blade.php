@@ -22,17 +22,10 @@
         </div>
         <div class="form-group col-md-6">
             <label for="rol">Rol de usuario</label>
-
-            @php
-                $role_id = old('rol', $user->role_id);
-            @endphp
-
             <select id="rol" name="rol" class="form-control">
                 <!--<option selected disabled>Selecciona un rol...</option>-->
-                
                 @foreach ($roles as $role)
-                <!--Input::old('rol', $user->role_id) == $role->id-->
-                    @if ($role_id == $role->id)
+                    @if ( old('rol', $user->role_id) == $role->id )
                         <option value="{{ $role->id }}" selected>{{ $role->title }}</option>
                     @else
                         <option value="{{ $role->id }}">{{ $role->title }}</option>
@@ -41,7 +34,7 @@
             </select>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row" style="{{ $clt_create ? 'display:flex' : 'display:none' }}">
       <div class="form-group col-md-6">
         <label for="email">E-mail (usuario)</label>
         <input type="email" name="email" class="form-control" id="email" placeholder="juanperez@example.com" value="{{ old('email', $user->email) }}">
@@ -53,8 +46,8 @@
       </div>
     </div>
     <button type="submit" class="btn btn-sm btn-primary shadow-sm">
-      <i class="fas fa-save fa-sm text-white-50"></i>
-      Guardar
+      <i class="fas {{ $clt_create ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
+      {{ $clt_create ? 'Registrar' : 'Actualizar' }}
     </button>
     <a href="{{ route("users.index") }}" class="btn btn-sm btn-primary shadow-sm">
       <i class="fas fa-arrow-left fa-sm text-white-50"></i>

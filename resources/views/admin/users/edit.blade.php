@@ -16,6 +16,9 @@
         
         <form action="{{ route("users.update", $user->id) }}" method="POST">
             @method('PUT')
+            @php
+                $clt_create = false;
+            @endphp
             @include('admin.users._form')
         </form>
         

@@ -43,7 +43,7 @@
                 <td>{{ $user->last_name }}</td>
                 <td>{{ $user->phone }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->created_at->format('d-M-Y h:m') }}</td>
+                <td>{{ $user->created_at->format('d-M-Y') }}</td>
                 <td>{{ $user->status }}</td>
                 <td>
                   <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning shadow-sm">

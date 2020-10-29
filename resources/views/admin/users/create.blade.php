@@ -15,6 +15,9 @@
     @include('admin.layouts.partials.session-flash-status')
     
     <form action="{{ route("users.store") }}" method="POST">
+      @php
+          $clt_create = true;
+      @endphp
       @include('admin.users._form')
     </form>
   
