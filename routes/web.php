@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+/*
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('proyecto/', [DashboardController::class, 'viewProyecto'])->name('project.create');
     Route::post('saveP/', [DashboardController::class, 'saveP'])->name('project.save');
     Route::get('formwizard/', [DashboardController::class, 'formwizard'])->name('formwizard');
 });
+*/
 
 //Route::resource('admin/proyecto','AdmiDashboardController');
 
@@ -42,9 +44,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
     //Projects
-    Route::get('admin/proyecto', [DashboardController::class, 'viewProyecto'])->name('project.create');
-    Route::post('admin/saveP', [DashboardController::class, 'saveP'])->name('project.save');
-    Route::get('admin/projectStatus', [DashboardController::class, 'projectStatus'])->name('projectStatus');
+    Route::get('/admin/project/create', [ProjectController::class, 'create'])->name('project.create');
+    Route::post('/admin/project/', [ProjectController::class, 'store'])->name('project.store');
+  
 
     //Users
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');

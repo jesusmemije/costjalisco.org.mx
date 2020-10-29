@@ -16,10 +16,10 @@ class CreateContractingProcessTable extends Migration
         Schema::create('contracting_process', function (Blueprint $table) {
             $table->id();
             $table->string('_id',30);
-                
             $table->foreignId('id_summary');
          
-            $table->foreignId('id_relases');
+            $table->foreignId('id_relases');   
+          
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

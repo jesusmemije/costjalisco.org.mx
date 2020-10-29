@@ -73,6 +73,12 @@
         <span>Usuarios</span></a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('project.create') }}">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Proyectos</span></a>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">

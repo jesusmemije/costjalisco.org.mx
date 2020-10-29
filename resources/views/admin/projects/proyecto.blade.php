@@ -4,7 +4,10 @@
       defer
     ></script>
     
-@extends("admin/layouts/layout")
+@extends("admin.layouts.app")
+@section('title')
+    Registrar proyecto
+@endsection
 @section('styles')
 <style>
       #map{
@@ -82,31 +85,21 @@
     </style>
 @endsection
 
-@section('contenido')
+@section('content')
 
 
     
   
 
 <div>
-  
-  <form method="POST" action="{{route('project.save')}}">
+    @include('admin.layouts.partials.validation-error')
+    
+    @include('admin.layouts.partials.session-flash-status')
+  <form method="POST" action="{{route('project.store')}}">
     
     @csrf
-    @if(Session::has('message'))
-
-
-
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong></strong> {{ Session::get('message') }}
-      <button type="button" class="close" style="padding:15px;" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-
-
-    @endif
+    
+    <h1 class="h3 mb-4 text-gray-800">Registrar proyecto</h1>
     <div class="row">
       
       <div class="col-lg-6">
@@ -123,7 +116,7 @@
               <label>
                 Título del proyecto
               </label>
-              <input type="text" class="form-control" name="tituloProyecto" required>
+              <input type="text" class="form-control" name="tituloProyecto">
 
               <label>
                 Descripción

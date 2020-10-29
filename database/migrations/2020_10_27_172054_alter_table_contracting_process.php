@@ -17,8 +17,8 @@ class AlterTableContractingProcess extends Migration
 
         Schema::table('contracting_process', function (Blueprint $table) {
 
-            $table->foreign('id_summary')->references('id')->on('summary');
-            $table->foreign('id_relases')->references('id')->on('contract_relases');
+           $table->foreign('id_summary')->references('id')->on('summary');
+           $table->foreign('id_relases')->references('id')->on('contract_relases');
             
         });
     }
@@ -31,5 +31,11 @@ class AlterTableContractingProcess extends Migration
     public function down()
     {
         //
+        Schema::table('contracting_process', function (Blueprint $table) {
+        $table->dropForeign('id_summary');
+        $table->dropForeign('id_relases');
+
+        });
+
     }
 }
