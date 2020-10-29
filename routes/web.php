@@ -16,3 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< Updated upstream
+=======
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('proyecto/', [DashboardController::class, 'viewProyecto'])->name('project.create');
+    Route::post('saveP/', [DashboardController::class, 'saveP'])->name('project.save');
+    Route::get('formwizard/', [DashboardController::class, 'formwizard'])->name('formwizard');
+});
+
+//Route::resource('admin/proyecto','AdmiDashboardController');
+
+//Route::resource('administador/proyectos','administrador\ProyectoController');
+
+
+>>>>>>> Stashed changes
