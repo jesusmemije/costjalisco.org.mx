@@ -3,12 +3,8 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"
       defer
     ></script>
-    
-@extends("admin.layouts.app")
-@section('title')
-    Registrar proyecto
-@endsection
-@section('styles')
+
+    @section('styles')
 <style>
       #map{
         height: 500px;
@@ -83,207 +79,94 @@
   padding: 6px 12px;
 }
     </style>
-@endsection
+@endsection   
 
-@section('content')
-
-
-    
-  
-
-<div>
-    @include('admin.layouts.partials.validation-error')
-    
-    @include('admin.layouts.partials.session-flash-status')
-  <form method="POST" action="{{route('project.store')}}">
-    
-    @csrf
-    
-    <h1 class="h3 mb-4 text-gray-800">Registrar proyecto</h1>
-    <div class="row">
-      
-      <div class="col-lg-6">
-
-        <div class="card shadow mb-4">
-          <!-- Card Header - Accordion -->
-          <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
-            <h6 class="m-0 font-weight-bold text-primary">Proyecto</h6>
-          </a>
-          <!-- Card Content - Collapse -->
-          <div class="collapse show" id="collapseCardExample1">
-            <div class="card-body">
-
-              <label>
-                Título del proyecto
-              </label>
-              <input type="text" class="form-control" name="tituloProyecto">
-
-              <label>
-                Descripción
-              </label>
-              <textarea class="form-control" cols="30" rows="10" name="descripcionProyecto"></textarea>
-              <label>
-                Estus
-              </label>
-              <select class="form-control" name="estatusProyecto">
-                @foreach ($status as $statu)
-                <option value="{{$statu->id}}">{{$statu->titulo}}</option>
-                @endforeach
-              </select>
-
-
-
-              <label>
-                Sector
-              </label>
-
-              <select class="form-control" name="sectorProyecto">
-                @foreach ($sectores as $sector)
-                <option value="{{$sector->id}}">{{$sector->titulo}}</option>
-
-                @endforeach
-              </select>
-
-
-              <label>
-                Próposito
-              </label>
-              <input type="text" class="form-control" name="propositoProyecto">
-
-              <label>
-                Tipo de proyecto
-              </label>
-              <select class="form-control" name="tipoProyecto">
-                @foreach($types as $type)
-
-                <option value="{{$type->id}}">{{$type->titulo}}</option>
-
-
-                @endforeach
-
-              </select>
-
-
-            </div>
-          </div>
-        </div>
-        <div class="card shadow mb-4">
-          <!-- Card Header - Accordion -->
-          <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-            <h6 class="m-0 font-weight-bold text-primary">Autoridad Pública</h6>
-          </a>
-          <!-- Card Content - Collapse -->
-          <div class="collapse show" id="collapseCardExample">
-            <div class="card-body">
-
-              <select name="autoridadP" class="form-control">
-
-                @foreach($autoridadP as $autoridad)
-
-                <option value="{{$autoridad->id}}">{{$autoridad->name}}</option>
-
-                @endforeach
-
-              </select>
-
-            </div>
-          </div>
-        </div>
-        
-        
-      </div>
-
-      <div class="col-lg-6">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Accordion -->
-          <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-            <h6 class="m-0 font-weight-bold text-primary">Período del proyecto</h6>
-          </a>
-          <!-- Card Content - Collapse -->
-          <div class="collapse show" id="collapseCardExample">
-            <div class="card-body">
-              <label>
-                Fecha de Inicio
-              </label>
-              <input type="date" class="form-control" name="fechaInicioProyecto">
-
-              <label>
-                Fecha de Finalización
-              </label>
-              <input type="date" class="form-control" name="fechaFinProyecto">
-
-              <label>
-                Fecha máxima de Finalización
-              </label>
-              <input type="date" class="form-control" name="fechaMaxProyecto">
-
-              <label>
-                Duración (en días)
-              </label>
-              <input type="int" class="form-control" name="duracionProyecto">
-
-
-            </div>
-          </div>
-        </div>
-        <div class="card shadow mb-4">
-  <!-- Card Header - Accordion -->
-  <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-    <h6 class="m-0 font-weight-bold text-primary">Tiempo de vida del proyecto</h6>
-  </a>
-  <!-- Card Content - Collapse -->
-  <div class="collapse show" id="collapseCardExample">
-    <div class="card-body">
-      <label>
-        Fecha de Inicio
-      </label>
-      <input type="date" class="form-control" name="assetstart">
-
-      <label>
-        Fecha de Finalización
-      </label>
-      <input type="date" class="form-control" name="assetend">
-
-      <label>
-        Fecha máxima de Finalización
-      </label>
-      <input type="date" class="form-control" name="assetmax">
-
-      <label>
-        Duración (en días)
-      </label>
-      <input type="int" class="form-control" name="assetduration">
-
-
-
-    </div>
-  </div>
-</div>
-
-        
-        </div>
-
-
-    </div>
-    <!-- PRINCIPAL ROW END--->
-  
-   
-<div class="row">
+<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<br>
 
 <div class="col-lg-12">
 
-  <div class="card shadow mb-6">
-    <!-- Card Header - Accordion -->
-    <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-      <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6>
-    </a>
+<div class="card shadow mb-4">
+  <!-- Card Header - Accordion -->
+  <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
+    <h6 class="m-0 font-weight-bold text-primary">Proyecto</h6>
+  </a>
+  <!-- Card Content - Collapse -->
+  <div class="collapse show" id="collapseCardExample1">
+    <div class="card-body">
+
+      <label>
+        Título del proyecto
+      </label>
+      <input type="text" class="form-control" name="tituloProyecto">
+      <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>
+        Descripción
+      </label>
+      <textarea class="form-control" rows="1"  name="descripcionProyecto"></textarea>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="">Autoridad Pública</label>
+    <select name="autoridadP" class="form-control">
+
+@foreach($autoridadP as $autoridad)
+
+<option value="{{$autoridad->id}}">{{$autoridad->name}}</option>
+
+@endforeach
+
+</select>
+    </div>
+
+
+</div>
      
-    <!-- Card Content - Collapse -->
-    <div class="collapse show" id="collapseCardExample">
-      <div class="card-body">
-      <div class="pac-card" id="pac-card">
+
+
+
+    
+      <label>
+        Próposito
+      </label>
+      <input type="text" class="form-control" name="propositoProyecto">
+    <div class="form-row">
+    <div class="form-group col-md-6">
+
+   
+   
+      <label>
+        Sector
+      </label>
+
+      <select class="form-control" name="sectorProyecto">
+      @foreach ($sectors as $sector)
+                <option value="{{$sector->id}}">{{$sector->titulo}}</option>
+
+                @endforeach
+      </select>
+      </div>
+      <div class="form-group col-md-6">
+      <label>
+        Subsector
+      </label>
+
+      <select class="form-control" name="sectorProyecto">
+      @foreach ($sectors as $sector)
+                <option value="{{$sector->id}}">{{$sector->titulo}}</option>
+
+                @endforeach
+      </select>
+      </div>
+
+      </div>
+
+      <h5 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h5><br>
+
+      
+      <div class="pac-card"  id="pac-card">
       <div>
-        <div id="title">Autocomplete search</div>
+        <div id="title">Encuentra el lugar</div>
         <div id="type-selector" class="pac-controls">
           <input
             type="radio"
@@ -346,81 +229,31 @@
     </div>
 
     <label for="">Descripción del lugar</label>
-    <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+    <textarea name="description" id="" cols="30" rows="5" class="form-control"></textarea>
     
-      </div>
     </div>
-  </div>
-
-
-  
-  
-</div>
-
-</div>
-
-<hr>
-<div class="row">
-
-<div class="col-lg-6 col-xl-8 offset-xl-2">
-
-  <div class="card shadow mb-6">
-    <!-- Card Header - Accordion -->
-    <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-      <h6 class="m-0 font-weight-bold text-primary">Detalles de finalización</h6>
-    </a>
-    <!-- Card Content - Collapse -->
-    <div class="collapse show" id="collapseCardExample">
-      <div class="card-body">
-        <label>Fecha final</label>
-        <input type="date" class="form-control" name="endDate">
-
-        <label>Detalles de la fecha de finalización</label>
-        <textarea name="endDateDetails" id="" cols="30" rows="10" class="form-control"></textarea>
-
-        <label>Monto del valor final</label>
-        <input type="number" name="finalValue_amount" id="" class="form-control">
-
-        <label for="">Detalles del valor final</label>
-        <textarea name="finalValueDetails" id="" cols="30" rows="10" class="form-control"></textarea>
-
-        <label>Alcance final</label>
-        <input type="text" class="form-control" name="finalScope">
-
-        <label>Detalles finales del alcance</label>
-        <textarea name="finalScopeDetails" id="" cols="30" rows="10" class="form-control"></textarea>
-
-
-
-      </div>
-    </div>
+    <hr>
+    <button id="part1" class="btn btn-sm btn-primary shadow-sm offset-md-10">
+      <i class="fas fa-save fa-sm text-white-50"></i>
+     Siguiente
+    </button>
+    <hr>
   </div>
 </div>
 
 </div>
 
-
-
-
-
-
-
-    <input type="submit" value="Guardar">
-    
-  </form>
-
-  
-  
-
-
 </div>
 
-@endsection
 
 @section('scripts')
 
 <script>
 
+$('#part1').click(function(){
+$('#profile-tab').tab('show');
+
+});
 
 $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);

@@ -74,9 +74,29 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('project.create') }}">
+      <a class="nav-link" href="{{ route('project.index') }}">
         <i class="fas fa-fw fa-user"></i>
         <span>Proyectos</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('organizations.index') }}">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Organizaciones</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrganizaciones" aria-expanded="true" aria-controls="collapseOrganizaciones">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Organizaciones</span>
+      </a>
+      <div id="collapseOrganizaciones" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{route('organizations.create')}}">Nueva</a>
+          <a class="collapse-item" href="buttons.html">Ver</a>
+         <!-- <a class="collapse-item" href="{{route('organizations.createRol')}}">Roles</a>-->
+        </div>
+      </div>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
