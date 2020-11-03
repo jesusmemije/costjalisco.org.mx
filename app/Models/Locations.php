@@ -9,4 +9,10 @@ class Locations extends Model
 {
     use HasFactory;
     protected $table="locations";
+
+    public function address(){
+        return $this->hasOne('App\Models\Address','id');
+
+    }
+    
 }

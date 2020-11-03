@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\OrganizationsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,9 +46,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
     //Projects
+    Route::get('/admin/projects/', [ProjectController::class, 'index'])->name('project.index');
     Route::get('/admin/project/create', [ProjectController::class, 'create'])->name('project.create');
     Route::post('/admin/project/', [ProjectController::class, 'store'])->name('project.store');
+    Route::get('/admin/project/test', [ProjectController::class, 'test'])->name('project.test');
+    Route::delete('/admin/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
+  //  Route::get('/admin/project/{id}', [ProjectController::class, 'testDestroy'])->name('project.testDestroy');
   
+
+    //Organizaciones
+    Route::get('/admin/organizations/', [OrganizationsController::class, 'index'])->name('organizations.index');
+    Route::get('/admin/organizations/create', [OrganizationsController::class, 'create'])->name('organizations.create');
+    Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
+    Route::post('/admin/organizations/', [OrganizationsController::class, 'store'])->name('organizations.store');
+    Route::delete('/admin/organizations/{id}', [OrganizationsController::class, 'destroy'])->name('organizations.destroy');
 
     //Users
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');

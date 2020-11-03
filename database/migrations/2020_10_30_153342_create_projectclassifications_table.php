@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectClassifications extends Migration
+class CreateProjectclassificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateProjectClassifications extends Migration
      */
     public function up()
     {
-        Schema::create('project_classifications', function (Blueprint $table) {
+        Schema::create('projectclassifications', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('id_project');
-            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade');
-            $table->foreignId('id_classification');
-            $table->foreign('id_classification')->references('id')->on('classification')->onDelete('cascade');;
+            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('scheme',100);
+            $table->string('_id',100);
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateProjectClassifications extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_classifications');
+        Schema::dropIfExists('projectclassifications');
     }
 }
