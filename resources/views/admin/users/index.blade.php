@@ -48,13 +48,11 @@
                 <td>{{ $user->created_at->format('d-M-Y') }}</td>
                 <td>{{ $user->status }}</td>
                 <td>
-                  <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning shadow-sm">
-                    <i class="fas fa-edit fa-sm text-white-50"></i>
-                    Editar
+                  <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-circle btn-sm">
+                    <i class="fas fa-edit"></i>
                   </a>
-                  <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $user->id }}" data-name="{{ $user->name }} {{ $user->last_name }}">
-                    <i class="fas fa-trash fa-sm text-white-50"></i>
-                    Eliminar
+                  <button class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $user->id }}" data-name="{{ $user->name }} {{ $user->last_name }}">
+                    <i class="fas fa-trash"></i>
                   </button>
                 </td>
               </tr>
