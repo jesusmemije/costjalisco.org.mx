@@ -20,18 +20,19 @@ class CreateProjectTable extends Migration
             $table->text('title');
             $table->text('description');  
             $table->foreignId('status');           
-            $table->foreignId('period');
+            $table->foreignId('period')->nullable(true);
             $table->foreignId('sector');
+            $table->foreignId('subsector');
             $table->text('purpose');
             $table->foreignId('type');
-            $table->foreignId('assetlifetime');
-            $table->double('budget_amount', 10, 2);	
-            $table->dateTime('budget_requestDate', 0);
-            $table->dateTime('budget_approvalDate', 0);
+            $table->foreignId('assetlifetime')->nullable(true);;
+            $table->double('budget_amount', 10, 2)->nullable(true);	
+            $table->dateTime('budget_requestDate', 0)->nullable(true);
+            $table->dateTime('budget_approvalDate', 0)->nullable(true);
            
             $table->text('publicAuthority_name');
             $table->foreignId('publicAuthority_id');
-            $table->foreignId('id_completion');
+            $table->foreignId('id_completion')->nullable(true);;
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

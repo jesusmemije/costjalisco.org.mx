@@ -1,28 +1,36 @@
 @extends("admin.layouts.app")
 @section('title')
-    Proyectos
+    Organizaciones
 @endsection
 @section('styles')
   <!-- Custom styles for this page -->
   <link href="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">
 @endsection
 @section('content')
+
+
+
        
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Proyectos</h1>
+    <h1 class="h3 mb-0 text-gray-800">Organizaciones</h1>
     <a href="{{ route('organizations.create') }}" class="btn btn-sm btn-primary shadow-sm">
       <i class="fas fa-plus fa-sm text-white-50"></i>
-       Registrar proyecto
+       Registrar organización
     </a>
   </div>
-
+  <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+    <li class="breadcrumb-item active"  aria-current="page"><a href="#">Organizaciones</a></li>
+  </ol>
+</nav>
   @include('admin.layouts.partials.session-flash-status')
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Proyectos registrados</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Organizaciones registradas</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -44,7 +52,7 @@
                 <td>{{ $organization->email}}</td>
               
                 <td>
-                  <a href="{{ route('users.edit', $organization->id) }}" class="btn btn-sm btn-warning shadow-sm">
+                  <a href="{{ route('organizations.edit', $organization->id) }}" class="btn btn-sm btn-warning shadow-sm">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
                     Editar
                   </a>

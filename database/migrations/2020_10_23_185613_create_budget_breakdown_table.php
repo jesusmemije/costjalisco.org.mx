@@ -15,13 +15,13 @@ class CreateBudgetBreakdownTable extends Migration
     {
         Schema::create('budget_breakdown', function (Blueprint $table) {
             $table->id();
-            $table->text('description');
-            $table->double('amount', 10, 2);
-            $table->string('currency',10);
-            $table->string('uri',300);
-            $table->foreignId('id_period');
-            $table->text('sourceParty_name');
-            $table->foreignId('sourceParty_id');
+            $table->text('description')->nullable();
+            $table->double('amount', 10, 2)->nullable();
+            $table->string('currency',10)->nullable();
+            $table->string('uri',300)->nullable();
+            $table->foreignId('id_period')->nullable();
+            $table->text('sourceParty_name')->nullable();
+            $table->foreignId('sourceParty_id')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

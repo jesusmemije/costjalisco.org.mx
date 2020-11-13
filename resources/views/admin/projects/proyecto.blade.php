@@ -126,9 +126,7 @@
                 Estus
               </label>
               <select class="form-control" name="estatusProyecto">
-                @foreach ($status as $statu)
-                <option value="{{$statu->id}}">{{$statu->titulo}}</option>
-                @endforeach
+              
               </select>
 
 
@@ -138,10 +136,7 @@
               </label>
 
               <select class="form-control" name="sectorProyecto">
-                @foreach ($sectores as $sector)
-                <option value="{{$sector->id}}">{{$sector->titulo}}</option>
-
-                @endforeach
+               
               </select>
 
 
@@ -154,12 +149,7 @@
                 Tipo de proyecto
               </label>
               <select class="form-control" name="tipoProyecto">
-                @foreach($types as $type)
-
-                <option value="{{$type->id}}">{{$type->titulo}}</option>
-
-
-                @endforeach
+               
 
               </select>
 
@@ -178,11 +168,7 @@
 
               <select name="autoridadP" class="form-control">
 
-                @foreach($autoridadP as $autoridad)
-
-                <option value="{{$autoridad->id}}">{{$autoridad->name}}</option>
-
-                @endforeach
+           
 
               </select>
 

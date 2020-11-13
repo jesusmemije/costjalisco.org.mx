@@ -18,45 +18,7 @@
         <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Interface
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Components</span>
-      </a>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Custom Components:</h6>
-          <a class="collapse-item" href="buttons.html">Buttons</a>
-          <a class="collapse-item" href="cards.html">Cards</a>
-        </div>
-      </div>
-    </li>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Utilities</span>
-      </a>
-      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Custom Utilities:</h6>
-          <a class="collapse-item" href="utilities-color.html">Colors</a>
-          <a class="collapse-item" href="utilities-border.html">Borders</a>
-          <a class="collapse-item" href="utilities-animation.html">Animations</a>
-          <a class="collapse-item" href="utilities-other.html">Other</a>
-        </div>
-      </div>
-    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -73,31 +35,37 @@
         <span>Usuarios</span></a>
     </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('project.index') }}">
-        <i class="fas fa-fw fa-user"></i>
-        <span>Proyectos</span></a>
-    </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('organizations.index') }}">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Organizaciones</span></a>
-    </li>
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrganizaciones" aria-expanded="true" aria-controls="collapseOrganizaciones">
+     <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProject" aria-expanded="true" aria-controls="collapseProject">
         <i class="fas fa-fw fa-cog"></i>
-        <span>Organizaciones</span>
+        <span>Proyectos</span>
       </a>
-      <div id="collapseOrganizaciones" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="collapseProject" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{route('organizations.create')}}">Nueva</a>
-          <a class="collapse-item" href="buttons.html">Ver</a>
-         <!-- <a class="collapse-item" href="{{route('organizations.createRol')}}">Roles</a>-->
+         
+          <a class="collapse-item" href="{{ route('project.index')}}">Proyectos registrados</a>
+          <a class="collapse-item" href="{{route('project.cat_sectores')}}">Sectores/subsectores</a>
         </div>
       </div>
     </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrg" aria-expanded="true" aria-controls="collapseOrg">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Organizaciones</span>
+      </a>
+      <div id="collapseOrg" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+         
+          <a class="collapse-item" href="{{ route('organizations.index')}}">Listado de organizaciones</a>
+          <a class="collapse-item" href="{{route('organizations.createRol')}}">Rol organización</a>
+        </div>
+      </div>
+    </li>
+
+  
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">

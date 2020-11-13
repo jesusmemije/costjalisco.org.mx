@@ -15,10 +15,10 @@ class CreateIdentifierTable extends Migration
     {
         Schema::create('identifier', function (Blueprint $table) {
             $table->id();
-            $table->string('scheme',30);
-            $table->string('_id',30);
-            $table->text('legalName');
-            $table->string('uri',300);
+            $table->string('scheme',30)->nullable();
+            $table->string('_id',30)->nullable();
+            $table->text('legalName')->nullable();
+            $table->string('uri',300)->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

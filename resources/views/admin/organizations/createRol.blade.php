@@ -2,6 +2,15 @@
 
 
 @section('content')
+<style>
+
+.content{
+  background: purple !important;
+}
+</style>
+
+@include('admin.layouts.partials.validation-error')    
+@include('admin.layouts.partials.session-flash-status')
 <h1 class="h3 mb-4 text-gray-800">Creando rol</h1>
 <div class="row d-flex justify-content-center">
 <div class="col-lg-6">
@@ -23,7 +32,7 @@
               <input type="text" class="form-control" name="title">
 
               <label>
-                Descripción del rol.
+                Descripción del rol
               </label>
               <textarea class="form-control" cols="30" rows="6" name="description"></textarea>
               <br>

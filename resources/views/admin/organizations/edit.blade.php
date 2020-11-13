@@ -1,14 +1,7 @@
 @extends("admin.layouts.app")
 
 @section('content')
-<h1 class="h3 mb-4 text-gray-800">Registro de organización</h1>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="#">Organizaciones</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Registrar</li>
-  </ol>
-</nav>
+<h1 class="h3 mb-4 text-gray-800">Editar organización</h1>
 @include('admin.layouts.partials.validation-error')
     
 @include('admin.layouts.partials.session-flash-status')

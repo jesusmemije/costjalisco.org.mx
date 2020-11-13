@@ -29,6 +29,7 @@ class OrganizationsController extends Controller
         ->get();
 
         
+       
       
         return view('admin.organizations.index',['organizations'=>$organizations]);
     }
@@ -42,12 +43,15 @@ class OrganizationsController extends Controller
     {
         //
 
+
         $users=User::all();
         $party_rol=OrganizationsRol::all();
+        
         return view('admin.organizations.create',[
+            'organization'=>new Organization(),
             'users'=>$users,
             'roles'=>$party_rol,
-        
+            'create'=>true
         ]);
     }
 
@@ -117,9 +121,29 @@ class OrganizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit(Organization $organization)
+    {  
         //
+
+        $dataorg=DB::table('organization')
+        ->join('contact_point','organization.id_contact_point','=','contact_point.id')
+        ->join('address','organization.id_address','=','address.id')
+        ->join('party_role','organization.id_partyRole','=','party_role.id')
+        ->select('organization.name as orgname','contact_point.*','address.*','party_role.*')
+        ->get();
+
+       
+      
+
+        $users=User::all();
+        $party_rol=OrganizationsRol::all();
+        return view('admin.organizations.edit',[
+            'organization'=>$dataorg[0],
+            'users'=>$users,
+            'roles'=>$party_rol,
+            'create'=>false
+        ]);
+        
     }
 
     /**
@@ -143,6 +167,37 @@ class OrganizationsController extends Controller
     public function destroy($id)
     {
         //
+        
+        $organization=Organization::find($id);
+
+        if(!empty($organization)){
+            Organization::destroy($id);
+            Identifier::destroy($organization->id_identifier);
+            Address::destroy($organization->id_address);
+            ContactPoint::destroy($organization->id_contact_point);
+          
+            return back()->with('status', '¡Organización dada de baja correctamente!');
+        }else{
+           
+        }
+
+       
+
+
+
+    }
+
+    public function createRol(){
+        return view('admin.organizations.createRol');
+    }
+    public function storeRol(Request $request){
+
+        $rol=new OrganizationsRol();
+        $rol->titulo=$request->title;
+        $rol->descripcion=$request->description;
+        $rol->save();
+        return back()->with('status', '¡Rol registrado correctamente!');
+
     }
 
   

@@ -47,19 +47,64 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Projects
     Route::get('/admin/projects/', [ProjectController::class, 'index'])->name('project.index');
-    Route::get('/admin/project/create', [ProjectController::class, 'create'])->name('project.create');
-    Route::post('/admin/project/', [ProjectController::class, 'store'])->name('project.store');
-    Route::get('/admin/project/test', [ProjectController::class, 'test'])->name('project.test');
-    Route::delete('/admin/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
-  //  Route::get('/admin/project/{id}', [ProjectController::class, 'testDestroy'])->name('project.testDestroy');
-  
+    Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name('project.create');
+    Route::post('/admin/projects/', [ProjectController::class, 'store'])->name('project.store');
+    Route::get('/admin/projects/test', [ProjectController::class, 'test'])->name('project.test');
+    
+    //Sectores/Subsectores
+    Route::get('/admin/project/sectores', [ProjectController::class, 'cat_sectores'])->name('project.cat_sectores');
 
+    Route::post('/admin/project/getdatafromnamesector', [ProjectController::class, 'getdatafromnamesector'])->name('project.getdatafromnamesector');
+
+    Route::post('/admin/project/savesector', [ProjectController::class, 'savesector'])->name('project.savesector');
+    Route::post('/admin/project/deletesector', [ProjectController::class, 'deletesector'])->name('project.deletesector');
+    
+    Route::post('/admin/project/savesubsector', [ProjectController::class, 'savesubsector'])->name('project.savesubsector');
+    //nav views project phases
+    Route::get('/admin/projects/identificacion/', [ProjectController::class, 'identificacion'])->name('project.identificacion');
+    Route::get('/admin/projects/preparacion/{project?}', [ProjectController::class, 'preparacion'])->name('project.preparacion');
+    Route::get('/admin/projects/contratacion/{project?}', [ProjectController::class, 'contratacion'])->name('project.contratacion');
+    Route::get('/admin/projects/ejecucion/{project?}', [ProjectController::class, 'ejecucion'])->name('project.ejecucion');
+    Route::get('/admin/projects/finalizacion/{project?}', [ProjectController::class, 'finalizacion'])->name('project.finalizacion');
+
+    //edit phases project
+
+    Route::get('/admin/projects/identificacion/{project}/', [ProjectController::class, 'editidentificacion'])->name('project.editidentificacion');
+    
+
+    //save phases project
+    Route::post('/admin/projects/saveidentificacion', [ProjectController::class, 'saveidentificacion'])->name('project.saveidentificacion');
+    Route::post('/admin/projects/savepreparacion', [ProjectController::class, 'savepreparacion'])->name('project.savepreparacion');
+    Route::post('/admin/projects/savecontratacion', [ProjectController::class, 'savecontratacion'])->name('project.savecontratacion');
+    Route::post('/admin/projects/saveejecucion', [ProjectController::class, 'saveejecucion'])->name('project.saveejecucion');
+    Route::post('/admin/projects/savefinalizacion', [ProjectController::class, 'savefinalizacion'])->name('project.savefinalizacion');
+
+    //update phases project
+
+    Route::post('/admin/projects/updateidentificacion/', [ProjectController::class, 'updateidentificacion'])->name('project.updateidentificacion');
+    Route::post('/admin/projects/updatepreparacion/', [ProjectController::class, 'updatepreparacion'])->name('project.updatepreparacion');
+    Route::post('/admin/projects/updatecontratacion/', [ProjectController::class, 'updatecontratacion'])->name('project.updatecontratacion');
+    Route::post('/admin/projects/updateejecucion/', [ProjectController::class, 'updateejecucion'])->name('project.updateejecucion');
+    Route::post('/admin/projects/updatefinalizacion/', [ProjectController::class, 'updatefinalizacion'])->name('project.updatefinalizacion');
+
+    Route::delete('/admin/projects/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
+  
+    Route::post('/admin/projects/subsectores', [ProjectController::class, 'subsectores'])->name('project.subsec');
+
+    
     //Organizaciones
     Route::get('/admin/organizations/', [OrganizationsController::class, 'index'])->name('organizations.index');
     Route::get('/admin/organizations/create', [OrganizationsController::class, 'create'])->name('organizations.create');
-    Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
+    Route::get('/admin/organizations/edit/{organization}', [OrganizationsController::class, 'edit'])->name('organizations.edit');
+   
     Route::post('/admin/organizations/', [OrganizationsController::class, 'store'])->name('organizations.store');
     Route::delete('/admin/organizations/{id}', [OrganizationsController::class, 'destroy'])->name('organizations.destroy');
+
+    //Rol organization
+
+    Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
+    Route::post('/admin/organizations/storeRol', [OrganizationsController::class, 'storeRol'])->name('organizations.storeRol');
+
 
     //Users
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');

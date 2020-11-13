@@ -19,6 +19,7 @@ class AlterTableProject extends Migration
             $table->foreign('status')->references('id')->on('projectstatus');
             $table->foreign('period')->references('id')->on('period');
             $table->foreign('sector')->references('id')->on('projectsector');
+           
             $table->foreign('type')->references('id')->on('projecttype');
             $table->foreign('assetlifetime')->references('id')->on('period');
             $table->foreign('publicAuthority_id')->references('id')->on('organization');

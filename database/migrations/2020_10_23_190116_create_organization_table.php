@@ -18,7 +18,7 @@ class CreateOrganizationTable extends Migration
             $table->text('name');
             $table->string('_id');
             $table->foreignId('id_identifier');
-            $table->foreignId('id_address');
+            $table->foreignId('id_address')->nullable();
             $table->foreignId('id_contact_point');
             $table->foreignId('id_partyRole');
             $table->timestamps();

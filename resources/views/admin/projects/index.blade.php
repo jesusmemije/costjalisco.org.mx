@@ -7,11 +7,14 @@
   <link href="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">
 @endsection
 @section('content')
-       
+
+
+
+
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Proyectos</h1>
-    <a href="{{ route('project.create') }}" class="btn btn-sm btn-primary shadow-sm">
+    <a href="{{ route('project.identificacion') }}" class="btn btn-sm btn-primary shadow-sm">
       <i class="fas fa-plus fa-sm text-white-50"></i>
        Registrar proyecto
     </a>
@@ -32,23 +35,47 @@
               <th>Título del proyecto</th>
               <th>Actualizado</th>
               <th>Estatus</th>
-              <th>Progreso</th>
+              
               <th>Presupuesto</th>
-              <th>Autoridad pública encargada</th>
+              <th>Autoridad Pública</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($projects as $project)
               <tr>
+                <?php 
+                
+
+                switch($project->status){
+                  case 1:
+                    $status='Identificación';
+                  break;
+                  case 2:
+                    $status="Preparación";
+                  break;
+                  case 3:
+                    $status="Contratración";
+                  break;
+                  case 4:
+                    $status="Ejecución";
+                  break;
+                  case 5:
+                  $status="Finalizado";
+                  break;
+                  default:$status="";
+                }
+
+
+                ?>
                 <td>{{ $project->title}}</td>
                 <td>{{ $project->updated}}</td>
-                <td>{{ $project->status}}</td>
-                <td>barra.</td>
+                <td>{{$status}}</td>
+              
                 <td>{{ $project->budget_amount}}</td>
-                <td>{{ $project->publicAuthority_name  }}</td>
+                <td>{{ $project->name}}</td>
                 <td>
-                  <a href="{{ route('users.edit', $project->id) }}" class="btn btn-sm btn-warning shadow-sm">
+                <a class="btn btn-sm btn-warning shadow-sm" href="{{route('project.editidentificacion',$project->id)}}">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
                     Editar
                   </a>
@@ -75,7 +102,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>¿Seguro que desea eliminar al usuario <strong><span class="name-user"></span></strong>?</p>
+          <p>¿Seguro que desea eliminar el proyecto  <strong><span class="name-user"></span></strong>?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
@@ -89,6 +116,7 @@
               <i class="fas fa-trash fa-sm text-white-50"></i>
               Si, eliminar
             </button>
+            
           </form>
         </div>
       </div>

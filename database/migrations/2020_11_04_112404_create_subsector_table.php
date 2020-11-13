@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectsectorTable extends Migration
+class CreateSubsectorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProjectsectorTable extends Migration
      */
     public function up()
     {
-        Schema::create('projectsector', function (Blueprint $table) {
+        Schema::create('subsector', function (Blueprint $table) {
             $table->id();
             $table->string('codigo', 20)->nullable($value = true);
             $table->string('titulo', 100)->nullable($value = true);
@@ -31,6 +31,6 @@ class CreateProjectsectorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projectsector');
+        Schema::dropIfExists('subsector');
     }
 }

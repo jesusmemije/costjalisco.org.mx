@@ -15,10 +15,10 @@ class CreatePeriodTable extends Migration
     {
         Schema::create('period', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('startDate', 0);
-            $table->dateTime('endDate', 0);
-            $table->dateTime('maxExtentDate', 0);
-            $table->integer('durationInDays');	
+            $table->dateTime('startDate', 0)->nullable();
+            $table->dateTime('endDate', 0)->nullable();
+            $table->dateTime('maxExtentDate', 0)->nullable();
+            $table->integer('durationInDays')->nullable();	
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
