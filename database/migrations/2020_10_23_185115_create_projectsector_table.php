@@ -15,9 +15,9 @@ class CreateProjectsectorTable extends Migration
     {
         Schema::create('projectsector', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 20)->nullable($value = true);
-            $table->string('titulo', 100)->nullable($value = true);
-            $table->string('descripcion', 300)->nullable($value = true);
+            $table->string('codigo', 30)->nullable();
+            $table->string('titulo', 100)->nullable();
+            $table->text('descripcion')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
