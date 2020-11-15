@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,9 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Log::info('Ejecución de seeder');
+
         $this->call([
             ProjectSectorSeeder::class,
-            DocumentTypeSeeder::class
+            ProjectTypeSeeder::class,
+            DocumentTypeSeeder::class,
         ]);
+
+        Log::info('Tablas con datos - success');
     }
 }
