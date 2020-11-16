@@ -16,10 +16,12 @@
         
         
         @yield('styles')
-        <style>
-
-
-</style>
+    
+    <style>
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
 
     </head>
     <body id="page-top">

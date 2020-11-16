@@ -7,13 +7,21 @@
   <link href="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">
 @endsection
 @section('content')
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Usuarios</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Todos los registros</li>
+    </ol>
+  </nav>
        
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
     <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary shadow-sm">
       <i class="fas fa-plus fa-sm text-white-50"></i>
-       Registrar usuario
+        Nuevo usuario
     </a>
   </div>
 
