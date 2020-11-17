@@ -108,3 +108,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
     Route::post('/admin/organizations/storeRol', [OrganizationsController::class, 'storeRol'])->name('organizations.storeRol');
 
+    require 'admin/users.php';
+
+    //News
+    require 'admin/news.php';
+
+});
