@@ -55,10 +55,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/project/sectores', [ProjectController::class, 'cat_sectores'])->name('project.cat_sectores');
 
     Route::post('/admin/project/getdatafromnamesector', [ProjectController::class, 'getdatafromnamesector'])->name('project.getdatafromnamesector');
-
+    Route::post('/admin/project/saveprojecttype', [ProjectController::class, 'saveprojecttype'])->name('project.saveprojecttype');
+    Route::post('/admin/project/saveestudioAmbiental', [ProjectController::class, 'saveestudioAmbiental'])->name('project.saveestudioAmbiental');
     Route::post('/admin/project/savesector', [ProjectController::class, 'savesector'])->name('project.savesector');
     Route::post('/admin/project/deletesector', [ProjectController::class, 'deletesector'])->name('project.deletesector');
-    
+    Route::post('/admin/project/deletesubsector', [ProjectController::class, 'deletesubsector'])->name('project.deletesubsector');
+    Route::post('/admin/project/editsector', [ProjectController::class, 'editsector'])->name('project.editsector');
+    Route::post('/admin/project/editsubsector', [ProjectController::class, 'editsubsector'])->name('project.editsubsector');
     Route::post('/admin/project/savesubsector', [ProjectController::class, 'savesubsector'])->name('project.savesubsector');
     //nav views project phases
     Route::get('/admin/projects/identificacion/', [ProjectController::class, 'identificacion'])->name('project.identificacion');
@@ -107,9 +110,29 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
     //Users
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/admin/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/admin/users/show{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/admin/users/edit/{user}/', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/admin/test', function () {
+        return view('admin.projects.proyecto');
+    });
+=======
+>>>>>>> Stashed changes
     require 'admin/users.php';
 
     //News
     require 'admin/news.php';
+<<<<<<< Updated upstream
+=======
+>>>>>>> fa1e4cd9412c8616cbabe19008abea6c702c37e6
+>>>>>>> Stashed changes
 
 });

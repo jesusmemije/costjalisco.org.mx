@@ -240,11 +240,11 @@
             <div class="row">
               <div class="col-lg-6">
               
-                <input type="hidden" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
-                <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
+                <input  type="" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
+                <input type="" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
 
                 <label>Calle </label>
-                <input type="text" name="streetAddress" class="form-control" value="{{old('streetAddress',$project->streetAddress)}}">
+                <input required type="text" name="streetAddress" class="form-control" value="{{old('streetAddress',$project->streetAddress)}}">
               </div>
               <div class="col-lg-6">
                 <label>Localidad </label>
@@ -412,17 +412,28 @@
     infoWindow.open(map);
     */
     // Configure the click listener.
+
+    const savedLatlng={
+      lat:document.getElementById('lat').value,
+      lng:document.getElementById('lng').value,
+    }
+    
+
     let mymarker=new google.maps.Marker({
-    position: myLatlng,
+    position: savedLatlng,
     title:"Hello World!"
 }); 
-
+      mymarker.setMap(mymarker);
 
     map.addListener("click", (mapsMouseEvent) => {
       // Close the current InfoWindow.
 
      lat= mapsMouseEvent.latLng.lat();
       lng=mapsMouseEvent.latLng.lng();
+
+      document.getElementById('lat').value=lat;
+      document.getElementById('lng').value=lng  ;
+
       const themarker = {
       lat: lat,
       lng: lng

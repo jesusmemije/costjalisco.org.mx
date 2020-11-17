@@ -470,6 +470,8 @@ class ProjectController extends Controller
         $address->region = $request->region;
         $address->postalCode = $request->postalCode;
         $address->countryName = $request->countryName;
+
+    
         
 
 
@@ -946,10 +948,12 @@ class ProjectController extends Controller
 
        
         //uso first en vez de get() porque get me retorna un array...
+
+    
         $project_locations = ProjectLocations::where('id_project','=',$id)
         ->first();
 
-     
+        
              
         $locations = Locations::find($project_locations->id_location);
 
@@ -979,11 +983,38 @@ class ProjectController extends Controller
 
     }
     
+    //Vista que se manda a llamar en  donde están "todos" los cátalogos.
     public function cat_sectores(){
         $sectores=DB::table('projectsector')->get();
-      
+        $tipos=DB::table('projecttype')->get();
+        $estudiosambiental=DB::table('catambiental')->get();
 
-        return view('admin.projects.sectores',['sectores'=>$sectores]);
+
+        return view('admin.projects.sectores',
+        [
+            'sectores'=>$sectores,
+            'tipos'=>$tipos,
+            'estudiosambiental'=>$estudiosambiental,
+        
+        ]);
+    }
+    public function saveestudioAmbiental(Request $request){
+
+    }
+
+    public function saveprojecttype(Request $request){
+
+        $r=  DB::table('projecttype')->upsert([
+            ['titulo' => $request->titulo],
+           
+        ], ['titulo'], ['titulo']);
+        if($r){
+            return back()->with('status', '¡Tipo de proyecto registrado!');
+        }else{
+            return back()->with('status', 'El tipo de proyecto no se pudo registrar');
+        }
+
+
     }
 
     public function getdatafromnamesector(){
@@ -1004,8 +1035,22 @@ class ProjectController extends Controller
        
 
     }
-    
+    public function deletesubsector(Request $request){
+        print_r($_POST);
+
+        $del=DB::table('subsector')
+        ->where('id','=',$request->to_id)
+        ->delete();
+
+        if($del){
+            return back()->with('status', 'Subsector eliminado correctamente!');
+        }else{
+            return back()->with('status', 'El subsector no se pudo eliminar');
+        }
+    }
     public function savesubsector(Request $request){
+       
+       
         
         $sector=DB::table('projectsector')
         ->select('id')
@@ -1035,9 +1080,58 @@ class ProjectController extends Controller
         }
 
     }
-  /*****************  CRUD SSECTOR  ********************/
-    public function deletesector(Request $request){
+  /*****************  CRUD SECTOR  ********************/
+
+    public function editsector(Request $request){
         
+        $r=DB::table('projectsector')
+        ->where('id',$request->id_to)
+        ->update(['titulo'=>$request->newtitulo]);
+        if($r){
+            return back()->with('status', 'Sector actualizado');
+        }else{
+            return back()->with('status', 'El sector no pudo actualizarse');
+        }
+    }
+    public function editsubsector(Request $request){
+        $r=DB::table('subsector')
+        ->where('id',$request->id_to)
+        ->update(['titulo'=>$request->newtitulo]);
+        if($r){
+            return back()->with('status', 'Subsector actualizado');
+        }else{
+            return back()->with('status', 'El subsector no pudo actualizarse');
+        }
+    }
+
+    public function deletesector(Request $request){
+       
+        $r=DB::table('sectorsubsector')
+        ->where('sectorsubsector.id_sector','=',$request->to_id)
+        ->get();
+
+        foreach ($r as $data) {
+           DB::table('subsector')
+           ->where('id','=',$data->id_subsector)
+           ->delete();
+        }
+
+
+        
+       $delete= DB::table('projectsector')
+        ->where('id','=',$request->to_id)
+        ->delete();
+      
+
+
+
+        if($delete){
+            return back()->with('status', '¡Sector eliminado correctamente!');
+        }else{
+            return back()->with('status', 'El sector no pudo eliminarse');
+        }
+
+
     }
     public function savesector(Request $request){
 
