@@ -108,31 +108,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
     Route::post('/admin/organizations/storeRol', [OrganizationsController::class, 'storeRol'])->name('organizations.storeRol');
 
-
-    //Users
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/admin/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/admin/users/show{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/admin/users/edit/{user}/', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-
-    Route::get('/admin/test', function () {
-        return view('admin.projects.proyecto');
-    });
-=======
->>>>>>> Stashed changes
-    require 'admin/users.php';
-
-    //News
-    require 'admin/news.php';
-<<<<<<< Updated upstream
-=======
->>>>>>> fa1e4cd9412c8616cbabe19008abea6c702c37e6
->>>>>>> Stashed changes
-
-});

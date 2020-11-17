@@ -134,9 +134,10 @@ Noticias
                 text: "¿Confirma eliminar este elemento y su contenido?",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#dd6b55',
-                cancelButtonColor: '#C1C1C1',
-                confirmButtonText: 'Sí, Eliminar'
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: 'Sí, Eliminar',
+                cancelButtonText: "Cancelar",
+                closeOnConfirm: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();

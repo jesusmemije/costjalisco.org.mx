@@ -62,9 +62,9 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news)
     {
-        //
+        return view("admin.news.edit", ['news' => $news]);
     }
 
     /**
