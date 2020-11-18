@@ -15,8 +15,8 @@ class CreateAdditionalidentifiersTable extends Migration
     {
         Schema::create('additionalidentifiers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_organization');
-            $table->foreignId('id_identifier');
+            $table->foreignId('id_organization')->nullable();;
+            $table->foreignId('id_identifier')->nullable();;
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

@@ -15,8 +15,8 @@ class CreateContractprocessSummaryModificationsTable extends Migration
     {
         Schema::create('contractprocess_summary_modifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_summary');
-            $table->foreignId('id_modifications');
+            $table->foreignId('id_summary')->nullable();
+            $table->foreignId('id_modifications')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

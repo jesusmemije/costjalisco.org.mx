@@ -15,7 +15,7 @@ class AlterTableContractRelases extends Migration
     {
         //
         Schema::table('contract_relases', function (Blueprint $table) {
-            $table->foreign('tag')->references('id')->on('relasetag');
+            $table->foreign('tag')->references('id')->on('relasetag')->onDelete('set null')->onUpdate('cascade');
         });
     }
 

@@ -16,10 +16,10 @@ class AlterTableSummary extends Migration
         //
         Schema::table('summary', function (Blueprint $table) {
             
-            $table->foreign('nature')->references('id')->on('contractnature');
-            $table->foreign('status')->references('id')->on('contractingprocess_status');
-            $table->foreign('suppliers_id')->references('id')->on('organization');
-            $table->foreign('contractPeriod')->references('id')->on('period');
+            $table->foreign('nature')->references('id')->on('contractnature')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('status')->references('id')->on('contractingprocess_status')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('suppliers_id')->references('id')->on('organization')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('contractPeriod')->references('id')->on('period')->onDelete('set null')->onUpdate('cascade');
 
         });
     }

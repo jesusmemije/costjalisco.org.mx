@@ -15,14 +15,14 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();	
-            $table->text('description');
-            $table->foreignId('id_geometry');
-            $table->foreignId('id_gazetter');
+            $table->text('description')->nullable();
+            $table->foreignId('id_geometry')->nullable();
+            $table->foreignId('id_gazetter')->nullable();
             $table->string('uri',300)->nullable();
-            $table->foreignId('id_address');
+            $table->foreignId('id_address')->nullable();
             $table->foreign('id_address')->references('id')->on('address')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('lat',50);
-            $table->string('lng',50);
+            $table->string('lat',50)->nullable();
+            $table->string('lng',50)->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

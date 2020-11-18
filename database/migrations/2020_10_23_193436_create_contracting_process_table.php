@@ -15,10 +15,10 @@ class CreateContractingProcessTable extends Migration
     {
         Schema::create('contracting_process', function (Blueprint $table) {
             $table->id();
-            $table->string('_id',30);
-            $table->foreignId('id_summary');
+            $table->string('_id',30)->nullable();
+            $table->foreignId('id_summary')->nullable();
          
-            $table->foreignId('id_relases');   
+            $table->foreignId('id_relases')->nullable();   
           
             $table->timestamps();
             $table->charset = 'utf8mb4';

@@ -16,22 +16,21 @@ class CreateProjectTable extends Migration
         Schema::create('project', function (Blueprint $table) {
             $table->id();		
             $table->string('ocid', 50);
-            $table->dateTime('updated', 0);	
-            $table->text('title');
-            $table->text('description');  
-            $table->foreignId('status');           
+            $table->dateTime('updated', 0)->nullable();	
+            $table->text('title')->nullable();
+            $table->text('description')->nullable(); 
+            $table->foreignId('status')->nullable();
             $table->foreignId('period')->nullable(true);
-            $table->foreignId('sector');
-            $table->foreignId('subsector');
-            $table->text('purpose');
-            $table->foreignId('type');
+            $table->foreignId('sector')->nullable();
+            $table->foreignId('subsector')->nullable();
+            $table->text('purpose')->nullable();
+            $table->foreignId('type')->nullable();
             $table->foreignId('assetlifetime')->nullable(true);;
             $table->double('budget_amount', 10, 2)->nullable(true);	
             $table->dateTime('budget_requestDate', 0)->nullable(true);
             $table->dateTime('budget_approvalDate', 0)->nullable(true);
-           
-            $table->text('publicAuthority_name');
-            $table->foreignId('publicAuthority_id');
+            $table->text('publicAuthority_name')->nullable();
+            $table->foreignId('publicAuthority_id')->nullable();
             $table->foreignId('id_completion')->nullable(true);;
             $table->timestamps();
             $table->charset = 'utf8mb4';

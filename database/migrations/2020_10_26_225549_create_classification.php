@@ -15,9 +15,9 @@ class CreateClassification extends Migration
     {
         Schema::create('classification', function (Blueprint $table) {
             $table->id();
-            $table->string('scheme',100);
-            $table->string('_id',100);
-            $table->text('description');
+            $table->string('scheme',100)->nullable();
+            $table->string('_id',100)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

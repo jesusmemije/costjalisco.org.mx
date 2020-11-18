@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         Log::info('Ejecución de seeder');
 
         $this->call([
-            ProjectSectorSeeder::class,
+           // ProjectSectorSeeder::class,
             ProjectTypeSeeder::class,
             DocumentTypeSeeder::class,
         ]);

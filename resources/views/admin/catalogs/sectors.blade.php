@@ -23,20 +23,22 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Cátalogos</h1>
+    <h1 class="h3 mb-0 text-gray-800">Sectores-subsectores</h1>
     
   </div>
   <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Listado de cátalogos</li>
+    <li class="breadcrumb-item active" aria-current="page">Sectores-subsectores</li>
   </ol>
 </nav>
        
   <!-- Page Heading -->
   
   
-  @include('admin.layouts.partials.session-flash-status')
+  @include('admin.layouts.partials.validation-error')
+
+@include('admin.layouts.partials.session-flash-status')
   
   <!-- DataTales Example -->
   <div class="row">
@@ -45,25 +47,25 @@
 
   
   <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <div class="form-row">
-        <div class="form-group">
-        <h6 class="m-0 font-weight-bold text-primary">Sectores registrados</h6>
-        </div>
-        <div class="form-group offset-md-5">
-          
-        <button  class="btn btn-primary btn-sm"  data-lbl='Nombre del sector' data-btn='Guardar sector' data-toggle="modal" data-title='Nuevo sector' data-target="#modalnewData" data-route='{{route("project.savesector")}}' >
+  <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
+        
+        <h6 class="m-0 font-weight-bold text-primary">Sectores</h6>
+      </a>
+
+   
+    <div class="collapse show" id="collapseCardExample1" >
+      <div class="offset-md-9">
+      <button  style="margin-top:4%;" class="btn btn-primary btn-sm"  data-lbl='Nombre del sector' data-btn='Guardar sector' data-toggle="modal" data-title='Nuevo sector' data-target="#modalnewData" data-route='{{route("catalogs.savesector")}}' >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         Agregar nuevo
       </button>
-</div>
-
       </div>
-     
-     
-    </div>
+ 
     <div class="card-body">
+    
+      
       <div class="tablescroll">
+      
         <table class="table table-bordered table-sm table-borderless table-hover" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
@@ -85,7 +87,7 @@
                 <div class="form-row">
 
                   <div class="form-group" style="margin-right: 5px;">
-                  <button data-title="Editar sector" data-labeltxt='sector' data-id='{{$sector->id}}' data-btn='Editar sector' data-toggle="modal" data-name='{{$sector->titulo}}' data-target="#modaleditData" data-route='{{route("project.editsector")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
+                  <button data-title="Editar sector" data-labeltxt='sector' data-labelbi='Sector' data-id='{{$sector->id}}' data-btn='Editar sector' data-toggle="modal" data-name='{{$sector->titulo}}' data-target="#modaleditData" data-route='{{route("catalogs.editsector")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
                     
                   </button>
@@ -93,7 +95,7 @@
                   </div>
 
                   <div class="form-group">
-                  <button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='sector' data-id='{{$sector->id}}' data-btn='Guardar sector' data-toggle="modal" data-name='{{$sector->titulo}}' data-target="#deleteUserModal" data-route='{{route("project.deletesector")}}'>
+                  <button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='sector' data-id='{{$sector->id}}' data-btn='Guardar sector' data-toggle="modal" data-name='{{$sector->titulo}}' data-target="#deleteUserModal" data-route='{{route("catalogs.deletesector")}}'>
                     <i class="fas fa-trash fa-sm text-white-50"></i>
                    
                   </button>
@@ -112,80 +114,7 @@
       </div>
     </div>
   </div>
-
-
-  <hr>
-
-  <div class="card shadow mb-4">
-    <div class="card-header py-3">
-       <div class="form-row">
-        <div class="form-group">
-        <h6 class="m-0 font-weight-bold text-primary">Estudios de impacto ambiental</h6>
-        </div>
-        <div class="form-group offset-md-3">
-          
-        <button  data-labeltxt='tipo de proyecto'  data-lbl='Nombre del estudio de impacto ambiental' data-btn='Guardar nombre de estudio' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo nombre de estudio' data-target="#modalnewData" data-route='{{route("project.saveestudioAmbiental")}}'  >
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        Agregar nuevo
-      </button>
-</div>
-
-      </div>
-     
-      
-    </div>
-    <div class="card-body">
-      <div class="tablescroll">
-        <table class="table table-bordered table-sm  table-hover" id=""  width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th style="width: 50%;">Nombre del estudio</th>
-              <th style="width: 10%;">Acciones</th>
-             
-             
-            </tr>
-          </thead>
-          <tbody>
-        @foreach($estudiosambiental as $estudio)
-            <tr>
-
-
-            <td>{{$estudio->titulo}}</td>
-
-            <td>
-            <div class="form-row">
-
-<div class="form-group" style="margin-right: 5px; margin-left:15%;">
-<button data-title="Editar sector" data-labeltxt='sector' data-id='{{$estudio->id}}' data-btn='Editar sector' data-toggle="modal" data-name='{{$estudio->titulo}}' data-target="#modaleditData" data-route='{{route("project.editsector")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
-  <i class="fas fa-edit fa-sm text-white-50"></i>
-  
-</button>
-
-</div>
-
-<div class="form-group">
-<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='sector' data-id='{{$estudio->id}}' data-btn='Guardar sector' data-toggle="modal" data-name='{{$estudio->titulo}}' data-target="#deleteUserModal" data-route='{{route("project.deletesector")}}'>
-  <i class="fas fa-trash fa-sm text-white-50"></i>
-  
-</button>
-
-</div>
-
-</div>
-
-            </td>
-
-
-            </tr>
-
-        @endforeach
-
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
-
   </div>
   
   <div class="col-md-6">
@@ -199,7 +128,7 @@
         </div>
         <div class="form-group offset-md-4">
           
-        <button  id="newsubsector" data-labeltxt='subsector' data-lbl='Nombre del subsector'  type="submit" data-btn='Guardar subsector' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo subsector' data-target="#modalnewData" data-route='{{route("project.savesubsector")}}'  >
+        <button  id="newsubsector" data-labeltxt='subsector' data-lbl='Nombre del subsector'   type="submit" data-btn='Guardar subsector' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo subsector' data-target="#modalnewData" data-route='{{route("catalogs.savesubsector")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         Agregar nuevo
       </button>
@@ -227,78 +156,7 @@
       </div>
     </div>
   </div>
-<hr>
-  <div class="card shadow mb-4">
-    <div class="card-header py-3">
-       <div class="form-row">
-        <div class="form-group">
-        <h6 class="m-0 font-weight-bold text-primary">Tipo de proyecto</h6>
-        </div>
-        <div class="form-group offset-md-5">
-          
-        <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del tipo de proyecto' data-btn='Guardar tipo de proyecto' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo tipo de proyecto' data-target="#modalnewData" data-route='{{route("project.saveprojecttype")}}'  >
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        Agregar nuevo
-      </button>
-</div>
 
-      </div>
-     
-      
-    </div>
-    <div class="card-body">
-      <div class="tablescroll">
-        <table class="table table-bordered table-sm  table-hover" id=""  width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th style="width: 50%;">Nombre</th>
-              <th style="width: 30%;">Acciones</th>
-             
-             
-            </tr>
-          </thead>
-          <tbody>
-        @foreach($tipos as $tipo)
-            <tr>
-
-
-            <td>{{$tipo->titulo}}</td>
-
-            <td>
-            <div class="form-row">
-
-<div class="form-group" style="margin-right: 5px;">
-<button data-title="Editar sector" data-labeltxt='sector' data-id='{{$tipo->id}}' data-btn='Editar sector' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#modaleditData" data-route='{{route("project.editsector")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
-  <i class="fas fa-edit fa-sm text-white-50"></i>
-  Editar
-</button>
-
-</div>
-
-<div class="form-group">
-<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='sector' data-id='{{$tipo->id}}' data-btn='Guardar sector' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#deleteUserModal" data-route='{{route("project.deletesector")}}'>
-  <i class="fas fa-trash fa-sm text-white-50"></i>
-  Eliminar
-</button>
-
-</div>
-
-</div>
-
-            </td>
-
-
-            </tr>
-
-        @endforeach
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  </div>
 
   
   </div>
@@ -349,13 +207,13 @@
       <div class="modal-body">
         <form id="formEdit" action="" method="POST">
         @csrf
-        <label for="name">Sector</label>
+        <label for="name" id="labelbi"></label>
           <input type="text" name="oldtitulo" id="oldname" class="form-control" readonly>
           
           <label for="">Nuevo nombre</label>
           <input required type="text" name="newtitulo" id="newname" class="form-control">
 
-          <input type="hidden" name="id_to" id="id_to">
+          <input type="hidden" name="edit_id" id="edit_id">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Regresar</button>
@@ -392,7 +250,7 @@
               <i class="fas fa-trash fa-sm text-white-50"></i>
               Si, eliminar
             </button>
-            <input type="hidden" name="to_id" id="to_id">
+            <input type="hidden" name="delete_id" id="delete_id">
           </form>
         </div>
       </div>
@@ -446,7 +304,7 @@ function sendname(name){
         "_token": "{{ csrf_token() }}",
         "name": name
       }, //datos que se envian a traves de ajax
-      url: "{{ route('project.getdatafromnamesector') }}", //archivo que recibe la peticion
+      url: "{{ route('catalogs.getdatafromnamesector') }}", //archivo que recibe la peticion
       type: 'post', //método de envio
       dataType: "json",
       success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
@@ -466,8 +324,8 @@ function sendname(name){
                                     '<tr><td >'
                                     + resp[i].titulo
                                     + '</td>><td>'
-                                    + '<button  style=" margin-left:15%; margin-right:5%;"  data-id='+resp[i].id+' data-title="Editar subsector" data-labeltxt="subsector" data-name='+datatitle+' data-btn="Editar subsector" data-toggle="modal"  data-target="#modaleditData" data-route="{{route("project.editsubsector")}}" data-target="#modaleditData"  style="margin-right: 5px;" class="btn btn-sm btn-info shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i></button>'
-                                    + '<button data-id='+resp[i].id+' data-route="{{route("project.deletesubsector")}}" data-labeltxt="subsector"  data-name='+datatitle+' class="btn btn-sm btn-dark shadow-sm" data-toggle="modal" data-target="#deleteUserModal"><i class="fas fa-trash fa-sm text-white-50"></i></button>'
+                                    + '<button  style=" margin-left:15%; margin-right:5%;" data-labelbi="Subsector"  data-id='+resp[i].id+' data-title="Editar subsector" data-labeltxt="subsector" data-name='+datatitle+' data-btn="Editar subsector" data-toggle="modal"  data-target="#modaleditData" data-route="{{route("catalogs.editsubsector")}}" data-target="#modaleditData"  style="margin-right: 5px;" class="btn btn-sm btn-info shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i></button>'
+                                    + '<button data-id='+resp[i].id+' data-route="{{route("catalogs.deletesubsector")}}" data-labeltxt="subsector"  data-name='+datatitle+' class="btn btn-sm btn-dark shadow-sm" data-toggle="modal" data-target="#deleteUserModal"><i class="fas fa-trash fa-sm text-white-50"></i></button>'
                                     + '</tr>';
                             
                         });
@@ -501,7 +359,7 @@ function sendname(name){
         name=name.replace(/,/g,' ')
         var action = button.data('route')
        $('#formDelete').attr('action', action)
-       $('#to_id').val(id);
+       $('#delete_id').val(id);
        var label=button.data('labeltxt')
        
        
@@ -525,12 +383,13 @@ function sendname(name){
       var title=button.data('title')
         var action = button.data('route')
        $('#formEdit').attr('action', action)
-       $('#to_id').val(id);
+       $('#edit_id').val(id);
+       var labelbi=button.data('labelbi');
        var label=button.data('labeltxt')
         var btn=button.data('btn');
+        $('#labelbi').html(labelbi);
         $('#oldname').val(name);
-        console.log(name);
-        $('#id_to').val(id);
+       
         $('#btnedit').html(btn)
     
       

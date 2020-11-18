@@ -15,9 +15,9 @@ class CreateContractnature extends Migration
     {
         Schema::create('contractnature', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 20);
-            $table->string('titulo', 20);
-            $table->string('descripcion', 300);
+            $table->string('codigo', 20)->nullable();
+            $table->string('titulo', 20)->nullable();
+            $table->string('descripcion', 300)->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

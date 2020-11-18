@@ -17,7 +17,7 @@ class AlterProjectTable extends Migration
 
         Schema::table('project', function (Blueprint $table) {
         
-          $table->foreign('subsector')->references('id')->on('subsector');
+          $table->foreign('subsector')->references('id')->on('subsector')->onDelete('set null')->onUpdate('cascade');
     });
 }
 

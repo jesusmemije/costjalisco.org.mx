@@ -17,8 +17,8 @@ class CreateSectorsubsectorTable extends Migration
             $table->id();
             $table->foreignId('id_sector');
             $table->foreignId('id_subsector');
-            $table->foreign('id_sector')->references('id')->on('projectsector');
-            $table->foreign('id_subsector')->references('id')->on('subsector');
+            $table->foreign('id_sector')->references('id')->on('projectsector')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_subsector')->references('id')->on('subsector')->onDelete('cascade')->onUpdate('cascade');
            
         });
     }

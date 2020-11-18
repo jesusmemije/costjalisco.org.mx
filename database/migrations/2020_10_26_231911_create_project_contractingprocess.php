@@ -17,8 +17,8 @@ class CreateProjectContractingprocess extends Migration
             $table->id();
             $table->foreignId('id_project');
             $table->foreignId('id_contractingprocess');
-            $table->foreign('id_project')->references('id')->on('project');
-            $table->foreign('id_contractingprocess')->references('id')->on('contracting_process');
+            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_contractingprocess')->references('id')->on('contracting_process')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

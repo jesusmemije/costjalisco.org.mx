@@ -18,8 +18,8 @@ class AlterTableAdditionalidentifiers extends Migration
         Schema::table('additionalidentifiers', function (Blueprint $table) {
          
             
-            $table->foreign('id_organization')->references('id')->on('organization');
-            $table->foreign('id_identifier')->references('id')->on('identifier');
+            $table->foreign('id_organization')->references('id')->on('organization')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_identifier')->references('id')->on('identifier')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

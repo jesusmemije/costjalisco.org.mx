@@ -19,9 +19,9 @@ class CreateOrganizationRoles extends Migration
             $table->foreignId('id_party_role');
             $table->timestamps();
 
-            $table->foreign('id_organization')->references('id')->on('organization');
+            $table->foreign('id_organization')->references('id')->on('organization')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->foreign('id_party_role')->references('id')->on('party_role');
+            $table->foreign('id_party_role')->references('id')->on('party_role')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -15,13 +15,13 @@ class CreateCompletionTable extends Migration
     {
         Schema::create('completion', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('endDate',0);
-            $table->text('endDateDetails');
-            $table->double('finalValue_amount',10,2);
-            $table->string('finalValue_currency',10);
-            $table->text('finalValueDetails');
-            $table->string('finalScope',300);
-            $table->text('finalScopeDetails');
+            $table->dateTime('endDate',0)->nullable();
+            $table->text('endDateDetails')->nullable();
+            $table->double('finalValue_amount',10,2)->nullable();
+            $table->string('finalValue_currency',10)->nullable();
+            $table->text('finalValueDetails')->nullable();
+            $table->string('finalScope',300)->nullable();
+            $table->text('finalScopeDetails')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

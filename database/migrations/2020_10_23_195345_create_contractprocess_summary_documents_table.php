@@ -15,8 +15,8 @@ class CreateContractprocessSummaryDocumentsTable extends Migration
     {
         Schema::create('contractprocess_summary_documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_summary');
-            $table->foreignId('id_document');
+            $table->foreignId('id_summary')->nullable();
+            $table->foreignId('id_document')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

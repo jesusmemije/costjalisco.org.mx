@@ -16,9 +16,9 @@ class CreateProjectOrganizations extends Migration
         Schema::create('project_organizations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_project');
-            $table->foreign('id_project')->references('id')->on('project');
+            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_organization');
-            $table->foreign('id_organization')->references('id')->on('organization');
+            $table->foreign('id_organization')->references('id')->on('organization')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

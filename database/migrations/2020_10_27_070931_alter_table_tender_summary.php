@@ -16,8 +16,8 @@ class AlterTableTenderSummary extends Migration
         //
 
         Schema::table('tender_summary', function (Blueprint $table) {
-            $table->foreign('id_summary')->references('id')->on('summary');
-            $table->foreign('id_tender')->references('id')->on('tender');
+            $table->foreign('id_summary')->references('id')->on('summary')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_tender')->references('id')->on('tender')->onDelete('cascade')->onUpdate('cascade');
            
 
         });
