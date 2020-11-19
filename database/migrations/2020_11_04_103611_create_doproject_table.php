@@ -17,8 +17,8 @@ class CreateDoprojectTable extends Migration
             $table->id();
             $table->foreignId('id_project');
             $table->foreignId('id_user');
-            $table->foreign('id_project')->references('id')->on('project');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

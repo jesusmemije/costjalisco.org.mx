@@ -17,10 +17,10 @@ class CreateProjectperiodTable extends Migration
             $table->id();
             $table->foreignId('id_project');
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
-            $table->dateTime('startDate', 0);
-            $table->dateTime('endDate', 0);
-            $table->dateTime('maxExtentDate', 0);
-            $table->integer('durationInDays');	
+            $table->dateTime('startDate', 0)->nullable();
+            $table->dateTime('endDate', 0)->nullable();
+            $table->dateTime('maxExtentDate', 0)->nullable();
+            $table->integer('durationInDays')->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
 

@@ -15,10 +15,10 @@ class CreateProjectBudgetbreakdown extends Migration
     {
         Schema::create('project_budgetbreakdown', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_project');
-            $table->foreign('id_project')->references('id')->on('project');
-            $table->foreignId('id_budget');
-            $table->foreign('id_budget')->references('id')->on('budget_breakdown');
+            $table->foreignId('id_project')->nullable()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_budget')->nullable();
+            $table->foreign('id_budget')->references('id')->on('budget_breakdown')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

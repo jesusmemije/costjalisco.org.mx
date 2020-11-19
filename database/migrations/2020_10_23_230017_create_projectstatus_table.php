@@ -15,9 +15,9 @@ class CreateProjectstatusTable extends Migration
     {
         Schema::create('projectstatus', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 20);
-            $table->string('titulo', 20);
-            $table->text('descripcion');
+            $table->string('codigo', 20)->nullable();
+            $table->string('titulo', 20)->nullable();
+            $table->text('descripcion')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

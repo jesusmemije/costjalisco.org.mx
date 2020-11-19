@@ -16,12 +16,12 @@ class CreateRelatedProjects extends Migration
         Schema::create('related_projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_project');
-            $table->foreign('id_project')->references('id')->on('project');
-            $table->string('scheme',100);
-            $table->string('identifier',100);
-            $table->string('relationship',20);
-            $table->text('title');
-            $table->string('uri',100);
+            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('scheme',100)->nullable();
+            $table->string('identifier',100)->nullable();
+            $table->string('relationship',20)->nullable();
+            $table->text('title')->nullable();
+            $table->string('uri',100)->nullable();
             $table->timestamps();
         });
     }

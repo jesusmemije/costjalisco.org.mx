@@ -15,17 +15,17 @@ class CreateModificationsTable extends Migration
     {
         Schema::create('modifications', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date',0);
-            $table->text('description');
-            $table->string('rationale',100);
-            $table->foreignId('type');
-            $table->string('relaseID',30);
-            $table->double('oldContractValue_amount',10,2);
-            $table->string('oldContractValue_currency',10);
-            $table->double('newContractValue_amount',10,2);
-            $table->string('newContractValue_currency',10);
-            $table->foreignId('oldContracPeriod');
-            $table->foreignId('newContractPeriod');
+            $table->dateTime('date',0)->nullable();
+            $table->text('description')->nullable();
+            $table->string('rationale',100)->nullable();
+            $table->foreignId('type')->nullable();
+            $table->string('relaseID',30)->nullable();
+            $table->double('oldContractValue_amount',10,2)->nullable();
+            $table->string('oldContractValue_currency',10)->nullable();
+            $table->double('newContractValue_amount',10,2)->nullable();
+            $table->string('newContractValue_currency',10)->nullable();
+            $table->foreignId('oldContracPeriod')->nullable();
+            $table->foreignId('newContractPeriod')->nullable();
 
             $table->timestamps();
             $table->charset = 'utf8mb4';

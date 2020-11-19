@@ -15,8 +15,8 @@ class CreateTenderSummaryTable extends Migration
     {
         Schema::create('tender_summary', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_summary');
-            $table->foreignId('id_tender');
+            $table->foreignId('id_summary')->nullable();
+            $table->foreignId('id_tender')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

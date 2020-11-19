@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\CatalogosController;
+use App\Http\Controllers\Admin\CatalogsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\OrganizationsController;
-
+use League\CommonMark\Inline\Element\Code;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,18 +53,78 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/admin/projects/', [ProjectController::class, 'store'])->name('project.store');
     Route::get('/admin/projects/test', [ProjectController::class, 'test'])->name('project.test');
     
-    //Sectores/Subsectores
-    Route::get('/admin/project/sectores', [ProjectController::class, 'cat_sectores'])->name('project.cat_sectores');
+    
+   //Routes projecttype.
+   Route::get('/admin/catalogs/projecttype', [CatalogsController::class, 'projecttype'])->name('catalogs.projecttype');
+   Route::post('/admin/catalogs/deleteprojecttype', [CatalogsController::class, 'deleteprojecttype'])->name('catalogs.deleteprojecttype');
+   Route::post('/admin/catalogs/editprojecttype', [CatalogsController::class, 'editprojecttype'])->name('catalogs.editprojecttype');
 
-    Route::post('/admin/project/getdatafromnamesector', [ProjectController::class, 'getdatafromnamesector'])->name('project.getdatafromnamesector');
-    Route::post('/admin/project/saveprojecttype', [ProjectController::class, 'saveprojecttype'])->name('project.saveprojecttype');
-    Route::post('/admin/project/saveestudioAmbiental', [ProjectController::class, 'saveestudioAmbiental'])->name('project.saveestudioAmbiental');
-    Route::post('/admin/project/savesector', [ProjectController::class, 'savesector'])->name('project.savesector');
-    Route::post('/admin/project/deletesector', [ProjectController::class, 'deletesector'])->name('project.deletesector');
-    Route::post('/admin/project/deletesubsector', [ProjectController::class, 'deletesubsector'])->name('project.deletesubsector');
-    Route::post('/admin/project/editsector', [ProjectController::class, 'editsector'])->name('project.editsector');
-    Route::post('/admin/project/editsubsector', [ProjectController::class, 'editsubsector'])->name('project.editsubsector');
-    Route::post('/admin/project/savesubsector', [ProjectController::class, 'savesubsector'])->name('project.savesubsector');
+    Route::post('/admin/catalogs/saveprojecttype', [CatalogsController::class, 'saveprojecttype'])->name('catalogs.saveprojecttype');
+    
+    //Routes studies
+    Route::get('/admin/catalogs/studies', [CatalogsController::class, 'studies'])->name('catalogs.studies');
+    
+    
+    Route::post('/admin/catalogs/saveestudioFactibilidad', [CatalogsController::class, 'saveestudioFactibilidad'])->name('catalogs.saveestudioFactibilidad');
+    Route::post('/admin/catalogs/deleteestudioFactibilidad', [CatalogsController::class, 'deleteestudioFactibilidad'])->name('catalogs.deleteestudioFactibilidad');
+    Route::post('/admin/catalogs/editestudioFactibilidad', [CatalogsController::class, 'editestudioFactibilidad'])->name('catalogs.editestudioFactibilidad');
+    
+    Route::post('/admin/catalogs/saveestudioImpacto', [CatalogsController::class, 'saveestudioImpacto'])->name('catalogs.saveestudioImpacto');
+    Route::post('/admin/catalogs/deleteestudioImpacto', [CatalogsController::class, 'deleteestudioImpacto'])->name('catalogs.deleteestudioImpacto');
+    Route::post('/admin/catalogs/editestudioImpacto', [CatalogsController::class, 'editestudioImpacto'])->name('catalogs.editestudioImpacto');
+    
+
+    Route::post('/admin/catalogs/saveestudioAmbiental', [CatalogsController::class, 'saveestudioAmbiental'])->name('catalogs.saveestudioAmbiental');
+    Route::post('/admin/catalogs/deleteestudioAmbiental', [CatalogsController::class, 'deleteestudioAmbiental'])->name('catalogs.deleteestudioAmbiental');
+    Route::post('/admin/catalogs/editestudioAmbiental', [CatalogsController::class, 'editestudioAmbiental'])->name('catalogs.editestudioAmbiental');
+    
+    //Routes origin resoruce
+
+    Route::get('/admin/catalogs/resource', [CatalogsController::class, 'resource'])->name('catalogs.resource');
+    Route::post('/admin/catalogs/saveresource', [CatalogsController::class, 'saveresource'])->name('catalogs.saveresource');
+    Route::post('/admin/catalogs/deleteresource', [CatalogsController::class, 'deleteresource'])->name('catalogs.deleteresource');
+    Route::post('/admin/catalogs/editresource', [CatalogsController::class, 'editresource'])->name('catalogs.editresource');
+    
+    //Routes adjudication
+
+    Route::get('/admin/catalogs/adjudication', [CatalogsController::class, 'adjudication'])->name('catalogs.adjudication');
+    Route::post('/admin/catalogs/saveadjudication', [CatalogsController::class, 'saveadjudication'])->name('catalogs.saveadjudication');
+    Route::post('/admin/catalogs/deleteadjudication', [CatalogsController::class, 'deleteadjudication'])->name('catalogs.deleteadjudication');
+    Route::post('/admin/catalogs/editadjudication', [CatalogsController::class, 'editadjudication'])->name('catalogs.editadjudication');
+    
+
+    //Routes contract type
+    Route::get('/admin/catalogs/contracttype', [CatalogsController::class, 'contracttype'])->name('catalogs.contracttype');
+    Route::post('/admin/catalogs/savecontracttype', [CatalogsController::class, 'savecontracttype'])->name('catalogs.savecontracttype');
+    Route::post('/admin/catalogs/deletecontracttype', [CatalogsController::class, 'deletecontracttype'])->name('catalogs.deletecontracttype');
+    Route::post('/admin/catalogs/editcontracttype', [CatalogsController::class, 'editcontracttype'])->name('catalogs.editcontracttype');
+    
+    //Routes mod contract
+
+    Route::get('/admin/catalogs/contracting', [CatalogsController::class, 'contracting'])->name('catalogs.contracting');
+    Route::post('/admin/catalogs/savecontracting', [CatalogsController::class, 'savecontracting'])->name('catalogs.savecontracting');
+    Route::post('/admin/catalogs/deleteccontracting', [CatalogsController::class, 'deletecontracting'])->name('catalogs.deletecontracting');
+    Route::post('/admin/catalogs/editcontracting', [CatalogsController::class, 'editcontracting'])->name('catalogs.editcontracting');
+    
+    //Routes contract status
+    Route::get('/admin/catalogs/contractstatus', [CatalogsController::class, 'contractstatus'])->name('catalogs.contractstatus');
+    Route::post('/admin/catalogs/savecontractstatus', [CatalogsController::class, 'savecontractstatus'])->name('catalogs.savecontractstatus');
+    Route::post('/admin/catalogs/deletecontractstatus', [CatalogsController::class, 'deletecontractstatus'])->name('catalogs.deletecontractstatus');
+    Route::post('/admin/catalogs/editcontractstatus', [CatalogsController::class, 'editcontractstatus'])->name('catalogs.editcontractstatus');
+    
+
+    //Sectores/Subsectores
+    Route::get('/admin/catalogs/sectors', [CatalogsController::class, 'cat_sectors'])->name('catalogs.cat_sectors');
+    Route::post('/admin/catalogs/getdatafromnamesector', [CatalogsController::class, 'getdatafromnamesector'])->name('catalogs.getdatafromnamesector');
+    Route::post('/admin/catalogs/savesector', [CatalogsController::class, 'savesector'])->name('catalogs.savesector');
+    Route::post('/admin/catalogs/deletesector', [CatalogsController::class, 'deletesector'])->name('catalogs.deletesector');
+    Route::post('/admin/catalogs/deletesubsector', [CatalogsController::class, 'deletesubsector'])->name('catalogs.deletesubsector');
+    Route::post('/admin/catalogs/editsector', [CatalogsController::class, 'editsector'])->name('catalogs.editsector');
+    Route::post('/admin/catalogs/editsubsector', [CatalogsController::class, 'editsubsector'])->name('catalogs.editsubsector');
+    Route::post('/admin/catalogs/savesubsector', [CatalogsController::class, 'savesubsector'])->name('catalogs.savesubsector');
+    Route::post('/admin/catalogs/subsectores', [CatalogsController::class, 'subsectores'])->name('catalogs.subsec');
+
+    
     //nav views project phases
     Route::get('/admin/projects/identificacion/', [ProjectController::class, 'identificacion'])->name('project.identificacion');
     Route::get('/admin/projects/preparacion/{project?}', [ProjectController::class, 'preparacion'])->name('project.preparacion');
@@ -92,8 +154,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::delete('/admin/projects/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
   
-    Route::post('/admin/projects/subsectores', [ProjectController::class, 'subsectores'])->name('project.subsec');
 
+
+   
     
     //Organizaciones
     Route::get('/admin/organizations/', [OrganizationsController::class, 'index'])->name('organizations.index');

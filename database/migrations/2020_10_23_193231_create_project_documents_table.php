@@ -16,9 +16,9 @@ class CreateProjectDocumentsTable extends Migration
         Schema::create('project_documents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_project');
-            $table->foreign('id_project')->references('id')->on('project');
+            $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_document');
-            $table->foreign('id_document')->references('id')->on('documents');
+            $table->foreign('id_document')->references('id')->on('documents')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

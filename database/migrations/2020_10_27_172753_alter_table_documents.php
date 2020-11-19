@@ -17,7 +17,7 @@ class AlterTableDocuments extends Migration
 
         Schema::table('documents', function (Blueprint $table) {
 
-        $table->foreign('documentType')->references('id')->on('documenttype');
+        $table->foreign('documentType')->references('id')->on('documenttype')->onDelete('set null')->onUpdate('cascade');
         });
     }
 

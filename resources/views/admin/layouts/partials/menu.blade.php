@@ -36,7 +36,7 @@
     <div id="collapseProject" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="{{ route('project.index')}}">Proyectos registrados</a>
-        <a class="collapse-item" href="{{route('project.cat_sectores')}}">Sectores/subsectores</a>
+        
       </div>
     </div>
   </li>
@@ -52,6 +52,28 @@
 
         <a class="collapse-item" href="{{ route('organizations.index')}}">Listado de organizaciones</a>
         <a class="collapse-item" href="{{route('organizations.createRol')}}">Rol organización</a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCat" aria-expanded="true"
+      aria-controls="collapseCat">
+      <i class="fas fa-fw fa-list"></i>
+      <span>Cátalogos</span>
+    </a>
+    <div id="collapseCat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+
+        <a class="collapse-item" href="{{ route('catalogs.cat_sectors')}}">Sectores/subsectores</a>
+        <a class="collapse-item" href="{{route('catalogs.projecttype')}}">Tipo de proyecto</a>
+        <a class="collapse-item" href="{{route('catalogs.studies')}}">Estudios</a>
+        <a class="collapse-item" href="{{route('catalogs.resource')}}">Origen del recurso</a>
+        <a class="collapse-item" href="{{route('catalogs.adjudication')}}">Modalidad de adjudicación</a>
+        <a class="collapse-item" href="{{route('catalogs.contracttype')}}">Tipo de contrato</a>
+        <a class="collapse-item" href="{{route('catalogs.contracting')}}">Modalidad de contratación</a>
+        <a class="collapse-item" href="{{route('catalogs.contractstatus')}}">Estados de contratación</a>
       </div>
     </div>
   </li>

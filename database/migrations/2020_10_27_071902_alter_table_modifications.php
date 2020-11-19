@@ -16,9 +16,9 @@ class AlterTableModifications extends Migration
         //
         Schema::table('modifications', function (Blueprint $table) {
         
-            $table->foreign('type')->references('id')->on('modification_type');
-            $table->foreign('oldContracPeriod')->references('id')->on('period');
-            $table->foreign('newContractPeriod')->references('id')->on('period');
+            $table->foreign('type')->references('id')->on('modification_type')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('oldContracPeriod')->references('id')->on('period')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('newContractPeriod')->references('id')->on('period')->onDelete('set null')->onUpdate('cascade');
             
         });
     }

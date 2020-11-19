@@ -16,8 +16,8 @@ class AlterTableContractprocessSummaryModifications extends Migration
         //
 
         Schema::table('contractprocess_summary_modifications', function (Blueprint $table) {
-            $table->foreign('id_summary')->references('id')->on('summary');
-            $table->foreign('id_modifications')->references('id')->on('modifications');
+            $table->foreign('id_summary')->references('id')->on('summary')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_modifications')->references('id')->on('modifications')->onDelete('cascade')->onUpdate('cascade');
            
 
         });

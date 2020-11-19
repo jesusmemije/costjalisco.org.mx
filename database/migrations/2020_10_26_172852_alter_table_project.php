@@ -16,14 +16,14 @@ class AlterTableProject extends Migration
         //
 
         Schema::table('project', function (Blueprint $table) {
-            $table->foreign('status')->references('id')->on('projectstatus');
-            $table->foreign('period')->references('id')->on('period');
-            $table->foreign('sector')->references('id')->on('projectsector');
+            $table->foreign('status')->references('id')->on('projectstatus')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('period')->references('id')->on('period')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('sector')->references('id')->on('projectsector')->onDelete('set null')->onUpdate('cascade');
            
-            $table->foreign('type')->references('id')->on('projecttype');
-            $table->foreign('assetlifetime')->references('id')->on('period');
-            $table->foreign('publicAuthority_id')->references('id')->on('organization');
-            $table->foreign('id_completion')->references('id')->on('completion');
+            $table->foreign('type')->references('id')->on('projecttype')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('assetlifetime')->references('id')->on('period')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('publicAuthority_id')->references('id')->on('organization')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('id_completion')->references('id')->on('completion')->onDelete('set null')->onUpdate('cascade');
                      
             
         });

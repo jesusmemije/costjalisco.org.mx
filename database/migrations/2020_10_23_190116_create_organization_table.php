@@ -15,12 +15,12 @@ class CreateOrganizationTable extends Migration
     {
         Schema::create('organization', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->string('_id');
-            $table->foreignId('id_identifier');
+            $table->text('name')->nullable();;
+            $table->string('_id')->nullable();;
+            $table->foreignId('id_identifier')->nullable();;
             $table->foreignId('id_address')->nullable();
-            $table->foreignId('id_contact_point');
-            $table->foreignId('id_partyRole');
+            $table->foreignId('id_contact_point')->nullable();;
+            $table->foreignId('id_partyRole')->nullable();;
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

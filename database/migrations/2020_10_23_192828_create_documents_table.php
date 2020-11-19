@@ -18,7 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->foreignId('documentType')->nullable(true);;
            
             $table->text('description')->nullable(true);
-            $table->string('url',100);
+            $table->string('url',100)->nullable();
             $table->dateTime('datePublished', 0)->nullable(true);
             $table->dateTime('dateModified', 0)->nullable(true);
             $table->string('format',100)->nullable(true);

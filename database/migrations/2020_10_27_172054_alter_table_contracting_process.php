@@ -17,8 +17,8 @@ class AlterTableContractingProcess extends Migration
 
         Schema::table('contracting_process', function (Blueprint $table) {
 
-           $table->foreign('id_summary')->references('id')->on('summary');
-           $table->foreign('id_relases')->references('id')->on('contract_relases');
+           $table->foreign('id_summary')->references('id')->on('summary')->onDelete('cascade')->onUpdate('cascade');
+           $table->foreign('id_relases')->references('id')->on('contract_relases')->onDelete('cascade')->onUpdate('cascade');
             
         });
     }

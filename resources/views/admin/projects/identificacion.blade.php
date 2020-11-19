@@ -240,8 +240,8 @@
             <div class="row">
               <div class="col-lg-6">
               
-                <input  type="" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
-                <input type="" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
+                <input  type="hidden" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
+                <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
 
                 <label>Calle </label>
                 <input required type="text" name="streetAddress" class="form-control" value="{{old('streetAddress',$project->streetAddress)}}">
@@ -328,7 +328,7 @@
         "_token": "{{ csrf_token() }}",
         "id": id
       }, //datos que se envian a traves de ajax
-      url: "{{ route('project.subsec') }}", //archivo que recibe la peticion
+      url: "{{ route('catalogs.subsec') }}", //archivo que recibe la peticion
       type: 'post', //método de envio
       dataType: "json",
       success: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve

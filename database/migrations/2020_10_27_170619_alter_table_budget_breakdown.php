@@ -16,8 +16,8 @@ class AlterTableBudgetBreakdown extends Migration
         //
          Schema::table('budget_breakdown', function (Blueprint $table) {
          
-            $table->foreign('id_period')->references('id')->on('period');
-            $table->foreign('sourceParty_id')->references('id')->on('organization');
+            $table->foreign('id_period')->references('id')->on('period')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('sourceParty_id')->references('id')->on('organization')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

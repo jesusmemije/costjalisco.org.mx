@@ -17,8 +17,8 @@ class CreateProjectclassificationsTable extends Migration
             $table->id();
             $table->foreignId('id_project');
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('scheme',100);
-            $table->string('_id',100);
+            $table->string('scheme',100)->nullable();
+            $table->string('_id',100)->nullable();
             $table->text('description');
             $table->timestamps();
         });

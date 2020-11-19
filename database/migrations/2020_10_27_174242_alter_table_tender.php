@@ -15,9 +15,9 @@ class AlterTableTender extends Migration
     {
         //
         Schema::table('tender', function (Blueprint $table) {
-            $table->foreign('tenders_id')->references('id')->on('tender');
-            $table->foreign('procuringEntity_id')->references('id')->on('organization');
-            $table->foreign('administrativeEntity_id')->references('id')->on('organization');
+            $table->foreign('tenders_id')->references('id')->on('tender')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('procuringEntity_id')->references('id')->on('organization')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('administrativeEntity_id')->references('id')->on('organization')->onDelete('set null')->onUpdate('cascade');
             });
     }
 
