@@ -84,7 +84,7 @@ Noticias
                             <span class="badge badge-info">No publicado</span>
                             @endif
                         </td>
-                        <td style="font-size: 10px;">{{ $new->created_at->format('d-M-Y h:i A') }}</td>
+                        <td style="font-size: 11px;">{{ $new->created_at->format('d-M-Y h:i A') }}</td>
                         <td>
                             <a href="{{ route('news.edit', $new->id) }}" class="btn btn-warning btn-circle btn-sm">
                                 <i class="fas fa-edit"></i>
@@ -170,27 +170,7 @@ Noticias
 <!-- CDN Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script>
-    $(".btnDelete").on({
-        click: function (e) {
-            e.preventDefault();
-            var parent = $(this).data('id');
-            var form = $(this).parent();
-            Swal.fire({
-                title: 'Advertencia',
-                text: "¿Confirma eliminar este elemento y su contenido?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: 'Sí, Eliminar',
-                cancelButtonText: "Cancelar",
-                closeOnConfirm: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            })
-        }
-    });
-</script>
+<!-- Archivo app.js -->
+<script src="{{asset("js/app.js")}}"></script>
+
 @endsection

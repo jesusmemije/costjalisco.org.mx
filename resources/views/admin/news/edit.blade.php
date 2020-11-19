@@ -19,7 +19,7 @@ Editar noticia
                 Regresar
             </a>
             <button type="submit" class="btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-save fa-sm text-white-50"></i>
+                <i class="fas fa-edit fa-sm text-white-50"></i>
                 Actualizar
             </button>
         </div>
