@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\Catalogs\ContractTypeController;
 use App\Http\Controllers\Admin\Catalogs\ProjectTypeController;
 use App\Http\Controllers\Admin\Catalogs\ResourceController;
 use App\Http\Controllers\Admin\CatalogsController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -148,11 +147,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
     Route::post('/admin/organizations/storeRol', [OrganizationsController::class, 'storeRol'])->name('organizations.storeRol');
 
+    //Routes Users
     require 'admin/users.php';
 
-    //News
+    //Routes News
     require 'admin/news.php';
 
-
+    //Uploads images the CKEditor
+    Route::post('/ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
 });

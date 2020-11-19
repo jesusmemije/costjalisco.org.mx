@@ -16,7 +16,7 @@ class AlterPartyRoleTable extends Migration
     {
         //
         Schema::table('party_role', function (Blueprint $table) {
-        
+
             $table->string('codigo', 100)->nullable()->change();
             $table->string('titulo', 100)->nullable()->change();
             $table->string('descripcion', 300)->nullable()->change();
