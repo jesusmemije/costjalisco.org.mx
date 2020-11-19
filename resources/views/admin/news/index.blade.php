@@ -11,8 +11,8 @@ Noticias
 <!-- Navigation -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-fw fa-tachometer-alt"></i>
-            Dashboard</a>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-fw fa-home"></i>
+            Inicio</a>
         </li>
         <li class="breadcrumb-item"><a href="{{ route('news.index') }}">Noticias</a></li>
         <li class="breadcrumb-item active" aria-current="page">Todos los registros</li>
@@ -53,28 +53,75 @@ Noticias
                     @foreach ($news as $new)
                     <tr>
                         <td>{{ $new->title }}</td>
-                        <td>{{ $new->description }}</td>
-                        <td>{{ $new->content }}</td>
-                        <td>{{ $new->author }}</td>
+                        <td style="width: 160px;">
+                            @if ( !empty( $new->description ) )
+                            {{ $new->description }}
+                            @else
+                            <span class="badge badge-info">Sin descripción</span>
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            @if ( !empty( $new->content ) )
+                            <a href="#showModalContent-{{ $new->id }}" data-toggle="modal"
+                                class="btn btn-primary btn-circle btn-sm">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            @else
+                            <span class="badge badge-info">Sin contenido</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if ( !empty( $new->author ) )
+                            {{ $new->author }}
+                            @else
+                            <span class="badge badge-info">Sin autor</span>
+                            @endif
+                        </td>
                         <td>
                             @if ( $new->published )
                             <span class="badge badge-success">Publicado</span>
                             @else
-                            <span class="badge badge-info">Sin publicar</span>
+                            <span class="badge badge-info">No publicado</span>
                             @endif
                         </td>
-                        <td>{{ $new->created_at->format('d-M-Y') }}</td>
+                        <td style="font-size: 10px;">{{ $new->created_at->format('d-M-Y h:i A') }}</td>
                         <td>
                             <a href="{{ route('news.edit', $new->id) }}" class="btn btn-warning btn-circle btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{route('news.destroy',$new->id)}}" method="POST" style="display:inline-block;" id="delete">
+                            <form action="{{route('news.destroy',$new->id)}}" method="POST"
+                                style="display:inline-block;" id="delete">
                                 @method('DELETE')
                                 @csrf
-                                <input type="submit" class="btn btn-danger btn-circle btn-sm btnDelete" value="x" data-id="{{$new->id}}"/>
-                           </form>
+                                <input type="submit" class="btn btn-danger btn-circle btn-sm btnDelete" value="x"
+                                    data-id="{{$new->id}}" />
+                            </form>
                         </td>
                     </tr>
+                    @if ( !empty( $new->content ) )
+                    <!-- Modal view content-->
+                    <div class="modal fade" id="showModalContent-{{ $new->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="ModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalLongTitle"><i class="fa fa-asterisk"></i> Noticia: {{ $new->title }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @php
+                                        echo $new->content
+                                    @endphp
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Listo, cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
@@ -113,17 +160,17 @@ Noticias
 @endsection
 
 @section('scripts')
-  <!-- Page level plugins -->
-  <script src="{{asset("admin_assets/vendor/datatables/jquery.dataTables.min.js")}}"></script>
-  <script src="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
+<!-- Page level plugins -->
+<script src="{{asset("admin_assets/vendor/datatables/jquery.dataTables.min.js")}}"></script>
+<script src="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="{{asset("admin_assets/js/demo/datatables-demo.js")}}"></script>
+<!-- Page level custom scripts -->
+<script src="{{asset("admin_assets/js/demo/datatables-demo.js")}}"></script>
 
-  <!-- CDN Sweet Alert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- CDN Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-  <script>
+<script>
     $(".btnDelete").on({
         click: function (e) {
             e.preventDefault();

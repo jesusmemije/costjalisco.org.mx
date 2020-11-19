@@ -74,9 +74,17 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, News $news)
+    {   
+        $news->update([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'content'     => $request->content,
+            'author'      => $request->author,
+            'published'   => $request->published
+        ]);
+
+        return back()->with('status', '¡Noticia actualizada con éxito!');
     }
 
     /**
