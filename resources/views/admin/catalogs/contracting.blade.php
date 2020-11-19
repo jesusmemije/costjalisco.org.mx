@@ -20,7 +20,12 @@
 
 @endsection
 @section('content')
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tipos de modalidades de contratación</li>
+  </ol>
+</nav>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between">
     <h1 class="h3 mb-0 text-gray-800">Modalidad de contratación</h1>
@@ -28,12 +33,7 @@
     
   </div>
   <hr>
-  <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Tipos de modalidades de contratación</li>
-  </ol>
-</nav>
+ 
        
   <!-- Page Heading -->
   
@@ -55,7 +55,7 @@
         </div>
         <div class="form-group offset-md-5">
           
-        <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del tipo de contratación' data-btn='Guardar tipo de contratación' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo tipo de contratación' data-target="#modalnewData" data-route='{{route("catalogs.savecontracting")}}'  >
+        <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del tipo de contratación' data-btn='Guardar tipo de contratación' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo tipo de contratación' data-target="#modalnewData" data-route='{{route("contracting.store")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         Agregar nuevo
       </button>
@@ -89,7 +89,7 @@
 <div class="offset-md-3">
 
 
-<button data-title="Editar tipo de contratación" data-labeltxt='sector' data-labelbi='Tipo de contratación' data-id='{{$tipo->id}}' data-btn='Editar tipo de contratación' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#modaleditData" data-route='{{route("catalogs.editcontracting")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
+<button data-title="Editar tipo de contratación" data-labeltxt='sector' data-labelbi='Tipo de contratación' data-id='{{$tipo->id}}' data-btn='Editar tipo de contratación' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#modaleditData" data-route='{{route("contracting.update",$tipo->id)}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
   <i class="fas fa-edit fa-sm text-white-50"></i>
   Editar
 </button>
@@ -97,7 +97,7 @@
 
 
 
-<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='tipo de contratación:' data-id='{{$tipo->id}}' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#deleteUserModal" data-route='{{route("catalogs.deletecontracting")}}'>
+<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='tipo de contratación:' data-id='{{$tipo->id}}' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#deleteUserModal" data-route='{{route("contracting.destroy",$tipo->id)}}'>
   <i class="fas fa-trash fa-sm text-white-50"></i>
   Eliminar
 </button>
@@ -168,6 +168,7 @@
       </div>
       <div class="modal-body">
         <form id="formEdit" action="" method="POST">
+        @method('put')
         @csrf
         <label for="name" id="labelbi"></label>
           <input type="text" name="oldtitulo" id="oldname" class="form-control" readonly>
@@ -205,7 +206,8 @@
             No, salir
           </button>
           <form id="formDelete" action="" data-action=" " method="POST">
-            @method('POST')
+
+            @method('delete')
             @csrf
             
             <button type="submit" class="btn btn-sm btn-danger shadow-sm">

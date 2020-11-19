@@ -18,7 +18,7 @@ class AlterPartyRoleTable extends Migration
         Schema::table('party_role', function (Blueprint $table) {
         
             $table->string('codigo', 100)->nullable()->change();
-            $table->string('titulo', 20)->nullable()->change();
+            $table->string('titulo', 100)->nullable()->change();
             $table->string('descripcion', 300)->nullable()->change();
             $table->string('fuente', 20)->nullable()->change();
       });
@@ -41,7 +41,7 @@ class AlterPartyRoleTable extends Migration
         
                 foreach ($rows as $row) {
                     
-                    DB::table('projecttype')
+                    DB::table('party_role')
                     ->insert([
 
                         'id'=>$row['id'],

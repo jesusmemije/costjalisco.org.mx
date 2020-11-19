@@ -21,6 +21,12 @@
 @endsection
 @section('content')
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tipos de estudios</li>
+  </ol>
+</nav>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between">
     <h1 class="h3 mb-0 text-gray-800">Tipos de estudios</h1>
@@ -28,12 +34,7 @@
     
   </div>
   <hr>
-  <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Tipos de estudios</li>
-  </ol>
-</nav>
+
        
   <!-- Page Heading -->
   

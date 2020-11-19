@@ -20,6 +20,12 @@
 
 @endsection
 @section('content')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tipos de proyecto</li>
+  </ol>
+</nav>
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between">
@@ -28,12 +34,7 @@
     
   </div>
   <hr>
-  <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Tipos de proyecto</li>
-  </ol>
-</nav>
+  
        
   <!-- Page Heading -->
   
@@ -55,7 +56,7 @@
         </div>
         <div class="form-group offset-md-7">
           
-        <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del tipo de proyecto' data-btn='Guardar tipo de proyecto' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo tipo de proyecto' data-target="#modalnewData" data-route='{{route("catalogs.saveprojecttype")}}'  >
+        <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del tipo de proyecto' data-btn='Guardar tipo de proyecto' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo tipo de proyecto' data-target="#modalnewData" data-route='{{route("projecttype.store")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         Agregar nuevo
       </button>
@@ -89,7 +90,7 @@
 <div class="offset-md-3">
 
 
-<button data-title="Editar tipo de proyecto" data-labeltxt='sector' data-labelbi='Tipo de proyecto' data-id='{{$tipo->id}}' data-btn='Editar tipo de proyecto' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#modaleditData" data-route='{{route("catalogs.editprojecttype")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
+<button data-title="Editar tipo de proyecto" data-labeltxt='sector' data-labelbi='Tipo de proyecto' data-id='{{$tipo->id}}' data-btn='Editar tipo de proyecto' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#modaleditData" data-route='{{route("projecttype.update",$tipo->id)}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
   <i class="fas fa-edit fa-sm text-white-50"></i>
   Editar
 </button>
@@ -97,7 +98,7 @@
 
 
 
-<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='tipo de proyecto:' data-id='{{$tipo->id}}' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#deleteUserModal" data-route='{{route("catalogs.deleteprojecttype")}}'>
+<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='tipo de proyecto:' data-id='{{$tipo->id}}' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#deleteUserModal" data-route='{{route("projecttype.destroy",$tipo->id)}}'>
   <i class="fas fa-trash fa-sm text-white-50"></i>
   Eliminar
 </button>
@@ -168,6 +169,7 @@
       </div>
       <div class="modal-body">
         <form id="formEdit" action="" method="POST">
+        @method('put')
         @csrf
         <label for="name" id="labelbi"></label>
           <input type="text" name="oldtitulo" id="oldname" class="form-control" readonly>
@@ -205,7 +207,7 @@
             No, salir
           </button>
           <form id="formDelete" action="" data-action=" " method="POST">
-            @method('POST')
+            @method('delete')
             @csrf
             
             <button type="submit" class="btn btn-sm btn-danger shadow-sm">

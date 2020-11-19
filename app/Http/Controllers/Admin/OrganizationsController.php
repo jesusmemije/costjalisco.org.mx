@@ -28,6 +28,7 @@ class OrganizationsController extends Controller
         ->select('organization.id','organization.name as orgname','contact_point.*')
         ->get();
 
+
         
        
       
@@ -51,7 +52,8 @@ class OrganizationsController extends Controller
             'organization'=>new Organization(),
             'users'=>$users,
             'roles'=>$party_rol,
-            'create'=>true
+            'create'=>true,
+            'ruta'=>'',
         ]);
     }
 
@@ -64,7 +66,13 @@ class OrganizationsController extends Controller
     public function store(Request $request)
     {
         //
-      
+        
+        if ($request->hasFile('imgCurso')) {
+            echo "vlv";
+        }else{
+            echo "efectivamente";
+        }
+        die();
         $identifier=new Identifier();
 
         $identifier->scheme="ocid/x".$request->name;
@@ -100,6 +108,25 @@ class OrganizationsController extends Controller
         $organization->id_partyRole=$request->partyRole;
         $organization->save();
 
+
+
+        //to save the image logo org
+        if(!empty($request->imgOrg)){        
+            $nombre_img = $_FILES['imgOrg']['name'];
+    
+            move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$nombre_img);
+            $url=$nombre_img;
+
+            DB::table('orglogos')->insert([
+                'id_organization'=>$organization->id,
+                'imgroute'=>$url,
+            ]);
+    
+           
+    
+            
+            }
+
         return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
 
     }
@@ -123,25 +150,36 @@ class OrganizationsController extends Controller
      */
     public function edit(Organization $organization)
     {  
-        //
+
 
         $dataorg=DB::table('organization')
         ->join('contact_point','organization.id_contact_point','=','contact_point.id')
         ->join('address','organization.id_address','=','address.id')
         ->join('party_role','organization.id_partyRole','=','party_role.id')
-        ->select('organization.name as orgname','contact_point.*','address.*','party_role.*')
-        ->get();
+        ->where('organization.id','=',$organization->id)
+        ->select('organization.name as orgname','contact_point.*','address.*','party_role.id as partyid')
+        ->first();
+
+
 
        
-      
+        $orglogo=DB::table('orglogos')->where('id_organization','=',$organization->id)->first();
+        if($orglogo!=null){
+            $ruta=$orglogo->imgroute;
+            $ruta='orglogos/'.$ruta;
+        }else{
+            $ruta="";
+        }
+        
 
         $users=User::all();
         $party_rol=OrganizationsRol::all();
         return view('admin.organizations.edit',[
-            'organization'=>$dataorg[0],
+            'organization'=>$dataorg,
             'users'=>$users,
             'roles'=>$party_rol,
-            'create'=>false
+            'create'=>false,
+            'ruta'=>$ruta,
         ]);
         
     }
@@ -153,9 +191,73 @@ class OrganizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+
+        $id_organization=$request->id_organization;
+
+        $id_identifier=Organization::find($id_organization)->id_identifier;
+
+        $id_address=Organization::find($id_organization)->id_address;
+        $id_contact_point=Organization::find($id_organization)->id_contact_point;;
+
+        $identifier=Identifier::find($id_identifier);
+
+        $identifier->scheme="ocid/x".$request->name;
+        $identifier->_id="X";
+        $identifier->legalName=$request->name;
+
+        $identifier->save();
+
+        $address=Address::find($id_address);
+        
+        $address->streetAddress=$request->streetAddress;
+        $address->locality=$request->locality;
+        $address->region=$request->region;
+        $address->postalCode=$request->postalCode;
+        $address->countryName=$request->countryName;
+        $address->save();
+
+        $contact_point=ContactPoint::find($id_contact_point);
+        $contact_point->name=$request->nameContact;
+        $contact_point->email=$request->emailContact;
+        $contact_point->telephone=$request->telephone;
+        $contact_point->faxNumber=$request->faxNumber;
+        $contact_point->url=$request->url;
+        $contact_point->save();
+       
+
+        $organization=Organization::find($id_organization);
+        $organization->name=$request->name;
+        $organization->_id='X';
+        $organization->id_identifier=$identifier->id;
+        $organization->id_address=$address->id;
+        $organization->id_contact_point=$contact_point->id;
+        $organization->id_partyRole=$request->partyRole;
+        $organization->save();
+
+
+
+        //to save the image logo org
+        if(!empty($request->imgOrg)){        
+            $nombre_img = $_FILES['imgOrg']['name'];
+    
+            move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$nombre_img);
+            $url=$nombre_img;
+
+            DB::table('orglogos')
+            ->where('id_organization','=',$request->imgOrg)
+            ->update([
+               'imgroute'=>$url,
+            ]);
+    
+           
+    
+            
+            }
+
+        return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
     }
 
     /**
@@ -188,7 +290,10 @@ class OrganizationsController extends Controller
     }
 
     public function createRol(){
-        return view('admin.organizations.createRol');
+        $roles=DB::table('party_role')->get();
+
+
+        return view('admin.organizations.createRol',['roles'=>$roles]);
     }
     public function storeRol(Request $request){
 

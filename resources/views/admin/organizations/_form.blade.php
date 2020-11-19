@@ -1,7 +1,7 @@
 @csrf
     <div class="collapse show" id="collap1">
       <div class="card-body">
-      
+      <input type="text" name="id_organization" value="{{$organization->id}}">
 
       <div class="form-row">
       <div class="form-group col-md-12">
@@ -13,11 +13,18 @@
     <div class="form-row">
       <div class="form-group col-md-12">
       <label for="name">Rol de la organización</label>
-      <select name="partyRole" id="" class="form-control">
+      <select required name="partyRole" id="" class="form-control">
         <option value="">Selecciona el rol</option>
 
 @foreach($roles as $rol)
+
+@if($rol->id==$organization->partyid)
+<option selected value="{{$rol->id}}">{{$rol->titulo}}</option>
+@else
 <option value="{{$rol->id}}">{{$rol->titulo}}</option>
+@endif
+
+
 @endforeach
 
 </select>
@@ -137,18 +144,49 @@
     <div class="form-group col-md-12">
       <label for="">Descripción del lugar</label>
     <input type="text" name="description" class="form-control" >
-      </div>
-    </div>
+
+     <label for="imgOrg">Logotipo de la organización</label>
+    
    
+    <div class="card">
+                <input required type="file" name="imgCurso" id="img_curso" class="dropify">
+                @error('imgCurso')
+                    <small class="text-danger">{{$message}}</small>
+                @enderror
+            </div>
 
       </div>
     </div>
 
 </div>
+
 <hr>
-<a class="btn btn-sm btn-primary shadow-sm" href="{{route('organizations.index')}}">Regresar</a>
+
+  
+  
+   
+     
+      
+         
+              
+     
+              
+      
+<a class="btn btn-sm btn-primary shadow-sm" href="{{route('organizations.index')}}">
+ 
+Regresar</a>
+
+@if(!$create)
 <button type="submit" class="btn btn-sm btn-primary shadow-sm">
+<i class="fa fa-edit"></i>
+    Editar
+    </button>
+@else
+<button type="submit" class="btn btn-sm btn-primary shadow-sm">
+<i class="fa fa-save"></i>
     Registrar
     </button>
+@endif
+
         
       </div>

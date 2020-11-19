@@ -8,7 +8,12 @@
 @endsection
 @section('content')
 
-
+<nav aria-label="breadcrumb" >
+  <ol class="breadcrumb" style="background-color: #fff !important;">
+    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+    <li class="breadcrumb-item active"  aria-current="page"><a href="#">Organizaciones</a></li>
+  </ol>
+</nav>
 
        
   <!-- Page Heading -->
@@ -19,12 +24,7 @@
        Registrar organización
     </a>
   </div>
-  <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-    <li class="breadcrumb-item active"  aria-current="page"><a href="#">Organizaciones</a></li>
-  </ol>
-</nav>
+  
   @include('admin.layouts.partials.session-flash-status')
 
   <!-- DataTales Example -->

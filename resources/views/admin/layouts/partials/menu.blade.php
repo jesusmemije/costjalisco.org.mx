@@ -67,13 +67,13 @@
       <div class="bg-white py-2 collapse-inner rounded">
 
         <a class="collapse-item" href="{{ route('catalogs.cat_sectors')}}">Sectores/subsectores</a>
-        <a class="collapse-item" href="{{route('catalogs.projecttype')}}">Tipo de proyecto</a>
+        <a class="collapse-item" href="{{route('projecttype.index')}}">Tipo de proyecto</a>
         <a class="collapse-item" href="{{route('catalogs.studies')}}">Estudios</a>
-        <a class="collapse-item" href="{{route('catalogs.resource')}}">Origen del recurso</a>
-        <a class="collapse-item" href="{{route('catalogs.adjudication')}}">Modalidad de adjudicación</a>
-        <a class="collapse-item" href="{{route('catalogs.contracttype')}}">Tipo de contrato</a>
-        <a class="collapse-item" href="{{route('catalogs.contracting')}}">Modalidad de contratación</a>
-        <a class="collapse-item" href="{{route('catalogs.contractstatus')}}">Estados de contratación</a>
+        <a class="collapse-item" href="{{route('resource.index')}}">Origen del recurso</a>
+        <a class="collapse-item" href="{{route('adjudication.index')}}">Modalidad de adjudicación</a>
+        <a class="collapse-item" href="{{route('contracttype.index')}}">Tipo de contrato</a>
+        <a class="collapse-item" href="{{route('contracting.index')}}">Modalidad de contratación</a>
+        <a class="collapse-item" href="{{route('contractstatus.index')}}">Estados de contratación</a>
       </div>
     </div>
   </li>
