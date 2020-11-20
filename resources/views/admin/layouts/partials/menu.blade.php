@@ -36,7 +36,7 @@
     <div id="collapseProject" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="{{ route('project.index')}}">Proyectos registrados</a>
-        
+
       </div>
     </div>
   </li>
@@ -111,7 +111,7 @@
     </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('news.index') }}">
+    <a class="nav-link" href="{{ route('events.index') }}">
       <i class="far fa-calendar"></i>
       <span>Eventos</span></a>
   </li>

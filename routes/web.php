@@ -153,6 +153,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Routes News
     require 'admin/news.php';
 
+    //Routes Events
+    require 'admin/events.php';
+
     //Uploads images the CKEditor
     Route::post('/ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
