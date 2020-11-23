@@ -1,0 +1,136 @@
+/* ========================== General ========================== */
+a {
+    color: #fff;
+}
+
+a:focus, a:hover {
+	color: #9EC2D5;
+    text-decoration: none;
+}
+
+/* ========================== Header ========================== */
+.header-top {
+	background-color: #2C4143;
+	font-size: 12px;
+  	background-image: 
+  		linear-gradient(40deg, #2C4143 87%, transparent 87%), 
+  		linear-gradient(-140deg, #58707B 13%, transparent 13%);
+}
+
+.header-img {
+	background-color: #F7F7F7;
+}
+
+.header-menu {
+	background-color: #2C4143;
+	background-image: 
+  		linear-gradient(40deg, #58707B 24%, transparent 24%), 
+  		linear-gradient(-140deg, #2C4143 76%, transparent 76%);
+}
+
+.divider {
+    height: 1.5em;
+   	border-left: 1px solid #777;
+    margin-top: 10px;
+}
+
+.nav-login {
+	margin-right: 4rem;;
+	margin-left: 6rem;
+}
+
+.nav-link {
+	margin-right: 1rem;
+	margin-left: 1rem;
+}
+
+/* ========================== Content ========================== */
+
+/* Carousel */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+/* Make the image fully responsive */
+.carousel-inner img {
+	width: 100%;
+    height: 100%;
+}
+
+.carousel-indicators li {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+.carousel-indicators .active {
+    background-color: #58707B;
+}
+
+.carousel-indicators li {
+    opacity: 1;
+}
+
+/* Dropdow menu */
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-divider {
+	position: relative;
+    margin: -4px .8rem;
+    border-top: 1px solid #777;
+    z-index: 1;
+}
+
+.dropdown-menu {
+	margin-top: 0;
+    padding: .4rem 0;
+    color: #fff;
+    background-color: #2C4143;
+    border: none;
+    border-radius: 0;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #9EC2D5;
+    background-color: #2C4143;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+}
+
+/* ========================== Footer ========================== */
