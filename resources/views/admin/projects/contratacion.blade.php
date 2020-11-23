@@ -15,6 +15,16 @@
 @include('admin.projects.phasesnav')
 
 <br>
+
+    
+
+<div class="row">
+    <div class="col-md-12">
+    <div>
+
+  
+    <form action="{{route($ruta)}}" method="POST" enctype="multipart/form-data">
+            @csrf
 <div class="card mb-4">
     @include('admin.layouts.partials.validation-error')
 
@@ -25,57 +35,54 @@
 
     <div class="card-body">
 
-
-        <form action="{{route($ruta)}}" method="POST">
-            @csrf
             <input type="hidden" value="{{$project->id}}" name="id_project">
-            
-            
+
+
             <div class="row">
                 <div class="col-md-12">
-               <div class="form-row">
-
-            
-
-                <div class="form-group col-md-6">
-                <label for="descripcion">Descripción</label>
-
-            <textarea name="descripcion" id="descripcion" class="form-control" name='descripcion' cols="30" rows="4">{{old('descripcion',$project->descripcion)}}</textarea>
-
-                </div>
-                <div class="form-group col-md-6">
                     <div class="form-row">
-                        <div class="col-md-12">
-                        <label for="">Datos de contacto de la entidad de adjudicación</label>
-                <input type="text" class="form-control" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
+
+
+
+                        <div class="form-group col-md-6">
+                            <label for="descripcion">Descripción</label>
+
+                            <textarea name="descripcion" id="descripcion" class="form-control" name='descripcion' cols="30" rows="4">{{old('descripcion',$project->descripcion)}}</textarea>
+
                         </div>
-                 
-            
-                    
-                <div class="form-group col-md-6">
-                <label for="">Fecha de publicación</label>
-                <input type="date" class="form-control" name="fechapublicacion" value="{{old('fechapublicacion',$project->fechapublicacion)}}">
-                
-               
-                </div>
-
-                <div class="form-group col-md-6">
-               <label for="">Entidad de adjudicación</label>
-                    <input type="text" class="form-control" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
-               </div>
-                </div>
-                
-               
-               
-                </div>
+                        <div class="form-group col-md-6">
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <label for="">Datos de contacto de la entidad de adjudicación</label>
+                                    <input type="text" class="form-control" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
+                                </div>
 
 
+
+                                <div class="form-group col-md-6">
+                                    <label for="">Fecha de publicación</label>
+                                    <input type="date" class="form-control" name="fechapublicacion" value="{{old('fechapublicacion',$project->fechapublicacion)}}">
+
+
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="">Entidad de adjudicación</label>
+                                    <input type="text" class="form-control" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
-            </div>
-            
-            
-          
+
+
+
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="">Nombre del responsable</label>
@@ -223,35 +230,35 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
-                <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
-                {{ $medit ? 'Actualizar' : 'Siguiente' }}
-            </button>
-
-
+             
+            
+            
 
     </div>
     <!--before this go the data-->
 
 
-    </form>
+</div>
+    @include('admin.projects.selectdocuments')
+      
+        <div class="d-flex justify-content-end">
+    <button type="submit" class="btn btn-sm btn-primary shadow-sm">
+        <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
+        {{ $medit ? 'Actualizar' : 'Siguiente' }}
+</button>
+    </div>
+
+</div>
 
 
 </div>
+
+</form>
 <!--end card-->
 
-
-
-
-
-
-
-
-
-
-
-
+@include('admin.projects.modaldeletedocument')
 @endsection
 
 @section('scripts')
+<script src="{{asset('js/deletemodaldocument.js')}}"></script>
 @endsection

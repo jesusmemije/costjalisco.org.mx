@@ -13,8 +13,6 @@ $ambiental->fecharealizacionAmbiental='';
 
 ?>
 
-@include('admin.projects.bread')
-
 @include('admin.projects.phasesnav')
 
 
@@ -108,15 +106,11 @@ $ambiental->fecharealizacionAmbiental='';
     </style>
 @endsection   
 
-<?php
-$collap="";
-
-?>
   
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 <br>
 
-<form action="{{route($ruta)}}" method="POST">
+<form action="{{route($ruta)}}" method="POST" enctype="multipart/form-data">
 @csrf  
    
 
@@ -303,7 +297,7 @@ $collap="";
     <div class="form-group col-md-4">
     <label for="">Fecha de realización</label>
     
-    <input type="date" class="form-control" name="fecharealizacionImpacto" value="{{old('fecharealizacionImpacto',$project->fecharealizacionImpacto)}}">
+    <input type="date" class="form-control" name="fecharealizacionImpacto" value="{{old('fecharealizacionImpacto',$project->fecharealizacionimpacto)}}">
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
@@ -330,7 +324,7 @@ $collap="";
 
 </div>
 
-<div class="col-lg-8">
+<div class="col-lg-6">
 
 <div class="card shadow mb-4">
   <!-- Card Header - Accordion -->
@@ -398,61 +392,30 @@ $collap="";
   
   
 </div>
+
 </div>
 
-<div class="col-lg-4">
-
-<div class="card shadow mb-4">
-  <!-- Card Header - Accordion -->
-  <a href="#collapseCardExample5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample5">
-  
-  <h6 class="m-0 font-weight-bold text-primary">Documentos</h6>
-  </a>
-  <!-- Card Content - Collapse -->
-  
-  <div class="collapse" id="collapseCardExample5">
-    <div class="card-body">
+@include('admin.projects.selectdocuments')
     
-  <form>
-
-    
-    <div class="form-row">
-    <div class="form-group">
-    <label for="">Seleccionar documentos</label>
-      <input type="file" class="form-control" name="documentospreparacion">
-    
-    </div>
 
 
 
-  
-  
 
 
 </div>
- </div>
-  
-  
-</div>
-</div>
-
-</div>
-
-<button type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
-      <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
-      {{ $medit ? 'Actualizar' : 'Siguiente' }}
-    </button>
-
-
-
+<div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
+                    <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
+                    {{ $medit ? 'Actualizar' : 'Finalizar registro' }}
+                </button>
+            </div>
 </form>
-</div>
 
-
+@include('admin.projects.modaldeletedocument')
   
 
 @section('scripts')
-
+<script src="{{asset('js/deletemodaldocument.js')}}"></script>
 <script>
 
 
@@ -470,7 +433,7 @@ function get_class_sections(id) {
                         "_token": "{{ csrf_token() }}",
                         "id": id
                     }, //datos que se envian a traves de ajax
-                    url: "{{ route('project.subsec') }}", //archivo que recibe la peticion
+                    url: "{{ route('catalogs.subsec') }}", //archivo que recibe la peticion
                     type: 'post', //método de envio
                     dataType:"json",
                     success: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve

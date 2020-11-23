@@ -101,6 +101,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     
     //nav views project phases
+    
+
     Route::get('/admin/projects/identificacion/', [ProjectController::class, 'identificacion'])->name('project.identificacion');
     Route::get('/admin/projects/preparacion/{project?}', [ProjectController::class, 'preparacion'])->name('project.preparacion');
     Route::get('/admin/projects/contratacion/{project?}', [ProjectController::class, 'contratacion'])->name('project.contratacion');
@@ -113,6 +115,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     
 
     //save phases project
+    Route::post('/admin/projects/savegeneraldata/', [ProjectController::class, 'savegeneraldata'])->name('project.savegeneraldata');
     Route::post('/admin/projects/saveidentificacion', [ProjectController::class, 'saveidentificacion'])->name('project.saveidentificacion');
     Route::post('/admin/projects/savepreparacion', [ProjectController::class, 'savepreparacion'])->name('project.savepreparacion');
     Route::post('/admin/projects/savecontratacion', [ProjectController::class, 'savecontratacion'])->name('project.savecontratacion');
@@ -131,7 +134,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
   
 
 
-   
+   //delete project documents
+   Route::post('/admin/projects/deletedocument/', [ProjectController::class, 'deletedocument'])->name('project.deletedocument');
+
     
     //Organizaciones
     Route::get('/admin/organizations/', [OrganizationsController::class, 'index'])->name('organizations.index');

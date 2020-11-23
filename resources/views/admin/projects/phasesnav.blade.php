@@ -1,12 +1,13 @@
 <?php 
 
-
-$identificacion='';
+$generaldata='';
+$identificacion='disabled';
 $preparacion='disabled';
 $procedimiento='disabled';
 $contratacion='disabled';
 $ejecucion='disabled';
 $finalizacion='disabled';
+$navgeneraldata='';
 $navprep='';
 $naviden='';
 $navcontr='';
@@ -15,8 +16,10 @@ $navfin='';
 
 
 switch($nav){
-
-  case 'identificacion':
+  case 'generaldata';
+  $navgeneraldata='active iden';
+break;
+    case 'identificacion':
    $naviden='active iden';
   break;
   case 'preparacion':
@@ -86,6 +89,7 @@ if(empty($project->id)){
 .active.iden{
   color: #fff !important;
   background-color: #2c3f4c !important;
+  border-bottom: 0px;
   
 }
 .end{
@@ -93,21 +97,31 @@ if(empty($project->id)){
   background-color: #96c03d !important;
   border-radius: .25em;
   border-color: #fff !important;
-
+  border-bottom: 0px;
 }
 .nav-item{
   margin-right: 1px;
+  border-bottom: 0px;
 }
 
 </style>
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+   
+    <li class="breadcrumb-item"><a href="{{route('dashboard')}}"><i class="fas fa-fw fa-home"></i> Inicio </a></li>
+    <li class="breadcrumb-item"><a href="{{route('project.index')}}">Proyectos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Registro de proyecto</li>
+  </ol>
+</nav>
+
 <ul class="nav nav-tabs">
-    
+
    
 @if($edit)
-    <li class="nav-item">
+   <li class="nav-item">
     <a class="nav-link {{$identificacion}} {{$naviden}}" href="{{route('project.editidentificacion',$project->id)}}">Identificación del proyecto</a>
-  </li>
+  </li> 
     @else
     <li class="nav-item">
     <a class="nav-link {{$identificacion}} {{$naviden}}" href="{{route('project.identificacion')}}">Identificación del proyecto</a>

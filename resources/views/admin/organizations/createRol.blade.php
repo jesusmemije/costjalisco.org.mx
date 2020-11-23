@@ -18,7 +18,7 @@
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>Nombre del rol de organizacións</th>
+              <th>Nombre del rol de organización</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -31,11 +31,11 @@
                 <td>
                 <a class="btn btn-sm btn-warning shadow-sm" href="" data-toggle="modal" data-target="#deleteUserModal">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
-                    Editar
+                    
                   </a>
                   <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $rol->id }}" data-name="{{ $rol->titulo}}">
                     <i class="fas fa-trash fa-sm text-white-50"></i>
-                    Eliminar
+                   
                   </button>
                 </td>
               </tr>

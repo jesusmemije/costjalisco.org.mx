@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use League\CommonMark\Block\Element\Document;
+use stdClass;
 
 class ProjectController extends Controller
 {
@@ -32,6 +33,8 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    
     public function index()
     {
         //
@@ -87,6 +90,8 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+ 
    
      public function identificacion($id=null){
         $project=Project::find($id);
@@ -94,15 +99,27 @@ class ProjectController extends Controller
         if(empty($p)){
             $sectors = ProjectSector::all();
             $types=ProjectType::all();
-    
+            
             $autoridadPublica = Organization::all();
-          
+            $documentstype=DocumentType::all();
+            $generaldata = new stdClass();
+            $generaldata->id_project = '';
+            $generaldata->descripcion='';
+            $generaldata->responsable='';
+            $generaldata->email='';
+            $generaldata->organismo='';
+            $generaldata->puesto='';
+            $generaldata->involucrado='';
+            
+
              return view('admin.projects.identificacion',
              [
                 'project'=>new Project(),
                 'nav'=>'identificacion',
+                'documentstype'=>$documentstype,
                 'sectors'=>$sectors,
                 'autoridadP'=>$autoridadPublica,
+                'generaldata'=>$generaldata,
                 'types'=>$types,
                 'edit'=>false,
                 'ruta'=>'project.saveidentificacion',
@@ -124,8 +141,18 @@ class ProjectController extends Controller
        
         $sectors = ProjectSector::all();
         $types=ProjectType::all();
-     
+        $documentstype=DocumentType::all();
         $autoridadPublica = Organization::all();
+
+        $documents=DB::table('project')
+        ->join('project_documents','project.id','=','project_documents.id_project')
+        ->join('documents','project_documents.id_document','=','documents.id')
+        ->where('project.id','=',$id)
+        ->wherE('documents.description','=','identificacion')
+        ->select('documents.url','documents.id')
+        ->get();
+
+      
       
         $data_project=DB::table('project')
         ->join('project_locations','project.id','=','project_locations.id_project')
@@ -136,12 +163,17 @@ class ProjectController extends Controller
         ->where('project.id','=',$id)
         ->first();
 
-
+        $generaldata=DB::table('generaldata')
+        ->where('id_project','=',$id)->first();
+       
         
 
          return view('admin.projects.identificacion',
          [
              'project'=>$data_project,
+             'generaldata'=>$generaldata,
+             'documentstype'=> $documentstype,
+             'documents'=>$documents,
             'nav'=>'identificacion',
             'sectors'=>$sectors,
             'autoridadP'=>$autoridadPublica,
@@ -166,7 +198,16 @@ class ProjectController extends Controller
             $catambiental=DB::table('catambiental')->get();
             $catimpacto=DB::table('catimpactoterreno')->get();
             $catorigenrecurso=DB::table('catorigenrecurso')->get();
+            
+            $documents=DB::table('project')
+        ->join('project_documents','project.id','=','project_documents.id_project')
+        ->join('documents','project_documents.id_document','=','documents.id')
+        ->where('project.id','=',$id)
+        ->wherE('documents.description','=','preparacion')
+        ->select('documents.url','documents.id')
+        ->get();
 
+      
             
             $project=DB::table('project')
             ->join('estudiosambiental','project.id','=','estudiosambiental.id_project')
@@ -194,6 +235,7 @@ class ProjectController extends Controller
                 [   
                     'project'=>$project,
                     'nav'=>'preparacion',
+                    'documents'=>$documents,
                     'catfacs'=>$catfac,
                     'catambientals'=>$catambiental,
                     'catimpactos'=>$catimpacto,
@@ -215,6 +257,7 @@ class ProjectController extends Controller
                 [   
                     'project'=>$project,
                     'nav'=>'preparacion',
+                    'documents'=>$documents,
                     'catfacs'=>$catfac,
                     'catambientals'=>$catambiental,
                     'catimpactos'=>$catimpacto,
@@ -249,7 +292,13 @@ class ProjectController extends Controller
                 return redirect()->route('project.preparacion',['project'=>$id]);
             }
 
-          
+            $documents=DB::table('project')
+            ->join('project_documents','project.id','=','project_documents.id_project')
+            ->join('documents','project_documents.id_document','=','documents.id')
+            ->where('project.id','=',$id)
+            ->where('documents.description','=','contratacion')
+            ->select('documents.url','documents.id')
+            ->get();
            
 
             $project=DB::table('proyecto_contratacion')
@@ -271,6 +320,7 @@ class ProjectController extends Controller
             [   
                 'project'=>$project,
                 'nav'=>'contratacion',
+                'documents'=>$documents,
                 'edit'=>true,
                 'catmodalidad_adjudicacion'=>$catmodalidad_adjudicacion,
                 'cattipo_contrato'=>$cattipo_contrato,
@@ -286,6 +336,7 @@ class ProjectController extends Controller
             [   
                 'project'=>$project,
                 'nav'=>'contratacion',
+                'documents'=>$documents,
                 'edit'=>true,
                 'catmodalidad_adjudicacion'=>$catmodalidad_adjudicacion,
                 'cattipo_contrato'=>$cattipo_contrato,
@@ -315,7 +366,13 @@ class ProjectController extends Controller
             ->select('proyecto_ejecucion.*','project.status','project.id as id')
             ->where('id_project','=',$id)
             ->first();
-           
+            $documents=DB::table('project')
+        ->join('project_documents','project.id','=','project_documents.id_project')
+        ->join('documents','project_documents.id_document','=','documents.id')
+        ->where('project.id','=',$id)
+        ->wherE('documents.description','=','ejecucion')
+        ->select('documents.url','documents.id')
+        ->get();
             if($project==null){
 
                 $project=Project::find($id);
@@ -331,6 +388,7 @@ class ProjectController extends Controller
                     return view('admin.projects.ejecucion',
                     [
                         'project'=>$project,
+                        'documents'=>$documents,
                         'nav'=>'ejecucion',
                         'edit'=>true,
                         'medit'=>false,
@@ -345,6 +403,7 @@ class ProjectController extends Controller
                 return view('admin.projects.ejecucion',
                 [
                     'project'=>$project,
+                    'documents'=>$documents,
                     'nav'=>'ejecucion',
                     'edit'=>true,
                     'medit'=>true,
@@ -370,7 +429,13 @@ class ProjectController extends Controller
             ->select('proyecto_finalizacion.*','project.status','project.id as id')
             ->where('id_project','=',$id)
             ->first();
-          
+            $documents=DB::table('project')
+        ->join('project_documents','project.id','=','project_documents.id_project')
+        ->join('documents','project_documents.id_document','=','documents.id')
+        ->where('project.id','=',$id)
+        ->wherE('documents.description','=','finalizacion')
+        ->select('documents.url','documents.id')
+        ->get();
             
             if($project==null){
            
@@ -392,6 +457,7 @@ class ProjectController extends Controller
                 return view('admin.projects.finalizacion',
                 [   
                     'project'=>$project,
+                    'documents'=>$documents,
                     'nav'=>'finalizacion',
                     'edit'=>true,
                     'medit'=>false,
@@ -407,6 +473,7 @@ class ProjectController extends Controller
                 return view('admin.projects.finalizacion',
                 [   
                     'project'=>$project,
+                    'documents'=>$documents,
                     'nav'=>'finalizacion',
                     'edit'=>true,
                     'medit'=>true,
@@ -482,6 +549,48 @@ class ProjectController extends Controller
         $address->save();
         $locations->save();
         $project->save();
+
+        if(!empty($request->docfase1)){    
+            
+         
+
+            for ($i=0; $i < sizeof($request->docfase1); $i++) { 
+                $nombre_img = $_FILES['docfase1']['name'][$i];
+
+                move_uploaded_file($_FILES['docfase1']['tmp_name'][$i],'documents/'.$nombre_img);
+                $url=$nombre_img;
+        
+               
+                
+        
+                $documents=new Documents();
+                $documents->documentType=$request->documenttype;
+                $documents->description="identificacion";
+                $documents->url=$url;
+                $documents->save();
+        
+                $projectdocuments=new ProjectDocuments();
+                $projectdocuments->id_project=$project->id;
+                $projectdocuments->id_document=$documents->id;
+                $projectdocuments->save();
+
+            }
+            
+     
+        }
+
+        $r=DB::table('generaldata')
+        ->where('id_project','=',$project->id)
+        ->update([
+            'descripcion'=>$request->descripcion,
+            'responsable'=>$request->responsable,
+            'email'=>$request->email,
+            'organismo'=>$request->organismo,
+            'puesto'=>$request->puesto,
+            'involucrado'=>$request->involucrado,
+            
+        ]);
+
         return back()->with('status', '¡La fase de identificación ha sido actualizada correctamente!');
 
 
@@ -543,6 +652,31 @@ class ProjectController extends Controller
         $period->save();
         $presupuesto->save();
 
+           //Guardar el documento y la relación con su proyecto.
+           if(!empty($request->documentospreparacion)){
+            
+            for ($i=0; $i <sizeof($request->documentospreparacion) ; $i++) { 
+                $nombre_img = $_FILES['documentospreparacion']['name'][$i];
+    
+                move_uploaded_file($_FILES['documentospreparacion']['tmp_name'][$i],'documents/'.$nombre_img);
+                $url=$nombre_img;
+        
+               
+                
+        
+                $documents=new Documents();
+                $documents->documentType=1;
+                $documents->description="preparacion";
+                $documents->url=$url;
+                $documents->save();
+        
+                $projectdocuments=new ProjectDocuments();
+                $projectdocuments->id_project=$request->id_project;
+                $projectdocuments->id_document=$documents->id;
+                $projectdocuments->save();
+                }
+            }
+
         
 
         return back()->with('status', '¡La fase de preparación ha sido actualizada correctamente!');
@@ -562,7 +696,7 @@ class ProjectController extends Controller
             'modalidadadjudicacion'=>$request->modalidadadjudicacion,
             'tipocontrato'=>$request->tipocontrato,
             'modalidadcontrato'=>$request->modalidadcontrato,
-            'estadoactual'=>$request->estadoactual,
+            
             'empresasparticipantes'=>$request->empresasparticipantes,
             'entidad_admin_contrato'=>$request->entidad_admin_contrato,
             'titulocontrato'=>$request->titulocontrato,
@@ -576,6 +710,10 @@ class ProjectController extends Controller
                    
 
         ]);
+
+
+        ProjectController::havedocuments($request,'contratacion');
+
         if($procedimiento_contratacion){
             return back()->with('status', '¡La fase de contratación ha sido actualizada correctamente!');
        
@@ -596,7 +734,7 @@ class ProjectController extends Controller
 
         ]);
 
-     
+           ProjectController::havedocuments($request,'ejecucion');
 
         
 
@@ -605,7 +743,7 @@ class ProjectController extends Controller
 
             return back()->with('status', '¡La fase de ejecución ha sido actualizada correctamente!');
         }else{
-           
+            return back()->with('status', '¡La fase de ejecución no ha podido actualizarse!');
         }
      }
      public function updatefinalizacion(Request $request){
@@ -623,6 +761,7 @@ class ProjectController extends Controller
 
 
         ]);
+        ProjectController::havedocuments($request,'finalizacion');
         if($proyecto_finalizacion){
             return back()->with('status', '¡La fase de finalización ha sido actualizada correctamente!');
         }else{
@@ -645,7 +784,7 @@ class ProjectController extends Controller
  
  
          ]);
-         
+         ProjectController::havedocuments($request,'finalizacion');
  
          if($proyecto_finalizacion){
              DB::table('project')
@@ -673,7 +812,7 @@ class ProjectController extends Controller
 
 
         ]);
-        
+        ProjectController::havedocuments($request,'ejecucion');
 
         if($proyecto_ejecucion){
             DB::table('project')
@@ -716,6 +855,10 @@ class ProjectController extends Controller
                    
 
         ]);
+        
+        ProjectController::havedocuments($request,'contratacion');
+    
+
 
         if($procedimiento_contratacion){
             DB::table('project')
@@ -788,6 +931,38 @@ class ProjectController extends Controller
             'id_budget'=>$presupuesto->id,
         ]);
 
+
+        //Guardar el documento y la relación con su proyecto.
+ 
+
+        if(!empty($request->documents)){
+            
+            for ($i=0; $i <sizeof($request->documents) ; $i++) { 
+                $nombre_img = $_FILES['documents']['name'][$i];
+    
+                move_uploaded_file($_FILES['documents']['tmp_name'][$i],'documents/'.$nombre_img);
+                $url=$nombre_img;
+        
+               
+                
+        
+                $documents=new Documents();
+                $documents->documentType=1;
+                $documents->description="preparacion";
+                $documents->url=$url;
+                $documents->save();
+        
+                $projectdocuments=new ProjectDocuments();
+                $projectdocuments->id_project=$request->id_project;
+                $projectdocuments->id_document=$documents->id;
+                $projectdocuments->save();
+                }
+
+
+            }
+
+           
+
         return redirect()->route('project.contratacion',[
         'project'=>$request->id_project,
         ]);;
@@ -800,8 +975,15 @@ class ProjectController extends Controller
     public function saveidentificacion(Request $request){
         
         $fecha_in = date('Y-m-d');
+        /*
+        $request->validate([
+            'title'=>'required',
+            'ocid'=>'required'
 
-       
+        ]);
+       */
+        
+            
         $project = new Project();
         $project->ocid = $request->ocid;
         $project->updated = $fecha_in;
@@ -821,6 +1003,20 @@ class ProjectController extends Controller
        
 
         $project->save();
+               //general data save.
+
+        $r=DB::table('generaldata')
+        ->insert([
+            'id_project'=>$project->id,
+            'descripcion'=>$request->descripcion,
+            'responsable'=>$request->responsable,
+            'email'=>$request->email,
+            'organismo'=>$request->organismo,
+            'puesto'=>$request->puesto,
+            'involucrado'=>$request->involucrado,
+
+        ]);
+
         DB::table('project_organizations')->insert([
 
             'id_project'=>$project->id,
@@ -856,31 +1052,39 @@ class ProjectController extends Controller
 
 
         //Guardar el documento y la relación con su proyecto.
-        if(!empty($request->docfase1)){        
-        $nombre_img = $_FILES['docfase1']['name'];
+        if(!empty($request->docfase1)){    
+            
+         
 
-        move_uploaded_file($_FILES['docfase1']['tmp_name'],'documents/'.$nombre_img);
-        $url=$nombre_img;
+            for ($i=0; $i < sizeof($request->docfase1); $i++) { 
+                $nombre_img = $_FILES['docfase1']['name'][$i];
 
-       
-        $doctype=new DocumentType();
-        $doctype->titulo=$request->documenttype;
-        $doctype->save();
+                move_uploaded_file($_FILES['docfase1']['tmp_name'][$i],'documents/'.$nombre_img);
+                $url=$nombre_img;
+        
+               
+                
+        
+                $documents=new Documents();
+                $documents->documentType=$request->documenttype;
+                $documents->description="identificacion";
+                $documents->url=$url;
+                $documents->save();
+        
+                $projectdocuments=new ProjectDocuments();
+                $projectdocuments->id_project=$project->id;
+                $projectdocuments->id_document=$documents->id;
+                $projectdocuments->save();
 
-        $documents=new Documents();
-        $documents->documentType=$doctype->id;
-        $documents->url=$url;
-        $documents->save();
-
-        $projectdocuments=new ProjectDocuments();
-        $projectdocuments->id_project=$project->id;
-        $projectdocuments->id_document=$documents->id;
-        $projectdocuments->save();
+            }
+            
+     
         }
         
 
+     
       
-        return redirect()->route('project.preparacion',['project'=>$project->id]);;
+     return redirect()->route('project.preparacion',['project'=>$project->id]);;
        
     }
 
@@ -946,6 +1150,15 @@ class ProjectController extends Controller
         if(!empty($project))
         {       
 
+
+        $project_documents=ProjectDocuments::where('id_project','=',$id)
+        ->get();
+        foreach ($project_documents as $document) {
+           
+            Documents::destroy($document->id);
+        }
+       
+        
        
         //uso first en vez de get() porque get me retorna un array...
 
@@ -967,6 +1180,7 @@ class ProjectController extends Controller
             BudgetBreakdown::destroy($project_budget->id_budget);
         }
        
+        
        
        
         Project::destroy($id);
@@ -981,6 +1195,50 @@ class ProjectController extends Controller
         }
       
 
+    }
+    public function deletedocument(Request $request){
+        
+    
+      
+        $document=Documents::find($request->doc_id);
+        
+
+      
+        
+        $url=public_path().'/documents'.'/'.$document->url;
+     
+
+
+       unlink($url);
+       $document->delete();
+       return back()->with('status', '¡Documento eliminado!');
+    }
+    public static function havedocuments(Request $request,$fase){
+        
+        
+        if(!empty($request->documents)){
+            
+            for ($i=0; $i <sizeof($request->documents) ; $i++) { 
+                $nombre_img = $_FILES['documents']['name'][$i];
+    
+                move_uploaded_file($_FILES['documents']['tmp_name'][$i],'documents/'.$nombre_img);
+                $url=$nombre_img;
+        
+               
+                
+        
+                $documents=new Documents();
+                $documents->documentType=1;
+                $documents->description=$fase;
+                $documents->url=$url;
+                $documents->save();
+        
+                $projectdocuments=new ProjectDocuments();
+                $projectdocuments->id_project=$request->id_project;
+                $projectdocuments->id_document=$documents->id;
+                $projectdocuments->save();
+                }
+            }
     }
     
     

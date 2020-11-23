@@ -20,7 +20,7 @@ class CreateEstudiosimpactoTable extends Migration
             $table->foreignId('tipoImpacto');
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tipoImpacto')->references('id')->on('catimpactoterreno')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('descripcionImpacto',100);
+            $table->string('descripcionImpacto',100)->nullable();
             $table->date('fecharealizacionimpacto',0);
             $table->string('responsableImpacto',100);
 

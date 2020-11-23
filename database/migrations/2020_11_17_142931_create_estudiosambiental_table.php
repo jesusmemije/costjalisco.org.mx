@@ -19,7 +19,7 @@ class CreateEstudiosambientalTable extends Migration
             $table->foreignId('tipoAmbiental');
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tipoAmbiental')->references('id')->on('catambiental')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('descripcionAmbiental',100);
+            $table->string('descripcionAmbiental',100)->nullable();
             $table->date('fecharealizacionAmbiental',0);
             $table->string('responsableAmbiental',100);
             $table->timestamps();

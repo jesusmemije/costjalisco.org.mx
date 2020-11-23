@@ -39,6 +39,7 @@
     display: inline;
   }
 
+
   .pac-card {
     margin: 10px 10px 0 0;
     border-radius: 2px 0 0 2px;
@@ -74,7 +75,7 @@
     margin-left: 12px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
-    width: 400px;
+
   }
 
   #pac-input:focus {
@@ -92,57 +93,104 @@
 @endsection
 
 
+
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   <br>
 
   <div class="col-lg-12">
+    <form id="phase1" method="POST" action="{{route($ruta)}}" enctype="multipart/form-data">
+      @csrf
+      <div class="card shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
+          @include('admin.layouts.partials.validation-error')
 
-    <div class="card shadow mb-4">
-      <!-- Card Header - Accordion -->
-      <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
-        @include('admin.layouts.partials.validation-error')
 
-        @include('admin.layouts.partials.session-flash-status')
-        <h6 class="m-0 font-weight-bold text-primary">Proyecto</h6>
-      </a>
-      <!-- Card Content - Collapse -->
+          @include('admin.layouts.partials.session-flash-status')
 
-      <div class="collapse show" id="collapseCardExample1">
-        <div class="card-body">
 
-    
-           
-        
-     
-          <form id="phase1" method="POST" action="{{route($ruta)}}" enctype="multipart/form-data">
-            @csrf
-           
+
+          <h6 class="m-0 font-weight-bold text-primary">Datos generales del responsable del registro del proyecto</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+
+        <div class="collapse show" id="collapseCardExample1">
+          <div class="card-body">
+
+            <label for="descripcion">Descripción</label>
+            <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
+
+            <label for="nombreresponsable">Nombre de la persona que registra el proyecto</label>
+            <input type="text" name="nombreresponsable" id="nombreresponsable" class="form-control" value="{{old('nombreresponsable',$generaldata->responsable)}}">
+
+
+            <label for="email">Correo electrónico (Institucional)</label>
+            <input type="email" name="email" class="form-control" id="email" value="{{old('email',$generaldata->email)}}">
+
+            <label for="organismo">Organismo al que pertenece</label>
+            <input type="text" name="organismo" class="form-control" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
+
+            <label for="puesto">Puesto que desempeña dentro del organismo</label>
+            <input type="text" name="puesto" class="form-control" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
+
+            <label for="involucrado">En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar</label>
+            <input type="text" name="involucrado" class="form-control" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
+
+
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="card shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample2">
+
+          <h6 class="m-0 font-weight-bold text-primary">Proyecto</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+
+        <div class="collapse show" id="collapseCardExample2">
+          <div class="card-body">
+
+
+
+
+
+
+
             <input type="hidden" value="{{$project->id}}" name="id_project">
             <div class="form-row">
               <div class="form-group col-md-9">
-            <label>
-              Título del proyecto
-            </label>
-            <input required type="text" class="form-control" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
+                <label for="tituloProyecto">
+                  Título del proyecto
+                </label>
+                <input required id="tituloProyecto" type="text" class="form-control" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
               </div>
-            <div class="form-group col-md-3">
-            <label>
-              Número que identifica al proyecto
-            </label>
-            <input required type="text" class="form-control" name="ocid" value="{{old('ocid',$project->ocid)}}">
+              <div class="form-group col-md-3">
+                <label for="ocid">
+                  Número que identifica al proyecto
+                </label>
+                <input required id="ocid" type="text" class="form-control" name="ocid" value="{{old('ocid',$project->ocid)}}">
+              </div>
+
             </div>
-        
-          </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>
+                <label for="descripcionProyecto">
                   Descripción
                 </label>
-                <textarea class="form-control" rows="1" name="descripcionProyecto">{{$project->description}}</textarea>
+                <textarea class="form-control" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
               </div>
               <div class="form-group col-md-6">
-                <label for="">Autoridad Pública</label>
-                <select required name="autoridadP" class="form-control">
+                <label for="autoridadP">Autoridad Pública</label>
+                <select required id="autoridadP" name="autoridadP" class="form-control">
                   <option value="">Seleccionar</option>
                   @foreach($autoridadP as $autoridad)
 
@@ -160,22 +208,22 @@
 
             </div>
 
-            <label>
+            <label for="propositoProyecto">
               Próposito
             </label>
-            <input type="text" class="form-control" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
+            <input type="text" class="form-control" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
             <div class="form-row">
               <div class="form-group col-md-6">
 
 
 
-                <label>
+                <label for="sectorProyecto"> 
                   Sector
                 </label>
-                <input hidden type="text" value="{{$project->sector}}" id="secedit">  
+                <input hidden type="text" value="{{$project->sector}}" id="secedit">
                 <select required id="sectorProyecto" class="form-control" name="sectorProyecto" onchange="return get_class_sections(this.value)">
-                 
-                <option value="">Seleccione un sector</option>
+
+                  <option value="">Seleccione un sector</option>
                   @foreach ($sectors as $sector)
                   @if($sector->id==$project->sector)
                   <option value="{{$sector->id}}" selected>{{$sector->titulo}}</option>
@@ -183,13 +231,13 @@
                   <option value="{{$sector->id}}">{{$sector->titulo}}</option>
                   @endif
 
-                 
+
 
                   @endforeach
                 </select>
               </div>
               <div class="form-group col-md-6">
-                <label>
+                <label for="subsector">
                   Subsector
                 </label>
                 <input hidden type="text" name="" id="subedit" value="{{$project->subsector}}">
@@ -198,17 +246,17 @@
                   <option value="">Seleccione un subsector</option>
                 </select>
               </div>
-              <label for="" class="col-md-2">Tipo de proyecto</label>
+              <label for="tipoProyecto" class="col-md-2">Tipo de proyecto</label>
 
-              <select name="tipoProyecto" id="" class="form-control col-md-6">
-                  <option value="">Seleccione un tipo</option>
+              <select name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6">
+                <option value="">Seleccione un tipo</option>
                 @foreach($types as $type)
                 @if($type->id==$project->type)
                 <option value='{{$type->id}}' selected>{{$type->titulo}}</option>
                 @else
                 <option value='{{$type->id}}'>{{$type->titulo}}</option>
                 @endif
-               
+
                 @endforeach
 
               </select>
@@ -218,7 +266,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
 
 
-            <div class="pac-card" id="pac-card">
+            <div class="pac-card col-md-4" id="pac-card">
               <div>
                 <div id="title">Encuentra el lugar</div>
 
@@ -239,89 +287,157 @@
 
             <div class="row">
               <div class="col-lg-6">
-              
-                <input  type="hidden" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
+
+                <input type="hidden" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
                 <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
 
-                <label>Calle </label>
-                <input required type="text" name="streetAddress" class="form-control" value="{{old('streetAddress',$project->streetAddress)}}">
+                <label for="streetAddress">Calle </label>
+                <input required type="text" id="streetAddress" name="streetAddress" class="form-control" value="{{old('streetAddress',$project->streetAddress)}}">
               </div>
               <div class="col-lg-6">
-                <label>Localidad </label>
-                <input type="text" name="locality" class="form-control" value="{{old('locality',$project->locality)}}">
+                <label for="locality" >Localidad </label>
+                <input type="text" id="locality" name="locality" class="form-control" value="{{old('locality',$project->locality)}}">
               </div>
               <div class="col-lg-6">
-                <label>Región </label>
-                <input type="text" name="region" class="form-control" value="{{old('region',$project->region)}}">
+                <label  for="region">Región </label>
+                <input type="text" id="region" name="region" class="form-control" value="{{old('region',$project->region)}}">
               </div>
               <div class="col-lg-6">
-                <label>Código Postal </label>
-                <input type="text" name="postalCode" class="form-control" value="{{old('postalCode',$project->postalCode)}}">
+                <label  for="postalCode">Código Postal </label>
+                <input type="text" id="postalCode" name="postalCode" class="form-control" value="{{old('postalCode',$project->postalCode)}}">
               </div>
               <div class="col-lg-6">
-                <label>País</label>
-                <input type="text" name="countryName" class="form-control" value="{{old('countryName',$project->countryName)}}">
+                <label  for="countryName">País</label>
+                <input type="text" id="countryName" name="countryName" class="form-control" value="{{old('countryName',$project->countryName)}}">
               </div>
             </div>
 
-            <label for="">Descripción del lugar</label>
-            <textarea name="description" id="" cols="30" rows="5" class="form-control">{{$project->description}}</textarea>
+            <label for="description">Descripción del lugar</label>
+            <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{$project->description}}</textarea>
             <div class="form-row">
               <div class="form-group col-md-4">
 
-                <label for="">Documentos</label>
-                <input type="file" class="form-control" name="docfase1">
+                <label for="docfase1">Documentos</label>
+                <input type="file" class="form-control" id="docfase1" name="docfase1[]" multiple>
               </div>
               <div class="form-group col-md-6">
-                <label for="">Tipo de documento</label>
-                <input type="text" class="form-control" name="documenttype">
+                <label for="documenttype">Tipo de documento</label>
+                <select name="documenttype" id="documenttype" class="form-control">
+                <option value="">Selecciona un opción</option>
+                @foreach($documentstype as $type)
+              
+                <option value="{{$type->id}}">{{$type->titulo}}</option>
 
+                @endforeach
+
+                </select>
               </div>
-              <div class="form-group col-md-2"><br>
-                <label for="">Añadir más</label>
-              </div>
+            
+               
             </div>
+            @if(isset($documents))
+            @if(sizeof($documents)!=0)
+            <label for="">Lista de documentos</label>
+            
+
+            <div class="col-md-6">
+           
+            <table class="table table-sm">
+            <tr>
+            <th>Nombre del documento</th>
+            <th>Acciones</th>
+            </tr>
+        
+
+            <tbody>
+            @foreach($documents as $document)
+            <?php 
+              $ruta='documents/'.$document->url;
+             
+            ?>
+
+
+            <tr>
+            <td>
+            <a target="_blank" class="badge badge-pill badge-info" href="{{asset($ruta)}}">{{$document->url}}</a>
+            </td>
+           
+            <td>
+
+            <a  id="deldoc" href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $document->id }}" data-name="{{ $document->url }}">
+            <i class="fa fa-trash"></i>  
+</a>
+           
+
+            </td>
+            </tr>
+
+            @endforeach
+
+           
+           
+            
+            
+            
+            </tbody>
+
+          </table>
+          </div>
+          @endif
+          @endif
+           
+           
+           
+            <hr>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas {{ $edit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
+                {{ $edit ? 'Actualizar' : 'Siguiente' }}
+              </button>
+
+            </div>
+          </div>
+
+
+
+
+
 
 
 
         </div>
-        <hr>
-     
 
-        <button type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
-      <i class="fas {{ $edit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
-      {{ $edit ? 'Actualizar' : 'Siguiente' }}
-    </button>
-
-
-        <hr>
-      </div>
-
-      </form>
-    </div>
-
+    </form>
   </div>
 
 </div>
 
+</div>
+
+@include('admin.projects.modaldeletedocument')
 
 @section('scripts')
+<script src="{{asset('js/deletemodaldocument.js')}}"></script>
 
 <script>
- var subedit=$('#subedit').val();
- var secedit=$('#secedit').val();
+  
 
-  if(subedit!=''){
-    
+
+
+  var subedit = $('#subedit').val();
+  var secedit = $('#secedit').val();
+
+  if (subedit != '') {
+
     get_class_sections(secedit);
-  } 
+  }
 
   function get_class_sections(id) {
 
     var select = $("#sectorProyecto");
-    var subedit=$('#subedit').val();
-  
-    
+    var subedit = $('#subedit').val();
+
+
     $('#subsector option').remove();
     $.ajax({
       data: {
@@ -338,17 +454,17 @@
         $(bop).appendTo("#subsector");
 
         for (let index = 0; index < response.length; index++) {
-        
+
           var option = document.createElement("option"); //Creas el elemento opción
           $(option).html(response[index].titulo); //Escribes en él el nombre de la provincia
           option.value = response[index].id;
-         
-          if(option.value==subedit){
+
+          if (option.value == subedit) {
             $(option).prop('selected', true);
           }
-         
+
           $(option).appendTo("#subsector");
-         
+
 
         }
 
@@ -393,7 +509,7 @@
 
 
   function initMap() {
-   
+
     const myLatlng = {
       lat: 20.6566500419128,
       lng: -103.35528485969786
@@ -413,31 +529,31 @@
     */
     // Configure the click listener.
 
-    const savedLatlng={
-      lat:document.getElementById('lat').value,
-      lng:document.getElementById('lng').value,
+    const savedLatlng = {
+      lat: document.getElementById('lat').value,
+      lng: document.getElementById('lng').value,
     }
-    
 
-    let mymarker=new google.maps.Marker({
-    position: savedLatlng,
-    title:"Hello World!"
-}); 
-      mymarker.setMap(mymarker);
+
+    let mymarker = new google.maps.Marker({
+      position: savedLatlng,
+      title: "Hello World!"
+    });
+    mymarker.setMap(mymarker);
 
     map.addListener("click", (mapsMouseEvent) => {
       // Close the current InfoWindow.
 
-     lat= mapsMouseEvent.latLng.lat();
-      lng=mapsMouseEvent.latLng.lng();
+      lat = mapsMouseEvent.latLng.lat();
+      lng = mapsMouseEvent.latLng.lng();
 
-      document.getElementById('lat').value=lat;
-      document.getElementById('lng').value=lng  ;
+      document.getElementById('lat').value = lat;
+      document.getElementById('lng').value = lng;
 
       const themarker = {
-      lat: lat,
-      lng: lng
-    };
+        lat: lat,
+        lng: lng
+      };
       /*
       infoWindow.close();
       // Create a new InfoWindow.
@@ -450,13 +566,13 @@
       );
       infoWindow.open(map);
       */
-      
+
       mymarker.setMap(null);
-       mymarker = new google.maps.Marker({
-    position: themarker,
-    title:"Hello World!"
-}); 
-  mymarker.setMap(map);
+      mymarker = new google.maps.Marker({
+        position: themarker,
+        title: "Hello World!"
+      });
+      mymarker.setMap(map);
 
     });
 

@@ -1,7 +1,7 @@
 @csrf
     <div class="collapse show" id="collap1">
       <div class="card-body">
-      <input type="text" name="id_organization" value="{{$organization->id}}">
+      <input type="hidden" name="id_organization" value="{{$organization->id}}">
 
       <div class="form-row">
       <div class="form-group col-md-12">
@@ -149,7 +149,7 @@
     
    
     <div class="card">
-                <input required type="file" name="imgCurso" id="img_curso" class="dropify">
+                <input  type="file" name="imgCurso" id="img_curso" class="dropify">
                 @error('imgCurso')
                     <small class="text-danger">{{$message}}</small>
                 @enderror

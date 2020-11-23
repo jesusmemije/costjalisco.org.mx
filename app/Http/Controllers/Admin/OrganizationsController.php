@@ -67,12 +67,8 @@ class OrganizationsController extends Controller
     {
         //
         
-        if ($request->hasFile('imgCurso')) {
-            echo "vlv";
-        }else{
-            echo "efectivamente";
-        }
-        die();
+       
+        
         $identifier=new Identifier();
 
         $identifier->scheme="ocid/x".$request->name;
