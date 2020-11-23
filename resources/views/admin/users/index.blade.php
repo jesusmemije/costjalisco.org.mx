@@ -95,6 +95,6 @@ Usuarios
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- Archivo app.js -->
-<script src="{{asset("js/app.js")}}"></script>
+<script src="{{asset("admin_assets/js/app.js")}}"></script>
 
 @endsection

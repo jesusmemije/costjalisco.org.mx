@@ -113,8 +113,8 @@ Editar evento
 <!-- Script for Bootrap Toggle -->
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- Moment for DateTimePicker-->
-<script src="{{asset("js/moment.js")}}"></script>
-<script src="{{asset("js/moment-with-locales.js")}}"></script>
+<script src="{{asset("admin_assets/js/lib/moment.js")}}"></script>
+<script src="{{asset("admin_assets/js/lib/moment-with-locales.js")}}"></script>
 <!-- Script for DateTimePicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-2JBCbWoMJPH+Uj7Wq5OLub8E5edWHlTM4ar/YJkZh3plwB2INhhOC3eDoqHm1Za/ZOSksrLlURLoyXVdfQXqwg==" crossorigin="anonymous"></script>
 
