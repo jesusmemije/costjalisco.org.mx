@@ -16,10 +16,11 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->text('description');
-            $table->string('location');
-            $table->timestamp('date_start');
-            $table->string('cover_image', 150);
+            $table->text('description')->nullable();
+            $table->string('location')->default('');
+            $table->timestamp('date_start')->nullable();
+            $table->string('cover_image', 150)->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

@@ -1,0 +1,100 @@
+<header>
+    <div class="header-top">
+        <div class="row flex-nowrap justify-content-between align-items-center"
+            style="margin-left: 0; margin-right: 0;">
+            <div class="col-12 d-flex justify-content-end align-items-center">
+                <div class="nav-scroller py-1">
+                    <nav class="nav d-flex justify-content-between">
+                        <a class="p-2 text-white nav-link" href="#">Preguntas frecuentes</a>
+                        <div class="divider"></div>
+                        <a class="p-2 text-white nav-link" href="#">Sitios de interés</a>
+                        <div class="divider"></div>
+                        <a class="p-2 text-white nav-link" href="#">Mapas del sitio</a>
+                        <div class="divider"></div>
+                        @if (Route::has('login'))
+                            @auth
+                                <a href="{{ route('dashboard') }}" class="p-2 text-white nav-login">DASHBOARD</a>
+                            @else
+                                <a href="{{ route('login') }}" class="p-2 text-white nav-login">INGRESAR</a>
+                            @endif
+                        @endif
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-img">
+        <div class="container">
+            <img src="{{ asset('assets/img/costjalisco-home.png') }}" class="img-fluid" alt="costjalisco-inicio">
+        </div>
+    </div>
+    <div class="header-menu">
+        <div class="container">
+            <div class="nav-scroller mb-2">
+                <nav class="nav d-flex justify-content-between">
+                    <a href="{{ route('home.index') }}" class="p-2">INICIO</a>
+                    <div class="divider"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownConoceMas" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            CONOCE MÁS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownConoceMas">
+                            <a class="dropdown-item" href="#">Historia</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">¿Qué es CoST?</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Beneficios</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Procesos de CoST</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">&nbsp;&bull; Divulgación</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">&nbsp;&bull; Aseguramiento</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">&nbsp;&bull; Auditoria Social</a>
+                        </div>
+                    </li>
+                    <div class="divider"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownNosotros" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            NOSOTROS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownNosotros">
+                            <a class="dropdown-item" href="#">CoST Jalisco</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Objetivo de CoST Jalisco</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Integración</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Grupo Multisectorial</a>
+                        </div>
+                    </li>
+                    <div class="divider"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownProyectos" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            PROYECTOS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownProyectos">
+                            <a class="dropdown-item" href="#">Estadísticas</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Motor de búsqueda</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Georreferenciación</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Institución Pública</a>
+                        </div>
+                    </li>
+                    <div class="divider"></div>
+                    <a class="p-2" href="#">RECURSOS</a>
+                    <div class="divider"></div>
+                    <a class="p-2" href="#">NOTICIAS</a>
+                    <div class="divider"></div>
+                    <a class="p-2" href="#"><i class="fas fa-search"></i></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
