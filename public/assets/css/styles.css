@@ -1,6 +1,6 @@
 /* ========================== General ========================== */
 a {
-    color: #fff;
+  color: #fff;
 }
 
 a:focus, a:hover {
@@ -50,7 +50,8 @@ a:focus, a:hover {
 
 /* Carousel base class */
 .carousel {
-  margin-bottom: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -134,3 +135,40 @@ a:focus, a:hover {
 }
 
 /* ========================== Footer ========================== */
+
+.social ul {
+  list-style: none;
+}
+
+.social ul li a {
+  width: 25px;
+  height: 15px;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+  border-radius: 50%;
+  padding-bottom: 25px;
+  margin: 2px;
+  /* Establecemos una transición a todas las propiedades */
+}
+
+/* Establecemos los colores de cada red social, aprovechando su class */
+.social ul li .icon-facebook {
+  background: #3b5998;
+}
+
+.social ul li .icon-youtube {
+  background: #c4302b;
+}
+
+.social ul li .icon-twitter {
+  background: #00abf0;
+}
+
+.social ul li a:hover {
+  background: #000;
+  /* Cambiamos el fondo cuando el usuario pase el mouse */
+}
