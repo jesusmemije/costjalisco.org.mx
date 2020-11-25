@@ -25,7 +25,16 @@
     </div>
     <div class="header-img">
         <div class="container">
-            <img src="{{ asset('assets/img/costjalisco-home.png') }}" class="img-fluid" alt="costjalisco-inicio">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <a href="{{ route('home.index') }}">
+                        <img src="{{ asset('assets/img/header/logo-costjalisco.png') }}" class="img-fluid" alt="Logo-costjalisco">
+                    </a>
+                </div>
+                <div class="col-md-7">
+                    <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" alt="Ciudad-costjalisco">
+                </div>
+            </div>
         </div>
     </div>
     <div class="header-menu">
@@ -53,6 +62,7 @@
                             <a class="dropdown-item" href="#">&nbsp;&bull; Aseguramiento</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">&nbsp;&bull; Auditoria Social</a>
+                            <div class="dropdown-divider"></div>
                         </div>
                     </li>
                     <div class="divider"></div>
@@ -69,6 +79,7 @@
                             <a class="dropdown-item" href="#">Integración</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Grupo Multisectorial</a>
+                            <div class="dropdown-divider"></div>
                         </div>
                     </li>
                     <div class="divider"></div>
@@ -85,12 +96,37 @@
                             <a class="dropdown-item" href="#">Georreferenciación</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Institución Pública</a>
+                            <div class="dropdown-divider"></div>
                         </div>
                     </li>
                     <div class="divider"></div>
-                    <a class="p-2" href="#">RECURSOS</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownRecursos" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            RECURSOS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownRecursos">
+                            <a class="dropdown-item" href="#">Documentos de interés</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Material de apoyo</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
                     <div class="divider"></div>
-                    <a class="p-2" href="#">NOTICIAS</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownNoticias" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            NOTICIAS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownNoticias">
+                            <a class="dropdown-item" href="#">Eventos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Boletines</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Notas periodísticas</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
                     <div class="divider"></div>
                     <a class="p-2" href="#"><i class="fas fa-search"></i></a>
                 </nav>
