@@ -14,15 +14,11 @@
         <!-- Custom styles for this template-->
         <link href="{{asset("admin_assets/css/sb-admin-2.min.css")}}" rel="stylesheet">
         
-        
         @yield('styles')
-    
-    <style>
-        a:hover {
-            text-decoration: none;
-        }
-    </style>
 
+        <!-- Css Styles -->
+        <link href="{{asset("admin_assets/css/styles.css")}}" rel="stylesheet">
+    
     </head>
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -59,6 +55,11 @@
         <script type="text/javascript" src="{{asset("admin_assets/vendor/jquery-easing/jquery.easing.min.js")}}"></script>
         <!-- Custom scripts for all pages-->
         <script type="text/javascript" src="{{asset("admin_assets/js/sb-admin-2.min.js")}}"></script>
+
         @yield('scripts')
+
+        <!-- Archivo app.js -->
+        <script src="{{asset("admin_assets/js/app.js")}}"></script>
+
     </body>
 </html>
