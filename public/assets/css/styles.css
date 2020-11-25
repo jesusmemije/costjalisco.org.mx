@@ -51,6 +51,11 @@ a:focus, a:hover {
     margin-top: 10px;
 }
 
+.line-red-center {
+  margin-top:30px;
+  border-bottom: 1px solid #D60000;   
+}
+
 .section-divider {
   height: 1.5em;
   border-top: 1px solid #777;
