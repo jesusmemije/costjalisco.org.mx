@@ -26,39 +26,10 @@ a:focus, a:hover {
   background-size: cover;
 }
 
-.card-title {
-  position: absolute;
-  top: 30px;
-  text-align: center;
-  width: 100%;
-  color: white;
-  font-weight: 700;
-  font-size: 20px;
-}
-.card-counter {
-  position: absolute;
-  bottom: 30px;
-  text-align: center;
-  width: 100%;
-  color: white;
-  font-weight: 700;
-  font-size: 32px;
-}
-
 .divider {
     height: 1.5em;
    	border-left: 1px solid #777;
     margin-top: 10px;
-}
-
-.line-red-center {
-  margin-top:30px;
-  border-bottom: 1px solid #D60000;   
-}
-
-.section-divider {
-  height: 1.5em;
-  border-top: 1px solid #777;
 }
 
 .nav-login {
@@ -71,27 +42,58 @@ a:focus, a:hover {
 	margin-left: 1rem;
 }
 
+/* Dropdow menu */
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-divider {
+position: relative;
+  margin: -4px .8rem;
+  border-top: 1px solid #777;
+  z-index: 1;
+}
+
+.dropdown-menu {
+  margin-top: 0;
+  padding: .4rem 0;
+  color: #fff;
+  background-color: #2C4143;
+  border: none;
+  border-radius: 0;
+  padding-top: .8rem;
+  padding-bottom: 1.8rem;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #9EC2D5;
+  background-color: #2C4143;
+}
+
 /* ========================== Content ========================== */
 
 /* Carousel */
 
-/* Carousel base class */
 .carousel {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 /* Since positioning the image, we need to help out the caption */
-.carousel-caption {
+#carouselHome .carousel-caption {
   bottom: 3rem;
   z-index: 10;
 }
 
 /* Declare heights because of positioning of img element */
-.carousel-item {
+#carouselHome .carousel-item {
   height: 790px;
 }
 
-.carousel-item > img {
+#carouselHome .carousel-item > img {
   position: absolute;
   top: 0;
   left: 0;
@@ -99,12 +101,12 @@ a:focus, a:hover {
 }
 
 /* Make the image fully responsive */
-.carousel-inner img {
+#carouselHome .carousel-inner img {
   width: 100%;
   height: auto;
 }
 
-.carousel-caption {
+#carouselHome .carousel-caption {
   color: black;
   right: 58%;
   text-align: right !important;
@@ -116,11 +118,11 @@ a:focus, a:hover {
   line-height: 1;
 }
 
-.carousel-indicators {
+#carouselHome .carousel-indicators {
   bottom: 30px;
 }
 
-.carousel-indicators li {
+#carouselHome .carousel-indicators li {
   width: 24px;
   height: 24px;
   margin-right: 5px;
@@ -129,59 +131,43 @@ a:focus, a:hover {
   opacity: 1;
 }
 
-.carousel-indicators .active {
+#carouselHome .carousel-indicators .active {
     background-color: #58707B;
 }
 
-.font-title-corousel {
+#carouselHome .font-title-carousel {
   color: white;
   font-size: 44px; 
   letter-spacing: 1px;
 }
 
-/* Dropdow menu */
-.dropdown-toggle::after {
-    display: none;
+.card-indice-title {
+  position: absolute;
+  top: 30px;
+  text-align: center;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+.card-indice-counter {
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 32px;
 }
 
-.dropdown-divider {
-	position: relative;
-    margin: -4px .8rem;
-    border-top: 1px solid #777;
-    z-index: 1;
+.line-red-center {
+  margin-top:30px;
+  border-bottom: 1px solid #D60000;   
 }
 
-.dropdown-menu {
-	margin-top: 0;
-    padding: .4rem 0;
-    color: #fff;
-    background-color: #2C4143;
-    border: none;
-    border-radius: 0;
-    padding-top: .8rem;
-    padding-bottom: 1.8rem;
-}
-
-.dropdown-item {
-    color: #fff;
-}
-
-.dropdown-item:focus, .dropdown-item:hover {
-    color: #9EC2D5;
-    background-color: #2C4143;
-}
-
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (min-width: 40em) {
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
-  }
+.section-divider {
+  height: 1.5em;
+  border-top: 1px solid #777;
 }
 
 /* ========================== Footer ========================== */
