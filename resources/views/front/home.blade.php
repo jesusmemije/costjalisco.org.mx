@@ -310,33 +310,6 @@ Home
         </div>
     </div>
 
-    <style>
-        .carousel-control-next-icon {
-            background-image: url("/assets/img/home/slider-proyectos/icons/arrow-right.png");
-        }
-        .carousel-control-prev-icon {
-            background-image: url("/assets/img/home/slider-proyectos/icons/arrow-left.png");
-        }
-        .carousel-control-next-icon, .carousel-control-prev-icon {
-            width: 32px;
-            height: 32px;
-        }
-        .carousel-control-next, .carousel-control-prev {
-            opacity: 1;
-        }
-        .carousel-control-next {
-            justify-content: right;
-        }
-        .carousel-control-prev {
-            justify-content: left;
-        }
-
-        .icon-img-slider {
-            width: 24px;
-        }
-        
-    </style>
-
     <!-- Section - Carousel proyectos -->
     <div class="row mx-0">
         
@@ -362,16 +335,15 @@ Home
                                             Conectando gran parte de la ciudad desde <br>
                                             Tlaquepaque hasta Tesistán.
                                         </p>
-                                        <br><br><br><br><br><br>
                                     </div>
                                     <div class="col-md-6 pl-4">
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}" class="img-fluid icon-img-slider" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}" class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Inversión: </strong> 20 mil millones de pesos</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}" class="img-fluid icon-img-slider" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}" class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Periodo de construcción: </strong> 2014-2020</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}" class="img-fluid icon-img-slider" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}" class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Ubicación: </strong> Zapopan, Guadalajara, Tlaquepaque.</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}" class="img-fluid icon-img-slider" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}" class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
                                         <br>
                                         <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
@@ -379,7 +351,45 @@ Home
                                     </div>
                                 </div>
                             </div>
-                            <div style="position: absolute; left: 80px; top: 90px;"> CUADRO 2 </div>
+                            <div class="rectangulo-rojo-avance-carousel text-white"><span style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;" class="mx-2">completado</span></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="background-color: #D8D8CD;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="font-weight-bold my-4" style="color:#D60000">REVESTIMIENTO Y SANEAMIENTO DEL CANAL DE AGUAS PLUVIALES</h2>
+                                <div class="row" style="color:#2C4143">
+                                    <div class="col-md-6" style="border-right: 1px solid #777;">
+                                        <p>
+                                            El proyecto de infraestructura con nombre: <br>
+                                            "Revestimiento y saneamiento del canal en la Calle Arroyo" <br>
+                                            El objetivo es el revestimiento y saneamiento del <br>
+                                            canal de aguas pluviales que se encuentra en la <br>
+                                            Calle Arroyo entre Calle Platino y Cantera, en la <br>
+                                            Colonia Mariano Otero, municipio de Zapopan, <br>
+                                            Jalisco. El proyecto cuenta con indicador de <br>
+                                            impacto ambiental.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6 pl-4">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Inversión: </strong> $57,1857.77</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Periodo de construcción: </strong> 63 días</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Ubicación: </strong> canal en la Calle Arroyo entre <br>Calle Platino y Cantera, en la Colonia <br> Marino Otero, municipio de Zapopan <br>Jalisco</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Beneficiarios: </strong> 26.450 ciudadanos</p>
+                                        <br>
+                                        <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
+                                            Ver más <span style="letter-spacing: -4px">>></span></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rectangulo-rojo-avance-carousel text-white"><span style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;" class="mx-2">completado</span></div>
                         </div>
                     </div>
                 </div>

@@ -94,9 +94,6 @@ position: relative;
 
 /* Carousel */
 
-
-/* Carousel base class */
-
 .carousel {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -191,6 +188,40 @@ position: relative;
 .section-divider {
   height: 1.5em;
   border-top: 1px solid #777;
+}
+
+#carouselProjects .carousel-control-next-icon {
+  background-image: url("/assets/img/home/slider-proyectos/icons/arrow-right.png");
+}
+#carouselProjects .carousel-control-prev-icon {
+  background-image: url("/assets/img/home/slider-proyectos/icons/arrow-left.png");
+}
+#carouselProjects .carousel-control-next-icon, .carousel-control-prev-icon {
+  width: 36px;
+  height: 36px;
+}
+#carouselProjects .carousel-control-next, .carousel-control-prev {
+  opacity: 1;
+}
+#carouselProjects .carousel-control-next {
+  justify-content: right;
+}
+#carouselProjects .carousel-control-prev {
+  justify-content: left;
+}
+
+.icon-img-carousel {
+  width: 24px;
+}
+
+.rectangulo-rojo-avance-carousel {
+  position: absolute;
+  left: 0;
+  top: 80%;
+  background-color: #D60000;
+  width: 64%;
+  font-size: 30px;
+  text-align: end;
 }
 
 
