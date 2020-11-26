@@ -1,45 +1,60 @@
 /* ========================== General ========================== */
+
 a {
-  color: #fff;
+    color: #fff;
 }
 
-a:focus, a:hover {
-	color: #9EC2D5;
+a:focus,
+a:hover {
+    color: #9EC2D5;
     text-decoration: none;
 }
 
+
 /* ========================== Header ========================== */
+
 .header-top {
-	font-size: 12px;
-  background-image: url("/assets/img/header/menu-superior.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
+    font-size: 12px;
+    background-image: url("http://localhost/costjalisco/public/assets/img/header/menu-superior.jpg") !important;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .header-img {
-	background-color: #F7F7F7;
+    background-color: #F7F7F7;
 }
 
 .header-menu {
-	background-image: url("/assets/img/header/menu-principal.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-image: url("http://localhost/costjalisco/public/assets/img/header/menu-principal.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .divider {
     height: 1.5em;
-   	border-left: 1px solid #777;
+    border-left: 1px solid #777;
     margin-top: 10px;
 }
 
+.line-red-center {
+  margin-top:30px;
+  border-bottom: 1px solid #D60000;   
+}
+
+.section-divider {
+    height: 1.5em;
+    border-top: 1px solid #777;
+}
+
 .nav-login {
-	margin-right: 4rem;;
-	margin-left: 6rem;
+    margin-right: 4rem;
+    ;
+    margin-left: 6rem;
 }
 
 .nav-link {
-	margin-right: 1rem;
-	margin-left: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 /* Dropdow menu */
@@ -76,17 +91,24 @@ position: relative;
 
 /* ========================== Content ========================== */
 
+
 /* Carousel */
 
+
+/* Carousel base class */
+
 .carousel {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
+
+
 /* Since positioning the image, we need to help out the caption */
 #carouselHome .carousel-caption {
   bottom: 3rem;
   z-index: 10;
 }
+
 
 /* Declare heights because of positioning of img element */
 #carouselHome .carousel-item {
@@ -99,6 +121,7 @@ position: relative;
   left: 0;
   min-width: 100%;
 }
+
 
 /* Make the image fully responsive */
 #carouselHome .carousel-inner img {
@@ -170,41 +193,44 @@ position: relative;
   border-top: 1px solid #777;
 }
 
+
 /* ========================== Footer ========================== */
 
 .social ul {
-  list-style: none;
+    list-style: none;
 }
 
 .social ul li a {
-  width: 25px;
-  height: 15px;
-  display: inline-block;
-  color: #fff;
-  text-decoration: none;
-  -webkit-transition: all 500ms ease;
-  -o-transition: all 500ms ease;
-  transition: all 500ms ease;
-  border-radius: 50%;
-  padding-bottom: 25px;
-  margin: 2px;
-  /* Establecemos una transición a todas las propiedades */
+    width: 25px;
+    height: 15px;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    border-radius: 50%;
+    padding-bottom: 25px;
+    margin: 2px;
+    /* Establecemos una transición a todas las propiedades */
 }
 
+
 /* Establecemos los colores de cada red social, aprovechando su class */
+
 .social ul li .icon-facebook {
-  background: #3b5998;
+    background: #3b5998;
 }
 
 .social ul li .icon-youtube {
-  background: #c4302b;
+    background: #c4302b;
 }
 
 .social ul li .icon-twitter {
-  background: #00abf0;
+    background: #00abf0;
 }
 
 .social ul li a:hover {
-  background: #000;
-  /* Cambiamos el fondo cuando el usuario pase el mouse */
+    background: #000;
+    /* Cambiamos el fondo cuando el usuario pase el mouse */
 }
