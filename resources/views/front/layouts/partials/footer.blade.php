@@ -18,46 +18,46 @@
     <!-- Footer Links -->
     <div class="container text-center text-md-left mt-5">
         <!-- Grid row -->
-        <div class="row mt-3">
+        <div class="row">
             <!-- Grid column -->
             <div class="col-md-7 col-lg-7 mx-auto mb-4">
                 <!-- Content -->
-                <div class="row mb-4">
+                <div class="row mb-4 align-items-center">
                     <div class="col-md-5">
                         <a href="#" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/cost.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/footer/cost.png') }}" class="img-fluid" width="140" alt="">
                         </a>
                     </div>
                     <div class="col-md-4">
                         <a href="#" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/itei.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/footer/itei.png') }}" class="img-fluid" width="80" alt="">
                         </a>
                     </div>
                     <div class="col-md-3">
                         <a href="#" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" width="50" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-3 align-items-center">
                     <div class="col-md-3">
                         <a href="#" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/zapopan.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/footer/zapopan.png') }}" class="img-fluid" width="50" alt="">
                         </a>
                     </div>
                     <div class="col-md-3">
                         <a href="#" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/guadalajara.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/footer/guadalajara.png') }}" class="img-fluid" width="60" alt="">
                         </a>
                     </div>
                     <div class="col-md-3">
                         <a href="#" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/jalisco.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/footer/jalisco.png') }}" class="img-fluid" width="60" alt="">
                         </a>
                     </div>
                     <div class="col-md-3">
                         <a href="#" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/tonala.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/footer/tonala.png') }}" class="img-fluid" width="50" alt="">
                         </a>
                     </div>
                 </div>

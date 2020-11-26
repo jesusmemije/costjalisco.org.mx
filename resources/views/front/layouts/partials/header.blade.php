@@ -1,7 +1,6 @@
 <header>
     <div class="header-top">
-        <div class="row flex-nowrap justify-content-between align-items-center"
-            style="margin-left: 0; margin-right: 0;">
+        <div class="row flex-nowrap justify-content-between align-items-center mx-0">
             <div class="col-12 d-flex justify-content-end align-items-center">
                 <div class="nav-scroller py-1">
                     <nav class="nav d-flex justify-content-between">
