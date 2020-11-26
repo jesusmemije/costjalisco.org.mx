@@ -18,7 +18,8 @@ Home
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('assets/img/home/slider-main/matute.jpg') }}" alt="Puente Matute Remus, Guadalajara Jalisco">
+                <img src="{{ asset('assets/img/home/slider-main/matute.jpg') }}"
+                    alt="Puente Matute Remus, Guadalajara Jalisco">
                 <div class="container">
                     <div class="carousel-caption">
                         <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
@@ -312,17 +313,18 @@ Home
 
     <!-- Section - Carousel proyectos -->
     <div class="row mx-0">
-        
-        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 px-0" >
+        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 px-0">
             <div id="carouselProjects" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" style="background-color: #D8D8CD;">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{ asset('assets/img/home/slider-proyectos/tren-ligero.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/home/slider-proyectos/tren-ligero.jpg') }}"
+                                    class="img-fluid" alt="">
                             </div>
                             <div class="col-md-8">
-                                <h2 class="font-weight-bold my-4" style="color:#D60000">LÍNEA 3 DEL TREN LIGERO EN GUADALAJARA</h2>
+                                <h2 class="font-weight-bold my-4" style="color:#D60000">LÍNEA 3 DEL TREN LIGERO EN
+                                    GUADALAJARA</h2>
                                 <div class="row" style="color:#2C4143">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
                                         <p>
@@ -337,21 +339,26 @@ Home
                                         </p>
                                     </div>
                                     <div class="col-md-6 pl-4">
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Inversión: </strong> 20 mil millones de pesos</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Periodo de construcción: </strong> 2014-2020</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Ubicación: </strong> Zapopan, Guadalajara, Tlaquepaque.</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
                                         <br>
-                                        <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
-                                            Ver más <span style="letter-spacing: -4px">>></span></a></span>
+                                        <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">Ver más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="rectangulo-rojo-avance-carousel text-white"><span style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;" class="mx-2">completado</span></div>
+                            <div class="rectangulo-rojo-avance-carousel text-white"><span
+                                    style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;"
+                                    class="mx-2">completado</span></div>
                         </div>
                     </div>
                     <div class="carousel-item" style="background-color: #D8D8CD;">
@@ -360,7 +367,8 @@ Home
                                 <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}" class="img-fluid" alt="">
                             </div>
                             <div class="col-md-8">
-                                <h2 class="font-weight-bold my-4" style="color:#D60000">REVESTIMIENTO Y SANEAMIENTO DEL CANAL DE AGUAS PLUVIALES</h2>
+                                <h2 class="font-weight-bold my-4" style="color:#D60000">REVESTIMIENTO Y SANEAMIENTO DEL
+                                    CANAL DE AGUAS PLUVIALES</h2>
                                 <div class="row" style="color:#2C4143">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
                                         <p>
@@ -375,21 +383,29 @@ Home
                                         </p>
                                     </div>
                                     <div class="col-md-6 pl-4">
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Inversión: </strong> $57,1857.77</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Periodo de construcción: </strong> 63 días</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}" class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Ubicación: </strong> canal en la Calle Arroyo entre <br>Calle Platino y Cantera, en la Colonia <br> Marino Otero, municipio de Zapopan <br>Jalisco</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Ubicación: </strong> Calle Platino y Cantera, en la Colonia
+                                            <br> Marino Otero, municipio de Zapopan <br>Jalisco</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
+                                                class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 26.450 ciudadanos</p>
                                         <br>
-                                        <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
-                                            Ver más <span style="letter-spacing: -4px">>></span></a></span>
+                                        <span><a href="#"
+                                                style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
+                                                Ver más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="rectangulo-rojo-avance-carousel text-white"><span style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;" class="mx-2">completado</span></div>
+                            <div class="rectangulo-rojo-avance-carousel text-white"><span
+                                    style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;"
+                                    class="mx-2">completado</span></div>
                         </div>
                     </div>
                 </div>
@@ -402,9 +418,33 @@ Home
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-
         </div>
-    
+    </div>
+
+    <!-- Section - newsletter -->
+    <div class="row mx-0 my-4 align-items-center">
+        <div class="col-md-12 px-0">
+            <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid"
+                alt="Newsletter - CoST Jalisco">
+            <div class="form-newsletter">
+                <form action="">
+                    <h6 style="font-size: 16px; font-weight: 600;" class="mb-3">¡Regístrate para seguir próximos
+                        proyectos!</h6>
+                    <input type="text" id="email" name="email" placeholder="Tu correo aquí" class="input-newsletter">
+                    <button class="btn-newsletter mt-3">SUSCRIBIRSE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Título - Nuestras redes-->
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center font-weight-bold" style="color: #2C4143; letter-spacing: 1px;">NUESTRAS REDES</h3>
+                <div class="section-divider"></div>
+            </div>
+        </div>
     </div>
 
 </div>
