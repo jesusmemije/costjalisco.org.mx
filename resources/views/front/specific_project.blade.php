@@ -143,8 +143,7 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
       </div>
      
      </div>
-  </div>
- 
+
  
   <div class="container" id="map" style="width: 100%;"></div>
 
