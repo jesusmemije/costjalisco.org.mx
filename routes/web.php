@@ -31,6 +31,10 @@ use League\CommonMark\Inline\Element\Code;
 
 Route::namespace('Front')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('project', [HomeController::class, 'specific_project'])->name('home.specific_project');
+    
+
+
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {

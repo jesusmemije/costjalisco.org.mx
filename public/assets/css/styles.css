@@ -15,7 +15,7 @@ a:hover {
 
 .header-top {
     font-size: 12px;
-    background-image: url("http://localhost/costjalisco/public/assets/img/header/menu-superior.jpg") !important;
+    background-image: url("/assets/img/header/menu-superior.jpg") !important;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -25,7 +25,7 @@ a:hover {
 }
 
 .header-menu {
-    background-image: url("http://localhost/costjalisco/public/assets/img/header/menu-principal.jpg");
+    background-image: url("/assets/img/header/menu-principal.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

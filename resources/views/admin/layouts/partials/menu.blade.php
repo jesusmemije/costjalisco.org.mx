@@ -30,7 +30,7 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProject" aria-expanded="true"
       aria-controls="collapseProject">
-      <i class="fas fa-fw fa-cog"></i>
+      <i class="fas fa-fw fa-file"></i>
       <span>Proyectos</span>
     </a>
     <div id="collapseProject" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -44,7 +44,7 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrg" aria-expanded="true"
       aria-controls="collapseOrg">
-      <i class="fas fa-fw fa-cog"></i>
+      <i class="fas fa-fw fa-building"></i>
       <span>Organizaciones</span>
     </a>
     <div id="collapseOrg" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
