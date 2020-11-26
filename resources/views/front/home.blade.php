@@ -6,7 +6,10 @@ Home
 
 @section('content')
 
+<!-- Contenido -->
 <div id="main">
+
+    <!-- Section - Carousel main -->
     <div id="carouselHome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
@@ -15,34 +18,36 @@ Home
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('assets/img/slider/matute.jpg') }}" alt="Puente Matute Remus, Guadalajara Jalisco">
+                <img src="{{ asset('assets/img/home/slider-main/matute.jpg') }}" alt="Puente Matute Remus, Guadalajara Jalisco">
                 <div class="container">
                     <div class="carousel-caption">
-                        <span class="font-title-corousel font-weight-bold">INFRAESTRUCTURA</span>
-                        <span class="font-title-corousel">VALORADA</span>
+                        <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
+                        <span class="font-title-carousel">VALORADA</span>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/img/slider/rotonda.jpg') }}" alt="">
+                <img src="{{ asset('assets/img/home/slider-main/rotonda.jpg') }}" alt="">
                 <div class="container">
                     <div class="carousel-caption">
-                        <span class="font-title-corousel font-weight-bold">INFRAESTRUCTURA</span>
-                        <span class="font-title-corousel">VALORADA</span>
+                        <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
+                        <span class="font-title-carousel">VALORADA</span>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/img/slider/macro.jpg') }}" alt="">
+                <img src="{{ asset('assets/img/home/slider-main/macro.jpg') }}" alt="">
                 <div class="container">
                     <div class="carousel-caption">
-                        <span class="font-title-corousel font-weight-bold">INFRAESTRUCTURA</span>
-                        <span class="font-title-corousel">VALORADA</span>
+                        <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
+                        <span class="font-title-carousel">VALORADA</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Título - Nosotros -->
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -51,28 +56,33 @@ Home
             </div>
         </div>
     </div>
+
+    <!-- Section - Índices -->
     <div class="row mx-0">
         <div class="col-3 px-0">
-            <div class="card-title">Organizaciones</div>
+            <div class="card-indice-title">Organizaciones</div>
             <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
-            <div class="card-counter">36</div>
+            <div class="card-indice-counter">36</div>
         </div>
         <div class="col-3 px-0">
-            <div class="card-title">Proyectos de la iniciativa</div>
+            <div class="card-indice-title">Proyectos de la iniciativa</div>
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
-            <div class="card-counter">512</div>
+            <div class="card-indice-counter">512</div>
         </div>
         <div class="col-3 px-0">
-            <div class="card-title">Personas beneficiadas</div>
+            <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
-            <div class="card-counter">521,256</div>
+            <div class="card-indice-counter">521,256</div>
         </div>
         <div class="col-3 px-0">
-            <div class="card-title">Presupuesto utilizado</div>
-            <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
-            <div class="card-counter">1,025,236</div>
+            <div class="card-indice-title">Presupuesto utilizado</div>
+            <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid"
+                alt="Indice de presupuesto">
+            <div class="card-indice-counter">1,025,236</div>
         </div>
     </div>
+
+    <!-- Label de actuaización -->
     <div class="row mx-0">
         <div class="col-md-12">
             <div class="text-right mt-3 mb-3">
@@ -80,6 +90,8 @@ Home
             </div>
         </div>
     </div>
+
+    <!-- Title - ¿Qúes es CoST? -->
     <div class="row mx-0">
         <div class="col-md-6 px-0 mb-5">
             <div class="text-center text-white">
@@ -88,14 +100,16 @@ Home
             </div>
         </div>
     </div>
+
+    <!-- Section - Descripción CoST -->
     <div class="container">
         <div class="row">
             <div class="col-md-6" style="border-right: 1px solid #D60000;">
                 <div class="my-4" style="color: #2C4143; letter-spacing: -.4px; font-weight: 600;">
                     <p>
                         La iniciativa de Transparencia en Infraestructura <strong>[Construction <br>
-                        Sector Transparency Initiative] o "CoST" por sus siglas en <br>
-                        inglés,</strong> es la encargada de promover la transparencia y la <br>
+                            Sector Transparency Initiative] o "CoST" por sus siglas en <br>
+                            inglés,</strong> es la encargada de promover la transparencia y la <br>
                         rendición de cuentas dentro de las diferentes etapas de los <br>
                         proyectos de infraestructura y obra pública.
                     </p>
@@ -113,10 +127,13 @@ Home
                 <br><br>
                 <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
                 <br><br>
-                <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">Ver más: https://infrastructuretransparency.org/</a></span>
+                <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">Ver
+                        más: https://infrastructuretransparency.org/</a></span>
             </div>
         </div>
     </div>
+
+    <!-- Title - Grupo multisectorial-->
     <div class="row mx-0">
         <div class="col-md-6 px-0 mt-2">
             <div class="text-center text-white">
@@ -128,6 +145,8 @@ Home
             <div class="line-red-center"></div>
         </div>
     </div>
+
+    <!-- Section - Descripción Grupo multisectorial-->
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-7" style="border-right: 1px solid #D60000;">
@@ -150,114 +169,244 @@ Home
             </div>
         </div>
     </div>
+
+    <!-- Section - Sector público-->
     <div class="container mt-5">
         <div style="border-left: 5px solid #2C4143;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #2C4143; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Público</h3>
+                    <h3 style="color: #2C4143; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Público
+                    </h3>
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
+                        alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid" width="70" alt="">
+                    <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
+                        width="70" alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70" alt="">
+                    <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
+                        alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80" alt="">
+                    <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
+                        alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
+                        alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
+                        alt="">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Section - Sector Académico-->
     <div class="container mt-5">
         <div style="border-left: 5px solid #D60000;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #D60000; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Académico</h3>
+                    <h3 style="color: #D60000; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Académico
+                    </h3>
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60" alt="">
+                    <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60"
+                        alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-academico/iteso.jpg') }}" class="img-fluid" width="50" alt="">
+                    <img src="{{ asset('assets/img/home/sector-academico/iteso.jpg') }}" class="img-fluid" width="50"
+                        alt="">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Section - Sector Privado-->
     <div class="container mt-5">
         <div style="border-left: 5px solid #FFCE32;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #FFCE32; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Privado</h3>
+                    <h3 style="color: #FFCE32; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Privado
+                    </h3>
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100"
+                        alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/cicej.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sector-privado/cicej.jpg') }}" class="img-fluid" width="100"
+                        alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/comce.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sector-privado/comce.jpg') }}" class="img-fluid" width="100"
+                        alt="">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Section - Sociedad Civil Organizada-->
     <div class="container mt-5">
         <div style="border-left: 5px solid #61A8BD;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #61A8BD; font-size: 30px; font-weight: 700; margin-left: 30px;">Sociedad Civil Organizada</h3>
+                    <h3 style="color: #61A8BD; font-size: 30px; font-weight: 700; margin-left: 30px;">Sociedad Civil
+                        Organizada</h3>
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid"
+                        width="100" alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cimtra.jpg') }}" class="img-fluid" width="100" alt="">
+                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cimtra.jpg') }}" class="img-fluid"
+                        width="100" alt="">
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/mexico.jpg') }}" class="img-fluid" width="120" alt="">
+                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/mexico.jpg') }}" class="img-fluid"
+                        width="120" alt="">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Section - Aliados Estratégicos-->
     <div class="container mt-5">
         <div style="border-left: 5px solid #D8D8CD;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #D8D8CD; font-size: 30px; font-weight: 700; margin-left: 30px;">Aliados Estratégicos</h3>
+                    <h3 style="color: #D8D8CD; font-size: 30px; font-weight: 700; margin-left: 30px;">Aliados
+                        Estratégicos</h3>
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="col-md-3 text-center">
-                    <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid" width="200" alt="">
+                    <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"
+                        width="200" alt="">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Título - Proyectos-->
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-12">
-                <!--<h3 class="text-center font-weight-bold" style="color: #2C4143; letter-spacing: 1px;">PROYECTOS</h3>
-                <div class="section-divider"></div>-->
+                <h3 class="text-center font-weight-bold" style="color: #2C4143; letter-spacing: 1px;">PROYECTOS</h3>
+                <div class="section-divider"></div>
             </div>
         </div>
     </div>
+
+    <!-- Section - Carousel proyectos -->
+    <div class="row mx-0">
+        
+        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 px-0" >
+            <div id="carouselProjects" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="background-color: #D8D8CD;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/img/home/slider-proyectos/tren-ligero.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="font-weight-bold my-4" style="color:#D60000">LÍNEA 3 DEL TREN LIGERO EN GUADALAJARA</h2>
+                                <div class="row" style="color:#2C4143">
+                                    <div class="col-md-6" style="border-right: 1px solid #777;">
+                                        <p>
+                                            Dará servicio a 240 mil pasajeros al día mediante <br>
+                                            18 estaciones y 16 trenes para su servicio, <br>
+                                            además de 7,000 empleos directos y 15 mil <br>
+                                            indirectos.
+                                        </p>
+                                        <p>
+                                            Conectando gran parte de la ciudad desde <br>
+                                            Tlaquepaque hasta Tesistán.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6 pl-4">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Inversión: </strong> 20 mil millones de pesos</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Periodo de construcción: </strong> 2014-2020</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Ubicación: </strong> Zapopan, Guadalajara, Tlaquepaque.</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
+                                        <br>
+                                        <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
+                                            Ver más <span style="letter-spacing: -4px">>></span></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rectangulo-rojo-avance-carousel text-white"><span style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;" class="mx-2">completado</span></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="background-color: #D8D8CD;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="font-weight-bold my-4" style="color:#D60000">REVESTIMIENTO Y SANEAMIENTO DEL CANAL DE AGUAS PLUVIALES</h2>
+                                <div class="row" style="color:#2C4143">
+                                    <div class="col-md-6" style="border-right: 1px solid #777;">
+                                        <p>
+                                            El proyecto de infraestructura con nombre: <br>
+                                            "Revestimiento y saneamiento del canal en la Calle Arroyo" <br>
+                                            El objetivo es el revestimiento y saneamiento del <br>
+                                            canal de aguas pluviales que se encuentra en la <br>
+                                            Calle Arroyo entre Calle Platino y Cantera, en la <br>
+                                            Colonia Mariano Otero, municipio de Zapopan, <br>
+                                            Jalisco. El proyecto cuenta con indicador de <br>
+                                            impacto ambiental.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6 pl-4">
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Inversión: </strong> $57,1857.77</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Periodo de construcción: </strong> 63 días</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Ubicación: </strong> canal en la Calle Arroyo entre <br>Calle Platino y Cantera, en la Colonia <br> Marino Otero, municipio de Zapopan <br>Jalisco</p>
+                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}" class="img-fluid icon-img-carousel" alt="">
+                                            <strong>&nbsp; Beneficiarios: </strong> 26.450 ciudadanos</p>
+                                        <br>
+                                        <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
+                                            Ver más <span style="letter-spacing: -4px">>></span></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rectangulo-rojo-avance-carousel text-white"><span style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;" class="mx-2">completado</span></div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselProjects" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselProjects" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>
+    
+    </div>
+
 </div>
 
 @endsection

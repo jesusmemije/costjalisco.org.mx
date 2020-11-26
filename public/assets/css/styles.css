@@ -15,7 +15,7 @@ a:hover {
 
 .header-top {
     font-size: 12px;
-    background-image: url("http://localhost/costjalisco/public/assets/img/header/menu-superior.jpg") !important;
+    background-image: url("/assets/img/header/menu-superior.jpg") !important;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -25,29 +25,9 @@ a:hover {
 }
 
 .header-menu {
-    background-image: url("http://localhost/costjalisco/public/assets/img/header/menu-principal.jpg");
+    background-image: url("/assets/img/header/menu-principal.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.card-title {
-    position: absolute;
-    top: 30px;
-    text-align: center;
-    width: 100%;
-    color: white;
-    font-weight: 700;
-    font-size: 20px;
-}
-
-.card-counter {
-    position: absolute;
-    bottom: 30px;
-    text-align: center;
-    width: 100%;
-    color: white;
-    font-weight: 700;
-    font-size: 32px;
 }
 
 .divider {
@@ -77,14 +57,42 @@ a:hover {
     margin-left: 1rem;
 }
 
+/* Dropdow menu */
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-divider {
+position: relative;
+  margin: -4px .8rem;
+  border-top: 1px solid #777;
+  z-index: 1;
+}
+
+.dropdown-menu {
+  margin-top: 0;
+  padding: .4rem 0;
+  color: #fff;
+  background-color: #2C4143;
+  border: none;
+  border-radius: 0;
+  padding-top: .8rem;
+  padding-bottom: 1.8rem;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #9EC2D5;
+  background-color: #2C4143;
+}
 
 /* ========================== Content ========================== */
 
 
 /* Carousel */
-
-
-/* Carousel base class */
 
 .carousel {
     margin-top: 2rem;
@@ -93,115 +101,127 @@ a:hover {
 
 
 /* Since positioning the image, we need to help out the caption */
-
-.carousel-caption {
-    bottom: 3rem;
-    z-index: 10;
+#carouselHome .carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
 }
 
 
 /* Declare heights because of positioning of img element */
-
-.carousel-item {
-    height: 790px;
+#carouselHome .carousel-item {
+  height: 790px;
 }
 
-.carousel-item>img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
+#carouselHome .carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
 }
 
 
 /* Make the image fully responsive */
-
-.carousel-inner img {
-    width: 100%;
-    height: auto;
+#carouselHome .carousel-inner img {
+  width: 100%;
+  height: auto;
 }
 
-.carousel-caption {
-    color: black;
-    right: 58%;
-    text-align: right !important;
-    max-width: 500px;
-    left: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    bottom: initial;
-    line-height: 1;
+#carouselHome .carousel-caption {
+  color: black;
+  right: 58%;
+  text-align: right !important;
+  max-width: 500px;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: initial;
+  line-height: 1;
 }
 
-.carousel-indicators {
-    bottom: 30px;
+#carouselHome .carousel-indicators {
+  bottom: 30px;
 }
 
-.carousel-indicators li {
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
-    margin-left: 5px;
-    border-radius: 100%;
-    opacity: 1;
+#carouselHome .carousel-indicators li {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-radius: 100%;
+  opacity: 1;
 }
 
-.carousel-indicators .active {
+#carouselHome .carousel-indicators .active {
     background-color: #58707B;
 }
 
-.font-title-corousel {
-    color: white;
-    font-size: 44px;
-    letter-spacing: 1px;
+#carouselHome .font-title-carousel {
+  color: white;
+  font-size: 44px; 
+  letter-spacing: 1px;
 }
 
-
-/* Dropdow menu */
-
-.dropdown-toggle::after {
-    display: none;
+.card-indice-title {
+  position: absolute;
+  top: 30px;
+  text-align: center;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+.card-indice-counter {
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 32px;
 }
 
-.dropdown-divider {
-    position: relative;
-    margin: -4px .8rem;
-    border-top: 1px solid #777;
-    z-index: 1;
+.line-red-center {
+  margin-top:30px;
+  border-bottom: 1px solid #D60000;   
 }
 
-.dropdown-menu {
-    margin-top: 0;
-    padding: .4rem 0;
-    color: #fff;
-    background-color: #2C4143;
-    border: none;
-    border-radius: 0;
-    padding-top: .8rem;
-    padding-bottom: 1.8rem;
+.section-divider {
+  height: 1.5em;
+  border-top: 1px solid #777;
 }
 
-.dropdown-item {
-    color: #fff;
+#carouselProjects .carousel-control-next-icon {
+  background-image: url("/assets/img/home/slider-proyectos/icons/arrow-right.png");
+}
+#carouselProjects .carousel-control-prev-icon {
+  background-image: url("/assets/img/home/slider-proyectos/icons/arrow-left.png");
+}
+#carouselProjects .carousel-control-next-icon, .carousel-control-prev-icon {
+  width: 36px;
+  height: 36px;
+}
+#carouselProjects .carousel-control-next, .carousel-control-prev {
+  opacity: 1;
+}
+#carouselProjects .carousel-control-next {
+  justify-content: right;
+}
+#carouselProjects .carousel-control-prev {
+  justify-content: left;
 }
 
-.dropdown-item:focus,
-.dropdown-item:hover {
-    color: #9EC2D5;
-    background-color: #2C4143;
+.icon-img-carousel {
+  width: 24px;
 }
 
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (min-width: 40em) {
-    /* Bump up size of carousel content */
-    .carousel-caption p {
-        margin-bottom: 1.25rem;
-        font-size: 1.25rem;
-        line-height: 1.4;
-    }
+.rectangulo-rojo-avance-carousel {
+  position: absolute;
+  left: 0;
+  top: 80%;
+  background-color: #D60000;
+  width: 64%;
+  font-size: 30px;
+  text-align: end;
 }
 
 
