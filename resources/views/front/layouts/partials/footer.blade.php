@@ -75,8 +75,7 @@
             <div class="col-md-1 col-lg-1 text-center mx-auto my-4">
                 <div class="social">
                     <ul>
-                        <li><a href="#" target="_blank" class="icon-facebook"><i
-                                    class="fab fa-facebook-f fa-sm"></i></a></li>
+                        <li><a href="#" target="_blank" class="icon-facebook"><i class="fab fa-facebook-f fa-sm"></i></a></li>
                         <li><a href="#" target="_blank" class="icon-youtube"><i class="fab fa-youtube fa-sm"></i></a>
                         </li>
                         <li><a href="#" target="_blank" class="icon-twitter"><i class="fab fa-twitter fa-sm"></i></a>
