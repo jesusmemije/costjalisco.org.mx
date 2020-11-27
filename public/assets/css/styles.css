@@ -155,6 +155,15 @@ position: relative;
   letter-spacing: 1px;
 }
 
+.btn-agenda {
+  position: relative;
+  float: left;
+  width: 86px;
+  height: auto;
+  left: 0;
+  top: -350px;
+}
+
 .section-divider {
   height: 1.5em;
   border-top: 1px solid #777;
@@ -309,6 +318,31 @@ position: relative;
   height: 32px;
 }
 
+/* Visitantes */
+.border-left-visitantes {
+  position: absolute;
+  width: 7px;
+  font-size: 30px;
+  text-align: end;
+  height: 120px;
+  background-image: url('/assets/img/home/line-visitas.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.line-top-right {
+  border-top: 1px solid #D60000;
+  border-right: 1px solid #D60000;
+}
+
+.visitantes-counter{
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 90%;
+  text-align: end;
+}
+
 
 /* ========================== Footer ========================== */
 
@@ -327,7 +361,7 @@ position: relative;
     transition: all 500ms ease;
     border-radius: 50%;
     padding-bottom: 25px;
-    margin: 2px;
+    margin: 5px;
     /* Establecemos una transición a todas las propiedades */
 }
 
@@ -349,4 +383,13 @@ position: relative;
 .social ul li a:hover {
     background: #000;
     /* Cambiamos el fondo cuando el usuario pase el mouse */
+}
+
+.btn-go-top {
+  position: relative;
+  float: left;
+  width: 72px;
+  height: 72px;
+  left: 95%;
+  top: 20px;
 }
