@@ -1,5 +1,6 @@
 <!-- Footer -->
 <footer class="page-footer font-small" style="background-color: #628EA0">
+
     <div style="background-color: #58707B;">
         <div class="container">
             <!-- Grid row-->
@@ -20,7 +21,7 @@
         <!-- Grid row -->
         <div class="row">
             <!-- Grid column -->
-            <div class="col-md-7 col-lg-7 mx-auto mb-4">
+            <div class="col-md-7 col-lg-7 mx-auto">
                 <!-- Content -->
                 <div class="row mb-4 align-items-center">
                     <div class="col-md-5">
@@ -83,8 +84,14 @@
                     </ul>
                 </div>
             </div>
+            <div class="btn-go-top">
+                <a href="#header">
+                    <img src="{{ asset('assets/img/home/btn-up.png') }}" class="img-fluid"  alt="">
+                </a>
+            </div>
         </div>
     </div>
+    
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
         <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados

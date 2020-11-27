@@ -29,6 +29,9 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Icons FontAwesome -->
     <script src="https://kit.fontawesome.com/94880949ce.js" crossorigin="anonymous"></script>
+
+    @yield('scripts')
+    
     <!-- Main js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
