@@ -48,18 +48,11 @@ Home
         </div>
     </div>
 
-    <style>
-        .btn-agenda {
-            position: relative;
-            float: left;
-            width: 86px;
-            height: auto;
-            left: 0;
-            top: -350px;
-        }
-    </style>
+    <!-- Btn Agenda -->
     <div class="btn-agenda">
-        <img src="{{ asset('assets/img/home/btn-eventos.png') }}" class="img-fluid" alt="">
+        <a href="#">
+            <img src="{{ asset('assets/img/home/btn-eventos.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
+        </a>
     </div>
 
     <!-- Título - Nosotros -->
