@@ -14,10 +14,10 @@ a:hover {
 /* ========================== Header ========================== */
 
 .header-top {
-    font-size: 200px;
-    background-image: url("assets/img/home/slider-main/matute.jpg") !important;
-    background-repeat: no-repeat;
-    background-size: contain;
+  font-size: 12px;
+  background-image: url("/assets/img/header/menu-superior.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .header-img {
@@ -25,7 +25,7 @@ a:hover {
 }
 
 .header-menu {
-    background-image: url("assets/img/header/menu-principal.jpg");
+    background-image: url("/assets/img/header/menu-principal.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
