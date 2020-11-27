@@ -29,11 +29,11 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Variaciones en el precio del contrato</label>
-                    <input type="file" class="form-control-sm form-control" name="variacionespreciocontrato" value="{{old('variacionespreciocontrato',$project->variacionespreciocontrato)}}">
+                    <input type="text" class="form-control-sm form-control" name="variacionespreciocontrato" value="{{old('variacionespreciocontrato',$project->variacionespreciocontrato)}}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Razones de cambio en el precio del contrato</label>
-                    <input type="file" class="form-control-sm form-control" name="razonescambiopreciocontrato" value="{{old('razonescambiopreciocontrato',$project->razonescambiopreciocontrato)}}">
+                    <input type="text" class="form-control-sm form-control" name="razonescambiopreciocontrato" value="{{old('razonescambiopreciocontrato',$project->razonescambiopreciocontrato)}}">
                 </div>
 
             </div>
@@ -41,23 +41,23 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="">Variaciones en la duración del contrato</label>
-                    <input type="file" class="form-control form-control-sm" name="variacionesduracioncontrato" value="{{old('variacionesduracioncontrato',$project->variacionesduracioncontrato)}}">
+                    <input type="text" class="form-control form-control-sm" name="variacionesduracioncontrato" value="{{old('variacionesduracioncontrato',$project->variacionesduracioncontrato)}}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Razones de cambio en la duración del contrato</label>
-                    <input type="file" name="razonescambioduracioncontrato" id="" class="form-control form-control-sm" value="{{old('razonescambioduracioncontrato',$project->razonescambioduracioncontrato)}}">
+                    <input type="text" name="razonescambioduracioncontrato" id="" class="form-control form-control-sm" value="{{old('razonescambioduracioncontrato',$project->razonescambioduracioncontrato)}}">
 
 
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Variaciones en el alcance del contrato</label>
-                    <input name="variacionesalcancecontrato" type="file" class="form-control form-control-sm" value="{{old('',)}}">
+                    <input name="variacionesalcancecontrato" type="text" class="form-control form-control-sm" value="{{old('variacionesalcancecontrato',$project->variacionesalcancecontrato)}}">
                 </div>
 
                 <div class="form-group col-md-4">
 
                     <label for="">Razones de cambios en el alcance del contrato</label>
-                    <input name="razonescambiosalcancecontrato" type="file" class="form-control form-control-sm" value="{{old('',)}}">
+                    <input name="razonescambiosalcancecontrato" type="text" class="form-control form-control-sm" value="{{old('razonescambiosalcancecontrato',$project->razonescambiosalcancecontrato)}}">
 
 
 
@@ -65,7 +65,7 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Aplicación de escalatoria</label>
-                    <input name="aplicacionescalatoria" type="file" class="form-control form-control-sm" value="{{old('',)}}">
+                    <input name="aplicacionescalatoria" type="text" class="form-control form-control-sm" value="{{old('aplicacionescalatoria',$project->aplicacionescalatoria)}}">
 
 
 
@@ -88,7 +88,7 @@
                     {{ $medit ? 'Actualizar' : 'Finalizar registro' }}
                 </button>
             </div>
-
+           
 
 
 
@@ -97,7 +97,7 @@
 
 
     </form>
-
+    @include('admin.projects.modaldeletedocument')
 
 </div>
 
@@ -105,4 +105,5 @@
 @endsection
 
 @section('scripts')
+<script src="{{asset('js/deletemodaldocument.js')}}"></script>
 @endsection

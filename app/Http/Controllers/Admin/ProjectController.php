@@ -729,6 +729,13 @@ class ProjectController extends Controller
         ->update([
             'id_project'=>$request->id_project,
             'descripcion'=>$request->descripcion,
+            'variacionespreciocontrato'=>$request->variacionespreciocontrato,
+            'razonescambiopreciocontrato'=>$request->razonescambiopreciocontrato,
+            'variacionesduracioncontrato'=>$request->variacionesduracioncontrato,
+            'razonescambioduracioncontrato'=>$request->razonescambioduracioncontrato,
+            'variacionesalcancecontrato'=>$request->variacionesalcancecontrato,
+            'razonescambiosalcancecontrato'=>$request->razonescambiosalcancecontrato,
+            'aplicacionescalatoria'=>$request->aplicacionescalatoria,
             'estadoactualproyecto'=>$request->estadoactualproyecto,
 
 
@@ -1198,13 +1205,9 @@ class ProjectController extends Controller
     }
     public function deletedocument(Request $request){
         
-    
-      
-        $document=Documents::find($request->doc_id);
-        
-
-      
-        
+            
+         $document=Documents::find($request->doc_id);
+              
         $url=public_path().'/documents'.'/'.$document->url;
      
 

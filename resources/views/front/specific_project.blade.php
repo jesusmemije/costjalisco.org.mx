@@ -10,10 +10,15 @@ Proyecto
 
 
 <style>
+
+body{
+    font-family: 'Arial';
+}
+
 #imgproject{
 border: 1px solid black;
 height: 360px;
-background-image: url("http://localhost/costjalisco/public/assets/img/slider/matute.jpg");
+background-image: url("assets/img/home/slider-main/matute.jpg");
 }
 
 
@@ -22,15 +27,16 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
   
     width: 100%;
     height: auto;
-    display: inline-block;
+    text-align: justify;
+    
     background-color: #628ea0;
     padding: 20px;
     color: #fff;
-    word-break: break-all;
+  
 }
-#titleproject label{
+#titleproject span{
     font-size: 30px;
-    text-align: left;
+   
 }
 #benefited{
     width: 100%;
@@ -76,22 +82,30 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
     margin-top: 3%;
     margin-bottom: 3%;
     padding-left:3%;
+    
 }  
 #g{
     color:#000;
     padding-left:3%;
     font-size: 50px;
     color:#fff;
-    background-image: url("http://localhost/costjalisco/public/assets/img/project/barra.png");
+    background-repeat: no-repeat;
+    background-image: url("assets/img/project/barra.png");
 }
 
 #docs{
-    border: 1px solid black;
-    height: 300px;
+   
+    height: auto;
     margin-bottom: 6%;
-    background-image: url("http://localhost/costjalisco/public/assets/img/project/fondo-doc.jpg");
+   
+    background-image: url("assets/img/project/fondo-doc.jpg");
 }
- 
+
+#doc1{
+    justify-content: center;
+}
+
+
 
 
 </style>
@@ -108,9 +122,7 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
   
   <div class="media-body">
       <div id="titleproject" class="col-md-12">
-      <label>REVESTIMIENTO Y SANEAMIENTO DEL CANAL DE AGUAS PLUVIALES 
-          
-</label>
+      <span>REVESTIMIENTO Y SANEAMIENTO DEL CANAL DE AGUAS PLUVIALES</span>
     
       </div>
       <div id="benefited" class="col-md-12">
@@ -123,12 +135,12 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
         
       <div  id="btns">
         
-        <button class="btn btn-dark">DATOS GENERALES</button>
-      <button class="btn btn-dark">IDENTIFIACIÓN</button>
-      <button class="btn btn-dark">PREPARACIÓN</button>
-      <button class="btn btn-dark">PROCEDIMIENTO DE CONTRATACIÓN</button>
-      <button class="btn btn-dark">EJECUCIÓN</button>
-      <button class="btn btn-dark">FINALIZACIÓN</button>
+        <button class="btn btn-dark btn-sm">DATOS GENERALES</button>
+      <button class="btn btn-dark btn-sm">IDENTIFIACIÓN</button>
+      <button class="btn btn-dark btn-sm">PREPARACIÓN</button>
+      <button class="btn btn-dark btn-sm">PROCEDIMIENTO DE CONTRATACIÓN</button>
+      <button class="btn btn-dark btn-sm">EJECUCIÓN</button>
+      <button class="btn btn-dark btn-sm">FINALIZACIÓN</button>
       </div>
       </div>
 
@@ -165,16 +177,18 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
 
   <div class="row" style="margin-top: 4%; ">
       
-    <div id="g" class="col-md-6"  style="border:1px solid green">
+    <div id="g" class="col-md-6">
     <h1>Datos Generales</h1>
     </div>
-    <div class="col-md-6"style="border:1px solid green" >
+    <div id="g2" class="col-md-6" >
+        <img src="assets/img/project/Línea.png"  alt="" style="width:100%; margin-top:3%;">
 
     </div>
   </div>
   <?php //this information may be a db table consult. 
-    $cadena='El proyecto de infraestructura con nombre: "Revestimiento y saneamiento del canal en la Calle Arroyo entre Calle Platino y Cantera, en la Colonia Mariano Otero, municipio de Zapopan, Jalisco".';
-    ?>
+    $cadena="El proyecto de infraestructura con nombre: “Revestimiento y saneamiento del canal en la Calle Arroyo entre Calle Platino y Cantera, en la Colonia Mariano Otero, municipio de Zapopan, Jalisco.”
+    El objetivo es el revestimiento y saneamiento del canal de aguas pluviales que se encuentra en la Calle Arroyo entre Calle Platino y Cantera, en la Colonia Mariano Otero, municipio de Zapopan, Jalisco. El proyecto cuenta con indicador de impacto ambiental, donde el responsable del estudio es: “Ingeniería en Mecánica de Suelos y Control de Occidente S.A. de C.V., con estudio de factibilidad Técnico económica, ecológica o social, con recursos federales en el ramo 33 del Fondo de Aportaciones para la Infraestructura Social.";
+?>
            
 
     <div id="data">
@@ -184,10 +198,11 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
    
     
     <div class="row">
-    <div id="g" class="col-md-6"  style="border:1px solid green">
+    <div id="g" class="col-md-6">
     <h1>Identificación</h1>
     </div>
-    <div class="col-md-6" style="border:1px solid green" >
+    <div class="col-md-6">
+    <img src="assets/img/project/Línea.png" alt="" style="width:100%; margin-top:3%;">
     </div>
     </div>
 
@@ -242,9 +257,24 @@ background-image: url("http://localhost/costjalisco/public/assets/img/slider/mat
      
 
     </div>
+    
+    <div class="row" id="docs">
+    <div class="col-md-4"  style="font-weight:bold;; margin-top:5%; margin-left:8%;">
+    <p style="color:#fff; font-family:Arial, Helvetica, sans-serif; text-align:center">¡Descarga los documentos del proyecto!</p>
+    
+    <img style=" margin-left:40%;" src="assets/img/project/icon-clic.png"alt="">
+    </div>
 
-    <div class="row">
-    <div class="col-md-12" id="docs">
+
+    <div class="col-md-2 offset-md-2" style="margin-top:4%;">
+    <img src="assets/img/project/icon-pdf.png" style="margin-left: 20%;" alt="" height="100">
+    <button style="margin-top:10%; margin-bottom:14%; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;" >ABRIR DOCUMENTO PDF</button>
+    </div>
+
+
+    <div class="col-md-2" style="margin-top:4%;">
+    <img src="assets/img/project/icon-excel.png" style="margin-left: 20%;" alt="" height="100">
+    <button style="margin-top:10%; margin-bottom:14%; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR DOCUMENTO PDF</button>
     </div>
 
     </div>
