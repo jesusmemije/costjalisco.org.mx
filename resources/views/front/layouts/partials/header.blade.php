@@ -48,19 +48,19 @@
                             CONOCE MÁS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownConoceMas">
-                            <a class="dropdown-item" href="#">Historia</a>
+                            <a class="dropdown-item" href="{{ route('home.know-more') }}">Historia</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">¿Qué es CoST?</a>
+                            <a class="dropdown-item" href="{{ route('home.know-more') }}#que-es-cost">¿Qué es CoST?</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Beneficios</a>
+                            <a class="dropdown-item" href="{{ route('home.know-more') }}#beneficios">Beneficios</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Procesos de CoST</a>
+                            <a class="dropdown-item" href="{{ route('home.know-more') }}#procesos-de-cost">Procesos de CoST</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">&nbsp;&bull; Divulgación</a>
+                            <a class="dropdown-item" href="{{ route('home.know-more') }}#divulgacion">&nbsp;&bull; Divulgación</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">&nbsp;&bull; Aseguramiento</a>
+                            <a class="dropdown-item" href="{{ route('home.know-more') }}#aseguramiento">&nbsp;&bull; Aseguramiento</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">&nbsp;&bull; Auditoria Social</a>
+                            <a class="dropdown-item" href="{{ route('home.know-more') }}#auditoria-social">&nbsp;&bull; Auditoria Social</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>

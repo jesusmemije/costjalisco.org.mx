@@ -156,12 +156,10 @@ position: relative;
 }
 
 .btn-agenda {
-  position: relative;
-  float: left;
+  position: absolute;
   width: 86px;
   height: auto;
-  left: 0;
-  top: -350px;
+  top: 750px;
 }
 
 .section-divider {

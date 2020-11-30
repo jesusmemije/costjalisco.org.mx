@@ -7,7 +7,7 @@ Home
 @section('content')
 
 <!-- Contenido -->
-<div id="main">
+<div class="main">
 
     <!-- Section - Carousel main -->
     <div id="carouselHome" class="carousel slide" data-ride="carousel">
