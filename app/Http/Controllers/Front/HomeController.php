@@ -12,6 +12,10 @@ class HomeController extends Controller
         return view('front.home');
     }
 
+    public function know_more(){
+        return view('front.know-more');
+    }
+
     public function specific_project(){
         
         return view('front.specific_project');

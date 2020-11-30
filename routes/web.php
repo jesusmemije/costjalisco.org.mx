@@ -31,6 +31,7 @@ use League\CommonMark\Inline\Element\Code;
 
 Route::namespace('Front')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/know-more', [HomeController::class, 'know_more'])->name('home.know-more');
     Route::get('project', [HomeController::class, 'specific_project'])->name('home.specific_project');
     
 
