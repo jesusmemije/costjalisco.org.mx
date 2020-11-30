@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Catalogs\AdjudicationController;
 use App\Http\Controllers\Admin\Catalogs\ContractingController;
 use App\Http\Controllers\Admin\Catalogs\ContractingStatusController;
 use App\Http\Controllers\Admin\Catalogs\ContractTypeController;
+use App\Http\Controllers\Admin\Catalogs\DocumentTypeController;
 use App\Http\Controllers\Admin\Catalogs\ProjectTypeController;
 use App\Http\Controllers\Admin\Catalogs\ResourceController;
 use App\Http\Controllers\Admin\CatalogsController;
@@ -73,6 +74,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('/admin/catalogs/contracting',ContractingController::class);
     //Routes contract status 
     Route::resource('/admin/catalogs/contractstatus',ContractingStatusController::class);
+    //Routes document type
+    Route::resource('/admin/catalogs/documenttype',DocumentTypeController::class);
 
     //Sectores/Subsectores
     Route::get('/admin/catalogs/sectors', [CatalogsController::class, 'cat_sectors'])->name('catalogs.cat_sectors');

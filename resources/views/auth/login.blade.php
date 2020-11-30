@@ -1,48 +1,126 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('front.layouts.app')
 
-        <x-jet-validation-errors class="mb-4" />
+<style>
+    .container-fluid{
+        background-color: #deedf1;
+    }
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+    .form{
+  
+      
+        height: 550px;
+
+        border-top-right-radius : 30px;
+        margin-top: 10%;
+   
+        background-color: #f7f7f7;
+        margin-bottom:10%;
+        box-shadow: 6px 6px 0px 0px #a9b4b7;
+        justify-content: center;
+   
+    }
+    .form a{
+        color: black;
+    }
+    .inp{
+        width: 70% !important;
+        border-radius:0px !important;
+        margin-bottom: 8%;
+    }
+    .logo{
+    
+        margin-top: 10%;
+        height: 400px;
+    }
+    .sub{
+        width: 50%;
+        border-radius: 100px !important;
+    }
+    .nc{
+       
+      
+        padding-left:20%;
+       padding-top:12%;
+    }
+    .inspecost{
+        margin-top: 30%;
+        margin-left:45%;
+        width: 40%;
+        height: 40%;
+     
+    }
+  
+
+</style>
+@section('content')
+
+        <div class="container-fluid">
+            <div class="row">
+                
+        
+            <div class="col-md-6 logo">
+           
+           <div class="inspecost">
+           <img src="assets/img/login/Grupo928.png" alt="" height="230">
+           </div> 
+           
+        
+      
+
+
+        
+        
             </div>
-        @endif
 
-        <form method="POST" action="{{ route('login') }}">
+
+            <div class="form col-md-4">
+             
+                <div  class="nc">
+                <a href="" style="color:#5e6e70;">crea una nueva cuenta</a>
+                </div>
+
+              
+           
+                <div align="center">
+                <h4 style="margin-bottom:15%; margin-top:12%">INICIA SESIÓN</h4>
+               
+                <form method="POST" action="{{ route('login') }}">
             @csrf
+         
 
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <div class="input-group inp">
+            <span class="input-group-append" style="background-color:#fff;">
+                    <div class="input-group-text bg-transparent" style="border-right: 0;"><i style="color: #000;" class="fa fa-user-circle"></i></div>
+                </span>
+                <input style="border-left: 0" name="email" type="email" class="form-control" required autofocus>  
+               
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <div class="input-group inp">
+            <span class="input-group-append" style="background-color:#fff;">
+                    <div class="input-group-text bg-transparent" style="border-right: 0;"><i class="fa fa-lock"></i>
+</div>
+                </span>
+                <input style="border-left: 0" name="password" class="form-control inp" type="password" required autocomplete="current-password">
+               
             </div>
+          
+              
+                
+              
+            
+                <a style="color: #9a9a9a;" href="{{ route('password.request') }}">¿olvidaste la contraseña?</a><br>
+                <a  style="color: #9a9a9a;" href="">¿no eres miembro aún?</a><br>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <input id="remember_me" type="checkbox" class="form-checkbox" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+                <button class="btn sub" type="submit" style="font-weight:600; margin-top:5%; background-color:#2c4143; color:#fff;">ACEPTAR</button>
+                </form>
+                </div>   
+          
+             @include('admin.layouts.partials.validation-error')    
+           </div>
+           </div>
+        </div>
+      
+ 
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+@endsection

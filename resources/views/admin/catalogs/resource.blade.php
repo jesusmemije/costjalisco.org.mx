@@ -20,12 +20,10 @@
 
 @endsection
 @section('content')
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Origen del recurso</li>
-  </ol>
-</nav>
+@section('breadcurrent')
+Origen del recurso
+@endsection
+@include('admin.catalogs.partials.breadcrumb')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between">
     <h1 class="h3 mb-0 text-gray-800">Origen del recurso</h1>
@@ -223,94 +221,5 @@
 @endsection
 
 @section('scripts')
-  <!-- Page level plugins -->
-  <script src="{{asset("admin_assets/vendor/datatables/jquery.dataTables.min.js")}}"></script>
-  <script src="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="{{asset("admin_assets/js/demo/datatables-demo.js")}}"></script>
-
-  <script>
-
-
-      //los datos que se mandan al modal deben de ser strings, si me escriben puros numeros lanza error.
-
-   window.onload = function() {
-    
-      $('#deleteUserModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id') // Extract info from data-* attributes
-        var name = button.data('name')
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        console.log(name);
-        name=name.replace(/,/g,' ')
-        var action = button.data('route')
-       $('#formDelete').attr('action', action)
-       $('#delete_id').val(id);
-       var label=button.data('labeltxt')
-       
-       
-        $('#test').val(label)
-      
-        var modal = $(this)
-        modal.find('.modal-title').text('Confirmar eliminación') 
-        modal.find('.name-user').text(label+'   '+name)
-      })
-
-    
-    }
-
-    $('#modaleditData').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id') // Extract info from data-* attributes
-        var name = button.data('name')
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      name=name.replace(/,/g,' ')
-      var title=button.data('title')
-        var action = button.data('route')
-       $('#formEdit').attr('action', action)
-     
-       var labelbi=button.data('labelbi');
-       var label=button.data('labeltxt')
-        var btn=button.data('btn');
-        $('#labelbi').html(labelbi);
-        $('#oldname').val(name);
-
-        $('#edit_id').val(id);
-        $('#btnedit').html(btn)
-    
-      
-        var modal = $(this)
-        modal.find('.modal-title').text(title) 
-       
-      })
-
-    
-
-    $('#modalnewData').on('show.bs.modal', function (event) {
-
-
-  
-      
-      var button = $(event.relatedTarget)
-      var title=button.data('title')
-      
-      var action = button.data('route')
-      
-      var lbl=button.data('lbl');
-      $('#formnew').attr('action', action)
-      $('#lbl').html(lbl);
-      var modal = $(this)
-      
-
-      $('#btnsave').html(button.data('btn'));
-
-
-      modal.find('.modal-title').text(title) 
-
-    });
-    
-  </script>
+<script src="{{asset('js/catalogsmodalsactive.js')}}"></script>
 @endsection 

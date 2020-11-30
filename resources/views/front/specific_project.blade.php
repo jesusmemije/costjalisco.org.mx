@@ -1,17 +1,28 @@
-@extends('front.layouts.app')
 
+@extends('front.layouts.app')
 @section('title')
 Proyecto
 @endsection
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX" defer></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
 
 @section('content')
 
 
 <style>
     body {
-        font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
     }
 
     #imgproject {
@@ -26,8 +37,8 @@ Proyecto
 
         width: 100%;
         height: auto;
-        text-align: justify;
-
+        text-align: left;
+        font-weight: 600;
         background-color: #628ea0;
         padding: 20px;
         color: #fff;
@@ -69,6 +80,7 @@ Proyecto
 
     #btns {
         margin-top: 2%;
+        margin-left:3%;
         border-radius: 8px;
     }
     #btns button{
@@ -80,9 +92,9 @@ Proyecto
         padding-left: 20px;
     }
 
-    #map {
+    #mapid {
 
-        height: 500px;
+        height: 180px;
     }
 
     .data {
@@ -90,13 +102,15 @@ Proyecto
         margin-top: 3%;
         margin-bottom: 3%;
         padding-left: 3%;
-
+        letter-spacing: -.4px; 
+        font-weight: 600;
+        color: #2C4143;
     }
 
     .data2 {
         text-align: left;
         margin-top: 3%;
-
+        font-weight: 400;
         padding-left: 3%;
     }
 
@@ -161,14 +175,14 @@ Proyecto
                 </div>
 
 
-                <div id="btns">
+                <div id="btns" class="form-row">
 
-                    <button onclick="smoothScroll(document.getElementById('dt'))" class="btn btn-dark btn-sm">DATOS GENERALES</button>
-                    <button onclick="smoothScroll(document.getElementById('identificacion'))" class="btn btn-dark btn-sm">IDENTIFICACIÓN</button>
-                    <button onclick="smoothScroll(document.getElementById('preparacion'))" class="btn btn-dark btn-sm">PREPARACIÓN</button>
-                    <button onclick="smoothScroll(document.getElementById('contratacion'))" class="btn btn-dark btn-sm">PROCEDIMIENTO DE CONTRATACIÓN</button>
-                    <button onclick="smoothScroll(document.getElementById('ejecucion'))" class="btn btn-dark btn-sm">EJECUCIÓN</button>
-                    <button onclick="smoothScroll(document.getElementById('finalizacion'))" class="btn btn-dark btn-sm">FINALIZACIÓN</button>
+                    <button onclick="smoothScroll(document.getElementById('dt'))" class="btn btn-dark">DATOS GENERALES</button>
+                    <button onclick="smoothScroll(document.getElementById('identificacion'))" class="btn btn-dark">IDENTIFICACIÓN</button>
+                    <button onclick="smoothScroll(document.getElementById('preparacion'))" class="btn btn-dark">PREPARACIÓN</button>
+                    <button onclick="smoothScroll(document.getElementById('contratacion'))" class="btn btn-dark">PROCEDIMIENTO DE CONTRATACIÓN</button>
+                    <button onclick="smoothScroll(document.getElementById('ejecucion'))" class="btn btn-dark">EJECUCIÓN</button>
+                    <button onclick="smoothScroll(document.getElementById('finalizacion'))" class="btn btn-dark">FINALIZACIÓN</button>
                 </div>
             </div>
 
@@ -200,8 +214,7 @@ Proyecto
 
     </div>
 
-
-    <div class="row" id="map"></div>
+    <div class="row" id="mapid"></div>
 
     <div class="row" style="margin-top: 4%; " id="dt">
 
@@ -508,7 +521,7 @@ Proyecto
         </div>
 
 
-        <div class="col-md-2 offset-md-1" style="margin-top:4%;">
+        <div class="col-md-2 offset-md-3" style="margin-top:4%;">
             <img src="assets/img/project/icon-pdf.png" style="margin-left: 20%;" alt="" height="100">
             <button class="btn btn-sm" style="margin-top:10%; margin-bottom:14%; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR DOCUMENTO PDF</button>
         </div>
@@ -531,7 +544,11 @@ Proyecto
 
 
 
+
 <script>
+
+
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
 window.smoothScroll = function(target) {
     var scrollContainer = target;
@@ -557,17 +574,8 @@ window.smoothScroll = function(target) {
 }
 
 
-    let map;
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: {
-                lat: -34.397,
-                lng: 150.644
-            },
-            zoom: 8,
-        });
-    }
+
 </script>
 
 

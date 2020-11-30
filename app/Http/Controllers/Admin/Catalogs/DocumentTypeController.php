@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Catalogs;
 
 use App\Http\Controllers\Controller;
+use App\Models\DocumentType;
 use Illuminate\Http\Request;
 
 class DocumentTypeController extends Controller
@@ -15,6 +16,12 @@ class DocumentTypeController extends Controller
     public function index()
     {
         //
+        $types=DocumentType::all();
+       
+        return view('admin.catalogs.documenttype',[
+        'types'=>$types,
+        ]);
+        
     }
 
     /**
@@ -26,6 +33,15 @@ class DocumentTypeController extends Controller
     {
         //
     }
+    public static function myresponse($r,$c,$a,$d){
+       
+        if($r){
+         
+            return back()->with('status', $c.' '.$a);
+        }else{
+            return back()->with('status', '¡El'.$c.' no se pudo '.$d.' !');
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,6 +52,12 @@ class DocumentTypeController extends Controller
     public function store(Request $request)
     {
         //
+        
+       $r= DocumentType::insert([
+            'titulo'=>$request->titulo,
+        ]);
+        
+       return  self::myresponse($r,'Tipo de documento', 'registrado correctamente','registrar');
     }
 
     /**
@@ -70,6 +92,9 @@ class DocumentTypeController extends Controller
     public function update(Request $request, $id)
     {
         //
+       $r=DocumentType::where('id', $id)
+       ->update(['titulo' => $request->newtitulo]);
+       return  self::myresponse($r,'Tipo de documento', 'editado correctamente','editar');
     }
 
     /**
@@ -81,5 +106,8 @@ class DocumentTypeController extends Controller
     public function destroy($id)
     {
         //
+      $r= DocumentType::destroy($id);
+
+       return  self::myresponse($r,'Tipo de documento', 'eliminado correctamente','eliminar');
     }
 }

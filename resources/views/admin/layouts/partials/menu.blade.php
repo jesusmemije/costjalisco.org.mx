@@ -74,6 +74,7 @@
         <a class="collapse-item" href="{{route('contracttype.index')}}">Tipo de contrato</a>
         <a class="collapse-item" href="{{route('contracting.index')}}">Modalidad de contratación</a>
         <a class="collapse-item" href="{{route('contractstatus.index')}}">Estados de contratación</a>
+        <a class="collapse-item" href="{{route('documenttype.index')}}">Tipos de documentos</a>
       </div>
     </div>
   </li>
