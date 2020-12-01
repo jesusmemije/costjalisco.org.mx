@@ -121,28 +121,28 @@ Proyecto
    }
    .tr1{
    
-    background-image: url("assets/img/organizations/publico.png");
+    background-image: url("assets/img/organizations/publico2.png");
     color:#fff;
     font-size:1em;
    }
 
    .tr2{
-    background-image: url("assets/img/organizations/academico.png");
+    background-image: url("assets/img/organizations/academico2.png");
     color:#fff;
     font-size:1em;
    }
    .tr3{
-    background-image: url("assets/img/organizations/privado.png");
+    background-image: url("assets/img/organizations/privado2.png");
     color:#fff;
     font-size:1em;
    }
    .tr4{
-    background-image: url("assets/img/organizations/civil.png");
+    background-image: url("assets/img/organizations/civil2.png");
     color:#fff;
     font-size:1em;
    }
    .tr5{
-    background-image: url("assets/img/organizations/estrategico.png");
+    background-image: url("assets/img/organizations/estrategico2.png");
     color:#fff;
     font-size:1em;
    }

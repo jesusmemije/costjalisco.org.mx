@@ -56,4 +56,7 @@ class HomeController extends Controller
             
         ]);
     }
+    public function contactus(){
+        return view('front.contactus');
+    }
 }
