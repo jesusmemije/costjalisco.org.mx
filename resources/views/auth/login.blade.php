@@ -49,6 +49,8 @@
         height: 40%;
      
     }
+
+      
   
 
 </style>
@@ -86,22 +88,22 @@
                
                 <form method="POST" action="{{ route('login') }}">
             @csrf
-         
+           
 
             <div class="input-group inp">
             <span class="input-group-append" style="background-color:#fff;">
-                    <div class="input-group-text bg-transparent" style="border-right: 0;"><i style="color: #000;" class="fa fa-user-circle"></i></div>
+                    <div class="input-group-text bg-transparent" style="border-right: 0;"><span class='icon'> <img src="assets/img/login/inp1.png" height="20" alt=""></div>
                 </span>
-                <input style="border-left: 0" name="email" type="email" class="form-control" required autofocus>  
+                <input placeholder="jonhsmit@mail.com" style="border-left: 0" name="email" type="email" class="form-control" required autofocus>  
                
             </div>
 
             <div class="input-group inp">
             <span class="input-group-append" style="background-color:#fff;">
-                    <div class="input-group-text bg-transparent" style="border-right: 0;"><i class="fa fa-lock"></i>
+                    <div class="input-group-text bg-transparent" style="border-right: 0;"><img src="assets/img/login/inp2.png" height="20" alt="">
 </div>
                 </span>
-                <input style="border-left: 0" name="password" class="form-control inp" type="password" required autocomplete="current-password">
+                <input placeholder="**********" style="border-left: 0" name="password" class="form-control inp" type="password" required autocomplete="current-password">
                
             </div>
           
