@@ -76,7 +76,7 @@
             <div class="form col-md-4">
              
                 <div  class="nc">
-                <a href="" style="color:#5e6e70;">crea una nueva cuenta</a>
+                <a href="{{route('home.account')}}" style="color:#5e6e70;">crea una nueva cuenta</a>
                 </div>
 
               

@@ -20,4 +20,7 @@ class HomeController extends Controller
         
         return view('front.specific_project');
     }
+    public function account(){
+        return view('front.account');
+    }
 }
