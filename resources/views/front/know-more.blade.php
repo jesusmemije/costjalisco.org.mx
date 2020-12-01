@@ -22,7 +22,7 @@ Conoce más
     <div class="row mx-0 my-4" id="que-es-cost">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/home/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>¿Qué es CoST?</h3>
             </div>
         </div>
@@ -89,7 +89,7 @@ Conoce más
     <div class="row mx-0 my-4" id="beneficios">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/home/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>Beneficios</h3>
             </div>
         </div>
@@ -131,7 +131,7 @@ Conoce más
     <div class="row mx-0 my-4" id="procesos-de-cost">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/home/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>Procesos de CoST</h3>
             </div>
         </div>

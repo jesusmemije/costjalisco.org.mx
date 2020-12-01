@@ -18,7 +18,7 @@ class HomeController extends Controller
 
     public function specific_project(){
         
-        return view('front.specific_project');
+        return view('front.specific-project');
     }
     public function account(){
         return view('front.account');
