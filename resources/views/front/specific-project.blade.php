@@ -69,12 +69,6 @@ Proyecto
         height: 500px;
     }
 
-    .data2 {
-        text-align: left;
-        margin-top: 3%;
-
-        padding-left: 3%;
-    }
 
     .g {
         font-size: 32px;
@@ -89,6 +83,7 @@ Proyecto
         margin-top: 6%;
         margin-bottom: 6%;
         background-image: url("assets/img/project/fondo-doc.jpg");
+        background-size: cover;
     }
 
     #doc1 {
@@ -107,6 +102,7 @@ Proyecto
     #fn {
         margin-top: 3%;
         background-image: url("assets/img/project/barrafond.jpg");
+        background-size: cover;
     }
 </style>
 
@@ -138,12 +134,14 @@ Proyecto
                             font-weight: 600;
                             font-size: 13px;
                         }
+
                         .btn-gris:hover,
                         .btn-gris:active {
                             color: #fff;
                             background-color: #8C8C8C;
                             border-color: #7D7D77 !important;
                         }
+
                         .btn.focus,
                         .btn:focus {
                             outline: 0;
@@ -185,8 +183,7 @@ Proyecto
                             <span style="font-size: 22px; font-weight: 700;">Estatus:</span>
                         </div>
                         <div class="col-md-8 d-flex justify-content-end align-items-baseline">
-                            <span style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span
-                                style="font-size: 16px;">completado</span>
+                            <span style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
                         </div>
                     </div>
                 </div>
@@ -211,12 +208,17 @@ Proyecto
 
     <div class="container">
         <div class="my-5">
-            El proyecto de infraestructura con nombre: “Revestimiento y saneamiento del canal en la Calle Arroyo entre Calle Platino y Cantera, en la <br>
+            El proyecto de infraestructura con nombre: “Revestimiento y saneamiento del canal en la Calle Arroyo entre
+            Calle Platino y Cantera, en la <br>
             Colonia Mariano Otero, municipio de Zapopan, Jalisco.” <br>
-            El objetivo es el revestimiento y saneamiento del canal de aguas pluviales que se encuentra en la Calle Arroyo entre Calle Platino y <br>
-            Cantera, en la Colonia Mariano Otero, municipio de Zapopan, Jalisco. El proyecto cuenta con indicador de impacto ambiental, donde el <br>
-            responsable del estudio es: “Ingeniería en Mecánica de Suelos y Control de Occidente S.A. de C.V., con estudio de factibilidad Técnico <br>
-            económica, ecológica o social, con recursos federales en el ramo 33 del Fondo de Aportaciones para la Infraestructura Social.
+            El objetivo es el revestimiento y saneamiento del canal de aguas pluviales que se encuentra en la Calle
+            Arroyo entre Calle Platino y <br>
+            Cantera, en la Colonia Mariano Otero, municipio de Zapopan, Jalisco. El proyecto cuenta con indicador de
+            impacto ambiental, donde el <br>
+            responsable del estudio es: “Ingeniería en Mecánica de Suelos y Control de Occidente S.A. de C.V., con
+            estudio de factibilidad Técnico <br>
+            económica, ecológica o social, con recursos federales en el ramo 33 del Fondo de Aportaciones para la
+            Infraestructura Social.
         </div>
     </div>
 
@@ -247,16 +249,16 @@ Proyecto
                         asentamientos:</b></span><br>
                 <span>DOC-IMSCO-07</span><br>
             </div>
-    
+
             <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
-                
+
                 <?php
                 $responsables = [];
                 $responsables[] = ['name' => 'Lic. José Rodolfo Hernández', 'cargo' => 'Dirección de obras Públicas e Infraestructura de Zapopan, Jalisco.', 'email' => 'rodolfo.berrecil@zapopan.gob.mx'];
                 $responsables[] = ['name' => 'Lic. Grabriel Marín Acevedo', 'cargo' => 'Jefe de Departamento B', 'email' => ''];
                 $responsables[] = ['name' => 'Arq. José Luis Vázquez Morán', 'cargo' => '', 'email' => 'joseluis.vazquez@zapopan.gob.mx'];
                 ?>
-    
+
                 @foreach($responsables as $responsable)
                 <br>
                 @if($responsable['name']!='')
@@ -289,7 +291,7 @@ Proyecto
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12 ml-4 mt-5 mb-2">
+            <div class="col-md-12 mt-5 mb-2">
                 <?php
                 $adjudicacion = [];
                 $impacto_ambiental = [];
@@ -299,29 +301,35 @@ Proyecto
                 $adjudicacion[] = ['nombre' => '', 'email'];
     
                 ?>
-                <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de impacto en terreno y asentamientos, con <br>
+                <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de
+                    impacto en terreno y asentamientos, con <br>
                     recursos federales. <br>
                     Con la Unidad de Presupuesto y Contratación
                     de Obra Publica como entidad de ajudicación. </p>
             </div>
             <div class=col-md-12>
-                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsable del contacto de
+                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsable del
+                    contacto de
                     la entidad de adjudicación</span><br>
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Lic. Sandra Patricia Sánchez Váldez</span><br>
                 <span style="padding-left:34px; font-weight: 700;">sandra.sanchez@zapopan.gob.mx</span><br><br>
-    
-                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de estudios de
+
+                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
+                    estudios de
                     impacto de terreno</span><br>
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">Ingeniería en Mécanica de Suelos y Control de Occidente S.A. de C.V.</span><br><br>
-    
-                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de estudios de
+                <span style="font-weight: 700;">Ingeniería en Mécanica de Suelos y Control de Occidente S.A. de
+                    C.V.</span><br><br>
+
+                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
+                    estudios de
                     factibilidad</span><br>
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Tesorería Municipal</span><br><br>
-    
-                <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio de
+
+                <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio
+                    de
                     impacto de terreno y asentamientos</span><br>
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">M en C.E. Alonso López Flores</span>
@@ -339,146 +347,156 @@ Proyecto
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 data2">
-            <?php
-            $adjudicacion = [];
-            $impacto_ambiental = [];
-            $factibilidad = [];
-            $impacto = [];
-
-            $adjudicacion[] = ['nombre' => '', 'email'];
-
-            ?>
-            <span><b>Tipo de contrato:</b> Obras</span><br>
-            <span><b>Modalidad de contratación:</b> Precios unitarios</span><br>
-            <span><b>Entidad administradora del contrato:</b>Unidad de Presupuesto y Contratación de Obra
-                Publica</span><br>
-            <span><b>Título del contrato:</b> DOPI-MUN-R33-DC-SI-055-2019</span><br>
-            <span><b>Vía por la que presenta su propuesta:</b> JUNTA DE APERTURA</span><br>
-            <span><b>Monto del contrato (cantidad estipulada):</b>$571857.77</span><br>
-            <span><b>Alcance del trabajo según el contrato:</b>REVESTIMIENTO Y SANEAMIENTO DEL CANAL EN LA COLONIA
-                MARIANO OTERO, EN ZAPOPAN</span><br>
-            <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b> 63 DÍAS</span><br>
-        </div>
-        <div class="col-md-6 data" style="border-left: 1px solid #628ea0;">
-            <h3 style="color:#628ea0">Empresas participantes</h3>
-            <?php
-            $empresas = [];
-            $empresas[] = ['nombre' => 'CONSTRUCCIONES TECNICAS DE OCCIDENTE SA DE CV'];
-            $empresas[] = ['nombre' => 'CONSTRUCTORA CENTAURO DE INFRAESTRUCTURA A DE CV'];
-            $empresas[] = ['nombre' => 'FAZER CONSTRUCCIONES SA DE CV'];
-            $empresas[] = ['nombre' => 'GUILLERMO VARGAS LARA'];
-            $empresas[] = ['nombre' => 'SALVADOR PANTOJA VACA'];
-
-            ?>
-            <div class="tablescroll">
-                <table class="table table-sm table-borderless">
-                    <tbody>
-                        @foreach($empresas as $empresa)
-                        <tr>
-                            <td>
-                                <i style="font-size:50px; color:#628ea0;" class="fas fa-building"></i>
-                            </td>
-                            <td style="font-weight: bold; padding-top:5%;">
-                                {{$empresa['nombre']}}
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <?php
+                $adjudicacion = [];
+                $impacto_ambiental = [];
+                $factibilidad = [];
+                $impacto = [];
+    
+                $adjudicacion[] = ['nombre' => '', 'email'];
+    
+                ?>
+                <span><b>Tipo de contrato:</b> Obras</span><br>
+                <span><b>Modalidad de contratación:</b> Precios unitarios</span><br>
+                <span><b>Entidad administradora del contrato:</b>Unidad de Presupuesto y Contratación de Obra
+                    Publica</span><br>
+                <span><b>Título del contrato:</b> DOPI-MUN-R33-DC-SI-055-2019</span><br>
+                <span><b>Vía por la que presenta su propuesta:</b> JUNTA DE APERTURA</span><br>
+                <span><b>Monto del contrato (cantidad estipulada):</b>$571857.77</span><br>
+                <span><b>Alcance del trabajo según el contrato:</b>REVESTIMIENTO Y SANEAMIENTO DEL CANAL EN LA COLONIA
+                    MARIANO OTERO, EN ZAPOPAN</span><br>
+                <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b> 63 DÍAS</span><br>
+            </div>
+            <div class="col-md-6">
+                <h3 style="color:#628ea0; font-weight: 700; margin-bottom: 0;" class="ml-4">Empresas participantes</h3>
+                <?php
+                $empresas = [];
+                $empresas[] = ['nombre' => 'CONSTRUCCIONES TECNICAS DE OCCIDENTE SA DE CV, CONSTRUCTORA CENTAURO DE INFRAESTRUCTURA SA DE CV, GUILLERMO VARGAS LARA, SALVADOR PANTOJA VACA.'];
+                $empresas[] = ['nombre' => 'CONSTRUCCIONES TECNICAS DE OCCIDENTE S.A DE C.V.'];
+                ?>
+                @foreach($empresas as $empresa)
+                    <div class="row py-4" style="border-left: 1px solid #628ea0;">
+                        <div class="col-md-2">
+                            <img src="{{ asset('assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
+                        </div>
+                        <div class="col-md-10 px-0">
+                            <span style="font-weight: 700;">{{ $empresa['nombre'] }}</span><br>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
 
-    <div class="row" id="ejecucion">
-        <div class="col-md-6 g">
-            <h1>Ejecución</h1>
+    <div class="row mt-5" id="ejecucion">
+        <div class="col-md-6 g px-0 py-1">
+            <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
         </div>
-        <div class="col-md-6">
-            <img src="assets/img/project/Línea.png" alt="" style="width:100%; margin-top:3%;">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 data2">
-            <span><b>Variaciones en el precio del contrato:</b></span><br>
-            <span><b>Razones de cambio en el precio del contrato:</b></span><br>
-            <span><b>Variaciones en la duración del contrato:</b></span><br>
-            <span><b>Razones de cambio en la duración del contrato:</b></span><br>
-            <span><b>Variaciones en el alcance del contrato:</b></span><br>
-            <span><b>Razones de cambios en el alcance del contrato:</b></span><br>
-            <span><b>Aplicación de escalatoria:</b></span><br>
-            <span><b>Estado actual del proyecto:</b> Concluído</span><br>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
 
-    <div class="row" id="finalizacion">
-        <div class="col-md-6 g" style="margin-top: 4%;">
-            <h1>Finalización</h1>
-        </div>
-        <div class="col-md-6">
-            <img src="assets/img/project/Línea.png" alt="" style="width:100%; margin-top:12%;">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 data2">
-            <span><b>Costo de finalización:</b></span><br>
-            <span><b>Fecha de finalización:</b></span><br>
-            <span><b>Alcance de la finalización:</b></span><br>
-            <span><b>Razones de cambio en el proyecto:</b></span><br>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6" style="background-color:#d60000; color:#fff; margin-left:3%; margin-top:4%;">
-            <div class="d-flex justify-content-end">
-                <h3>100%</h3><span style="padding-top:1%; padding-left:1%;">completado</span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <span><b>Variaciones en el precio del contrato:</b></span><br>
+                <span><b>Razones de cambio en el precio del contrato:</b></span><br>
+                <span><b>Variaciones en la duración del contrato:</b></span><br>
+                <span><b>Razones de cambio en la duración del contrato:</b></span><br>
+                <span><b>Variaciones en el alcance del contrato:</b></span><br>
+                <span><b>Razones de cambios en el alcance del contrato:</b></span><br>
+                <span><b>Aplicación de escalatoria:</b></span><br>
+                <span><b>Estado actual del proyecto:</b> Concluído</span><br>
             </div>
         </div>
-        <div class="col-md-2" style="margin-top:5%;">
-            <label for=""><b>Inagurada: 15/Ago/2020</b></label>
+    </div>
+
+    <div class="row mt-5" id="finalizacion">
+        <div class="col-md-6 g px-0 py-1">
+            <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <span><b>Costo de finalización:</b></span><br>
+                <span><b>Fecha de finalización:</b></span><br>
+                <span><b>Alcance de la finalización:</b></span><br>
+                <span><b>Razones de cambio en el proyecto:</b></span><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row align-items-baseline">
+            <div class="col-md-7 ml-3" style="background-color:#d60000; color:#fff;">
+                <div class="d-flex justify-content-end align-items-baseline">
+                    <span style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
+            </div>
         </div>
     </div>
 
     <div class="row" id="fn">
-        <div class="form-row col-md-12 d-flex justify-content-center" style="height: auto;">
-            <div class="col-md-3 form-group" style="color:#fff; padding:10px;">
+        <div class="col-md-12 d-flex justify-content-center" style="height: auto;">
+            <div class="col-md-3 text-center text-white py-3">
                 <i class="fa fa-user" style="font-size: 20px;"></i>
                 <span>Beneficiarios: 569 950 ciudadanos</span>
             </div>
-            <div class="col-md-3 form-group" style="color:#fff; padding:10px;">
+            <div style="height: 1.5em;
+            border-left: 1px solid #B0C6CF;" class="mt-3"></div>
+            <div class="col-md-3 text-center text-white py-3">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span>Colonia Mariano Otero, Zapopan.</span>
             </div>
-            <div class="col-md-3 form-group" style="color:#fff; padding:10px;">
+            <div style="height: 1.5em;
+            border-left: 1px solid #B0C6CF;" class="mt-3"></div>
+            <div class="col-md-3 text-center text-white py-3">
                 <i class="fa fa-usd" aria-hidden="true"></i>
                 <span>Inversión: $571857.77</span>
             </div>
+            <div style="height: 1.5em;
+            border-left: 1px solid #B0C6CF;" class="mt-3"></div>
         </div>
 
     </div>
 
-    <div class="row" id="docs">
-        <div class="col-md-4" style="font-weight:bold;; margin-top:5%; margin-left:8%;">
-            <p style="color:#fff; font-family:Arial, Helvetica, sans-serif; text-align:center">¡Descarga los documentos
-                del proyecto!</p>
+    <div class="row align-items-center" id="docs">
 
-            <img style=" margin-left:40%;" src="assets/img/project/icon-clic.png" alt="">
+        <div class="col-md-6 text-center my-5">
+            <p style="color:#fff;"><strong>¡Descarga los documentos del proyecto!</strong></p>
+            <a href="">
+                <img src="assets/img/project/icon-clic.png" class="img-fluid" width="50" alt="">
+            </a>
         </div>
 
-        <div class="col-md-2 offset-md-1" style="margin-top:4%;">
-            <img src="assets/img/project/icon-pdf.png" style="margin-left: 20%;" alt="" height="100">
-            <button class="btn btn-sm"
-                style="margin-top:10%; margin-bottom:14%; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR
-                DOCUMENTO PDF</button>
-        </div>
-
-        <div class="col-md-2" style="margin-top:4%;">
-            <img src="assets/img/project/icon-excel.png" style="margin-left:20%;" alt="" height="100">
-            <button class="btn btn-sm"
-                style="margin-top:10%; margin-bottom:14%; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR
-                DOCUMENTO XLS</button>
+        <div class="col-md-6 my-5">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center">
+                    <img src="assets/img/project/icon-pdf.png" class="img-fluid" width="100"><br><br>
+                    <button class="btn btn-sm" style="font-weight: 700; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR
+                        DOCUMENTO PDF</button>
+                </div>
+        
+                <div class="col-md-6 text-center">
+                    <img src="assets/img/project/icon-excel.png" class="img-fluid" width="100"><br><br>
+                    <button class="btn btn-sm" style="font-weight: 700; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR
+                        DOCUMENTO XLS</button>
+                </div>
+            </div>
         </div>
 
     </div>
