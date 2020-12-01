@@ -19,7 +19,7 @@ class ContractingStatusController extends Controller
         $contractsstatus=DB::table('contractingprocess_status')->get();
 
         return view('admin.catalogs.contractstatus',[
-            'contractsstatus'=>$contractsstatus,
+            'types'=>$contractsstatus,
         ]);        
     }
 

@@ -25,202 +25,53 @@
 Estados de un contrato
 @endsection
 @include('admin.catalogs.partials.breadcrumb')
+
 <!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between">
-    <h1 class="h3 mb-0 text-gray-800">Estados de un contrato</h1>
- 
-    
-  </div>
-  <hr>
-  
-       
-  <!-- Page Heading -->
-  
-  
-  @include('admin.layouts.partials.validation-error')
-
+@section('head')
+Estados de un contrato
+@endsection
+@include('admin.catalogs.partials.head')       
+<!-- Page Heading -->
+<!-- errors -->
+@include('admin.layouts.partials.validation-error')
 @include('admin.layouts.partials.session-flash-status')
-  
-  <!-- DataTales Example -->
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
+<!-- errors -->
 
-    
-  <div class="card shadow md-12">
-    <div class="card-header py-3">
-       <div class="form-row">
-        <div class="form-group">
-        <h6 class="m-0 font-weight-bold text-primary">Estados de un contrato</h6>
-        </div>
-        <div class="form-group offset-md-6">
-          
-        <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del estado del contrato' data-btn='Guardar estado de un contrato' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo estado del contrato' data-target="#modalnewData" data-route='{{route("contractstatus.store")}}'  >
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        Agregar nuevo
-      </button>
-</div>
+  <!-- content -->
+  <?php 
+  $ruta = route('contractstatus.store');
+  $rutaedit = 'contractstatus.update';
+  $rutadestroy ='contractstatus.destroy';
+  ?>
+  @section('ruta',$ruta)
+  @section('data_title','Nuevo estado de un contrato')
+  @section('data_lbl','Nombre del nuevo estado de un contrato')
+  @section('data_btn','Guardar nuevo estado de un contrato')
 
-      </div>
-     
-      
-    </div>
-    <div class="card-body">
-      <div class="tablescroll">
-        <table class="table table-bordered table-sm  table-hover" id=""  width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th style="width: 20%;">Nombre</th>
-              <th style="width: 20%;">Acciones</th>
-             
-             
-            </tr>
-          </thead>
-          <tbody>
-        @foreach($contractsstatus as $tipo)
-            <tr>
+  @section('rutaedit',$rutaedit)
+  @section('edit_title','Editar nombre del estado de un contrato')
+  @section('edit_labelbi','Tipo de estado de un contrato')
+  @section('edit_btn','Editar nombre del estado de un contrato')
 
+  @section('rutadestroy',$rutadestroy)
+  @section('delete_labeltxt','estado de un contrato:')
 
-            <td>{{$tipo->titulo}}</td>
-
-            <td>
-     
-
-<div class="offset-md-3">
-
-
-<button data-title="Editar estado de contratación" data-labeltxt='sector' data-labelbi='Estado del contrato' data-id='{{$tipo->id}}' data-btn='Editar estado de contratación' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#modaleditData" data-route='{{route("contractstatus.update",$tipo->id)}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
-  <i class="fas fa-edit fa-sm text-white-50"></i>
-  Editar
-</button>
-
-
-
-
-<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='estado de contratación:' data-id='{{$tipo->id}}' data-toggle="modal" data-name='{{$tipo->titulo}}' data-target="#deleteUserModal" data-route='{{route("contractstatus.destroy",$tipo->id)}}'>
-  <i class="fas fa-trash fa-sm text-white-50"></i>
-  Eliminar
-</button>
-
-</div>
-
-
-            </td>
-
-
-            </tr>
-
-        @endforeach
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  </div>
-
-
-
-<!-- Modal para agregar un nuevo sector. --->
-  
-  <div class="modal fade" id="modalnewData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal-title"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="formnew" action="" method="POST">
-        @csrf
-        <label for="name" id="lbl"></label>
-          <input type="text" name="titulo" id="name" class="form-control">
-          <input type="hidden" id="name_sector" name="name_sector">
-         
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Regresar</button>
-        <button type="submit" class="btn btn-primary btn-sm" id="btnsave"></button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+  @section('cardhead')
+  Tipos de estados de un contrato
+  @endsection
+  @include('admin.catalogs.partials.content')
+  <!-- content -->
+<!-- Modal para agregar un nuevo sector. --->  
+@include('admin.catalogs.partials.modalnew')
 <!--- Modal para editar -->
-
-
-  
-<div class="modal fade" id="modaleditData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal-title"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="formEdit" action="" method="POST">
-        @method('put')  
-        @csrf
-        <label for="name" id="labelbi"></label>
-          <input type="text" name="oldtitulo" id="oldname" class="form-control" readonly>
-          
-          <label for="">Nuevo nombre</label>
-          <input required type="text" name="newtitulo" id="newname" class="form-control">
-
-          <input type="hidden" name="edit_id" id="edit_id">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Regresar</button>
-        <button type="submit" class="btn btn-primary btn-sm" id="btnedit"></button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>¿Seguro que desea eliminar el <strong><span class="name-user"></span></strong>?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
-            <i class="fas fa-times fa-sm text-white-50"></i>
-            No, salir
-          </button>
-          <form id="formDelete" action="" data-action=" " method="POST">
-            @method('delete')
-            @csrf
-            
-            <button type="submit" class="btn btn-sm btn-danger shadow-sm">
-              <i class="fas fa-trash fa-sm text-white-50"></i>
-              Si, eliminar
-            </button>
-            <input type="hidden" name="delete_id" id="delete_id">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+@include('admin.catalogs.partials.modaledit')  
+<!-- Modal para eliminar -->
+@include('admin.catalogs.partials.modaldelete')
 
 @endsection
 
 @section('scripts')
-<script src="{{asset('js/catalogsmodalsactive.js')}}"></script>
+  
+ <script src="{{asset('js/catalogsmodalsactive.js')}}"></script>
+
 @endsection 
