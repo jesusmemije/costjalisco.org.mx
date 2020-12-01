@@ -37,7 +37,7 @@ Route::namespace('Front')->group(function () {
     
      Route::get('account', [HomeController::class, 'account'])->name('home.account');
     
-
+     Route::get('organizations', [HomeController::class, 'organizations'])->name('home.organizations');
 
 });
 

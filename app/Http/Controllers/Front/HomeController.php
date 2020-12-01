@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -22,5 +23,33 @@ class HomeController extends Controller
     }
     public function account(){
         return view('front.account');
+    }
+    public function organizations(){
+
+        $publicos=DB::table('dir_org')
+        ->where('sector','=','Sector Público')
+        ->get();
+        $academicos=DB::table('dir_org')
+        ->where('sector','=','Sector Académico')
+        ->get();
+        $privados=DB::table('dir_org')
+        ->where('sector','=','Sector Privado')
+        ->get();
+        $organizados=DB::table('dir_org')
+        ->where('sector','=','Sociedad Civil Organizada')
+        ->get();
+        $estrategicos=DB::table('dir_org')
+        ->where('sector','=','Aliados Estratégicos')
+        ->get();
+       
+        return view('front.organizations',[
+
+            'publicos'=>$publicos,
+            'academicos'=>$academicos,
+            'privados'=>$privados,
+            'organizados'=>$organizados,
+            'estrategicos'=>$estrategicos,
+            
+        ]);
     }
 }

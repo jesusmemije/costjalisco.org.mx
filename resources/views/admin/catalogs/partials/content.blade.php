@@ -18,16 +18,16 @@ $delete_labeltxt=app()->view->getSections()['delete_labeltxt'];
   <div class="card shadow md-12">
     <div class="card-header py-3">
        <div class="form-row">
-        <div class="form-group">
+        <div class="form-group col-md-8">
         <h6 class="m-0 font-weight-bold text-primary">@yield('cardhead')</h6>
         </div>
-        <div class="form-group offset-md-7">
+        <div class="form-group col-md-4 d-flex justify-content-end">
           
-        <button  id="newsubsector"  data-lbl='{{$data_lbl}}' data-btn='{{$data_btn}}' class="btn btn-primary btn-sm" data-toggle="modal" data-title='{{$data_title}}' data-target="#modalnewData" data-route='{{$ruta}}'  >
+        <button  id="newsubsector"   data-lbl='{{$data_lbl}}' data-btn='{{$data_btn}}' class="btn btn-primary btn-sm" data-toggle="modal" data-title='{{$data_title}}' data-target="#modalnewData" data-route='{{$ruta}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         Agregar nuevo
       </button>
-</div>
+      </div>
 
       </div>
      
