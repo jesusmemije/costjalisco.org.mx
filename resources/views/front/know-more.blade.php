@@ -17,7 +17,7 @@ Conoce más
     }
 </style>
 
-<div class="main" style="color: #2C4143;">
+<div class="main">
     <!-- Title - ¿Qúes es CoST? -->
     <div class="row mx-0 my-4" id="que-es-cost">
         <div class="col-md-6 px-0">

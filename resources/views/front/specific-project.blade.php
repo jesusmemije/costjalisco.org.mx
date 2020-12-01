@@ -1,114 +1,14 @@
 @extends('front.layouts.app')
 
 @section('title')
-Proyecto
+Revestimiento y saneamiento del canal de aguas pluviales
 @endsection
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"
-    defer></script>
 
 @section('content')
 
-
-<style>
-    #imgproject {
-        border: 1px solid black;
-        height: 360px;
-        background-image: url("assets/img/home/slider-main/matute.jpg");
-    }
-
-    #titleproject {
-        width: 100%;
-        height: auto;
-        text-align: justify;
-        background-color: #628ea0;
-        color: #fff;
-        padding: 12px 36px;
-        line-height: 1.2;
-    }
-
-    #titleproject span {
-        font-size: 26px;
-        font-weight: 600;
-    }
-
-    #benefited {
-        width: 100%;
-        height: auto;
-        font-size: calc(1em + 1vw);
-        display: inline-block;
-        background-color: #d8d8cd;
-        padding: 10px;
-        margin-top: 2%;
-        word-break: break-all;
-    }
-
-    #status {
-        background-color: #d60000;
-        height: auto;
-        color: #fff;
-    }
-
-    .media {
-        background-color: #d8d8cd;
-        height: auto;
-    }
-
-    #content {
-        border: 1px solid blue;
-    }
-
-    #date {
-        border-bottom: 3px solid red;
-        padding-left: 20px;
-    }
-
-    #map {
-
-        height: 500px;
-    }
-
-
-    .g {
-        font-size: 32px;
-        color: #fff;
-        background-repeat: no-repeat;
-        background-image: url("assets/img/project/barra3.png");
-        background-size: 102%;
-    }
-
-    #docs {
-        height: auto;
-        margin-top: 6%;
-        margin-bottom: 6%;
-        background-image: url("assets/img/project/fondo-doc.jpg");
-        background-size: cover;
-    }
-
-    #doc1 {
-        justify-content: center;
-    }
-
-    .tablescroll {
-        margin-top: 3%;
-        max-height: 300px;
-        overflow: auto;
-        display: inline-block;
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    #fn {
-        margin-top: 3%;
-        background-image: url("assets/img/project/barrafond.jpg");
-        background-size: cover;
-    }
-</style>
-
-
-<div class="container-fluid pt-4" style="color: #2C4143;">
-    <div class="row media">
+<div class="container-fluid pt-4">
+    <!-- Section - Descripción General del proyecto -->
+    <div class="row" style="background-color: #d8d8cd;">
         <div class="col-md-3 px-0">
             <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">
         </div>
@@ -124,35 +24,10 @@ Proyecto
                         <label class="ml-3" style="color:#628ea0; font-size: 28px; font-weight: 600;" for="">246,523
                             ciudadanos beneficiados</label>
                     </div>
-                    <style>
-                        .btn-gris {
-                            color: #fff;
-                            background-color: #8C8C8C;
-                            border-color: #7D7D77;
-                            border-radius: 8px !important;
-                            padding: 10px 16px;
-                            font-weight: 600;
-                            font-size: 13px;
-                        }
-
-                        .btn-gris:hover,
-                        .btn-gris:active {
-                            color: #fff;
-                            background-color: #8C8C8C;
-                            border-color: #7D7D77 !important;
-                        }
-
-                        .btn.focus,
-                        .btn:focus {
-                            outline: 0;
-                            box-shadow: 0 0 0 1px #8C8C8C;
-                        }
-                    </style>
-
                     <div class="row mx-0">
                         <div id="btns">
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button onclick="smoothScroll(document.getElementById('dt'))"
+                                <button onclick="smoothScroll(document.getElementById('datos-generales'))"
                                     class="btn btn-gris btn-sm"
                                     style="background: linear-gradient(90deg, rgba(145,145,145,1) 0%, rgba(136,136,136,1) 100%); ">DATOS
                                     GENERALES</button>
@@ -176,14 +51,14 @@ Proyecto
                         </div>
                     </div>
                 </div>
-
                 <div class="container-fluid" id="status">
                     <div class="row pt-2">
                         <div class="col-md-4">
                             <span style="font-size: 22px; font-weight: 700;">Estatus:</span>
                         </div>
                         <div class="col-md-8 d-flex justify-content-end align-items-baseline">
-                            <span style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
+                            <span
+                                style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
                         </div>
                     </div>
                 </div>
@@ -194,10 +69,12 @@ Proyecto
         </div>
     </div>
 
+    <!-- Section - Mapa de la localización -->
     <div class="row" id="map"></div>
 
-    <div class="row mt-5" id="dt">
-        <div class="col-md-6 g px-0 py-1">
+    <!-- Section - Datos generales -->
+    <div class="row mt-5" id="datos-generales">
+        <div class="col-md-6 background-title px-0 py-1">
             <span style="font-weight: 700; margin-left: 140px;">Datos Generales</span>
         </div>
         <div class="col-md-6 px-0">
@@ -205,7 +82,6 @@ Proyecto
             border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
-
     <div class="container">
         <div class="my-5">
             El proyecto de infraestructura con nombre: “Revestimiento y saneamiento del canal en la Calle Arroyo entre
@@ -222,8 +98,9 @@ Proyecto
         </div>
     </div>
 
+    <!-- Section - Identificación -->
     <div class="row mt-5" id="identificacion">
-        <div class="col-md-6 g px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1">
             <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
         </div>
         <div class="col-md-6 px-0">
@@ -231,14 +108,12 @@ Proyecto
             border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6 my-2">
             <h3 style="color:#628ea0; font-weight: 700; margin-bottom: 0;" class="ml-4">Responsables del proyecto</h3>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6 data mt-4">
@@ -249,16 +124,13 @@ Proyecto
                         asentamientos:</b></span><br>
                 <span>DOC-IMSCO-07</span><br>
             </div>
-
             <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
-
                 <?php
                 $responsables = [];
                 $responsables[] = ['name' => 'Lic. José Rodolfo Hernández', 'cargo' => 'Dirección de obras Públicas e Infraestructura de Zapopan, Jalisco.', 'email' => 'rodolfo.berrecil@zapopan.gob.mx'];
                 $responsables[] = ['name' => 'Lic. Grabriel Marín Acevedo', 'cargo' => 'Jefe de Departamento B', 'email' => ''];
                 $responsables[] = ['name' => 'Arq. José Luis Vázquez Morán', 'cargo' => '', 'email' => 'joseluis.vazquez@zapopan.gob.mx'];
                 ?>
-
                 @foreach($responsables as $responsable)
                 <br>
                 @if($responsable['name']!='')
@@ -279,8 +151,9 @@ Proyecto
         </div>
     </div>
 
+    <!-- Section - Preparación -->
     <div class="row mt-5" id="preparacion">
-        <div class="col-md-6 g px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1">
             <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
         </div>
         <div class="col-md-6 px-0">
@@ -288,7 +161,6 @@ Proyecto
             border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-5 mb-2">
@@ -297,9 +169,7 @@ Proyecto
                 $impacto_ambiental = [];
                 $factibilidad = [];
                 $impacto = [];
-    
                 $adjudicacion[] = ['nombre' => '', 'email'];
-    
                 ?>
                 <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de
                     impacto en terreno y asentamientos, con <br>
@@ -314,20 +184,17 @@ Proyecto
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Lic. Sandra Patricia Sánchez Váldez</span><br>
                 <span style="padding-left:34px; font-weight: 700;">sandra.sanchez@zapopan.gob.mx</span><br><br>
-
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     impacto de terreno</span><br>
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Ingeniería en Mécanica de Suelos y Control de Occidente S.A. de
                     C.V.</span><br><br>
-
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     factibilidad</span><br>
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Tesorería Municipal</span><br><br>
-
                 <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio
                     de
                     impacto de terreno y asentamientos</span><br>
@@ -337,8 +204,9 @@ Proyecto
         </div>
     </div>
 
+    <!-- Section - Procedimiento de contratación -->
     <div class="row mt-5" id="contratacion">
-        <div class="col-md-6 g px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1">
             <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
         </div>
         <div class="col-md-6 px-0">
@@ -346,7 +214,6 @@ Proyecto
             border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6 mt-5">
@@ -355,9 +222,7 @@ Proyecto
                 $impacto_ambiental = [];
                 $factibilidad = [];
                 $impacto = [];
-    
                 $adjudicacion[] = ['nombre' => '', 'email'];
-    
                 ?>
                 <span><b>Tipo de contrato:</b> Obras</span><br>
                 <span><b>Modalidad de contratación:</b> Precios unitarios</span><br>
@@ -378,21 +243,23 @@ Proyecto
                 $empresas[] = ['nombre' => 'CONSTRUCCIONES TECNICAS DE OCCIDENTE S.A DE C.V.'];
                 ?>
                 @foreach($empresas as $empresa)
-                    <div class="row py-4" style="border-left: 1px solid #628ea0;">
-                        <div class="col-md-2">
-                            <img src="{{ asset('assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
-                        </div>
-                        <div class="col-md-10 px-0">
-                            <span style="font-weight: 700;">{{ $empresa['nombre'] }}</span><br>
-                        </div>
+                <div class="row py-4" style="border-left: 1px solid #628ea0;">
+                    <div class="col-md-2">
+                        <img src="{{ asset('assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50"
+                            alt="">
                     </div>
+                    <div class="col-md-10 px-0">
+                        <span style="font-weight: 700;">{{ $empresa['nombre'] }}</span><br>
+                    </div>
+                </div>
                 @endforeach
             </div>
         </div>
     </div>
 
+    <!-- Section - Ejecución -->
     <div class="row mt-5" id="ejecucion">
-        <div class="col-md-6 g px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1">
             <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
         </div>
         <div class="col-md-6 px-0">
@@ -400,7 +267,6 @@ Proyecto
             border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6 mt-5">
@@ -416,8 +282,9 @@ Proyecto
         </div>
     </div>
 
+    <!-- Section - Finalización -->
     <div class="row mt-5" id="finalizacion">
-        <div class="col-md-6 g px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1">
             <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
         </div>
         <div class="col-md-6 px-0">
@@ -425,7 +292,6 @@ Proyecto
             border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6 mt-5">
@@ -436,7 +302,6 @@ Proyecto
             </div>
         </div>
     </div>
-
     <div class="container mt-5">
         <div class="row align-items-baseline">
             <div class="col-md-7 ml-3" style="background-color:#d60000; color:#fff;">
@@ -450,93 +315,94 @@ Proyecto
         </div>
     </div>
 
-    <div class="row" id="fn">
+    <!-- Barra - Resumen -->
+    <div class="row" id="background-resumen">
         <div class="col-md-12 d-flex justify-content-center" style="height: auto;">
             <div class="col-md-3 text-center text-white py-3">
-                <i class="fa fa-user" style="font-size: 20px;"></i>
-                <span>Beneficiarios: 569 950 ciudadanos</span>
+                <i class="fa fa-user-friends" style="font-size: 24px;"></i>
+                &nbsp<span>Beneficiarios: 569 950 ciudadanos</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
             <div class="col-md-3 text-center text-white py-3">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>Colonia Mariano Otero, Zapopan.</span>
+                <img src="{{ asset('assets/img/project/icons/ubicacion.png') }}" class="img-fluid" width="16" alt="">
+                &nbsp<span>Colonia Mariano Otero, Zapopan.</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
             <div class="col-md-3 text-center text-white py-3">
-                <i class="fa fa-usd" aria-hidden="true"></i>
-                <span>Inversión: $571857.77</span>
+                <img src="{{ asset('assets/img/project/icons/dinero.png') }}" class="img-fluid" width="24" alt="">
+                &nbsp<span>Inversión: $571857.77</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
         </div>
-
     </div>
 
-    <div class="row align-items-center" id="docs">
-
+    <!-- Section - Documentos para descargar -->
+    <div class="row align-items-center" id="background-docs">
         <div class="col-md-6 text-center my-5">
             <p style="color:#fff;"><strong>¡Descarga los documentos del proyecto!</strong></p>
             <a href="">
-                <img src="assets/img/project/icon-clic.png" class="img-fluid" width="50" alt="">
+                <img src="assets/img/project/icons/clic.png" class="img-fluid" width="50" alt="">
             </a>
         </div>
-
         <div class="col-md-6 my-5">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center">
-                    <img src="assets/img/project/icon-pdf.png" class="img-fluid" width="100"><br><br>
-                    <button class="btn btn-sm" style="font-weight: 700; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR
-                        DOCUMENTO PDF</button>
+                    <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="100"><br><br>
+                    <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO PDF</button>
                 </div>
-        
                 <div class="col-md-6 text-center">
-                    <img src="assets/img/project/icon-excel.png" class="img-fluid" width="100"><br><br>
-                    <button class="btn btn-sm" style="font-weight: 700; border:1px solid transparent; border-radius:15px; color:#fff; background-color:#628ea0;">ABRIR
-                        DOCUMENTO XLS</button>
+                    <img src="assets/img/project/icons/excel.png" class="img-fluid" width="100"><br><br>
+                    <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO XLS</button>
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
+
+@endsection
+
+@section('scripts')
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"
+    defer></script>
 
 <script>
     window.smoothScroll = function(target) {
-    var scrollContainer = target;
-    do { //find scroll container
-        scrollContainer = scrollContainer.parentNode;
-        if (!scrollContainer) return;
-        scrollContainer.scrollTop += 1;
-    } while (scrollContainer.scrollTop == 0);
-    
-    var targetY = 0;
-    do { //find the top of target relatively to the container
-        if (target == scrollContainer) break;
-        targetY += target.offsetTop;
-    } while (target = target.offsetParent);
-    
-    scroll = function(c, a, b, i) {
-        i++; if (i > 30) return;
-        c.scrollTop = a + (b - a) / 30 * i;
-        setTimeout(function(){ scroll(c, a, b, i); }, 20);
+        var scrollContainer = target;
+        do { //find scroll container
+            scrollContainer = scrollContainer.parentNode;
+            if (!scrollContainer) return;
+            scrollContainer.scrollTop += 1;
+        } while (scrollContainer.scrollTop == 0);
+        
+        var targetY = 0;
+        do { //find the top of target relatively to the container
+            if (target == scrollContainer) break;
+            targetY += target.offsetTop;
+        } while (target = target.offsetParent);
+        
+        scroll = function(c, a, b, i) {
+            i++; if (i > 30) return;
+            c.scrollTop = a + (b - a) / 30 * i;
+            setTimeout(function(){ scroll(c, a, b, i); }, 20);
+        }
+        // start scrolling
+        scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
     }
-    // start scrolling
-    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-}
-    let map;
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: {
-                lat: -34.397,
-                lng: 150.644
-            },
-            zoom: 8,
-        });
-    }
+        let map;
+    
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 8,
+            });
+        }
 </script>
-
 @endsection

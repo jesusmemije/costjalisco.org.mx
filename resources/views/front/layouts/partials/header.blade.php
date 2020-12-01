@@ -71,13 +71,13 @@
                             NOSOTROS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownNosotros">
-                            <a class="dropdown-item" href="#">CoST Jalisco</a>
+                            <a class="dropdown-item" href="{{ route('home.about-us') }}#cost-jalisco">CoST Jalisco</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Objetivo de CoST Jalisco</a>
+                            <a class="dropdown-item" href="{{ route('home.about-us') }}#objetivo-general">Objetivo de CoST Jalisco</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Integración</a>
+                            <a class="dropdown-item" href="{{ route('home.about-us') }}">Integración</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Grupo Multisectorial</a>
+                            <a class="dropdown-item" href="{{ route('home.about-us') }}">Grupo Multisectorial</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
