@@ -103,7 +103,7 @@ Home
     <div class="row mx-0">
         <div class="col-md-6 px-0 mb-5">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/home/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>¿Qué es CoST?</h3>
             </div>
         </div>
@@ -113,7 +113,7 @@ Home
     <div class="container">
         <div class="row">
             <div class="col-md-6" style="border-right: 1px solid #D60000;">
-                <div class="my-4" style="color: #2C4143; letter-spacing: -.4px; font-weight: 600;">
+                <div class="my-4" style="color: #2C4143; letter-spacing: -.4px;">
                     <p>
                         La iniciativa de Transparencia en Infraestructura <strong>[Construction <br>
                             Sector Transparency Initiative] o "CoST" por sus siglas en <br>
@@ -145,7 +145,7 @@ Home
     <div class="row mx-0">
         <div class="col-md-6 px-0 mt-2">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/home/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>Grupo Multisectorial</h3>
             </div>
         </div>
@@ -158,7 +158,7 @@ Home
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-7" style="border-right: 1px solid #D60000;">
-                <div class="mt-5" style="color: #2C4143; letter-spacing: -.4px; font-weight: 600;">
+                <div class="mt-5" style="color: #2C4143; letter-spacing: -.4px;">
                     <p>
                         El Grupo Multisectorial "GMS" está conformado por instituciones de <br>
                         Gobierno, del sector privado, del sector académico y de la sociedad civil.
