@@ -105,9 +105,9 @@
                             RECURSOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownRecursos">
-                            <a class="dropdown-item" href="#">Documentos de interés</a>
+                            <a class="dropdown-item" href="{{ route('home.resources') }}">Documentos de interés</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Material de apoyo</a>
+                            <a class="dropdown-item" href="{{ route('home.resources') }}">Material de apoyo</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
