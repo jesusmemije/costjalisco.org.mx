@@ -76,8 +76,7 @@
         </div>
 
         <div class="container" style="margin-top:2%; margin-bottom:4%;">
-            
-        <div>
+      
         
         El ITEI impulsa la iniciativa CoST que tiene por objeto promover la transparencia y la rendición de cuentas en todas las etapas de los proyectos de infraestructura y obra pública. 
         <br><br>

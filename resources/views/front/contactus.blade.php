@@ -3,6 +3,7 @@
 <style>
     .container-fluid {
         background-color: #deedf1;
+        margin-top: 2%;
     }
 
     .form {
