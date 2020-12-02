@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\CatalogsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\OrganizationsController;
-
+use Illuminate\Support\Facades\Artisan;
 use League\CommonMark\Inline\Element\Code;
 
 /*
@@ -29,6 +29,8 @@ use League\CommonMark\Inline\Element\Code;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::namespace('Front')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -43,8 +45,6 @@ Route::namespace('Front')->group(function () {
      Route::get('contact-us', [HomeController::class, 'contactus'])->name('home.contactus');
      Route::get('newsletters', [HomeController::class, 'newsletters'])->name('home.newsletters');
      
-
-
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
