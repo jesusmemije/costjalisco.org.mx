@@ -120,7 +120,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownNoticias">
                             <a class="dropdown-item" href="#">Eventos</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Boletines</a>
+                            <a class="dropdown-item" href="{{route('home.newsletters')}}">Boletines</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Notas periodísticas</a>
                             <div class="dropdown-divider"></div>

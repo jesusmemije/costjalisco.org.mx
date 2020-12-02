@@ -60,4 +60,10 @@ class HomeController extends Controller
             
         ]);
     }
+    public function contactus(){
+        return view('front.contactus');
+    }
+    public function newsletters(){
+        return view('front.newsletters');
+    }
 }
