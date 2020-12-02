@@ -7,6 +7,11 @@
 @section('content')
 
 <style>
+
+    .container-fluid{
+        background-color: #deedf1;
+    }
+
     .form {
         height: 550px;
         border-top-right-radius: 30px;
