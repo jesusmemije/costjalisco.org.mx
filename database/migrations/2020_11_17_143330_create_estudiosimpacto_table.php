@@ -17,7 +17,7 @@ class CreateEstudiosimpactoTable extends Migration
             $table->id();
 
             $table->foreignId('id_project');
-            $table->foreignId('tipoImpacto');
+            $table->foreignId('tipoImpacto')->nullable();
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tipoImpacto')->references('id')->on('catimpactoterreno')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcionImpacto',100)->nullable();

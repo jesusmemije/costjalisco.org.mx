@@ -43,7 +43,8 @@ class ProjectController extends Controller
         $projects=DB::table('project')
         ->join('project_organizations','project.id','=','project_organizations.id_project')
         ->join('organization','project_organizations.id_organization','=','organization.id')
-        ->select('project.*','organization.name')
+        ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->select('project.*','organization.name','proyecto_finalizacion.costofinalizacion as budget_amount')
         ->get();
 
         if(empty($projects[0])){

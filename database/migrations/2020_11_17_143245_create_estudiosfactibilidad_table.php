@@ -17,7 +17,7 @@ class CreateEstudiosfactibilidadTable extends Migration
             $table->id();
 
             $table->foreignId('id_project');
-            $table->foreignId('tipoFactibilidad');
+            $table->foreignId('tipoFactibilidad')->nullable();
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tipoFactibilidad')->references('id')->on('catfac')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcionFactibilidad',100)->nullable();

@@ -85,7 +85,7 @@
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
                     <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
-                    {{ $medit ? 'Actualizar' : 'Finalizar registro' }}
+                    {{ $medit ? 'Actualizar' : 'Sigueinte' }}
                 </button>
             </div>
            

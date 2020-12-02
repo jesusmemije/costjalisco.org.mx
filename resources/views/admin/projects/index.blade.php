@@ -68,6 +68,10 @@
 
 
                 ?>
+
+          
+
+
                 <td>{{ $project->title}}</td>
                 <td>{{ $project->updated}}</td>
                 <td>{{$status}}</td>

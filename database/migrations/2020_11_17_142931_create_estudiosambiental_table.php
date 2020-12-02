@@ -16,7 +16,7 @@ class CreateEstudiosambientalTable extends Migration
         Schema::create('estudiosambiental', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_project');
-            $table->foreignId('tipoAmbiental');
+            $table->foreignId('tipoAmbiental')->nullable();
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tipoAmbiental')->references('id')->on('catambiental')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcionAmbiental',100)->nullable();

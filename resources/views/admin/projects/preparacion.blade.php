@@ -406,7 +406,7 @@ $ambiental->fecharealizacionAmbiental='';
 <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
                     <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
-                    {{ $medit ? 'Actualizar' : 'Finalizar registro' }}
+                    {{ $medit ? 'Actualizar' : 'Siguiente' }}
                 </button>
             </div>
 </form>
@@ -417,54 +417,6 @@ $ambiental->fecharealizacionAmbiental='';
 @section('scripts')
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
 <script>
-
-
-
-
-
-var select = document.getElementById('sectorProyecto');
-
-function get_class_sections(id) {
-
-  var select = $("#sectorProyecto");
-  $('#subsector option').remove();
-  $.ajax({
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": id
-                    }, //datos que se envian a traves de ajax
-                    url: "{{ route('catalogs.subsec') }}", //archivo que recibe la peticion
-                    type: 'post', //método de envio
-                    dataType:"json",
-                    success: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                      
-                      var bop=document.createElement("option");
-                      $(bop).html('Selecciona un subsector');
-                      $(bop).appendTo("#subsector");
-                     
-                      for (let index = 0; index < response.length; index++) {
-                        console.log(response[index]);
-                        var option = document.createElement("option"); //Creas el elemento opción
-        $(option).html(response[index].titulo); //Escribes en él el nombre de la provincia
-        option.value=response[index].id;
-        $(option).appendTo("#subsector");
-                        
-                      }
-                     
-                     
-                    },
-                    error: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-
-                        alert("Ha ocurrido un error, intente de nuevo.");
-                        console.log(response);
-                    }
-                });
-
-
-
-}
-
-
 
 
 $('#pac-input').keypress(function(e) {
@@ -485,133 +437,7 @@ $('input').keypress(function(e) {
 });
 
 
-let map;
-
-
-
-
-
-
-function initMap() {
-  const myLatlng = { lat: 20.6566500419128, lng: -103.35528485969786 };
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: myLatlng,
-    zoom: 13,
-  });
-    // Create the initial InfoWindow.
-    let infoWindow = new google.maps.InfoWindow({
-    content: "Click the map to get Lat/Lng!",
-    position: myLatlng,
-  });
-  infoWindow.open(map);
-  // Configure the click listener.
-  map.addListener("click", (mapsMouseEvent) => {
-    // Close the current InfoWindow.
-    
-    document.getElementById('lat').value=mapsMouseEvent.latLng.lat();
-    document.getElementById('lng').value=mapsMouseEvent.latLng.lng();
-    
-    
-    infoWindow.close();
-    // Create a new InfoWindow.
-    infoWindow = new google.maps.InfoWindow({
-      position: mapsMouseEvent.latLng,
-    });
-    infoWindow.setContent(
-      JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-     
-    );
-    infoWindow.open(map);
-  
-    
-  });
-
-  
- 
- 
-
-
-  const card = document.getElementById("pac-card");
-  const input = document.getElementById("pac-input");
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-  const autocomplete = new google.maps.places.Autocomplete(input);
-  // Bind the map's bounds (viewport) property to the autocomplete object,
-  // so that the autocomplete requests use the current map bounds for the
-  // bounds option in the request.
-  autocomplete.bindTo("bounds", map);
-  // Set the data fields to return when the user selects a place.
-  autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
-  const infowindow = new google.maps.InfoWindow();
-  const infowindowContent = document.getElementById("infowindow-content");
-  infowindow.setContent(infowindowContent);
-  const marker = new google.maps.Marker({
-    map,
-    anchorPoint: new google.maps.Point(0, -29),
-  });
-  autocomplete.addListener("place_changed", () => {
-    infowindow.close();
-    marker.setVisible(false);
-    const place = autocomplete.getPlace();
-
-    if (!place.geometry) {
-      // User entered the name of a Place that was not suggested and
-      // pressed the Enter key, or the Place Details request failed.
-      window.alert("No details available for input: '" + place.name + "'");
-      return;
-    }
-
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17); // Why 17? Because it looks good.
-    }
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
-    let address = "";
-
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] &&
-          place.address_components[0].short_name) ||
-          "",
-        (place.address_components[1] &&
-          place.address_components[1].short_name) ||
-          "",
-        (place.address_components[2] &&
-          place.address_components[2].short_name) ||
-          "",
-      ].join(" ");
-    }
-    infowindowContent.children["place-icon"].src = place.icon;
-    infowindowContent.children["place-name"].textContent = place.name;
-    infowindowContent.children["place-address"].textContent = address;
-    infowindow.open(map, marker);
-  });
-
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  function setupClickListener(id, types) {
-    const radioButton = document.getElementById(id);
-    radioButton.addEventListener("click", () => {
-      autocomplete.setTypes(types);
-    });
-  }
-  setupClickListener("changetype-all", []);
-  setupClickListener("changetype-address", ["address"]);
-  setupClickListener("changetype-establishment", ["establishment"]);
-  setupClickListener("changetype-geocode", ["geocode"]);
-  document
-    .getElementById("use-strict-bounds")
-    .addEventListener("click", function () {
-      console.log("Checkbox clicked! New state=" + this.checked);
-      autocomplete.setOptions({ strictBounds: this.checked });
-    });
-}
-
-
-  </script>
+</script>
 
 @endsection
 

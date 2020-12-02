@@ -1,4 +1,16 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<style>
+.btn-primary{
+  background: #2c4143 !important;
+}
+
+.f{
+ background: #2c4143 !important;
+ 
+}
+
+</style>
+<div class="f">
+<ul  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion f" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
@@ -141,4 +153,4 @@
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
 
-</ul>
+</ul></div>

@@ -33,7 +33,7 @@ Conoce más
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    CoST se lanzó desde el Reino Unido como una inicialiva global en 2012 con el apoyo del Sanco Mundial
+                    CoST se lanzó desde el Reino Unido como una inicialiva global en 2012 con el apoyo del Banco Mundial
                     surgió de las <br>
                     lecciones aprendidas de un programa piloto de tres años que probó la viabilidad de un nuevo proceso
                     de transparencia y <br>

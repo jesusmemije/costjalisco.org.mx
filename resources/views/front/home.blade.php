@@ -171,7 +171,7 @@ Home
                 </div>
             </div>
             <div class="col-md-5 text-center">
-                <a href="#">
+                <a href="{{route('home.organizations')}}">
                     <img src="{{ asset('assets/img/home/mas-info.png') }}" class="img-fluid" width="240" alt="">
                 </a>
             </div>
