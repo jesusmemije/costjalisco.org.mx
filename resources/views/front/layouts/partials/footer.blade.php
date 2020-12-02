@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="btn-go-top">
-                <a onclick="smoothScroll(document.getElementById('header'))" >
+                <a onclick="smoothScroll(document.getElementById('header'))" style="cursor: pointer;">
                     <img src="{{ asset('assets/img/home/btn-up.png') }}" class="img-fluid"  alt="">
                 </a>
             </div>
@@ -96,28 +96,5 @@
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
         <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados
     </div>
-    <script>
-        window.smoothScroll = function(target) {
-    var scrollContainer = target;
-    do { //find scroll container
-        scrollContainer = scrollContainer.parentNode;
-        if (!scrollContainer) return;
-        scrollContainer.scrollTop += 1;
-    } while (scrollContainer.scrollTop == 0);
-    
-    var targetY = 0;
-    do { //find the top of target relatively to the container
-        if (target == scrollContainer) break;
-        targetY += target.offsetTop;
-    } while (target = target.offsetParent);
-    
-    scroll = function(c, a, b, i) {
-        i++; if (i > 30) return;
-        c.scrollTop = a + (b - a) / 30 * i;
-        setTimeout(function(){ scroll(c, a, b, i); }, 20);
-    }
-    // start scrolling
-    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-}
-    </script>
+
 </footer>

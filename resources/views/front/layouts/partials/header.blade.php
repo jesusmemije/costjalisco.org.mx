@@ -127,7 +127,7 @@
                         </div>
                     </li>
                     <div class="divider"></div>
-                    <a class="p-2" href="#"><i class="fas fa-search"></i></a>
+                    <a class="p-2" href="#"><img src="{{ asset('assets/img/header/search.png') }}" class="img-fluid" width="20" alt=""></a>
                 </nav>
             </div>
         </div>

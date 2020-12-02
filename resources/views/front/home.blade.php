@@ -9,6 +9,12 @@ Home
 <!-- Contenido -->
 <div class="main">
 
+    <div class="chatbot">
+        <a href="">
+            <img src="{{ asset('assets/img/home/chatbot.png') }}" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco">
+        </a>
+    </div>
+
     <!-- Section - Carousel main -->
     <div id="carouselHome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -50,9 +56,75 @@ Home
 
     <!-- Btn Agenda -->
     <div class="btn-agenda">
-        <a href="#">
-            <img src="{{ asset('assets/img/home/btn-eventos.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
-        </a>
+        <img src="{{ asset('assets/img/home/btn-eventos.png') }}" onclick="showEventosAgenda()" class="img-fluid" style="cursor: pointer;"  alt="Agenda CoST Jalisco">
+    </div>
+
+    <style>
+        .container-aventos-agenda {
+            display: none;
+            position: absolute;
+            width: 340px;
+            height: auto;
+            top: 750px;
+            left: 88px;
+        }
+
+        .cantainer-agenda-fechas {
+            position: absolute;
+            top: 100px;
+            text-align: center;
+            width: 100%;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            color: #2C4143;
+        }
+
+        .line-agenda-fechas {
+            position: absolute;
+            width: 10px;
+            height: 200px;
+            background-image: url('/assets/img/home/line-eventos.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            right: 0;
+            top: 0;
+        }
+
+    </style>
+
+    <div id="panel-oculto" class="container-aventos-agenda">
+        <img src="{{ asset('assets/img/home/eventos-agenda.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
+        <div class="cantainer-agenda-fechas">
+            <div class="row mx-0">
+                <div class="col-md-1"></div>
+                <div class="col-md-3 pl-1 pr-2 text-right">
+                    <div class="fecha">
+                        <label style="font-size: 38px;" class="mr-3">01</label>
+                        <label style="font-size: 11px; font-weight: 800;">NOVIEMBRE</label><br>
+                        <label style="font-size: 8px;">Evento previo a día de muertos</label>
+                    </div>
+                    <div class="line-agenda-fechas"></div>
+                </div>
+                <div class="col-md-3 pl-1 pr-2 text-right">
+                    <div class="fecha">
+                        <label style="font-size: 38px;" class="mr-3">12</label>
+                        <label style="font-size: 11px; font-weight: 800;">NOVIEMBRE</label><br>
+                        <label style="font-size: 8px;">"La insfraestructura y economía" Imparte: Luis Rosales. Auditorio Telmex 8:00 pm Cupo limitado</label>
+                    </div>
+                    <div class="line-agenda-fechas"></div>
+                </div>
+                <div class="col-md-3 pl-1 pr-2 text-right">
+                    <div class="fecha">
+                        <label style="font-size: 38px;" class="mr-3">28</label>
+                        <label style="font-size: 11px; font-weight: 800;">NOVIEMBRE</label><br>
+                        <label style="font-size: 8px;">La insfraestructura y economía" Imparte: Luis Rosales. Auditorio Telmex 8:00 pm Cupo limitado</label>
+                    </div>
+                    <div class="line-agenda-fechas"></div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Título - Nosotros -->
@@ -493,4 +565,19 @@ Home
 
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+
+function showEventosAgenda() {
+    var eventosAgenda = document.getElementById("panel-oculto");
+    if (eventosAgenda.style.display === "none") {
+        eventosAgenda.style.display = "block";  
+    } else {
+        eventosAgenda.style.display = "none";        
+    }
+}
+
+</script>
 @endsection
