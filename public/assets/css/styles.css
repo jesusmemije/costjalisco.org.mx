@@ -160,11 +160,18 @@ position: relative;
   letter-spacing: 1px;
 }
 
+.chatbot{
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 2000;
+}
+
 .btn-agenda {
   position: absolute;
   width: 86px;
   height: auto;
-  top: 750px;
+  top: 730px;
 }
 
 .section-divider {
@@ -380,7 +387,7 @@ position: relative;
   color: #fff;
 }
 
-#date {
+#line-date-inagurado {
   border-bottom: 3px solid red;
   padding-left: 20px;
 }
@@ -496,4 +503,5 @@ position: relative;
   height: 72px;
   left: 95%;
   top: 20px;
+  z-index: 3000;
 }
