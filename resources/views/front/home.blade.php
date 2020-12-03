@@ -11,7 +11,8 @@ Home
 
     <div class="chatbot">
         <a href="">
-            <img src="{{ asset('assets/img/home/chatbot.png') }}" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco">
+            <img src="{{ asset('assets/img/home/chatbot.png') }}" class="img-fluid" width="280"
+                alt="Chatbot - Página CoST Jalisco">
         </a>
     </div>
 
@@ -56,69 +57,38 @@ Home
 
     <!-- Btn Agenda -->
     <div class="btn-agenda">
-        <img src="{{ asset('assets/img/home/btn-eventos.png') }}" onclick="showEventosAgenda()" class="img-fluid" style="cursor: pointer;"  alt="Agenda CoST Jalisco">
+        <img src="{{ asset('assets/img/home/btn-eventos.png') }}" onclick="showEventosAgenda()" class="img-fluid"
+            style="cursor: pointer;" alt="Agenda CoST Jalisco">
     </div>
-
-    <style>
-        .container-aventos-agenda {
-            display: none;
-            position: absolute;
-            width: 340px;
-            height: auto;
-            top: 750px;
-            left: 88px;
-        }
-
-        .cantainer-agenda-fechas {
-            position: absolute;
-            top: 100px;
-            text-align: center;
-            width: 100%;
-            color: white;
-            font-weight: 700;
-            font-size: 20px;
-            color: #2C4143;
-        }
-
-        .line-agenda-fechas {
-            position: absolute;
-            width: 10px;
-            height: 200px;
-            background-image: url('/assets/img/home/line-eventos.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            right: 0;
-            top: 0;
-        }
-
-    </style>
-
+    
     <div id="panel-oculto" class="container-aventos-agenda">
         <img src="{{ asset('assets/img/home/eventos-agenda.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
-        <div class="cantainer-agenda-fechas">
+        <div class="container-agenda-fechas">
             <div class="row mx-0">
                 <div class="col-md-1"></div>
                 <div class="col-md-3 pl-1 pr-2 text-right">
                     <div class="fecha">
-                        <label style="font-size: 38px;" class="mr-3">01</label>
-                        <label style="font-size: 11px; font-weight: 800;">NOVIEMBRE</label><br>
-                        <label style="font-size: 8px;">Evento previo a día de muertos</label>
+                        <label class="mr-3 agenda-day">01</label>
+                        <label class="agenda-mes">NOVIEMBRE</label><br>
+                        <label class="agenda-descripcion">Evento previo a día de muertos</label>
                     </div>
                     <div class="line-agenda-fechas"></div>
                 </div>
                 <div class="col-md-3 pl-1 pr-2 text-right">
                     <div class="fecha">
-                        <label style="font-size: 38px;" class="mr-3">12</label>
-                        <label style="font-size: 11px; font-weight: 800;">NOVIEMBRE</label><br>
-                        <label style="font-size: 8px;">"La insfraestructura y economía" Imparte: Luis Rosales. Auditorio Telmex 8:00 pm Cupo limitado</label>
+                        <label class="mr-3 agenda-day">12</label>
+                        <label class="agenda-mes">NOVIEMBRE</label><br>
+                        <label class="agenda-descripcion">"La insfraestructura y economía" Imparte: Luis Rosales. Auditorio
+                            Telmex 8:00 pm Cupo limitado</label>
                     </div>
                     <div class="line-agenda-fechas"></div>
                 </div>
                 <div class="col-md-3 pl-1 pr-2 text-right">
                     <div class="fecha">
-                        <label style="font-size: 38px;" class="mr-3">28</label>
-                        <label style="font-size: 11px; font-weight: 800;">NOVIEMBRE</label><br>
-                        <label style="font-size: 8px;">La insfraestructura y economía" Imparte: Luis Rosales. Auditorio Telmex 8:00 pm Cupo limitado</label>
+                        <label class="mr-3 agenda-day">28</label>
+                        <label class="agenda-mes">NOVIEMBRE</label><br>
+                        <label class="agenda-descripcion">La insfraestructura y economía" Imparte: Luis Rosales. Auditorio
+                            Telmex 8:00 pm Cupo limitado</label>
                     </div>
                     <div class="line-agenda-fechas"></div>
                 </div>
@@ -131,7 +101,7 @@ Home
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center font-weight-bold" style="color: #2C4143; letter-spacing: 1px;">NOSOTROS</h3>
+                <h3 class="text-center font-weight-bold">NOSOTROS</h3>
                 <div class="section-divider"></div>
             </div>
         </div>
@@ -166,7 +136,7 @@ Home
     <div class="row mx-0">
         <div class="col-md-12">
             <div class="text-right mt-3 mb-3">
-                <h6 style="color: #58707B;">Actualizado al 25/Nov/2020</h6>
+                <h6 class="text-muted">Actualizado al 25/Nov/2020</h6>
             </div>
         </div>
     </div>
@@ -175,8 +145,7 @@ Home
     <div class="row mx-0">
         <div class="col-md-6 px-0 mb-5">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
-                background-size: cover;'>¿Qué es CoST?</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja">¿Qué es CoST?</h3>
             </div>
         </div>
     </div>
@@ -184,8 +153,8 @@ Home
     <!-- Section - Descripción CoST -->
     <div class="container">
         <div class="row">
-            <div class="col-md-6" style="border-right: 1px solid #D60000;">
-                <div class="my-4" style="color: #2C4143; letter-spacing: -.4px;">
+            <div class="col-md-6 line-red-vertical">
+                <div class="my-4" style="letter-spacing: -.2px;">
                     <p>
                         La iniciativa de Transparencia en Infraestructura <strong>[Construction <br>
                             Sector Transparency Initiative] o "CoST" por sus siglas en <br>
@@ -207,8 +176,7 @@ Home
                 <br><br>
                 <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
                 <br><br>
-                <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">Ver
-                        más: https://infrastructuretransparency.org/</a></span>
+                <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más: https://infrastructuretransparency.org/</a></span>
             </div>
         </div>
     </div>
@@ -217,8 +185,7 @@ Home
     <div class="row mx-0">
         <div class="col-md-6 px-0 mt-2">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
-                background-size: cover;'>Grupo Multisectorial</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja">Grupo Multisectorial</h3>
             </div>
         </div>
         <div class="col-md-6">
@@ -229,8 +196,8 @@ Home
     <!-- Section - Descripción Grupo multisectorial-->
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-7" style="border-right: 1px solid #D60000;">
-                <div class="mt-5" style="color: #2C4143; letter-spacing: -.4px;">
+            <div class="col-md-7 line-red-vertical">
+                <div class="mt-5" style="letter-spacing: -.2px;">
                     <p>
                         El Grupo Multisectorial "GMS" está conformado por instituciones de <br>
                         Gobierno, del sector privado, del sector académico y de la sociedad civil.
@@ -255,7 +222,7 @@ Home
         <div style="border-left: 5px solid #2C4143;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #2C4143; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Público
+                    <h3 style="font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Público
                     </h3>
                 </div>
             </div>
@@ -293,7 +260,7 @@ Home
         <div style="border-left: 5px solid #D60000;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #D60000; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Académico
+                    <h3 class="text-red" style="font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Académico
                     </h3>
                 </div>
             </div>
@@ -384,7 +351,7 @@ Home
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center font-weight-bold" style="color: #2C4143; letter-spacing: 1px;">PROYECTOS</h3>
+                <h3 class="text-center font-weight-bold">PROYECTOS</h3>
                 <div class="section-divider"></div>
             </div>
         </div>
@@ -402,7 +369,7 @@ Home
                                     class="img-fluid" alt="">
                             </div>
                             <div class="col-md-8">
-                                <h2 class="font-weight-bold my-4" style="color:#D60000">LÍNEA 3 DEL TREN LIGERO EN
+                                <h2 class="font-weight-bold my-4 text-red">LÍNEA 3 DEL TREN LIGERO EN
                                     GUADALAJARA</h2>
                                 <div class="row" style="color:#2C4143">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
@@ -431,7 +398,8 @@ Home
                                                 class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
                                         <br>
-                                        <span><a href="#" style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">Ver más <span style="letter-spacing: -4px">>></span></a></span>
+                                        <span><a href="#" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
+                                                más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
                             </div>
@@ -443,10 +411,11 @@ Home
                     <div class="carousel-item" style="background-color: #D8D8CD;">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
+                                    class="img-fluid" alt="">
                             </div>
                             <div class="col-md-8">
-                                <h2 class="font-weight-bold my-4" style="color:#D60000">REVESTIMIENTO Y SANEAMIENTO DEL
+                                <h2 class="font-weight-bold my-4 text-red">REVESTIMIENTO Y SANEAMIENTO DEL
                                     CANAL DE AGUAS PLUVIALES</h2>
                                 <div class="row" style="color:#2C4143">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
@@ -476,8 +445,7 @@ Home
                                                 class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 26.450 ciudadanos</p>
                                         <br>
-                                        <span><a href="#"
-                                                style="color: #D60000; font-size: 18px; font-weight: 700; font-style: italic;">
+                                        <span><a href="#" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">
                                                 Ver más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
@@ -520,29 +488,39 @@ Home
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center font-weight-bold" style="color: #2C4143; letter-spacing: 1px;">NUESTRAS REDES</h3>
+                <h3 class="text-center font-weight-bold">NUESTRAS REDES
+                </h3>
                 <div class="section-divider"></div>
             </div>
         </div>
     </div>
-    
+
     <!-- Section - Timeline redes sociales -->
     <div class="container pb-5">
         <div class="row">
             <div class="col-md-4">
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-twitter fa-sm"></i></div>
-                <a class="twitter-timeline" data-lang="es" data-height="280" data-theme="light" href="https://twitter.com/JesusMemije_?ref_src=twsrc%5Etfw">Tweets by JesusMemije_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                <a class="twitter-timeline" data-lang="es" data-height="280" data-theme="light"
+                    href="https://twitter.com/JesusMemije_?ref_src=twsrc%5Etfw">Tweets by JesusMemije_</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
             <div class="col-md-4">
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-youtube fa-sm"></i></div>
-                <iframe width="350" height="280" src="https://www.youtube.com/embed/VWO3nEuWo4k?start=61" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="350" height="280" src="https://www.youtube.com/embed/VWO3nEuWo4k?start=61"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
             <div class="col-md-4">
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-facebook-f fa-sm"></i></div>
-                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2FParaReflexiones%2F&tabs=timeline&width=340&height=300&small_header=false&adapt_container_width=true&hide_cover=true&show_facepile=true&appId" width="350" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2FParaReflexiones%2F&tabs=timeline&width=340&height=300&small_header=false&adapt_container_width=true&hide_cover=true&show_facepile=true&appId"
+                    width="350" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
         </div>
     </div>
@@ -552,7 +530,8 @@ Home
         <div class="row line-top-right">
             <div class="border-left-visitantes"></div>
             <div class="col-md-5 text-right pt-4 px-0" style="line-height: 1.1;">
-                <br><span style="font-size: 38px; color: #D60000;" class="font-weight-bold">Eres el visitante número:</span><br>
+                <br><span style="font-size: 38px;" class="font-weight-bold text-red">Eres el visitante
+                    número:</span><br>
                 <span style="font-size: 14px; color: #58707B;">Actualizado al 27 de Noviembre de 2020</span>
             </div>
             <div class="col-md-7 pt-4">
@@ -569,8 +548,7 @@ Home
 
 @section('scripts')
 <script>
-
-function showEventosAgenda() {
+    function showEventosAgenda() {
     var eventosAgenda = document.getElementById("panel-oculto");
     if (eventosAgenda.style.display === "none") {
         eventosAgenda.style.display = "block";  

@@ -15,6 +15,26 @@ a:hover {
     text-decoration: none;
 }
 
+.title-barra-roja {
+  background-image: url("/assets/img/background-rojo.jpg"); 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.subtitle-barra-gris {
+  background-image: url("/assets/img/background-gris.jpg"); background-repeat: no-repeat;
+  background-size: 500px; 
+  padding-left: 6rem; 
+  font-size: 24px;
+}
+
+.text-red {
+  color:#D60000;
+}
+
+.text-red:hover{
+  color: #FF0000;
+}
+
 
 /* ========================== Header ========================== */
 
@@ -41,10 +61,6 @@ a:hover {
     margin-top: 10px;
 }
 
-.line-red-center {
-  margin-top:30px;
-  border-bottom: 1px solid #D60000;   
-}
 
 .nav-login {
     margin-right: 4rem;
@@ -174,6 +190,50 @@ position: relative;
   top: 730px;
 }
 
+.container-aventos-agenda {
+  display: none;
+  position: absolute;
+  width: 340px;
+  height: auto;
+  top: 750px;
+  left: 88px;
+}
+
+.container-agenda-fechas {
+  position: absolute;
+  top: 100px;
+  text-align: center;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  color: #2C4143;
+}
+
+.line-agenda-fechas {
+  position: absolute;
+  width: 10px;
+  height: 200px;
+  background-image: url('/assets/img/home/line-eventos.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  right: 0;
+  top: 0;
+}
+
+.agenda-day{
+  font-size: 38px;
+}
+
+.agenda-mes {
+  font-size: 11px; 
+  font-weight: 800;
+}
+
+.agenda-descripcion {
+  font-size: 8px;
+}
+
 .section-divider {
   height: 1.5em;
   border-top: 1px solid #777;
@@ -201,6 +261,21 @@ position: relative;
 .line-red-center {
   margin-top:30px;
   border-bottom: 1px solid #D60000;   
+}
+
+.line-red-vertical {
+  border-right: 1px solid #D60000;
+}
+
+.ver-mas-font {
+  color: #D60000; 
+  font-size: 18px; 
+  font-weight: 700; 
+  font-style: italic;
+}
+
+.ver-mas-font:hover {
+  color: #FF0000;
 }
 
 #carouselProjects .carousel-inner{
