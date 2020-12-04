@@ -1243,7 +1243,18 @@ class ProjectController extends Controller
                 $projectdocuments->save();
                 }
             }
+
+            
     }
     
-    
+    public function testmap(){
+                return view('admin.testmap');
+    }
+    public function tm(){
+      
+
+        return view('admin.testmap',[
+            'datos'=>$_POST,
+        ]);
+    }
 }

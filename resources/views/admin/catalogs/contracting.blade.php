@@ -48,10 +48,10 @@ Tipos de modalidades de contratación
   <div class="card shadow md-12">
     <div class="card-header py-3">
        <div class="form-row">
-        <div class="form-group">
+        <div class="form-group col-md-8">
         <h6 class="m-0 font-weight-bold text-primary">Modalidades de contratación</h6>
         </div>
-        <div class="form-group offset-md-5">
+        <div class="form-group col-md-4 d-flex justify-content-end">
           
         <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del tipo de contratación' data-btn='Guardar tipo de contratación' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo tipo de contratación' data-target="#modalnewData" data-route='{{route("contracting.store")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>

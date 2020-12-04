@@ -5,10 +5,13 @@
 
 @include('admin.projects.phasesnav')
 
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
+ <!-- google maps links
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX" defer></script>
-
+-->
 @section('styles')
 <style>
   label {
@@ -265,7 +268,7 @@
 
             <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
 
-
+            <!-- buscador 
             <div class="pac-card col-md-4" id="pac-card">
               <div>
                 <div id="title">Encuentra el lugar</div>
@@ -277,13 +280,15 @@
                 <input id="pac-input" type="text" placeholder="Ingresa una ubicación" />
               </div>
             </div>
-
+                -->
             <div id="map"></div>
+            
             <div id="infowindow-content">
               <img src="" width="16" height="16" id="place-icon" />
               <span id="place-name" class="title"></span><br />
               <span id="place-address"></span>
             </div>
+          
 
             <div class="row">
               <div class="col-lg-6">
@@ -501,13 +506,69 @@
     }
   });
 
+  let l = document.getElementById('lat');
+      
+      let f= l.value.split('|')
+     
+      let lng = document.getElementById('lng');
+      let f2= lng.value.split('|')
+     
+  
 
+  const myLatlng = {
+      lat: 20.6566500419128,
+      lng: -103.35528485969786
+    };
+
+  var map = L.map('map').
+        setView(myLatlng,
+            12);
+
+            
+
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18
+        }).addTo(map);
+
+
+        L.control.scale().addTo(map);
+       
+       if(f[0]!=""){
+         
+           for(var i=0;i<=f.length;i++){
+           if(f[i]!=""){
+               var marker = L.marker([f[i],f2[i]]).addTo(map);
+           }else{
+
+           }
+           
+
+
+}
+
+       }
+       
+
+
+       function onMapClick(e) {
+
+
+           L.marker(e.latlng, {
+               draggable: true
+           }).addTo(map);
+
+           let l = document.getElementById('lat');
+           l.value = e.latlng.lat + '|' + l.value;
+
+           let lng = document.getElementById('lng');
+           lng.value = e.latlng.lng + '|' + lng.value;
+       }
+
+       map.on('click', onMapClick);
+
+/* google maps init
   let map;
-
-
-
-
-
   function initMap() {
 
     const myLatlng = {
@@ -519,14 +580,14 @@
       zoom: 13,
     });
     // Create the initial InfoWindow.
-    /*
+    
     let infoWindow = new google.maps.InfoWindow({
       content: "Selecciona una parte del mapa",
       position: myLatlng,
     });
     
     infoWindow.open(map);
-    */
+    
     // Configure the click listener.
 
     const savedLatlng = {
@@ -554,7 +615,7 @@
         lat: lat,
         lng: lng
       };
-      /*
+      
       infoWindow.close();
       // Create a new InfoWindow.
       infoWindow = new google.maps.InfoWindow({
@@ -565,7 +626,7 @@
 
       );
       infoWindow.open(map);
-      */
+      
 
       mymarker.setMap(null);
       mymarker = new google.maps.Marker({
@@ -660,7 +721,9 @@
           strictBounds: this.checked
         });
       });
+      
   }
+  */
 </script>
 
 @endsection

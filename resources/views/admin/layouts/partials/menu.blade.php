@@ -1,6 +1,7 @@
 <style>
 .btn-primary{
   background: #2c4143 !important;
+  border: 1px solid #2c4143 !important;
 }
 
 .f{

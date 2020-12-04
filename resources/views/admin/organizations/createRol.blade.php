@@ -11,7 +11,7 @@
 
 @include('admin.layouts.partials.validation-error')    
 @include('admin.layouts.partials.session-flash-status')
-<h1 class="h3 mb-4 text-gray-800">Creando rol</h1>
+<h1 class="h3 mb-4 text-gray-800">Nuevo rol de organización</h1>
 <div class="row">
 
 <div class="col-lg-6">

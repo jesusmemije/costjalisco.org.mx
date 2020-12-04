@@ -75,8 +75,12 @@
                 <td>{{ $project->title}}</td>
                 <td>{{ $project->updated}}</td>
                 <td>{{$status}}</td>
-              
-                <td>{{ $project->budget_amount}}</td>
+                <td>
+                @if(!empty($project->budget_amount))
+                {{ $project->budget_amount}}</td>
+                @else
+                <span class="badge badge-info">Sin presupuesto</span>
+                @endif
                 <td>{{ $project->name}}</td>
                 <td>
                 <a class="btn btn-sm btn-warning shadow-sm" href="{{route('project.editidentificacion',$project->id)}}">

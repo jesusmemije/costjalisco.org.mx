@@ -48,10 +48,10 @@ Tipos de adjudicación
   <div class="card shadow md-12">
     <div class="card-header py-3">
        <div class="form-row">
-        <div class="form-group">
+        <div class="form-group col-md-8">
         <h6 class="m-0 font-weight-bold text-primary">Tipos de adjudicaciones</h6>
         </div>
-        <div class="form-group offset-md-6">
+        <div class="form-group col-md-4 d-flex justify-content-end">
           
         <button  id="newsubsector" data-labeltxt='tipo de proyecto'  data-lbl='Nombre del tipo de adjudicación' data-btn='Guardar tipo de adjudicación' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo tipo de adjudicación' data-target="#modalnewData" data-route='{{route("adjudication.store")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>

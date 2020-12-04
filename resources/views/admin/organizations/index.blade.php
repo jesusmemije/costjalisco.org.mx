@@ -9,8 +9,8 @@
 @section('content')
 
 <nav aria-label="breadcrumb" >
-  <ol class="breadcrumb" style="background-color: #fff !important;">
-    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+  <ol class="breadcrumb" >
+    <li class="breadcrumb-item"><a href="#"><i class="fas fa-fw fa-home"></i> Inicio</a></li>
     <li class="breadcrumb-item active"  aria-current="page"><a href="#">Organizaciones</a></li>
   </ol>
 </nav>

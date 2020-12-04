@@ -50,10 +50,10 @@ Tipos de estudios
 
     <div class="card-header py-3">
        <div class="form-row">
-        <div class="form-group">
+        <div class="form-group col-md-8">
         <h6 class="m-0 font-weight-bold text-primary">Estudios de impacto ambiental</h6>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-4 d-flex justify-content-end">
           
         <button  data-labeltxt='tipo de proyecto'   data-lbl='Nombre del estudio de impacto ambiental' data-btn='Guardar nombre de estudio' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo nombre de estudio' data-target="#modalnewData" data-route='{{route("catalogs.saveestudioAmbiental")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -124,10 +124,10 @@ Tipos de estudios
 
   <div class="card-header py-3">
      <div class="form-row">
-      <div class="form-group">
+      <div class="form-group col-md-8">
       <h6 class="m-0 font-weight-bold text-primary">Estudios de impacto en el terreno</h6>
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-4 d-flex justify-content-end">
         
       <button  data-labeltxt='tipo de proyecto'   data-lbl='Nombre del estudio de impacto ambiental' data-btn='Guardar nombre de estudio' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo nombre de estudio' data-target="#modalnewData" data-route='{{route("catalogs.saveestudioImpacto")}}'  >
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -203,10 +203,10 @@ Tipos de estudios
 
     <div class="card-header py-3">
        <div class="form-row">
-        <div class="form-group">
+        <div class="form-group col-md-8">
         <h6 class="m-0 font-weight-bold text-primary">Estudios de factibilidad</h6>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-4 d-flex justify-content-end">
           
         <button  data-labeltxt='tipo de proyecto'   data-lbl='Nombre del estudio de impacto ambiental' data-btn='Guardar nombre de estudio' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo nombre de estudio' data-target="#modalnewData" data-route='{{route("catalogs.saveestudioFactibilidad")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>

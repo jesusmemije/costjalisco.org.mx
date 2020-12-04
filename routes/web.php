@@ -49,6 +49,10 @@ Route::namespace('Front')->group(function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
+    Route::get('/admin/testmap', [ProjectController::class, 'testmap'])->name('testmap');
+    Route::post('/admin/tm', [ProjectController::class, 'tm'])->name('tm');
+
+
     //Dashboard
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 

@@ -48,10 +48,10 @@ Origen del recurso
   <div class="card shadow md-12">
     <div class="card-header py-3">
        <div class="form-row">
-        <div class="form-group">
+        <div class="form-group col-md-8">
         <h6 class="m-0 font-weight-bold text-primary">Tipo de recurso</h6>
         </div>
-        <div class="form-group offset-md-7">
+        <div class="form-group col-md-4 d-flex justify-content-end">
           
         <button  id="newsubsector" data-labeltxt='origen del recurso'  data-lbl='Nombre del origen del recurso' data-btn='Guardar origen del recurso' class="btn btn-primary btn-sm" data-toggle="modal" data-title='Nuevo origen del recurso' data-target="#modalnewData" data-route='{{route("resource.store")}}'  >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
