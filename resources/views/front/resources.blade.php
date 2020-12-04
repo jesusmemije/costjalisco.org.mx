@@ -6,20 +6,6 @@ Recursos
 
 @section('content')
 
-<style>
-    .title-barra-roja {
-        background-image: url("/assets/img/background-rojo.jpg"); 
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .subtitle-barra-gris {
-        background-image: url("/assets/img/background-gris.jpg"); background-repeat: no-repeat;
-        background-size: 500px; 
-        padding-left: 6rem; 
-        font-size: 24px;
-    }
-</style>
-
 <!-- Title - Documentos de interés -->
 <div class="row mx-0 my-4" id="documentos-interes">
     <div class="col-md-6 px-0">

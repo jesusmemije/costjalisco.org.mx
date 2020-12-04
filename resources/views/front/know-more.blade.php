@@ -7,12 +7,12 @@ Conoce más
 @section('content')
 
 <style>
-    .listStyle {
+    .know-more-list {
         color: red;
         list-style-type: disc;
     }
 
-    .listStyle p {
+    .know-more-list p {
         color: #2C4143;
     }
 </style>
@@ -177,7 +177,7 @@ Conoce más
             <div class="col-md-12">
                 <p>
                     Consiste en avaluar la credibilidad de la información divulgada a dos niveles:
-                    <ul class="listStyle">
+                    <ul class="know-more-list">
                         <li class="rojo">
                             <p>A nivel de sector y a nivel de entidad de adquisición, sobre la integridad y exactitud de
                                 la información divulgada, y sobre las <br>
