@@ -1,9 +1,11 @@
 @extends('front.layouts.app')
-
-<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+ 
 @section('title')
 Revestimiento y saneamiento del canal de aguas pluviales
+@endsection
+
+@section('styles')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 @endsection
 
 
@@ -368,6 +370,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
 @endsection
 
 @section('scripts')
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"

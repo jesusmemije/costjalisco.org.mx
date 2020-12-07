@@ -398,7 +398,7 @@ Home
                                                 class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
                                         <br>
-                                        <span><a href="#" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
+                                        <span><a href="{{ route('home.specific_project') }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
                                                 más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
@@ -445,7 +445,7 @@ Home
                                                 class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 26.450 ciudadanos</p>
                                         <br>
-                                        <span><a href="#" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">
+                                        <span><a href="{{ route('home.specific_project') }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">
                                                 Ver más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
