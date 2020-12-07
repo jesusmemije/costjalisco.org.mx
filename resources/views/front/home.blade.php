@@ -371,7 +371,7 @@ Home
                             <div class="col-md-8">
                                 <h2 class="font-weight-bold my-4 text-red">LÍNEA 3 DEL TREN LIGERO EN
                                     GUADALAJARA</h2>
-                                <div class="row" style="color:#2C4143">
+                                <div class="row">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
                                         <p>
                                             Dará servicio a 240 mil pasajeros al día mediante <br>
@@ -417,7 +417,7 @@ Home
                             <div class="col-md-8">
                                 <h2 class="font-weight-bold my-4 text-red">REVESTIMIENTO Y SANEAMIENTO DEL
                                     CANAL DE AGUAS PLUVIALES</h2>
-                                <div class="row" style="color:#2C4143">
+                                <div class="row">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
                                         <p>
                                             El proyecto de infraestructura con nombre: <br>
