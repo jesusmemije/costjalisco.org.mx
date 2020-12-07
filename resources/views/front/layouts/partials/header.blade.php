@@ -83,14 +83,14 @@
                     </li>
                     <div class="divider"></div>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{route('home.specific_project')}}" id="dropdownProyectos" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownProyectos" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             PROYECTOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownProyectos">
-                            <a class="dropdown-item" href="{{route('home.specific_project')}}">Estadísticas</a>
+                            <a class="dropdown-item" href="{{route('home.statistics')}}">Estadísticas</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Motor de búsqueda</a>
+                            <a class="dropdown-item" href="{{route('home.specific_project')}}">Motor de búsqueda</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Georreferenciación</a>
                             <div class="dropdown-divider"></div>
