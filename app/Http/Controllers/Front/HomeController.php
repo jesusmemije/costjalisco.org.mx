@@ -29,6 +29,10 @@ class HomeController extends Controller
         return view('front.statistics');
     }
 
+    public function interest_sites(){
+        return view('front.interest-sites');
+    }
+
     public function specific_project(){
         
         return view('front.specific-project');

@@ -38,6 +38,7 @@ Route::namespace('Front')->group(function () {
     Route::get('/about-us', [HomeController::class, 'about_us'])->name('home.about-us');
     Route::get('/resources', [HomeController::class, 'resources'])->name('home.resources');
     Route::get('/statistics', [HomeController::class, 'statistics'])->name('home.statistics');
+    Route::get('/interest-sites', [HomeController::class, 'interest_sites'])->name('home.interest-sites');
 
     Route::get('project', [HomeController::class, 'specific_project'])->name('home.specific_project');
     
