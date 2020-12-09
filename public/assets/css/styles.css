@@ -42,7 +42,7 @@ a:hover {
   font-size: 12px;
   background-image: url("/assets/img/header/menu-superior.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .header-img {
@@ -63,9 +63,8 @@ a:hover {
 
 
 .nav-login {
-    margin-right: 4rem;
-    ;
-    margin-left: 6rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 .nav-link {
@@ -274,8 +273,8 @@ position: relative;
   font-style: italic;
 }
 
-.ver-mas-font:hover {
-  color: #FF0000;
+.ver-mas-font:hover, .ver-mas-font:active {
+  color: #2C4143;
 }
 
 #carouselProjects .carousel-inner{

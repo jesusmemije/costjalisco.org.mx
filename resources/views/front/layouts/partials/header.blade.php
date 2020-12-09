@@ -4,9 +4,7 @@
             <div class="col-12 d-flex justify-content-end align-items-center">
                 <div class="nav-scroller py-1">
                     <nav class="nav d-flex justify-content-between">
-                        <a class="p-2 text-white nav-link" href="#">Preguntas frecuentes</a>
-                        <div class="divider"></div>
-                        <a class="p-2 text-white nav-link" href="#">Sitios de interés</a>
+                        <a class="p-2 text-white nav-link" href="{{ route('home.interest-sites') }}">Sitios de interés</a>
                         <div class="divider"></div>
                         <a class="p-2 text-white nav-link" href="#">Mapas del sitio</a>
                         <div class="divider"></div>
@@ -82,14 +80,14 @@
                     </li>
                     <div class="divider"></div>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{route('home.specific_project')}}" id="dropdownProyectos" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownProyectos" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             PROYECTOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownProyectos">
-                            <a class="dropdown-item" href="{{route('home.specific_project')}}">Estadísticas</a>
+                            <a class="dropdown-item" href="{{route('home.statistics')}}">Estadísticas</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Motor de búsqueda</a>
+                            <a class="dropdown-item" href="{{route('home.specific_project')}}">Motor de búsqueda</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Georreferenciación</a>
                             <div class="dropdown-divider"></div>
