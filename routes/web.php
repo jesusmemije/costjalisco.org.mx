@@ -38,8 +38,10 @@ Route::namespace('Front')->group(function () {
     Route::get('/about-us', [HomeController::class, 'about_us'])->name('home.about-us');
     Route::get('/resources', [HomeController::class, 'resources'])->name('home.resources');
 
+    Route::get('/resources', [HomeController::class, 'resources'])->name('home.resources');
+   
     Route::get('project', [HomeController::class, 'specific_project'])->name('home.specific_project');
-    
+
      Route::get('account', [HomeController::class, 'account'])->name('home.account');    
      Route::get('organizations', [HomeController::class, 'organizations'])->name('home.organizations');
      Route::get('contact-us', [HomeController::class, 'contactus'])->name('home.contactus');
@@ -136,6 +138,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     
     //Organizaciones
+    Route::middleware(['knowroute'])->group(function () {
     Route::get('/admin/organizations/', [OrganizationsController::class, 'index'])->name('organizations.index');
     Route::get('/admin/organizations/create', [OrganizationsController::class, 'create'])->name('organizations.create');
     Route::get('/admin/organizations/edit/{organization}', [OrganizationsController::class, 'edit'])->name('organizations.edit');
@@ -147,6 +150,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Rol organization
     Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
     Route::post('/admin/organizations/storeRol', [OrganizationsController::class, 'storeRol'])->name('organizations.storeRol');
+    Route::post('/admin/organizations/updateRol/', [OrganizationsController::class, 'updateRol'])->name('organizations.updateRol');
+    Route::post('/admin/organizations/destroyRol/', [OrganizationsController::class, 'destroyRol'])->name('organizations.destroyRol');
+   
+});
 
     //Routes Users
     require 'admin/users.php';

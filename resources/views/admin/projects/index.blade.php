@@ -81,13 +81,13 @@
                 @else
                 <span class="badge badge-info">Sin presupuesto</span>
                 @endif
-                <td>{{ $project->name}}</td>
+                <td>{{ $project->orgname}}</td>
                 <td>
-                <a class="btn btn-sm btn-warning shadow-sm" href="{{route('project.editidentificacion',$project->id)}}">
+                <a class="btn btn-sm btn-warning shadow-sm" href="{{route('project.editidentificacion',$project->id_project)}}">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
                     Editar
                   </a>
-                  <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $project->id }}" data-name="{{ $project->title }}">
+                  <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $project->id_project}}" data-name="{{ $project->title }}">
                     <i class="fas fa-trash fa-sm text-white-50"></i>
                     Eliminar
                   </button>

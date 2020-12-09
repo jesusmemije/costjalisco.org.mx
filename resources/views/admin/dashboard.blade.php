@@ -2,7 +2,12 @@
 @section('title')
 Dashboard
 @endsection
+
 @section('content')
+
+<div>
+  dklfjdlk
+</div>
 
 <!-- Page Heading -->
 <!--<div class="d-sm-flex align-items-center justify-content-between mb-4">

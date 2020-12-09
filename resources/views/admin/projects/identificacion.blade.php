@@ -107,8 +107,6 @@
         <!-- Card Header - Accordion -->
         <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
           @include('admin.layouts.partials.validation-error')
-
-
           @include('admin.layouts.partials.session-flash-status')
 
 
@@ -121,23 +119,23 @@
           <div class="card-body">
 
             <label for="descripcion">Descripción</label>
-            <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
+            <input required maxlength="100" type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
 
             <label for="nombreresponsable">Nombre de la persona que registra el proyecto</label>
-            <input type="text" name="nombreresponsable" id="nombreresponsable" class="form-control" value="{{old('nombreresponsable',$generaldata->responsable)}}">
+            <input required maxlength="100" type="text" name="nombreresponsable" id="nombreresponsable" class="form-control" value="{{old('nombreresponsable',$generaldata->responsable)}}">
 
 
             <label for="email">Correo electrónico (Institucional)</label>
-            <input type="email" name="email" class="form-control" id="email" value="{{old('email',$generaldata->email)}}">
+            <input required maxlength="100" type="email" name="email" class="form-control" id="email" value="{{old('email',$generaldata->email)}}">
 
             <label for="organismo">Organismo al que pertenece</label>
-            <input type="text" name="organismo" class="form-control" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
+            <input required maxlength="100" type="text" name="organismo" class="form-control" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
 
             <label for="puesto">Puesto que desempeña dentro del organismo</label>
-            <input type="text" name="puesto" class="form-control" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
+            <input required maxlength="100 type="text" name="puesto" class="form-control" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
 
             <label for="involucrado">En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar</label>
-            <input type="text" name="involucrado" class="form-control" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
+            <input required maxlength="100" type="text" name="involucrado" class="form-control" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
 
 
 
@@ -189,7 +187,7 @@
                 <label for="descripcionProyecto">
                   Descripción
                 </label>
-                <textarea class="form-control" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
+                <textarea required class="form-control" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
               </div>
               <div class="form-group col-md-6">
                 <label for="autoridadP">Autoridad Pública</label>
@@ -214,7 +212,7 @@
             <label for="propositoProyecto">
               Próposito
             </label>
-            <input type="text" class="form-control" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
+            <input required type="text" class="form-control" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
             <div class="form-row">
               <div class="form-group col-md-6">
 
@@ -251,7 +249,7 @@
               </div>
               <label for="tipoProyecto" class="col-md-2">Tipo de proyecto</label>
 
-              <select name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6">
+              <select required name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6">
                 <option value="">Seleccione un tipo</option>
                 @foreach($types as $type)
                 @if($type->id==$project->type)
@@ -265,8 +263,8 @@
               </select>
 
             </div>
-
-            <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
+            <br>
+            <h6 style="margin-top:5%;" class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
 
             <!-- buscador 
             <div class="pac-card col-md-4" id="pac-card">
@@ -289,6 +287,7 @@
               <span id="place-address"></span>
             </div>
           
+            <br>
 
             <div class="row">
               <div class="col-lg-6">
@@ -301,24 +300,24 @@
               </div>
               <div class="col-lg-6">
                 <label for="locality" >Localidad </label>
-                <input type="text" id="locality" name="locality" class="form-control" value="{{old('locality',$project->locality)}}">
+                <input required type="text" id="locality" name="locality" class="form-control" value="{{old('locality',$project->locality)}}">
               </div>
               <div class="col-lg-6">
                 <label  for="region">Región </label>
-                <input type="text" id="region" name="region" class="form-control" value="{{old('region',$project->region)}}">
+                <input required type="text" id="region" name="region" class="form-control" value="{{old('region',$project->region)}}">
               </div>
               <div class="col-lg-6">
                 <label  for="postalCode">Código Postal </label>
-                <input type="text" id="postalCode" name="postalCode" class="form-control" value="{{old('postalCode',$project->postalCode)}}">
+                <input required type="text" id="postalCode" name="postalCode" class="form-control" value="{{old('postalCode',$project->postalCode)}}">
               </div>
               <div class="col-lg-6">
                 <label  for="countryName">País</label>
-                <input type="text" id="countryName" name="countryName" class="form-control" value="{{old('countryName',$project->countryName)}}">
+                <input required type="text" id="countryName" name="countryName" class="form-control" value="{{old('countryName',$project->countryName)}}">
               </div>
             </div>
 
             <label for="description">Descripción del lugar</label>
-            <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{$project->description}}</textarea>
+            <textarea required name="description" id="description" cols="30" rows="5" class="form-control">{{$project->description}}</textarea>
             <div class="form-row">
               <div class="form-group col-md-4">
 

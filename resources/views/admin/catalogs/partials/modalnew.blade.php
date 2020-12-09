@@ -11,7 +11,7 @@
         <form id="formnew" action="" method="POST">
         @csrf
         <label for="name" id="lbl"></label>
-          <input type="text" name="titulo" id="name" class="form-control">
+          <input maxlength="100" required type="text" name="titulo" id="name" class="form-control">
           <input type="hidden" id="name_sector" name="name_sector">
          
        

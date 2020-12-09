@@ -15,7 +15,7 @@ class CreateIdentifierTable extends Migration
     {
         Schema::create('identifier', function (Blueprint $table) {
             $table->id();
-            $table->string('scheme',30)->nullable();
+            $table->text('scheme')->nullable();
             $table->string('_id',30)->nullable();
             $table->text('legalName')->nullable();
             $table->string('uri',300)->nullable();

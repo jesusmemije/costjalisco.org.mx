@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Block\Element\Document;
 use stdClass;
 
@@ -39,19 +40,37 @@ class ProjectController extends Controller
     {
         //
        
+        $id_user=Auth::user()->id;
         
         $projects=DB::table('project')
         ->join('project_organizations','project.id','=','project_organizations.id_project')
         ->join('organization','project_organizations.id_organization','=','organization.id')
         ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
-        ->select('project.*','organization.name','proyecto_finalizacion.costofinalizacion as budget_amount')
+        ->join('doproject','project.id','=','doproject.id_project')
+        ->where('doproject.id_user','=',$id_user)
+        ->select('project.*','project.id as id_project','organization.name  as orgname','proyecto_finalizacion.costofinalizacion as budget_amount')
         ->get();
 
         if(empty($projects[0])){
-            $projects = Project::orderBy('created_at', 'desc')->get();
+
+            
+            $projects = Project::orderBy('project.created_at', 'desc')
+            ->join('project_organizations','project.id','=','project_organizations.id_project')
+            ->join('organization','project_organizations.id_organization','=','organization.id')
+            ->join('doproject','project.id','=','doproject.id_project')
+            
+            ->where('doproject.id_user','=',$id_user)
+            ->select('project.*','project.id as id_project','organization.name  as orgname')
+            ->get();   
+            
+
+
+           
+            
         }
      
-      
+     
+       
         return view('admin.projects.index',['projects'=>$projects]);
     }
 
@@ -112,7 +131,7 @@ class ProjectController extends Controller
             $generaldata->puesto='';
             $generaldata->involucrado='';
             
-
+           
              return view('admin.projects.identificacion',
              [
                 'project'=>new Project(),
@@ -166,8 +185,8 @@ class ProjectController extends Controller
 
         $generaldata=DB::table('generaldata')
         ->where('id_project','=',$id)->first();
-       
         
+    
 
          return view('admin.projects.identificacion',
          [
@@ -584,7 +603,7 @@ class ProjectController extends Controller
         ->where('id_project','=',$project->id)
         ->update([
             'descripcion'=>$request->descripcion,
-            'responsable'=>$request->responsable,
+            'responsable'=>$request->nombreresponsable,
             'email'=>$request->email,
             'organismo'=>$request->organismo,
             'puesto'=>$request->puesto,
@@ -990,6 +1009,7 @@ class ProjectController extends Controller
 
         ]);
        */
+     // $request->validate();
         
             
         $project = new Project();
@@ -1017,7 +1037,7 @@ class ProjectController extends Controller
         ->insert([
             'id_project'=>$project->id,
             'descripcion'=>$request->descripcion,
-            'responsable'=>$request->responsable,
+            'responsable'=>$request->nombreresponsable,
             'email'=>$request->email,
             'organismo'=>$request->organismo,
             'puesto'=>$request->puesto,
@@ -1057,6 +1077,12 @@ class ProjectController extends Controller
         $project_locations->id_project = $project->id;
         $project_locations->id_location = $locations->id;
         $project_locations->save();
+
+        DB::table('doproject')
+        ->insert([
+            'id_project'=>$project->id,
+            'id_user'=>Auth::user()->id,
+        ]);
 
 
         //Guardar el documento y la relación con su proyecto.
@@ -1153,7 +1179,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
 
     
-        
+       
 
         if(!empty($project))
         {       

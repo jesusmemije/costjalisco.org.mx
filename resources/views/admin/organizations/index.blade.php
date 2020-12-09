@@ -3,14 +3,54 @@
     Organizaciones
 @endsection
 @section('styles')
+
+  <style>
+    /* [FULL SCREEN SPINNER] */
+#spinner-back, #spinner-front {
+  position: fixed;
+  width: 100vw;
+  transition: all 1s;
+  visibility: hidden;
+  opacity: 0;
+  
+}
+#spinner-back {
+  z-index: 998;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+}
+#spinner-front {
+  z-index: 999;
+
+  color: #fff;
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+}
+#spinner-back.show, #spinner-front.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* [DOES NOT QUITE MATTER] */
+
+  </style>
   <!-- Custom styles for this page -->
   <link href="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">
 @endsection
+<div id="spinner-back"></div>
+<div id="spinner-front">
+  <img height="100" src="{{asset('assets/img/cost logo bnc.png')}}"/><br>
+  <div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+</div>
 @section('content')
+
 
 <nav aria-label="breadcrumb" >
   <ol class="breadcrumb" >
-    <li class="breadcrumb-item"><a href="#"><i class="fas fa-fw fa-home"></i> Inicio</a></li>
+    <li class="breadcrumb-item"><a  href="{{route('dashboard')}}"><i class="fas fa-fw fa-home"></i> Inicio</a></li>
     <li class="breadcrumb-item active"  aria-current="page"><a href="#">Organizaciones</a></li>
   </ol>
 </nav>
@@ -52,11 +92,11 @@
                 <td>{{ $organization->email}}</td>
               
                 <td>
-                  <a href="{{ route('organizations.edit', $organization->id) }}" class="btn btn-sm btn-warning shadow-sm">
+                  <a href="{{ route('organizations.edit', $organization->id_organization) }}" class="btn btn-sm btn-warning shadow-sm">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
                     Editar
                   </a>
-                  <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $organization->id }}" data-name="{{ $organization->orgname }}">
+                  <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $organization->id_organization }}" data-name="{{ $organization->orgname }}">
                     <i class="fas fa-trash fa-sm text-white-50"></i>
                     Eliminar
                   </button>
@@ -103,6 +143,9 @@
 
 @section('scripts')
   <!-- Page level plugins -->
+
+  <script src="{{asset('plugins/ZlataLoader.js-master/ZlataLoader.js')}}"></script>
+
   <script src="{{asset("admin_assets/vendor/datatables/jquery.dataTables.min.js")}}"></script>
   <script src="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
 
@@ -110,8 +153,24 @@
   <script src="{{asset("admin_assets/js/demo/datatables-demo.js")}}"></script>
 
   <script>
+    show();
+
+function show(){
+  document.getElementById("spinner-back").classList.add("show");
+  document.getElementById("spinner-front").classList.add("show");
+}
+function hide(){
+  document.getElementById("spinner-back").classList.remove("show");
+  document.getElementById("spinner-front").classList.remove("show");
+}
+
+
 
     window.onload = function() {
+      hide();
+    
+      
+
       $('#deleteUserModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var id = button.data('id') // Extract info from data-* attributes

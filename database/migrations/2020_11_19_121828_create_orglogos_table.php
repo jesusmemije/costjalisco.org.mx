@@ -17,7 +17,7 @@ class CreateOrglogosTable extends Migration
             $table->id();
             $table->foreignId('id_organization');
             $table->string('imgroute',100)->nullable();
-            $table->foreign('id_organization')->references('id')->on('party_role')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_organization')->references('id')->on('organization')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

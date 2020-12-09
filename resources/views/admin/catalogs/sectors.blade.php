@@ -174,7 +174,7 @@ Sectores-subsectores
         <form id="formnew" action="" method="POST">
         @csrf
         <label for="name" id="lbl"></label>
-          <input type="text" name="titulo" id="name" class="form-control">
+          <input required maxlength="100" type="text" name="titulo" id="name" class="form-control">
           <input type="hidden" id="name_sector" name="name_sector">
          
        
@@ -209,7 +209,7 @@ Sectores-subsectores
           <input type="text" name="oldtitulo" id="oldname" class="form-control" readonly>
           
           <label for="">Nuevo nombre</label>
-          <input required type="text" name="newtitulo" id="newname" class="form-control">
+          <input maxlength="100"  required type="text" name="newtitulo" id="newname" class="form-control">
 
           <input type="hidden" name="edit_id" id="edit_id">
       </div>
