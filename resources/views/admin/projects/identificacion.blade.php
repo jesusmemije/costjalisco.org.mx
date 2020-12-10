@@ -1,7 +1,6 @@
 @extends("admin.layouts.app")
 
 
-
 @section('content')
 
 @include('admin.projects.phasesnav')
@@ -97,6 +96,7 @@
 @endsection
 
 
+
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   <br>
 
@@ -107,6 +107,8 @@
         <!-- Card Header - Accordion -->
         <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
           @include('admin.layouts.partials.validation-error')
+
+
           @include('admin.layouts.partials.session-flash-status')
 
 
@@ -117,29 +119,43 @@
 
         <div class="collapse show" id="collapseCardExample1">
           <div class="card-body">
-            <!---
+
             <label for="descripcion">Descripción</label>
-            <input required maxlength="100" type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
-            --->
+            <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
+           
             <label for="nombreresponsable">Nombre de la persona que registra el proyecto</label>
-            <input required maxlength="100" type="text" name="nombreresponsable" id="nombreresponsable" class="form-control" value="{{old('nombreresponsable',$generaldata->responsable)}}">
+            <input type="text" name="nombreresponsable" id="nombreresponsable" class="form-control @error('nombreresponsable') is-invalid @enderror" value="{{old('nombreresponsable',$generaldata->responsable)}}">
+            @error('nombreresponsable')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
 
 
             <label for="email">Correo electrónico (Institucional)</label>
-            <input required maxlength="100" type="email" name="email" class="form-control" id="email" value="{{old('email',$generaldata->email)}}">
+            <input placeholder="Institucional" type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email',$generaldata->email)}}">
+            @error('email')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
 
             <label for="organismo">Organismo al que pertenece</label>
-            <input required maxlength="100" type="text" name="organismo" class="form-control" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
+            <input type="text" name="organismo" class="form-control @error('organismo') is-invalid @enderror" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
+            @error('organismo')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
 
             <label for="puesto">Puesto que desempeña dentro del organismo</label>
-            <input required maxlength="100 type="text" name="puesto" class="form-control" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
+            <input type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
+             @error('puesto')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
 
             <label for="involucrado">En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar</label>
-            <input required maxlength="100" type="text" name="involucrado" class="form-control" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
-
-
-
-
+            <input placeholder="Este archivo es de carácter opcional" type="text" name="involucrado" class="form-control @error('involucrado') is-invalid @enderror" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
+            @error('involucrado')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
 
           </div>
 
@@ -161,24 +177,25 @@
           <div class="card-body">
 
 
-
-
-
-
-
             <input type="hidden" value="{{$project->id}}" name="id_project">
             <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="tituloProyecto">
                   Título del proyecto
                 </label>
-                <input required id="tituloProyecto" type="text" class="form-control" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
+                <input placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
+                 @error('tituloProyecto')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
               <div class="form-group col-md-3">
                 <label for="ocid">
                   Número que identifica al proyecto
                 </label>
-                <input required id="ocid" type="text" class="form-control" name="ocid" value="{{old('ocid',$project->ocid)}}">
+                <input placeholder="Número del acto público (ID Entidad)" required id="ocid" type="text" class="form-control @error('ocid') is-invalid @enderror" name="ocid" value="{{old('ocid',$project->ocid)}}">
+                @error('ocid')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
 
             </div>
@@ -187,11 +204,15 @@
                 <label for="descripcionProyecto">
                   Descripción
                 </label>
-                <textarea required class="form-control" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
+                <textarea placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
+                @error('descripcionProyecto')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
+
               <div class="form-group col-md-6">
                 <label for="autoridadP">Autoridad Pública</label>
-                <select required id="autoridadP" name="autoridadP" class="form-control">
+                <select required id="autoridadP" name="autoridadP" class="form-control @error('autoridadP') is-invalid @enderror">
                   <option value="">Seleccionar</option>
                   @foreach($autoridadP as $autoridad)
 
@@ -204,26 +225,28 @@
                   @endforeach
 
                 </select>
+                 @error('autoridadP')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
-
-
             </div>
 
             <label for="propositoProyecto">
               Próposito
             </label>
-            <input required type="text" class="form-control" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
+            <input placeholder="Objetivo del proyecto" type="text" class="form-control @error('propositoProyecto') is-invalid @enderror" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
+             @error('propositoProyecto')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
+
             <div class="form-row">
-              <div class="form-group col-md-6">
-
-
-
+            <div class="form-group col-md-6">
                 <label for="sectorProyecto"> 
                   Sector
                 </label>
                 <input hidden type="text" value="{{$project->sector}}" id="secedit">
-                <select required id="sectorProyecto" class="form-control" name="sectorProyecto" onchange="return get_class_sections(this.value)">
-
+                <select required id="sectorProyecto" class="form-control @error('secedit') is-invalid @enderror" name="sectorProyecto" onchange="return get_class_sections(this.value)">
                   <option value="">Seleccione un sector</option>
                   @foreach ($sectors as $sector)
                   @if($sector->id==$project->sector)
@@ -232,24 +255,31 @@
                   <option value="{{$sector->id}}">{{$sector->titulo}}</option>
                   @endif
 
-
-
                   @endforeach
                 </select>
+                @error('secedit')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
+
+
               <div class="form-group col-md-6">
                 <label for="subsector">
                   Subsector
                 </label>
                 <input hidden type="text" name="" id="subedit" value="{{$project->subsector}}">
 
-                <select required id="subsector" class="form-control" name="subsector">
+                <select required id="subsector" class="form-control @error('subsector') is-invalid @enderror" name="subsector">
                   <option value="">Seleccione un subsector</option>
                 </select>
+                @error('subsector')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
-              <label for="tipoProyecto" class="col-md-2">Tipo de proyecto</label>
 
-              <select required name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6">
+
+              <label for="tipoProyecto" class="col-md-2">Tipo de proyecto</label>
+              <select name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6 @error('tipoProyecto') is-invalid @enderror">
                 <option value="">Seleccione un tipo</option>
                 @foreach($types as $type)
                 @if($type->id==$project->type)
@@ -259,12 +289,14 @@
                 @endif
 
                 @endforeach
-
               </select>
+               @error('tipoProyecto')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
 
             </div>
-            <br>
-            <h6 style="margin-top:5%;" class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
+
+            <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
 
             <!-- buscador 
             <div class="pac-card col-md-4" id="pac-card">
@@ -287,7 +319,6 @@
               <span id="place-address"></span>
             </div>
           
-            <br>
 
             <div class="row">
               <div class="col-lg-6">
@@ -296,37 +327,60 @@
                 <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
 
                 <label for="streetAddress">Calle </label>
-                <input required type="text" id="streetAddress" name="streetAddress" class="form-control" value="{{old('streetAddress',$project->streetAddress)}}">
+                <input placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
+                 @error('streetAddress')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
               </div>
               <div class="col-lg-6">
                 <label for="locality" >Localidad </label>
-                <input required type="text" id="locality" name="locality" class="form-control" value="{{old('locality',$project->locality)}}">
+                <input type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
+                 @error('locality')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
               <div class="col-lg-6">
                 <label  for="region">Región </label>
-                <input required type="text" id="region" name="region" class="form-control" value="{{old('region',$project->region)}}">
+                <input type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
+                 @error('region')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
               <div class="col-lg-6">
                 <label  for="postalCode">Código Postal </label>
-                <input required type="text" id="postalCode" name="postalCode" class="form-control" value="{{old('postalCode',$project->postalCode)}}">
+                <input type="text" id="postalCode" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{old('postalCode',$project->postalCode)}}">
+                 @error('postalCode')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
               <div class="col-lg-6">
                 <label  for="countryName">País</label>
-                <input required type="text" id="countryName" name="countryName" class="form-control" value="{{old('countryName',$project->countryName)}}">
+                <input type="text" id="countryName" name="countryName" class="form-control @error('countryName') is-invalid @enderror" value="{{old('countryName',$project->countryName)}}">
+                 @error('countryName')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
             </div>
 
             <label for="description">Descripción del lugar</label>
-            <textarea required name="description" id="description" cols="30" rows="5" class="form-control">{{$project->description}}</textarea>
+            <textarea name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror">{{$project->description}}</textarea>
+             @error('description')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            
             <div class="form-row">
               <div class="form-group col-md-4">
 
                 <label for="docfase1">Documentos</label>
-                <input type="file" class="form-control" id="docfase1" name="docfase1[]" multiple>
+                <input type="file" class="form-control @error('docfase1') is-invalid @enderror" id="docfase1" name="docfase1[]" multiple>
+                 @error('docfase1')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
               <div class="form-group col-md-6">
                 <label for="documenttype">Tipo de documento</label>
-                <select name="documenttype" id="documenttype" class="form-control">
+                <select name="documenttype" id="documenttype" class="form-control @error('documenttype') is-invalid @enderror">
                 <option value="">Selecciona un opción</option>
                 @foreach($documentstype as $type)
               
@@ -335,6 +389,9 @@
                 @endforeach
 
                 </select>
+                 @error('documenttype')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
               </div>
             
                
@@ -566,7 +623,163 @@
 
        map.on('click', onMapClick);
 
+/* google maps init
+  let map;
+  function initMap() {
 
+    const myLatlng = {
+      lat: 20.6566500419128,
+      lng: -103.35528485969786
+    };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: myLatlng,
+      zoom: 13,
+    });
+    // Create the initial InfoWindow.
+    
+    let infoWindow = new google.maps.InfoWindow({
+      content: "Selecciona una parte del mapa",
+      position: myLatlng,
+    });
+    
+    infoWindow.open(map);
+    
+    // Configure the click listener.
+
+    const savedLatlng = {
+      lat: document.getElementById('lat').value,
+      lng: document.getElementById('lng').value,
+    }
+
+
+    let mymarker = new google.maps.Marker({
+      position: savedLatlng,
+      title: "Hello World!"
+    });
+    mymarker.setMap(mymarker);
+
+    map.addListener("click", (mapsMouseEvent) => {
+      // Close the current InfoWindow.
+
+      lat = mapsMouseEvent.latLng.lat();
+      lng = mapsMouseEvent.latLng.lng();
+
+      document.getElementById('lat').value = lat;
+      document.getElementById('lng').value = lng;
+
+      const themarker = {
+        lat: lat,
+        lng: lng
+      };
+      
+      infoWindow.close();
+      // Create a new InfoWindow.
+      infoWindow = new google.maps.InfoWindow({
+        position: mapsMouseEvent.latLng,
+      });
+      infoWindow.setContent(
+        JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+
+      );
+      infoWindow.open(map);
+      
+
+      mymarker.setMap(null);
+      mymarker = new google.maps.Marker({
+        position: themarker,
+        title: "Hello World!"
+      });
+      mymarker.setMap(map);
+
+    });
+
+
+
+
+
+
+    const card = document.getElementById("pac-card");
+    const input = document.getElementById("pac-input");
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+    const autocomplete = new google.maps.places.Autocomplete(input);
+    // Bind the map's bounds (viewport) property to the autocomplete object,
+    // so that the autocomplete requests use the current map bounds for the
+    // bounds option in the request.
+    autocomplete.bindTo("bounds", map);
+    // Set the data fields to return when the user selects a place.
+    autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
+    const infowindow = new google.maps.InfoWindow();
+    const infowindowContent = document.getElementById("infowindow-content");
+    infowindow.setContent(infowindowContent);
+    const marker = new google.maps.Marker({
+      map,
+      anchorPoint: new google.maps.Point(0, -29),
+    });
+    autocomplete.addListener("place_changed", () => {
+      infowindow.close();
+      marker.setVisible(false);
+      const place = autocomplete.getPlace();
+
+      if (!place.geometry) {
+        // User entered the name of a Place that was not suggested and
+        // pressed the Enter key, or the Place Details request failed.
+        window.alert("No details available for input: '" + place.name + "'");
+        return;
+      }
+
+      // If the place has a geometry, then present it on a map.
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17); // Why 17? Because it looks good.
+      }
+      marker.setPosition(place.geometry.location);
+      marker.setVisible(true);
+      let address = "";
+
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] &&
+            place.address_components[0].short_name) ||
+          "",
+          (place.address_components[1] &&
+            place.address_components[1].short_name) ||
+          "",
+          (place.address_components[2] &&
+            place.address_components[2].short_name) ||
+          "",
+        ].join(" ");
+      }
+      infowindowContent.children["place-icon"].src = place.icon;
+      infowindowContent.children["place-name"].textContent = place.name;
+      infowindowContent.children["place-address"].textContent = address;
+      infowindow.open(map, marker);
+    });
+
+    // Sets a listener on a radio button to change the filter type on Places
+    // Autocomplete.
+    function setupClickListener(id, types) {
+      const radioButton = document.getElementById(id);
+      radioButton.addEventListener("click", () => {
+        autocomplete.setTypes(types);
+      });
+    }
+    setupClickListener("changetype-all", []);
+    setupClickListener("changetype-address", ["address"]);
+    setupClickListener("changetype-establishment", ["establishment"]);
+    setupClickListener("changetype-geocode", ["geocode"]);
+    document
+      .getElementById("use-strict-bounds")
+      .addEventListener("click", function() {
+        console.log("Checkbox clicked! New state=" + this.checked);
+        autocomplete.setOptions({
+          strictBounds: this.checked
+        });
+      });
+      
+  }
+  */
 </script>
 
 @endsection

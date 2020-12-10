@@ -43,34 +43,40 @@
                     <div class="form-row">
 
 
-   <!---
+
                         <div class="form-group col-md-6">
-                        
-                            <label  for="descripcion">Descripción</label>
+                            <label for="descripcion">Descripción</label>
 
-                            <textarea maxlength="100" required name="descripcion" id="descripcion" class="form-control" name='descripcion' cols="30" rows="4">{{old('descripcion',$project->descripcion)}}</textarea>
-
+                            <textarea name="descripcion" id="descripcion" class="form-control " name='descripcion' cols="30" rows="4">{{old('descripcion',$project->descripcion)}}</textarea>
+                           
                         </div>
-                           -->
                         <div class="form-group col-md-6">
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <label for="">Datos de contacto de la entidad de adjudicación</label>
-                                    <input maxlength="200" required type="text" class="form-control" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
+                                    <input type="text" class="form-control @error('datosdecontacto') is-invalid @enderror" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
+                                    @error('datosdecontacto')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
 
 
                                 <div class="form-group col-md-6">
                                     <label for="">Fecha de publicación</label>
-                                    <input  required type="date" class="form-control" name="fechapublicacion" value="{{old('fechapublicacion',$project->fechapublicacion)}}">
-
+                                    <input type="date" class="form-control @error('fechapublicacion') is-invalid @enderror" name="fechapublicacion" value="{{old('fechapublicacion',$project->fechapublicacion)}}">
+                                    @error('fechapublicacion')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label for="">Entidad de adjudicación</label>
-                                    <input maxlength="200" required type="text" class="form-control" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
+                                    <input type="text" class="form-control @error('entidadadjudicacion') is-invalid @enderror" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
+                                    @error('entidadadjudicacion')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -88,13 +94,16 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="">Nombre del responsable</label>
-                    <input maxlength="200" required type="text" class="form-control" name="nombreresponsable" value="{{old('nombreresponsable',$project->nombreresponsable)}}">
+                    <input type="text" class="form-control @error('nombreresponsable') is-invalid @enderror" name="nombreresponsable" value="{{old('nombreresponsable',$project->nombreresponsable)}}">
+                    @error('nombreresponsable')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Modalidad de la adjudicación</label>
 
 
-                    <select required name="modalidadadjudicacion" id="" class="form-control">
+                    <select name="modalidadadjudicacion" id="" class="form-control @error('modalidadadjudicacion') is-invalid @enderror">
                         <option value="">Seleccione una opción</option>
                         @foreach($catmodalidad_adjudicacion as $mod)
                         @if($project->modalidadadjudicacion==$mod->id)
@@ -106,10 +115,13 @@
                         @endforeach
 
                     </select>
+                    @error('modalidadadjudicacion')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Tipo de contrato</label>
-                    <select required id="" class="form-control" name="tipocontrato">
+                    <select id="" class="form-control @error('tipocontrato') is-invalid @enderror" name="tipocontrato">
                         <option value="">Seleccione una opción</option>
                         @foreach($cattipo_contrato as $contrato)
                         @if($project->tipocontrato== $contrato->id)
@@ -120,6 +132,9 @@
 
                         @endforeach
                     </select>
+                    @error('tipocontrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group col-md-3">
@@ -127,7 +142,7 @@
                     <label for="">Modalidad de de contratación</label>
 
 
-                    <select required name="modalidadcontrato" id="" class="form-control">
+                    <select name="modalidadcontrato" id="" class="form-control @error('modalidadcontrato') is-invalid @enderror">
                         <option value="">Seleccione una opción</option>
                         @foreach($catmodalidad_contratacion as $modcontrato)
                         @if($project->modalidadcontrato==$modcontrato->id)
@@ -139,6 +154,9 @@
                         @endforeach
 
                     </select>
+                    @error('modalidadcontrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
             </div>
@@ -149,7 +167,7 @@
 
                     <label for="">Estado actual de la contratación</label>
 
-                    <select required name="estadoactual" id="" class="form-control">
+                    <select name="estadoactual" id="" class="form-control @error('estadoactual') is-invalid @enderror">
                         <option value="">Seleccione una opción</option>
                         @foreach($contractingprocess_status as $contractstatus)
                         @if($project->estadoactual==$contractstatus->id)
@@ -161,18 +179,27 @@
                         @endforeach
 
                     </select>
+                    @error('estadoactual')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group col-md-4">
 
                     <label for="">Empresas participantes</label>
-                    <input maxlength="200" required type="text" class="form-control" name="empresasparticipantes" value="{{old('empresasparticipantes',$project->empresasparticipantes)}}">
+                    <input type="text" class="form-control @error('empresasparticipantes') is-invalid @enderror" name="empresasparticipantes" value="{{old('empresasparticipantes',$project->empresasparticipantes)}}">
+                    @error('empresasparticipantes')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
 
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for=""> Entidad administradora del contrato</label>
-                    <input maxlength="200" required type="text" name="entidad_admin_contrato" value="{{old('entidad_admin_contrato',$project->entidad_admin_contrato)}}" class="form-control" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
+                    <input type="text" name="entidad_admin_contrato" value="{{old('entidad_admin_contrato',$project->entidad_admin_contrato)}}" class="form-control @error('entidad_admin_contrato') is-invalid @enderror" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
+                    @error('entidad_admin_contrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -180,17 +207,26 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Título del contrato</label>
-                    <input maxlength="200" required type="text" name="titulocontrato" value="{{old('titulocontrato',$project->titulocontrato)}}" class="form-control" placeholder="Nombre o título de contrato">
+                    <input type="text" name="titulocontrato" value="{{old('titulocontrato',$project->titulocontrato)}}" class="form-control @error('titulocontrato') is-invalid @enderror" placeholder="Nombre o título de contrato">
+                    @error('titulocontrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="">Empresa contratada</label>
-                    <input maxlength="200" type="text" class="form-control" name="empresacontratada" value="{{old('empresacontratada',$project->empresacontratada)}}">
+                    <input type="text" class="form-control @error('empresacontratada') is-invalid @enderror" name="empresacontratada" value="{{old('empresacontratada',$project->empresacontratada)}}">
+                    @error('empresacontratada')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="">Vía por la que presenta su propuesta</label>
-                    <input maxlength="200" required type="text" class="form-control" name="viapropuesta" value="{{old('viapropuesta',$project->viapropuesta)}}">
+                    <input type="text" class="form-control @error('viapropuesta') is-invalid @enderror" name="viapropuesta" value="{{old('viapropuesta',$project->viapropuesta)}}">
+                    @error('viapropuesta')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
@@ -201,18 +237,27 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="">Fecha de presentación de su propuesta</label>
-                    <input required type="date" class="form-control" name="fechapresentacionpropuesta" value="{{old('fechapresentacionpropuesta',$project->fechapresentacionpropuesta)}}">
+                    <input type="date" class="form-control @error('fechapresentacionpropuesta') is-invalid @enderror" name="fechapresentacionpropuesta" value="{{old('fechapresentacionpropuesta',$project->fechapresentacionpropuesta)}}">
+                    @error('fechapresentacionpropuesta')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Monto del contrato</label>
-                    <input required type="number" class="form-control" name="montocontrato" value="{{old('montocontrato',$project->montocontrato)}}">
+                    <input type="number" class="form-control @error('montocontrato') is-invalid @enderror" name="montocontrato" value="{{old('montocontrato',$project->montocontrato)}}">
+                    @error('montocontrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
 
                 </div>
 
                 <div class="form-group col-md-4">
 
                     <label for="">Alcance del trabajo según el contrato</label>
-                    <input maxlength="200" required type="text" class="form-control" name="alcancecontrato" value="{{old('alcancecontrato',$project->alcancecontrato)}}">
+                    <input type="text" class="form-control @error('alcancecontrato') is-invalid @enderror" name="alcancecontrato" value="{{old('alcancecontrato',$project->alcancecontrato)}}">
+                    @error('alacancecontrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
@@ -224,11 +269,17 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Fecha de inicio del contrato </label>
-                    <input required type="date" class="form-control" name="fechainiciocontrato" value="{{old('fechainiciocontrato',$project->fechainiciocontrato)}}">
+                    <input type="date" class="form-control @error('fechainiciocontrato') is-invalid @enderror" name="fechainiciocontrato" value="{{old('fechainiciocontrato',$project->fechainiciocontrato)}}">
+                    @error('fechainiciocontrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group col-md-6">
                     <label for="">Duración del proyecto de acuerdo con lo establecido en el contrato</label>
-                    <input required type="text" class="form-control" name="duracionproyecto_contrato" value="{{old('duracionproyecto_contrato',$project->duracionproyecto_contrato)}}">
+                    <input type="date" class="form-control @error('duracionproyecto_contrato') is-invalid @enderror" name="duracionproyecto_contrato" value="{{old('duracionproyecto_contrato',$project->duracionproyecto_contrato)}}">
+                    @error('duracionproyecto_contrato')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
             </div>
