@@ -48,6 +48,9 @@ Route::namespace('Front')->group(function () {
      Route::get('organizations', [HomeController::class, 'organizations'])->name('home.organizations');
      Route::get('contact-us', [HomeController::class, 'contactus'])->name('home.contactus');
      Route::get('newsletters', [HomeController::class, 'newsletters'])->name('home.newsletters');
+
+     Route::get('project-search', [HomeController::class, 'project_search'])->name('home.project_search');
+     Route::get('projects', [HomeController::class, 'projects'])->name('home.projects');
      
 });
 
