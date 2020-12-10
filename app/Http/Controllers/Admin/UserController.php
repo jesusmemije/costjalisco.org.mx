@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {   
 
+    public function __construct()
+    {
+        $this->middleware('knowroute');
+        
+    }
     public function index()
     {
         $users = User::orderBy('created_at', 'desc')->get();

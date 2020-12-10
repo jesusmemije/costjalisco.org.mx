@@ -44,7 +44,7 @@ class CreateProyectoContratacionTable extends Migration
             $table->decimal('montocontrato',20,2)->nullable();
             $table->string('alcancecontrato',200)->nullable();
             $table->date('fechainiciocontrato',0)->nullable();
-            $table->date('duracionproyecto_contrato',0)->nullable();
+            $table->string('duracionproyecto_contrato',50)->nullable();
 
 
             $table->timestamps();

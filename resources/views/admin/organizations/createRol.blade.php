@@ -1,24 +1,46 @@
 @extends("admin.layouts.app")
-
-
 @section('content')
 <style>
 
 .content{
   background: purple !important;
 }
+.tablescroll{
+  
+  max-height: 400px;
+  overflow: auto;
+  display:inline-block;
+  width: 100%;
+  overflow-x: hidden;
+}
 </style>
+
+
+
+
+<nav aria-label="breadcrumb" >
+  <ol class="breadcrumb" >
+    <li class="breadcrumb-item"><a  href="{{route('dashboard')}}"><i class="fas fa-fw fa-home"></i> Inicio</a></li>
+    <li class="breadcrumb-item active"  aria-current="page"><a href="#">Rol de organizaciones</a></li>
+  </ol>
+</nav>
 
 @include('admin.layouts.partials.validation-error')    
 @include('admin.layouts.partials.session-flash-status')
 <h1 class="h3 mb-4 text-gray-800">Nuevo rol de organización</h1>
 <div class="row">
 
+<?php 
+
+
+?>
 <div class="col-lg-6">
+<div class="tablescroll">
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>Nombre del rol de organización</th>
+              <th>Descripción</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -27,23 +49,35 @@
               <tr>
                 
                 <td>{{ $rol->titulo}}</td>
+                <td>{{$rol->descripcion}}</td>
              
                 <td>
-                <a class="btn btn-sm btn-warning shadow-sm" href="" data-toggle="modal" data-target="#deleteUserModal">
-                    <i class="fas fa-edit fa-sm text-white-50"></i>
-                    
-                  </a>
-                  <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $rol->id }}" data-name="{{ $rol->titulo}}">
-                    <i class="fas fa-trash fa-sm text-white-50"></i>
-                   
-                  </button>
+                <div class="form-row">
+
+<div class="form-group" style="margin-right: 5px;">
+<button data-title="Editar nombre del rol" data-description='{{$rol->descripcion}}' data-labeltxt='sector' data-labelbi='Rol' data-id='{{$rol->id}}' data-btn='Editar' data-toggle="modal" data-name='{{$rol->titulo}}' data-target="#modaleditData" data-route='{{route("organizations.updateRol")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
+  <i class="fas fa-edit fa-sm text-white-50"></i>
+  
+</button>
+
+</div>
+
+<div class="form-group">
+<button class="btn btn-sm btn-dark shadow-sm" data-labeltxt='rol' data-id='{{$rol->id}}' data-btn='Guardar sector' data-toggle="modal" data-name='{{$rol->titulo}}' data-target="#deleteUserModal" data-route='{{route("organizations.destroyRol")}}'>
+  <i class="fas fa-trash fa-sm text-white-50"></i>
+ 
+</button>
+
+</div>
+
+</div>
                 </td>
               </tr>
             @endforeach
           </tbody>
         </table>
 
-
+</div>
 
 </div>
 
@@ -63,12 +97,12 @@
               <label>
                 Título del nuevo rol
               </label>
-              <input type="text" class="form-control" name="title">
+              <input required maxlength="100" type="text" class="form-control" name="title">
 
               <label>
                 Descripción del rol
               </label>
-              <textarea class="form-control" cols="30" rows="6" name="description"></textarea>
+              <textarea maxlength="300" class="form-control" cols="30" rows="6" name="description"></textarea>
               <br>
               <button type="submit" class="btn btn-sm btn-primary shadow-sm offset-lg-10">
                   Registrar
@@ -102,9 +136,10 @@
         <label for="name" id="labelbi"></label>
           <input type="text" name="oldtitulo" id="oldname" class="form-control" readonly>
           
-          <label for="">Nuevo nombre</label>
+          <label for="newtitulo">Nuevo nombre</label>
           <input required type="text" name="newtitulo" id="newname" class="form-control">
-
+          <label for="description">Descripción</label>
+          <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
           <input type="hidden" name="edit_id" id="edit_id">
       </div>
       <div class="modal-footer">
@@ -148,5 +183,64 @@
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <script>
+
+window.onload = function() {
+   
+    
+      $('#deleteUserModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id') // Extract info from data-* attributes
+        var name = button.data('name')
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+        name=name.replace(/,/g,' ')
+        var action = button.data('route')
+       $('#formDelete').attr('action', action)
+       $('#delete_id').val(id);
+       var label=button.data('labeltxt')
+       
+       
+        $('#test').val(label)
+      
+        var modal = $(this)
+        modal.find('.modal-title').text('Confirmar eliminación') 
+        modal.find('.name-user').text(label+'   '+name)
+      })
+
+    
+   
+
+    $('#modaleditData').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id') // Extract info from data-* attributes
+        var name = button.data('name')
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      name=name.replace(/,/g,' ')
+      var title=button.data('title')
+      var description=button.data('description');
+       
+        var action = button.data('route')
+       $('#formEdit').attr('action', action)
+       $('#edit_id').val(id);
+       var labelbi=button.data('labelbi');
+       var label=button.data('labeltxt')
+        var btn=button.data('btn');
+        $('#labelbi').html(labelbi);
+        $('#oldname').val(name);
+        $('#description').html(description);
+        $('#btnedit').html(btn)
+    
+      
+        var modal = $(this)
+        modal.find('.modal-title').text(title) 
+       
+      })
+    }
+    
+  </script>
 
 @endsection

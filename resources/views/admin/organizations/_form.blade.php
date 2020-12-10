@@ -1,7 +1,11 @@
+
 @csrf
+
+  
+
     <div class="collapse show" id="collap1">
       <div class="card-body">
-      <input type="hidden" name="id_organization" value="{{$organization->id}}">
+      <input type="hidden" name="id_organization" value="{{$organization->id_organization}}">
 
       <div class="form-row">
       <div class="form-group col-md-12">
@@ -30,13 +34,6 @@
 </select>
       </div>
     </div>
-
-
-    
-
-   
-
- 
 
       </div>
     </div>
@@ -139,6 +136,7 @@
       </div>
     </div>
 
+ 
    
     <div class="form-row">
     <div class="form-group col-md-12">
@@ -147,13 +145,12 @@
 
      <label for="imgOrg">Logotipo de la organización</label>
     
+
    
-    <div class="card">
-                <input  type="file" name="imgCurso" id="img_curso" class="dropify">
-                @error('imgCurso')
-                    <small class="text-danger">{{$message}}</small>
-                @enderror
-            </div>
+    <div class="cardfile" >
+    <input type="file" name="imgOrg"  class="dropify"  data-height="200" data-default-file="{{asset($ruta)}}"/>
+          
+    </div>
 
       </div>
     </div>
@@ -171,13 +168,14 @@
               
      
               
-      
-<a class="btn btn-sm btn-primary shadow-sm" href="{{route('organizations.index')}}">
+<div style="margin-bottom:2%" class="d-flex justify-content-center">
+
+<a style="margin-right: 2%;" class="btn btn-sm btn-primary shadow-sm" href="{{route('organizations.index')}}">
  
 Regresar</a>
 
 @if(!$create)
-<button type="submit" class="btn btn-sm btn-primary shadow-sm">
+<button type="submit" class="btn btn-sm btn-primary shadow-sm" >
 <i class="fa fa-edit"></i>
     Editar
     </button>
@@ -188,5 +186,6 @@ Regresar</a>
     </button>
 @endif
 
-        
-      </div>
+</div> 
+    
+    

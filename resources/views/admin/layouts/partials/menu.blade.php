@@ -8,17 +8,24 @@
  background: #2c4143 !important;
  
 }
+<?php
+
+use Illuminate\Support\Facades\Auth;
+
+
+?>
 
 </style>
 <div class="f">
+ 
 <ul  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion f" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
-    <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+    <div class="sidebar-brand-icon">
+      <img src="{{asset('assets/img/cost logo bnc.png') }}" width="200" alt="logo costjalisco">
     </div>
-    <div class="sidebar-brand-text mx-3">COST <sup>Jalisco</sup></div>
+    <!--<div class="sidebar-brand-text mx-3">COST <sup>Jalisco</sup></div>-->
   </a>
 
   <!-- Divider -->
@@ -53,7 +60,8 @@
       </div>
     </div>
   </li>
-
+  @if(Auth::user()->role_id==1)
+  
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrg" aria-expanded="true"
       aria-controls="collapseOrg">
@@ -69,7 +77,9 @@
     </div>
   </li>
 
-
+  @endif
+  @if(Auth::user()->role_id==1)
+  
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCat" aria-expanded="true"
       aria-controls="collapseCat">
@@ -91,6 +101,7 @@
       </div>
     </div>
   </li>
+  @endif
 
   <!-- Divider -->
   <hr class="sidebar-divider">
@@ -134,6 +145,8 @@
   <hr class="sidebar-divider">
 
   <!-- Heading -->
+  @if(Auth::user()->role_id==1)
+  
   <div class="sidebar-heading">
     Sistema
   </div>
@@ -145,9 +158,11 @@
       <span>Usuarios</span>
     </a>
   </li>
+ 
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
+  @endif
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">

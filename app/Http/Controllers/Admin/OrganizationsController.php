@@ -25,12 +25,11 @@ class OrganizationsController extends Controller
         //
         $organizations=DB::table('organization')
         ->join('contact_point','organization.id_contact_point','=','contact_point.id')
-        ->select('organization.id','organization.name as orgname','contact_point.*')
+        ->select('organization.id as id_organization','organization.name as orgname','contact_point.*')
         ->get();
 
 
         
-       
       
         return view('admin.organizations.index',['organizations'=>$organizations]);
     }
@@ -67,8 +66,8 @@ class OrganizationsController extends Controller
     {
         //
         
-       
-        
+     
+
         $identifier=new Identifier();
 
         $identifier->scheme="ocid/x".$request->name;
@@ -119,11 +118,11 @@ class OrganizationsController extends Controller
             ]);
     
            
-    
+               
             
             }
 
-        return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
+      //  return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
 
     }
 
@@ -153,10 +152,10 @@ class OrganizationsController extends Controller
         ->join('address','organization.id_address','=','address.id')
         ->join('party_role','organization.id_partyRole','=','party_role.id')
         ->where('organization.id','=',$organization->id)
-        ->select('organization.name as orgname','contact_point.*','address.*','party_role.id as partyid')
+        ->select('organization.name as orgname','organization.id as id_organization','contact_point.*','address.*','party_role.id as partyid')
         ->first();
 
-
+       
 
        
         $orglogo=DB::table('orglogos')->where('id_organization','=',$organization->id)->first();
@@ -167,6 +166,7 @@ class OrganizationsController extends Controller
             $ruta="";
         }
         
+     
 
         $users=User::all();
         $party_rol=OrganizationsRol::all();
@@ -191,14 +191,17 @@ class OrganizationsController extends Controller
     {
         //
 
-        $id_organization=$request->id_organization;
 
+       
+        $id_organization=$request->id_organization;
+       
         $id_identifier=Organization::find($id_organization)->id_identifier;
 
         $id_address=Organization::find($id_organization)->id_address;
         $id_contact_point=Organization::find($id_organization)->id_contact_point;;
 
         $identifier=Identifier::find($id_identifier);
+        
 
         $identifier->scheme="ocid/x".$request->name;
         $identifier->_id="X";
@@ -233,27 +236,25 @@ class OrganizationsController extends Controller
         $organization->id_partyRole=$request->partyRole;
         $organization->save();
 
+        
 
-
-        //to save the image logo org
         if(!empty($request->imgOrg)){        
             $nombre_img = $_FILES['imgOrg']['name'];
     
             move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$nombre_img);
             $url=$nombre_img;
 
-            DB::table('orglogos')
-            ->where('id_organization','=',$request->imgOrg)
-            ->update([
-               'imgroute'=>$url,
+            DB::table('orglogos')->insert([
+                'id_organization'=>$organization->id,
+                'imgroute'=>$url,
             ]);
     
            
-    
+               
             
             }
 
-        return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
+            return back()->with('status', '¡Listo! La organización se ha actualizado  correctamente');
     }
 
     /**
@@ -264,8 +265,7 @@ class OrganizationsController extends Controller
      */
     public function destroy($id)
     {
-        //
-        
+        //        
         $organization=Organization::find($id);
 
         if(!empty($organization)){
@@ -276,7 +276,8 @@ class OrganizationsController extends Controller
           
             return back()->with('status', '¡Organización dada de baja correctamente!');
         }else{
-           
+            
+            return back()->with('status', '¡La organización no se pudo eliminar!');
         }
 
        
@@ -299,6 +300,25 @@ class OrganizationsController extends Controller
         $rol->save();
         return back()->with('status', '¡Rol registrado correctamente!');
 
+    }
+    public function updateRol(Request $request){
+       
+        $r=DB::table('party_role')
+        ->where('id','=',$request->edit_id)
+        ->update(['titulo'=>$request->newtitulo,'descripcion'=>$request->description]);
+
+        if($r){
+            return back()->with('status', '¡Rol actualizado correctamente!');
+        
+        }else{
+            return back()->with('status', '¡El rol no se pudo actualizar!');
+        
+        }
+
+    }
+    public function destroyRol(Request $request){
+        OrganizationsRol::destroy($request->delete_id);
+        return back()->with('status', '¡Rol eliminado correctamente!');
     }
 
   

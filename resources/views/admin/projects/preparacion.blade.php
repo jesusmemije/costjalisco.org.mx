@@ -135,7 +135,7 @@ $ambiental->fecharealizacionAmbiental='';
   <form>
 
     <label for="">Descripción</label>
-    <input type="text" class="form-control" name="descripcionAmbiental" value="{{old('descripcionAmbiental',$project->descripcionAmbiental)}}">
+    <input maxlength="100 required" type="text" class="form-control" name="descripcionAmbiental" value="{{old('descripcionAmbiental',$project->descripcionAmbiental)}}">
     
     <div class="form-row">
     <div class="form-group col-md-4">
@@ -156,7 +156,7 @@ $ambiental->fecharealizacionAmbiental='';
     
       ?>
 
-     <input class="form-check-input" 
+     <input required class="form-check-input" 
      <?php 
        if($catambiental->id==$project->tipoAmbiental){
         echo "checked";
@@ -176,11 +176,11 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Fecha de realización</label>
-    <input type="date" class="form-control" name="fecharealizacionAmbiental" value="{{old('fecharealizacionAmbiental',$project->fecharealizacionAmbiental)}}">
+    <input required type="date" class="form-control" name="fecharealizacionAmbiental" value="{{old('fecharealizacionAmbiental',$project->fecharealizacionAmbiental)}}">
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input type="text" class="form-control" name="responsableAmbiental" value="{{old('responsableAmbiental',$project->responsableAmbiental)}}">
+    <input maxlength="100" required  type="text" class="form-control" name="responsableAmbiental" value="{{old('responsableAmbiental',$project->responsableAmbiental)}}">
     </div>
     
     </div>
@@ -212,12 +212,12 @@ $ambiental->fecharealizacionAmbiental='';
   <form>
 
     <label for="">Descripción</label>
-    <input type="text" class="form-control" name="descripcionFactibilidad" value="{{old('descripcionFactibilidad',$project->descripcionFactibilidad)}}">
+    <input maxlength="100" required type="text" class="form-control" name="descripcionFactibilidad" value="{{old('descripcionFactibilidad',$project->descripcionFactibilidad)}}">
     
     <div class="form-row">
     <div class="form-group col-md-4">
     <label for="">Estudios de Factibilidad</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2" name="tipoFactibilidad" > 
+    <select required multiple class="form-control" id="exampleFormControlSelect2" name="tipoFactibilidad" > 
     @foreach($catfacs as $catfac)
 
     @if($catfac->id==$project->tipoFactibilidad)
@@ -235,11 +235,11 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Fecha de realización</label>
-    <input type="date" class="form-control" name="fecharealizacionFactibilidad" value="{{old('fecharealizacionFactibilidad',$project->fecharealizacionFactibilidad)}}">
+    <input required type="date" class="form-control" name="fecharealizacionFactibilidad" value="{{old('fecharealizacionFactibilidad',$project->fecharealizacionFactibilidad)}}">
     </div>
     <div class="form-group col-md-4">
-    <label for="">Responsable del estudio</label>
-    <input type="text" class="form-control" name="responsableFactibilidad" value="{{old('responsableFactibilidad',$project->responsableFactibilidad)}}">
+    <label  for="">Responsable del estudio</label>
+    <input maxlength="100 required type="text" class="form-control" name="responsableFactibilidad" value="{{old('responsableFactibilidad',$project->responsableFactibilidad)}}">
     </div>
     
     </div>
@@ -271,12 +271,12 @@ $ambiental->fecharealizacionAmbiental='';
   <form>
 
     <label for="">Descripción</label>
-    <input type="text" class="form-control" name="descripcionImpacto" value="{{old('descripcionImpacto',$project->descripcionImpacto)}}">
+    <input maxlength="100 required type="text" class="form-control" name="descripcionImpacto" value="{{old('descripcionImpacto',$project->descripcionImpacto)}}">
     
     <div class="form-row">
     <div class="form-group col-md-4">
     <label for="">Estudios de Impacto en el terreno y asentamientos </label>
-    <select multiple class="form-control" id="exampleFormControlSelect2" name="tipoImpacto"> 
+    <select required multiple class="form-control" id="exampleFormControlSelect2" name="tipoImpacto"> 
     
    
     @foreach($catimpactos as $impacto)
@@ -297,11 +297,11 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="form-group col-md-4">
     <label for="">Fecha de realización</label>
     
-    <input type="date" class="form-control" name="fecharealizacionImpacto" value="{{old('fecharealizacionImpacto',$project->fecharealizacionimpacto)}}">
+    <input required type="date" class="form-control" name="fecharealizacionImpacto" value="{{old('fecharealizacionImpacto',$project->fecharealizacionimpacto)}}">
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input type="text" class="form-control" name="responsableImpacto" value="{{old('responsableImpacto',$project->responsableImpacto)}}">
+    <input maxlength="100 required type="text" class="form-control" name="responsableImpacto" value="{{old('responsableImpacto',$project->responsableImpacto)}}">
     </div>
     
     </div>
@@ -345,7 +345,7 @@ $ambiental->fecharealizacionAmbiental='';
     <label for="">Origen del recurso</label>
     
     
-    <select id="" class="form-control" multiple name="origenrecurso">
+    <select required id="" class="form-control" multiple name="origenrecurso">
     @foreach($catorigenrecurso as $origen)
    
     @if($origen->id==$project->description)
@@ -360,7 +360,7 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Fondo o fuente de financiamiento y partida presupuestal</label>
-    <input type="text" class="form-control" name="fuenterecurso" value="{{old('fuenterecurso',$project->sourceParty_name)}}">
+    <input required type="text" class="form-control" name="fuenterecurso" value="{{old('fuenterecurso',$project->sourceParty_name)}}">
     </div>
     <div class="form-group col-md-4">
     <label for="">Fecha de aprobación del monto de recurso autorizado</label>
@@ -375,7 +375,7 @@ $ambiental->fecharealizacionAmbiental='';
       }
    
       ?>
-    <input type="date" class="form-control" name="fecharecurso" value="{{old('fecharecurso',$date)}}">
+    <input required type="date" class="form-control" name="fecharecurso" value="{{old('fecharecurso',$date)}}">
     </div>
     
     </div>
