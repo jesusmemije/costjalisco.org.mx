@@ -1,14 +1,13 @@
 @extends('front.layouts.app')
 
 @section('title')
-    Login
+Login
 @endsection
 
 @section('content')
 
 <style>
-
-    .container-fluid{
+    .container-fluid {
         background-color: #deedf1;
         margin-top: 2%;
     }
@@ -75,28 +74,28 @@
                     <div class="input-group inp">
                         <span class="input-group-append" style="background-color:#fff;">
                             <div class="input-group-text bg-transparent" style="border-right: 0;"><span class='icon'>
-                            <img src="assets/img/login/inp1.png" height="20" alt=""></div>
+                                    <img src="assets/img/login/inp1.png" height="20" alt=""></div>
                         </span>
-                        <input placeholder="jonhsmit@mail.com" style="border-left: 0" name="email" type="email"
-                            class="form-control" required autofocus>
+                        <input placeholder="jonhsmit@mail.com" style="border-left: 0" name="email" type="email" class="form-control @error('email') is-invalid @enderror" required autofocus>
+
                     </div>
                     <div class="input-group inp">
                         <span class="input-group-append" style="background-color:#fff;">
-                            <div class="input-group-text bg-transparent" style="border-right: 0;"><img
-                                    src="assets/img/login/inp2.png" height="20" alt="">
+                            <div class="input-group-text bg-transparent" style="border-right: 0;"><img src="assets/img/login/inp2.png" height="20" alt="">
                             </div>
                         </span>
-                        <input placeholder="**********" style="border-left: 0" name="password" class="form-control inp"
-                            type="password" required autocomplete="current-password">
+                        <input placeholder="**********" style="border-left: 0" name="password" class="form-control inp  @error('email') is-invalid @enderror" type="password" required autocomplete="current-password">
                     </div>
+                    @error('email')
+                    <div class="invalid-feedback" style="display: block !important;">{{ $message }}</div>
+                    @enderror
                     <a style="color: #9a9a9a;" href="{{ route('password.request') }}">¿olvidaste la contraseña?</a><br>
                     <a style="color: #9a9a9a;" href="">¿no eres miembro aún?</a><br>
-                    <button class="btn sub" type="submit"
-                        style="font-weight:600; margin-top:5%; background-color:#2c4143; color:#fff;">ACEPTAR</button>
+                    <button class="btn sub" type="submit" style="font-weight:600; margin-top:5%; background-color:#2c4143; color:#fff;">ACEPTAR</button>
                 </form>
             </div>
 
-            @include('admin.layouts.partials.validation-error')
+
         </div>
     </div>
 </div>

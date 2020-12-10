@@ -45,11 +45,17 @@ class ProjectController extends Controller
         $projects=DB::table('project')
         ->join('project_organizations','project.id','=','project_organizations.id_project')
         ->join('organization','project_organizations.id_organization','=','organization.id')
-        ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->leftJoin('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
         ->join('doproject','project.id','=','doproject.id_project')
         ->where('doproject.id_user','=',$id_user)
         ->select('project.*','project.id as id_project','organization.name  as orgname','proyecto_finalizacion.costofinalizacion as budget_amount')
         ->get();
+
+      // $projects=Project::all()
+      // ->select('project.id as id_project');
+
+      // print_r($projects);
+   
 
         if(empty($projects[0])){
 
@@ -58,7 +64,6 @@ class ProjectController extends Controller
             ->join('project_organizations','project.id','=','project_organizations.id_project')
             ->join('organization','project_organizations.id_organization','=','organization.id')
             ->join('doproject','project.id','=','doproject.id_project')
-            
             ->where('doproject.id_user','=',$id_user)
             ->select('project.*','project.id as id_project','organization.name  as orgname')
             ->get();   
@@ -1175,15 +1180,17 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+
     
         $project = Project::find($id);
 
-    
+        
        
 
         if(!empty($project))
         {       
 
+         
 
         $project_documents=ProjectDocuments::where('id_project','=',$id)
         ->get();
@@ -1192,10 +1199,6 @@ class ProjectController extends Controller
             Documents::destroy($document->id);
         }
        
-        
-       
-        //uso first en vez de get() porque get me retorna un array...
-
     
         $project_locations = ProjectLocations::where('id_project','=',$id)
         ->first();
@@ -1225,7 +1228,7 @@ class ProjectController extends Controller
         else
         {     
             return back()->with('status', '¡Proyecto no encontrado!');
-            echo "no data";
+           
         }
       
 

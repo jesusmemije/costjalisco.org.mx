@@ -22,7 +22,7 @@ class CreateEstudiosfactibilidadTable extends Migration
             $table->foreign('tipoFactibilidad')->references('id')->on('catfac')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcionFactibilidad',100)->nullable();
             $table->date('fecharealizacionFactibilidad',0);
-            $table->string('responsableFactibilidad',100);
+            $table->string('responsableFactibilidad',50);
             $table->timestamps();
         });
     }

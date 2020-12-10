@@ -145,10 +145,19 @@
 
      <label for="imgOrg">Logotipo de la organización</label>
     
-
+   
    
     <div class="cardfile" >
-    <input type="file" name="imgOrg"  class="dropify"  data-height="200" data-default-file="{{asset($ruta)}}"/>
+  <?php
+
+  if(empty($ruta)){
+    $ruta="";
+  }else{
+    $ruta=asset($ruta);
+  }
+  ?>
+
+    <input type="file" name="imgOrg"  class="dropify"  data-height="200" data-default-file="<?php echo $ruta;  ?>" />
           
     </div>
 
