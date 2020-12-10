@@ -119,12 +119,14 @@
 
         <div class="collapse show" id="collapseCardExample1">
           <div class="card-body">
+          
 
+            <!---
             <label for="descripcion">Descripción</label>
-            <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
-           
+            <input  type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
+           -->
             <label for="nombreresponsable">Nombre de la persona que registra el proyecto</label>
-            <input type="text" name="nombreresponsable" id="nombreresponsable" class="form-control @error('nombreresponsable') is-invalid @enderror" value="{{old('nombreresponsable',$generaldata->responsable)}}">
+            <input required maxlength="50" type="text" name="nombreresponsable" id="nombreresponsable" class="form-control @error('nombreresponsable') is-invalid @enderror" value="{{old('nombreresponsable',$generaldata->responsable)}}">
             @error('nombreresponsable')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
