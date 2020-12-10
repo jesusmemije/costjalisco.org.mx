@@ -43,13 +43,15 @@
                     <div class="form-row">
 
 
-
+   <!---
                         <div class="form-group col-md-6">
+                        
                             <label  for="descripcion">Descripción</label>
 
                             <textarea maxlength="100" required name="descripcion" id="descripcion" class="form-control" name='descripcion' cols="30" rows="4">{{old('descripcion',$project->descripcion)}}</textarea>
 
                         </div>
+                           -->
                         <div class="form-group col-md-6">
                             <div class="form-row">
                                 <div class="col-md-12">

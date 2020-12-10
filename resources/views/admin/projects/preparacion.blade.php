@@ -133,10 +133,10 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="card-body">
     
   <form>
-
+<!--
     <label for="">Descripción</label>
     <input maxlength="100 required" type="text" class="form-control" name="descripcionAmbiental" value="{{old('descripcionAmbiental',$project->descripcionAmbiental)}}">
-    
+    --->
     <div class="form-row">
     <div class="form-group col-md-4">
     <label for="">Estudios de Impacto Ambiental</label>
@@ -210,10 +210,10 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="card-body">
     
   <form>
-
+   <!---
     <label for="">Descripción</label>
     <input maxlength="100" required type="text" class="form-control" name="descripcionFactibilidad" value="{{old('descripcionFactibilidad',$project->descripcionFactibilidad)}}">
-    
+    -->
     <div class="form-row">
     <div class="form-group col-md-4">
     <label for="">Estudios de Factibilidad</label>
@@ -269,10 +269,10 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="card-body">
     
   <form>
-
+      <!--
     <label for="">Descripción</label>
     <input maxlength="100 required type="text" class="form-control" name="descripcionImpacto" value="{{old('descripcionImpacto',$project->descripcionImpacto)}}">
-    
+    --->
     <div class="form-row">
     <div class="form-group col-md-4">
     <label for="">Estudios de Impacto en el terreno y asentamientos </label>

@@ -122,7 +122,7 @@ class OrganizationsController extends Controller
             
             }
 
-      //  return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
+       return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
 
     }
 

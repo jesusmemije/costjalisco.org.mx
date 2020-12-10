@@ -161,6 +161,7 @@ class ProjectController extends Controller
       
      }
      public function editidentificacion($id){
+        
         $p=Project::find($id);
         if(!empty($p)){
        
@@ -168,7 +169,7 @@ class ProjectController extends Controller
         $types=ProjectType::all();
         $documentstype=DocumentType::all();
         $autoridadPublica = Organization::all();
-
+           
         $documents=DB::table('project')
         ->join('project_documents','project.id','=','project_documents.id_project')
         ->join('documents','project_documents.id_document','=','documents.id')
@@ -177,6 +178,7 @@ class ProjectController extends Controller
         ->select('documents.url','documents.id')
         ->get();
 
+        
       
       
         $data_project=DB::table('project')
@@ -187,6 +189,9 @@ class ProjectController extends Controller
         'address.locality','address.region','address.postalCode','address.countryName')
         ->where('project.id','=',$id)
         ->first();
+      
+
+      
 
         $generaldata=DB::table('generaldata')
         ->where('id_project','=',$id)->first();
@@ -210,6 +215,7 @@ class ProjectController extends Controller
          
          ]);
         }else{
+            print_r("d");
             return redirect()->route('project.identificacion');
         }
      }

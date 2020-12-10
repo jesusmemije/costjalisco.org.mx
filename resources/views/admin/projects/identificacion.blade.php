@@ -1,6 +1,7 @@
 @extends("admin.layouts.app")
 
 
+
 @section('content')
 
 @include('admin.projects.phasesnav')
@@ -96,7 +97,6 @@
 @endsection
 
 
-
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   <br>
 
@@ -117,10 +117,10 @@
 
         <div class="collapse show" id="collapseCardExample1">
           <div class="card-body">
-
+            <!---
             <label for="descripcion">Descripción</label>
             <input required maxlength="100" type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
-
+            --->
             <label for="nombreresponsable">Nombre de la persona que registra el proyecto</label>
             <input required maxlength="100" type="text" name="nombreresponsable" id="nombreresponsable" class="form-control" value="{{old('nombreresponsable',$generaldata->responsable)}}">
 
@@ -577,4 +577,4 @@
 
 @section('scripts')
 
-@endsection3
+@endsection
