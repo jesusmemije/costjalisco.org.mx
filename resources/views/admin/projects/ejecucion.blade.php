@@ -22,11 +22,14 @@
             @csrf
             <input type="hidden" value="{{$project->id}}" name="id_project">
             <div class="form-row">
+                 <!--
                 <div class="form-group col-md-4">
-
+                   
                     <label for="descripcion">Descripción</label>
                     <input id="descripcion" type="text" class="form-control" name='descripcion' value="{{old('descripcion',$project->descripcion)}}" placeholder="Descripción (opcional)">
+
                 </div>
+                -->
                 <div class="form-group col-md-4">
                     <label for="">Variaciones en el precio del contrato</label>
                     <input type="text" class="form-control-sm form-control @error('variacionespreciocontrato') is-invalid @enderror" name="variacionespreciocontrato" value="{{old('variacionespreciocontrato',$project->variacionespreciocontrato)}}">

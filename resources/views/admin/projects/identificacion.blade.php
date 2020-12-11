@@ -185,7 +185,7 @@
                 <label for="tituloProyecto">
                   Título del proyecto
                 </label>
-                <input required maxlength="50" placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
+                <input required maxlength="255" placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
                  @error('tituloProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -206,7 +206,7 @@
                 <label for="descripcionProyecto">
                   Descripción
                 </label>
-                <textarea required maxlength="50" placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
+                <textarea required maxlength="255" placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->descripcionProyecto}}</textarea>
                 @error('descripcionProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -236,7 +236,7 @@
             <label for="propositoProyecto">
               Próposito
             </label>
-            <input required maxlength="50" placeholder="Objetivo del proyecto" type="text" class="form-control @error('propositoProyecto') is-invalid @enderror" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
+            <input required maxlength="100" placeholder="Objetivo del proyecto" type="text" class="form-control @error('propositoProyecto') is-invalid @enderror" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
              @error('propositoProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -297,8 +297,11 @@
             @enderror
 
             </div>
-
+            @error('lat')
+            <div class="invalid-feedback" style="display: block;">Debe seleccionar al menos un lugar en el mapa.</div>
+            @enderror
             <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
+        
 
             <!-- buscador 
             <div class="pac-card col-md-4" id="pac-card">
@@ -349,9 +352,9 @@
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-2">
                 <label  for="postalCode">Código Postal </label>
-                <input required maxlength="50" type="text" id="postalCode" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{old('postalCode',$project->postalCode)}}">
+                <input required minlength="5" maxlength="5" type="text" id="postalCode" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{old('postalCode',$project->postalCode)}}">
                  @error('postalCode')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror

@@ -167,7 +167,7 @@ $ambiental->fecharealizacionAmbiental='';
         echo "checked";
       }
      ?>
-     type="radio" name="tipoAmbiental" value="{{$catambiental->id}}" id="defaultCheck1">
+     type="radio" name="tipoAmbiental" required value="{{$catambiental->id}}" id="defaultCheck1">
   <label class="form-check-label" for="defaultCheck1">
     {{$catambiental->titulo}}
   </label>
@@ -221,17 +221,18 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="card-body">
     
   <form>
-
+      <!--
     <label for="">Descripción</label>
     <input required maxlength="100" type="text" class="form-control @error('descripcionFactibilidad') is-invalid @enderror" name="descripcionFactibilidad" value="{{old('descripcionFactibilidad',$project->descripcionFactibilidad)}}">
     @error('descripcionFactibilidad')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
+    -->
     
     <div class="form-row">
     <div class="form-group col-md-4">
     <label for="">Estudios de Factibilidad</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2" name="tipoFactibilidad" > 
+    <select required multiple class="form-control" id="exampleFormControlSelect2" name="tipoFactibilidad" > 
     @foreach($catfacs as $catfac)
 
     @if($catfac->id==$project->tipoFactibilidad)
@@ -283,14 +284,14 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="card-body">
     
   <form>
-
+   <!--
     <label for="">Descripción</label>
     <input required maxlength="100" type="text" class="form-control" name="descripcionImpacto" value="{{old('descripcionImpacto',$project->descripcionImpacto)}}">
-    
+    -->
     <div class="form-row">
     <div class="form-group col-md-4">
     <label for="">Estudios de Impacto en el terreno y asentamientos </label>
-    <select multiple class="form-control" id="exampleFormControlSelect2" name="tipoImpacto"> 
+    <select required multiple class="form-control" id="exampleFormControlSelect2" name="tipoImpacto"> 
     
    
     @foreach($catimpactos as $impacto)
@@ -364,7 +365,7 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="form-group col-md-4">
     <label for="">Origen del recurso</label>
     
-    <select id="" class="form-control" multiple name="origenrecurso">
+    <select required id="" class="form-control" multiple name="origenrecurso">
     @foreach($catorigenrecurso as $origen)
    
     @if($origen->id==$project->description)

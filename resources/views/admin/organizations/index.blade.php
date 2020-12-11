@@ -1,6 +1,3 @@
-<script>
-  show();
-</script>
 @extends("admin.layouts.app")
 @section('title')
     Organizaciones

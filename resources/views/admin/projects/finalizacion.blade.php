@@ -29,6 +29,7 @@
             @csrf
             <input type="hidden" value="{{$project->id}}" name="id_project">
             <div class="form-row">
+                <!--
                 <div class="form-group col-md-4">
 
                     <label for="descripcion">Descripción</label>
@@ -37,6 +38,8 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+-->
 
                 <div class="form-group col-md-2">
                     <label for="">Costo de finalización</label>

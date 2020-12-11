@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\ProjectStatus;
 use App\Models\ProjectSector;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestIdentificacion;
 use App\Models\Project;
 use App\Models\Period;
 use App\Models\ProjectType;
@@ -45,10 +46,10 @@ class ProjectController extends Controller
         $projects=DB::table('project')
         ->join('project_organizations','project.id','=','project_organizations.id_project')
         ->join('organization','project_organizations.id_organization','=','organization.id')
-        ->leftJoin('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->leftJoin('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('doproject','project.id','=','doproject.id_project')
         ->where('doproject.id_user','=',$id_user)
-        ->select('project.*','project.id as id_project','organization.name  as orgname','proyecto_finalizacion.costofinalizacion as budget_amount')
+        ->select('project.*','project.id as id_project','organization.name  as orgname','proyecto_contratacion.montocontrato as montocontrato')
         ->get();
 
       // $projects=Project::all()
@@ -185,7 +186,7 @@ class ProjectController extends Controller
         ->join('project_locations','project.id','=','project_locations.id_project')
         ->join('locations','project_locations.id_location','=','locations.id')
         ->join('address','locations.id_address','=','address.id')
-        ->select('project.*','locations.lat','locations.lng','address.streetAddress',
+        ->select('project.*','project.description as descripcionProyecto','locations.lat','locations.lng','locations.description as description','address.streetAddress',
         'address.locality','address.region','address.postalCode','address.countryName')
         ->where('project.id','=',$id)
         ->first();
@@ -967,17 +968,19 @@ class ProjectController extends Controller
         $fecha_in = date('Y-m-d');
         
         $request->validate([
+            'tipoAmbiental'=>'required',
         'fecharealizacionAmbiental'=>'required|max:50',
         'responsableAmbiental'=>'required|max:50',
             
-        'descripcionFactibilidad'=>'required|max:100',
+            'tipoFactibilidad'=>'required',
         'fecharealizacionFactibilidad'=>'required|max:50',
         'responsableFactibilidad'=>'required|max:50',
 
-        'descripcionImpacto'=>'required|max:100',
+        'tipoImpacto'=>'required',
         'fecharealizacionImpacto'=>'required|max:50',
         'responsableImpacto'=>'required|max:50',
 
+        'origenrecurso'=>'required',
         'fuenterecurso'=>'required|max:50',
         'fecharecurso'=>'required|max:50'
         
@@ -1076,7 +1079,7 @@ class ProjectController extends Controller
 
     }
      
-    public function saveidentificacion(Request $request){
+    public function saveidentificacion(RequestIdentificacion $request){
         
         $fecha_in = date('Y-m-d');
         

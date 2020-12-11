@@ -13,7 +13,7 @@
 @section('content')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#"><i class="fas fa-fw fa-home"></i> Inicio</a></li>
+  <li class="breadcrumb-item"><a  href="{{route('dashboard')}}"><i class="fas fa-fw fa-home"></i> Inicio</a></li>
     <li class="breadcrumb-item"><a href="{{route('organizations.index')}}">Organizaciones</a></li>
     <li class="breadcrumb-item active" aria-current="page">Registrar</li>
   </ol>

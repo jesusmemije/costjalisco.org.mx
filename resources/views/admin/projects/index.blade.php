@@ -76,8 +76,8 @@
                 <td>{{ $project->updated}}</td>
                 <td>{{$status}}</td>
                 <td>
-                @if(!empty($project->budget_amount))
-                {{ $project->budget_amount}}</td>
+                @if(!empty($project->montocontrato))
+                {{ $project->montocontrato}}</td>
                 @else
                 <span class="badge badge-info">Sin presupuesto</span>
                 @endif
