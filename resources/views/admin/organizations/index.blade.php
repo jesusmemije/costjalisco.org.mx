@@ -91,7 +91,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>¿Seguro que desea eliminar al usuario <strong><span class="name-user"></span></strong>?</p>
+          <p>¿Seguro que desea eliminar la organizacion: <strong><span class="name-user"></span></strong>?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">

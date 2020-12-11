@@ -10,14 +10,17 @@
       <div class="form-row">
       <div class="form-group col-md-12">
         <label for="name">Nombre de la organización</label>
-        <input type="text" name="name" class="form-control" value="{{ old('name', $organization->orgname) }}">
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $organization->orgname) }}">
+        @error('name')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
       </div>
     </div>
   
     <div class="form-row">
       <div class="form-group col-md-12">
       <label for="name">Rol de la organización</label>
-      <select required name="partyRole" id="" class="form-control">
+      <select required name="partyRole" id="" class="form-control @error('partyRole') is-invalid @enderror">
         <option value="">Selecciona el rol</option>
 
 @foreach($roles as $rol)
@@ -28,10 +31,12 @@
 <option value="{{$rol->id}}">{{$rol->titulo}}</option>
 @endif
 
-
 @endforeach
 
 </select>
+@error('partyRole')
+<div class="invalid-feedback">{{ $message }}</div>
+@enderror
       </div>
     </div>
 
@@ -54,33 +59,46 @@
     <div class="form-row">
       <div class="form-group col-md-6">
       <label>Nombre </label>
-    <input type="text" name="nameContact" class="form-control" value="{{ old('nameContact', $organization->name) }}">
+    <input required maxlength="255" type="text" name="nameContact" class="form-control @error('nameContact') is-invalid @enderror" value="{{ old('nameContact', $organization->name) }}">
+    @error('nameContact')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
       </div>
+
       <div class="form-group col-md-6">
       <label>Email </label>
-    <input type="text" name="emailContact" class="form-control" value="{{ old('emailContact', $organization->email) }}"> 
-    
-      </div>
-      
+    <input required maxlength="50" type="text" name="emailContact" class="form-control @error('emailContact') is-invalid @enderror" value="{{ old('emailContact', $organization->email) }}">
+    @error('emailContact')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror 
+      </div> 
     </div>
 
     <div class="form-row">
-    
       <div class="form-group col-md-6">
       <label>Télefono </label>
-    <input type="text" name="telephone" class="form-control" value="{{ old('telephone', $organization->telephone) }}">
+    <input required maxlength="50" type="text" name="telephone" class="form-control @error('telephone') is-invalid @enderror" value="{{ old('telephone', $organization->telephone) }}">
+    @error('telephone')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
       </div>
       <div class="form-group col-md-6">
       <label>Número de Fax</label>
-    <input type="text" name="faxNumber" class="form-control" value="{{ old('faxNumber', $organization->faxNumber) }}">
+    <input required maxlength="50" type="text" name="faxNumber" class="form-control @error('faxNumber') is-invalid @enderror" value="{{ old('faxNumber', $organization->faxNumber) }}">
+    @error('faxNumber')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
       </div>
     </div>
 
    
     <div class="form-row">
     <div class="form-group col-md-8">
-      <label for="">URL</label>
-    <input type="text" name="url" class="form-control" value="{{ old('url', $organization->url) }}">
+      <label required maxlength="100" for="">URL</label>
+    <input type="text" name="url" class="form-control @error('url') is-invalid @enderror" value="{{ old('url', $organization->url) }}">
+    @error('url')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
       </div>
     </div>
    
@@ -108,17 +126,26 @@
     <div class="form-row">
       <div class="form-group col-md-4">
       <label>Calle </label>
-    <input type="text" name="streetAddress" class="form-control" value="{{ old('streetAddress', $organization->streetAddress) }}">
+    <input required maxlength="50" type="text" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{ old('streetAddress', $organization->streetAddress) }}">
+    @error('streetAddress')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
       </div>
 
       <div class="form-group col-md-4">
       <label>Localidad </label>
-    <input type="text" name="locality" class="form-control" value="{{ old('locality', $organization->locality) }}">
+    <input required maxlength="50" type="text" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{ old('locality', $organization->locality) }}">
+    @error('locality')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
     </div>
     
     <div class="form-group col-md-4">
       <label>Región </label>
-    <input type="text" name="region" class="form-control" value="{{ old('region', $organization->region) }}">
+    <input required maxlength="50" type="text" name="region" class="form-control @error('region') is-invalid @enderror" value="{{ old('region', $organization->region) }}">
+    @error('region')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
     
     </div>
     
@@ -128,11 +155,17 @@
     
       <div class="form-group col-md-4">
       <label>Código Postal </label>
-    <input type="text" name="postalCode" class="form-control" value="{{ old('postalCode', $organization->postalCode) }}">
+    <input required maxlength="50" type="text" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{ old('postalCode', $organization->postalCode) }}">
+    @error('postalCode')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
       </div>
       <div class="form-group col-md-6">
       <label>País</label>
-    <input type="text" name="countryName" class="form-control" value="{{ old('countryName', $organization->countryName  ) }}">
+    <input required maxlength="50" type="text" name="countryName" class="form-control @error('countryName') is-invalid @enderror" value="{{ old('countryName', $organization->countryName  ) }}">
+    @error('countryName')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
       </div>
     </div>
 
@@ -141,7 +174,10 @@
     <div class="form-row">
     <div class="form-group col-md-12">
       <label for="">Descripción del lugar</label>
-    <input type="text" name="description" class="form-control" >
+    <input required maxlength="100" type="text" name="description" class="form-control @error('description') is-invalid @enderror"  value="{{ old('description', $organization->description  ) }}">
+    @error('description')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
 
      <label for="imgOrg">Logotipo de la organización</label>
     
