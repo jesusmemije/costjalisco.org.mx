@@ -89,9 +89,9 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('home.specific_project')}}">Motor de búsqueda</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Georreferenciación</a>
+                            <a class="dropdown-item" href="{{route('home.project_search')}}">Georreferenciación</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Institución Pública</a>
+                            <a class="dropdown-item" href="{{route('home.projects')}}">Institución Pública</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
