@@ -43,7 +43,7 @@
 
                 <div class="form-group col-md-2">
                     <label for="">Costo de finalización</label>
-                    <input type="number" class="form-control @error('costofinalizacion') is-invalid @enderror" name="costofinalizacion" value="{{old('costofinalizacion',$project->costofinalizacion)}}">
+                    <input required maxlength="50" type="number" class="form-control @error('costofinalizacion') is-invalid @enderror" name="costofinalizacion" value="{{old('costofinalizacion',$project->costofinalizacion)}}">
                     @error('costofinalizacion')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -51,7 +51,7 @@
 
                 <div class="form-group col-md-2">
                     <label for="">Fecha de finalización</label>
-                    <input type="date" class="form-control @error('fechafinalizacion') is-invalid @enderror" name="fechafinalizacion" value="{{old('fechafinalizacion',$project->fechafinalizacion)}}">
+                    <input required maxlength="50" type="date" class="form-control @error('fechafinalizacion') is-invalid @enderror" name="fechafinalizacion" value="{{old('fechafinalizacion',$project->fechafinalizacion)}}">
                     @error('fechafinalizacion')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -60,7 +60,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="">Alcance a la finalización</label>
-                    <input type="text" name="alcancefinalizacion" id="" class="form-control @error('alcancefinalizacion') is-invalid @enderror" value="{{old('alcancefinalizacion',$project->alcancefinalizacion)}}">
+                    <input required maxlength="50" type="text" name="alcancefinalizacion" id="" class="form-control @error('alcancefinalizacion') is-invalid @enderror" value="{{old('alcancefinalizacion',$project->alcancefinalizacion)}}">
                     @error('alcancefinalizacion')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -72,7 +72,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="">Razones de cambio en el proyecto</label>
-                    <input name="razonescambioproyecto" type="text" class="form-control @error('razonescambioproyecto') is-invalid @enderror" value="{{old('razonescambioproyecto',$project->razonescambioproyecto)}}">
+                    <input required maxlength="50" name="razonescambioproyecto" type="text" class="form-control @error('razonescambioproyecto') is-invalid @enderror" value="{{old('razonescambioproyecto',$project->razonescambioproyecto)}}">
                     @error('razonescambioproyecto')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -81,7 +81,7 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Referencia a informes de auditoría y evaluación</label>
-                    <input name="referenciainforme" type="file" class="form-control form-control-sm @error('referenciainforme') is-invalid @enderror" value="{{old('referenciainforme',$project->referenciainforme)}}">
+                    <input required maxlength="50" name="referenciainforme" type="file" class="form-control form-control-sm @error('referenciainforme') is-invalid @enderror" value="{{old('referenciainforme',$project->referenciainforme)}}">
                     @error('referenciainforme')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

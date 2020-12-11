@@ -32,7 +32,7 @@
                 -->
                 <div class="form-group col-md-4">
                     <label for="">Variaciones en el precio del contrato</label>
-                    <input type="text" class="form-control-sm form-control @error('variacionespreciocontrato') is-invalid @enderror" name="variacionespreciocontrato" value="{{old('variacionespreciocontrato',$project->variacionespreciocontrato)}}">
+                    <input required maxlength="50" type="text" class="form-control-sm form-control @error('variacionespreciocontrato') is-invalid @enderror" name="variacionespreciocontrato" value="{{old('variacionespreciocontrato',$project->variacionespreciocontrato)}}">
                     @error('variacionespreciocontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -40,7 +40,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="">Razones de cambio en el precio del contrato</label>
-                    <input type="text" class="form-control-sm form-control @error('razonescambiopreciocontrato') is-invalid @enderror" name="razonescambiopreciocontrato" value="{{old('razonescambiopreciocontrato',$project->razonescambiopreciocontrato)}}">
+                    <input required maxlength="50" type="text" class="form-control-sm form-control @error('razonescambiopreciocontrato') is-invalid @enderror" name="razonescambiopreciocontrato" value="{{old('razonescambiopreciocontrato',$project->razonescambiopreciocontrato)}}">
                     @error('razonescambiopreciocontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -51,7 +51,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="">Variaciones en la duración del contrato</label>
-                    <input type="text" class="form-control form-control-sm @error('variacionesduracioncontrato') is-invalid @enderror" name="variacionesduracioncontrato" value="{{old('variacionesduracioncontrato',$project->variacionesduracioncontrato)}}">
+                    <input required maxlength="50" type="text" class="form-control form-control-sm @error('variacionesduracioncontrato') is-invalid @enderror" name="variacionesduracioncontrato" value="{{old('variacionesduracioncontrato',$project->variacionesduracioncontrato)}}">
                     @error('variacionesduracioncontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -59,7 +59,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="">Razones de cambio en la duración del contrato</label>
-                    <input type="text" name="razonescambioduracioncontrato" id="" class="form-control form-control-sm @error('razonescambioduracioncontrato') is-invalid @enderror" value="{{old('razonescambioduracioncontrato',$project->razonescambioduracioncontrato)}}">
+                    <input required maxlength="50" type="text" name="razonescambioduracioncontrato" id="" class="form-control form-control-sm @error('razonescambioduracioncontrato') is-invalid @enderror" value="{{old('razonescambioduracioncontrato',$project->razonescambioduracioncontrato)}}">
                     @error('razonescambioduracioncontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Variaciones en el alcance del contrato</label>
-                    <input name="variacionesalcancecontrato" type="text" class="form-control form-control-sm @error('variacionesalcancecontrato') is-invalid @enderror" value="{{old('variacionesalcancecontrato',$project->variacionesalcancecontrato)}}">
+                    <input required maxlength="50" name="variacionesalcancecontrato" type="text" class="form-control form-control-sm @error('variacionesalcancecontrato') is-invalid @enderror" value="{{old('variacionesalcancecontrato',$project->variacionesalcancecontrato)}}">
                     @error('variacionesalcancecontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -77,7 +77,7 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Razones de cambios en el alcance del contrato</label>
-                    <input name="razonescambiosalcancecontrato" type="text" class="form-control form-control-sm @error('razonescambiosalcancecontrato') is-invalid @enderror" value="{{old('razonescambiosalcancecontrato',$project->razonescambiosalcancecontrato)}}">
+                    <input required maxlength="50" name="razonescambiosalcancecontrato" type="text" class="form-control form-control-sm @error('razonescambiosalcancecontrato') is-invalid @enderror" value="{{old('razonescambiosalcancecontrato',$project->razonescambiosalcancecontrato)}}">
                     @error('razonescambiosalcancecontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -85,7 +85,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="">Aplicación de escalatoria</label>
-                    <input name="aplicacionescalatoria" type="text" class="form-control form-control-sm @error('aplicacionescalatoria') is-invalid @enderror" value="{{old('aplicacionescalatoria',$project->aplicacionescalatoria)}}">
+                    <input required maxlength="50" name="aplicacionescalatoria" type="text" class="form-control form-control-sm @error('aplicacionescalatoria') is-invalid @enderror" value="{{old('aplicacionescalatoria',$project->aplicacionescalatoria)}}">
                     @error('aplicacionesescalatoria')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -96,7 +96,7 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Estado actual del proyecto</label>
-                    <input type="text" class="form-control form-control-sm @error('estadoactualproyecto') is-invalid @enderror" name="estadoactualproyecto" value="{{old('estadoactualproyecto',$project->estadoactualproyecto)}}">
+                    <input required maxlength="50" type="text" class="form-control form-control-sm @error('estadoactualproyecto') is-invalid @enderror" name="estadoactualproyecto" value="{{old('estadoactualproyecto',$project->estadoactualproyecto)}}">
                     @error('estadoactualproyecto')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
