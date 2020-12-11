@@ -1084,6 +1084,7 @@ class ProjectController extends Controller
         $fecha_in = date('Y-m-d');
         
         $request->validate([
+            
             'nombreresponsable'=>'required|max:50',
             'email'=>'required|max:50',
             'organismo'=>'required|max:255',
