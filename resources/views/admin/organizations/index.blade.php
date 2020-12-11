@@ -91,7 +91,11 @@
           </button>
         </div>
         <div class="modal-body">
+<<<<<<< HEAD
           <p>¿Seguro que desea eliminar la organizacion: <strong><span class="name-user"></span></strong>?</p>
+=======
+          <p>¿Seguro que desea eliminar la organización: <strong><span class="name-user"></span></strong>?</p>
+>>>>>>> a6bc6573277d7cfc1baf1489350a66547feb4cf1
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">

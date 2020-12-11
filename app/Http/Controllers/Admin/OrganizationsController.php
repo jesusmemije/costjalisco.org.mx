@@ -172,7 +172,7 @@ class OrganizationsController extends Controller
         ->join('contact_point','organization.id_contact_point','=','contact_point.id')
         ->join('address','organization.id_address','=','address.id')
         ->join('party_role','organization.id_partyRole','=','party_role.id')
-        ->Join('locations','address.id','=','locations.id_address')
+        ->join('locations','address.id','=','locations.id_address')
         ->where('organization.id','=',$organization->id)
         ->select('organization.name as orgname','organization.id as id_organization','contact_point.*','address.*','party_role.id as partyid','locations.description as description')
         ->first();
