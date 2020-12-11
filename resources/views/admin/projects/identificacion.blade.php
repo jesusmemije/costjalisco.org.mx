@@ -133,28 +133,28 @@
 
 
             <label for="email">Correo electrónico (Institucional)</label>
-            <input placeholder="Institucional" type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email',$generaldata->email)}}">
+            <input required maxlength="50" placeholder="Institucional" type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email',$generaldata->email)}}">
             @error('email')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <label for="organismo">Organismo al que pertenece</label>
-            <input type="text" name="organismo" class="form-control @error('organismo') is-invalid @enderror" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
+            <input required maxlength="255" type="text" name="organismo" class="form-control @error('organismo') is-invalid @enderror" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
             @error('organismo')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <label for="puesto">Puesto que desempeña dentro del organismo</label>
-            <input type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
+            <input required maxlength="50" type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
              @error('puesto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <label for="involucrado">En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar</label>
-            <input placeholder="Este archivo es de carácter opcional" type="text" name="involucrado" class="form-control @error('involucrado') is-invalid @enderror" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
+            <input required maxlength="50" placeholder="Este archivo es de carácter opcional" type="text" name="involucrado" class="form-control @error('involucrado') is-invalid @enderror" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
             @error('involucrado')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -185,7 +185,7 @@
                 <label for="tituloProyecto">
                   Título del proyecto
                 </label>
-                <input placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
+                <input required maxlength="50" placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
                  @error('tituloProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -194,7 +194,7 @@
                 <label for="ocid">
                   Número que identifica al proyecto
                 </label>
-                <input placeholder="Número del acto público (ID Entidad)" required id="ocid" type="text" class="form-control @error('ocid') is-invalid @enderror" name="ocid" value="{{old('ocid',$project->ocid)}}">
+                <input required maxlength="50" placeholder="Número del acto público (ID Entidad)" required id="ocid" type="text" class="form-control @error('ocid') is-invalid @enderror" name="ocid" value="{{old('ocid',$project->ocid)}}">
                 @error('ocid')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -206,7 +206,7 @@
                 <label for="descripcionProyecto">
                   Descripción
                 </label>
-                <textarea placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
+                <textarea required maxlength="50" placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->description}}</textarea>
                 @error('descripcionProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -236,7 +236,7 @@
             <label for="propositoProyecto">
               Próposito
             </label>
-            <input placeholder="Objetivo del proyecto" type="text" class="form-control @error('propositoProyecto') is-invalid @enderror" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
+            <input required maxlength="50" placeholder="Objetivo del proyecto" type="text" class="form-control @error('propositoProyecto') is-invalid @enderror" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
              @error('propositoProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -281,7 +281,7 @@
 
 
               <label for="tipoProyecto" class="col-md-2">Tipo de proyecto</label>
-              <select name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6 @error('tipoProyecto') is-invalid @enderror">
+              <select required name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6 @error('tipoProyecto') is-invalid @enderror">
                 <option value="">Seleccione un tipo</option>
                 @foreach($types as $type)
                 @if($type->id==$project->type)
@@ -329,7 +329,7 @@
                 <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
 
                 <label for="streetAddress">Calle </label>
-                <input placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
+                <input required maxlength="50" placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
                  @error('streetAddress')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -337,28 +337,28 @@
               </div>
               <div class="col-lg-6">
                 <label for="locality" >Localidad </label>
-                <input type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
+                <input required maxlength="50" type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
                  @error('locality')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
               <div class="col-lg-6">
                 <label  for="region">Región </label>
-                <input type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
+                <input required maxlength="50" type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
                  @error('region')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
               <div class="col-lg-6">
                 <label  for="postalCode">Código Postal </label>
-                <input type="text" id="postalCode" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{old('postalCode',$project->postalCode)}}">
+                <input required maxlength="50" type="text" id="postalCode" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{old('postalCode',$project->postalCode)}}">
                  @error('postalCode')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
               <div class="col-lg-6">
                 <label  for="countryName">País</label>
-                <input type="text" id="countryName" name="countryName" class="form-control @error('countryName') is-invalid @enderror" value="{{old('countryName',$project->countryName)}}">
+                <input required maxlength="50" type="text" id="countryName" name="countryName" class="form-control @error('countryName') is-invalid @enderror" value="{{old('countryName',$project->countryName)}}">
                  @error('countryName')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -366,7 +366,7 @@
             </div>
 
             <label for="description">Descripción del lugar</label>
-            <textarea name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror">{{$project->description}}</textarea>
+            <textarea required maxlength="50" name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror">{{$project->description}}</textarea>
              @error('description')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror

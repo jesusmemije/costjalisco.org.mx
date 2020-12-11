@@ -32,23 +32,35 @@
                 <div class="form-group col-md-4">
 
                     <label for="descripcion">Descripción</label>
-                    <input id="descripcion" type="text" class="form-control" name='descripcion' value="{{old('descripcion',$project->descripcion)}}" placeholder="Descripción (opcional)">
+                    <input id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name='descripcion' value="{{old('descripcion',$project->descripcion)}}" placeholder="Descripción (opcional)">
+                     @error('descripcion')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="form-group col-md-2">
                     <label for="">Costo de finalización</label>
-                    <input type="number" class="form-control" name="costofinalizacion" value="{{old('costofinalizacion',$project->costofinalizacion)}}">
+                    <input type="number" class="form-control @error('costofinalizacion') is-invalid @enderror" name="costofinalizacion" value="{{old('costofinalizacion',$project->costofinalizacion)}}">
+                    @error('costofinalizacion')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group col-md-2">
                     <label for="">Fecha de finalización</label>
-                    <input type="date" class="form-control" name="fechafinalizacion" value="{{old('fechafinalizacion',$project->fechafinalizacion)}}">
+                    <input type="date" class="form-control @error('fechafinalizacion') is-invalid @enderror" name="fechafinalizacion" value="{{old('fechafinalizacion',$project->fechafinalizacion)}}">
+                    @error('fechafinalizacion')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="">Alcance a la finalización</label>
-                    <input type="text" name="alcancefinalizacion" id="" class="form-control" value="{{old('alcancefinalizacion',$project->alcancefinalizacion)}}">
-
-
+                    <input type="text" name="alcancefinalizacion" id="" class="form-control @error('alcancefinalizacion') is-invalid @enderror" value="{{old('alcancefinalizacion',$project->alcancefinalizacion)}}">
+                    @error('alcancefinalizacion')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -57,13 +69,19 @@
 
                 <div class="form-group col-md-6">
                     <label for="">Razones de cambio en el proyecto</label>
-                    <input name="razonescambioproyecto" type="text" class="form-control" value="{{old('razonescambioproyecto',$project->razonescambioproyecto)}}">
+                    <input name="razonescambioproyecto" type="text" class="form-control @error('razonescambioproyecto') is-invalid @enderror" value="{{old('razonescambioproyecto',$project->razonescambioproyecto)}}">
+                    @error('razonescambioproyecto')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group col-md-4">
 
                     <label for="">Referencia a informes de auditoría y evaluación</label>
-                    <input name="referenciainforme" type="file" class="form-control form-control-sm" value="{{old('referenciainforme',$project->referenciainforme)}}">
+                    <input name="referenciainforme" type="file" class="form-control form-control-sm @error('referenciainforme') is-invalid @enderror" value="{{old('referenciainforme',$project->referenciainforme)}}">
+                    @error('referenciainforme')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
 
 
 

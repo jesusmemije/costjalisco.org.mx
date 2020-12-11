@@ -809,6 +809,16 @@ class ProjectController extends Controller
      }
      public function savefinalizacion(Request $request){
         
+        $request->validate([
+            
+            'descripcion'=>'max:50',
+            'costofinalizacion'=>'max:50',
+            'fechafinalizacion'=>'max:50',
+            'alcancefinalizacion'=>'max:50',
+            'razonescambioproyecto'=>'max:50',
+            'referenciainforme'=>'max:50',
+            
+        ]);
 
          $proyecto_finalizacion=DB::table('proyecto_finalizacion')
          ->insert([
@@ -840,6 +850,18 @@ class ProjectController extends Controller
      }
      public function saveejecucion(Request $request){
 
+       $request->validate([
+        'variacionespreciocontrato'=>'max:50',
+        'razonescambiopreciocontrato'=>'max:50',
+        'variacionesduracioncontrato'=>'max:50',
+        'razonescambioduracioncontrato'=>'max:50',
+        'variacionesalcancecontrato'=>'max:50',
+
+        'razonescambiosalcancecontrato'=>'max:50',
+        'aplicacionescalatoria'=>'max:50',
+        'estadoactualproyecto'=>'max:50',
+
+        ]);  
      
         
         $proyecto_ejecucion=DB::table('proyecto_ejecucion')
@@ -867,6 +889,34 @@ class ProjectController extends Controller
      }
 
     public function savecontratacion(Request $request){
+
+        $request->validate([
+        
+        'datosdecontacto'=>'required|max:50',
+        'fechapublicacion'=>'required|max:50',
+            
+        'entidadadjudicacion'=>'required|max:50',
+        'nombreresponsable'=>'required|max:50',
+        'modalidadadjudicacion'=>'required|max:50',
+
+        'tipocontrato'=>'required|max:50',
+        'modalidadcontrato'=>'required|max:50',
+        'estadoactual'=>'required|max:50',
+
+        'empresasparticipantes'=>'required|max:250',
+        'entidad_admin_contrato'=>'required|max:50',
+
+        'titulocontrato'=>'required|max:50',
+        'empresacontratada'=>'required|max:50',
+        'viapropuesta'=>'required|max:50',
+
+        'fechapresentacionpropuesta'=>'required|max:50',
+        'montocontrato'=>'required|max:50',
+        'alcancecontrato'=>'required|max:50',
+        'fechainiciocontrato'=>'required|max:50',
+        'duracionproyecto_contrato'=>'required|max:50',
+        
+        ]);
        
         $procedimiento_contratacion=DB::table('proyecto_contratacion')
         ->insert([
@@ -915,7 +965,23 @@ class ProjectController extends Controller
     public function savepreparacion(Request $request){
        
         $fecha_in = date('Y-m-d');
-       
+        
+        $request->validate([
+        'fecharealizacionAmbiental'=>'required|max:50',
+        'responsableAmbiental'=>'required|max:50',
+            
+        'descripcionFactibilidad'=>'required|max:100',
+        'fecharealizacionFactibilidad'=>'required|max:50',
+        'responsableFactibilidad'=>'required|max:50',
+
+        'descripcionImpacto'=>'required|max:100',
+        'fecharealizacionImpacto'=>'required|max:50',
+        'responsableImpacto'=>'required|max:50',
+
+        'fuenterecurso'=>'required|max:50',
+        'fecharecurso'=>'required|max:50'
+        
+        ]);
       
       
 
@@ -1013,15 +1079,32 @@ class ProjectController extends Controller
     public function saveidentificacion(Request $request){
         
         $fecha_in = date('Y-m-d');
-        /*
+        
         $request->validate([
-            'title'=>'required',
-            'ocid'=>'required'
+            'nombreresponsable'=>'required|max:50',
+            'email'=>'required|max:50',
+            'organismo'=>'required|max:255',
+            'puesto'=>'required|max:50',
+            'involucrado'=>'required|max:50',
+
+            'tituloProyecto'=>'required|max:50',
+            'ocid'=>'required|max:50',
+            'descripcionProyecto'=>'required|max:50',
+            'autoridadP'=>'required|max:50',
+            'propositoProyecto'=>'required|max:50',
+            'sectorProyecto'=>'required|max:50',
+            'subsector'=>'required|max:50',
+            'tipoProyecto'=>'required|max:50',
+
+            'streetAddress'=>'required|max:50',
+            'locality'=>'required|max:50',
+            'region'=>'required|max:50',
+            'postalCode'=>'required|max:50',
+            'countryName'=>'required|max:50',
+            'description'=>'required|max:50'
 
         ]);
-       */
-     // $request->validate();
-        
+    
             
         $project = new Project();
         $project->ocid = $request->ocid;

@@ -134,11 +134,13 @@ $ambiental->fecharealizacionAmbiental='';
     
   <form>
 
+<!--
     <label for="">Descripción</label>
     <input type="text" class="form-control @error('descripcionAmbiental') is-invalid @enderror" name="descripcionAmbiental" value="{{old('descripcionAmbiental',$project->descripcionAmbiental)}}">
     @error('descripcionAmbiental')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
+  -->
     
     <div class="form-row">
     <div class="form-group col-md-4">
@@ -179,14 +181,14 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Fecha de realización</label>
-    <input type="date" class="form-control @error('fecharealizacionAmbiental') is-invalid @enderror" name="fecharealizacionAmbiental" value="{{old('fecharealizacionAmbiental',$project->fecharealizacionAmbiental)}}">
+    <input required maxlength="50" type="date" class="form-control @error('fecharealizacionAmbiental') is-invalid @enderror" name="fecharealizacionAmbiental" value="{{old('fecharealizacionAmbiental',$project->fecharealizacionAmbiental)}}">
     @error('fecharealizacionAmbiental')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input type="text" class="form-control @error('responsableAmbiental') is-invalid @enderror" name="responsableAmbiental" value="{{old('responsableAmbiental',$project->responsableAmbiental)}}">
+    <input required maxlength="50" type="text" class="form-control @error('responsableAmbiental') is-invalid @enderror" name="responsableAmbiental" value="{{old('responsableAmbiental',$project->responsableAmbiental)}}">
     @error('responsableAmbiental')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -221,7 +223,7 @@ $ambiental->fecharealizacionAmbiental='';
   <form>
 
     <label for="">Descripción</label>
-    <input type="text" class="form-control @error('descripcionFactibilidad') is-invalid @enderror" name="descripcionFactibilidad" value="{{old('descripcionFactibilidad',$project->descripcionFactibilidad)}}">
+    <input required maxlength="100" type="text" class="form-control @error('descripcionFactibilidad') is-invalid @enderror" name="descripcionFactibilidad" value="{{old('descripcionFactibilidad',$project->descripcionFactibilidad)}}">
     @error('descripcionFactibilidad')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -247,26 +249,20 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Fecha de realización</label>
-    <input type="date" class="form-control @error('fecharealizacionFactibilidad') is-invalid @enderror" name="fecharealizacionFactibilidad" value="{{old('fecharealizacionFactibilidad',$project->fecharealizacionFactibilidad)}}">
+    <input required maxlength="50" type="date" class="form-control @error('fecharealizacionFactibilidad') is-invalid @enderror" name="fecharealizacionFactibilidad" value="{{old('fecharealizacionFactibilidad',$project->fecharealizacionFactibilidad)}}">
     @error('fecharealizacionFactibilidad')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input type="text" class="form-control @error('responsableFactibilidad') is-invalid @enderror" name="responsableFactibilidad" value="{{old('responsableFactibilidad',$project->responsableFactibilidad)}}">
+    <input required maxlength="50" type="text" class="form-control @error('responsableFactibilidad') is-invalid @enderror" name="responsableFactibilidad" value="{{old('responsableFactibilidad',$project->responsableFactibilidad)}}">
     @error('responsableFactibilidad')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
     
     </div>
-
-
-
-  
-  
-
 
 </div>
 
@@ -289,7 +285,7 @@ $ambiental->fecharealizacionAmbiental='';
   <form>
 
     <label for="">Descripción</label>
-    <input type="text" class="form-control" name="descripcionImpacto" value="{{old('descripcionImpacto',$project->descripcionImpacto)}}">
+    <input required maxlength="100" type="text" class="form-control" name="descripcionImpacto" value="{{old('descripcionImpacto',$project->descripcionImpacto)}}">
     
     <div class="form-row">
     <div class="form-group col-md-4">
@@ -315,14 +311,14 @@ $ambiental->fecharealizacionAmbiental='';
     <div class="form-group col-md-4">
     <label for="">Fecha de realización</label>
     
-    <input type="date" class="form-control @error('fecharealizacionImpacto') is-invalid @enderror" name="fecharealizacionImpacto" value="{{old('fecharealizacionImpacto',$project->fecharealizacionimpacto)}}">
+    <input required maxlength="50" type="date" class="form-control @error('fecharealizacionImpacto') is-invalid @enderror" name="fecharealizacionImpacto" value="{{old('fecharealizacionImpacto',$project->fecharealizacionimpacto)}}">
     @error('fecharealizacionImpacto')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input type="text" class="form-control @error('responsableImpacto') is-invalid @enderror" name="responsableImpacto" value="{{old('responsableImpacto',$project->responsableImpacto)}}">
+    <input required maxlength="50" type="text" class="form-control @error('responsableImpacto') is-invalid @enderror" name="responsableImpacto" value="{{old('responsableImpacto',$project->responsableImpacto)}}">
     @error('responsableImpacto')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -383,7 +379,7 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Fondo o fuente de financiamiento y partida presupuestal</label>
-    <input type="text" class="form-control @error('fuenterecurso') is-invalid @enderror" name="fuenterecurso" value="{{old('fuenterecurso',$project->sourceParty_name)}}">
+    <input required maxlength="50" type="text" class="form-control @error('fuenterecurso') is-invalid @enderror" name="fuenterecurso" value="{{old('fuenterecurso',$project->sourceParty_name)}}">
     @error('fuenterecurso')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -401,7 +397,7 @@ $ambiental->fecharealizacionAmbiental='';
       }
    
       ?>
-    <input type="date" class="form-control @error('fecharecurso') is-invalid @enderror" name="fecharecurso" value="{{old('fecharecurso',$date)}}">
+    <input required maxlength="50" type="date" class="form-control @error('fecharecurso') is-invalid @enderror" name="fecharecurso" value="{{old('fecharecurso',$date)}}">
     @error('fecharecurso')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
