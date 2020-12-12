@@ -56,10 +56,11 @@ Home
     </div>
 
     <!-- Btn Agenda -->
-    <div class="btn-agenda">
+    <!--
+ <div class="btn-agenda">
         <img src="{{ asset('assets/img/home/btn-eventos.png') }}" onclick="showEventosAgenda()" class="img-fluid"
             style="cursor: pointer;" alt="Agenda CoST Jalisco">
-    </div>
+    </div> 
     
     <div id="panel-oculto" class="container-aventos-agenda">
         <img src="{{ asset('assets/img/home/eventos-agenda.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
@@ -96,7 +97,7 @@ Home
             </div>
         </div>
     </div>
-
+-->
     <!-- Título - Nosotros -->
     <div class="container">
         <div class="row">
