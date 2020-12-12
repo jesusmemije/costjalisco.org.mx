@@ -715,6 +715,15 @@ class ProjectController extends Controller
        
      }
     public function updatecontratacion(Request $request){
+
+        $request->validate([
+            
+            'fechapublicacion'=>'required|date|before:fechapresentacionpropuesta',
+            'fechapresentacionpropuesta'=>'required|date|before:fechainiciocontrato|after:fechapublicacion',
+            'fechainiciocontrato'=>'required|date|after:fechapresentacionpropuesta|fechapublicacion',
+            
+        ]);
+
         
         $procedimiento_contratacion=DB::table('proyecto_contratacion')
         ->where('id_project','=',$request->id_project)
@@ -722,6 +731,7 @@ class ProjectController extends Controller
             'id_project'=>$request->id_project,
             'descripcion'=>$request->descripcion,
             'fechapublicacion'=>$request->fechapublicacion,
+            
             'entidadadjudicacion'=>$request->entidadadjudicacion,
             'datosdecontacto'=>$request->datosdecontacto,
             'nombreresponsable'=>$request->nombreresponsable,
