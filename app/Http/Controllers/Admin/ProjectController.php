@@ -718,9 +718,9 @@ class ProjectController extends Controller
 
         $request->validate([
             
-            'fechapublicacion'=>'required|date|before:fechapresentacionpropuesta',
-            'fechapresentacionpropuesta'=>'required|date|before:fechainiciocontrato|after:fechapublicacion',
-            'fechainiciocontrato'=>'required|date|after:fechapresentacionpropuesta|fechapublicacion',
+            'fechapublicacion'=>'date|before:fechapresentacionpropuesta',
+            'fechapresentacionpropuesta'=>'date|before:fechainiciocontrato|after:fechapublicacion',
+            'fechainiciocontrato'=>'date|after:fechapresentacionpropuesta|after:fechapublicacion',
             
         ]);
 
@@ -903,29 +903,29 @@ class ProjectController extends Controller
 
         $request->validate([
         
-        'datosdecontacto'=>'required|max:50',
-        'fechapublicacion'=>'required|max:50',
+        'datosdecontacto'=>'max:50',
+        'fechapublicacion'=>'max:50',
             
-        'entidadadjudicacion'=>'required|max:50',
-        'nombreresponsable'=>'required|max:50',
-        'modalidadadjudicacion'=>'required|max:50',
+        'entidadadjudicacion'=>'max:50',
+        'nombreresponsable'=>'max:50',
+        'modalidadadjudicacion'=>'max:50',
 
-        'tipocontrato'=>'required|max:50',
-        'modalidadcontrato'=>'required|max:50',
+        'tipocontrato'=>'max:50',
+        'modalidadcontrato'=>'max:50',
         'estadoactual'=>'required|max:50',
 
-        'empresasparticipantes'=>'required|max:250',
-        'entidad_admin_contrato'=>'required|max:50',
+        'empresasparticipantes'=>'max:250',
+        'entidad_admin_contrato'=>'max:50',
 
-        'titulocontrato'=>'required|max:50',
-        'empresacontratada'=>'required|max:50',
-        'viapropuesta'=>'required|max:50',
+        'titulocontrato'=>'max:50',
+        'empresacontratada'=>'max:50',
+        'viapropuesta'=>'max:50',
 
         'fechapresentacionpropuesta'=>'required|max:50',
-        'montocontrato'=>'required|max:50',
-        'alcancecontrato'=>'required|max:50',
-        'fechainiciocontrato'=>'required|max:50',
-        'duracionproyecto_contrato'=>'required|max:50',
+        'montocontrato'=>'max:50',
+        'alcancecontrato'=>'max:50',
+        'fechainiciocontrato'=>'max:50',
+        'duracionproyecto_contrato'=>'max:50',
         
         ]);
        
