@@ -537,14 +537,24 @@ Home
             </div>
             <div class="col-md-7 pt-4">
                 <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
-                <div class="text-white visitantes-counter" style="font-size: 38px;"><strong>425,263</strong></div>
+                <div class="text-white visitantes-counter" style="font-size: 38px;">
+                <a title="contador"><img src="https://www.cerotec.net/contador.php?t=45&s=2&i=1863">
+                </a> <br><a href='https://www.cerotec.net' style='font-size:12px;' ></a>
+               </div>
             </div>
         </div>
         <br>
     </div>
 
 </div>
+<!--<center><a href="http://www.websmultimedia.com/contador-de-visitas-gratis" title="Contador De Visitas Gratis">
+<img style="border: 0px solid; display: inline;" alt="contador de visitas" 
+src="http://www.websmultimedia.com/contador-de-visitas.php?id=288425"></a><br>
+<a href='http://www.websmultimedia.com/contador-de-visitas-gratis'>Contador de visitas</a><br>
+<a href='http://www.websmultimedia.com'>diseño página web</a></center>
 
+<img src="contador.php?t=7&amp;txt_manual=00001&amp;s=5">
+-->
 @endsection
 
 @section('scripts')
