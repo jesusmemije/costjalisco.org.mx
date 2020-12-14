@@ -538,8 +538,9 @@ Home
             <div class="col-md-7 pt-4">
                 <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
                 <div class="text-white visitantes-counter" style="font-size: 38px;">
-                <a title="contador"><img src="https://www.cerotec.net/contador.php?t=45&s=2&i=1863">
-                </a> <br><a href='https://www.cerotec.net' style='font-size:12px;' ></a>
+                <a title="contador de visitas gratis">
+                <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=f1bwte9dc8qehz8uy33l4zt984lsewdf" 
+                border="0" title="contador de visitas gratis" alt="contador de visitas gratis"></a>
                </div>
             </div>
         </div>
