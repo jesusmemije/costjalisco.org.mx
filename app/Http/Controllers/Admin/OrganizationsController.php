@@ -73,8 +73,8 @@ class OrganizationsController extends Controller
             'nameContact'=>'required|max:50',
             'emailContact'=>'required|max:50',
             'telephone'=>'required|max:50',
-            'faxNumber'=>'required|max:50',
-            'url'=>'required|max:100',
+            'faxNumber'=>'max:50',
+            'url'=>'max:100',
 
             'streetAddress'=>'required|max:50',
             'locality'=>'required|max:50',
