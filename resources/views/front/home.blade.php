@@ -538,24 +538,14 @@ Home
             <div class="col-md-7 pt-4">
                 <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
                 <div class="text-white visitantes-counter" style="font-size: 38px;">
-                <a title="contador de visitas gratis">
-                <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=f1bwte9dc8qehz8uy33l4zt984lsewdf" 
-                border="0" title="contador de visitas gratis" alt="contador de visitas gratis"></a>
+                <a title="contador de visitas web gratis"><img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh" 
+                border="0" title="contador de visitas web gratis" alt="contador de visitas web gratis"></a>
                </div>
             </div>
         </div>
         <br>
     </div>
-
 </div>
-<!--<center><a href="http://www.websmultimedia.com/contador-de-visitas-gratis" title="Contador De Visitas Gratis">
-<img style="border: 0px solid; display: inline;" alt="contador de visitas" 
-src="http://www.websmultimedia.com/contador-de-visitas.php?id=288425"></a><br>
-<a href='http://www.websmultimedia.com/contador-de-visitas-gratis'>Contador de visitas</a><br>
-<a href='http://www.websmultimedia.com'>diseño página web</a></center>
-
-<img src="contador.php?t=7&amp;txt_manual=00001&amp;s=5">
--->
 @endsection
 
 @section('scripts')
