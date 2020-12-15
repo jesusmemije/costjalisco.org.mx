@@ -11,7 +11,6 @@ Revestimiento y saneamiento del canal de aguas pluviales
 
 @section('content')
 
-
 @endsection
 
 @section('scripts')
