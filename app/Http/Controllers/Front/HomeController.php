@@ -90,4 +90,10 @@ class HomeController extends Controller
     public function estadisticas(){
         return view('front.estadisticas');
     }
+    public function listworks(){
+        return view('front.listworks');
+    }
+    public function supportmaterial(){
+        return view('front.supportmaterial');
+    }
 }
