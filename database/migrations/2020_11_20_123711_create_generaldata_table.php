@@ -17,11 +17,11 @@ class CreateGeneraldataTable extends Migration
             $table->id();
             $table->foreignId('id_project')->nullable();
             $table->text('descripcion')->nullable();
-            $table->string('responsable',100)->nullable();
-            $table->string('email',100)->nullable();
-            $table->string('organismo',100)->nullable();
-            $table->string('puesto',100)->nullable();
-            $table->string('involucrado',100)->nullable();
+            $table->string('responsable',50)->nullable();
+            $table->string('email',50)->nullable();
+            $table->text('organismo')->nullable();
+            $table->string('puesto',50)->nullable();
+            $table->string('involucrado',50)->nullable();
 
 
             $table->foreign('id_project')->references('id')->on('project')->onDelete('cascade')->onUpdate('cascade');

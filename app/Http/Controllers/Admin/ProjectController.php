@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\ProjectStatus;
 use App\Models\ProjectSector;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestIdentificacion;
 use App\Models\Project;
 use App\Models\Period;
 use App\Models\ProjectType;
@@ -45,11 +46,17 @@ class ProjectController extends Controller
         $projects=DB::table('project')
         ->join('project_organizations','project.id','=','project_organizations.id_project')
         ->join('organization','project_organizations.id_organization','=','organization.id')
-        ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->leftJoin('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('doproject','project.id','=','doproject.id_project')
         ->where('doproject.id_user','=',$id_user)
-        ->select('project.*','project.id as id_project','organization.name  as orgname','proyecto_finalizacion.costofinalizacion as budget_amount')
+        ->select('project.*','project.id as id_project','organization.name  as orgname','proyecto_contratacion.montocontrato as montocontrato')
         ->get();
+
+      // $projects=Project::all()
+      // ->select('project.id as id_project');
+
+      // print_r($projects);
+   
 
         if(empty($projects[0])){
 
@@ -58,7 +65,6 @@ class ProjectController extends Controller
             ->join('project_organizations','project.id','=','project_organizations.id_project')
             ->join('organization','project_organizations.id_organization','=','organization.id')
             ->join('doproject','project.id','=','doproject.id_project')
-            
             ->where('doproject.id_user','=',$id_user)
             ->select('project.*','project.id as id_project','organization.name  as orgname')
             ->get();   
@@ -156,6 +162,7 @@ class ProjectController extends Controller
       
      }
      public function editidentificacion($id){
+        
         $p=Project::find($id);
         if(!empty($p)){
        
@@ -163,7 +170,7 @@ class ProjectController extends Controller
         $types=ProjectType::all();
         $documentstype=DocumentType::all();
         $autoridadPublica = Organization::all();
-
+           
         $documents=DB::table('project')
         ->join('project_documents','project.id','=','project_documents.id_project')
         ->join('documents','project_documents.id_document','=','documents.id')
@@ -172,16 +179,20 @@ class ProjectController extends Controller
         ->select('documents.url','documents.id')
         ->get();
 
+        
       
       
         $data_project=DB::table('project')
         ->join('project_locations','project.id','=','project_locations.id_project')
         ->join('locations','project_locations.id_location','=','locations.id')
         ->join('address','locations.id_address','=','address.id')
-        ->select('project.*','locations.lat','locations.lng','address.streetAddress',
+        ->select('project.*','project.description as descripcionProyecto','locations.lat','locations.lng','locations.description as description','address.streetAddress',
         'address.locality','address.region','address.postalCode','address.countryName')
         ->where('project.id','=',$id)
         ->first();
+      
+
+      
 
         $generaldata=DB::table('generaldata')
         ->where('id_project','=',$id)->first();
@@ -205,6 +216,7 @@ class ProjectController extends Controller
          
          ]);
         }else{
+            print_r("d");
             return redirect()->route('project.identificacion');
         }
      }
@@ -703,6 +715,15 @@ class ProjectController extends Controller
        
      }
     public function updatecontratacion(Request $request){
+
+        $request->validate([
+            
+            'fechapublicacion'=>'date|before:fechapresentacionpropuesta',
+            'fechapresentacionpropuesta'=>'date|before:fechainiciocontrato|after:fechapublicacion',
+            'fechainiciocontrato'=>'date|after:fechapresentacionpropuesta|after:fechapublicacion',
+            
+        ]);
+
         
         $procedimiento_contratacion=DB::table('proyecto_contratacion')
         ->where('id_project','=',$request->id_project)
@@ -710,6 +731,7 @@ class ProjectController extends Controller
             'id_project'=>$request->id_project,
             'descripcion'=>$request->descripcion,
             'fechapublicacion'=>$request->fechapublicacion,
+            
             'entidadadjudicacion'=>$request->entidadadjudicacion,
             'datosdecontacto'=>$request->datosdecontacto,
             'nombreresponsable'=>$request->nombreresponsable,
@@ -798,6 +820,16 @@ class ProjectController extends Controller
      }
      public function savefinalizacion(Request $request){
         
+        $request->validate([
+            
+            'descripcion'=>'max:50',
+            'costofinalizacion'=>'max:50',
+            'fechafinalizacion'=>'max:50',
+            'alcancefinalizacion'=>'max:50',
+            'razonescambioproyecto'=>'max:50',
+            'referenciainforme'=>'max:50',
+            
+        ]);
 
          $proyecto_finalizacion=DB::table('proyecto_finalizacion')
          ->insert([
@@ -829,6 +861,18 @@ class ProjectController extends Controller
      }
      public function saveejecucion(Request $request){
 
+       $request->validate([
+        'variacionespreciocontrato'=>'max:50',
+        'razonescambiopreciocontrato'=>'max:50',
+        'variacionesduracioncontrato'=>'max:50',
+        'razonescambioduracioncontrato'=>'max:50',
+        'variacionesalcancecontrato'=>'max:50',
+
+        'razonescambiosalcancecontrato'=>'max:50',
+        'aplicacionescalatoria'=>'max:50',
+        'estadoactualproyecto'=>'max:50',
+
+        ]);  
      
         
         $proyecto_ejecucion=DB::table('proyecto_ejecucion')
@@ -856,6 +900,34 @@ class ProjectController extends Controller
      }
 
     public function savecontratacion(Request $request){
+
+        $request->validate([
+        
+        'datosdecontacto'=>'max:50',
+        'fechapublicacion'=>'max:50',
+            
+        'entidadadjudicacion'=>'max:50',
+        'nombreresponsable'=>'max:50',
+        'modalidadadjudicacion'=>'max:50',
+
+        'tipocontrato'=>'max:50',
+        'modalidadcontrato'=>'max:50',
+        'estadoactual'=>'required|max:50',
+
+        'empresasparticipantes'=>'max:250',
+        'entidad_admin_contrato'=>'max:50',
+
+        'titulocontrato'=>'max:50',
+        'empresacontratada'=>'max:50',
+        'viapropuesta'=>'max:50',
+
+        'fechapresentacionpropuesta'=>'required|max:50',
+        'montocontrato'=>'max:50',
+        'alcancecontrato'=>'max:50',
+        'fechainiciocontrato'=>'max:50',
+        'duracionproyecto_contrato'=>'max:50',
+        
+        ]);
        
         $procedimiento_contratacion=DB::table('proyecto_contratacion')
         ->insert([
@@ -904,7 +976,25 @@ class ProjectController extends Controller
     public function savepreparacion(Request $request){
        
         $fecha_in = date('Y-m-d');
-       
+        
+        $request->validate([
+            'tipoAmbiental'=>'required',
+        'fecharealizacionAmbiental'=>'required|max:50',
+        'responsableAmbiental'=>'required|max:50',
+            
+            'tipoFactibilidad'=>'required',
+        'fecharealizacionFactibilidad'=>'required|max:50',
+        'responsableFactibilidad'=>'required|max:50',
+
+        'tipoImpacto'=>'required',
+        'fecharealizacionImpacto'=>'required|max:50',
+        'responsableImpacto'=>'required|max:50',
+
+        'origenrecurso'=>'required',
+        'fuenterecurso'=>'required|max:50',
+        'fecharecurso'=>'required|max:50'
+        
+        ]);
       
       
 
@@ -999,18 +1089,36 @@ class ProjectController extends Controller
 
     }
      
-    public function saveidentificacion(Request $request){
+    public function saveidentificacion(RequestIdentificacion $request){
         
         $fecha_in = date('Y-m-d');
-        /*
+        
         $request->validate([
-            'title'=>'required',
-            'ocid'=>'required'
+            
+            'nombreresponsable'=>'required|max:50',
+            'email'=>'required|max:50',
+            'organismo'=>'required|max:255',
+            'puesto'=>'required|max:50',
+            'involucrado'=>'required|max:50',
+
+            'tituloProyecto'=>'required|max:50',
+            'ocid'=>'required|max:50',
+            'descripcionProyecto'=>'required|max:50',
+            'autoridadP'=>'required|max:50',
+            'propositoProyecto'=>'required|max:50',
+            'sectorProyecto'=>'required|max:50',
+            'subsector'=>'required|max:50',
+            'tipoProyecto'=>'required|max:50',
+
+            'streetAddress'=>'required|max:50',
+            'locality'=>'required|max:50',
+            'region'=>'required|max:50',
+            'postalCode'=>'required|max:50',
+            'countryName'=>'required|max:50',
+            'description'=>'required|max:50'
 
         ]);
-       */
-     // $request->validate();
-        
+    
             
         $project = new Project();
         $project->ocid = $request->ocid;
@@ -1175,15 +1283,17 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+
     
         $project = Project::find($id);
 
-    
+        
        
 
         if(!empty($project))
         {       
 
+         
 
         $project_documents=ProjectDocuments::where('id_project','=',$id)
         ->get();
@@ -1192,10 +1302,6 @@ class ProjectController extends Controller
             Documents::destroy($document->id);
         }
        
-        
-       
-        //uso first en vez de get() porque get me retorna un array...
-
     
         $project_locations = ProjectLocations::where('id_project','=',$id)
         ->first();
@@ -1225,7 +1331,7 @@ class ProjectController extends Controller
         else
         {     
             return back()->with('status', '¡Proyecto no encontrado!');
-            echo "no data";
+           
         }
       
 

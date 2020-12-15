@@ -21,9 +21,9 @@ class CreateProyectoContratacionTable extends Migration
             
             $table->string('descripcion',100)->nullable();
             $table->date('fechapublicacion',0)->nullable();
-            $table->string('entidadadjudicacion',200)->nullable();
-            $table->string('datosdecontacto',200)->nullable();
-            $table->string('nombreresponsable',200)->nullable();
+            $table->string('entidadadjudicacion',255)->nullable();
+            $table->string('datosdecontacto',50)->nullable();
+            $table->string('nombreresponsable',50)->nullable();
             $table->foreignId('modalidadadjudicacion')->nullable();
             $table->foreignId('tipocontrato')->nullable();
             $table->foreignId('modalidadcontrato')->nullable();
@@ -35,11 +35,11 @@ class CreateProyectoContratacionTable extends Migration
             $table->foreign('estadoactual')->references('id')->on('contractingprocess_status')->onDelete('set null')->onUpdate('cascade');
             
 
-            $table->string('empresasparticipantes',200)->nullable();
-            $table->string('entidad_admin_contrato',200)->nullable();
-            $table->string('titulocontrato',200)->nullable();
-            $table->string('empresacontratada',200)->nullable();
-            $table->string('viapropuesta',200)->nullable();
+            $table->text('empresasparticipantes')->nullable();
+            $table->string('entidad_admin_contrato',250)->nullable();
+            $table->string('titulocontrato',250)->nullable();
+            $table->text('empresacontratada')->nullable();
+            $table->string('viapropuesta',50)->nullable();
             $table->date('fechapresentacionpropuesta',0)->nullable();
             $table->decimal('montocontrato',20,2)->nullable();
             $table->string('alcancecontrato',200)->nullable();

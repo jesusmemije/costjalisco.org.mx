@@ -4,40 +4,12 @@
 @endsection
 @section('styles')
 
-  <style>
-    /* [FULL SCREEN SPINNER] */
-#spinner-back, #spinner-front {
-  position: fixed;
-  width: 100vw;
-  transition: all 1s;
-  visibility: hidden;
-  opacity: 0;
-  
-}
-#spinner-back {
-  z-index: 998;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-}
-#spinner-front {
-  z-index: 999;
-
-  color: #fff;
-  text-align: center;
-  margin-top: 50vh;
-  transform: translateY(-50%);
-}
-#spinner-back.show, #spinner-front.show {
-  visibility: visible;
-  opacity: 1;
-}
-
-/* [DOES NOT QUITE MATTER] */
-
-  </style>
   <!-- Custom styles for this page -->
   <link href="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">
+  <link href="{{asset('css/spinner.css')}}" rel="stylesheet">
 @endsection
+
+
 <div id="spinner-back"></div>
 <div id="spinner-front">
   <img height="100" src="{{asset('assets/img/cost logo bnc.png')}}"/><br>
@@ -119,7 +91,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>¿Seguro que desea eliminar al usuario <strong><span class="name-user"></span></strong>?</p>
+<<<<<<< HEAD
+          <p>¿Seguro que desea eliminar la organizacion: <strong><span class="name-user"></span></strong>?</p>
+=======
+          <p>¿Seguro que desea eliminar la organización: <strong><span class="name-user"></span></strong>?</p>
+>>>>>>> a6bc6573277d7cfc1baf1489350a66547feb4cf1
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
@@ -153,7 +129,7 @@
   <script src="{{asset("admin_assets/js/demo/datatables-demo.js")}}"></script>
 
   <script>
-    show();
+    
 
 function show(){
   document.getElementById("spinner-back").classList.add("show");

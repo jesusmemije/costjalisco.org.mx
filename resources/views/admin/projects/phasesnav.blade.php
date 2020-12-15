@@ -15,6 +15,7 @@ $navejec='';
 $navfin='';
 
 
+
 switch($nav){
   case 'generaldata';
   $navgeneraldata='active iden';

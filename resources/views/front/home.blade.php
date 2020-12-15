@@ -56,10 +56,11 @@ Home
     </div>
 
     <!-- Btn Agenda -->
-    <div class="btn-agenda">
+    <!--
+ <div class="btn-agenda">
         <img src="{{ asset('assets/img/home/btn-eventos.png') }}" onclick="showEventosAgenda()" class="img-fluid"
             style="cursor: pointer;" alt="Agenda CoST Jalisco">
-    </div>
+    </div> 
     
     <div id="panel-oculto" class="container-aventos-agenda">
         <img src="{{ asset('assets/img/home/eventos-agenda.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
@@ -96,7 +97,7 @@ Home
             </div>
         </div>
     </div>
-
+-->
     <!-- Título - Nosotros -->
     <div class="container">
         <div class="row">
@@ -536,14 +537,15 @@ Home
             </div>
             <div class="col-md-7 pt-4">
                 <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
-                <div class="text-white visitantes-counter" style="font-size: 38px;"><strong>425,263</strong></div>
+                <div class="text-white visitantes-counter" style="font-size: 38px;">
+                <a title="contador de visitas web gratis"><img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh" 
+                border="0" title="contador de visitas web gratis" alt="contador de visitas web gratis"></a>
+               </div>
             </div>
         </div>
         <br>
     </div>
-
 </div>
-
 @endsection
 
 @section('scripts')

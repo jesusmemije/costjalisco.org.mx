@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Locations;
 use App\Models\ContactPoint;
 use App\Models\Identifier;
 use App\Models\Organization;
@@ -65,8 +66,26 @@ class OrganizationsController extends Controller
     public function store(Request $request)
     {
         //
-        
-     
+        $request->validate([
+            'name'=>'required|max:255',
+            'partyRole'=>'required|max:50',
+
+            'nameContact'=>'required|max:50',
+            'emailContact'=>'required|max:50',
+            'telephone'=>'required|max:50',
+            'faxNumber'=>'required|max:50',
+            'url'=>'required|max:100',
+
+            'streetAddress'=>'required|max:50',
+            'locality'=>'required|max:50',
+            'region'=>'required|max:50',
+            'postalCode'=>'required|max:50',
+            'countryName'=>'required|max:50',
+            'description'=>'required|max:100',
+            
+        ]);
+       
+
 
         $identifier=new Identifier();
 
@@ -76,14 +95,16 @@ class OrganizationsController extends Controller
 
         $identifier->save();
 
-        $address=new Address();
+        $address=new Address(); //obtiene los datos
         
         $address->streetAddress=$request->streetAddress;
         $address->locality=$request->locality;
         $address->region=$request->region;
         $address->postalCode=$request->postalCode;
         $address->countryName=$request->countryName;
+        //$address->countryName=$request->description;
         $address->save();
+
 
         $contact_point=new ContactPoint();
         $contact_point->name=$request->nameContact;
@@ -122,7 +143,7 @@ class OrganizationsController extends Controller
             
             }
 
-      //  return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
+       return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
 
     }
 
@@ -151,12 +172,12 @@ class OrganizationsController extends Controller
         ->join('contact_point','organization.id_contact_point','=','contact_point.id')
         ->join('address','organization.id_address','=','address.id')
         ->join('party_role','organization.id_partyRole','=','party_role.id')
+        ->join('locations','address.id','=','locations.id_address')
         ->where('organization.id','=',$organization->id)
-        ->select('organization.name as orgname','organization.id as id_organization','contact_point.*','address.*','party_role.id as partyid')
+        ->select('organization.name as orgname','organization.id as id_organization','contact_point.*','address.*','party_role.id as partyid','locations.description as description')
         ->first();
 
        
-
        
         $orglogo=DB::table('orglogos')->where('id_organization','=',$organization->id)->first();
         if($orglogo!=null){
@@ -217,6 +238,12 @@ class OrganizationsController extends Controller
         $address->postalCode=$request->postalCode;
         $address->countryName=$request->countryName;
         $address->save();
+
+
+        $locations=new Locations();
+        $locations->description=$request->description;
+        $locations->id_address=$address->id;
+        $locations->save();
 
         $contact_point=ContactPoint::find($id_contact_point);
         $contact_point->name=$request->nameContact;

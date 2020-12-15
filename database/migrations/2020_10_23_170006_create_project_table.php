@@ -21,6 +21,7 @@ class CreateProjectTable extends Migration
             $table->text('description')->nullable(); 
             $table->foreignId('status')->nullable();
             $table->foreignId('period')->nullable(true);
+            $table->integer('people')->nullable();
             $table->foreignId('sector')->nullable();
             $table->foreignId('subsector')->nullable();
             $table->text('purpose')->nullable();
