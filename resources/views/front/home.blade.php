@@ -352,7 +352,7 @@ Home
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center font-weight-bold">PROYECTOS</h3>
+                <a href="{{route('home.projects')}}"><h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3></a>
                 <div class="section-divider"></div>
             </div>
         </div>
@@ -503,25 +503,18 @@ Home
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-twitter fa-sm"></i></div>
                 <a class="twitter-timeline" data-lang="es" data-height="280" data-theme="light"
-                    href="https://twitter.com/JesusMemije_?ref_src=twsrc%5Etfw">Tweets by JesusMemije_</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw">Tweets by CostJalisco</a> 
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
             </div>
             <div class="col-md-4">
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-youtube fa-sm"></i></div>
-                <iframe width="350" height="280" src="https://www.youtube.com/embed/VWO3nEuWo4k?start=61"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                <iframe width="350" height="280" src="https://www.youtube.com/embed/nd2Bc99HgRE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="col-md-4">
                 <div class="timeline"></div>
-                <div class="timeline-icon-position"><i class="fab fa-facebook-f fa-sm"></i></div>
-                <iframe
-                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2FParaReflexiones%2F&tabs=timeline&width=340&height=300&small_header=false&adapt_container_width=true&hide_cover=true&show_facepile=true&appId"
-                    width="350" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                    allowfullscreen="true"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <div class="timeline-icon-position"><i class="fab fa-facebook-f fa-sm"></i></div>                
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCoSTransparency&tabs=timeline&width=350&height=280&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="350" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
         </div>
     </div>
@@ -538,8 +531,8 @@ Home
             <div class="col-md-7 pt-4">
                 <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
                 <div class="text-white visitantes-counter" style="font-size: 38px;">
-                <a title="contador de visitas web gratis"><img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh" 
-                border="0" title="contador de visitas web gratis" alt="contador de visitas web gratis"></a>
+                <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh" 
+                border="0"></a>
                </div>
             </div>
         </div>
