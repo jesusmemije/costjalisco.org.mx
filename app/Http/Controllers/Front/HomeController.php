@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
+
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -89,5 +91,8 @@ class HomeController extends Controller
     }
     public function estadisticas(){
         return view('front.estadisticas');
+    }
+    public function sitemap(){
+        return view('front.sitemap');
     }
 }
