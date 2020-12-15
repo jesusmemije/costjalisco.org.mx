@@ -78,8 +78,14 @@ class HomeController extends Controller
     }
 
     public function project_search(){
-        return view('front.project_search');
+
+        $projects = DB::table('project')->get();
+      
+        return view('front.project_search', [
+            'projects' => $projects
+        ]);
     }
+    
     public function projects(){
         return view('front.projects');
     }
@@ -92,7 +98,15 @@ class HomeController extends Controller
     public function estadisticas(){
         return view('front.estadisticas');
     }
+<<<<<<< HEAD
     public function sitemap(){
         return view('front.sitemap');
+=======
+    public function listworks(){
+        return view('front.listworks');
+    }
+    public function supportmaterial(){
+        return view('front.supportmaterial');
+>>>>>>> 2c799343646d98d454a1aea6f37bf18a99847cea
     }
 }

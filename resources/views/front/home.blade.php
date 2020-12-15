@@ -352,7 +352,7 @@ Home
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center font-weight-bold">PROYECTOS</h3>
+                <a href="{{route('home.projects')}}"><h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3></a>
                 <div class="section-divider"></div>
             </div>
         </div>
@@ -509,7 +509,7 @@ Home
             <div class="col-md-4">
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-youtube fa-sm"></i></div>
-                <iframe width="350" height="280" src="https://www.youtube.com/embed/fitl_qJR_ps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="350" height="280" src="https://www.youtube.com/embed/nd2Bc99HgRE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="col-md-4">
                 <div class="timeline"></div>

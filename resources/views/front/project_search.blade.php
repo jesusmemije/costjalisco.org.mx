@@ -11,7 +11,7 @@ Projects-search
 
 @section('content')
 <style>
-    .formulario-projects-serach{
+    .formulario-projects-search{
         background: rgb(255, 255, 255);
         padding: 20px 20px 5px 20px;
         border-radius: 0px 30px 0px 0px;
@@ -26,9 +26,9 @@ Projects-search
     .mapa{
         z-index: 1;
     }
-    .formulario-projects-serach select{
+    .formulario-projects-search select{
         width: 95%;
-        height: 27px;
+        height: 32px;
         margin-top: 9px;
         border-radius: 50px;
         padding: 5px 0px 5px 5px;
@@ -36,7 +36,7 @@ Projects-search
         font-weight: bold;
         color: darkslategrey;
     }
-    .formulario-projects-serach input{
+    .formulario-projects-search input{
         width: 95%;
         height: 27px;
         margin-top: 9px;
@@ -46,41 +46,19 @@ Projects-search
         color: #628ea0;
         border: 1px solid #628ea0;
     }
-    .formulario-projects-serach button{
-        margin: 25px auto;
+    .formulario-projects-search button{
+        margin-top: 25px;
+        margin-bottom: 5px;
         background: #2C4143;
         color: #fff;
         border-radius: 50px;
         font-size: 13px;
-        padding: 1px 20px 1px 20px;
+        padding: 4px 24px;
         border: 0;
-    }
-    .detalle-punto{
-        background: #d5d6be;
-        width: 200px;
-        z-index: 100;
-        top: 270px;
-        left: 980px;
-        color: #628ea0;
         font-weight: bold;
-        position: absolute; 
-        float: left; 
-        text-align: center;
-        padding: 15px 15px 2px 25px;
-        border-radius: 0px 20px 0px 0px;
-        box-shadow: 5px 5px 2px #999;
-        font-size: 13px;
     }
-    .detalle-punto button{
-        margin: 25px auto;
-        background: #2C4143;
-        color: #fff;
-        border-radius: 50px;
-        font-size: 13px;
-        padding: 1px 20px 1px 20px;
-        border: 0;
-    }
-    .opciones-detelle{
+
+    .content-label{
         text-align: left;
         color: #2C4143;
         font-size: 12px;
@@ -154,7 +132,7 @@ Projects-search
     <!-- Section - Mapa de la localización -->
     <div class="row" >
         <div class="col-md-12">
-            <form action="" class="formulario-projects-serach" method="post">
+            <form action="" class="formulario-projects-search" method="post">
                 <select name="" id="">
                     <option value="">Entidad o municipio</option>
                     <option value="">Opción 1</option>
@@ -190,7 +168,7 @@ Projects-search
                     <option value="">Opción 3</option>
     
                 </select>
-                <input type="text" value="Nombre del proyecto">
+                <input type="text" placeholder="Nombre del proyecto">
                 <center>
                     <button>BÚSQUEDA</button>
                 </center>
@@ -205,10 +183,10 @@ Projects-search
 
     <!-- Section - Datos generales -->
     <div class="row mt-5">
-        <div class="col-md-8 background-title px-0 py-1">
+        <div class="col-md-8 px-0 py-1">
             <h3 class="py-2 font-weight-bold" style="background-image: url('assets/img/project/barra resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
-            <span style="font-weight: 700; margin-left: 115px;">Resultados</span>    
+            <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>    
             </h3>
             
         </div>
@@ -333,14 +311,26 @@ Projects-search
                   layers: [osm],
                   maxBounds: bounds
               });
-                  /*var latlngs = L.rectangle(bounds).getLatLngs();
-          L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
-          map.setMaxBounds(bounds);	// Should not enter infinite recursion*/
-  
-            L.marker(["20.689742","-103.3928097"]).addTo(map).bindPopup('<p>Linea 3 del tren ligero</p><div class="opciones-detelle"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><center><button class="leaflet-btn-detalle-project">Ver detalles</button></center>');
-            L.marker(["19.8463034","-104.4560014"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Catedral de Guadalajara</b></a><br>Guadalajara, Centro");
-            L.marker(["20.8811927","-103.8440796"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Tequila Jalisco</b></a><br>Zapopan");
+              
+            const projects = @json($projects);
+
+            projects.forEach(function(item, index) {
+                L.marker(["20.689742","-103.3928097"]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><center><button class="leaflet-btn-detalle-project">Ver detalles</button></center>');
+            });
+            
+            /*L.marker(["19.8463034","-104.4560014"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Catedral de Guadalajara</b></a><br>Guadalajara, Centro");
+            L.marker(["20.8811927","-103.8440796"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Tequila Jalisco</b></a><br>Zapopan");*/
     });
+</script>
+
+<script type="text/javascript">
+    const projects = @json($projects);
+    //console.log(projects);
+
+    projects.forEach(function(item, index) {
+        console.log(item);
+    });
+
 </script>
   
 @endsection

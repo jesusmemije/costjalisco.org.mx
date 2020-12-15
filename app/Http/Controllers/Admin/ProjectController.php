@@ -1226,17 +1226,7 @@ class ProjectController extends Controller
         $fecha_in = date('Y-m-d');
         
         $request->validate([
-<<<<<<< Updated upstream
-            
-            'nombreresponsable'=>'required|max:50',
-            'email'=>'required|max:50',
-            'organismo'=>'required|max:255',
-            'puesto'=>'required|max:50',
-            'involucrado'=>'required|max:50',
-
-=======
           
->>>>>>> Stashed changes
             'tituloProyecto'=>'required|max:50',
             'ocid'=>'required|max:50',
             'descripcionProyecto'=>'required|max:50',
