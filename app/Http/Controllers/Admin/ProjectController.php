@@ -44,18 +44,20 @@ class ProjectController extends Controller
         $id_user=Auth::user()->id;
         
         $projects=DB::table('project')
-        ->join('project_organizations','project.id','=','project_organizations.id_project')
-        ->join('organization','project_organizations.id_organization','=','organization.id')
+        ->join('generaldata','project.id','=','generaldata.id_project')
+        ->leftJoin('project_organizations','project.id','=','project_organizations.id_project')
+        ->leftJoin('organization','project_organizations.id_organization','=','organization.id')
         ->leftJoin('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('doproject','project.id','=','doproject.id_project')
         ->where('doproject.id_user','=',$id_user)
-        ->select('project.*','project.id as id_project','organization.name  as orgname','proyecto_contratacion.montocontrato as montocontrato')
-        ->get();
+        ->select('project.*','project.id as id_project','organization.name  as orgname',
+        'proyecto_contratacion.montocontrato as montocontrato','generaldata.*')
+         ->get();
 
       // $projects=Project::all()
       // ->select('project.id as id_project');
 
-      // print_r($projects);
+     // print_r($projects);
    
 
         if(empty($projects[0])){
@@ -117,41 +119,173 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
 
- 
+    public function generaldata($id=null){
+
+            //cuando ya hay datos.
+            if($id!=null){
+             
+
+                $generaldata=DB::table('generaldata')
+                ->where('id_project','=',$id)
+                ->first();
+            
+              
+                      
+                return view('admin.projects.generaldata',[
+                    'project'=> Project::find($id),
+                    'nav'=>'generaldata',
+                    'edit'=>true,
+                    'ruta'=>'project.savegeneraldata',
+                    'generaldata'=>$generaldata,
+                ]);
+
+            }else{  
+                $generaldata = new stdClass();
+                $generaldata->id_project = '';
+                $generaldata->descripcion='';
+                $generaldata->responsable='';
+                $generaldata->email='';
+                $generaldata->organismo='';
+                $generaldata->puesto='';
+                $generaldata->involucrado='';
+            return view('admin.projects.generaldata',[
+                'project'=>new Project(),
+                'nav'=>'generaldata',
+                'edit'=>false,
+                'ruta'=>'project.savegeneraldata',
+                'generaldata'=>$generaldata,
+            ]);
+            }
+           
+
+            
+    }
+    public function savegeneraldata(Request $request){
+       
+        $project = new Project();  
+
+       
+        
+        $project->status=7;
+        $project->save();
+
+    
+       
+        if($request->hasFile('images')){
+
+            for ($i=0; $i <sizeof($request->images) ; $i++) { 
+            $nombre_img = $_FILES['images']['name'][$i];
+            $url=time().$nombre_img;
+            move_uploaded_file($_FILES['images']['tmp_name'][$i],'projects_imgs/'.$url);
+            
+
+            DB::table('projects_imgs')->insert([
+                'id_project'=>$project->id,
+                'imgroute'=>$url,
+            ]);
+    
+        }
+    }
+        
+        $r=DB::table('generaldata')
+        ->insert([
+            'id_project'=>$project->id,
+            'descripcion'=>$request->descripcion,
+            'responsable'=>$request->nombreresponsable,
+            'email'=>$request->email,
+            'organismo'=>$request->organismo,
+            'puesto'=>$request->puesto,
+            'involucrado'=>$request->involucrado,
+
+        ]);
+
+        DB::table('doproject')
+        ->insert([
+            'id_project'=>$project->id,
+            'id_user'=>Auth::user()->id,
+        ]);
+
+        return redirect()->route('project.editidentificacion',['project'=>$project->id]);;
+
+    }
    
      public function identificacion($id=null){
         $project=Project::find($id);
 
-        if(empty($p)){
+        print_r($project);
+
+       
+        if(!empty($project)){
+
+
             $sectors = ProjectSector::all();
             $types=ProjectType::all();
             
             $autoridadPublica = Organization::all();
             $documentstype=DocumentType::all();
-            $generaldata = new stdClass();
-            $generaldata->id_project = '';
-            $generaldata->descripcion='';
-            $generaldata->responsable='';
-            $generaldata->email='';
-            $generaldata->organismo='';
-            $generaldata->puesto='';
-            $generaldata->involucrado='';
+
+            if($project->title==""){
+                return view('admin.projects.identificacion',
+                [
+                   'project'=>$project,
+                   'nav'=>'identificacion',
+                   'documentstype'=>$documentstype,
+                   'sectors'=>$sectors,
+                   'autoridadP'=>$autoridadPublica,
+                   'types'=>$types,
+                   'edit'=>false,
+                   'ruta'=>'project.saveidentificacion',
+                
+                
+                ]);
+            }else{
+
+                $documents=DB::table('project')
+                ->join('project_documents','project.id','=','project_documents.id_project')
+                ->join('documents','project_documents.id_document','=','documents.id')
+                ->where('project.id','=',$id)
+                ->where('documents.description','=','identificacion')
+                ->select('documents.url','documents.id')
+                ->get();
+        
+                
+              
+              
+                $data_project=DB::table('project')
+                ->join('project_locations','project.id','=','project_locations.id_project')
+                ->join('locations','project_locations.id_location','=','locations.id')
+                ->join('address','locations.id_address','=','address.id')
+                ->select('project.*','project.description as descripcionProyecto','locations.lat','locations.lng','locations.description as description','address.streetAddress',
+                'address.locality','address.region','address.postalCode','address.countryName')
+                ->where('project.id','=',$id)
+                ->first();
+              
+                return view('admin.projects.identificacion',
+                [
+                    'project'=>$data_project,
+                 
+                    'documentstype'=> $documentstype,
+                    'documents'=>$documents,
+                   'nav'=>'identificacion',
+                   'sectors'=>$sectors,
+                   'autoridadP'=>$autoridadPublica,
+                   'types'=>$types,
+                   'edit'=>true,
+                   'ruta'=>'project.updateidentificacion',
+       
+                
+                
+                ]);
+            }
+
+
+
+
+        
+           
             
            
-             return view('admin.projects.identificacion',
-             [
-                'project'=>new Project(),
-                'nav'=>'identificacion',
-                'documentstype'=>$documentstype,
-                'sectors'=>$sectors,
-                'autoridadP'=>$autoridadPublica,
-                'generaldata'=>$generaldata,
-                'types'=>$types,
-                'edit'=>false,
-                'ruta'=>'project.saveidentificacion',
-             
-             
-             ]);
+           
         }
     
          
@@ -175,7 +309,7 @@ class ProjectController extends Controller
         ->join('project_documents','project.id','=','project_documents.id_project')
         ->join('documents','project_documents.id_document','=','documents.id')
         ->where('project.id','=',$id)
-        ->wherE('documents.description','=','identificacion')
+        ->where('documents.description','=','identificacion')
         ->select('documents.url','documents.id')
         ->get();
 
@@ -192,17 +326,15 @@ class ProjectController extends Controller
         ->first();
       
 
-      
+     
 
-        $generaldata=DB::table('generaldata')
-        ->where('id_project','=',$id)->first();
-        
+
     
 
          return view('admin.projects.identificacion',
          [
              'project'=>$data_project,
-             'generaldata'=>$generaldata,
+          
              'documentstype'=> $documentstype,
              'documents'=>$documents,
             'nav'=>'identificacion',
@@ -216,7 +348,7 @@ class ProjectController extends Controller
          
          ]);
         }else{
-            print_r("d");
+           //
             return redirect()->route('project.identificacion');
         }
      }
@@ -1089,11 +1221,12 @@ class ProjectController extends Controller
 
     }
      
-    public function saveidentificacion(RequestIdentificacion $request){
+    public function saveidentificacion(Request $request){
         
         $fecha_in = date('Y-m-d');
         
         $request->validate([
+<<<<<<< Updated upstream
             
             'nombreresponsable'=>'required|max:50',
             'email'=>'required|max:50',
@@ -1101,6 +1234,9 @@ class ProjectController extends Controller
             'puesto'=>'required|max:50',
             'involucrado'=>'required|max:50',
 
+=======
+          
+>>>>>>> Stashed changes
             'tituloProyecto'=>'required|max:50',
             'ocid'=>'required|max:50',
             'descripcionProyecto'=>'required|max:50',
@@ -1120,7 +1256,8 @@ class ProjectController extends Controller
         ]);
     
             
-        $project = new Project();
+        $project = Project::find($request->id_project);
+     
         $project->ocid = $request->ocid;
         $project->updated = $fecha_in;
         $project->title = $request->tituloProyecto;
@@ -1139,19 +1276,7 @@ class ProjectController extends Controller
        
 
         $project->save();
-               //general data save.
-
-        $r=DB::table('generaldata')
-        ->insert([
-            'id_project'=>$project->id,
-            'descripcion'=>$request->descripcion,
-            'responsable'=>$request->nombreresponsable,
-            'email'=>$request->email,
-            'organismo'=>$request->organismo,
-            'puesto'=>$request->puesto,
-            'involucrado'=>$request->involucrado,
-
-        ]);
+               
 
         DB::table('project_organizations')->insert([
 
@@ -1186,11 +1311,7 @@ class ProjectController extends Controller
         $project_locations->id_location = $locations->id;
         $project_locations->save();
 
-        DB::table('doproject')
-        ->insert([
-            'id_project'=>$project->id,
-            'id_user'=>Auth::user()->id,
-        ]);
+       
 
 
         //Guardar el documento y la relación con su proyecto.
@@ -1287,6 +1408,23 @@ class ProjectController extends Controller
     
         $project = Project::find($id);
 
+         //to unlink projects imgs
+
+         $projects_imgs=DB::table('projects_imgs')
+         ->where('id_project','=',$project->id)
+         ->get();
+        
+ 
+         foreach($projects_imgs as $project_img){
+             $ruta='projects_imgs/'.$project_img->imgroute;
+             if(file_exists(($ruta))){
+                unlink($ruta);
+             }
+             
+             
+         }
+ 
+        
         
        
 
@@ -1294,21 +1432,29 @@ class ProjectController extends Controller
         {       
 
          
-
+        //Para eliminar los documentos asociados al proyecto.
         $project_documents=ProjectDocuments::where('id_project','=',$id)
         ->get();
         foreach ($project_documents as $document) {
            
             Documents::destroy($document->id);
         }
+
        
     
+        //Para eliminar la ubicación del proyecto.
         $project_locations = ProjectLocations::where('id_project','=',$id)
         ->first();
 
+        if($project_locations!=null){
+            $locations = Locations::find($project_locations->id_location);
+
+            Address::destroy($locations->id_address);
+        }
+
         
              
-        $locations = Locations::find($project_locations->id_location);
+       
 
         $project_budget=DB::table('project')
         ->join('project_budgetbreakdown','project.id','=','project_budgetbreakdown.id_project')
@@ -1324,7 +1470,7 @@ class ProjectController extends Controller
        
        
         Project::destroy($id);
-        Address::destroy($locations->id_address);
+       
      
         return back()->with('status', '¡Proyecto eliminado con éxito!');
         }

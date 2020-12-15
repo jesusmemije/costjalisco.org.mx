@@ -81,4 +81,13 @@ class HomeController extends Controller
     public function projects(){
         return view('front.projects');
     }
+    public function motor_busqueda(){
+        return view('front.motor_busqueda');
+    }
+    public function boletines_all(){
+        return view('front.boletines_all');
+    }
+    public function estadisticas(){
+        return view('front.estadisticas');
+    }
 }

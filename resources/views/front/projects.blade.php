@@ -113,7 +113,7 @@ Projects
                                 </b>
                             </h5>
                         </div>
-                        <img src="http://pice-software.com/costjalisco/public/assets/img/home/chatbot.png" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" style="background: #647d80">
+                        <img src="http://pice-software.com/costjalisco/public/assets/img/project/proyecto1.jpg" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" style="background: #647d80">
                         <div class="pie-project">
                             <p style="font-size: 20px"><b style="margin: 0; padding: 0;">Sector Público</b></p>
                             <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">Gobierno de Jalisco</i></p>

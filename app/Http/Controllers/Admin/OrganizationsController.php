@@ -129,10 +129,9 @@ class OrganizationsController extends Controller
         //to save the image logo org
         if(!empty($request->imgOrg)){        
             $nombre_img = $_FILES['imgOrg']['name'];
-    
-            move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$nombre_img);
-            $url=$nombre_img;
-
+            $url=time().$nombre_img;
+            move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$url);
+            
             DB::table('orglogos')->insert([
                 'id_organization'=>$organization->id,
                 'imgroute'=>$url,
@@ -143,7 +142,7 @@ class OrganizationsController extends Controller
             
             }
 
-       return redirect()->route('organizations.create')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
+       return redirect()->route('organizations.index')->with(['status' => '¡Listo! La organización se ha guardado correctamente']);
 
     }
 
@@ -267,9 +266,8 @@ class OrganizationsController extends Controller
 
         if(!empty($request->imgOrg)){        
             $nombre_img = $_FILES['imgOrg']['name'];
-    
-            move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$nombre_img);
-            $url=$nombre_img;
+            $url=time().$nombre_img;
+            move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$url);
 
             DB::table('orglogos')->insert([
                 'id_organization'=>$organization->id,
@@ -295,11 +293,28 @@ class OrganizationsController extends Controller
         //        
         $organization=Organization::find($id);
 
+        $orglogos=DB::table('orglogos')
+        ->where('id_organization','=',$organization->id)
+        ->get();
+      
+        foreach($orglogos as $orglogo){
+            $ruta='orglogos/'.$orglogo->imgroute;
+            if(file_exists(($ruta))){
+               unlink($ruta);
+            }
+            
+            
+        }
+
+
         if(!empty($organization)){
             Organization::destroy($id);
             Identifier::destroy($organization->id_identifier);
             Address::destroy($organization->id_address);
             ContactPoint::destroy($organization->id_contact_point);
+
+         
+            
           
             return back()->with('status', '¡Organización dada de baja correctamente!');
         }else{

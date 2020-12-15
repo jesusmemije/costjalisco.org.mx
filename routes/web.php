@@ -51,6 +51,9 @@ Route::namespace('Front')->group(function () {
 
      Route::get('project-search', [HomeController::class, 'project_search'])->name('home.project_search');
      Route::get('projects', [HomeController::class, 'projects'])->name('home.projects');
+     Route::get('motor-busqueda', [HomeController::class, 'motor_busqueda'])->name('home.motor_busqueda');
+     Route::get('boletines-all', [HomeController::class, 'boletines_all'])->name('home.boletines_all');
+     Route::get('estadisticas', [HomeController::class, 'estadisticas'])->name('home.estadisticas');
      
 });
 
@@ -110,8 +113,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //nav views project phases
     
-
-    Route::get('/admin/projects/identificacion/', [ProjectController::class, 'identificacion'])->name('project.identificacion');
+    Route::get('/admin/projects/generaldata/{project?}', [ProjectController::class, 'generaldata'])->name('project.generaldata2');
+    Route::get('/admin/projects/generaldata/', [ProjectController::class, 'generaldata'])->name('project.generaldata');
+   
+    Route::get('/admin/projects/identificacion/{project?}', [ProjectController::class, 'identificacion'])->name('project.identificacion');
     Route::get('/admin/projects/preparacion/{project?}', [ProjectController::class, 'preparacion'])->name('project.preparacion');
     Route::get('/admin/projects/contratacion/{project?}', [ProjectController::class, 'contratacion'])->name('project.contratacion');
     Route::get('/admin/projects/ejecucion/{project?}', [ProjectController::class, 'ejecucion'])->name('project.ejecucion');
