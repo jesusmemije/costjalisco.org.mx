@@ -13,7 +13,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
 
 <div class="container-fluid pt-4">
     <!-- Section - Descripción General del proyecto -->
-    <div class="row" style="background-color: #d8d8cd;">
+    <div class="row mb-5" style="background-color: #d8d8cd;">
         <div class="col-md-3 px-0">
             <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">
         </div>
@@ -101,6 +101,12 @@ Revestimiento y saneamiento del canal de aguas pluviales
             económica, ecológica o social, con recursos federales en el ramo 33 del Fondo de Aportaciones para la
             Infraestructura Social.
         </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            </div>
+        </div>
     </div>
 
     <!-- Section - Identificación -->
@@ -149,9 +155,13 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 <span style="padding-left:34px;">{{$responsable['email']}}</span><br>
                 @endif
                 @endforeach
-                <div class="row">
-                    <div class="col-md-10" style="border-bottom:1px solid #628ea0; ; margin-top:4%;"></div>
-                </div>
+  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -182,7 +192,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
                     Con la Unidad de Presupuesto y Contratación
                     de Obra Publica como entidad de ajudicación. </p>
             </div>
-            <div class=col-md-12>
+            <div class="col-md-12">
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsable del
                     contacto de
                     la entidad de adjudicación</span><br>
@@ -205,6 +215,12 @@ Revestimiento y saneamiento del canal de aguas pluviales
                     impacto de terreno y asentamientos</span><br>
                 <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">M en C.E. Alonso López Flores</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -260,6 +276,12 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 @endforeach
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            </div>
+        </div>
     </div>
 
     <!-- Section - Ejecución -->
@@ -283,6 +305,12 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 <span><b>Razones de cambios en el alcance del contrato:</b></span><br>
                 <span><b>Aplicación de escalatoria:</b></span><br>
                 <span><b>Estado actual del proyecto:</b> Concluído</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -309,13 +337,17 @@ Revestimiento y saneamiento del canal de aguas pluviales
     </div>
     <div class="container mt-5">
         <div class="row align-items-baseline">
-            <div class="col-md-7 ml-3" style="background-color:#d60000; color:#fff;">
+            <div class="col-md-7" style="background-color:#d60000; color:#fff;">
                 <div class="d-flex justify-content-end align-items-baseline">
                     <span style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
+            </div>
+            <div class="col-md-2 text-right">
+                <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -352,17 +384,9 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 <img src="assets/img/project/icons/clic.png" class="img-fluid" width="50" alt="">
             </a>
         </div>
-        <div class="col-md-6 my-5">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center">
-                    <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="100"><br><br>
-                    <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO PDF</button>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="assets/img/project/icons/excel.png" class="img-fluid" width="100"><br><br>
-                    <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO XLS</button>
-                </div>
-            </div>
+        <div class="col-md-6 text-center my-5">
+            <img src="assets/img/project/icons/excel.png" class="img-fluid" width="100"><br><br>
+            <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO XLS</button>
         </div>
     </div>
 </div>
@@ -372,36 +396,26 @@ Revestimiento y saneamiento del canal de aguas pluviales
 @section('scripts')
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"
-    defer></script>
 
-<script>
+<script type="text/javascript">
+    // listen for screen resize events
+      var zona = 0;
+      window.addEventListener('load', function(event){
 
-        
-var map = L.map('map').
-        setView([41.66, -4.72],
-            80);
+            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                          osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib });
+  
+              var map = new L.Map('map', {
+                  scrollWheelZoom: false,
+                  center: ["20.689742","-103.3928097"],
+                  zoom: 14,
+                  layers: [osm],
+                  
+              });
+  
+            L.marker(["20.689742","-103.3928097"]).addTo(map);
 
-            
-            /* this layer loads soooo slow.
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-            maxZoom: 80
-        }).addTo(map);
-        */
-
-        /* Google maps init
-        let map;
-    
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
-                },
-                zoom: 8,
-            });
-        }*/
+    });
 </script>
 @endsection

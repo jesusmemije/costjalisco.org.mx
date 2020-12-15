@@ -76,8 +76,14 @@ class HomeController extends Controller
     }
 
     public function project_search(){
-        return view('front.project_search');
+
+        $projects = DB::table('project')->get();
+      
+        return view('front.project_search', [
+            'projects' => $projects
+        ]);
     }
+    
     public function projects(){
         return view('front.projects');
     }
