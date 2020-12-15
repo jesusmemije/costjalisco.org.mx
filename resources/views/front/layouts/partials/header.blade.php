@@ -85,13 +85,16 @@
                             PROYECTOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownProyectos">
-                            <a class="dropdown-item" href="{{route('home.statistics')}}">Estadísticas</a>
+                            {{-- <a class="dropdown-item" href="{{route('home.statistics')}}">Estadísticas</a> --}}
+                            <a class="dropdown-item" href="{{route('home.estadisticas')}}">Estadísticas</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('home.specific_project')}}">Motor de búsqueda</a>
+                            {{-- <a class="dropdown-item" href="{{route('home.specific_project')}}">Motor de búsqueda</a> --}}
+                            <a class="dropdown-item" href="{{route('home.motor_busqueda')}}">Motor de búsqueda</a>
+                            
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Georreferenciación</a>
+                            <a class="dropdown-item" href="{{route('home.project_search')}}">Georreferenciación</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Institución Pública</a>
+                            <a class="dropdown-item" href="{{route('home.projects')}}">Institución Pública</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
@@ -117,7 +120,9 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownNoticias">
                             <a class="dropdown-item" href="#">Eventos</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('home.newsletters')}}">Boletines</a>
+                            {{-- <a class="dropdown-item" href="{{route('home.newsletters')}}">Boletines</a> --}}
+                            <a class="dropdown-item" href="{{route('home.boletines_all')}}">Boletines</a>
+                            
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Notas periodísticas</a>
                             <div class="dropdown-divider"></div>

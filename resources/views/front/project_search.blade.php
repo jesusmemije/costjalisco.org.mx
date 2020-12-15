@@ -199,8 +199,8 @@ Projects-search
             <div class="detalle-punto">
                 <p>TLAQUEPANQUE</p>
                 <div class="opciones-detelle">
-                    <span>6 Proyectos</span><br>
-                    <span>251,256 personas</span>
+                    <span><img width="15px" src="{{asset('assets/img/project/icons/pen-icon.png')}}" alt=""> 6 Proyectos</span><br>
+                    <span><img width="15px" src="{{asset('assets/img/project/icons/usuario-icon.png')}}" alt=""> 251,256 personas</span>
                 </div>
                 <center>
                     <button>Seleccionar</button>
@@ -220,7 +220,7 @@ Projects-search
     <!-- Section - Datos generales -->
     <div class="row mt-5">
         <div class="col-md-8 background-title px-0 py-1">
-            <h3 class="py-2 font-weight-bold" style="background-image: url(assets/img/background-gris.jpg); background-repeat: no-repeat;
+            <h3 class="py-2 font-weight-bold" style="background-image: url('assets/img/project/barra resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
             <span style="font-weight: 700; margin-left: 115px;">Resultados</span>    
             </h3>
