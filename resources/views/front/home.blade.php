@@ -531,8 +531,8 @@ Home
             <div class="col-md-7 pt-4">
                 <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
                 <div class="text-white visitantes-counter" style="font-size: 38px;">
-                <a title="contador de visitas web gratis"><img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh" 
-                border="0" title="contador de visitas web gratis" alt="contador de visitas web gratis"></a>
+                <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh" 
+                border="0"></a>
                </div>
             </div>
         </div>
