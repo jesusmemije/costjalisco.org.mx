@@ -14,7 +14,7 @@
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Proyectos</h1>
-    <a href="{{ route('project.identificacion') }}" class="btn btn-sm btn-primary shadow-sm">
+    <a href="{{ route('project.generaldata') }}" class="btn btn-sm btn-primary shadow-sm">
       <i class="fas fa-plus fa-sm text-white-50"></i>
        Registrar proyecto
     </a>
@@ -32,6 +32,7 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
+            <th>Responsable</th>
               <th>Título del proyecto</th>
               <th>Actualizado</th>
               <th>Estatus</th>
@@ -64,6 +65,11 @@
                   $status="Finalizado";
                   break;
                   default:$status="";
+                  
+                  //provisional
+                  case 7:
+                    $status='Datos Generales';
+                    break;
                 }
 
 
@@ -71,19 +77,45 @@
 
           
 
-
-                <td>{{ $project->title}}</td>
-                <td>{{ $project->updated}}</td>
+                <td>{{ $project->responsable}}</td>
+                
+                <td>
+                @if(!empty($project->title))
+                {{ $project->title}}
+                
+                
+                </td>
+                @else
+                <span class="badge badge-info">Sin información</span>
+                @endif
+                <td>
+                @if(!empty($project->updated))
+                {{ $project->updated}}
+              
+                </td>
+                @else
+                <span class="badge badge-info">Sin información</span>
+                @endif
+                
                 <td>{{$status}}</td>
                 <td>
                 @if(!empty($project->montocontrato))
-                {{ $project->montocontrato}}</td>
+                {{ $project->montocontrato}}
+                </td>
                 @else
-                <span class="badge badge-info">Sin presupuesto</span>
+                <span class="badge badge-info">Sin información</span>
                 @endif
-                <td>{{ $project->orgname}}</td>
+
                 <td>
-                <a class="btn btn-sm btn-warning shadow-sm" href="{{route('project.editidentificacion',$project->id_project)}}">
+                @if($project->orgname)  
+                {{ $project->orgname}}
+              </td>
+              @else
+                <span class="badge badge-info">Sin información</span>
+                @endif
+                <td>
+               
+                <a class="btn btn-sm btn-warning shadow-sm" href="{{route('project.generaldata2',$project->id_project)}}">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
                     Editar
                   </a>

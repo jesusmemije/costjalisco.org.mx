@@ -46,7 +46,14 @@ if(empty($project->id)){
 }else{
   
   switch($project->status){
+
+    case 7:
+      $generaldata='end'; 
+      $identificacion='end';
+      break;
+
     case 1:
+    $generaldata='end'; 
     $identificacion='end';
     $preparacion='end';
       
@@ -81,6 +88,7 @@ if(empty($project->id)){
   }
 
 }
+
 
 
 ?>
@@ -118,16 +126,16 @@ if(empty($project->id)){
 
 <ul class="nav nav-tabs">
 
+
+<li class="nav-item">
+    <a class="nav-link {{$generaldata}} {{$navgeneraldata}}" href="{{route('project.generaldata2',$project->id)}}">Datos Generales</a>
+  </li>
    
-@if($edit)
-   <li class="nav-item">
-    <a class="nav-link {{$identificacion}} {{$naviden}}" href="{{route('project.editidentificacion',$project->id)}}">Identificación del proyecto</a>
-  </li> 
-    @else
+
     <li class="nav-item">
-    <a class="nav-link {{$identificacion}} {{$naviden}}" href="{{route('project.identificacion')}}">Identificación del proyecto</a>
+    <a class="nav-link {{$identificacion}} {{$naviden}}" href="{{route('project.identificacion',$project->id)}}">Identificación del proyecto</a>
     </li>
-    @endif
+  
     
   
   <li class="nav-item">

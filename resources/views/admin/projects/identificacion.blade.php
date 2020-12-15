@@ -94,7 +94,8 @@
   }
 </style>
 @endsection
-
+@include('admin.layouts.partials.session-flash-status')
+@include('admin.layouts.partials.validation-error')
 
 
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -103,68 +104,7 @@
   <div class="col-lg-12">
     <form id="phase1" method="POST" action="{{route($ruta)}}" enctype="multipart/form-data">
       @csrf
-      <div class="card shadow mb-4">
-        <!-- Card Header - Accordion -->
-        <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
-          @include('admin.layouts.partials.validation-error')
-
-
-          @include('admin.layouts.partials.session-flash-status')
-
-
-
-          <h6 class="m-0 font-weight-bold text-primary">Datos generales del responsable del registro del proyecto</h6>
-        </a>
-        <!-- Card Content - Collapse -->
-
-        <div class="collapse show" id="collapseCardExample1">
-          <div class="card-body">
-          
-
-            <!---
-            <label for="descripcion">Descripción</label>
-            <input  type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
-           -->
-            <label for="nombreresponsable">Nombre de la persona que registra el proyecto</label>
-            <input required maxlength="50" type="text" name="nombreresponsable" id="nombreresponsable" class="form-control @error('nombreresponsable') is-invalid @enderror" value="{{old('nombreresponsable',$generaldata->responsable)}}">
-            @error('nombreresponsable')
-              <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-
-
-            <label for="email">Correo electrónico (Institucional)</label>
-            <input required maxlength="50" placeholder="Institucional" type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email',$generaldata->email)}}">
-            @error('email')
-              <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-
-
-            <label for="organismo">Organismo al que pertenece</label>
-            <input required maxlength="255" type="text" name="organismo" class="form-control @error('organismo') is-invalid @enderror" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
-            @error('organismo')
-              <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-
-
-            <label for="puesto">Puesto que desempeña dentro del organismo</label>
-            <input required maxlength="50" type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
-             @error('puesto')
-              <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-
-
-            <label for="involucrado">En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar</label>
-            <input required maxlength="50" placeholder="Este archivo es de carácter opcional" type="text" name="involucrado" class="form-control @error('involucrado') is-invalid @enderror" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
-            @error('involucrado')
-              <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-
-          </div>
-
-        </div>
-
-      </div>
-
+      
 
 
       <div class="card shadow mb-4">
@@ -179,7 +119,7 @@
           <div class="card-body">
 
 
-            <input type="hidden" value="{{$project->id}}" name="id_project">
+            <input type="text" value="{{$project->id}}" name="id_project">
             <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="tituloProyecto">
