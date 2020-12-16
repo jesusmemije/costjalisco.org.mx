@@ -339,20 +339,7 @@ Georreferenciación
 
         @endforeach
 
-        <!--<div class="my-5 secciones-projects ">
-            <h5 style="color: 628ea0"><b>LÍNEA 3 DEL TREN ELÉCTRICO DE GUADALAJARA</b></h5>
-            La Linea 3 de Mi Tren, es una de las obras más importantentes en cuanto a infraestructura de transporte público para <br> 
-            el Área Metropolitana de Guadalajara y que sumará a la apuesta del Gobierno de Jalisco por una movilidad <br> 
-            integrada que conecte a los usuarios de forma rápida, accesible y segura.
-            
-            <div class="row mt-3">
-                <div class="col-md-12 ">
-                    <a href="#" class="links-color">Sector Público</a> <span class="links-color">/</span>
-                    <a href="#" class="links-color">Gobierno de Jalisco</a>
-                    <a href="#" class="btn-conoce-mas">Conoce más</a>
-                </div>
-            </div>
-        </div>-->
+        
         
     </div>
     <br><br><br>
