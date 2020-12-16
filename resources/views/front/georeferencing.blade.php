@@ -132,7 +132,7 @@ Georreferenciación
     <!-- Section - Mapa de la localización -->
     <div class="row" >
         <div class="col-md-12">
-            <form action="{{url('project-search')}}" class="formulario-projects-search" method="get">
+            <form action="{{url('georeferencing')}}" class="formulario-projects-search" method="get">
                 <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
                     <option value="Guadalajara">Guadalajara</option>

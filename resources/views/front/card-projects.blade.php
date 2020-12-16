@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
  
 @section('title')
-Projects
+Proyectos
 @endsection
 
 @section('styles')
@@ -134,7 +134,7 @@ Projects
                         </center>
                         <ul>
                             <li><a href="{{ route('list-projects') }}">Conoce más proyectos</a></li>
-                            <li><a href="{{ route('boletines_all') }}">Boletines</a></li>
+                            <li><a href="{{ route('newsletters') }}">Boletines</a></li>
                             <li><a href="{{ route('journal') }}">Noticias</a></li>
                         </ul>
                         <center>

@@ -11,7 +11,7 @@ Motor de búsqueda
 
 @section('content')
 <style>
-    .formulario-projects-serach{
+    .formulario-projects-search{
         background: rgb(255, 255, 255);
         padding: 20px 20px 5px 20px;
         border-radius: 0px 30px 0px 0px;
@@ -24,7 +24,7 @@ Motor de búsqueda
         left: 40px; */
     }
     
-    .formulario-projects-serach select{
+    .formulario-projects-search select{
         width: 98%;
         height: 35px;
         margin-top: 13px;
@@ -34,7 +34,7 @@ Motor de búsqueda
         font-weight: bold;
         color: darkslategrey;
     }
-    .formulario-projects-serach input{
+    .formulario-projects-search input{
         width: 98%;
         height: 35px;
         margin-top: 13px;
@@ -44,7 +44,7 @@ Motor de búsqueda
         color: #628ea0;
         border: 1px solid #628ea0;
     }
-    .formulario-projects-serach button{
+    .formulario-projects-search button{
         margin: 30px auto;
         background: rgb(206, 0, 0);
         color: #fff;
@@ -53,7 +53,7 @@ Motor de búsqueda
         padding: 2px 30px 2px 30px;
         border: 0;
     }
-    .formulario-projects-serach button:hover{
+    .formulario-projects-search button:hover{
         background: rgb(182, 1, 1);
     }
     .fondo{
@@ -82,7 +82,7 @@ Motor de búsqueda
             </center>
         </div>
         <div class="col-md-6 mt-4 mb-4">
-            <form action="{{url('listworks')}}" class="formulario-projects-serach" method="get">
+            <form action="{{url('list-projects')}}" class="formulario-projects-search" method="get">
                 <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
                     <option value="Guadalajara">Guadalajara</option>
