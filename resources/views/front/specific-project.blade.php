@@ -11,13 +11,48 @@ Revestimiento y saneamiento del canal de aguas pluviales
 
 @section('content')
 
-<div class="container-fluid pt-4">
+
+  
+  
     <!-- Section - Descripción General del proyecto -->
-    <div class="row mb-5" style="background-color: #d8d8cd;">
-        <div class="col-md-3 px-0">
-            <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-9 px-0">
+    
+            <!--<img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">-->
+    <div class="container-fluid pt-4">        
+ 
+    
+   <!-- <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt=""> -->
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div class="row mb-5" style="background-color: #d8d8cd;">
+    
+    <div class="col-md-3 px-0">
+
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    </div>
+    <div class="carousel-item">
+    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    </div>
+    <div class="carousel-item">
+    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<div class="col-md-9 px-0">
             <div class="media-body">
                 <div id="titleproject" class="col-md-12">
                     <span>REVESTIMIENTO Y SANEAMIENTO DEL <br> CANAL DE AGUAS PLUVIALES</span>
@@ -73,6 +108,13 @@ Revestimiento y saneamiento del canal de aguas pluviales
             </div>
         </div>
     </div>
+
+</div>
+  
+ 
+
+
+        
 
     <!-- Section - Mapa de la localización -->
     <div class="row" id="map"></div>
