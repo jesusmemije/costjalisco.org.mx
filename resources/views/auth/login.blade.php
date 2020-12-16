@@ -65,7 +65,7 @@ Login
 
         <div class="form col-md-4">
             <div class="nc">
-                <a href="{{route('home.account')}}" style="color:#5e6e70;">crea una nueva cuenta</a>
+                <a href="{{route('account')}}" style="color:#5e6e70;">crea una nueva cuenta</a>
             </div>
             <div align="center">
                 <h4 style="margin-bottom:15%; margin-top:12%">INICIA SESIÓN</h4>

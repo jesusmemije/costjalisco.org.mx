@@ -43,7 +43,7 @@ Listado de obras
                         <span style="color:gray; font-weight: 700;">Gobierno de Jalisco</span>
                     </div>
                     <div style="margin-left:40%; margin-bottom:4%;" class="form-group mt-4">
-                        <a href="{{ route('home.specific_project', $project->id) }}" class="btn btn-sm"
+                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm"
                             style="background-color: #2c4143; color:white; border-radius:15px; width:130%; height:30px; box-shadow: 0px 6px 6px 0px gray;">
                             Conoce más
                         </a>
