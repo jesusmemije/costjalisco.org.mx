@@ -94,7 +94,7 @@ Listado de obras
 
         @foreach ($projects as $project)
 
-        <div class="media" style="background-color: #d8d8cd;">
+        <div class="media" style="background-color: #d8d8cd;  margin-top:2%;">
             <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" width="325" class="img-fluid" alt="">
             <div class="media-body">
                 <h5 class="mt-5 ml-5" style="font-weight: 700;">{{ $project->title }}</h5>

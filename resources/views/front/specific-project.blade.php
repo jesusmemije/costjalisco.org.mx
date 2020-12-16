@@ -93,7 +93,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="/assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
@@ -150,7 +150,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="/assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
@@ -209,7 +209,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="/assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
@@ -268,7 +268,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="/assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
@@ -299,7 +299,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="/assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
@@ -336,7 +336,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
             </div>
             <div class="col-md-2 text-right">
-                <img src="/assets/img/project/icons/pdf.png" class="img-fluid" width="32">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
@@ -371,11 +371,11 @@ Revestimiento y saneamiento del canal de aguas pluviales
         <div class="col-md-6 text-center my-5">
             <p style="color:#fff;"><strong>¡Descarga los documentos del proyecto!</strong></p>
             <a href="">
-                <img src="/assets/img/project/icons/clic.png" class="img-fluid" width="50" alt="">
+                <img src="{{asset('/assets/img/project/icons/clic.png')}}" class="img-fluid" width="50" alt="">
             </a>
         </div>
         <div class="col-md-6 text-center my-5">
-            <img src="/assets/img/project/icons/excel.png" class="img-fluid" width="100"><br><br>
+            <img src="{{asset('/assets/img/project/icons/excel.png')}}" class="img-fluid" width="100"><br><br>
             <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO XLS</button>
         </div>
     </div>

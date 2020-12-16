@@ -39,7 +39,12 @@ class HomeController extends Controller
     public function specific_project( $id )
     {
         $project = Project::find($id);
-        return view('front.specific-project', ['project' => $project]);
+        if($project!=null){
+            return view('front.specific-project', ['project' => $project]);
+        }else{
+            return redirect()->route('home.listworks');
+        }
+      
     }
     public function account(){
         return view('front.account');

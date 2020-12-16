@@ -129,7 +129,9 @@ class ProjectController extends Controller
                 ->where('id_project','=',$id)
                 ->first();
             
-              
+              if($generaldata==null){
+                return redirect()->route('project.generaldata'  );
+              }
                       
                 return view('admin.projects.generaldata',[
                     'project'=> Project::find($id),
@@ -171,7 +173,7 @@ class ProjectController extends Controller
             'organismo'=>'required|max:255',
             'puesto'=>'required|max:50',
             'involucrado'=>'required|max:50',
-            'file'=>'required|max:50'
+           
             
         ]);
         
