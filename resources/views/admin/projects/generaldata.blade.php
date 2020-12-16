@@ -186,7 +186,13 @@
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
           
-          <div class="input-images"></div>
+          <div class="input-images">
+
+          @error('collapseCardExample2')
+              <div class="invalid-feedback">Debes seleccionar al menos una imagen</div>
+          @enderror
+
+          </div>
 
         
 

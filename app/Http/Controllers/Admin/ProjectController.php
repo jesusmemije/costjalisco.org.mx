@@ -164,7 +164,16 @@ class ProjectController extends Controller
        
         $project = new Project();  
 
-       
+        $request->validate([
+          
+            'nombreresponsable'=>'required|max:50',
+            'email'=>'required|max:50',
+            'organismo'=>'required|max:255',
+            'puesto'=>'required|max:50',
+            'involucrado'=>'required|max:50',
+            'file'=>'required|max:50'
+            
+        ]);
         
         $project->status=7;
         $project->save();
