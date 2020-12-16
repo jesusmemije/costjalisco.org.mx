@@ -467,4 +467,13 @@ class HomeController extends Controller
             return response()->json($codigo_postalesArray);
         }
     }
+
+
+    public function journal(){
+
+        return view('front.journal');
+        
+    }
+
+
 }

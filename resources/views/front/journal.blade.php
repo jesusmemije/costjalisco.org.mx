@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 @section('title')
-Proyecto
+Notas perodísticas
 @endsection
 
 @section('content')
