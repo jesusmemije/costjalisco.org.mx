@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Front;
 
+
+
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,9 +36,10 @@ class HomeController extends Controller
         return view('front.interest-sites');
     }
 
-    public function specific_project(){
-        
-        return view('front.specific-project');
+    public function specific_project( $id )
+    {
+        $project = Project::find($id);
+        return view('front.specific-project', ['project' => $project]);
     }
     public function account(){
         return view('front.account');
@@ -77,7 +81,7 @@ class HomeController extends Controller
 
     public function project_search(){
 
-        $projects = DB::table('project')->get();
+        $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
       
         return view('front.project_search', [
             'projects' => $projects
@@ -96,8 +100,17 @@ class HomeController extends Controller
     public function estadisticas(){
         return view('front.estadisticas');
     }
+    public function sitemap(){
+        return view('front.sitemap');
+    }
     public function listworks(){
-        return view('front.listworks');
+
+        $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
+      
+        return view('front.listworks', [
+            'projects' => $projects
+        ]);
+
     }
     public function supportmaterial(){
         return view('front.supportmaterial');

@@ -94,7 +94,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('home.project_search')}}">Georreferenciación</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('home.projects')}}">Listado de obras</a>
+                            <a class="dropdown-item" href="{{route('home.listworks')}}">Listado de obras</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>

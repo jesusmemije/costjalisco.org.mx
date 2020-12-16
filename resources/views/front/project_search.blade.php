@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
  
 @section('title')
-Projects-search
+Georreferenciación
 @endsection
 
 @section('styles')
@@ -216,23 +216,24 @@ Projects-search
                 border-right: 1px solid #628ea0;
             }
         </style>
+
+        @foreach ($projects as $project)
+            
         <div class="my-5 secciones-projects">
-            <h5 style="color: 628ea0"><b>REVESTIMIENTO Y SANEAMIENTO DEL CANAL DE AGUAS PLUVIALES</b></h5>
-            El proyecto de infraestructura con nombre: “Revestimiento y saneamiento del canal en la Calle Arroyo entre
-            Calle Platino y Cantera, en la <br>
-            Colonia Mariano Otero, municipio de Zapopan, Jalisco.” <br>
-            El objetivo es el revestimiento y saneamiento del canal de aguas pluviales que se encuentra en la Calle
-            Arroyo entre Calle Platino y <br>
-            Cantera, en la Colonia Mariano Otero, municipio de Zapopan, Jalisco.
+            <h5 style="color: 628ea0"><b>{{ $project->title }}</b></h5>
+            {{ $project->description }}
             <div class="row mt-3">
                 <div class="col-md-12 ">
                     <a href="#" class="links-color">Sector Público</a> <span class="links-color">/</span>
                     <a href="#" class="links-color">Ayuntamiento de Zapopan</a>
-                    <a href="#" class="btn-conoce-mas">Conoce más</a>
+                    <a href="{{ route('home.specific_project', $project->id) }}" class="btn-conoce-mas">Conoce más</a>
                 </div>
             </div>
         </div>
-        <div class="my-5 secciones-projects ">
+
+        @endforeach
+
+        <!--<div class="my-5 secciones-projects ">
             <h5 style="color: 628ea0"><b>LÍNEA 3 DEL TREN ELÉCTRICO DE GUADALAJARA</b></h5>
             La Linea 3 de Mi Tren, es una de las obras más importantentes en cuanto a infraestructura de transporte público para <br> 
             el Área Metropolitana de Guadalajara y que sumará a la apuesta del Gobierno de Jalisco por una movilidad <br> 
@@ -245,7 +246,8 @@ Projects-search
                     <a href="#" class="btn-conoce-mas">Conoce más</a>
                 </div>
             </div>
-        </div>
+        </div>-->
+        
     </div>
     <br><br><br>
 </div>
@@ -273,12 +275,11 @@ Projects-search
     }
 
     .leaflet-btn-detalle-project {
-        margin: 10px auto;
         background: #2C4143;
-        color: #fff;
+        color: #fff!important;
         border-radius: 50px;
         font-size: 13px;
-        padding: 1px 20px 1px 20px;
+        padding: 4px 20px;
         border: 0;
     }
 
@@ -315,7 +316,7 @@ Projects-search
             const projects = @json($projects);
 
             projects.forEach(function(item, index) {
-                L.marker(["20.689742","-103.3928097"]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><center><button class="leaflet-btn-detalle-project">Ver detalles</button></center>');
+                L.marker(["20.689742","-103.3928097"]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><br><center><a href="/project-single/' + item.id +'" class="leaflet-btn-detalle-project">Ver detalles</a></center>');
             });
             
             /*L.marker(["19.8463034","-104.4560014"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Catedral de Guadalajara</b></a><br>Guadalajara, Centro");

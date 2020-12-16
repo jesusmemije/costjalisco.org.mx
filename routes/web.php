@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 //Class Front
 use App\Http\Controllers\Front\HomeController;
 
+
+
 //Class Admin
 use App\Http\Controllers\Admin\Catalogs\AdjudicationController;
 use App\Http\Controllers\Admin\Catalogs\ContractingController;
@@ -48,7 +50,7 @@ Route::namespace('Front')->group(function () {
 
     Route::get('/resources', [HomeController::class, 'resources'])->name('home.resources');
    
-    Route::get('project', [HomeController::class, 'specific_project'])->name('home.specific_project');
+    Route::get('/project-single/{id}', [HomeController::class, 'specific_project'])->name('home.specific_project');
 
      Route::get('account', [HomeController::class, 'account'])->name('home.account');    
      Route::get('organizations', [HomeController::class, 'organizations'])->name('home.organizations');
@@ -60,6 +62,8 @@ Route::namespace('Front')->group(function () {
      Route::get('motor-busqueda', [HomeController::class, 'motor_busqueda'])->name('home.motor_busqueda');
      Route::get('boletines-all', [HomeController::class, 'boletines_all'])->name('home.boletines_all');
      Route::get('estadisticas', [HomeController::class, 'estadisticas'])->name('home.estadisticas');
+
+     Route::get('sitemap', [HomeController::class, 'sitemap'])->name('home.sitemap');
      
 });
 
