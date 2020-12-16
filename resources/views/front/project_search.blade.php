@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
  
 @section('title')
-Projects-search
+Georreferenciación
 @endsection
 
 @section('styles')
@@ -11,7 +11,7 @@ Projects-search
 
 @section('content')
 <style>
-    .formulario-projects-serach{
+    .formulario-projects-search{
         background: rgb(255, 255, 255);
         padding: 20px 20px 5px 20px;
         border-radius: 0px 30px 0px 0px;
@@ -24,11 +24,11 @@ Projects-search
         left: 40px;
     }
     .mapa{
-        z-index: -2;
+        z-index: 1;
     }
-    .formulario-projects-serach select{
+    .formulario-projects-search select{
         width: 95%;
-        height: 27px;
+        height: 32px;
         margin-top: 9px;
         border-radius: 50px;
         padding: 5px 0px 5px 5px;
@@ -36,7 +36,7 @@ Projects-search
         font-weight: bold;
         color: darkslategrey;
     }
-    .formulario-projects-serach input{
+    .formulario-projects-search input{
         width: 95%;
         height: 27px;
         margin-top: 9px;
@@ -46,41 +46,19 @@ Projects-search
         color: #628ea0;
         border: 1px solid #628ea0;
     }
-    .formulario-projects-serach button{
-        margin: 25px auto;
+    .formulario-projects-search button{
+        margin-top: 25px;
+        margin-bottom: 5px;
         background: #2C4143;
         color: #fff;
         border-radius: 50px;
         font-size: 13px;
-        padding: 1px 20px 1px 20px;
+        padding: 4px 24px;
         border: 0;
-    }
-    .detalle-punto{
-        background: #d5d6be;
-        width: 200px;
-        z-index: 100;
-        top: 270px;
-        left: 980px;
-        color: #628ea0;
         font-weight: bold;
-        position: absolute; 
-        float: left; 
-        text-align: center;
-        padding: 15px 15px 2px 25px;
-        border-radius: 0px 20px 0px 0px;
-        box-shadow: 5px 5px 2px #999;
-        font-size: 13px;
     }
-    .detalle-punto button{
-        margin: 25px auto;
-        background: #2C4143;
-        color: #fff;
-        border-radius: 50px;
-        font-size: 13px;
-        padding: 1px 20px 1px 20px;
-        border: 0;
-    }
-    .opciones-detelle{
+
+    .content-label{
         text-align: left;
         color: #2C4143;
         font-size: 12px;
@@ -154,63 +132,155 @@ Projects-search
     <!-- Section - Mapa de la localización -->
     <div class="row" >
         <div class="col-md-12">
-            <form action="" class="formulario-projects-serach" method="post">
-                <select name="" id="">
-                    <option value="">Entidad o municipio</option>
-                    <option value="">Opción 1</option>
-                    <option value="">Opción 2</option>
-                    <option value="">Opción 3</option>
+            <form action="{{url('project-search')}}" class="formulario-projects-search" method="get">
+                <select name="municipio" id="municipio">
+                    <option value="">Seleccione entidad o municipio</option>
+                    <option value="Guadalajara">Guadalajara</option>
+                    <option value="Zapopan">Zapopan</option>
+                    <option value="San Cristóbal de la Barranca">San Cristóbal de la Barranca</option>
+                    <option value="Ixtlahuacán del Río">Ixtlahuacán del Río</option>
+                    <option value="Tala">Tala</option>
+                    <option value="El Arenal">El Arenal</option>
+                    <option value="Amatitán">Amatitán</option>
+                    <option value="Tonalá">Tonalá</option>
+                    <option value="Zapotlanejo">Zapotlanejo</option>
+                    <option value="Acatic">Acatic</option>
+                    <option value="Cuquío">Cuquío</option>
+                    <option value="San Pedro Tlaquepaque">San Pedro Tlaquepaque</option>
+                    <option value="Tlajomulco de Zúñiga">Tlajomulco de Zúñiga</option>
+                    <option value="El Salto">El Salto</option>
+                    <option value="Acatlán de Juárez">Acatlán de Juárez</option>
+                    <option value="Villa Corona">Villa Corona</option>
+                    <option value="Zacoalco de Torres">Zacoalco de Torres</option>
+                    <option value="Atemajac de Brizuela">Atemajac de Brizuela</option>
+                    <option value="Jocotepec">Jocotepec</option>
+                    <option value="Ixtlahuacán de los Membrillos">Ixtlahuacán de los Membrillos</option>
+                    <option value="Juanacatlán">Juanacatlán</option>
+                    <option value="Chapala">Chapala</option>
+                    <option value="Poncitlán">Poncitlán</option>
+                    <option value="Zapotlán del Rey">Zapotlán del Rey</option>
+                    <option value="Huejuquilla el Alto">Huejuquilla el Alto</option>
+                    <option value="Mezquitic">Mezquitic</option>
+                    <option value="Villa Guerrero">Villa Guerrero</option>
+                    <option value="Bolaños">Bolaños</option>
+                    <option value="Totatiche">Totatiche</option>
+                    <option value="Colotlán">Colotlán</option>
+                    <option value="Santa María de los Ángeles">Santa María de los Ángeles</option>
+                    <option value="Huejúcar">Huejúcar</option>
+                    <option value="Chimaltitán">Chimaltitán</option>
+                    <option value="San Martín de Bolaños">San Martín de Bolaños</option>
+                    <option value="Tequila">Tequila</option>
+                    <option value="Hostotipaquillo">Hostotipaquillo</option>
+                    <option value="Magdalena">Magdalena</option>
+                    <option value="Etzatlán">Etzatlán</option>
+                    <option value="San Marcos">San Marcos</option>
+                    <option value="San Juanito de Escobedo">San Juanito de Escobedo</option>
+                    <option value="Ameca">Ameca</option>
+                    <option value="Ahualulco de Mercado">Ahualulco de Mercado</option>
+                    <option value="Teuchitlán">Teuchitlán</option>
+                    <option value="San Martín Hidalgo">San Martín Hidalgo</option>
+                    <option value="Guachinango">Guachinango</option>
+                    <option value="Mixtlán">Mixtlán</option>
+                    <option value="Mascota">Mascota</option>
+                    <option value="San Sebastián del Oeste">San Sebastián del Oeste</option>
+                    <option value="San Juan de los Lagos">San Juan de los Lagos</option>
+                    <option value="Jalostotitlán">Jalostotitlán</option>
+                    <option value="San Miguel el Alto">San Miguel el Alto</option>
+                    <option value="San Julián">San Julián</option>
+                    <option value="Arandas">Arandas</option>
+                    <option value="San Ignacio Cerro Gordo">San Ignacio Cerro Gordo</option>
+                    <option value="Teocaltiche">Teocaltiche</option>
+                    <option value="Villa Hidalgo">Villa Hidalgo</option>
+                    <option value="Encarnación de Díaz">Encarnación de Díaz</option>
+                    <option value="Yahualica de González Gallo">Yahualica de González Gallo</option>
+                    <option value="Mexticacán">Mexticacán</option>
+                    <option value="Cañadas de Obregón">Cañadas de Obregón</option>
+                    <option value="Valle de Guadalupe">Valle de Guadalupe</option>
+                    <option value="Lagos de Moreno">Lagos de Moreno</option>
+                    <option value="Ojuelos de Jalisco">Ojuelos de Jalisco</option>
+                    <option value="Unión de San Antonio">Unión de San Antonio</option>
+                    <option value="San Diego de Alejandría">San Diego de Alejandría</option>
+                    <option value="Tepatitlán de Morelos">Tepatitlán de Morelos</option>
+                    <option value="Tototlán">Tototlán</option>
+                    <option value="Atotonilco el Alto">Atotonilco el Alto</option>
+                    <option value="Ocotlán">Ocotlán</option>
+                    <option value="Jamay">Jamay</option>
+                    <option value="La Barca">La Barca</option>
+                    <option value="Ayotlán">Ayotlán</option>
+                    <option value="Jesús María">Jesús María</option>
+                    <option value="Degollado">Degollado</option>
+                    <option value="Unión de Tula">Unión de Tula</option>
+                    <option value="Ayutla">Ayutla</option>
+                    <option value="Atenguillo">Atenguillo</option>
+                    <option value="Cuautla">Cuautla</option>
+                    <option value="Atengo">Atengo</option>
+                    <option value="Talpa de Allende">Talpa de Allende</option>
+                    <option value="Puerto Vallarta">Puerto Vallarta</option>
+                    <option value="Cabo Corrientes">Cabo Corrientes</option>
+                    <option value="Tomatlán">Tomatlán</option>
+                    <option value="Cocula">Cocula</option>
+                    <option value="Tecolotlán">Tecolotlán</option>
+                    <option value="Tenamaxtlán">Tenamaxtlán</option>
+                    <option value="Juchitlán">Juchitlán</option>
+                    <option value="Chiquilistlán">Chiquilistlán</option>
+                    <option value="Ejutla">Ejutla</option>
+                    <option value="El Limón">El Limón</option>
+                    <option value="El Grullo">El Grullo</option>
+                    <option value="Tonaya">Tonaya</option>
+                    <option value="Tuxcacuesco">Tuxcacuesco</option>
+                    <option value="Villa Purificación">Villa Purificación</option>
+                    <option value="La Huerta">La Huerta</option>
+                    <option value="Autlán de Navarro">Autlán de Navarro</option>
+                    <option value="Casimiro Castillo">Casimiro Castillo</option>
+                    <option value="Cuautitlán de García Barragán">Cuautitlán de García Barragán</option>
+                    <option value="Cihuatlán">Cihuatlán</option>
+                    <option value="Zapotlán el Grande">Zapotlán el Grande</option>
+                    <option value="Gómez Farías">Gómez Farías</option>
+                    <option value="Concepción de Buenos Aires">Concepción de Buenos Aires</option>
+                    <option value="Atoyac">Atoyac</option>
+                    <option value="Techaluta de Montenegro">Techaluta de Montenegro</option>
+                    <option value="Teocuitatlán de Corona">Teocuitatlán de Corona</option>
+                    <option value="Sayula">Sayula</option>
+                    <option value="Tapalpa">Tapalpa</option>
+                    <option value="Amacueca">Amacueca</option>
+                    <option value="Tizapán el Alto">Tizapán el Alto</option>
+                    <option value="Tuxcueca">Tuxcueca</option>
+                    <option value="La Manzanilla de la Paz">La Manzanilla de la Paz</option>
+                    <option value="Mazamitla">Mazamitla</option>
+                    <option value="Valle de Juárez">Valle de Juárez</option>
+                    <option value="Quitupan">Quitupan</option>
+                    <option value="Zapotiltic">Zapotiltic</option>
+                    <option value="Tamazula de Gordiano">Tamazula de Gordiano</option>
+                    <option value="San Gabriel">San Gabriel</option>
+                    <option value="Tolimán">Tolimán</option>
+                    <option value="Zapotitlán de Vadillo">Zapotitlán de Vadillo</option>
+                    <option value="Tuxpan">Tuxpan</option>
+                    <option value="Tonila">Tonila</option>
+                    <option value="Pihuamo">Pihuamo</option>
+                    <option value="Tecalitlán">Tecalitlán</option>
+                    <option value="Jilotlán de los Dolores">Jilotlán de los Dolores</option>
+                    <option value="Santa María del Oro">Santa María del Oro</option>
+                </select>
+                <select name="id_sector" id="sector">
+                    <option value="">No hay sectores</option>
     
                 </select>
-                <select name="" id="">
-                    <option value="">Sector</option>
-                    <option value="">Opción 1</option>
-                    <option value="">Opción 2</option>
-                    <option value="">Opción 3</option>
+                <select name="id_subsector" id="sub_sector">
+                    <option value="">No hay subsectores</option>
     
                 </select>
-                <select name="" id="">
-                    <option value="">Subsector</option>
-                    <option value="">Opción 1</option>
-                    <option value="">Opción 2</option>
-                    <option value="">Opción 3</option>
+                <select name="codigo_postal" id="codigo_postal">
+                    <option value="">No hay C.P.</option>
     
                 </select>
-                <select name="" id="">
-                    <option value="">Agente Multisectorial</option>
-                    <option value="">Opción 1</option>
-                    <option value="">Opción 2</option>
-                    <option value="">Opción 3</option>
-    
-                </select>
-                <select name="" id="">
-                    <option value="">C.P.</option>
-                    <option value="">Opción 1</option>
-                    <option value="">Opción 2</option>
-                    <option value="">Opción 3</option>
-    
-                </select>
-                <input type="text" value="Nombre del proyecto">
+                {{-- <input type="text" name="presupuesto" placeholder="Presupuesto"> --}}
+                <input type="text" name="nombre_proyecto" placeholder="Nombre del proyecto">
                 <center>
-                    <button>BÚSQUEDA</button>
+                    <button type="submit">BÚSQUEDA</button>
                 </center>
                 <a href="#" style="float: right; color: #2C4143">X</a>
             </form>
-            <div class="detalle-punto">
-                <p>TLAQUEPANQUE</p>
-                <div class="opciones-detelle">
-                    <span><img width="15px" src="{{asset('assets/img/project/icons/pen-icon.png')}}" alt=""> 6 Proyectos</span><br>
-                    <span><img width="15px" src="{{asset('assets/img/project/icons/usuario-icon.png')}}" alt=""> 251,256 personas</span>
-                </div>
-                <center>
-                    <button>Seleccionar</button>
-                </center>
-                <a href="#" style="float: right; color: #2C4143">X</a>
-                
-            </div>
             
-            {{-- <div class="col-md-12">
-            </div> --}}
         </div>
     </div>
     <div id="map" class="row mapa"></div>
@@ -219,10 +289,10 @@ Projects-search
 
     <!-- Section - Datos generales -->
     <div class="row mt-5">
-        <div class="col-md-8 background-title px-0 py-1">
-            <h3 class="py-2 font-weight-bold" style="background-image: url('assets/img/project/barra resultados.png'); background-repeat: no-repeat;
+        <div class="col-md-8 px-0 py-1">
+            <h3 class="py-2 font-weight-bold" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/project/barra resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
-            <span style="font-weight: 700; margin-left: 115px;">Resultados</span>    
+            <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>    
             </h3>
             
         </div>
@@ -289,41 +359,129 @@ Projects-search
 @endsection
 
 @section('scripts')
-<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"
-    defer></script>
 
 <script>
-
-        
-        var map = L.map('map').
-            setView([41.66, -4.72],
-                14);
-
-            
-
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-            maxZoom: 80
-        }).addTo(map);
-
-        L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
-
-        /* Google maps init
-        let map;
-    
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
-                },
-                zoom: 8,
-            });
-        }*/
+    $(document).ready(function(){
+        $('#municipio').on('change',function(){
+            var municipio_id = $(this).val();
+            if ($.trim(municipio_id) != ''){
+                $.get('sectores',{municipio_id:municipio_id}, function (sectores) {
+                    $('#sector').empty();
+                    $('#sub_sector').empty();
+                    $('#sub_sector').append("<option value=''>No se encontraron subsectores</option>");
+                    $('#sector').append("<option value=''>Seleccione Sector</option>");
+                    $.each(sectores, function (index, value){
+                        $('#sector').append("<option value='"+index+"'>"+value+"</option>")
+                    })
+                    
+                })
+            }
+        })
+        $('#sector').on('change',function(){
+            var sector_id = $(this).val();
+            if ($.trim(sector_id) != ''){
+                $.get('subsectores',{sector_id:sector_id}, function (subsectores) {
+                    $('#sub_sector').empty();
+                    $('#sub_sector').append("<option value=''>Seleccione subsector</option>");
+                    $.each(subsectores, function (index, value){
+                        $('#sub_sector').append("<option value='"+index+"'>"+value+"</option>")
+                    })
+                })
+            }
+        })
+        $('#sub_sector').on('change',function(){
+            var sub_sector_id = $(this).val();
+            if ($.trim(sub_sector_id) != ''){
+                $.get('codigo_postales',{sub_sector_id:sub_sector_id}, function (codigo_postales) {
+                    $('#codigo_postal').empty();
+                    $('#codigo_postal').append("<option value=''>Seleccione codigo postal</option>");
+                    $.each(codigo_postales, function (index, value){
+                        $('#codigo_postal').append("<option value='"+index+"'>"+value+"</option>")
+                    })
+                })
+            }
+        })
+    })
 </script>
+
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+<style>
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        background: #d5d6be;
+        width: 200px;
+        color: #628ea0;
+        font-weight: bold;
+        border-radius: 0px 20px 0px 0px;
+        box-shadow: 5px 5px 2px #999;
+        font-size: 13px;
+    }
+
+    .leaflet-container a.leaflet-popup-close-button {
+        padding: 10px 22px 0 0;
+        color: #2C4143;
+    }
+
+    .leaflet-btn-detalle-project {
+        margin: 10px auto;
+        background: #2C4143;
+        color: #fff;
+        border-radius: 50px;
+        font-size: 13px;
+        padding: 1px 20px 1px 20px;
+        border: 0;
+    }
+
+</style>
+
+<script type="text/javascript">
+    // listen for screen resize events
+      var zona = 0;
+      window.addEventListener('load', function(event){
+          // get the width of the screen after the resize event
+          var width = document.documentElement.clientWidth;
+          // tablets are between 768 and 922 pixels wide
+          // phones are less than 768 pixels wide
+          if (width < 1550) {
+              // set the zoom level to 10
+              zona = 7;
+          }  else {
+              // set the zoom level to 8
+              zona = 8;
+          }        
+            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                          osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib }),
+                          bounds = new L.LatLngBounds(new L.LatLng(22.629, -103.886), new L.LatLng(18.489, -102.940));
+  
+              var map = new L.Map('map', {
+                  scrollWheelZoom: false,
+                  center: bounds.getCenter(),
+                  zoom: zona,
+                  layers: [osm],
+                  maxBounds: bounds
+              });
+              
+            const projects = @json($projects);
+
+            projects.forEach(function(item, index) {
+                L.marker([item.lat,item.lng]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><center><button class="leaflet-btn-detalle-project">Ver detalles</button></center>');
+            });
+            
+            /*L.marker(["19.8463034","-104.4560014"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Catedral de Guadalajara</b></a><br>Guadalajara, Centro");
+            L.marker(["20.8811927","-103.8440796"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Tequila Jalisco</b></a><br>Zapopan");*/
+    });
+</script>
+
+<script type="text/javascript">
+    const projects = @json($projects);
+    //console.log(projects);
+
+    projects.forEach(function(item, index) {
+        console.log(item);
+    });
+
+</script>
+  
 @endsection

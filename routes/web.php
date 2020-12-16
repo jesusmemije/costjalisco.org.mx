@@ -54,6 +54,9 @@ Route::namespace('Front')->group(function () {
      Route::get('motor-busqueda', [HomeController::class, 'motor_busqueda'])->name('home.motor_busqueda');
      Route::get('boletines-all', [HomeController::class, 'boletines_all'])->name('home.boletines_all');
      Route::get('estadisticas', [HomeController::class, 'estadisticas'])->name('home.estadisticas');
+     Route::get('sectores', [HomeController::class, 'sectores'])->name('home.sectores');
+     Route::get('subsectores', [HomeController::class, 'subsectores'])->name('home.subsectores');
+     Route::get('codigo_postales', [HomeController::class, 'codigo_postales'])->name('home.codigo_postales');
      
 });
 
