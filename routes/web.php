@@ -50,6 +50,8 @@ Route::namespace('Front')->group(function () {
     Route::get('/statistics', [HomeController::class, 'statistics'])->name('statistics');
     Route::get('/account', [HomeController::class, 'account'])->name('account');
 
+    Route::get('/sitemap', [HomeController::class, 'sitemap'])->name('sitemap');
+
     //Newsletter
     Route::get('/newsletters', [NewsletterController::class, 'newsletters'])->name('newsletters');
     Route::get('/newsletter-single', [NewsletterController::class, 'newsletter_single'])->name('newsletter-single');

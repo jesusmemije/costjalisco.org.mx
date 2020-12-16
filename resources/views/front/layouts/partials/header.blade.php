@@ -6,7 +6,10 @@
                     <nav class="nav d-flex justify-content-between">
                         <a class="p-2 text-white nav-link" href="{{ route('interest-sites') }}">Sitios de interés</a>
                         <div class="divider"></div>
-                        <a class="p-2 text-white nav-link" href="#">Mapas del sitio</a>
+                      
+                        <a class="p-2 text-white nav-link" href="{{ route('sitemap') }}">Mapas del sitio</a>
+
+
                         <div class="divider"></div>
                         @if (Route::has('login'))
                             @auth
