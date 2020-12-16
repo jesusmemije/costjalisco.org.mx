@@ -43,12 +43,14 @@ Route::namespace('Front')->group(function () {
     Route::get('/interest-sites', [HomeController::class, 'interest_sites'])->name('home.interest-sites');
     Route::get('/listworks', [HomeController::class, 'listworks'])->name('home.listworks');
 
+    Route::get('/journal', [HomeController::class, 'journal'])->name('home.journal');
+
     Route::get('/supportmaterial', [HomeController::class, 'supportmaterial'])->name('home.supportmaterial');
 
 
     Route::get('/resources', [HomeController::class, 'resources'])->name('home.resources');
    
-    Route::get('project', [HomeController::class, 'specific_project'])->name('home.specific_project');
+    Route::get('/project-single/{id}', [HomeController::class, 'specific_project'])->name('home.specific_project');
 
      Route::get('account', [HomeController::class, 'account'])->name('home.account');    
      Route::get('organizations', [HomeController::class, 'organizations'])->name('home.organizations');
@@ -60,8 +62,9 @@ Route::namespace('Front')->group(function () {
      Route::get('motor-busqueda', [HomeController::class, 'motor_busqueda'])->name('home.motor_busqueda');
      Route::get('boletines-all', [HomeController::class, 'boletines_all'])->name('home.boletines_all');
      Route::get('estadisticas', [HomeController::class, 'estadisticas'])->name('home.estadisticas');
-
-     Route::get('sitemap', [HomeController::class, 'sitemap'])->name('home.sitemap');
+     Route::get('sectores', [HomeController::class, 'sectores'])->name('home.sectores');
+     Route::get('subsectores', [HomeController::class, 'subsectores'])->name('home.subsectores');
+     Route::get('codigo_postales', [HomeController::class, 'codigo_postales'])->name('home.codigo_postales');
      
 });
 

@@ -218,10 +218,13 @@
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
+              </div>
 
+              <div class="form-row">
 
-              <label for="tipoProyecto" class="col-md-2">Tipo de proyecto</label>
-              <select required name="tipoProyecto" id="tipoProyecto" class="form-control col-md-6 @error('tipoProyecto') is-invalid @enderror">
+              <div class="form-group col-md-6">
+              <label for="tipoProyecto">Tipo de proyecto</label>
+              <select required name="tipoProyecto" id="tipoProyecto" class="form-control @error('tipoProyecto') is-invalid @enderror">
                 <option value="">Seleccione un tipo</option>
                 @foreach($types as $type)
                 @if($type->id==$project->type)
@@ -232,11 +235,17 @@
 
                 @endforeach
               </select>
+              </div>
                @error('tipoProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-
+            <div class="form-group col-md-3">
+            <label for="people">Personas beneficiadas</label>
+            <input type="number" name="people" id="people" class="form-control" value="{{old('people',$project->people)}}">
             </div>
+            
+   </div>
+            
             @error('lat')
             <div class="invalid-feedback" style="display: block;">Debe seleccionar al menos un lugar en el mapa.</div>
             @enderror

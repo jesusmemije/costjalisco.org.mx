@@ -71,6 +71,7 @@ Estadísticas
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-md-3" style="background: #58707c; padding: 50px 50px;">
                     <h4 class="mt-4 mb-4" style="color: #fff; font-weight: bold;">Proyectos de la iniciativa</h4>

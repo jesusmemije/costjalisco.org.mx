@@ -129,7 +129,9 @@ class ProjectController extends Controller
                 ->where('id_project','=',$id)
                 ->first();
             
-              
+              if($generaldata==null){
+                return redirect()->route('project.generaldata'  );
+              }
                       
                 return view('admin.projects.generaldata',[
                     'project'=> Project::find($id),
@@ -171,7 +173,7 @@ class ProjectController extends Controller
             'organismo'=>'required|max:255',
             'puesto'=>'required|max:50',
             'involucrado'=>'required|max:50',
-            'file'=>'required|max:50'
+           
             
         ]);
         
@@ -676,7 +678,7 @@ class ProjectController extends Controller
         $project->subsector=$request->subsector;
         $project->purpose = $request->propositoProyecto;
         $project->type = $request->tipoProyecto;
-        
+        $project->people = $request->people;
       
         $project->publicAuthority_name = '';
         $project->publicAuthority_id = $request->autoridadP;
@@ -1236,7 +1238,7 @@ class ProjectController extends Controller
         
         $request->validate([
           
-            'tituloProyecto'=>'required|max:50',
+            'tituloProyecto'=>'required|max:255',
             'ocid'=>'required|max:50',
             'descripcionProyecto'=>'required|max:50',
             'autoridadP'=>'required|max:50',
@@ -1244,6 +1246,7 @@ class ProjectController extends Controller
             'sectorProyecto'=>'required|max:50',
             'subsector'=>'required|max:50',
             'tipoProyecto'=>'required|max:50',
+        
 
             'streetAddress'=>'required|max:50',
             'locality'=>'required|max:50',
@@ -1267,7 +1270,7 @@ class ProjectController extends Controller
         $project->subsector=$request->subsector;
         $project->purpose = $request->propositoProyecto;
         $project->type = $request->tipoProyecto;
-        
+        $project->people = $request->people;
       
         $project->publicAuthority_name = '';
         $project->publicAuthority_id = $request->autoridadP;
