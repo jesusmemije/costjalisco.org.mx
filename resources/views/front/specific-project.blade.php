@@ -1,32 +1,32 @@
 @extends('front.layouts.app')
  
 @section('title')
-Revestimiento y saneamiento del canal de aguas pluviales
+Datos del proyecto
 @endsection
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 @endsection
-
+<meta charset='utf-8'>
 
 @section('content')
 
 <div class="container-fluid pt-4">
     <!-- Section - Descripción General del proyecto -->
-    <div class="row" style="background-color: #d8d8cd;">
+    <div class="row mb-5" style="background-color: #d8d8cd;">
         <div class="col-md-3 px-0">
-            <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">
+            <img src="{{ asset('/assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">
         </div>
         <div class="col-md-9 px-0">
             <div class="media-body">
                 <div id="titleproject" class="col-md-12">
-                    <span>REVESTIMIENTO Y SANEAMIENTO DEL <br> CANAL DE AGUAS PLUVIALES</span>
+                    <span>{{ $project->title }}</span>
                 </div>
                 <div id="benefited" class="col-md-12">
                     <div class="row mx-0 align-items-baseline">
-                        <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid ml-3" width="60"
+                        <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid ml-3" width="60"
                             alt="">
-                        <label class="ml-3" style="color:#628ea0; font-size: 28px; font-weight: 600;" for="">246,523
+                        <label class="ml-3" style="color:#628ea0; font-size: 28px; font-weight: 600;" for="">{{number_format($project->people)}}
                             ciudadanos beneficiados</label>
                     </div>
                     <div class="row mx-0">
@@ -68,7 +68,10 @@ Revestimiento y saneamiento del canal de aguas pluviales
                     </div>
                 </div>
                 <div id="line-date-inagurado" class="py-1">
-                    <span style="color: #2C4143"><b>Inagurado: 03/oct/2020</b></span>
+                    <?php 
+                    setlocale(LC_ALL, 'es_ES');
+                    $date=date_create($project->updated);?>
+                    <span style="color: #2C4143"><b>Inagurado:  {{date_format($date,'d/M/Y')}}</b></span>
                 </div>
             </div>
         </div>
@@ -89,17 +92,39 @@ Revestimiento y saneamiento del canal de aguas pluviales
     </div>
     <div class="container">
         <div class="my-5">
-            El proyecto de infraestructura con nombre: “Revestimiento y saneamiento del canal en la Calle Arroyo entre
-            Calle Platino y Cantera, en la <br>
-            Colonia Mariano Otero, municipio de Zapopan, Jalisco.” <br>
-            El objetivo es el revestimiento y saneamiento del canal de aguas pluviales que se encuentra en la Calle
-            Arroyo entre Calle Platino y <br>
-            Cantera, en la Colonia Mariano Otero, municipio de Zapopan, Jalisco. El proyecto cuenta con indicador de
-            impacto ambiental, donde el <br>
-            responsable del estudio es: “Ingeniería en Mecánica de Suelos y Control de Occidente S.A. de C.V., con
-            estudio de factibilidad Técnico <br>
-            económica, ecológica o social, con recursos federales en el ramo 33 del Fondo de Aportaciones para la
-            Infraestructura Social.
+            {{ $project->purpose }}
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <?php 
+                
+                
+
+                ?>
+                <a id="pdf1"
+                onclick="<?php 
+                foreach($identificacion as $doc){
+                    echo "funcion('$doc');";
+                }
+                 ?>"
+             
+              
+                
+                class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</a>
+                
+                <script>
+                   
+                    function funcion(url){
+                  
+                    var f='{{asset("documents/")}}'+"/"+url;
+                    console.log(f);
+                    window.open(f);
+                    }
+
+                </script>
+           
+            </div>
         </div>
     </div>
 
@@ -139,7 +164,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 @foreach($responsables as $responsable)
                 <br>
                 @if($responsable['name']!='')
-                <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: bold;">{{$responsable['name']}}</span></br>
                 @endif
                 @if($responsable['cargo']!='')
@@ -149,9 +174,13 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 <span style="padding-left:34px;">{{$responsable['email']}}</span><br>
                 @endif
                 @endforeach
-                <div class="row">
-                    <div class="col-md-10" style="border-bottom:1px solid #628ea0; ; margin-top:4%;"></div>
-                </div>
+  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -182,29 +211,35 @@ Revestimiento y saneamiento del canal de aguas pluviales
                     Con la Unidad de Presupuesto y Contratación
                     de Obra Publica como entidad de ajudicación. </p>
             </div>
-            <div class=col-md-12>
+            <div class="col-md-12">
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsable del
                     contacto de
                     la entidad de adjudicación</span><br>
-                <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Lic. Sandra Patricia Sánchez Váldez</span><br>
                 <span style="padding-left:34px; font-weight: 700;">sandra.sanchez@zapopan.gob.mx</span><br><br>
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     impacto de terreno</span><br>
-                <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Ingeniería en Mécanica de Suelos y Control de Occidente S.A. de
                     C.V.</span><br><br>
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     factibilidad</span><br>
-                <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">Tesorería Municipal</span><br><br>
                 <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio
                     de
                     impacto de terreno y asentamientos</span><br>
-                <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">M en C.E. Alonso López Flores</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -250,7 +285,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 @foreach($empresas as $empresa)
                 <div class="row py-4" style="border-left: 1px solid #628ea0;">
                     <div class="col-md-2">
-                        <img src="{{ asset('assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50"
+                        <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50"
                             alt="">
                     </div>
                     <div class="col-md-10 px-0">
@@ -258,6 +293,12 @@ Revestimiento y saneamiento del canal de aguas pluviales
                     </div>
                 </div>
                 @endforeach
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -285,6 +326,12 @@ Revestimiento y saneamiento del canal de aguas pluviales
                 <span><b>Estado actual del proyecto:</b> Concluído</span><br>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            </div>
+        </div>
     </div>
 
     <!-- Section - Finalización -->
@@ -309,13 +356,17 @@ Revestimiento y saneamiento del canal de aguas pluviales
     </div>
     <div class="container mt-5">
         <div class="row align-items-baseline">
-            <div class="col-md-7 ml-3" style="background-color:#d60000; color:#fff;">
+            <div class="col-md-7" style="background-color:#d60000; color:#fff;">
                 <div class="d-flex justify-content-end align-items-baseline">
                     <span style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
+            </div>
+            <div class="col-md-2 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div>
         </div>
     </div>
@@ -324,19 +375,19 @@ Revestimiento y saneamiento del canal de aguas pluviales
     <div class="row" id="background-resumen">
         <div class="col-md-12 d-flex justify-content-center" style="height: auto;">
             <div class="col-md-3 text-center text-white py-3">
-                <img src="{{ asset('assets/img/project/icons/beneficiarios.png') }}" class="img-fluid" width="24" alt="">
+                <img src="{{ asset('/assets/img/project/icons/beneficiarios.png') }}" class="img-fluid" width="24" alt="">
                 &nbsp<span>Beneficiarios: 569 950 ciudadanos</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
             <div class="col-md-3 text-center text-white py-3">
-                <img src="{{ asset('assets/img/project/icons/ubicacion.png') }}" class="img-fluid" width="16" alt="">
+                <img src="{{ asset('/assets/img/project/icons/ubicacion.png') }}" class="img-fluid" width="16" alt="">
                 &nbsp<span>Colonia Mariano Otero, Zapopan.</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
             <div class="col-md-3 text-center text-white py-3">
-                <img src="{{ asset('assets/img/project/icons/dinero.png') }}" class="img-fluid" width="24" alt="">
+                <img src="{{ asset('/assets/img/project/icons/dinero.png') }}" class="img-fluid" width="24" alt="">
                 &nbsp<span>Inversión: $571857.77</span>
             </div>
             <div style="height: 1.5em;
@@ -349,20 +400,12 @@ Revestimiento y saneamiento del canal de aguas pluviales
         <div class="col-md-6 text-center my-5">
             <p style="color:#fff;"><strong>¡Descarga los documentos del proyecto!</strong></p>
             <a href="">
-                <img src="assets/img/project/icons/clic.png" class="img-fluid" width="50" alt="">
+                <img src="{{asset('/assets/img/project/icons/clic.png')}}" class="img-fluid" width="50" alt="">
             </a>
         </div>
-        <div class="col-md-6 my-5">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center">
-                    <img src="assets/img/project/icons/pdf.png" class="img-fluid" width="100"><br><br>
-                    <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO PDF</button>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="assets/img/project/icons/excel.png" class="img-fluid" width="100"><br><br>
-                    <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO XLS</button>
-                </div>
-            </div>
+        <div class="col-md-6 text-center my-5">
+            <img src="{{asset('/assets/img/project/icons/excel.png')}}" class="img-fluid" width="100"><br><br>
+            <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO XLS</button>
         </div>
     </div>
 </div>
@@ -372,36 +415,26 @@ Revestimiento y saneamiento del canal de aguas pluviales
 @section('scripts')
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"
-    defer></script>
 
-<script>
+<script type="text/javascript">
+    // listen for screen resize events
+      var zona = 0;
+      window.addEventListener('load', function(event){
 
-        
-var map = L.map('map').
-        setView([41.66, -4.72],
-            80);
+            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                          osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib });
+  
+              var map = new L.Map('map', {
+                  scrollWheelZoom: false,
+                  center: ["20.689742","-103.3928097"],
+                  zoom: 14,
+                  layers: [osm],
+                  
+              });
+  
+            L.marker(["20.689742","-103.3928097"]).addTo(map);
 
-            
-            /* this layer loads soooo slow.
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-            maxZoom: 80
-        }).addTo(map);
-        */
-
-        /* Google maps init
-        let map;
-    
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
-                },
-                zoom: 8,
-            });
-        }*/
+    });
 </script>
 @endsection

@@ -25,6 +25,8 @@ class AlterProjectstatusTable extends Migration
                 $rows[]=['id'=>'4','titulo'=>'Finalización','descripcion'=>'La finalización cubre el traspaso de los activos y las actividades de cierre con detalles del alcance, costo y fecha de entrega finales.'];
                 $rows[]=['id'=>'5','titulo'=>'Completado','descripcion'=>'Las actividades de cierre fueron completadas y este proyecto está inactivo.'];
                 $rows[]=['id'=>'6','titulo'=>'Cancelado','descripcion'=>'Este proyecto fue cancelado antes de que las actividades de cierre fueran completadas, y está inactivo. La cancelación puede ocurrir en cualquier momento después de la identificación.'];
+
+                $rows[]=['id'=>'7','titulo'=>'Datos Generales','descripcion'=>'Este proyecto fue cancelado antes de que las actividades de cierre fueran completadas, y está inactivo. La cancelación puede ocurrir en cualquier momento después de la identificación.'];
                 DB::table('projectstatus')->delete();
         
                 foreach ($rows as $row) {

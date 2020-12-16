@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 //Class Front
 use App\Http\Controllers\Front\HomeController;
 
+
+
 //Class Admin
 use App\Http\Controllers\Admin\Catalogs\AdjudicationController;
 use App\Http\Controllers\Admin\Catalogs\ContractingController;
@@ -39,10 +41,16 @@ Route::namespace('Front')->group(function () {
     Route::get('/resources', [HomeController::class, 'resources'])->name('home.resources');
     Route::get('/statistics', [HomeController::class, 'statistics'])->name('home.statistics');
     Route::get('/interest-sites', [HomeController::class, 'interest_sites'])->name('home.interest-sites');
+    Route::get('/listworks', [HomeController::class, 'listworks'])->name('home.listworks');
+
+    Route::get('/journal', [HomeController::class, 'journal'])->name('home.journal');
+
+    Route::get('/supportmaterial', [HomeController::class, 'supportmaterial'])->name('home.supportmaterial');
+
 
     Route::get('/resources', [HomeController::class, 'resources'])->name('home.resources');
    
-    Route::get('project', [HomeController::class, 'specific_project'])->name('home.specific_project');
+    Route::get('/project-single/{id}', [HomeController::class, 'specific_project'])->name('home.specific_project');
 
      Route::get('account', [HomeController::class, 'account'])->name('home.account');    
      Route::get('organizations', [HomeController::class, 'organizations'])->name('home.organizations');
@@ -116,8 +124,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //nav views project phases
     
-
-    Route::get('/admin/projects/identificacion/', [ProjectController::class, 'identificacion'])->name('project.identificacion');
+    Route::get('/admin/projects/generaldata/{project?}', [ProjectController::class, 'generaldata'])->name('project.generaldata2');
+    Route::get('/admin/projects/generaldata/', [ProjectController::class, 'generaldata'])->name('project.generaldata');
+   
+    Route::get('/admin/projects/identificacion/{project?}', [ProjectController::class, 'identificacion'])->name('project.identificacion');
     Route::get('/admin/projects/preparacion/{project?}', [ProjectController::class, 'preparacion'])->name('project.preparacion');
     Route::get('/admin/projects/contratacion/{project?}', [ProjectController::class, 'contratacion'])->name('project.contratacion');
     Route::get('/admin/projects/ejecucion/{project?}', [ProjectController::class, 'ejecucion'])->name('project.ejecucion');

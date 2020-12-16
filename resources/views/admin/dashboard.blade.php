@@ -6,7 +6,7 @@ Dashboard
 @section('content')
 
 <div>
-  dklfjdlk
+  
 </div>
 
 <!-- Page Heading -->

@@ -15,7 +15,7 @@ class CreateProjectTable extends Migration
     {
         Schema::create('project', function (Blueprint $table) {
             $table->id();		
-            $table->string('ocid', 50);
+            $table->string('ocid', 50)->nullable();
             $table->dateTime('updated', 0)->nullable();	
             $table->text('title')->nullable();
             $table->text('description')->nullable(); 

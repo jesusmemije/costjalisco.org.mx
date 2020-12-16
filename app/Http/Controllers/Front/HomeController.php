@@ -36,14 +36,59 @@ class HomeController extends Controller
         return view('front.interest-sites');
     }
 
-    public function specific_project($id){
-        
+    public function specific_project( $id )
+    {
         $project = Project::find($id);
         if($project!=null){
-            return view('front.specific-project', ['project' => $project]);
+            $project_documents=DB::table('project_documents')
+            ->join('documents','project_documents.id_document','=','documents.id')
+            ->where('id_project','=',$id)
+            ->get();
+            $identificacion=array();
+            $preparacion=array();
+            $contratacion=array();
+            $ejecucion=array();
+            $finalizacion=array();
+            
+            foreach($project_documents as $document){
+              
+                switch($document->description){
+                    case 'identificacion':
+                    array_push($identificacion,$document->url);
+                    break;
+                    case 'preparacion':
+                    array_push($preparacion,$document->url);
+                    break;
+                    case 'contratacion':
+                    array_push($contratacion,$document->url);
+                    break;
+                    case 'ejecucion':
+                    array_push($ejecucion,$document->url);
+                    break;
+                    case 'finalizacion':
+                    array_push($finalizacion,$document->url);
+                    break;
+
+                }
+            }
+            
+          
+
+            return view('front.specific-project', [
+                
+            'project' => $project,
+            'identificacion'=>$identificacion,
+            'preparacion'=>$preparacion,
+            'contratacion'=>$contratacion,
+            'ejecucion'=>$ejecucion,
+            'finalizacion'=>$finalizacion,
+
+            
+            ]);
         }else{
             return redirect()->route('home.listworks');
         }
+      
     }
     public function account(){
         return view('front.account');
@@ -155,8 +200,14 @@ class HomeController extends Controller
         ]);
     }
     
-    public function projects(){
-        return view('front.projects');
+    public function projects()
+    {
+        $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
+      
+        return view('front.projects', [
+            'projects' => $projects
+        ]);
+
     }
     public function motor_busqueda(){
         return view('front.motor_busqueda');
@@ -301,7 +352,6 @@ class HomeController extends Controller
     }
     public function codigo_postales(Request $request){
 
-        
         if ($request->ajax()) {
             $codigo_postales=DB::table('project')
             ->join('projectsector','project.sector','=','projectsector.id')
