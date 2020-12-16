@@ -93,8 +93,14 @@ class HomeController extends Controller
         ]);
     }
     
-    public function projects(){
-        return view('front.projects');
+    public function projects()
+    {
+        $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
+      
+        return view('front.projects', [
+            'projects' => $projects
+        ]);
+
     }
     public function motor_busqueda(){
         return view('front.motor_busqueda');
