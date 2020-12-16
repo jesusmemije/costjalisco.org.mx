@@ -1,13 +1,13 @@
 @extends('front.layouts.app')
  
 @section('title')
-Revestimiento y saneamiento del canal de aguas pluviales
+Datos del proyecto
 @endsection
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 @endsection
-
+<meta charset='utf-8'>
 
 @section('content')
 
@@ -26,7 +26,7 @@ Revestimiento y saneamiento del canal de aguas pluviales
                     <div class="row mx-0 align-items-baseline">
                         <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid ml-3" width="60"
                             alt="">
-                        <label class="ml-3" style="color:#628ea0; font-size: 28px; font-weight: 600;" for="">246,523
+                        <label class="ml-3" style="color:#628ea0; font-size: 28px; font-weight: 600;" for="">{{number_format($project->people)}}
                             ciudadanos beneficiados</label>
                     </div>
                     <div class="row mx-0">
@@ -68,7 +68,10 @@ Revestimiento y saneamiento del canal de aguas pluviales
                     </div>
                 </div>
                 <div id="line-date-inagurado" class="py-1">
-                    <span style="color: #2C4143"><b>Inagurado: 03/oct/2020</b></span>
+                    <?php 
+                    setlocale(LC_ALL, 'es_ES');
+                    $date=date_create($project->updated);?>
+                    <span style="color: #2C4143"><b>Inagurado:  {{date_format($date,'d/M/Y')}}</b></span>
                 </div>
             </div>
         </div>
@@ -94,7 +97,33 @@ Revestimiento y saneamiento del canal de aguas pluviales
         <div class="row">
             <div class="col-md-12 text-right">
                 <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <?php 
+                
+                
+
+                ?>
+                <a id="pdf1"
+                onclick="<?php 
+                foreach($identificacion as $doc){
+                    echo "funcion('$doc');";
+                }
+                 ?>"
+             
+              
+                
+                class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</a>
+                
+                <script>
+                   
+                    function funcion(url){
+                  
+                    var f='{{asset("documents/")}}'+"/"+url;
+                    console.log(f);
+                    window.open(f);
+                    }
+
+                </script>
+           
             </div>
         </div>
     </div>
