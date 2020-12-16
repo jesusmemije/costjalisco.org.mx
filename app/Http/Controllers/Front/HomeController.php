@@ -102,4 +102,7 @@ class HomeController extends Controller
     public function supportmaterial(){
         return view('front.supportmaterial');
     }
+    public function journal(){
+        return view('front.journal');
+    }
 }

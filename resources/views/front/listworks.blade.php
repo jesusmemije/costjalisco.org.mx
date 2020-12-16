@@ -45,10 +45,10 @@ Listado de obras
     </div>
     
     <div class="form-row">
-    <div class="mt-4 form-group col-md-3 ml-5">
+    <div class="mt-4 form-group col-md-4 ml-5">
    <span style="color:gray; font-weight: 700;">Gobierno de Jalisco</span>
     </div>
-   <div style="margin-left:40%; margin-bottom:4%;" class="form-group mt-4"><button class="btn btn-sm" style="background-color: #2c4143; color:white; border-radius:15px; width:130%; height:30px; box-shadow: 0px 6px 6px 0px gray;">Conoce más</button></div>
+   <div style="margin-left:34%; margin-bottom:4%;" class="form-group mt-4"><button class="btn btn-sm" style="background-color: #2c4143; color:white; border-radius:15px; width:130%; height:30px; box-shadow: 0px 6px 6px 0px gray;">Conoce más</button></div>
    
     </div>
   
@@ -75,10 +75,10 @@ Listado de obras
     </div>
     
     <div class="form-row">
-    <div class="mt-4 form-group col-md-3 ml-5">
+    <div class="mt-4 form-group col-md-4 ml-5">
    <span style="color:gray; font-weight: 700;">Ayuntamiento de Zapopan</span>
     </div>
-   <div style="margin-left:40%; margin-bottom:4%;" class="form-group mt-4"><button class="btn btn-sm" style="background-color: #2c4143; color:white; border-radius:15px; width:130%; height:30px; box-shadow: 0px 6px 6px 0px gray;">Conoce más</button></div>
+   <div style="margin-left:34%; margin-bottom:4%;" class="form-group mt-4"><button class="btn btn-sm" style="background-color: #2c4143; color:white; border-radius:15px; width:130%; height:30px; box-shadow: 0px 6px 6px 0px gray;">Conoce más</button></div>
    
     </div>
   
