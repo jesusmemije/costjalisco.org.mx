@@ -124,7 +124,7 @@
                             <a class="dropdown-item" href="{{route('home.boletines_all')}}">Boletines</a>
                             
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Notas periodísticas</a>
+                            <a class="dropdown-item" href="{{ route('home.journal') }}">Notas periodísticas</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
