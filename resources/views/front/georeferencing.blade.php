@@ -332,7 +332,7 @@ Georreferenciación
                 <div class="col-md-12 ">
                     <a href="#" class="links-color">Sector Público</a> <span class="links-color">/</span>
                     <a href="#" class="links-color">Ayuntamiento de Zapopan</a>
-                    <a href="{{ route('home.specific_project', $project->id) }}" class="btn-conoce-mas">Conoce más</a>
+                    <a href="{{ route('project-single', $project->id) }}" class="btn-conoce-mas">Conoce más</a>
                 </div>
             </div>
         </div>

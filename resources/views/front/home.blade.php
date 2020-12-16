@@ -211,7 +211,7 @@ Home
                 </div>
             </div>
             <div class="col-md-5 text-center">
-                <a href="{{ route('home.organizations') }}">
+                <a href="{{ route('organizations') }}">
                     <img src="{{ asset('assets/img/home/mas-info.png') }}" class="img-fluid" width="240" alt="">
                 </a>
             </div>
@@ -352,7 +352,7 @@ Home
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{route('home.projects')}}"><h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3></a>
+                <a href="{{route('card-projects')}}"><h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3></a>
                 <div class="section-divider"></div>
             </div>
         </div>
@@ -399,7 +399,7 @@ Home
                                                 class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
                                         <br>
-                                        <span><a href="{{ route('home.specific_project', 10) }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
+                                        <span><a href="{{ route('project-single', 10) }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
                                                 más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
@@ -446,7 +446,7 @@ Home
                                                 class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 26.450 ciudadanos</p>
                                         <br>
-                                        <span><a href="{{ route('home.specific_project', 10) }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">
+                                        <span><a href="{{ route('project-single', 10) }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">
                                                 Ver más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>

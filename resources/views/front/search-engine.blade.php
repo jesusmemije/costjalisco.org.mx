@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
  
 @section('title')
-Motor de busqueda
+Motor de búsqueda
 @endsection
 
 @section('styles')
@@ -63,7 +63,7 @@ Motor de busqueda
     
 </style>
 
-<div class="container-fluid pt-4">
+<div class="container-fluid">
     <!-- Section - Mapa de la localización -->
     <div class="row mt-5">
         <div class="col-md-8 px-0 py-1">

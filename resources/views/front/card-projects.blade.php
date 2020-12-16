@@ -120,7 +120,7 @@ Projects
                             <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">Gobierno de Jalisco</i></p>
                         </div>
                         <div class="detalle-project">
-                           <a href="{{ route('home.specific_project', $project->id) }}"><i>Ver más >></i></a>
+                           <a href="{{ route('project-single', $project->id) }}"><i>Ver más >></i></a>
                         </div>
                     </div>
                 </div>
@@ -133,12 +133,12 @@ Projects
                             <img src="http://pice-software.com/costjalisco/public/assets/img/home/chatbot.png" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" >
                         </center>
                         <ul>
-                            <li><a href="{{ route('home.listworks') }}">Conoce más proyectos</a></li>
-                            <li><a href="{{ route('home.boletines_all') }}">Boletines</a></li>
-                            <li><a href="{{ route('home.journal') }}">Noticias</a></li>
+                            <li><a href="{{ route('list-projects') }}">Conoce más proyectos</a></li>
+                            <li><a href="{{ route('boletines_all') }}">Boletines</a></li>
+                            <li><a href="{{ route('journal') }}">Noticias</a></li>
                         </ul>
                         <center>
-                            <button><a href="{{ route('home.project_search') }}">Buscar</a></button>
+                            <button><a href="{{ route('search-engine') }}">Buscar</a></button>
                         </center>
                     </div>
                 </div>

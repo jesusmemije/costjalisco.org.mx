@@ -1,14 +1,45 @@
 @extends('front.layouts.app')
-
+ 
 @section('title')
 Estadísticas
 @endsection
 
-@section('content')
+@section('styles')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+@endsection
 
-    <!-- Section - Estadísticas -->
-    <div class="row mt-5 mx-0" id="estadisticas">
-        <div class="col-md-6 background-title px-0 py-1">
+
+@section('content')
+<style>
+    .links-color{
+        color: #628ea0;
+        font-weight: bold;
+    }
+    .btn-conoce-mas{
+        float: right;
+        background: #d60000;
+        color: #fff;
+        padding: 5px 30px 5px 30px;
+        border-radius: 50px;
+        box-shadow: 5px 5px 2px #999;
+
+    }
+    .btn-conoce-mas:hover{
+        background: rgba(218, 3, 3, 0.904);
+        color: rgb(230, 230, 230);
+    }
+    .secciones-projects{
+        padding: 25px 40px 20px 40px; 
+        border-top: 1px solid #628ea0; 
+        border-left: 8px solid #628ea0; 
+        border-right: 1px solid #628ea0;
+    }
+</style>
+<div class="container-fluid pt-4">
+    <!-- Section - Datos generales -->
+    <div class="row mt-5" id="datos-generales">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+        background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Estadísticas</span>
         </div>
         <div class="col-md-6 px-0">
@@ -18,37 +49,115 @@ Estadísticas
     </div>
     <div class="container">
         <div class="my-5">
-            CoST reconoce que las políticas escritas son insuficientes y deben ser apoyadas por la promoción de la política y el entorno cultural. <br><br>
-
-            1.1 Personal y Voluntarios <br><br>
-
-            Esta política forma parte del código de conducta y contrato de CoST, firmado por todos los miembros del personal y voluntarios al unirse a <br>
-            CoST. Está disponible en su totalidad y en todo momento en la base de datos y archivos internos de CoST para que el personal y los <br>
-            voluntarios puedan acceder. Es parte del manual. <br><br>
-
-            Todo el personal y los consultores de la Secretaría Internacional de CoST recibirán capacitación anual sobre políticas y procedimientos de <br>
-            protección. Todo el personal de la Secretaría Nacional, recibirá capacitación anual, cuando sea posible en persona, sobre las políticas y <br>
-            procedimientos de protección. Si no es posible capacitar a los gerentes nacionales en persona, recibirán capacitación en línea. <br>
-            Esta capacitación incluirá el conocimiento de la obligación del personal de informar toda mala conducta y conocimiento de las políticas de <br>
-            protección contra represalias (Consulte el Procedimiento de Denuncia de irregularidades). El oficial de protección designado asistirá a todas <br>
-            las capacitaciones disponibles brindadas por socios externos. <br><br>
-
-            CoST está comprometido en crear un entorno donde los empleados se sienten capaces de hablar sobre temas de protección, seguridad, y 
-            como tales pueden plantearse en las reuniones de equipo habituales. <br><br>
-
-            1.2 Beneficiarios <br><br>
-
-            Se proporcionarán referencias y enlaces a las secciones de esta política (como el procedimiento de reclamo o la estructura de quejas) que se <br>
-            relacionan con los beneficiarios durante un curso de capacitación. Todo el personal y los voluntarios estarán al tanto de la política y los <br>
-            procedimientos de protección, podrán y se les exigirá que lo expliquen a cualquier beneficiario que lo solicite. También estará disponible por <br>
-            correo electrónico y en el sitio web de CoST. <br><br>
-
-            1.3 Miembros del público <br><br>
-
-            Todo el personal y los voluntarios estarán al tanto de la política y los procedimientos de protección, podrán y se les exigirá que lo expliquen a <br>
-            cualquier beneficiario que lo solicite. También informará de incidentes graves que recaigan en la Junta Directiva de la organización benéfica. <br>
-            La junta Directiva tendrá una copia de esta política y el manual del personal. También pueden consultar las pautas del gobierno sobre el <br>
-            procedimiento de denuncia de irregularidades para la Junta Directiva aquí (enlace).
+            <div class="row">
+                <div class="col-md-3" style="background: #61a8bc; padding: 50px;">
+                    <h4 class="mt-4 mb-4" style="color: #fff; font-weight: bold;">Organizaciones</h4>
+                    <center>
+                        <img src="{{asset('assets/img/estadisticas/organizaciones icon.png')}}" width="90px" alt="">
+                    </center>
+                </div>
+                <div class="col-md-9" style="padding: 20px;">
+                    <div style="border-left: 7px solid #61a8bc; padding: 15px;">
+                        <p style="margin-left: 15px;">Algunas de las instituciones que han colaborado son:</p>
+                        <ul>
+                            <li>Gobierno del Estado de Jalisco</li>
+                            <li>Ayuntamiento de Guadalajara</li>
+                            <li>Ayuntamiento de Zapopan</li>
+                            <li>Universidad de Guadalajara</li>
+                            <li>Transversal Think Tank</li>
+                            <li>Colectivo Ciudadadanos por Municipios Transparentes(CIMTRA)</li>
+                            <li>Consejo Mexicano de Comercio Exterior de Occidente A.C (COMCE)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3" style="background: #58707c; padding: 50px 50px;">
+                    <h4 class="mt-4 mb-4" style="color: #fff; font-weight: bold;">Proyectos de la iniciativa</h4>
+                    <center>
+                        <img src="{{asset('assets/img/estadisticas/pyectos icon.png')}}" width="90px" alt="">
+                    </center>
+                </div>
+                <div class="col-md-9" style="padding: 20px;">
+                    <div style="border-left: 7px solid #58707c; padding: 15px;">
+                        <p style="margin-left: 15px;" >Hasta 2020 los proyectos han sido los siguientes:</p><br>
+                        <h4 style="font-weight: bold; margin-left: 15px;">Línea 3 del Tren Eléctrico de Guadalajara</h4>
+                        <h4 style="font-weight: bold; margin-left: 15px;">Saneamiento y revestimiento de aguas pluviales en Zapopan</h4>
+                        <h4 style="font-weight: bold; margin-left: 15px;">Macrolibramiento de Guadalajara</h4><br>
+                        <a href="{{route('card-projects')}}" class="btn-conoce-mas">Conoce más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="background: #ffce33; padding: 50px 50px;">
+                    <h4 class="mt-4 mb-4" style="color: #fff; font-weight: bold;">Personas beneficiadas</h4>
+                    <center>
+                        <img src="{{asset('assets/img/estadisticas/beneficiados-icon.png')}}" width="90px" alt="">
+                    </center>
+                </div>
+                <div class="col-md-9" style="padding: 20px;">
+                    <div style="border-left: 7px solid #ffce33; padding: 15px;"><br><br><br><br>
+                        <h3 style="font-weight: bold; margin-left: 15px;">896,256 mil beneficiados</h3>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="background: #d60000; padding: 50px 50px;">
+                    <h4 class="mt-4 mb-4" style="color: #fff; font-weight: bold;">Presupuesto utilizado</h4>
+                    <center>
+                        <img src="{{asset('assets/img/estadisticas/presupuesto icon.png')}}" width="90px" alt="">
+                    </center>
+                </div>
+                <div class="col-md-9" style="padding: 20px;">
+                    <div style="border-left: 7px solid #d60000; padding: 15px;"><br>
+                        <p style="margin-left: 15px;" >Presupuesto utilizado desde la iniciativa de CoST Jalisco</p><br>
+                        <br>
+                        <h3 style="font-weight: bold; margin-left: 15px;">$ 4'435,567.20</h3>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-    </div>
+    </div><br><br>
+</div>
+
+@endsection
+
+@section('scripts')
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX"
+    defer></script>
+
+<script>
+
+        
+var map = L.map('map').
+        setView([41.66, -4.72],
+            14);
+
+            
+
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18
+        }).addTo(map);
+
+        /* Google maps init
+        let map;
+    
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 8,
+            });
+        }*/
+</script>
 @endsection
