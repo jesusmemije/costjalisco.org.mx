@@ -326,7 +326,7 @@ Georreferenciación
         @foreach ($projects as $project)
             
         <div class="my-5 secciones-projects">
-            <h5 style="color: 628ea0"><b>{{ $project->title }}</b></h5>
+            <h5><b>{{ $project->title }}</b></h5>
             {{ $project->description }}
             <div class="row mt-3">
                 <div class="col-md-12 ">
@@ -454,22 +454,12 @@ Georreferenciación
             const projects = @json($projects);
 
             projects.forEach(function(item, index) {
-                L.marker([item.lat,item.lng]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><center><button class="leaflet-btn-detalle-project">Ver detalles</button></center>');
+                L.marker([item.lat,item.lng]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
             });
             
             /*L.marker(["19.8463034","-104.4560014"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Catedral de Guadalajara</b></a><br>Guadalajara, Centro");
             L.marker(["20.8811927","-103.8440796"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Tequila Jalisco</b></a><br>Zapopan");*/
     });
-</script>
-
-<script type="text/javascript">
-    const projects = @json($projects);
-    //console.log(projects);
-
-    projects.forEach(function(item, index) {
-        console.log(item);
-    });
-
 </script>
   
 @endsection
