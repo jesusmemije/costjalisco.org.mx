@@ -1,13 +1,12 @@
 @extends('front.layouts.app')
 
+@section('title')
+    Crear cuenta
+@endsection
+
 @section('content')
 
 <style>
-
-    .container-fluid{
-        background-color: #deedf1;
-        margin-top: 2%;
-    }
 
     .form {
         height: 550px;
@@ -48,6 +47,37 @@
         width: 40%;
         height: 40%;
     }
+
+    .input-group-text {
+        border: 1px solid #617882;
+            border-right-color: rgb(0, 0, 0);
+            border-right-style: solid;
+            border-right-width: 1px;
+    }
+
+    .form-control {
+        border-color: #617882;
+    }
+
+    .form-control:focus {
+        border-color: #617882;
+        box-shadow: none;
+    }
+
+    .input-group > .custom-select:not(:first-child), .input-group > .form-control:not(:first-child) {
+        border-radius: 0;
+    }
+
+    body {
+        background: #DEEDF1;
+    }
+
+    label {
+        display: inline-block;
+        margin-top: .8rem;
+        margin-bottom: 0;
+    }
+
 </style>
 
 <div class="container-fluid">
@@ -60,7 +90,7 @@
 
         <div class="form col-md-4">
             <div>
-                <h4 style="margin-bottom:5%; margin-top:12%; padding-left:10%;">CREA UNA NUEVA CUENTA</h4>
+                <h4 style="margin-bottom:5%; margin-top:12%; padding-left:10%; font-weight: 600;">CREA UNA NUEVA CUENTA</h4>
                 <form>
                     @csrf
                     <div class="inps">
