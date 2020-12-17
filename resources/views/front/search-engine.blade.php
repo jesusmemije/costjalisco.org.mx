@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
- 
+
 @section('title')
 Motor de búsqueda
 @endsection
@@ -8,10 +8,9 @@ Motor de búsqueda
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 @endsection
 
-
 @section('content')
 <style>
-    .formulario-projects-search{
+    .formulario-projects-search {
         background: rgb(255, 255, 255);
         padding: 20px 20px 5px 20px;
         border-radius: 0px 30px 0px 0px;
@@ -23,8 +22,8 @@ Motor de búsqueda
         /* top: 90px;
         left: 40px; */
     }
-    
-    .formulario-projects-search select{
+
+    .formulario-projects-search select {
         width: 98%;
         height: 35px;
         margin-top: 13px;
@@ -34,7 +33,8 @@ Motor de búsqueda
         font-weight: bold;
         color: darkslategrey;
     }
-    .formulario-projects-search input{
+
+    .formulario-projects-search input {
         width: 98%;
         height: 35px;
         margin-top: 13px;
@@ -44,7 +44,8 @@ Motor de búsqueda
         color: #628ea0;
         border: 1px solid #628ea0;
     }
-    .formulario-projects-search button{
+
+    .formulario-projects-search button {
         margin: 30px auto;
         background: rgb(206, 0, 0);
         color: #fff;
@@ -53,25 +54,25 @@ Motor de búsqueda
         padding: 2px 30px 2px 30px;
         border: 0;
     }
-    .formulario-projects-search button:hover{
+
+    .formulario-projects-search button:hover {
         background: rgb(182, 1, 1);
     }
-    .fondo{
+
+    .fondo {
         background: #d9ebf3;
         padding: 120px;
     }
-    
 </style>
 
 <div class="container-fluid">
     <!-- Section - Mapa de la localización -->
-    <div class="row mt-5">
+    <div class="row mt-3">
         <div class="col-md-8 px-0 py-1">
             <h3 class="py-2 font-weight-bold" style="color:#fff; background-image: url('http://pice-software.com/costjalisco/public/assets/img/titulo.png'); background-repeat: no-repeat;
                 background-size: cover;">
-            <span style="font-weight: 700; margin-left: 115px;">Buscador</span>    
+                <span style="font-weight: 700; margin-left: 115px;">Buscador</span>
             </h3>
-            
         </div>
     </div>
     <div class="row fondo mt-3">
@@ -213,28 +214,20 @@ Motor de búsqueda
                 </select>
                 <select name="id_sector" id="sector">
                     <option value="">No hay sectores</option>
-    
                 </select>
                 <select name="id_subsector" id="sub_sector">
                     <option value="">No hay subsectores</option>
-    
                 </select>
                 <select name="codigo_postal" id="codigo_postal">
                     <option value="">No hay C.P.</option>
-    
                 </select>
                 <input type="text" name="presupuesto" placeholder="Presupuesto">
                 <center>
                     <button>BUSCAR</button>
                 </center>
                 <a href="#" style="float: right; color: #2C4143">X</a>
-
                 <br>
             </form>
-            
-            
-            {{-- <div class="col-md-12">
-            </div> --}}
         </div>
     </div>
 </div>
@@ -242,8 +235,8 @@ Motor de búsqueda
 @endsection
 
 @section('scripts')
-    <script>
-        $(document).ready(function(){
+<script>
+    $(document).ready(function(){
             $('#municipio').on('change',function(){
                 var municipio_id = $(this).val();
                 if ($.trim(municipio_id) != ''){
@@ -255,7 +248,6 @@ Motor de búsqueda
                         $.each(sectores, function (index, value){
                             $('#sector').append("<option value='"+index+"'>"+value+"</option>")
                         })
-                        
                     })
                 }
             })
@@ -284,5 +276,5 @@ Motor de búsqueda
                 }
             })
         })
-    </script>
+</script>
 @endsection

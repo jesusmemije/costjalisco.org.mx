@@ -59,6 +59,7 @@ Route::namespace('Front')->group(function () {
     //Newsletter
     Route::get('/newsletters', [NewsletterController::class, 'newsletters'])->name('newsletters');
     Route::get('/newsletter-single', [NewsletterController::class, 'newsletter_single'])->name('newsletter-single');
+    Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
     //Project
     Route::get('/list-projects', [FrontProjectController::class, 'list_projects'])->name('list-projects');

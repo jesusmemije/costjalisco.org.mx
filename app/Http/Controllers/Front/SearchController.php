@@ -22,7 +22,7 @@ class SearchController extends Controller
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                     ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*', 'locations.*')
+                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                     // ->where('address.locality','=',$request->municipio)
                     ->get();
             } else {
@@ -33,7 +33,7 @@ class SearchController extends Controller
                         ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                         ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                         ->join('address', 'locations.id_address', '=', 'address.id')
-                        ->select('project.*', 'locations.*')
+                        ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                         ->where('address.locality', '=', $request->municipio)
                         ->get();
                 } else {
@@ -44,7 +44,7 @@ class SearchController extends Controller
                             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                             ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                             ->join('address', 'locations.id_address', '=', 'address.id')
-                            ->select('project.*', 'locations.*')
+                            ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->get();
@@ -56,7 +56,7 @@ class SearchController extends Controller
                                 ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                                 ->join('address', 'locations.id_address', '=', 'address.id')
-                                ->select('project.*', 'locations.*')
+                                ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                                 ->where('address.locality', '=', $request->municipio)
                                 ->where('project.sector', '=', $request->id_sector)
                                 ->where('project.subsector', '=', $request->id_subsector)
@@ -68,7 +68,7 @@ class SearchController extends Controller
                                 ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                                 ->join('address', 'locations.id_address', '=', 'address.id')
-                                ->select('project.*', 'locations.*')
+                                ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                                 ->where('address.locality', '=', $request->municipio)
                                 ->where('project.sector', '=', $request->id_sector)
                                 ->where('project.subsector', '=', $request->id_subsector)
@@ -86,7 +86,7 @@ class SearchController extends Controller
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                     ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*', 'locations.*')
+                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                     // ->where('address.locality','=',$request->municipio)
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
                     ->get();
@@ -98,7 +98,7 @@ class SearchController extends Controller
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                     ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*', 'locations.*')
+                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                     ->where('address.locality', '=', $request->municipio)
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
                     ->get();
