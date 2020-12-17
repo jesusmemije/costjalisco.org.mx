@@ -185,12 +185,25 @@
 
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
-          
+  
           <div class="input-images">
 
-          @error('collapseCardExample2')
-              <div class="invalid-feedback">Debes seleccionar al menos una imagen</div>
-          @enderror
+         
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+    	<p>Corrige los siguientes errores:</p>
+        <ul>
+            @foreach ($errors->all() as $message)
+                <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif 
+
+         
+
+         
 
           </div>
 

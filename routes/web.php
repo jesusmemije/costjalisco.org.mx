@@ -37,6 +37,10 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 Route::namespace('Front')->group(function () {
 
     //Home
+    Route::get('/form', 'FormController@index');
+    Route::post('/form', 'FormController@store');
+
+
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/know-more', [HomeController::class, 'know_more'])->name('know-more');
     Route::get('/about-us', [HomeController::class, 'about_us'])->name('about-us');

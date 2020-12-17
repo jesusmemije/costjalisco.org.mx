@@ -173,8 +173,10 @@ class ProjectController extends Controller
             'organismo'=>'required|max:255',
             'puesto'=>'required|max:50',
             'involucrado'=>'required|max:50',
-           
+            'imagen'=>'required|max;50' 
             
+            
+           
         ]);
         
         $project->status=7;
