@@ -192,7 +192,7 @@
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">
-    	<p>Corrige los siguientes errores:</p>
+    	<p>Debes seleccionar al menos una imagen:</p>
         <ul>
             @foreach ($errors->all() as $message)
                 <li>{{ $message }}</li>
