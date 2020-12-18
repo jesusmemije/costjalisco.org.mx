@@ -19,7 +19,7 @@ Listado de obras
 <div class="container-fluid pt-4">
     <!-- Section - Datos generales -->
     <div class="row mt-3" id="datos-generales">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('assets/img/titulo.png'); background-repeat: no-repeat;
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/titulo.png'); background-repeat: no-repeat;
         background-size: cover;">
             <span style="font-weight: 700; margin-left: 160px;">Listado de Obras</span>
         </div>
@@ -32,7 +32,7 @@ Listado de obras
         @foreach ($projects as $project)
 
         <div class="media" style="background-color: #d8d8cd;  margin-top:2%;">
-            <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" width="325" class="img-fluid" alt="">
+            <img src="{{ asset('projects_imgs/'.$project->imgroute) }}" width="325" height="310"  alt="">
             <div class="media-body">
                 <h5 class="mt-5 ml-5" style="font-weight: 700;">{{ $project->title }}</h5>
                 <div class="col-md-10" style="text-align: justify; margin-left:4%; font-weight: 300;">
@@ -43,7 +43,7 @@ Listado de obras
                         <span style="color:gray; font-weight: 700;">Gobierno de Jalisco</span>
                     </div>
                     <div style="margin-left:40%; margin-bottom:4%;" class="form-group mt-4">
-                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm"
+                        <a href="{{ route('home.specific_project', $project->id) }}" class="btn btn-sm"
                             style="background-color: #2c4143; color:white; border-radius:15px; width:130%; height:30px; box-shadow: 0px 6px 6px 0px gray;">
                             Conoce más
                         </a>

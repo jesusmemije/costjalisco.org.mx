@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 <ul  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion f" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
     <div class="sidebar-brand-icon">
       <img src="{{asset('assets/img/cost logo bnc.png') }}" width="200" alt="logo costjalisco">
     </div>
@@ -103,7 +103,7 @@ use Illuminate\Support\Facades\Auth;
     </div>
   </li>
   @endif
-
+  @if(Auth::user()->role_id==1)
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -144,7 +144,7 @@ use Illuminate\Support\Facades\Auth;
 
   <!-- Divider -->
   <hr class="sidebar-divider">
-
+  @endif
   <!-- Heading -->
   @if(Auth::user()->role_id==1)
   
