@@ -138,7 +138,7 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
                 <?php 
                 
                 
@@ -153,7 +153,7 @@ Datos del proyecto
              
               
                 
-                class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</a>
+                class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</a>
                 
                 <script>
                    
@@ -221,8 +221,8 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -280,8 +280,8 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -339,8 +339,8 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -370,11 +370,16 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
+
+<!-- <div class="col-md-2 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            </div> -->
 
     <!-- Section - Finalización -->
     <div class="row mt-5" id="finalizacion">
@@ -383,7 +388,17 @@ Datos del proyecto
         </div>
         <div class="col-md-6 px-0">
             <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
+            border-bottom: 1px solid #628ea0;">
+        </div>     
+        <div class="row">
+            <div class="col-md-11 text-right">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+            </div>
+        </div> 
+           
+          
+
         </div>
     </div>
     <div class="container">
@@ -406,10 +421,7 @@ Datos del proyecto
             <div class="col-md-3">
                 <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
             </div>
-            <div class="col-md-2 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
-            </div>
+            
         </div>
     </div>
 
