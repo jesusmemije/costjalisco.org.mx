@@ -16,4 +16,9 @@ class NewsletterController extends Controller
     {
         return view('front.newsletter-single');
     }
+
+    public function subscribe(Request $request)
+    {   
+        
+    }
 }

@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 
 @section('title')
-Home
+Inicio
 @endsection
 
 @section('content')
@@ -177,7 +177,8 @@ Home
                 <br><br>
                 <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
                 <br><br>
-                <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más: https://infrastructuretransparency.org/</a></span>
+                <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
+                        https://infrastructuretransparency.org/</a></span>
             </div>
         </div>
     </div>
@@ -352,7 +353,9 @@ Home
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{route('card-projects')}}"><h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3></a>
+                <a href="{{route('card-projects')}}">
+                    <h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3>
+                </a>
                 <div class="section-divider"></div>
             </div>
         </div>
@@ -363,26 +366,21 @@ Home
         <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 px-0">
             <div id="carouselProjects" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active" style="background-color: #D8D8CD;">
+
+                    @foreach ($projects as $project)
+
+                    <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{ asset('assets/img/home/slider-proyectos/tren-ligero.jpg') }}"
+                                <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
                                     class="img-fluid" alt="">
                             </div>
                             <div class="col-md-8">
-                                <h2 class="font-weight-bold my-4 text-red">LÍNEA 3 DEL TREN LIGERO EN
-                                    GUADALAJARA</h2>
+                                <h2 class="font-weight-bold my-4 text-red">{{ $project->title }}</h2>
                                 <div class="row">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
                                         <p>
-                                            Dará servicio a 240 mil pasajeros al día mediante <br>
-                                            18 estaciones y 16 trenes para su servicio, <br>
-                                            además de 7,000 empleos directos y 15 mil <br>
-                                            indirectos.
-                                        </p>
-                                        <p>
-                                            Conectando gran parte de la ciudad desde <br>
-                                            Tlaquepaque hasta Tesistán.
+                                            {{ $project->description }}
                                         </p>
                                     </div>
                                     <div class="col-md-6 pl-4">
@@ -399,7 +397,8 @@ Home
                                                 class="img-fluid icon-img-carousel" alt="">
                                             <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
                                         <br>
-                                        <span><a href="{{ route('project-single', 10) }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
+                                        <span><a href="{{ route('project-single', $project->id) }}" class="text-red"
+                                                style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
                                                 más <span style="letter-spacing: -4px">>></span></a></span>
                                     </div>
                                 </div>
@@ -409,53 +408,9 @@ Home
                                     class="mx-2">completado</span></div>
                         </div>
                     </div>
-                    <div class="carousel-item" style="background-color: #D8D8CD;">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
-                                    class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-8">
-                                <h2 class="font-weight-bold my-4 text-red">REVESTIMIENTO Y SANEAMIENTO DEL
-                                    CANAL DE AGUAS PLUVIALES</h2>
-                                <div class="row">
-                                    <div class="col-md-6" style="border-right: 1px solid #777;">
-                                        <p>
-                                            El proyecto de infraestructura con nombre: <br>
-                                            "Revestimiento y saneamiento del canal en la Calle Arroyo" <br>
-                                            El objetivo es el revestimiento y saneamiento del <br>
-                                            canal de aguas pluviales que se encuentra en la <br>
-                                            Calle Arroyo entre Calle Platino y Cantera, en la <br>
-                                            Colonia Mariano Otero, municipio de Zapopan, <br>
-                                            Jalisco. El proyecto cuenta con indicador de <br>
-                                            impacto ambiental.
-                                        </p>
-                                    </div>
-                                    <div class="col-md-6 pl-4">
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Inversión: </strong> $57,1857.77</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Periodo de construcción: </strong> 63 días</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Ubicación: </strong> Calle Platino y Cantera, en la Colonia
-                                            <br> Marino Otero, municipio de Zapopan <br>Jalisco</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Beneficiarios: </strong> 26.450 ciudadanos</p>
-                                        <br>
-                                        <span><a href="{{ route('project-single', 10) }}" class="text-red" style="font-size: 18px; font-weight: 700; font-style: italic;">
-                                                Ver más <span style="letter-spacing: -4px">>></span></a></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rectangulo-rojo-avance-carousel text-white"><span
-                                    style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;"
-                                    class="mx-2">completado</span></div>
-                        </div>
-                    </div>
+
+                    @endforeach
+
                 </div>
                 <a class="carousel-control-prev" href="#carouselProjects" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -478,7 +433,7 @@ Home
                 <form action="">
                     <h6 style="font-size: 16px; font-weight: 600;" class="mb-3">¡Regístrate para seguir próximos
                         proyectos!</h6>
-                    <input type="text" id="email" name="email" placeholder="Tu correo aquí" class="input-newsletter">
+                    <input type="email" id="email" name="email" placeholder="Tu correo aquí" class="input-newsletter" required>
                     <button class="btn-newsletter mt-3">SUSCRIBIRSE</button>
                 </form>
             </div>
@@ -503,18 +458,24 @@ Home
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-twitter fa-sm"></i></div>
                 <a class="twitter-timeline" data-lang="es" data-height="280" data-theme="light"
-                    href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw">Tweets by CostJalisco</a> 
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                    href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw">Tweets by CostJalisco</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
             <div class="col-md-4">
                 <div class="timeline"></div>
                 <div class="timeline-icon-position"><i class="fab fa-youtube fa-sm"></i></div>
-                <iframe width="350" height="280" src="https://www.youtube.com/embed/nd2Bc99HgRE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="350" height="280" src="https://www.youtube.com/embed/nd2Bc99HgRE" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
             <div class="col-md-4">
                 <div class="timeline"></div>
-                <div class="timeline-icon-position"><i class="fab fa-facebook-f fa-sm"></i></div>                
-                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCoSTransparency&tabs=timeline&width=350&height=280&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="350" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <div class="timeline-icon-position"><i class="fab fa-facebook-f fa-sm"></i></div>
+                <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCoSTransparency&tabs=timeline&width=350&height=280&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                    width="350" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
         </div>
     </div>
@@ -531,9 +492,9 @@ Home
             <div class="col-md-7 pt-4">
                 <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
                 <div class="text-white visitantes-counter" style="font-size: 38px;">
-                <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh" 
-                border="0"></a>
-               </div>
+                    <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh"
+                        border="0"></a>
+                </div>
             </div>
         </div>
         <br>
@@ -542,6 +503,7 @@ Home
 @endsection
 
 @section('scripts')
+
 <script>
     function showEventosAgenda() {
     var eventosAgenda = document.getElementById("panel-oculto");

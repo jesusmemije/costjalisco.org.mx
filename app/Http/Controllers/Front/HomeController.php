@@ -10,8 +10,18 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index()
-    {
-        return view('front.home');
+    {   
+        $projects = DB::table('project')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+            ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+            ->join('address', 'locations.id_address', '=', 'address.id')
+            ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+            ->get();
+        
+        return view('front.home', [
+            'projects' => $projects
+        ]);
     }
 
     public function know_more()
