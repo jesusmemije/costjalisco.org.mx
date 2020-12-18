@@ -103,7 +103,7 @@ use Illuminate\Support\Facades\Auth;
     </div>
   </li>
   @endif
-
+  @if(Auth::user()->role_id==1)
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -144,7 +144,7 @@ use Illuminate\Support\Facades\Auth;
 
   <!-- Divider -->
   <hr class="sidebar-divider">
-
+  @endif
   <!-- Heading -->
   @if(Auth::user()->role_id==1)
   
