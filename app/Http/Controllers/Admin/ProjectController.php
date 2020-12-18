@@ -1255,7 +1255,8 @@ class ProjectController extends Controller
             'region'=>'required|max:50',
             'postalCode'=>'required|max:50',
             'countryName'=>'required|max:50',
-            'description'=>'required|max:50'
+            'description'=>'required|max:50',
+            'people'=>'required|max:50'
 
         ]);
     

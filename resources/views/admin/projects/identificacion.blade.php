@@ -8,10 +8,7 @@
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
- <!-- google maps links
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHzvoUaKDOaWGOu0ZNUpB_SJigsBgOOzI&callback=initMap&libraries=places&v=weekly&language=mx&region=MX" defer></script>
--->
+ 
 @section('styles')
 <style>
   label {
@@ -118,8 +115,6 @@
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
 
-
-            <input type="text" value="{{$project->id}}" name="id_project">
             <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="tituloProyecto">
@@ -241,7 +236,11 @@
             @enderror
             <div class="form-group col-md-3">
             <label for="people">Personas beneficiadas</label>
-            <input type="number" name="people" id="people" class="form-control" value="{{old('people',$project->people)}}">
+            <input required maxlength="50" placeholder="Persona Beneficiaria" type="number" name="people" id="people" class="form-control @error('people') is-invalid @enderror" value="{{old('people',$project->purpose)}}">
+            
+            @error('people')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             </div>
             
    </div>
