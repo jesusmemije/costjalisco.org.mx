@@ -188,12 +188,14 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input required maxlength="50" type="text" class="form-control @error('responsableAmbiental') is-invalid @enderror" name="responsableAmbiental" value="{{old('responsableAmbiental',$project->responsableAmbiental)}}">
+    <input required maxlength="255" type="text" class="form-control @error('responsableAmbiental') is-invalid @enderror" name="responsableAmbiental" value="{{old('responsableAmbiental',$project->responsableAmbiental)}}">
     @error('responsableAmbiental')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
-    
+
+    <label for="numeros_ambiental">Número o números de identificación del estudio de impacto ambiental (En caso de ser más de uno favor de separarlos con una coma).</label>
+    <input required type="text" value="{{old('numeros_ambiental',$project->numeros_ambiental)}}" class="form-control" name="numeros_ambiental">
     </div>
 
 
@@ -257,12 +259,13 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input required maxlength="50" type="text" class="form-control @error('responsableFactibilidad') is-invalid @enderror" name="responsableFactibilidad" value="{{old('responsableFactibilidad',$project->responsableFactibilidad)}}">
+    <input required maxlength="255" type="text" class="form-control @error('responsableFactibilidad') is-invalid @enderror" name="responsableFactibilidad" value="{{old('responsableFactibilidad',$project->responsableFactibilidad)}}">
     @error('responsableFactibilidad')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
-    
+    <label for="numeros_factibilidad">Número o números de identificación del estudio de factibilidad. (En caso de ser más de uno favor de separarlos con una coma).</label>
+    <input required type="text"  value="{{old('numeros_factibilidad',$project->numeros_factibilidad)}}" class="form-control" name="numeros_factibilidad" id="numeros_factibilidad">
     </div>
 
 </div>
@@ -319,12 +322,13 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Responsable del estudio</label>
-    <input required maxlength="50" type="text" class="form-control @error('responsableImpacto') is-invalid @enderror" name="responsableImpacto" value="{{old('responsableImpacto',$project->responsableImpacto)}}">
+    <input required maxlength="255" type="text" class="form-control @error('responsableImpacto') is-invalid @enderror" name="responsableImpacto" value="{{old('responsableImpacto',$project->responsableImpacto)}}">
     @error('responsableImpacto')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
-    
+    <label for="numeros_impacto">Número o números de identificación del estudio del impacto en el terreno y asentamientos (En caso de ser más de uno favor de separaros con una coma)</label>
+    <input required type="text" value="{{old('numeros_impacto',$project->numeros_impacto)}}" class="form-control" name="numeros_impacto" id="numeros_impacto">
     </div>
 
 
@@ -380,7 +384,7 @@ $ambiental->fecharealizacionAmbiental='';
     </div>
     <div class="form-group col-md-4">
     <label for="">Fondo o fuente de financiamiento y partida presupuestal</label>
-    <input required maxlength="50" type="text" class="form-control @error('fuenterecurso') is-invalid @enderror" name="fuenterecurso" value="{{old('fuenterecurso',$project->sourceParty_name)}}">
+    <input required maxlength="255" type="text" class="form-control @error('fuenterecurso') is-invalid @enderror" name="fuenterecurso" value="{{old('fuenterecurso',$project->sourceParty_name)}}">
     @error('fuenterecurso')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
