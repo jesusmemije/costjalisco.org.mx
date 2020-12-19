@@ -391,7 +391,7 @@ Datos del proyecto
             border-bottom: 1px solid #628ea0;">
         </div>     
         <div class="row">
-            <div class="col-md-11 text-right">
+            <div class="col-md-7 text-right">
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
