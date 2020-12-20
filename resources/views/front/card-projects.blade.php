@@ -1,13 +1,12 @@
 @extends('front.layouts.app')
  
 @section('title')
-Projects
+Proyectos
 @endsection
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 @endsection
-
 
 @section('content')
 <div class="container-fluid pt-4">
@@ -104,12 +103,14 @@ Projects
         </div>
         <div class="my-4">
             <div class="row">
+
+                @foreach ($projects as $project)
                 <div class="col-md-3">
                     <div class="projets-pro">
                         <div class="encabezado-project">
                             <h5>
                                 <b>
-                                    Línea 3 del Tren Eléctrico de Guadalajara.
+                                    {{ $project->title }}
                                 </b>
                             </h5>
                         </div>
@@ -117,32 +118,14 @@ Projects
                         <div class="pie-project">
                             <p style="font-size: 20px"><b style="margin: 0; padding: 0;">Sector Público</b></p>
                             <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">Gobierno de Jalisco</i></p>
-                            
                         </div>
                         <div class="detalle-project">
-                           <a href="#"><i>Ver más >></i></a>
+                           <a href="{{ route('project-single', $project->id) }}"><i>Ver más >></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="projets-pro">
-                        <div class="encabezado-project">
-                            <h5>
-                                <b>
-                                   Revestemiento y saneamiento del canal de aguas pluviales.
-                                </b>
-                            </h5>
-                        </div>
-                        <img src="http://pice-software.com/costjalisco/public/assets/img/home/chatbot.png" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" style="background: #647d80">
-                        <div class="pie-project">
-                            <p style="font-size: 20px"><b style="margin: 0; padding: 0;">Sector Público</b></p>
-                            <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">Ayuntamiento de Zapopan</i></p>
-                        </div>
-                        <div class="detalle-project">
-                           <a href="#"><i>Ver más >></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
                 <div class="col-md-3 my-4">
                     <div class="projets-pro-buscar">
                         <br>
@@ -150,19 +133,17 @@ Projects
                             <img src="http://pice-software.com/costjalisco/public/assets/img/home/chatbot.png" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" >
                         </center>
                         <ul>
-                            <li><a href="#">Conoce mas proyectos</a></li>
-                            <li><a href="#">Boletines</a></li>
-                            <li><a href="#">Noticias</a></li>
+                            <li><a href="{{ route('list-projects') }}">Conoce más proyectos</a></li>
+                            <li><a href="{{ route('newsletters') }}">Boletines</a></li>
+                            <li><a href="{{ route('journal') }}">Noticias</a></li>
                         </ul>
                         <center>
-                            <button >Buscar</button>
+                            <button><a href="{{ route('search-engine') }}">Buscar</a></button>
                         </center>
                     </div>
                 </div>
             </div>
-            
         </div>
-        
     </div>
     <br><br><br>
 </div>

@@ -171,8 +171,10 @@ class ProjectController extends Controller
             'organismo'=>'required|max:255',
             'puesto'=>'required|max:255',
             'involucrado'=>'required|max:50',
+            'imagen'=>'required|max:50',
+
+        
            
-            
         ]);
        
         
@@ -1300,7 +1302,8 @@ class ProjectController extends Controller
             'region'=>'required|max:50',
             'postalCode'=>'required|max:50',
             'countryName'=>'required|max:50',
-            'description'=>'required|max:50'
+            'description'=>'required|max:50',
+            'people'=>'required|max:50'
 
         ]);
     

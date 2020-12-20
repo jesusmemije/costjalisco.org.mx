@@ -11,13 +11,48 @@ Datos del proyecto
 
 @section('content')
 
-<div class="container-fluid pt-4">
+
+  
+  
     <!-- Section - Descripción General del proyecto -->
-    <div class="row mb-5" style="background-color: #d8d8cd;">
-        <div class="col-md-3 px-0">
-            <img src="{{ asset('/assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-9 px-0">
+    
+            <!--<img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">-->
+    <div class="container-fluid pt-4">        
+ 
+    
+   <!-- <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt=""> -->
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div class="row mb-5" style="background-color: #d8d8cd;">
+    
+    <div class="col-md-3 px-0">
+
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    </div>
+    <div class="carousel-item">
+    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    </div>
+    <div class="carousel-item">
+    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<div class="col-md-9 px-0">
             <div class="media-body">
                 <div id="titleproject" class="col-md-12">
                     <span>{{ $project->title }}</span>
@@ -77,6 +112,13 @@ Datos del proyecto
         </div>
     </div>
 
+</div>
+  
+ 
+
+
+        
+
     <!-- Section - Mapa de la localización -->
     <div class="row" id="map"></div>
 
@@ -97,6 +139,33 @@ Datos del proyecto
         <div class="row">
             <div class="col-md-12 text-right">
              
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <?php 
+                
+                
+
+                ?>
+                <a id="pdf1"
+                onclick="<?php 
+                foreach($identificacion as $doc){
+                    echo "funcion('$doc');";
+                }
+                 ?>"
+             
+              
+                
+                class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</a>
+                
+                <script>
+                   
+                    function funcion(url){
+                  
+                    var f='{{asset("documents/")}}'+"/"+url;
+                    console.log(f);
+                    window.open(f);
+                    }
+
+                </script>
            
             </div>
         </div>
@@ -180,6 +249,8 @@ Datos del proyecto
                     }
 
                 </script>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -237,8 +308,8 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -290,8 +361,8 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -321,11 +392,16 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
+
+<!-- <div class="col-md-2 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            </div> -->
 
     <!-- Section - Finalización -->
     <div class="row mt-5" id="finalizacion">
@@ -334,7 +410,17 @@ Datos del proyecto
         </div>
         <div class="col-md-6 px-0">
             <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
+            border-bottom: 1px solid #628ea0;">
+        </div>     
+        <div class="row">
+            <div class="col-md-7 text-right">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+            </div>
+        </div> 
+           
+          
+
         </div>
     </div>
     <div class="container">
@@ -357,10 +443,7 @@ Datos del proyecto
             <div class="col-md-3">
                 <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
             </div>
-            <div class="col-md-2 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
-            </div>
+            
         </div>
     </div>
 

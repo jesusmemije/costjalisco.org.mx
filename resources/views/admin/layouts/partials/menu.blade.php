@@ -8,6 +8,8 @@
  background: #2c4143 !important;
  
 }
+</style>
+
 <?php
 
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +17,6 @@ use Illuminate\Support\Facades\Auth;
 
 ?>
 
-</style>
 <div class="f">
  
 <ul  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion f" id="accordionSidebar">
@@ -102,7 +103,7 @@ use Illuminate\Support\Facades\Auth;
     </div>
   </li>
   @endif
-
+  @if(Auth::user()->role_id==1)
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -143,7 +144,7 @@ use Illuminate\Support\Facades\Auth;
 
   <!-- Divider -->
   <hr class="sidebar-divider">
-
+  @endif
   <!-- Heading -->
   @if(Auth::user()->role_id==1)
   

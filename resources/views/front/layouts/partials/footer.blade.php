@@ -22,6 +22,17 @@
         <div class="row">
             <!-- Grid column -->
             <div class="col-md-7 col-lg-7 mx-auto">
+            <!--Banco de desarrollo -->
+                 <div class="row mb-5 align-items-center">
+                    
+                    <div class="col-md-7">
+                        <a href="#" target="_BLANK">
+                      <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250" alt="">
+                        </a>
+                    </div>
+                    
+                </div>
+
                 <!-- Content -->
                 <div class="row mb-4 align-items-center">
                     <div class="col-md-5">
@@ -64,7 +75,7 @@
                 </div>
             </div>
             <!-- Grid column -->
-            <div class="col-md-4 col-lg-4 mx-auto mb-md-0 mb-4 text-white">
+            <div class="col-md-4 col-lg-4 mx-auto mb-md-0 md-4 text-white">
                 <!-- Links -->
                 <p><i class="fas fa-mobile-alt mr-3 fa-lg"></i> <a href="#">33 3630-5745 ext 1510</a></p>
                 <p><i class="fas fa-envelope mr-3"></i> <a href="#">jalisco@infrastructuretransparency.org</a></p>
@@ -72,6 +83,7 @@
         
                 <p style="margin-left: 34px"> <a href="">REVISA EL AVISO DE PRIVACIDAD</a></p>
             </div>
+            
             <!-- Grid column -->
             <div class="col-md-1 col-lg-1 text-center mx-auto my-4">
                 <div class="social">
@@ -84,6 +96,7 @@
                     </ul>
                 </div>
             </div>
+            
             <div class="btn-go-top">
                 <a onclick="smoothScroll(document.getElementById('header'))" style="cursor: pointer;">
                     <img src="{{ asset('assets/img/home/btn-up.png') }}" class="img-fluid"  alt="">
@@ -91,10 +104,13 @@
             </div>
         </div>
     </div>
+    </div>
     
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
         <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados
     </div>
+</div>
+
 
 </footer>

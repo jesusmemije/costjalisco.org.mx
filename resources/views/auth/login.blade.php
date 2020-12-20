@@ -1,16 +1,12 @@
 @extends('front.layouts.app')
 
 @section('title')
-Login
+Iniciar sesión
 @endsection
 
 @section('content')
 
 <style>
-    .container-fluid {
-        background-color: #deedf1;
-        margin-top: 2%;
-    }
 
     .form {
         height: 550px;
@@ -53,6 +49,31 @@ Login
         width: 40%;
         height: 40%;
     }
+
+    .input-group-text {
+        border: 1px solid #617882;
+            border-right-color: rgb(0, 0, 0);
+            border-right-style: solid;
+            border-right-width: 1px;
+    }
+
+    .form-control {
+        border-color: #617882;
+    }
+
+    .form-control:focus {
+        border-color: #617882;
+        box-shadow: none;
+    }
+
+    .input-group > .custom-select:not(:first-child), .input-group > .form-control:not(:first-child) {
+        border-radius: 0;
+    }
+
+    body {
+        background: #DEEDF1;
+    }
+
 </style>
 
 <div class="container-fluid">
@@ -65,10 +86,10 @@ Login
 
         <div class="form col-md-4">
             <div class="nc">
-                <a href="{{route('home.account')}}" style="color:#5e6e70;">crea una nueva cuenta</a>
+                <a href="{{route('account')}}" style="color:#5e6e70;">crea una nueva cuenta</a>
             </div>
             <div align="center">
-                <h4 style="margin-bottom:15%; margin-top:12%">INICIA SESIÓN</h4>
+                <h4 style="margin-bottom:15%; margin-top:12%; font-weight: 600;">INICIA SESIÓN</h4>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group inp">
@@ -84,7 +105,7 @@ Login
                             <div class="input-group-text bg-transparent" style="border-right: 0;"><img src="assets/img/login/inp2.png" height="20" alt="">
                             </div>
                         </span>
-                        <input placeholder="**********" style="border-left: 0" name="password" class="form-control inp  @error('email') is-invalid @enderror" type="password" required autocomplete="current-password">
+                        <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" style="border-left: 0" name="password" class="form-control inp  @error('email') is-invalid @enderror" type="password" required autocomplete="current-password">
                     </div>
                     @error('email')
                     <div class="invalid-feedback" style="display: block !important;">{{ $message }}</div>
