@@ -50,6 +50,7 @@ Route::namespace('Front')->group(function () {
     Route::get('/organizations', [HomeController::class, 'organizations'])->name('organizations');
     Route::get('/contact-us', [HomeController::class, 'contact_us'])->name('contact-us');
     Route::get('/statistics', [HomeController::class, 'statistics'])->name('statistics');
+
     Route::get('/account', [HomeController::class, 'account'])->name('account');
 
     Route::get('/sitemap', [HomeController::class, 'sitemap'])->name('sitemap');

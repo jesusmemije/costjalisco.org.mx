@@ -360,11 +360,14 @@ Datos del proyecto
         <div class="col-md-6 px-0">
             <div class="" style="margin-top: 25px;
             border-bottom: 1px solid #628ea0;">
-        </div>     
-       
-          
-
-        </div>
+        </div>  
+        
+            <div class="col-md-7 text-right">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+            </div>
+              
+    </div>
     </div>
     
     <div class="container">
