@@ -115,6 +115,7 @@
 
           @include('admin.layouts.partials.session-flash-status')
 
+          <input type="text" value="{{$project->id}}" name="id_project">
 
 
           <h6 class="m-0 font-weight-bold text-primary">Datos generales del responsable del registro del proyecto</h6>
@@ -172,10 +173,7 @@
       <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
         <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample2">
-          @include('admin.layouts.partials.validation-error')
-
-
-          @include('admin.layouts.partials.session-flash-status')
+         
 
 
 
@@ -186,26 +184,50 @@
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
   
-          <div class="input-images">
+        
+         
+          @php
+            $imagen_obra=DB::table('projects_imgs')
+            // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
+            ->select('projects_imgs.imgroute')
+            ->where('projects_imgs.id_project','=',$generaldata->id_project)
+            ->get();
+          @endphp
+          @if (count($imagen_obra)==0)
+            <div class="input-images"></div>  
+          @else
+              <script>
+                var images=new Array();
+function rellenar(img){
+  images.push(img);
+}
+
+</script>
+          
+              @foreach ($imagen_obra as $imagen)
+                <img src="{{ asset('projects_imgs/'.$imagen->imgroute) }}" width="300" height="300" style="margin-left:1%" alt="">
+                <?php 
+                $ruta=asset('projects_imgs/'.$imagen->imgroute) ;
+                
+
+                echo "<script>rellenar('$ruta'); </script>"; 
+                ?>
+              @endforeach
+
+            
+
+
+              <br><br>
+              <label for="">Agregar nueva imágen</label>
+              <br>
+              <div class="input-images"></div>  
+          @endif
 
          
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-    	<p>Debes seleccionar al menos una imagen:</p>
-        <ul>
-            @foreach ($errors->all() as $message)
-                <li>{{ $message }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif 
-
          
 
-         
-
-          </div>
+       
 
         
 
@@ -217,10 +239,13 @@
         </div>
 
       </div> <!-- end of card -->
-        <div class="d-flex justify-content-end">
-        <input type="submit" class="btn btn-dark btn-sm"  value="Siguiente">
-        </div>
-        
+      <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas {{ $edit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
+                {{ $edit ? 'Actualizar' : 'Siguiente' }}
+              </button>
+
+            </div>
     </form>
 
 </div>
@@ -235,13 +260,69 @@
 
 <script type="text/javascript" src="{{asset('plugins/imageuploader/dist/image-uploader.min.js')}}"></script>
 <script>
+ //console.log(images);
+var myobj=new Object();
+
+for(let i=0; i<images.length; i++){
+
+  myobj.src= images[i];
+
+}
+
+console.log(myobj);
+
+
 
 $('.input-images').imageUploader(
 {
+  preloaded: preloaded,
     label:"Arrastra y suelta archivos aquí o haz clic para navegar",
-    minFiles:1,
+   
 }
 );
+
+
+var element = document.getElementById("images");
+
+
+
+//setInterval('alerta()',20000);
+
+
+function alerta(){
+  alert("wtf");
+  alert(getCount(element, false));
+}
+
+//alert(getCount(element, false)); // Simply one level
+//alert(getCount(element, true)); // Get all child node count
+
+
+
+
+
+function getCount(parent, getChildrensChildren){
+    var relevantChildren = 0;
+    var children = parent.childNodes.length;
+    for(var i=0; i < children; i++){
+        if(parent.childNodes[i].nodeType != 3){
+            if(getChildrensChildren)
+                relevantChildren += getCount(parent.childNodes[i],true);
+            relevantChildren++;
+        }
+    }
+    return relevantChildren;
+}
+
+
+/*
+
+for (index = 0; index < inputs.length; ++index) {
+    console.log(inputs[index]);
+}
+
+*/
+
 
   $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);

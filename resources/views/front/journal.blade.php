@@ -173,9 +173,12 @@ Notas perodísticas
         background-repeat: no-repeat;
         height: 1px;
         */
+        background-color: #f7f7f7;
     }
-    #mural img{
-     
+
+    h3{
+        font-weight:700; 
+        color:#2c4143;
     }
 </style>
 
@@ -188,13 +191,13 @@ Notas perodísticas
     </div>
    
     <div class="media" style="margin-left: 8%; margin-bottom:4%;">
-        <div id="mural" style="border: 1px solid green; height:112px;"  class="col-md-3">
+        <div id="mural" style="height:112px;"  class="col-md-3">
          <img style="margin-top:10%; margin-left:10%;" src="assets/img/journal/1-mural-logo.png" height="40" alt="">
         </div>
  
   <div class="media-body">
       <div id="titulo" style="margin-top:4%;">
-      <h3 style="margin-left:3%">Aperciben a Morena</h3>
+      <h3 style="margin-left:3%;">Aperciben a Morena</h3>
       </div>
     
    <div id="url" class="col-md-8" style="background-color: #d8d8cd; height:40px;">
@@ -205,7 +208,7 @@ Notas perodísticas
 </div>
 
 <div class="media" style="margin-left: 8%; margin-bottom:4%;">
-        <div style="border: 1px solid green; height:112px;"  class="col-md-3">
+        <div id="mural"  style="height:112px;"  class="col-md-3">
         <img style="margin-top:10%; margin-left:10%;" src="assets/img/journal/2-eldiario-logo.png" height="60" alt="">
         </div>
  
@@ -221,12 +224,12 @@ Notas perodísticas
 </div>
 
 <div class="media" style="margin-left: 8%; margin-bottom:4%;">
-        <div style="border: 1px solid green; height:112px;"  class="col-md-3">
+        <div id="mural" style="height:112px;"  class="col-md-3">
         <img style="margin-top:12%; margin-left:10%;" src="assets/img/journal/3-cronica-logo.png" height="30" alt="">
         </div>
  
   <div class="media-body">
-      <div id="titulo" style="margin-top:4%;">
+      <div class="titulo" style="margin-top:4%;">
       <h3 style="margin-left:3%">Buscan transparentar obras en Jalisco</h3>
       </div>
     
@@ -244,9 +247,9 @@ Notas perodísticas
 
 <div class="d-flex justify-content-end" style="font-size: 20px;">
 <div>
-<i class="fa fa-reply"></i>
+<img height="50" width="50" src="{{asset('assets/img/journal/izq.png')}}" alt="">
     <span>1 de 3</span>
-    <i class="fa fa-share"></i>
+    <img height="50" width="50" src="{{asset('assets/img/journal/der.png')}}" alt="">
 </div>
    
 </div>

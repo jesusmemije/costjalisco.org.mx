@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 <ul  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion f" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
     <div class="sidebar-brand-icon">
       <img src="{{asset('assets/img/cost logo bnc.png') }}" width="200" alt="logo costjalisco">
     </div>
