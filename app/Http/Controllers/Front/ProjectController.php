@@ -12,27 +12,37 @@ class ProjectController extends Controller
     public function list_projects(Request $request)
     {
         if (empty($request->municipio)) {
-            $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
+            $projects=DB::table('project')
+            ->join('projects_imgs','project.id','=','projects_imgs.id_project')
+            ->join('projectsector','project.sector','=','projectsector.id')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('address','locations.id_address','=','address.id')
+            ->select('project.*','projects_imgs.imgroute')
+            ->get();
+            // dd($projects);
         } else {
             if (empty($request->id_sector)) {
                 $projects = DB::table('project')
                     // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+                    ->join('projects_imgs','project.id','=','projects_imgs.id_project')
                     ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                     ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*')
+                    ->select('project.*','projects_imgs.imgroute')
                     ->where('address.locality', '=', $request->municipio)
                     ->get();
             } else {
                 if (empty($request->id_subsector)) {
                     $projects = DB::table('project')
                         // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+                        ->join('projects_imgs','project.id','=','projects_imgs.id_project')
                         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                         ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                         ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                         ->join('address', 'locations.id_address', '=', 'address.id')
-                        ->select('project.*')
+                        ->select('project.*','projects_imgs.imgroute')
                         ->where('address.locality', '=', $request->municipio)
                         ->where('project.sector', '=', $request->id_sector)
                         ->get();
@@ -40,11 +50,12 @@ class ProjectController extends Controller
                     if (empty($request->codigo_postal)) {
                         $projects = DB::table('project')
                             // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+                            ->join('projects_imgs','project.id','=','projects_imgs.id_project')
                             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                             ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                             ->join('address', 'locations.id_address', '=', 'address.id')
-                            ->select('project.*')
+                            ->select('project.*','projects_imgs.imgroute')
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->where('project.subsector', '=', $request->id_subsector)
@@ -52,11 +63,12 @@ class ProjectController extends Controller
                     } else {
                         $projects = DB::table('project')
                             // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+                            ->join('projects_imgs','project.id','=','projects_imgs.id_project')
                             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                             ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                             ->join('address', 'locations.id_address', '=', 'address.id')
-                            ->select('project.*')
+                            ->select('project.*','projects_imgs.imgroute')
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->where('project.subsector', '=', $request->id_subsector)

@@ -10,13 +10,6 @@
 @endsection
 
 
-<div id="spinner-back"></div>
-<div id="spinner-front">
-  <img height="100" src="{{asset('assets/img/cost logo bnc.png')}}"/><br>
-  <div class="spinner-border" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
-</div>
 @section('content')
 
 
@@ -91,11 +84,7 @@
           </button>
         </div>
         <div class="modal-body">
-<<<<<<< HEAD
-          <p>¿Seguro que desea eliminar la organizacion: <strong><span class="name-user"></span></strong>?</p>
-=======
           <p>¿Seguro que desea eliminar la organización: <strong><span class="name-user"></span></strong>?</p>
->>>>>>> a6bc6573277d7cfc1baf1489350a66547feb4cf1
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
@@ -143,8 +132,7 @@ function hide(){
 
 
     window.onload = function() {
-      hide();
-    
+     
       
 
       $('#deleteUserModal').on('show.bs.modal', function (event) {

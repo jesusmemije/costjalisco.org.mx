@@ -59,18 +59,21 @@ if(empty($project->id)){
       
     break;
     case 2:
+      $generaldata='end'; 
       $identificacion='end';
       $preparacion='end';
       $contratacion='end';
     
     break;
     case 3:
+      $generaldata='end'; 
       $identificacion='end';
       $preparacion='end';
       $contratacion='end';
       $ejecucion='end';
     break;
     case 4:
+      $generaldata='end'; 
       $identificacion='end';
       $preparacion='end';
       $contratacion='end';
@@ -79,6 +82,7 @@ if(empty($project->id)){
      
     break;
     case 5:
+      $generaldata='end'; 
       $identificacion='end';
       $preparacion='end';
       $contratacion='end';

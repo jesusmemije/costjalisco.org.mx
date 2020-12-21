@@ -151,7 +151,7 @@
 
 
             <label for="puesto">Puesto que desempeña dentro del organismo</label>
-            <input required maxlength="50" type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
+            <input required maxlength="255" type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
              @error('puesto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror

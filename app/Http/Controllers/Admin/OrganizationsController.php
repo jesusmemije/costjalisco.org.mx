@@ -12,7 +12,7 @@ use App\Models\OrganizationsRol;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use phpDocumentor\Reflection\Location;
 
 class OrganizationsController extends Controller
 {
@@ -30,6 +30,7 @@ class OrganizationsController extends Controller
         ->get();
 
 
+      
         
       
         return view('admin.organizations.index',['organizations'=>$organizations]);
@@ -113,6 +114,12 @@ class OrganizationsController extends Controller
         $contact_point->faxNumber=$request->faxNumber;
         $contact_point->url=$request->url;
         $contact_point->save();
+
+        $location=new Locations();
+        $location->description=$request->description;
+        $location->id_address=$address->id;
+        $location->save();
+        
        
 
         $organization=new Organization();
@@ -166,6 +173,7 @@ class OrganizationsController extends Controller
     public function edit(Organization $organization)
     {  
 
+       
 
         $dataorg=DB::table('organization')
         ->join('contact_point','organization.id_contact_point','=','contact_point.id')
@@ -175,7 +183,8 @@ class OrganizationsController extends Controller
         ->where('organization.id','=',$organization->id)
         ->select('organization.name as orgname','organization.id as id_organization','contact_point.*','address.*','party_role.id as partyid','locations.description as description')
         ->first();
-
+       
+       
        
        
         $orglogo=DB::table('orglogos')->where('id_organization','=',$organization->id)->first();
@@ -239,10 +248,15 @@ class OrganizationsController extends Controller
         $address->save();
 
 
-        $locations=new Locations();
-        $locations->description=$request->description;
-        $locations->id_address=$address->id;
-        $locations->save();
+        $locations=DB::table('locations')
+        ->where('id_address','=',$address->id)
+        ->first();
+        
+        $l=DB::table('locations')
+        ->where('id_address','=',$locations->id_address)
+        ->update(['description'=>$request->description]);
+
+        
 
         $contact_point=ContactPoint::find($id_contact_point);
         $contact_point->name=$request->nameContact;
