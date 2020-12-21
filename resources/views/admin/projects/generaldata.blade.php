@@ -115,7 +115,7 @@
 
           @include('admin.layouts.partials.session-flash-status')
 
-          <input type="text" value="{{$project->id}}" name="id_project">
+          <input type="hidden" value="{{$project->id}}" name="id_project">
 
 
           <h6 class="m-0 font-weight-bold text-primary">Datos generales del responsable del registro del proyecto</h6>
@@ -193,8 +193,11 @@
             ->where('projects_imgs.id_project','=',$generaldata->id_project)
             ->get();
           @endphp
+
+
           @if (count($imagen_obra)==0)
-            <div class="input-images"></div>  
+        
+          <div class="input-images"></div>  
           @else
               <script>
                 var images=new Array();
@@ -205,7 +208,7 @@ function rellenar(img){
 </script>
           
               @foreach ($imagen_obra as $imagen)
-                <img src="{{ asset('projects_imgs/'.$imagen->imgroute) }}" width="300" height="300" style="margin-left:1%" alt="">
+            
                 <?php 
                 $ruta=asset('projects_imgs/'.$imagen->imgroute) ;
                 
@@ -214,10 +217,6 @@ function rellenar(img){
                 ?>
               @endforeach
 
-            
-
-
-              <br><br>
               <label for="">Agregar nueva imágen</label>
               <br>
               <div class="input-images"></div>  
@@ -260,16 +259,17 @@ function rellenar(img){
 
 <script type="text/javascript" src="{{asset('plugins/imageuploader/dist/image-uploader.min.js')}}"></script>
 <script>
- //console.log(images);
-var myobj=new Object();
 
-for(let i=0; i<images.length; i++){
+let preloaded = [];
 
-  myobj.src= images[i];
+
+
+if(typeof images!='undefined'){
+
+  for(let i=0;i<images.length;i++){
+  preloaded.push({id: i, src:images[i]});
 
 }
-
-console.log(myobj);
 
 
 
@@ -282,46 +282,20 @@ $('.input-images').imageUploader(
 );
 
 
-var element = document.getElementById("images");
-
-
-
-//setInterval('alerta()',20000);
-
-
-function alerta(){
-  alert("wtf");
-  alert(getCount(element, false));
+}else{
+  $('.input-images').imageUploader(
+{
+ 
+    label:"Arrastra y suelta archivos aquí o haz clic para navegar",
+   
 }
-
-//alert(getCount(element, false)); // Simply one level
-//alert(getCount(element, true)); // Get all child node count
-
-
-
-
-
-function getCount(parent, getChildrensChildren){
-    var relevantChildren = 0;
-    var children = parent.childNodes.length;
-    for(var i=0; i < children; i++){
-        if(parent.childNodes[i].nodeType != 3){
-            if(getChildrensChildren)
-                relevantChildren += getCount(parent.childNodes[i],true);
-            relevantChildren++;
-        }
-    }
-    return relevantChildren;
+);
 }
 
 
-/*
 
-for (index = 0; index < inputs.length; ++index) {
-    console.log(inputs[index]);
-}
 
-*/
+
 
 
   $('#pac-input').keypress(function(e) {
