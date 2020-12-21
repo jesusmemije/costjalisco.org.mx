@@ -140,32 +140,10 @@ Datos del proyecto
             <div class="col-md-12 text-right">
              
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-                <?php 
+            
+                <a class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</a>
                 
-                
-
-                ?>
-                <a id="pdf1"
-                onclick="<?php 
-                foreach($identificacion as $doc){
-                    echo "funcion('$doc');";
-                }
-                 ?>"
              
-              
-                
-                class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</a>
-                
-                <script>
-                   
-                    function funcion(url){
-                  
-                    var f='{{asset("documents/")}}'+"/"+url;
-                    console.log(f);
-                    window.open(f);
-                    }
-
-                </script>
            
             </div>
         </div>
@@ -226,33 +204,7 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-            <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <?php 
-                
-                
-
-                ?>
-                <a id="pdf1"
-                onclick="<?php 
-                foreach($identificacion as $doc){
-                    echo "funcion('$doc');";
-                }
-                 ?>"
-             
-              
-                
-                class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</a>
-                
-                <script>
-                   
-                    function funcion(url){
-                  
-                    var f='{{asset("documents/")}}'+"/"+url;
-                    console.log(f);
-                    window.open(f);
-                    }
-
-                </script>
+          
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
@@ -290,8 +242,8 @@ Datos del proyecto
                     contacto de
                     la entidad de adjudicación</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">Lic. Sandra Patricia Sánchez Váldez</span><br>
-                <span style="padding-left:34px; font-weight: 700;">sandra.sanchez@zapopan.gob.mx</span><br><br>
+                <span style="font-weight: 700;">{{$entidadadjudicacion}}</span><br>
+                
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     impacto ambiental</span><br>
@@ -331,13 +283,7 @@ Datos del proyecto
     <div class="container">
         <div class="row">
             <div class="col-md-6 mt-5">
-                <?php
-                $adjudicacion = [];
-                $impacto_ambiental = [];
-                $factibilidad = [];
-                $impacto = [];
-                $adjudicacion[] = ['nombre' => '', 'email'];
-                ?>
+             
                 <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
                 <span><b>Modalidad de contratación:</b>{{$modalidadcontratacion->titulo}}</span><br>
                 <span><b>Entidad administradora del contrato:</b>{{$entidad_admin_contrato}}</span><br>
@@ -384,14 +330,17 @@ Datos del proyecto
     <div class="container">
         <div class="row">
             <div class="col-md-6 mt-5">
-                <span><b>Variaciones en el precio del contrato:</b></span><br>
-                <span><b>Razones de cambio en el precio del contrato:</b></span><br>
-                <span><b>Variaciones en la duración del contrato:</b></span><br>
-                <span><b>Razones de cambio en la duración del contrato:</b></span><br>
-                <span><b>Variaciones en el alcance del contrato:</b></span><br>
-                <span><b>Razones de cambios en el alcance del contrato:</b></span><br>
-                <span><b>Aplicación de escalatoria:</b></span><br>
-                <span><b>Estado actual del proyecto:</b> Concluído</span><br>
+               
+
+
+                <span><b>Variaciones en el precio del contrato:</b>{{$proyecto_ejecucion->variacionespreciocontrato}}</span><br>
+                <span><b>Razones de cambio en el precio del contrato:</b>{{$proyecto_ejecucion->razonescambiopreciocontrato}}</span><br>
+                <span><b>Variaciones en la duración del contrato:</b>{{$proyecto_ejecucion->variacionesduracioncontrato	}}</span><br>
+                <span><b>Razones de cambio en la duración del contrato:</b>{{$proyecto_ejecucion->razonescambioduracioncontrato}}</span><br>
+                <span><b>Variaciones en el alcance del contrato:</b>{{$proyecto_ejecucion->variacionesalcancecontrato}}</span><br>
+                <span><b>Razones de cambios en el alcance del contrato:</b>{{$proyecto_ejecucion->razonescambiosalcancecontrato}}</span><br>
+                <span><b>Aplicación de escalatoria:</b>{{$proyecto_ejecucion->aplicacionescalatoria}}</span><br>
+                <span><b>Estado actual del proyecto:</b>{{$proyecto_ejecucion->estadoactualproyecto}}</span><br>
             </div>
         </div>
         <div class="row">
@@ -415,28 +364,37 @@ Datos del proyecto
         <div class="col-md-6 px-0">
             <div class="" style="margin-top: 25px;
             border-bottom: 1px solid #628ea0;">
-        </div>     
-        <div class="row">
+        </div>  
+        
             <div class="col-md-7 text-right">
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
-        </div> 
-           
-          
-
-        </div>
+              
     </div>
+    </div>
+    
     <div class="container">
+       
         <div class="row">
             <div class="col-md-6 mt-5">
-                <span><b>Costo de finalización:</b></span><br>
+                <span><b>Costo de finalización:</b>{{$proyecto_finalizacion->costofinalizacion}}</span><br>
                 <span><b>Fecha de finalización:</b></span><br>
                 <span><b>Alcance de la finalización:</b></span><br>
                 <span><b>Razones de cambio en el proyecto:</b></span><br>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+            </div>
+        </div>
+       
     </div>
+   
+  
+           
     <div class="container mt-5">
         <div class="row align-items-baseline">
             <div class="col-md-7" style="background-color:#d60000; color:#fff;">

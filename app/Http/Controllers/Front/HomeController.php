@@ -51,135 +51,8 @@ class HomeController extends Controller
 
     public function account()
     {
-        $project = Project::find($id);
-        if($project!=null){
-            $project_documents=DB::table('project_documents')
-            ->join('documents','project_documents.id_document','=','documents.id')
-            ->where('id_project','=',$id)
-            ->get();
-            $project_ambiental=DB::table('estudiosambiental')
-            ->where('id_project','=',$id)
-            ->first();
-            $project_factibilidad=DB::table('estudiosfactibilidad')
-            ->where('id_project','=',$id)
-            ->first();
-            
-            $project_impacto=DB::table('estudiosimpacto')
-            ->where('id_project','=',$id)
-            ->first();
-           /* $impacto=DB::table('catimpactoterreno')
-            ->where('tipoImpacto','=',$project_impacto)
-            ->first();*/
-
-            $ambiental=$project_ambiental->numeros_ambiental;
-            $responsable_ambiental=$project_ambiental->responsableAmbiental;
-
-
-            $factibilidad=$project_factibilidad->numeros_factibilidad;
-            $responsable_factibilidad=$project_factibilidad->responsableFactibilidad;
-
-            $impacto=$project_impacto->numeros_impacto;
-            $responsable_impacto=$project_impacto->responsableImpacto;
-        
-            
           
-           
-            $subsector=DB::table('subsector')
-            ->where('id','=',$project->subsector)
-            ->select('titulo')
-            ->first();
-
-            $contratacion=DB::table('proyecto_contratacion')
-            ->where('id_project','=',$id)
-            ->first();
-
-            $tipocontrato=DB::table('cattipo_contrato')
-            ->where('id','=',$contratacion->tipocontrato)
-            ->first();
-            
-            $modalidadcontratacion=DB::table('catmodalidad_contratacion')
-            ->where('id','=',$contratacion->modalidadcontrato)
-            ->first();
-
-            $entidad_admin_contrato=$contratacion->entidad_admin_contrato;
-            $titulocontrato=$contratacion->titulocontrato;
-            $viapropuesta=$contratacion->viapropuesta;
-            $montocontrato=$contratacion->montocontrato;
-            $alcancecontrato=$contratacion->alcancecontrato;
-            $duracionproyecto_contrato=$contratacion->duracionproyecto_contrato;
-
-            $empresasparticipantes=$contratacion->empresasparticipantes;
-
-            $empresasparticipantes = explode(",", $empresasparticipantes);
-
-         
-
-            $identificacion=array();
-            $preparacion=array();
-            $contratacion=array();
-            $ejecucion=array();
-            $finalizacion=array();
-            
-            foreach($project_documents as $document){
-              
-                switch($document->description){
-                    case 'identificacion':
-                    array_push($identificacion,$document->url);
-                    break;
-                    case 'preparacion':
-                    array_push($preparacion,$document->url);
-                    break;
-                    case 'contratacion':
-                    array_push($contratacion,$document->url);
-                    break;
-                    case 'ejecucion':
-                    array_push($ejecucion,$document->url);
-                    break;
-                    case 'finalizacion':
-                    array_push($finalizacion,$document->url);
-                    break;
-
-                }
-            }
-            
-          
-
-            return view('front.specific-project', [
-                
-            'project' => $project,
-            'identificacion'=>$identificacion,
-            'preparacion'=>$preparacion,
-            'contratacion'=>$contratacion,
-            'ejecucion'=>$ejecucion,
-            'finalizacion'=>$finalizacion,
-            'subsector'=>$subsector,
-            'impacto'=>$impacto,
-            'responsable_impacto'=>$responsable_impacto,
-            'ambiental'=>$ambiental,
-            'responsable_ambiental'=>$responsable_ambiental,
-            'factibilidad'=>$factibilidad,
-            'responsable_factibilidad'=>$responsable_factibilidad,
-            'tipocontrato'=>$tipocontrato,
-            'modalidadcontratacion'=>$modalidadcontratacion,
-            'entidad_admin_contrato'=>$entidad_admin_contrato,
-            'titulocontrato'=>$titulocontrato,
-            'viapropuesta'=>$viapropuesta,
-            'montocontrato'=>$montocontrato,
-            'alcancecontrato'=>$alcancecontrato,
-            'duracionproyecto_contrato'=>$duracionproyecto_contrato,
-            'empresasparticipantes'=>$empresasparticipantes,
-
-
-
-            
-
-            
-            ]);
-        }else{
-            return redirect()->route('home.listworks');
-        }
-      
-        return view('auth.account');
+       // return view('auth.account'); ?????????????????
     }
 
     public function contact_us()
@@ -350,6 +223,7 @@ class HomeController extends Controller
         return view('front.project_search', [
             'projects' => $projects
         ]);
+        }
     public function sitemap()
     {
         return view('front.sitemap');
@@ -360,10 +234,7 @@ class HomeController extends Controller
         return view('front.support-material');
     }
 
-    public function journal()
-    {
-        return view('front.journal');
-    }
+    
     public function listworks(Request $request){
 
         // dd($request->all());
@@ -434,6 +305,7 @@ class HomeController extends Controller
         return view('front.listworks', [
             'projects' => $projects
         ]);
+    }
 
     public function organizations()
     {

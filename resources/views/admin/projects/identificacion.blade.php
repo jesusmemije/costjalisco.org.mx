@@ -114,7 +114,7 @@
 
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
-
+              <input type="text" value="{{$project->id}}" name="id_project">
             <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="tituloProyecto">
@@ -236,7 +236,7 @@
             @enderror
             <div class="form-group col-md-3">
             <label for="people">Personas beneficiadas</label>
-            <input required maxlength="50" placeholder="Persona Beneficiaria" type="number" name="people" id="people" class="form-control @error('people') is-invalid @enderror" value="{{old('people',$project->purpose)}}">
+            <input required maxlength="50" placeholder="Persona Beneficiaria" type="number" name="people" id="people" class="form-control @error('people') is-invalid @enderror" value="{{old('people',$project->people)}}">
             
             @error('people')
               <div class="invalid-feedback">{{ $message }}</div>

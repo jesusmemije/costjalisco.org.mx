@@ -135,7 +135,7 @@ class ProjectController extends Controller
                     'project'=> Project::find($id),
                     'nav'=>'generaldata',
                     'edit'=>true,
-                    'ruta'=>'project.savegeneraldata',
+                    'ruta'=>'project.updategeneraldata',
                     'generaldata'=>$generaldata,
                 ]);
 
@@ -164,17 +164,16 @@ class ProjectController extends Controller
        
         $project = new Project();  
 
+      //  print_r($_FILES);
+      //  die();
+
         $request->validate([
           
             'nombreresponsable'=>'required|max:50',
             'email'=>'required|max:50',
             'organismo'=>'required|max:255',
             'puesto'=>'required|max:255',
-            'involucrado'=>'required|max:50',
-            'imagen'=>'required|max:50',
-
-        
-           
+            'involucrado'=>'required|max:50',  
         ]);
        
         
@@ -217,8 +216,59 @@ class ProjectController extends Controller
             'id_user'=>Auth::user()->id,
         ]);
 
-        return redirect()->route('project.editidentificacion',['project'=>$project->id]);;
+        return redirect()->route('project.editidentificacion',['project'=>$project->id]);
 
+    }
+    public function updategeneraldata(Request $request){
+        
+
+    
+
+        $request->validate([
+          
+            'nombreresponsable'=>'required|max:50',
+            'email'=>'required|max:50',
+            'organismo'=>'required|max:255',
+            'puesto'=>'required|max:255',
+            'involucrado'=>'required|max:50',  
+        ]);
+       
+        
+       
+
+    
+       
+        if($request->hasFile('images')){
+
+            for ($i=0; $i <sizeof($request->images) ; $i++) { 
+            $nombre_img = $_FILES['images']['name'][$i];
+            $url=time().$nombre_img;
+            move_uploaded_file($_FILES['images']['tmp_name'][$i],'projects_imgs/'.$url);
+            
+
+            DB::table('projects_imgs')->insert([
+                'id_project'=>$request->id_project,
+                'imgroute'=>$url,
+            ]);
+    
+        }
+    }
+        
+        $r=DB::table('generaldata')
+        ->where('id_project',$request->id_project)
+        ->update([
+            'descripcion'=>$request->descripcion,
+            'responsable'=>$request->nombreresponsable,
+            'email'=>$request->email,
+            'organismo'=>$request->organismo,
+            'puesto'=>$request->puesto,
+            'involucrado'=>$request->involucrado,
+
+        ]);
+
+       
+
+        return back()->with('status', '¡La fase de identificación ha sido actualizada correctamente!'); return back()->with('status', '¡Los datos generales han sido actualizados correctamente!');
     }
    
      public function identificacion($id=null){
@@ -236,6 +286,9 @@ class ProjectController extends Controller
             $documentstype=DocumentType::all();
 
             if($project->title==""){
+              
+                
+
                 return view('admin.projects.identificacion',
                 [
                    'project'=>$project,
@@ -270,6 +323,7 @@ class ProjectController extends Controller
                 'address.locality','address.region','address.postalCode','address.countryName')
                 ->where('project.id','=',$id)
                 ->first();
+
               
                 return view('admin.projects.identificacion',
                 [
@@ -1052,6 +1106,13 @@ class ProjectController extends Controller
         ->insert([
             'id_project'=>$request->id_project,
             'descripcion'=>$request->descripcion,
+            'variacionespreciocontrato'=>$request->variacionespreciocontrato,
+            'razonescambiopreciocontrato'=>$request->razonescambiopreciocontrato,
+            'variacionesduracioncontrato'=>$request->variacionesduracioncontrato,
+            'razonescambioduracioncontrato'=>$request->razonescambioduracioncontrato,
+            'variacionesalcancecontrato'=>$request->variacionesalcancecontrato,
+            'razonescambiosalcancecontrato'=>$request->razonescambiosalcancecontrato,
+            'aplicacionescalatoria'=>$request->aplicacionescalatoria,
             'estadoactualproyecto'=>$request->estadoactualproyecto,
 
 
@@ -1309,6 +1370,8 @@ class ProjectController extends Controller
     
             
         $project = Project::find($request->id_project);
+
+      
      
         $project->ocid = $request->ocid;
         $project->updated = $fecha_in;
@@ -1458,6 +1521,9 @@ class ProjectController extends Controller
     {
         //
 
+       if($id!=0){
+
+      
     
         $project = Project::find($id);
 
@@ -1532,6 +1598,9 @@ class ProjectController extends Controller
             return back()->with('status', '¡Proyecto no encontrado!');
            
         }
+    }else{
+        return back()->with('status', '¡No se pudo procesar la petición!');
+    }
       
 
     }

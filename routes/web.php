@@ -135,6 +135,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/projects/generaldata/{project?}', [AdminProjectController::class, 'generaldata'])->name('project.generaldata2');
     Route::get('/admin/projects/generaldata/', [AdminProjectController::class, 'generaldata'])->name('project.generaldata');
 
+
+
     Route::get('/admin/projects/identificacion/{project?}', [AdminProjectController::class, 'identificacion'])->name('project.identificacion');
     Route::get('/admin/projects/preparacion/{project?}', [AdminProjectController::class, 'preparacion'])->name('project.preparacion');
     Route::get('/admin/projects/contratacion/{project?}', [AdminProjectController::class, 'contratacion'])->name('project.contratacion');
@@ -153,6 +155,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/admin/projects/savefinalizacion', [AdminProjectController::class, 'savefinalizacion'])->name('project.savefinalizacion');
 
     //update phases project
+    Route::post('/admin/projects/updategeneraldata/', [AdminProjectController::class, 'updategeneraldata'])->name('project.updategeneraldata');
     Route::post('/admin/projects/updateidentificacion/', [AdminProjectController::class, 'updateidentificacion'])->name('project.updateidentificacion');
     Route::post('/admin/projects/updatepreparacion/', [AdminProjectController::class, 'updatepreparacion'])->name('project.updatepreparacion');
     Route::post('/admin/projects/updatecontratacion/', [AdminProjectController::class, 'updatecontratacion'])->name('project.updatecontratacion');
