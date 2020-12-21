@@ -55,7 +55,7 @@
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <label for="">Datos de contacto de la entidad de adjudicación</label>
-                                    <input required maxlength="50" type="text" class="form-control @error('datosdecontacto') is-invalid @enderror" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
+                                    <input maxlength="50" type="text" class="form-control @error('datosdecontacto') is-invalid @enderror" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
                                     @error('datosdecontacto')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -65,7 +65,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Fecha de publicación</label>
-                                    <input required maxlength="50" type="date" class="form-control @error('fechapublicacion') is-invalid @enderror" name="fechapublicacion" value="{{old('fechapublicacion',$project->fechapublicacion)}}">
+                                    <input maxlength="50" type="date" class="form-control @error('fechapublicacion') is-invalid @enderror" name="fechapublicacion" value="{{old('fechapublicacion',$project->fechapublicacion)}}">
                                     @error('fechapublicacion')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -74,7 +74,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Entidad de adjudicación</label>
-                                    <input required maxlength="50" type="text" class="form-control @error('entidadadjudicacion') is-invalid @enderror" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
+                                    <input  maxlength="50" type="text" class="form-control @error('entidadadjudicacion') is-invalid @enderror" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
                                     @error('entidadadjudicacion')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -95,7 +95,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="">Nombre del responsable</label>
-                    <input required maxlength="50" type="text" class="form-control @error('nombreresponsable') is-invalid @enderror" name="nombreresponsable" value="{{old('nombreresponsable',$project->nombreresponsable)}}">
+                    <input  maxlength="50" type="text" class="form-control @error('nombreresponsable') is-invalid @enderror" name="nombreresponsable" value="{{old('nombreresponsable',$project->nombreresponsable)}}">
                     @error('nombreresponsable')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -104,7 +104,7 @@
                     <label for="">Modalidad de la adjudicación</label>
 
 
-                    <select required name="modalidadadjudicacion" id="" class="form-control @error('modalidadadjudicacion') is-invalid @enderror">
+                    <select  name="modalidadadjudicacion" id="" class="form-control @error('modalidadadjudicacion') is-invalid @enderror">
                         <option value="">Seleccione una opción</option>
                         @foreach($catmodalidad_adjudicacion as $mod)
                         @if($project->modalidadadjudicacion==$mod->id)
@@ -122,7 +122,10 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Tipo de contrato</label>
-                    <select required id="" class="form-control @error('tipocontrato') is-invalid @enderror" name="tipocontrato">
+                    <?php 
+                       // print_r($project->tipocontrato);
+                    ?>
+                    <select  id="" class="form-control @error('tipocontrato') is-invalid @enderror" name="tipocontrato">
                         <option value="">Seleccione una opción</option>
                         @foreach($cattipo_contrato as $contrato)
                         @if($project->tipocontrato== $contrato->id)
@@ -143,7 +146,7 @@
                     <label for="">Modalidad de de contratación</label>
 
 
-                    <select required name="modalidadcontrato" id="" class="form-control @error('modalidadcontrato') is-invalid @enderror">
+                    <select  name="modalidadcontrato" id="" class="form-control @error('modalidadcontrato') is-invalid @enderror">
                         <option value="">Seleccione una opción</option>
                         @foreach($catmodalidad_contratacion as $modcontrato)
                         @if($project->modalidadcontrato==$modcontrato->id)
@@ -168,7 +171,7 @@
 
                     <label for="">Estado actual de la contratación</label>
 
-                    <select required name="estadoactual" id="" class="form-control @error('estadoactual') is-invalid @enderror">
+                    <select name="estadoactual" id="" class="form-control @error('estadoactual') is-invalid @enderror">
                         <option value="">Seleccione una opción</option>
                         @foreach($contractingprocess_status as $contractstatus)
                         @if($project->estadoactual==$contractstatus->id)
@@ -188,7 +191,7 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Empresas participantes</label>
-                    <input required maxlength="250" type="text" class="form-control @error('empresasparticipantes') is-invalid @enderror" name="empresasparticipantes" value="{{old('empresasparticipantes',$project->empresasparticipantes)}}">
+                    <input  maxlength="250" type="text" class="form-control @error('empresasparticipantes') is-invalid @enderror" name="empresasparticipantes" value="{{old('empresasparticipantes',$project->empresasparticipantes)}}">
                     @error('empresasparticipantes')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -197,7 +200,7 @@
 
                 <div class="form-group col-md-4">
                     <label for=""> Entidad administradora del contrato</label>
-                    <input required maxlength="50" type="text" name="entidad_admin_contrato" value="{{old('entidad_admin_contrato',$project->entidad_admin_contrato)}}" class="form-control @error('entidad_admin_contrato') is-invalid @enderror" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
+                    <input  maxlength="50" type="text" name="entidad_admin_contrato" value="{{old('entidad_admin_contrato',$project->entidad_admin_contrato)}}" class="form-control @error('entidad_admin_contrato') is-invalid @enderror" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
                     @error('entidad_admin_contrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -208,7 +211,7 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Título del contrato</label>
-                    <input required maxlength="50" type="text" name="titulocontrato" value="{{old('titulocontrato',$project->titulocontrato)}}" class="form-control @error('titulocontrato') is-invalid @enderror" placeholder="Nombre o título de contrato">
+                    <input maxlength="50" type="text" name="titulocontrato" value="{{old('titulocontrato',$project->titulocontrato)}}" class="form-control @error('titulocontrato') is-invalid @enderror" placeholder="Nombre o título de contrato">
                     @error('titulocontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -216,7 +219,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="">Empresa contratada</label>
-                    <input required maxlength="50" type="text" class="form-control @error('empresacontratada') is-invalid @enderror" name="empresacontratada" value="{{old('empresacontratada',$project->empresacontratada)}}">
+                    <input  maxlength="250" type="text" class="form-control @error('empresacontratada') is-invalid @enderror" name="empresacontratada" value="{{old('empresacontratada',$project->empresacontratada)}}">
                     @error('empresacontratada')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -224,7 +227,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="">Vía por la que presenta su propuesta</label>
-                    <input required maxlength="50" type="text" class="form-control @error('viapropuesta') is-invalid @enderror" name="viapropuesta" value="{{old('viapropuesta',$project->viapropuesta)}}">
+                    <input  maxlength="50" type="text" class="form-control @error('viapropuesta') is-invalid @enderror" name="viapropuesta" value="{{old('viapropuesta',$project->viapropuesta)}}">
                     @error('viapropuesta')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -238,14 +241,14 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="">Fecha de presentación de su propuesta</label>
-                    <input required maxlength="50" type="date" class="form-control @error('fechapresentacionpropuesta') is-invalid @enderror" name="fechapresentacionpropuesta" value="{{old('fechapresentacionpropuesta',$project->fechapresentacionpropuesta)}}">
+                    <input maxlength="50" type="date" class="form-control @error('fechapresentacionpropuesta') is-invalid @enderror" name="fechapresentacionpropuesta" value="{{old('fechapresentacionpropuesta',$project->fechapresentacionpropuesta)}}">
                     @error('fechapresentacionpropuesta')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Monto del contrato</label>
-                    <input required maxlength="50" type="number" class="form-control @error('montocontrato') is-invalid @enderror" name="montocontrato" value="{{old('montocontrato',$project->montocontrato)}}">
+                    <input  maxlength="50" type="number" class="form-control @error('montocontrato') is-invalid @enderror" name="montocontrato" value="{{old('montocontrato',$project->montocontrato)}}">
                     @error('montocontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -255,7 +258,7 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Alcance del trabajo según el contrato</label>
-                    <input required maxlength="50" type="text" class="form-control @error('alcancecontrato') is-invalid @enderror" name="alcancecontrato" value="{{old('alcancecontrato',$project->alcancecontrato)}}">
+                    <input  maxlength="50" type="text" class="form-control @error('alcancecontrato') is-invalid @enderror" name="alcancecontrato" value="{{old('alcancecontrato',$project->alcancecontrato)}}">
                     @error('alacancecontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -270,14 +273,14 @@
                 <div class="form-group col-md-4">
 
                     <label for="">Fecha de inicio del contrato </label>
-                    <input required maxlength="50" type="date" class="form-control @error('fechainiciocontrato') is-invalid @enderror" name="fechainiciocontrato" value="{{old('fechainiciocontrato',$project->fechainiciocontrato)}}">
+                    <input maxlength="50" type="date" class="form-control @error('fechainiciocontrato') is-invalid @enderror" name="fechainiciocontrato" value="{{old('fechainiciocontrato',$project->fechainiciocontrato)}}">
                     @error('fechainiciocontrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
                     <label for="">Duración del proyecto de acuerdo con lo establecido en el contrato</label>
-                    <input required maxlength="50" type="date" class="form-control @error('duracionproyecto_contrato') is-invalid @enderror" name="duracionproyecto_contrato" value="{{old('duracionproyecto_contrato',$project->duracionproyecto_contrato)}}">
+                    <input  maxlength="50" type="text" class="form-control @error('duracionproyecto_contrato') is-invalid @enderror" name="duracionproyecto_contrato" value="{{old('duracionproyecto_contrato',$project->duracionproyecto_contrato)}}">
                     @error('duracionproyecto_contrato')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

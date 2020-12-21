@@ -138,7 +138,8 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+             
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
                 <?php 
                 
                 
@@ -153,7 +154,7 @@ Datos del proyecto
              
               
                 
-                class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</a>
+                class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</a>
                 
                 <script>
                    
@@ -190,11 +191,11 @@ Datos del proyecto
         <div class="row">
             <div class="col-md-6 data mt-4">
                 <span><b>Número del acto público, ID.Entidad:</b></span><br>
-                <span>DOPI-MUN-R33-DS-CI-055-2019</span><br>
-                <span>En el subsector de Servicios</span><br>
+                <span>{{$project->ocid}}</span><br>
+                <span>En el subsector de {{$subsector->titulo}}</span><br>
                 <span><b>Número o números de identificación del estudio del impacto en el terreno y
                         asentamientos:</b></span><br>
-                <span>DOC-IMSCO-07</span><br>
+                <span>{{$impacto}}</span><br>
             </div>
             <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
                 <?php
@@ -221,8 +222,35 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <?php 
+                
+                
+
+                ?>
+                <a id="pdf1"
+                onclick="<?php 
+                foreach($identificacion as $doc){
+                    echo "funcion('$doc');";
+                }
+                 ?>"
+             
+              
+                
+                class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</a>
+                
+                <script>
+                   
+                    function funcion(url){
+                  
+                    var f='{{asset("documents/")}}'+"/"+url;
+                    console.log(f);
+                    window.open(f);
+                    }
+
+                </script>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -262,26 +290,26 @@ Datos del proyecto
                 <span style="padding-left:34px; font-weight: 700;">sandra.sanchez@zapopan.gob.mx</span><br><br>
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
-                    impacto de terreno</span><br>
+                    impacto ambiental</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">Ingeniería en Mécanica de Suelos y Control de Occidente S.A. de
-                    C.V.</span><br><br>
+                <span style="font-weight: 700;">{{$responsable_ambiental}}
+                    </span><br><br>
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     factibilidad</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">Tesorería Municipal</span><br><br>
+                <span style="font-weight: 700;">{{$responsable_factibilidad}}</span><br><br>
                 <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio
                     de
                     impacto de terreno y asentamientos</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">M en C.E. Alonso López Flores</span>
+                <span style="font-weight: 700;">{{$responsable_impacto}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -306,32 +334,26 @@ Datos del proyecto
                 $impacto = [];
                 $adjudicacion[] = ['nombre' => '', 'email'];
                 ?>
-                <span><b>Tipo de contrato:</b> Obras</span><br>
-                <span><b>Modalidad de contratación:</b> Precios unitarios</span><br>
-                <span><b>Entidad administradora del contrato:</b>Unidad de Presupuesto y Contratación de Obra
-                    Publica</span><br>
-                <span><b>Título del contrato:</b> DOPI-MUN-R33-DC-SI-055-2019</span><br>
-                <span><b>Vía por la que presenta su propuesta:</b> JUNTA DE APERTURA</span><br>
-                <span><b>Monto del contrato (cantidad estipulada):</b>$571857.77</span><br>
-                <span><b>Alcance del trabajo según el contrato:</b>REVESTIMIENTO Y SANEAMIENTO DEL CANAL EN LA COLONIA
-                    MARIANO OTERO, EN ZAPOPAN</span><br>
-                <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b> 63 DÍAS</span><br>
+                <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
+                <span><b>Modalidad de contratación:</b>{{$modalidadcontratacion->titulo}}</span><br>
+                <span><b>Entidad administradora del contrato:</b>{{$entidad_admin_contrato}}</span><br>
+                <span><b>Título del contrato:</b> {{$titulocontrato}}</span><br>
+                <span><b>Vía por la que presenta su propuesta:</b>{{$viapropuesta}}</span><br>
+                <span><b>Monto del contrato (cantidad estipulada):</b>${{$montocontrato}}</span><br>
+                <span><b>Alcance del trabajo según el contrato:</b>{{$alcancecontrato}}</span><br>
+                <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b> {{$duracionproyecto_contrato}}</span><br>
             </div>
             <div class="col-md-6">
                 <h3 style="color:#628ea0; font-weight: 700; margin-bottom: 0;" class="ml-4">Empresas participantes</h3>
-                <?php
-                $empresas = [];
-                $empresas[] = ['nombre' => 'CONSTRUCCIONES TECNICAS DE OCCIDENTE SA DE CV, CONSTRUCTORA CENTAURO DE INFRAESTRUCTURA SA DE CV, GUILLERMO VARGAS LARA, SALVADOR PANTOJA VACA.'];
-                $empresas[] = ['nombre' => 'CONSTRUCCIONES TECNICAS DE OCCIDENTE S.A DE C.V.'];
-                ?>
-                @foreach($empresas as $empresa)
+       
+                @foreach($empresasparticipantes as $empresa)
                 <div class="row py-4" style="border-left: 1px solid #628ea0;">
                     <div class="col-md-2">
                         <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50"
                             alt="">
                     </div>
                     <div class="col-md-10 px-0">
-                        <span style="font-weight: 700;">{{ $empresa['nombre'] }}</span><br>
+                        <span style="font-weight: 700;">{{ $empresa }}</span><br>
                     </div>
                 </div>
                 @endforeach
@@ -339,8 +361,8 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -370,11 +392,16 @@ Datos del proyecto
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
+
+<!-- <div class="col-md-2 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            </div> -->
 
     <!-- Section - Finalización -->
     <div class="row mt-5" id="finalizacion">
@@ -383,7 +410,17 @@ Datos del proyecto
         </div>
         <div class="col-md-6 px-0">
             <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
+            border-bottom: 1px solid #628ea0;">
+        </div>     
+        <div class="row">
+            <div class="col-md-7 text-right">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+            </div>
+        </div> 
+           
+          
+
         </div>
     </div>
     <div class="container">
@@ -406,10 +443,7 @@ Datos del proyecto
             <div class="col-md-3">
                 <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
             </div>
-            <div class="col-md-2 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
-            </div>
+            
         </div>
     </div>
 

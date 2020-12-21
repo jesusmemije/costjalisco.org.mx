@@ -77,7 +77,11 @@
 
           
 
-                <td>{{ $project->responsable}}</td>
+                <td>
+                @if(!empty($project->responsable)){{ $project->responsable}}</td>
+                @else
+                <span class="badge badge-info">Sin información</span>
+                @endif
                 
                 <td>
                 @if(!empty($project->title))
@@ -100,7 +104,7 @@
                 <td>{{$status}}</td>
                 <td>
                 @if(!empty($project->montocontrato))
-                {{ $project->montocontrato}}
+                {{ number_format($project->montocontrato)}}
                 </td>
                 @else
                 <span class="badge badge-info">Sin información</span>
