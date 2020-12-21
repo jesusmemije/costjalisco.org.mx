@@ -114,7 +114,7 @@
 
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
-              <input type="text" value="{{$project->id}}" name="id_project">
+              <input type="hidden" value="{{$project->id}}" name="id_project">
             <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="tituloProyecto">
