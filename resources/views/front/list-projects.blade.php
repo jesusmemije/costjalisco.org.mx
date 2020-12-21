@@ -32,7 +32,18 @@ Listado de obras
         @foreach ($projects as $project)
 
         <div class="media" style="background-color: #d8d8cd;  margin-top:2%;">
-            <img src="{{ asset('projects_imgs/'.$project->imgroute) }}" width="325" height="310"  alt="">
+            @php
+                $imagen=DB::table('projects_imgs')
+                ->select('projects_imgs.imgroute')
+                ->where('projects_imgs.id_project','=',$project->id)
+                ->get();
+            @endphp
+            @if (count($imagen)==0)
+                <img src="{{ asset('projects_imgs/sinimagen.png') }}" width="325" height="310" style="border: 2px solid rgb(180, 180, 180)"  alt="">
+            @else
+                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325" height="310"  alt="">
+                
+            @endif
             <div class="media-body">
                 <h5 class="mt-5 ml-5" style="font-weight: 700;">{{ $project->title }}</h5>
                 <div class="col-md-10" style="text-align: justify; margin-left:4%; font-weight: 300;">
