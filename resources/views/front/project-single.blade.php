@@ -192,10 +192,14 @@ Datos del proyecto
             <div class="col-md-6 data mt-4">
                 <span><b>Número del acto público, ID.Entidad:</b></span><br>
                 <span>{{$project->ocid}}</span><br>
-                <span>En el subsector de {{$subsector->titulo}}</span><br>
+                <span>En el subsector de 
+                    {{-- {{$subsector->titulo}} --}}
+                </span><br>
                 <span><b>Número o números de identificación del estudio del impacto en el terreno y
                         asentamientos:</b></span><br>
-                <span>{{$impacto}}</span><br>
+                <span>
+                    {{-- {{$impacto}} --}}
+                </span><br>
             </div>
             <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
                 <?php

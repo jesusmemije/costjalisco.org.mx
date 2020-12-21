@@ -36,7 +36,7 @@ Listado de obras
             <div class="media-body">
                 <h5 class="mt-5 ml-5" style="font-weight: 700;">{{ $project->title }}</h5>
                 <div class="col-md-10" style="text-align: justify; margin-left:4%; font-weight: 300;">
-                    <span> {{ $project->description }} {{$project->imgroute}}</span>
+                    <span> {{ $project->description }} </span>
                 </div>
                 <div class="form-row">
                     <div class="mt-4 form-group col-md-3 ml-5">
