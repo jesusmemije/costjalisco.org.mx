@@ -17,20 +17,27 @@
         </div>
     </div>
     <!-- Footer Links -->
-    <div class="container text-center text-md-left mt-5">
+    <div class="container text-center text-md-left mt-1">
         <!-- Grid row -->
         <div class="row">
             <!-- Grid column -->
             <div class="col-md-7 col-lg-7 mx-auto">
+        <!--titulo de banco de desarrollo-->
+
             <!--Banco de desarrollo -->
-                 <div class="row mb-5 align-items-center">
+                 <div class="row mb-4 align-items-center" style="margin-right:35%">
+                   
+                    <div class="col-md-12 text-right pt-4 px-0" style="line-height: 1.5;">
+
+                   
+
+                    <span style="font-size: 8px; color: #fff;">EL SITIO WEB FINANCIADO POR EL BANCO DE DESARROLLO DE AMÉRICA LATINA</span>
+
                     
-                    <div class="col-md-7">
                         <a href="#" target="_BLANK">
-                      <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250" alt="">
+                            <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250" alt="">
                         </a>
-                    </div>
-                    
+                    </div>  
                 </div>
 
                 <!-- Content -->
@@ -75,19 +82,24 @@
                 </div>
             </div>
             <!-- Grid column -->
-            <div class="col-md-4 col-lg-4 mx-auto mb-md-0 md-4 text-white">
+            
+            <div class="col-md-4 col-lg-4 mx-auto mb-md-0 md-4 text-white" style="margin-top:6%">
                 <!-- Links -->
+                
                 <p><i class="fas fa-mobile-alt mr-3 fa-lg"></i> <a href="#">33 3630-5745 ext 1510</a></p>
+               
                 <p><i class="fas fa-envelope mr-3"></i> <a href="#">jalisco@infrastructuretransparency.org</a></p>
                 <p><i class="fas fa-globe mr-3"></i> <a href="#">https://infrastructuretransparency.org</a></p>
         
                 <p style="margin-left: 34px"> <a href="">REVISA EL AVISO DE PRIVACIDAD</a></p>
             </div>
             
+            
             <!-- Grid column -->
             <div class="col-md-1 col-lg-1 text-center mx-auto my-4">
-                <div class="social">
+                <div class="social" style="margin-top:55%">
                     <ul>
+                        
                         <li><a href="#" target="_blank" class="icon-facebook"><i class="fab fa-facebook-f fa-sm"></i></a></li>
                         <li><a href="#" target="_blank" class="icon-youtube"><i class="fab fa-youtube fa-sm"></i></a>
                         </li>
