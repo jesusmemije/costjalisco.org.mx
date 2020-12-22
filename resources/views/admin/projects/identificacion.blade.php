@@ -91,8 +91,7 @@
   }
 </style>
 @endsection
-@include('admin.layouts.partials.session-flash-status')
-@include('admin.layouts.partials.validation-error')
+
 
 
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -102,7 +101,8 @@
     <form id="phase1" method="POST" action="{{route($ruta)}}" enctype="multipart/form-data">
       @csrf
       
-
+      @include('admin.layouts.partials.session-flash-status')
+@include('admin.layouts.partials.validation-error')
 
       <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
