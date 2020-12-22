@@ -319,11 +319,14 @@ class ProjectController extends Controller
                 ->join('project_locations','project.id','=','project_locations.id_project')
                 ->join('locations','project_locations.id_location','=','locations.id')
                 ->join('address','locations.id_address','=','address.id')
+                ->join('responsableproyecto','project.id','=','responsableproyecto.id_project')
                 ->select('project.*','project.description as descripcionProyecto','locations.lat','locations.lng','locations.description as description','address.streetAddress',
-                'address.locality','address.region','address.postalCode','address.countryName')
+                'address.locality','address.region','address.postalCode','address.countryName','responsableproyecto.nombreresponsable','responsableproyecto.cargoresponsable','responsableproyecto.telefonoresponsable','responsableproyecto.correoresponsable','responsableproyecto.domicilioresponsable','responsableproyecto.horarioresponsable')
                 ->where('project.id','=',$id)
                 ->first();
-
+                
+               
+            
               
                 return view('admin.projects.identificacion',
                 [
@@ -723,6 +726,7 @@ class ProjectController extends Controller
        
         $project = Project::find($request->id_project);
 
+       
     
         $project->updated = $fecha_in;
         $project->title = $request->tituloProyecto;
@@ -780,6 +784,21 @@ class ProjectController extends Controller
         $address->save();
         $locations->save();
         $project->save();
+
+
+        //responsable del proyecto.
+
+        DB::table('responsableproyecto')
+        ->where('id_project','=',$request->id_project)
+        ->update([
+            'nombreresponsable'=>$request->nombreresponsable,
+            'cargoresponsable'=>$request->cargoresponsable,
+            'telefonoresponsable'=>$request->telefonoresponsable,
+            'correoresponsable'=>$request->correoresponsable,
+            'domicilioresponsable'=>$request->domicilioresponsable,
+            'horarioresponsable'=>$request->horarioresponsable,
+            
+        ]);
 
         if(!empty($request->docfase1)){    
             
@@ -1308,7 +1327,16 @@ class ProjectController extends Controller
             'postalCode'=>'required|max:50',
             'countryName'=>'required|max:50',
             'description'=>'required|max:50',
-            'people'=>'required|max:50'
+            'people'=>'required|max:50',
+
+            'nombreresponsable'=>'required|max:50',
+            'cargoresponsable'=>'required|max:50',
+            'telefonoresponsable'=>'required|max:20',
+            'correoresponsable'=>'required|max:100',
+            'domicilioresponsable'=>'required|max:100',
+            'horarioresponsable'=>'required|max:50',
+            
+
 
         ]);
     
@@ -1336,6 +1364,20 @@ class ProjectController extends Controller
        
 
         $project->save();
+
+        //responsable del proyecto.
+
+        DB::table('responsableproyecto')->insert([
+
+
+            'nombreresponsable'=>$request->nombreresponsable,
+            'cargoresponsable'=>$request->cargoresponsable,
+            'telefonoresponsable'=>$request->telefonoresponsable,
+            'correoresponsable'=>$request->correoresponsable,
+            'domicilioresponsable'=>$request->domicilioresponsable,
+            'horarioresponsable'=>$request->horarioresponsable,
+            'id_project'=>$request->id_project,
+        ]);
                
 
         DB::table('project_organizations')->insert([
@@ -1467,6 +1509,7 @@ class ProjectController extends Controller
 
        if($id!=0){
 
+        
       
     
         $project = Project::find($id);
@@ -1496,12 +1539,21 @@ class ProjectController extends Controller
 
          
         //Para eliminar los documentos asociados al proyecto.
-        $project_documents=ProjectDocuments::where('id_project','=',$id)
-        ->get();
-        foreach ($project_documents as $document) {
-           
-            Documents::destroy($document->id);
-        }
+        $project_documents=DB::table('project_documents')
+        ->join('documents','project_documents.id_document','=','documents.id')
+        ->where('project_documents.id_project','=',$id)
+       ->get();
+
+    
+       foreach ($project_documents as $document) {
+          
+           Documents::destroy($document->id);
+           $ruta=public_path().'/documents'.'/'.$document->url;
+           if(file_exists(($ruta))){
+              unlink($ruta);
+           }
+       }
+       
 
        
     
@@ -1594,11 +1646,31 @@ class ProjectController extends Controller
     public function testmap(){
                 return view('admin.testmap');
     }
+    public function testmap2(){
+        return view('admin.testmap2');
+    }
     public function tm(){
       
 
         return view('admin.testmap',[
             'datos'=>$_POST,
         ]);
+    }
+    public function uploadExcel(){
+       // print_r($_FILES);
+
+       // $file=$_FILES['excel']['name'];
+
+        $file=asset('documents/'.$_POST["excel"]);
+      
+        
+        $csv= file_get_contents($file);
+$array = array_map("str_getcsv", explode("\n", $csv));
+$json = json_encode($array);
+
+echo  $json;
+
+
+
     }
 }

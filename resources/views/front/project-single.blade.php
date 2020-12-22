@@ -26,22 +26,34 @@ Datos del proyecto
 <div class="row mb-5" style="background-color: #d8d8cd;">
     
     <div class="col-md-3 px-0">
-
+    
   <ol class="carousel-indicators">
+
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    @for ($i = 1; $i < sizeof($project_imgs); $i++)
+    <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}"></li>
+   
+    @endfor
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    <?php 
+    $ruta=asset('projects_imgs/'.$project_imgs[0]->imgroute);
+   
+    ?>
+
+    <img src="{{$ruta}}" class="d-block w-100" height="300" alt="">
     </div>
+    @for ($i = 1; $i < sizeof($project_imgs); $i++)
     <div class="carousel-item">
-    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    <?php 
+    $ruta=asset('projects_imgs/'.$project_imgs[$i]->imgroute);
+    
+    ?> 
+    <img src="{{$ruta}}" height="300"  class="d-block w-100" alt="">
     </div>
-    <div class="carousel-item">
-    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
-    </div>
+    @endfor
+    
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="" aria-hidden="true"></span>
@@ -98,7 +110,7 @@ Datos del proyecto
                         </div>
                         <div class="col-md-8 d-flex justify-content-end align-items-baseline">
                             <span
-                                style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
+                                style="font-size: 26px; font-weight: 700;">{{$avance}}%</span>&nbsp;&nbsp;<span>completado</span>
                         </div>
                     </div>
                 </div>
@@ -171,22 +183,19 @@ Datos del proyecto
             </div>
             <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
                 <?php
-                $responsables = [];
-                $responsables[] = ['name' => 'Lic. José Rodolfo Hernández', 'cargo' => 'Dirección de obras Públicas e Infraestructura de Zapopan, Jalisco.', 'email' => 'rodolfo.berrecil@zapopan.gob.mx'];
-                $responsables[] = ['name' => 'Lic. Grabriel Marín Acevedo', 'cargo' => 'Jefe de Departamento B', 'email' => ''];
-                $responsables[] = ['name' => 'Arq. José Luis Vázquez Morán', 'cargo' => '', 'email' => 'joseluis.vazquez@zapopan.gob.mx'];
+               
                 ?>
-                @foreach($responsables as $responsable)
+                @foreach($responsableproyecto as $responsable)
                 <br>
-                @if($responsable['name']!='')
+                @if($responsable->nombreresponsable!='')
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: bold;">{{$responsable['name']}}</span></br>
+                <span style="font-weight: bold;">{{$responsable->nombreresponsable}}</span></br>
                 @endif
-                @if($responsable['cargo']!='')
-                <span style="padding-left:34px;">{{$responsable['cargo']}}</span></br>
+                @if($responsable->cargoresponsable!='')
+                <span style="padding-left:34px;">{{$responsable->cargoresponsable}}</span></br>
                 @endif
-                @if($responsable['email']!='')
-                <span style="padding-left:34px;">{{$responsable['email']}}</span><br>
+                @if($responsable->correoresponsable!='')
+                <span style="padding-left:34px;">{{$responsable->correoresponsable}}</span><br>
                 @endif
                 @endforeach
   

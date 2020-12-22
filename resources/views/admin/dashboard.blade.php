@@ -5,8 +5,10 @@ Dashboard
 
 @section('content')
 
-<div>
-  
+<div id="img">
+
+<center><img height="500" src="{{asset('assets/img/GDL.jpg')}}" style="padding-right:100px; margin-left:20px;" alt=""></center>
+
 </div>
 
 <!-- Page Heading -->
