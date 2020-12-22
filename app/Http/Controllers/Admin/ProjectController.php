@@ -810,17 +810,7 @@ class ProjectController extends Controller
      
         }
 
-        $r=DB::table('generaldata')
-        ->where('id_project','=',$project->id)
-        ->update([
-            'descripcion'=>$request->descripcion,
-            'responsable'=>$request->nombreresponsable,
-            'email'=>$request->email,
-            'organismo'=>$request->organismo,
-            'puesto'=>$request->puesto,
-            'involucrado'=>$request->involucrado,
-            
-        ]);
+      
 
         return back()->with('status', '¡La fase de identificación ha sido actualizada correctamente!');
 
@@ -851,7 +841,7 @@ class ProjectController extends Controller
         
         ]);
         
-      
+            
 
         DB::table('estudiosambiental')
             ->where('id_project','=',$request->id_project)
@@ -907,29 +897,7 @@ class ProjectController extends Controller
         $presupuesto->save();
 
            //Guardar el documento y la relación con su proyecto.
-           if(!empty($request->documentospreparacion)){
-            
-            for ($i=0; $i <sizeof($request->documentospreparacion) ; $i++) { 
-                $nombre_img = $_FILES['documentospreparacion']['name'][$i];
-    
-                move_uploaded_file($_FILES['documentospreparacion']['tmp_name'][$i],'documents/'.$nombre_img);
-                $url=$nombre_img;
-        
-               
-                
-        
-                $documents=new Documents();
-                $documents->documentType=1;
-                $documents->description="preparacion";
-                $documents->url=$url;
-                $documents->save();
-        
-                $projectdocuments=new ProjectDocuments();
-                $projectdocuments->id_project=$request->id_project;
-                $projectdocuments->id_document=$documents->id;
-                $projectdocuments->save();
-                }
-            }
+           ProjectController::havedocuments($request,'preparacion');
 
         
 
@@ -1305,31 +1273,7 @@ class ProjectController extends Controller
         //Guardar el documento y la relación con su proyecto.
  
 
-        if(!empty($request->documents)){
-            
-            for ($i=0; $i <sizeof($request->documents) ; $i++) { 
-                $nombre_img = $_FILES['documents']['name'][$i];
-    
-                move_uploaded_file($_FILES['documents']['tmp_name'][$i],'documents/'.$nombre_img);
-                $url=$nombre_img;
-        
-               
-                
-        
-                $documents=new Documents();
-                $documents->documentType=1;
-                $documents->description="preparacion";
-                $documents->url=$url;
-                $documents->save();
-        
-                $projectdocuments=new ProjectDocuments();
-                $projectdocuments->id_project=$request->id_project;
-                $projectdocuments->id_document=$documents->id;
-                $projectdocuments->save();
-                }
-
-
-            }
+        ProjectController::havedocuments($request,'preparacion');
 
            
 
