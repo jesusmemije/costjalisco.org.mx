@@ -180,6 +180,7 @@
           <h6 class="m-0 font-weight-bold text-primary">Imagénes de la obra</h6>
         </a>
         <!-- Card Content - Collapse -->
+      
 
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
@@ -197,7 +198,7 @@
 
           @if (count($imagen_obra)==0)
         
-          <div class="input-images"></div>  
+          <div id="imagesdiv" class="input-images"></div>  
           @else
               <script>
                 var images=new Array();
@@ -219,7 +220,7 @@ function rellenar(img){
 
               <label for="">Agregar nueva imágen</label>
               <br>
-              <div class="input-images"></div>  
+              <div id="imagesdiv"  class="input-images"></div>  
           @endif
 
          
@@ -236,15 +237,17 @@ function rellenar(img){
           </div>
 
         </div>
+ 
 
       </div> <!-- end of card -->
       <div class="d-flex justify-content-end">
-              <button type="submit" class="btn btn-sm btn-primary shadow-sm">
+              <button id="send" type="submit"  class="btn btn-sm btn-primary shadow-sm">
                 <i class="fas {{ $edit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
                 {{ $edit ? 'Actualizar' : 'Siguiente' }}
               </button>
 
             </div>
+            
     </form>
 
 </div>
@@ -255,6 +258,33 @@ function rellenar(img){
 @include('admin.projects.modaldeletedocument')
 
 @section('scripts')
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+<script>
+
+$('#phase1').on('submit', function(event) {
+
+
+  event.preventDefault();
+
+  var numItems = $('.uploaded-image').length;
+
+  if(numItems==0){
+    alert("Debes seleccionar al menos 1 imágen.");
+  }else{
+    event.currentTarget.submit();
+  }
+
+
+
+
+
+})
+
+
+
+</script>
+
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('plugins/imageuploader/dist/image-uploader.min.js')}}"></script>
@@ -270,6 +300,7 @@ if(typeof images!='undefined'){
   preloaded.push({id: i, src:images[i]});
 
 }
+
 
 
 

@@ -31,6 +31,33 @@ Listado de obras
 
         @foreach ($projects as $project)
 
+
+        <?php
+$avance = 0;
+
+        
+switch ($project->status) {
+    case 1:
+        $avance = 20;
+        break;
+    case 2:
+        $avance = 40;
+        break;
+    case 3:
+        $avance = 60;
+        break;
+    case 4:
+        $avance = 80;
+        break;
+    case 5:
+        $avance = 100;
+        break;
+    default:
+        $avance = 100;
+}
+        
+        ?>
+
         <div class="media" style="background-color: #d8d8cd;  margin-top:2%;">
             @php
                 $imagen=DB::table('projects_imgs')
@@ -62,7 +89,7 @@ Listado de obras
                 </div>
                 <div class="col-md-11 d-flex justify-content-end align-items-baseline"
                     style="background-color: #d60000;">
-                    <span style="font-size: 26px; font-weight: 700; color:white">100%</span>&nbsp;&nbsp;<span
+                    <span style="font-size: 26px; font-weight: 700; color:white">{{$avance}}%</span>&nbsp;&nbsp;<span
                         style="color:white">completado</span>
                 </div>
             </div>

@@ -37,6 +37,7 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 Route::namespace('Front')->group(function () {
 
     //Home
+
    
 
     Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -82,6 +83,11 @@ Route::namespace('Front')->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/admin/testmap', [AdminProjectController::class, 'testmap'])->name('testmap');
+    Route::get('/admin/testmap2', [AdminProjectController::class, 'testmap2'])->name('testmap2');
+   
+    Route::post('/admin/uploadExcel', [AdminProjectController::class, 'uploadExcel'])->name('uploadExcel');
+   
+
     Route::post('/admin/tm', [AdminProjectController::class, 'tm'])->name('tm');
 
     //Dashboard
