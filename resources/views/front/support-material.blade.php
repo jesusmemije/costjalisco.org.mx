@@ -101,17 +101,35 @@ Material de Apoyo
 
   
     <div class="row my2" style="margin-bottom: 5%;">
+
         <div class="color2"></div>
         <div class="tlt">
-            <h2 class="c2">Material de Apoyo<h2>
+        
+            <div style="margin-left:-3%">
+                
+                <h2 class="c2">Material de Apoyo 
+                
+                <img src="{{ asset('assets/img/logotipo.png') }}" class="img-fluid" width="790"></h2>
+    
+           
+            </div>
+        
         </div>
-    </div>
-   
 
+    </div>
+
+    
+        
 
 </div>
-
-
+<!---->
+<!--<div class="row mb-12 align-items-center">
+        <div class="col-md-6">
+            <a>
+                <img src="{{ asset('assets/img/logotipo.png') }}" class="img-fluid" width="1000" alt="">
+            </a>
+        </div>
+    </div>-->
 <div class="container" >
     <div class="row material" style="margin-bottom: 5%;">
     
