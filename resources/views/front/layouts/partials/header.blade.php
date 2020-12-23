@@ -77,7 +77,7 @@
                             <a class="dropdown-item" href="{{ route('about-us') }}#objetivo-general">Objetivo de CoST Jalisco</a>
                           
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('about-us') }}">Grupo Multisectorial</a>
+                            <a class="dropdown-item" href="{{ route('multisectorial') }}">Grupo Multisectorial</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
