@@ -41,7 +41,71 @@ class HomeController extends Controller
 
     public function statistics()
     {
-        return view('front.statistics');
+        $sectores = DB::table('project')
+        ->join('projectsector','project.sector','=','projectsector.id')
+        ->select('projectsector.*')
+        ->distinct()
+        ->get();
+
+        $sector1 = DB::table('project')
+        ->join('projectsector','project.sector','=','projectsector.id')
+        ->select('projectsector.*')
+        ->where('project.sector','=',1)
+        ->get();
+        $sector2 = DB::table('project')
+        ->join('projectsector','project.sector','=','projectsector.id')
+        ->select('projectsector.*')
+        ->where('project.sector','=',2)
+        ->get();
+        $sector3 = DB::table('project')
+        ->join('projectsector','project.sector','=','projectsector.id')
+        ->select('projectsector.*')
+        ->where('project.sector','=',3)
+        ->get();
+        $sector4 = DB::table('project')
+        ->join('projectsector','project.sector','=','projectsector.id')
+        ->select('projectsector.*')
+        ->where('project.sector','=',4)
+        ->get();
+
+
+        // if (count($sectores)==0) {
+        //     $sectorarray=0;
+        // } else {
+        //     foreach ($sectores as $sector) {
+                
+
+        //         $sectorarray[$sector->titulo] = $proyects[0]->t_proyect;
+        //     }
+        // }
+        // dd($sectorarray);
+
+        
+        
+
+
+        $proyectos = DB::table('project')
+        ->select(DB::raw('count(*) as total_proyectos'))
+        ->get();
+
+        if (empty($proyectos[0]->total_proyectos)) {
+            $total_proyectos=0;
+        } else {
+            $total_proyectos=$proyectos[0]->total_proyectos;
+        }
+             
+        $monto_contrato = DB::table('project')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->select(DB::raw('SUM(montocontrato) as monto_total'))
+            ->get();
+
+        if (empty($monto_contrato[0]->monto_total)) {
+            $total_contrato=0;
+        } else {
+            $total_contrato=$monto_contrato[0]->monto_total;
+        }
+        
+        return view('front.statistics',['total_contrato'=>$total_contrato,'total_proyectos'=>$total_proyectos,'sectores'=>$sectores,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
     }
 
     public function interest_sites()
