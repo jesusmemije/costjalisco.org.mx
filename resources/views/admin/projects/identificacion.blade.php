@@ -91,8 +91,7 @@
   }
 </style>
 @endsection
-@include('admin.layouts.partials.session-flash-status')
-@include('admin.layouts.partials.validation-error')
+
 
 
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -102,7 +101,8 @@
     <form id="phase1" method="POST" action="{{route($ruta)}}" enctype="multipart/form-data">
       @csrf
       
-
+      @include('admin.layouts.partials.session-flash-status')
+@include('admin.layouts.partials.validation-error')
 
       <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
@@ -248,22 +248,30 @@
             @error('lat')
             <div class="invalid-feedback" style="display: block;">Debe seleccionar al menos un lugar en el mapa.</div>
             @enderror
-            <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto</h6><br>
-        
-
-            <!-- buscador 
-            <div class="pac-card col-md-4" id="pac-card">
-              <div>
-                <div id="title">Encuentra el lugar</div>
+            <h6 class="m-0 font-weight-bold text-primary">Ubicación del proyecto <sup data-bs-toggle="tooltip" data-bs-placement="top" title="Puedes seleccionar un archivo csv con el formato (Descargar formato) para colocar múltiples puntos en el mapa."><i class="fa fa-question-circle" aria-hidden="true"></i>
+</sup></h6><br>
+           
+    
+<div id="here" style="border: 1px solid green;" class="row">
 
 
-              </div>
-              <div id="pac-container">
-                <br>
-                <input id="pac-input" type="text" placeholder="Ingresa una ubicación" />
-              </div>
-            </div>
-                -->
+<div class="col-md-9">
+<input class="btn btn-sm btn-outline-primary" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
+  <button class="btn btn-sm btn-outline-info">Descargar formato</button>
+  <input type="hidden" id="ver">
+  
+  <button class="btn btn-outline-success btn-sm" id="subir">Subir</button>
+</div>
+
+  <div class="col-md-3">
+  <button id="del" class="btn btn-outline-danger btn-sm d-flex justify-content-end">Eliminar puntos del mapa</button>
+  
+  </div>
+ 
+</div>
+
+ <hr>
+
             <div id="map"></div>
             
             <div id="infowindow-content">
@@ -321,7 +329,64 @@
              @error('description')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+            <div><br>
+            <h6 class="m-0 font-weight-bold text-primary">Responsable del proyecto</h6>
+            <br>
+            <div class="form-row">
+            <div class="form-group col-md-8">
+            <label for="nombreresponsable">Nombre del responsable del proyecto</label>
+            <input required type="text" class="form-control" name="nombreresponsable" value="{{old('nombreresponsable',$project->nombreresponsable)}}">
+            </div>
+            <div class="form-group col-md-4">
+            <label for="cargoresponsable">Cargo</label>
+            <input required type="text" class="form-control" name="cargoresponsable" value="{{old('cargoresponsable',$project->cargoresponsable)}}">
+            </div>
+
+            </div>
             
+            
+           
+
+
+             </div>
+
+             <div>
+            <h6 class="m-0 font-weight-bold text-primary">Datos de contacto del responsable del proyecto</h6>
+            <br>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+              <label for="telefonoresponsable">Télefono</label>
+            <input required type="number" class="form-control" name="telefonoresponsable" value="{{old('telefonoresponsable',$project->telefonoresponsable)}}">
+              </div>
+              <div class="form-group col-md-8">
+              <label for="correoresponsable">Correo electrónico</label>
+            <input required type="text" class="form-control" name="correoresponsable" value="{{old('correoresponsable',$project->correoresponsable)}}">
+            </div>
+
+            </div>
+           
+           <div class="form-row">
+
+           <div class="form-group col-md-8">
+           <label for="domicilioresponsable">Domicilio</label>
+            <input  required type="text" class="form-control" name="domicilioresponsable" value="{{old('domicilioresponsable',$project->domicilioresponsable)}}">
+           </div>
+
+           <div class="form-group col-md-4">
+           <label for="horarioresponsable">Horario de oficina</label>
+            <input required type="text" class="form-control" name="horarioresponsable" value="{{old('horarioresponsable',$project->horarioresponsable)}}">
+</div>
+
+           </div>
+           
+           
+
+
+
+
+             </div>
+             <hr>
+
             <div class="form-row">
               <div class="form-group col-md-4">
 
@@ -331,7 +396,11 @@
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
+
+            
+            
               <div class="form-group col-md-6">
+                
                 <label for="documenttype">Tipo de documento</label>
                 <select name="documenttype" id="documenttype" class="form-control @error('documenttype') is-invalid @enderror">
                 <option value="">Selecciona un opción</option>
@@ -437,6 +506,122 @@
   
 
 
+ //excel to json map part.
+
+//File Validation
+var fileInput = document.getElementById('excel');
+     var xd;
+    function fileValidation(){
+        xd=  document.getElementById("excel").files[0].name; 
+        $('#ver').val(xd);
+    var filePath = fileInput.value;
+    var allowedExtensions = /(.xlsx|.csv)$/i;
+    if(!allowedExtensions.exec(filePath)){
+        alert('Please upload file having extensions .xlsx or .csv');
+        fileInput.value = '';
+        return false;
+    }
+    }
+
+    
+
+
+    //ajax processing
+    var mydata=[];
+
+    
+   
+
+    $("#subir").on('click', function(evt){
+      evt.preventDefault();  
+      if( $('#ver').val()!=""){
+  
+    $.ajax({
+      data: {
+        "_token": "{{ csrf_token() }}",
+        "excel": xd,
+       
+      }, //datos que se envian a traves de ajax
+      url: "{{ route('uploadExcel') }}", //archivo que recibe la peticion
+      type: 'post', //método de envio
+      dataType: "json",
+      success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+       
+        for (let index = 0; index < resp.length; index++) {
+        
+       
+       if((resp[index][0])=='Latitud' || resp[index][1]=="Longitud" || resp[index][0]==null || resp[index][1]==undefined){
+     
+       }else{
+        mydata.push({latitud:resp[index][0],longitud:resp[index][1]});
+
+        let l = document.getElementById('lat');
+           l.value = resp[index][0] + '|' + l.value;
+
+         let lng = document.getElementById('lng');
+           lng.value = resp[index][1] + '|' + lng.value;
+
+        
+       }
+      
+            
+        }
+                    
+      console.log(mydata);
+
+      pintarPuntos(mydata);
+
+      },
+      error: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+
+       // alert("Ha ocurrido un error, intente de nuevo.");
+        //console.log(response);
+      }
+    });
+      }else{
+        alert("Debe seleccionar un archivo .csv para colocar los puntos en el mapa");
+      }
+ });
+
+
+function pintarPuntos(data){
+    var jsonFeatures = [];
+
+data.forEach(function(point){
+    var lat = point.latitud;
+    var lon = point.longitud;
+
+    var feature = {type: 'Feature',
+        properties: point,
+        geometry: {
+            type: 'Point',
+           
+            coordinates: [lon,lat]
+        }
+    };
+
+    jsonFeatures.push(feature);
+});
+
+var geoJson = { type: 'FeatureCollection', features: jsonFeatures };
+
+L.geoJson(geoJson).addTo(map);
+}
+
+
+$("#del").on('click', function(evt){
+      evt.preventDefault(); 
+      $(".leaflet-marker-icon").remove();
+      $(".leaflet-marker-shadow").remove();
+
+      $("#lat").val("");
+      $("#lng").val("");
+});
+
+
+
+
+
 
   var subedit = $('#subedit').val();
   var secedit = $('#secedit').val();
@@ -515,7 +700,7 @@
     }
   });
 
-  let l = document.getElementById('lat');
+      let l = document.getElementById('lat');
       
       let f= l.value.split('|')
      
@@ -544,12 +729,14 @@
         L.control.scale().addTo(map);
        
        if(f[0]!=""){
+          
          
            for(var i=0;i<=f.length;i++){
-           if(f[i]!=""){
-               var marker = L.marker([f[i],f2[i]]).addTo(map);
+           
+           if(f[i]=="" || f[i]==undefined || f[i]==null){
+            
            }else{
-
+            var marker = L.marker([f[i],f2[i]]).addTo(map);
            }
            
 
@@ -557,15 +744,21 @@
 }
 
        }
+
+       
        
 
 
        function onMapClick(e) {
 
 
-           L.marker(e.latlng, {
-               draggable: true
+           var marker=L.marker(e.latlng, {
+               draggable: false
            }).addTo(map);
+
+           marker.addClass('selectedMarker');
+           
+
 
            let l = document.getElementById('lat');
            l.value = e.latlng.lat + '|' + l.value;
@@ -576,163 +769,18 @@
 
        map.on('click', onMapClick);
 
-/* google maps init
-  let map;
-  function initMap() {
 
-    const myLatlng = {
-      lat: 20.6566500419128,
-      lng: -103.35528485969786
-    };
-    const map = new google.maps.Map(document.getElementById("map"), {
-      center: myLatlng,
-      zoom: 13,
-    });
-    // Create the initial InfoWindow.
-    
-    let infoWindow = new google.maps.InfoWindow({
-      content: "Selecciona una parte del mapa",
-      position: myLatlng,
-    });
-    
-    infoWindow.open(map);
-    
-    // Configure the click listener.
+       var here=document.getElementsByName('selectedMarker');
+       console.log(here);
+       for (const key in here) {
+        key.addEventListener('contextmenu', function(ev) {
+    ev.preventDefault();
+    alert('success!');
+    return false;
+}, false);
+       }
+     
 
-    const savedLatlng = {
-      lat: document.getElementById('lat').value,
-      lng: document.getElementById('lng').value,
-    }
-
-
-    let mymarker = new google.maps.Marker({
-      position: savedLatlng,
-      title: "Hello World!"
-    });
-    mymarker.setMap(mymarker);
-
-    map.addListener("click", (mapsMouseEvent) => {
-      // Close the current InfoWindow.
-
-      lat = mapsMouseEvent.latLng.lat();
-      lng = mapsMouseEvent.latLng.lng();
-
-      document.getElementById('lat').value = lat;
-      document.getElementById('lng').value = lng;
-
-      const themarker = {
-        lat: lat,
-        lng: lng
-      };
-      
-      infoWindow.close();
-      // Create a new InfoWindow.
-      infoWindow = new google.maps.InfoWindow({
-        position: mapsMouseEvent.latLng,
-      });
-      infoWindow.setContent(
-        JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-
-      );
-      infoWindow.open(map);
-      
-
-      mymarker.setMap(null);
-      mymarker = new google.maps.Marker({
-        position: themarker,
-        title: "Hello World!"
-      });
-      mymarker.setMap(map);
-
-    });
-
-
-
-
-
-
-    const card = document.getElementById("pac-card");
-    const input = document.getElementById("pac-input");
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-    const autocomplete = new google.maps.places.Autocomplete(input);
-    // Bind the map's bounds (viewport) property to the autocomplete object,
-    // so that the autocomplete requests use the current map bounds for the
-    // bounds option in the request.
-    autocomplete.bindTo("bounds", map);
-    // Set the data fields to return when the user selects a place.
-    autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
-    const infowindow = new google.maps.InfoWindow();
-    const infowindowContent = document.getElementById("infowindow-content");
-    infowindow.setContent(infowindowContent);
-    const marker = new google.maps.Marker({
-      map,
-      anchorPoint: new google.maps.Point(0, -29),
-    });
-    autocomplete.addListener("place_changed", () => {
-      infowindow.close();
-      marker.setVisible(false);
-      const place = autocomplete.getPlace();
-
-      if (!place.geometry) {
-        // User entered the name of a Place that was not suggested and
-        // pressed the Enter key, or the Place Details request failed.
-        window.alert("No details available for input: '" + place.name + "'");
-        return;
-      }
-
-      // If the place has a geometry, then present it on a map.
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17); // Why 17? Because it looks good.
-      }
-      marker.setPosition(place.geometry.location);
-      marker.setVisible(true);
-      let address = "";
-
-      if (place.address_components) {
-        address = [
-          (place.address_components[0] &&
-            place.address_components[0].short_name) ||
-          "",
-          (place.address_components[1] &&
-            place.address_components[1].short_name) ||
-          "",
-          (place.address_components[2] &&
-            place.address_components[2].short_name) ||
-          "",
-        ].join(" ");
-      }
-      infowindowContent.children["place-icon"].src = place.icon;
-      infowindowContent.children["place-name"].textContent = place.name;
-      infowindowContent.children["place-address"].textContent = address;
-      infowindow.open(map, marker);
-    });
-
-    // Sets a listener on a radio button to change the filter type on Places
-    // Autocomplete.
-    function setupClickListener(id, types) {
-      const radioButton = document.getElementById(id);
-      radioButton.addEventListener("click", () => {
-        autocomplete.setTypes(types);
-      });
-    }
-    setupClickListener("changetype-all", []);
-    setupClickListener("changetype-address", ["address"]);
-    setupClickListener("changetype-establishment", ["establishment"]);
-    setupClickListener("changetype-geocode", ["geocode"]);
-    document
-      .getElementById("use-strict-bounds")
-      .addEventListener("click", function() {
-        console.log("Checkbox clicked! New state=" + this.checked);
-        autocomplete.setOptions({
-          strictBounds: this.checked
-        });
-      });
-      
-  }
-  */
 </script>
 
 @endsection

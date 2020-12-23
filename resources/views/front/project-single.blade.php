@@ -26,22 +26,34 @@ Datos del proyecto
 <div class="row mb-5" style="background-color: #d8d8cd;">
     
     <div class="col-md-3 px-0">
-
+    
   <ol class="carousel-indicators">
+
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    @for ($i = 1; $i < sizeof($project_imgs); $i++)
+    <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}"></li>
+   
+    @endfor
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    <?php 
+    $ruta=asset('projects_imgs/'.$project_imgs[0]->imgroute);
+   
+    ?>
+
+    <img src="{{$ruta}}" class="d-block w-100" height="300" alt="">
     </div>
+    @for ($i = 1; $i < sizeof($project_imgs); $i++)
     <div class="carousel-item">
-    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
+    <?php 
+    $ruta=asset('projects_imgs/'.$project_imgs[$i]->imgroute);
+    
+    ?> 
+    <img src="{{$ruta}}" height="300"  class="d-block w-100" alt="">
     </div>
-    <div class="carousel-item">
-    <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="d-block w-100" alt="">
-    </div>
+    @endfor
+    
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="" aria-hidden="true"></span>
@@ -98,7 +110,7 @@ Datos del proyecto
                         </div>
                         <div class="col-md-8 d-flex justify-content-end align-items-baseline">
                             <span
-                                style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
+                                style="font-size: 26px; font-weight: 700;">{{$avance}}%</span>&nbsp;&nbsp;<span>completado</span>
                         </div>
                     </div>
                 </div>
@@ -136,17 +148,7 @@ Datos del proyecto
         <div class="my-5">
             {{ $project->purpose }}
         </div>
-        <div class="row">
-            <div class="col-md-12 text-right">
-             
-                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-            
-                <a class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</a>
-                
-             
-           
-            </div>
-        </div>
+        
     </div>
 
     <!-- Section - Identificación -->
@@ -171,32 +173,29 @@ Datos del proyecto
                 <span><b>Número del acto público, ID.Entidad:</b></span><br>
                 <span>{{$project->ocid}}</span><br>
                 <span>En el subsector de 
-                    {{-- {{$subsector->titulo}} --}}
+                    {{$subsector->titulo}}
                 </span><br>
                 <span><b>Número o números de identificación del estudio del impacto en el terreno y
                         asentamientos:</b></span><br>
                 <span>
-                    {{-- {{$impacto}} --}}
+                   {{$project->numeros_impacto}}
                 </span><br>
             </div>
             <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
                 <?php
-                $responsables = [];
-                $responsables[] = ['name' => 'Lic. José Rodolfo Hernández', 'cargo' => 'Dirección de obras Públicas e Infraestructura de Zapopan, Jalisco.', 'email' => 'rodolfo.berrecil@zapopan.gob.mx'];
-                $responsables[] = ['name' => 'Lic. Grabriel Marín Acevedo', 'cargo' => 'Jefe de Departamento B', 'email' => ''];
-                $responsables[] = ['name' => 'Arq. José Luis Vázquez Morán', 'cargo' => '', 'email' => 'joseluis.vazquez@zapopan.gob.mx'];
+               
                 ?>
-                @foreach($responsables as $responsable)
+                @foreach($responsableproyecto as $responsable)
                 <br>
-                @if($responsable['name']!='')
+                @if($responsable->nombreresponsable!='')
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: bold;">{{$responsable['name']}}</span></br>
+                <span style="font-weight: bold;">{{$responsable->nombreresponsable}}</span></br>
                 @endif
-                @if($responsable['cargo']!='')
-                <span style="padding-left:34px;">{{$responsable['cargo']}}</span></br>
+                @if($responsable->cargoresponsable!='')
+                <span style="padding-left:34px;">{{$responsable->cargoresponsable}}</span></br>
                 @endif
-                @if($responsable['email']!='')
-                <span style="padding-left:34px;">{{$responsable['email']}}</span><br>
+                @if($responsable->correoresponsable!='')
+                <span style="padding-left:34px;">{{$responsable->correoresponsable}}</span><br>
                 @endif
                 @endforeach
   
@@ -206,7 +205,7 @@ Datos del proyecto
             <div class="col-md-12 text-right">
           
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                <button class="btn btn-sm btn-documents" data-titulo='identificacion' data-idproject="{{$project->id_project}}" data-toggle="modal" data-target="#deleteUserModal" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -242,30 +241,30 @@ Datos del proyecto
                     contacto de
                     la entidad de adjudicación</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$entidadadjudicacion}}</span><br>
+                <span style="font-weight: 700;">{{$project->entidadadjudicacion}}</span><br>
                 
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     impacto ambiental</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$responsable_ambiental}}
+                <span style="font-weight: 700;">{{$project->responsableAmbiental}}
                     </span><br><br>
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     factibilidad</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$responsable_factibilidad}}</span><br><br>
+                <span style="font-weight: 700;">{{$project->responsableFactibilidad}}</span><br><br>
                 <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio
                     de
                     impacto de terreno y asentamientos</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$responsable_impacto}}</span>
+                <span style="font-weight: 700;">{{$project->responsableImpacto}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                <button data-toggle="modal" data-target="#deleteUserModal"  data-titulo='preparacion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -286,12 +285,12 @@ Datos del proyecto
              
                 <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
                 <span><b>Modalidad de contratación:</b>{{$modalidadcontratacion->titulo}}</span><br>
-                <span><b>Entidad administradora del contrato:</b>{{$entidad_admin_contrato}}</span><br>
-                <span><b>Título del contrato:</b> {{$titulocontrato}}</span><br>
-                <span><b>Vía por la que presenta su propuesta:</b>{{$viapropuesta}}</span><br>
-                <span><b>Monto del contrato (cantidad estipulada):</b>${{$montocontrato}}</span><br>
-                <span><b>Alcance del trabajo según el contrato:</b>{{$alcancecontrato}}</span><br>
-                <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b> {{$duracionproyecto_contrato}}</span><br>
+                <span><b>Entidad administradora del contrato:</b>{{$project->entidad_admin_contrato}}</span><br>
+                <span><b>Título del contrato:</b> {{$project->titulocontrato}}</span><br>
+                <span><b>Vía por la que presenta su propuesta:</b>{{$project->viapropuesta}}</span><br>
+                <span><b>Monto del contrato (cantidad estipulada):</b>{{$project->montocontrato}}</span><br>
+                <span><b>Alcance del trabajo según el contrato:</b>{{$project->alcancecontrato}}</span><br>
+                <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b> {{$project->duracionproyecto_contrato}}</span><br>
             </div>
             <div class="col-md-6">
                 <h3 style="color:#628ea0; font-weight: 700; margin-bottom: 0;" class="ml-4">Empresas participantes</h3>
@@ -312,7 +311,7 @@ Datos del proyecto
         <div class="row">
             <div class="col-md-12 text-right">
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                <button data-toggle="modal" data-target="#deleteUserModal" class="btn btn-sm btn-documents" data-titulo='contratacion' data-idproject="{{$project->id_project}}" data-toggle="modal" data-target="#deleteUserModal" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -333,20 +332,20 @@ Datos del proyecto
                
 
 
-                <span><b>Variaciones en el precio del contrato:</b>{{$proyecto_ejecucion->variacionespreciocontrato}}</span><br>
-                <span><b>Razones de cambio en el precio del contrato:</b>{{$proyecto_ejecucion->razonescambiopreciocontrato}}</span><br>
-                <span><b>Variaciones en la duración del contrato:</b>{{$proyecto_ejecucion->variacionesduracioncontrato	}}</span><br>
-                <span><b>Razones de cambio en la duración del contrato:</b>{{$proyecto_ejecucion->razonescambioduracioncontrato}}</span><br>
-                <span><b>Variaciones en el alcance del contrato:</b>{{$proyecto_ejecucion->variacionesalcancecontrato}}</span><br>
-                <span><b>Razones de cambios en el alcance del contrato:</b>{{$proyecto_ejecucion->razonescambiosalcancecontrato}}</span><br>
-                <span><b>Aplicación de escalatoria:</b>{{$proyecto_ejecucion->aplicacionescalatoria}}</span><br>
-                <span><b>Estado actual del proyecto:</b>{{$proyecto_ejecucion->estadoactualproyecto}}</span><br>
+                <span><b>Variaciones en el precio del contrato:</b>{{$project->variacionespreciocontrato}}</span><br>
+                <span><b>Razones de cambio en el precio del contrato:</b>{{$project->razonescambiopreciocontrato}}</span><br>
+                <span><b>Variaciones en la duración del contrato:</b>{{$project->variacionesduracioncontrato	}}</span><br>
+                <span><b>Razones de cambio en la duración del contrato:</b>{{$project->razonescambioduracioncontrato}}</span><br>
+                <span><b>Variaciones en el alcance del contrato:</b>{{$project->variacionesalcancecontrato}}</span><br>
+                <span><b>Razones de cambios en el alcance del contrato:</b>{{$project->razonescambiosalcancecontrato}}</span><br>
+                <span><b>Aplicación de escalatoria:</b>{{$project->aplicacionescalatoria}}</span><br>
+                <span><b>Estado actual del proyecto:</b>{{$project->estadoactualproyecto}}</span><br>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='ejecucion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
     </div>
@@ -366,10 +365,7 @@ Datos del proyecto
             border-bottom: 1px solid #628ea0;">
         </div>  
         
-            <div class="col-md-7 text-right">
-                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
-            </div>
+           
               
     </div>
     </div>
@@ -378,16 +374,16 @@ Datos del proyecto
        
         <div class="row">
             <div class="col-md-6 mt-5">
-                <span><b>Costo de finalización:</b>{{$proyecto_finalizacion->costofinalizacion}}</span><br>
-                <span><b>Fecha de finalización:</b></span><br>
-                <span><b>Alcance de la finalización:</b></span><br>
-                <span><b>Razones de cambio en el proyecto:</b></span><br>
+                <span><b>Costo de finalización:</b>{{$project->costofinalizacion}}</span><br>
+                <span><b>Fecha de finalización:</b>{{$project->fechafinalizacion}}</span><br>
+                <span><b>Alcance de la finalización:</b>{{$project->alcancefinalizacion}}</span><br>
+                <span><b>Razones de cambio en el proyecto:</b>{{$project->razonescambioproyecto}}</span><br>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
                 <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='finalizacion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
             </div>
         </div>
        
@@ -403,7 +399,7 @@ Datos del proyecto
                 </div>
             </div>
             <div class="col-md-3">
-                <span style="font-weight: 700;">Inagurada: 15/Ago/2020</span>
+                <span style="font-weight: 700;">Inagurada: {{$project->fechafinalizacion}}</span>
             </div>
             
         </div>
@@ -414,7 +410,7 @@ Datos del proyecto
         <div class="col-md-12 d-flex justify-content-center" style="height: auto;">
             <div class="col-md-3 text-center text-white py-3">
                 <img src="{{ asset('/assets/img/project/icons/beneficiarios.png') }}" class="img-fluid" width="24" alt="">
-                &nbsp<span>Beneficiarios: 569 950 ciudadanos</span>
+                &nbsp<span>Beneficiarios: {{$project->people}}</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
@@ -426,7 +422,7 @@ Datos del proyecto
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
             <div class="col-md-3 text-center text-white py-3">
                 <img src="{{ asset('/assets/img/project/icons/dinero.png') }}" class="img-fluid" width="24" alt="">
-                &nbsp<span>Inversión: $571857.77</span>
+                &nbsp<span>Inversión: {{$project->costofinalizacion}}</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
@@ -447,6 +443,43 @@ Datos del proyecto
         </div>
     </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modaltitulo"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        <div class="table-responsive">
+        <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Descargar</th>
+            </tr>
+          </thead>
+          <tbody id="tBody">
+           
+          </tbody>
+        </table>
+      </div>
+       
+        </div>
+        <div class="modal-footer">
+        
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
 
@@ -474,5 +507,80 @@ Datos del proyecto
             L.marker(["20.689742","-103.3928097"]).addTo(map);
 
     });
+
+
+    window.onload = function() {
+     
+      
+
+     $('#deleteUserModal').on('show.bs.modal', function (event) {
+       var button = $(event.relatedTarget) // Button that triggered the modal
+       var titulo = button.data('titulo') // Extract info from data-* attributes
+        var idproject=button.data('idproject');
+        console.log(idproject);
+        $('#modaltitulo').html("Documentos de la fase de: " +titulo);
+     
+
+        $.ajax({
+      data: {
+        "_token": "{{ csrf_token() }}",
+        "titulo": titulo,
+        "idproject" : idproject,
+      }, //datos que se envian a traves de ajax
+      url: "{{ route('getdocumentsproject') }}", //archivo que recibe la peticion
+      type: 'post', //método de envio
+      dataType: "json",
+      success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+
+        console.log(resp);
+        $(".display tbody tr").remove();
+        trHTML = '';
+      
+        
+       
+
+       
+                        $.each(resp, function (i, userData) {
+                                
+                               // var datatitle=resp[i].titulo;
+                             
+                                //datatitle=datatitle.replace(/\s/g, ',')
+                                var public_path = "{{asset('documents/') }}";
+                                var f=public_path+"/"+resp[i].url
+                                trHTML +=
+                                    '<tr><td >'
+                                    + '<center>'+resp[i].url+'</center>'
+                                    + '</td>><td>'
+                                    +'<center><a class="btn btn-dark" href='+f+'><i class="fas fa-download  fa-sm text-white-50"></i></a></center>'
+                                    + '</tr>';
+                            
+                        });
+
+
+                     
+                        $('#tBody').append(trHTML);
+
+                        if(resp.length==0){
+            trHTML +='<tr><td>Sin documentos</td><td></td></tr>';               
+            $('#tBody').append(trHTML);
+        }
+
+                    
+
+
+      },
+      error: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+
+       // alert("Ha ocurrido un error, intente de nuevo.");
+        
+      }
+    });
+
+
+
+
+     })
+     
+   }
 </script>
 @endsection
