@@ -118,7 +118,7 @@
                             NOTICIAS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownNoticias">
-                            <a class="dropdown-item" href="#">Eventos</a>
+                            <a class="dropdown-item" href="{{route('eventos')}}">Eventos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('newsletters')}}">Boletines</a>
                             <div class="dropdown-divider"></div>
