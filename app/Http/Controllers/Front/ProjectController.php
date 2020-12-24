@@ -132,7 +132,11 @@ class ProjectController extends Controller
 
     public function card_projects()
     {
-        $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
+        $projects = DB::table('project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->select('project.*','projectsector.titulo as sector','subsector.titulo as subsector')
+        ->orderBy('created_at', 'desc')->get();
 
         return view('front.card-projects', [
             'projects' => $projects
