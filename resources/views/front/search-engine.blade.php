@@ -260,7 +260,6 @@ Motor de búsqueda
                             $('#sector').append("<option value='"+index+"'>"+value+"</option>")
                         })
                     });
-                    return false;
                 }
             })
             $('#sector').on('change',function(){

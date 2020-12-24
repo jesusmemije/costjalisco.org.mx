@@ -41,14 +41,29 @@ class ProjectController extends Controller
 
         } else {
             if (empty($request->id_sector)) {
-                $projects = DB::table('project')
-                    ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-                    ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
-                    ->join('locations', 'project_locations.id_location', '=', 'locations.id')
-                    ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*')
-                    ->where('address.locality', '=', $request->municipio)
-                    ->get();
+                
+                    if (empty($request->presupuesto)) {
+                        $projects = DB::table('project')
+                        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+                        ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+                        ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+                        ->join('address', 'locations.id_address', '=', 'address.id')
+                        ->select('project.*')
+                        ->where('address.locality', '=', $request->municipio)
+                        ->get();
+
+                    } else {
+                        $projects = DB::table('project')
+                        ->join('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+                        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+                        ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+                        ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+                        ->join('address', 'locations.id_address', '=', 'address.id')
+                        ->select('project.*')
+                        ->where('address.locality', '=', $request->municipio)
+                        ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
+                        ->get();
+                    }
             } else {
                 if (empty($request->id_subsector)) {
                     $projects = DB::table('project')
