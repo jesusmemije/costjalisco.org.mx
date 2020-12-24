@@ -44,6 +44,7 @@ Proyectos
                 border-radius: 0px 30px 0px 0px;
             }
             .encabezado-project{
+                height: 75px;
                 padding: 20px 20px 8px 20px;
             }
             .pie-project{
@@ -70,8 +71,9 @@ Proyectos
                 color: rgb(199, 0, 0);
             }
             .projets-pro-buscar{
-                margin: 0px 0px 0px 25px;
-                padding: 30px;
+                width: 95%;
+                margin: 0px 0px 0px 45px;
+                padding: 30px 30px 30px 30px;
                 background: #628ea0;
                 border-radius: 30px 0px 0px 30px;
 
@@ -105,19 +107,38 @@ Proyectos
             <div class="row">
 
                 @foreach ($projects as $project)
-                <div class="col-md-3 mb-4">
+                <div class="col-md-3 mb-5">
                     <div class="projets-pro">
                         <div class="encabezado-project">
                             <h5>
                                 <b>
-                                    {{ $project->title }}
+                                    @php
+                                        $titulo=substr($project->title,0,35).'...';
+                                    @endphp
+                                    {{ $titulo }}
                                 </b>
                             </h5>
                         </div>
-                        <img src="http://pice-software.com/costjalisco/public/assets/img/project/proyecto1.jpg" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" style="background: #647d80">
+                        @php
+                            $imagen=DB::table('projects_imgs')
+                            ->select('projects_imgs.imgroute')
+                            ->where('projects_imgs.id_project','=',$project->id)
+                            ->get();
+                        @endphp
+                        @if (count($imagen)==0)
+                            <img src="{{ asset('projects_imgs/sinimagen.png') }}" width="255" height="280" style="border: 2px solid rgb(180, 180, 180)"  alt="">
+                        @else
+                            <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="255" height="280"  alt="">
+                            
+                        @endif
+                        {{-- <img src="http://pice-software.com/costjalisco/public/assets/img/project/proyecto1.jpg" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" style="background: #647d80"> --}}
                         <div class="pie-project">
-                            <p style="font-size: 20px"><b style="margin: 0; padding: 0;">Sector Público</b></p>
-                            <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">Gobierno de Jalisco</i></p>
+                            @php
+                                $sector_rec=substr($project->sector,0,12).'..';
+                                $subsector_rec=substr($project->subsector,0,35).'...';
+                            @endphp
+                            <p style="font-size: 20px"><b style="margin: 0; padding: 0;">Sector {{$sector_rec}}</b></p>
+                            <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">{{$subsector_rec}}</i></p>
                         </div>
                         <div class="detalle-project">
                            <a href="{{ route('project-single', $project->id) }}"><i>Ver más >></i></a>
@@ -128,10 +149,11 @@ Proyectos
 
                 <div class="col-md-3 my-4">
                     <div class="projets-pro-buscar">
-                        <br>
+                        <br><br>
                         <center>
                             <img src="http://pice-software.com/costjalisco/public/assets/img/home/chatbot.png" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" >
                         </center>
+                        <br>
                         <ul>
                             <li><a href="{{ route('list-projects') }}">Conoce más proyectos</a></li>
                             <li><a href="{{ route('newsletters') }}">Boletines</a></li>
@@ -140,6 +162,7 @@ Proyectos
                         <center>
                             <button><a href="{{ route('search-engine') }}">Buscar</a></button>
                         </center>
+                        <br>
                     </div>
                 </div>
             </div>
