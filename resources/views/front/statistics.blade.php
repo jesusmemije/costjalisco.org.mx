@@ -124,7 +124,7 @@ Estadísticas
 <div class="container-fluid pt-4">
     <!-- Section - Estadisticas -->
     <div class="row mt-5">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
         background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Estadísticas</span>
         </div>
