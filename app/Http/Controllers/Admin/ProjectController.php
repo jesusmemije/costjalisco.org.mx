@@ -319,7 +319,7 @@ class ProjectController extends Controller
                 ->join('project_locations','project.id','=','project_locations.id_project')
                 ->join('locations','project_locations.id_location','=','locations.id')
                 ->join('address','locations.id_address','=','address.id')
-                ->join('responsableproyecto','project.id','=','responsableproyecto.id_project')
+                ->leftJoin('responsableproyecto','project.id','=','responsableproyecto.id_project')
                 ->select('project.*','project.description as descripcionProyecto','locations.lat','locations.lng','locations.description as description','address.streetAddress',
                 'address.locality','address.region','address.postalCode','address.countryName','responsableproyecto.nombreresponsable','responsableproyecto.cargoresponsable','responsableproyecto.telefonoresponsable','responsableproyecto.correoresponsable','responsableproyecto.domicilioresponsable','responsableproyecto.horarioresponsable')
                 ->where('project.id','=',$id)
