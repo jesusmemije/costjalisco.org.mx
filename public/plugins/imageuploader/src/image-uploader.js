@@ -1,15 +1,16 @@
 /*! Image Uploader - v1.0.0 - 15/07/2019
  * Copyright (c) 2019 Christian Bayer; Licensed MIT */
 
-(function ($) {
+(function($) {
 
-    $.fn.imageUploader = function (options) {
+    $.fn.imageUploader = function(options) {
 
         // Default settings
         let defaults = {
             preloaded: [],
             imagesInputName: 'images',
             preloadedInputName: 'preloaded',
+            extensions: ['.jpg', '.jpeg', '.png', '.gif', '.svg'],
             label: 'Drag & Drop files here or click to browse'
         };
 
@@ -20,13 +21,13 @@
         plugin.settings = {};
 
         // Plugin constructor
-        plugin.init = function () {
+        plugin.init = function() {
 
             // Define settings
             plugin.settings = $.extend(plugin.settings, defaults, options);
 
             // Run through the elements
-            plugin.each(function (i, wrapper) {
+            plugin.each(function(i, wrapper) {
 
                 // Create the container
                 let $container = createContainer();
@@ -62,10 +63,10 @@
 
         let dataTransfer = new DataTransfer();
 
-        let createContainer = function () {
+        let createContainer = function() {
 
             // Create the image uploader container
-            let $container = $('<div>', {class: 'image-uploader'}),
+            let $container = $('<div>', { class: 'image-uploader' }),
 
                 // Create the input type file and append it to the container
                 $input = $('<input>', {
@@ -76,7 +77,7 @@
                 }).appendTo($container),
 
                 // Create the uploaded images container and append it to the container
-                $uploadedContainer = $('<div>', {class: 'uploaded'}).appendTo($container),
+                $uploadedContainer = $('<div>', { class: 'uploaded' }).appendTo($container),
 
                 // Create the text container and append it to the container
                 $textContainer = $('<div>', {
@@ -84,14 +85,14 @@
                 }).appendTo($container),
 
                 // Create the icon and append it to the text container
-                $i = $('<i>', {class: 'material-icons', text: 'cloud_upload'}).appendTo($textContainer),
+                $i = $('<i>', { class: 'material-icons', text: 'cloud_upload' }).appendTo($textContainer),
 
                 // Create the text and append it to the text container
-                $span = $('<span>', {text: plugin.settings.label}).appendTo($textContainer);
+                $span = $('<span>', { text: plugin.settings.label }).appendTo($textContainer);
 
 
             // Listen to container click and trigger input file click
-            $container.on('click', function (e) {
+            $container.on('click', function(e) {
                 // Prevent browser default event and stop propagation
                 prevent(e);
 
@@ -100,7 +101,7 @@
             });
 
             // Stop propagation on input click
-            $input.on("click", function (e) {
+            $input.on("click", function(e) {
                 e.stopPropagation();
             });
 
@@ -111,25 +112,25 @@
         };
 
 
-        let prevent = function (e) {
+        let prevent = function(e) {
             // Prevent browser default event and stop propagation
             e.preventDefault();
             e.stopPropagation();
         };
 
-        let createImg = function (src, id) {
+        let createImg = function(src, id) {
 
             // Create the upladed image container
-            let $container = $('<div>', {class: 'uploaded-image'}),
+            let $container = $('<div>', { class: 'uploaded-image' }),
 
                 // Create the img tag
-                $img = $('<img>', {src: src}).appendTo($container),
+                $img = $('<img>', { src: src }).appendTo($container),
 
                 // Create the delete button
-                $button = $('<button>', {class: 'delete-image'}).appendTo($container),
+                $button = $('<button>', { class: 'delete-image' }).appendTo($container),
 
                 // Create the delete icon
-                $i = $('<i>', {class: 'material-icons', text: 'clear'}).appendTo($button);
+                $i = $('<i>', { class: 'material-icons', text: 'clear' }).appendTo($button);
 
             // If the images are preloaded
             if (plugin.settings.preloaded.length) {
@@ -152,13 +153,13 @@
             }
 
             // Stop propagation on click
-            $container.on("click", function (e) {
+            $container.on("click", function(e) {
                 // Prevent browser default event and stop propagation
                 prevent(e);
             });
 
             // Set delete action
-            $button.on("click", function (e) {
+            $button.on("click", function(e) {
                 // Prevent browser default event and stop propagation
                 prevent(e);
 
@@ -169,7 +170,7 @@
                     let index = parseInt($container.data('index'));
 
                     // Update other indexes
-                    $container.find('.uploaded-image[data-index]').each(function (i, cont) {
+                    $container.find('.uploaded-image[data-index]').each(function(i, cont) {
                         if (i > index) {
                             $(cont).attr('data-index', i - 1);
                         }
@@ -195,7 +196,7 @@
             return $container;
         };
 
-        let fileDragHover = function (e) {
+        let fileDragHover = function(e) {
 
             // Prevent browser default event and stop propagation
             prevent(e);
@@ -208,7 +209,7 @@
             }
         };
 
-        let fileSelectHandler = function (e) {
+        let fileSelectHandler = function(e) {
 
             // Prevent browser default event and stop propagation
             prevent(e);
@@ -226,7 +227,7 @@
             setPreview($container, files);
         };
 
-        let setPreview = function ($container, files) {
+        let setPreview = function($container, files) {
 
             // Add the 'has-files' class
             $container.addClass('has-files');
@@ -238,7 +239,7 @@
                 $input = $container.find('input[type="file"]');
 
             // Run through the files
-            $(files).each(function (i, file) {
+            $(files).each(function(i, file) {
 
                 // Add it to data transfer
                 dataTransfer.items.add(file);
@@ -254,7 +255,7 @@
         };
 
         // Generate a random id
-        let random = function () {
+        let random = function() {
             return Date.now() + Math.floor((Math.random() * 100) + 1);
         };
 
