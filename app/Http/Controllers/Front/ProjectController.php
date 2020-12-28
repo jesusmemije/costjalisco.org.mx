@@ -16,33 +16,57 @@ class ProjectController extends Controller
 
 
         if (empty($request->municipio)) {
-            $projects = DB::table('project')
-                // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
+
+            if (empty($request->presupuesto)) {
+                $projects = DB::table('project')
                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                 ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                 ->join('address', 'locations.id_address', '=', 'address.id')
                 ->select('project.*')
-                // ->where('address.locality','=',$request->municipio)
                 ->get();
-            // $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
+            } else {
+                $projects = DB::table('project')
+                ->join('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+                ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+                ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+                ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+                ->join('address', 'locations.id_address', '=', 'address.id')
+                ->select('project.*')
+                ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
+                ->get();
+            }
+            
+            
+
         } else {
             if (empty($request->id_sector)) {
-                $projects = DB::table('project')
-                    // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                    // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
-                    ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-                    ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
-                    ->join('locations', 'project_locations.id_location', '=', 'locations.id')
-                    ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*')
-                    ->where('address.locality', '=', $request->municipio)
-                    ->get();
+                
+                    if (empty($request->presupuesto)) {
+                        $projects = DB::table('project')
+                        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+                        ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+                        ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+                        ->join('address', 'locations.id_address', '=', 'address.id')
+                        ->select('project.*')
+                        ->where('address.locality', '=', $request->municipio)
+                        ->get();
+
+                    } else {
+                        $projects = DB::table('project')
+                        ->join('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+                        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+                        ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+                        ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+                        ->join('address', 'locations.id_address', '=', 'address.id')
+                        ->select('project.*')
+                        ->where('address.locality', '=', $request->municipio)
+                        ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
+                        ->get();
+                    }
             } else {
                 if (empty($request->id_subsector)) {
                     $projects = DB::table('project')
-                        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                        // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
                         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                         ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                         ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -54,8 +78,6 @@ class ProjectController extends Controller
                 } else {
                     if (empty($request->codigo_postal)) {
                         $projects = DB::table('project')
-                            // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                            // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
                             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                             ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -66,9 +88,9 @@ class ProjectController extends Controller
                             ->where('project.subsector', '=', $request->id_subsector)
                             ->get();
                     } else {
-                        $projects = DB::table('project')
-                            // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                            // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
+
+                        if (empty($request->presupuesto)) {
+                            $projects = DB::table('project')
                             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                             ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -79,6 +101,22 @@ class ProjectController extends Controller
                             ->where('project.subsector', '=', $request->id_subsector)
                             ->where('address.postalCode', '=', $request->codigo_postal)
                             ->get();
+                        } else {
+                            $projects = DB::table('project')
+                            ->join('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+                            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+                            ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+                            ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+                            ->join('address', 'locations.id_address', '=', 'address.id')
+                            ->select('project.*')
+                            ->where('address.locality', '=', $request->municipio)
+                            ->where('project.sector', '=', $request->id_sector)
+                            ->where('project.subsector', '=', $request->id_subsector)
+                            ->where('address.postalCode', '=', $request->codigo_postal)
+                            ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
+                            ->get();
+                        }
+                        
                     }
                 }
             }
@@ -94,7 +132,11 @@ class ProjectController extends Controller
 
     public function card_projects()
     {
-        $projects = DB::table('project')->orderBy('created_at', 'desc')->get();
+        $projects = DB::table('project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->select('project.*','projectsector.titulo as sector','subsector.titulo as subsector')
+        ->orderBy('created_at', 'desc')->get();
 
         return view('front.card-projects', [
             'projects' => $projects

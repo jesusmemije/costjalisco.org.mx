@@ -43,6 +43,9 @@ Route::namespace('Front')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/know-more', [HomeController::class, 'know_more'])->name('know-more');
     Route::get('/about-us', [HomeController::class, 'about_us'])->name('about-us');
+
+    Route::get('/multisectorial', [HomeController::class, 'multisectorial'])->name('multisectorial');
+
     Route::get('/resources', [HomeController::class, 'resources'])->name('resources');
     Route::get('/interest-sites', [HomeController::class, 'interest_sites'])->name('interest-sites');
     Route::get('/journal', [HomeController::class, 'journal'])->name('journal');
@@ -56,7 +59,9 @@ Route::namespace('Front')->group(function () {
 
     Route::get('/sitemap', [HomeController::class, 'sitemap'])->name('sitemap');
 
+   
     //Newsletter
+    Route::get('/eventos', [NewsletterController::class, 'eventos'])->name('eventos');
     Route::get('/newsletters', [NewsletterController::class, 'newsletters'])->name('newsletters');
     Route::get('/newsletter-single', [NewsletterController::class, 'newsletter_single'])->name('newsletter-single');
     Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');

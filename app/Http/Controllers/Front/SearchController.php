@@ -23,12 +23,10 @@ class SearchController extends Controller
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                     ->join('address', 'locations.id_address', '=', 'address.id')
                     ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
-                    // ->where('address.locality','=',$request->municipio)
                     ->get();
             } else {
                 if (empty($request->id_sector)) {
                     $projects = DB::table('project')
-                        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                         ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                         ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -39,7 +37,6 @@ class SearchController extends Controller
                 } else {
                     if (empty($request->id_subsector)) {
                         $projects = DB::table('project')
-                            // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                             ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -51,7 +48,6 @@ class SearchController extends Controller
                     } else {
                         if (empty($request->codigo_postal)) {
                             $projects = DB::table('project')
-                                // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                                 ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -63,7 +59,6 @@ class SearchController extends Controller
                                 ->get();
                         } else {
                             $projects = DB::table('project')
-                                // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                                 ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -81,19 +76,16 @@ class SearchController extends Controller
         } else {
             if (empty($request->municipio)) {
                 $projects = DB::table('project')
-                    // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                     ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                     ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
-                    // ->where('address.locality','=',$request->municipio)
+                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
                     ->get();
             } else {
 
                 $projects = DB::table('project')
-                    // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                     ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
@@ -102,67 +94,9 @@ class SearchController extends Controller
                     ->where('address.locality', '=', $request->municipio)
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
                     ->get();
-                // if (empty($request->id_sector)) {
-                //     $projects=DB::table('project')
-                //     // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //     ->join('projectsector','project.sector','=','projectsector.id')
-                //     ->join('project_locations','project.id','=','project_locations.id_project')
-                //     ->join('locations','project_locations.id_location','=','locations.id')
-                //     ->join('address','locations.id_address','=','address.id')
-                //     ->select('project.*','locations.*')
-                //     ->where('address.locality','=',$request->municipio)
-                //     ->where('project.title','=',$request->nombre_proyecto)
-                //     ->get();
-                // } else {
-                //     if (empty($request->id_subsector)) {
-                //         $projects=DB::table('project')
-                //         // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //         ->join('projectsector','project.sector','=','projectsector.id')
-                //         ->join('project_locations','project.id','=','project_locations.id_project')
-                //         ->join('locations','project_locations.id_location','=','locations.id')
-                //         ->join('address','locations.id_address','=','address.id')
-                //         ->select('project.*','locations.*')
-                //         ->where('address.locality','=',$request->municipio)
-                //         ->where('project.sector','=',$request->id_sector)
-                //         ->get();
-                //     } else {
-                //         if (empty($request->codigo_postal)) {
-                //             $projects=DB::table('project')
-                //             // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //             ->join('projectsector','project.sector','=','projectsector.id')
-                //             ->join('project_locations','project.id','=','project_locations.id_project')
-                //             ->join('locations','project_locations.id_location','=','locations.id')
-                //             ->join('address','locations.id_address','=','address.id')
-                //             ->select('project.*','locations.*')
-                //             ->where('address.locality','=',$request->municipio)
-                //             ->where('project.sector','=',$request->id_sector)
-                //             ->where('project.subsector','=',$request->id_subsector)
-                //             ->get();
-                //         } else {
-                //             $projects=DB::table('project')
-                //             // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //             ->join('projectsector','project.sector','=','projectsector.id')
-                //             ->join('project_locations','project.id','=','project_locations.id_project')
-                //             ->join('locations','project_locations.id_location','=','locations.id')
-                //             ->join('address','locations.id_address','=','address.id')
-                //             ->select('project.*','locations.*')
-                //             ->where('address.locality','=',$request->municipio)
-                //             ->where('project.sector','=',$request->id_sector)
-                //             ->where('project.subsector','=',$request->id_subsector)
-                //             ->where('address.postalCode','=',$request->codigo_postal)
-                //             ->get();
-                //         }
-
-
-                //     }
-
-
-
-                // }
-
+                
             }
         }
-        // $projects = DB::table('project')->get();
 
         return view('front.georeferencing', [
             'projects' => $projects

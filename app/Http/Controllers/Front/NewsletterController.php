@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class NewsletterController extends Controller
 {
+    public function eventos(){
+        return view('front.eventos');
+    }
+
     public function newsletters()
     {
         return view('front.newsletters');

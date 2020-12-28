@@ -124,7 +124,7 @@ Estadísticas
 <div class="container-fluid pt-4">
     <!-- Section - Estadisticas -->
     <div class="row mt-5">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
         background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Estadísticas</span>
         </div>
@@ -151,7 +151,7 @@ Estadísticas
                             @php
                                 $sec_4=0;
                             @endphp
-                            <span for="" style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span for="" style="border: 1px solid rgb(116, 116, 116); padding: 5px 15px 5px 15px; font-size: 30px; font-weight: bold">
                                 0
                             </span><br><br>
                             <span style="font-weight: bold;">Proyectos de Infraestructura</span>
@@ -159,7 +159,7 @@ Estadísticas
                             @php
                                 $sec_4=count($sector4);
                             @endphp
-                            <span style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span style="border: 1px solid  rgb(116, 116, 116); padding: 5px 15px 5px 15px; font-size: 30px; font-weight: bold">
                                 {{count($sector4)}}
                             </span><br><br>
                             <span style="font-weight: bold;">{{$sector4[0]->titulo}}</span>
@@ -173,7 +173,7 @@ Estadísticas
                             @php
                                 $sec_1=0;
                             @endphp
-                            <span style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span style="border: 1px solid rgb(116, 116, 116); padding: 5px 15px 5px 15px; font-size: 30px; font-weight: bold">
                                 0
                             </span><br><br>
                             <span style="font-weight: bold;" style="font-weight: bold">Proyectos de Edificación</span>
@@ -181,7 +181,7 @@ Estadísticas
                             @php
                                 $sec_1=count($sector1);
                             @endphp
-                            <span style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span style="border: 1px solid  rgb(116, 116, 116); padding: 5px 15px 5px 15px; font-size: 30px; font-weight: bold">
                                 {{count($sector1)}}
                             </span><br><br>
                             <span style="font-weight: bold;">{{$sector1[0]->titulo}}</span>
@@ -196,7 +196,7 @@ Estadísticas
                             @php
                                 $sec_3=0;
                             @endphp
-                            <span for="" style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span for="" style="border: 1px solid rgb(116, 116, 116); padding: 5px 15px 5px 15px; font-size: 30px; font-weight: bold">
                                 0
                             </span><br><br>
                             <span style="font-weight: bold;">Proyectos Urbanos</span>
@@ -204,7 +204,7 @@ Estadísticas
                             @php
                                 $sec_3=count($sector3);
                             @endphp
-                            <span for="" style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span for="" style="border: 1px solid rgb(116, 116, 116); padding: 5px 15px 5px 15px; font-size: 30px; font-weight: bold">
                                 {{count($sector3)}}
                             </span><br><br>
                             <span style="font-weight: bold;">{{$sector3[0]->titulo}}</span>
@@ -218,7 +218,7 @@ Estadísticas
                             @php
                                 $sec_2=0;
                             @endphp
-                            <span style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span style="border: 1px solid  rgb(116, 116, 116); padding: 5px 15px 5px 15px; font-size: 30px; font-weight: bold">
                                 0
                             </span><br><br>
                             <span style="font-weight: bold;" style="font-weight: bold">Proyectos Restauración y Conservación</span>
@@ -226,7 +226,7 @@ Estadísticas
                             @php
                                 $sec_2=count($sector2);
                             @endphp
-                            <span style="border: 3px solid #000; padding: 5px 15px 5px 15px; font-weight: bold">
+                            <span style="border: 1px solid rgb(116, 116, 116); padding: 10px 20px 10px 20px; font-size: 35px; font-weight: bold">
                                 {{count($sector2)}}
                             </span><br><br>
                             <span style="font-weight: bold;">{{$sector2[0]->titulo}}</span>
@@ -261,7 +261,7 @@ Estadísticas
             </div>
         </div>
         <div style="margin-left: 20px; position: relative; bottom: 20px">
-            <div class="col-md-9 background-title px-0 py-1" style="background-image: url('http://localhost/pice_software/costjalisco/public/assets/img/estadisticas/presupuesto-imagen.png'); background-repeat: no-repeat;
+            <div class="col-md-9 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/estadisticas/presupuesto-imagen.png'); background-repeat: no-repeat;
         background-size: cover;">
             <span style="font-weight: 700; margin-left: 55%;">$ {{number_format($total_contrato,2)}}</span>
         </div>

@@ -261,14 +261,15 @@ Georreferenciación
                     <option value="Jilotlán de los Dolores">Jilotlán de los Dolores</option>
                     <option value="Santa María del Oro">Santa María del Oro</option>
                 </select>
+                <div id="loading"></div>
                 <select name="id_sector" id="sector">
                     <option value="">No hay sectores</option>
-    
                 </select>
+                <div id="loading2"></div>
                 <select name="id_subsector" id="sub_sector">
                     <option value="">No hay subsectores</option>
-    
                 </select>
+                <div id="loading3"></div>
                 <select name="codigo_postal" id="codigo_postal">
                     <option value="">No hay C.P.</option>
     
@@ -354,7 +355,9 @@ Georreferenciación
         $('#municipio').on('change',function(){
             var municipio_id = $(this).val();
             if ($.trim(municipio_id) != ''){
+                $('#loading').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="20" style="margin-left: 45%; margin-top:15px;" />');
                 $.get('sectores',{municipio_id:municipio_id}, function (sectores) {
+                    $('#loading').fadeIn(700).html('');
                     $('#sector').empty();
                     $('#sub_sector').empty();
                     $('#sub_sector').append("<option value=''>No se encontraron subsectores</option>");
@@ -369,7 +372,9 @@ Georreferenciación
         $('#sector').on('change',function(){
             var sector_id = $(this).val();
             if ($.trim(sector_id) != ''){
+                $('#loading2').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="20" style="margin-left: 45%; margin-top:15px;" />');
                 $.get('subsectores',{sector_id:sector_id}, function (subsectores) {
+                    $('#loading2').fadeIn(700).html('');
                     $('#sub_sector').empty();
                     $('#sub_sector').append("<option value=''>Seleccione subsector</option>");
                     $.each(subsectores, function (index, value){
@@ -381,7 +386,9 @@ Georreferenciación
         $('#sub_sector').on('change',function(){
             var sub_sector_id = $(this).val();
             if ($.trim(sub_sector_id) != ''){
+                $('#loading3').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="20" style="margin-left: 45%; margin-top:15px;" />');
                 $.get('codigo_postales',{sub_sector_id:sub_sector_id}, function (codigo_postales) {
+                    $('#loading3').fadeIn(700).html('');
                     $('#codigo_postal').empty();
                     $('#codigo_postal').append("<option value=''>Seleccione codigo postal</option>");
                     $.each(codigo_postales, function (index, value){

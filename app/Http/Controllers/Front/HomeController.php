@@ -34,6 +34,12 @@ class HomeController extends Controller
         return view('front.about-us');
     }
 
+    public function multisectorial()
+    {
+        return view('front.multisectorial');
+    }
+
+
     public function resources()
     {
         return view('front.resources');
@@ -483,5 +489,7 @@ class HomeController extends Controller
     public function journal(){
         return view('front.journal');
     }
+
+   
 
 }
