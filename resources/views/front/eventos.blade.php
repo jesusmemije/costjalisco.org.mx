@@ -177,25 +177,27 @@ Eventos
 
     <div class="col-md-4" style="background-color:#58707b;">
         <div class="row" style="margin-top:25%;">
-        <h6>Hora de Inicio: 10:00 am</h6>
+        <p><i class="fas fa-clock mr-3 fa-lg"></i> <a href="#">Hora de Inicio: 10:00 am</a></p>
         </div>
         
     </div>
 
     <div class="col-md-4" style="background-color:#628ea0;">
         <div class="row" style="margin-top:25%;">
-           <h6>Caja Jalisco
+        <p><i class="fas fa-map-marker-alt mr-3 fa-lg"></i> <a href="#">Caja Jalisco Manuel Acuña #2624 Col. Ladrón de
+           Guevara. Guadalajara, Jalisco </a></p>
+          <!-- <h6>Caja Jalisco
            <p>Manuel Acuña #2624 Col. Ladrón de
-           Guevara. Guadalajara, Jalisco</h6> 
+           Guevara. Guadalajara, Jalisco</h6> -->
         </div> 
     </div>
 
     <div class="col-md-4" style="background-color:#58707b;">
         <div class="row" style="margin-top:25%;">
-           <h6>Contacto:
-           <p>Luis Arturo Perez Villegas
+           <p><i class="fas fa-users mr-3 fa-lg"></i> <a href="#">Contacto:
+           Luis Arturo Perez Villegas
            luis.perez@itei.org.mx
-           3630 5745 ext. 1510</h6> 
+           3630 5745 ext. 1510</a></p>
         </div>
         
     </div>
