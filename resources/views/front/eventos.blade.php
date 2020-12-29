@@ -146,13 +146,13 @@ td.first {
                 <h6>Febrero 2020</h6> 
             </div>
         </div>
-        <div class="col-md-1.9">
-            <div class="color2" style="margin-top:60%;">
+        <div class="col-md-1.9" style="margin-top:4%;">
+            <div style="margin-left:20%" class="color2">
                 <h1> 01 </h1>
                 <h5>Noviembre</h5> 
             </div>
         </div>
-        <div class="col-md-7" style="background-color:white">
+        <div style="margin-left:2%" class="col-md-7" style="background-color:white">
             <div class="content1"  style="margin-top: 1%;">
                 <h5> 
                 LANZAMIENTO DE LA INICIATIVA INTERNACIONAL, EN EL TRANSPARENCIA EN INFRAESTRUCTURA, COST Y CONFORMACIÓN DEL GRUPO MULTISECTORIAL
