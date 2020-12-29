@@ -189,23 +189,35 @@ Notas perodísticas
             <h2 class="c2">Notas periodísticas<h2>
         </div>
     </div>
-   
-    <div class="media" style="margin-left: 8%; margin-bottom:4%;">
-        <div id="mural" style="height:112px;"  class="col-md-3">
-         <img style="margin-top:10%; margin-left:10%;" src="assets/img/journal/1-mural-logo.png" height="40" alt="">
-        </div>
- 
-  <div class="media-body">
-      <div id="titulo" style="margin-top:4%;">
-      <h3 style="margin-left:3%;">Aperciben a Morena</h3>
-      </div>
-    
-   <div id="url" class="col-md-8" style="background-color: #d8d8cd; height:40px;">
-   <div style="padding-top: 1%;"><a  style="margin-left:3%; color:black" target="_blank" href="https://www.mural.com.mx/">https://www.mural.com.mx/</a></div>
+   @if (count($journal)==0)
+       <center>No hay noticias</center>
+   @else
+        @foreach ($journal as $jour)
+            <div class="media" style="margin-left: 8%; margin-bottom:4%;">
+                <div id="mural" style="height:112px;"  class="col-md-3">
+                    <img style="margin-top:10%; margin-left:10%;" src="{{asset($jour->rutaimg)}}" height="40"  alt="">
+                </div>
         
-   </div>
-  </div>
-</div>
+                <div class="media-body">
+                    <div id="titulo" style="margin-top:4%;">
+                        @php
+                            $titulo=substr($jour->title,0,35).'...';
+                        @endphp
+                        
+                        <h3 style="margin-left:3%;">{{ $titulo }}</h3>
+                    </div>
+                    
+                    <div id="url" class="col-md-8" style="background-color: #d8d8cd; height:40px;">
+                        <div style="padding-top: 1%;">
+                            <a  style="margin-left:3%; color:black" target="_blank" href="{{$jour->url_periodico}}">{{$jour->url_periodico}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+   @endif
+    
+    
 
 <div class="media" style="margin-left: 8%; margin-bottom:4%;">
         <div id="mural"  style="height:112px;"  class="col-md-3">

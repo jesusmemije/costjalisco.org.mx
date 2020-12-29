@@ -45,19 +45,20 @@ Editar noticia
                                 required>
                         </div>
                         <div class="form-group">
-                            <label for="author">Autor</label>
-                            <input type="text" id="author" name="author" class="form-control" value="{{ old('author', $news->author) }}"
+                            <label for="author">Url periódico</label>
+                            <input type="text" id="author" name="author" class="form-control" value="{{ old('url_periodico', $news->url_periodico) }}"
                                 required>
                         </div>
-                        <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <input type="text" id="description" name="description" class="form-control"
-                                value="{{ old('description', $news->description) }}" required>
-                        </div>
+                        
                         <div class="form-group">
                             <label for="published">Estatus: </label>
                             <input type="checkbox" id="published" data-toggle="toggle" data-on="<i class='fa fa-check'></i> Publicar" data-off="No publicar" data-onstyle="success" data-offstyle="warning">
                             <input type="hidden" id="published_hidden" name="published" value="{{ $news->published }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="published">Fecha publicado: </label>
+                            <input type="text" id="created_at" name="created_at" class="form-control"
+                                value="{{ old('created_at', $news->created_at->format('d-M-Y h:i A') ) }}">
                         </div>
                         <div class="form-group">
                             <label for="created_at">Fecha de creación</label>
@@ -69,6 +70,7 @@ Editar noticia
                             <input type="text" id="updated_at" name="updated_at" class="form-control"
                                 value="{{ old('updated_at', $news->updated_at->format('d-M-Y h:i A') ) }}" disabled>
                         </div>
+                       
                     </div>
                 </div>
             </div>

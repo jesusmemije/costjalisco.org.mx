@@ -22,6 +22,10 @@ Noticias
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Noticias</h1>
+    <a href="#modalPeridico" style="margin-left: 64%" class="btn btn-sm btn-primary shadow-sm" data-toggle="modal">
+        <i class="fas fa-plus fa-sm text-white-50"></i>
+        Nuevo periódico
+    </a>
     <a href="#modalCreate" class="btn btn-sm btn-primary shadow-sm" data-toggle="modal">
         <i class="fas fa-plus fa-sm text-white-50"></i>
         Nueva noticia
@@ -41,10 +45,10 @@ Noticias
                 <thead>
                     <tr>
                         <th>Título</th>
-                        <th>Descripción</th>
-                        <th>Contenido</th>
-                        <th>Autor</th>
-                        <th>Publicado</th>
+                        <th>Url periódico</th>
+                        <th>Periódico</th>
+                        <th>Estatus</th>
+                        {{-- <th>Publicado</th> --}}
                         <th>Creado</th>
                         <th>Acciones</th>
                     </tr>
@@ -54,23 +58,23 @@ Noticias
                     <tr>
                         <td>{{ $new->title }}</td>
                         <td style="width: 160px;">
-                            @if ( !empty( $new->description ) )
-                            {{ $new->description }}
+                            @if ( !empty( $new->url_periodico ) )
+                            {{ $new->url_periodico }}
                             @else
-                            <span class="badge badge-info">Sin descripción</span>
+                            <span class="badge badge-info">Sin url</span>
                             @endif
                         </td>
                         <td class="text-center">
-                            @if ( !empty( $new->content ) )
+                            @if ( !empty( $new->id_img ) )
                             <a href="#showModalContent-{{ $new->id }}" data-toggle="modal"
                                 class="btn btn-primary btn-circle btn-sm">
                                 <i class="fas fa-eye"></i>
                             </a>
                             @else
-                            <span class="badge badge-info">Sin contenido</span>
+                                <span class="badge badge-info">Sin periódico </span> <a href="" class="btn btn-primary btn-circle btn-sm ">+</a>
                             @endif
                         </td>
-                        <td>
+                        {{-- <td>
                             @if ( !empty( $new->author ) )
                             {{ $new->author }}
                             @else
@@ -83,6 +87,14 @@ Noticias
                             @else
                             <span class="badge badge-info">No publicado</span>
                             @endif
+                        </td> --}}
+                        <td>
+                            @if ($new->status_news=='Publicado')
+                                <span class="badge badge-success">{{$new->status_news}}</span>
+                            @else
+                                <span class="badge badge-dark">{{$new->status_news}}</span>
+                            @endif
+                            {{-- {{ $new->status_news }} --}}
                         </td>
                         <td style="font-size: 11px;">{{ $new->created_at->format('d-M-Y h:i A') }}</td>
                         <td>
@@ -143,9 +155,65 @@ Noticias
                 <form method="POST" action="{{route('news.store')}}">
                     @csrf
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="title">Título:</label>
+                        <label class="control-label col-sm-4 mt-2" for="title">Título:</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <label class="control-label col-sm-4 mt-2" for="title">Periódico</label>
+                        <img src="" width="20px" alt="">
+                        <div class="col-sm-12">
+                            <select name="id_img" class="form-control" id="id_img">
+                                <option value="">Seleccione un periódico</option>
+                                @foreach ($periodicos as $periodico)
+                                    <option value="{{$periodico->id}}">{{$periodico->nombreperiodico}}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input type="text" class="form-control" id="status_news" name="status_news" required> --}}
+                        </div>
+                        <label class="control-label col-sm-4 mt-2" for="title">Url periódico:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="url_periodico" name="url_periodico" required>
+                        </div>
+                        <label class="control-label col-sm-4 mt-2" for="title">Estatus</label>
+                        <div class="col-sm-12">
+                            <select name="status_news" class="form-control" id="status_news">
+                                <option value="">Seleccione un estatus</option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Publicado">Publicado</option>
+                            </select>
+                            {{-- <input type="text" class="form-control" id="status_news" name="status_news" required> --}}
+                        </div>
+                    </div>
+                    <div class="modal-footer m-t-10">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPeridico" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title"><i class="fa fa-asterisk"></i> Nuevo periódico</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{route('news.periodico')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="title">Título:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="title" name="nombreperiodico" required>
+                        </div>
+                        <label class="control-label col-sm-12" for="title">Imagen de periódico</label>
+                        <div class="col-sm-12">
+                            <input type="file" class="form-control" id="title" name="rutaimg" required>
                         </div>
                     </div>
                     <div class="modal-footer m-t-10">

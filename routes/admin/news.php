@@ -11,3 +11,5 @@ Route::get('/admin/news/show{news}', [NewsController::class, 'show'])->name('new
 Route::get('/admin/news/edit/{news}/', [NewsController::class, 'edit'])->name('news.edit');
 Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('news.update');
 Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+
+Route::post('/admin/periodico', [NewsController::class, 'crear_periodico'])->name('news.periodico');
