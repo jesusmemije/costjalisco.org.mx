@@ -54,6 +54,9 @@ if (isset($datos)) {
     <tbody id="cuerpo">
     </tbody>
   </table>
+    <label for="">Here start the dynamic</label>
+  <div class="wrapper-comp-setting" id="flashcard-list">
+  </div>
 
   <button onclick="consulta()">Consulta puntos</button>
 
@@ -237,10 +240,11 @@ L.geoJson(geoJson).addTo(map);
 
 
 
-
+  var flashCardList  = document.getElementById('flashcard-list')
     var markers = new Array();
     var tr = new Array();
     var td;
+    var inputvalues=new Array();
     var i = 0;
     //var lat;
     //var lng;
@@ -261,9 +265,9 @@ L.geoJson(geoJson).addTo(map);
 
 
 
-
+      /*
       aux_tr = `<tr class=` + i + `>
-        <td>  <input type="text"></td>
+        <td>  <input id=`+i+` type="text"  name="array[]" onchange='cambioinput(this.value)'></td>
           <td>` + e.latlng.lat + `</td>
             <td>` + e.latlng.lng + `</td>
             <td><button onclick='delrow(` + i + `)'>Eliminar</button></td>
@@ -272,14 +276,19 @@ L.geoJson(geoJson).addTo(map);
     
   </div></td>
         </tr>`;
+        */
 
 
 
       aux_marker.addTo(map);
-      tr.push(aux_tr);
-      $("#cuerpo").append(tr);
-
-
+      //tr.push(aux_tr);
+      //$("#cuerpo").append(tr);
+      //$('#cuerpo').insertAdjacentHTML("beforeend", tr );
+      var fields = '<div class="fc-item">\n\
+        <label class="label setting-label" for="flashcards">Flashcard (' + i + ')</label>\n\
+        <input class="input setting-input" name="front" placeholder="Front" type="text" />\n\
+        </div>';
+        flashCardList.insertAdjacentHTML("beforeend", fields );
 
 
 
@@ -317,6 +326,15 @@ L.geoJson(geoJson).addTo(map);
 
       //l.value=marker;
       i++;
+    }
+
+    function cambioinput(inputvalue){
+   alert("hola");
+   inputvalues.push(inputvalue);
+   //console.log(inputvalues);
+   x=tr[0].value=inputvalues[0];
+   console.log(x);
+   console.log(tr);
     }
 
     function consulta() {

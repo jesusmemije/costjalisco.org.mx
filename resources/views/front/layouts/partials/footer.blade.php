@@ -30,9 +30,9 @@
                     <div class="col-md-12 text-right pt-4 px-0" style="line-height: 1.5;">
 
                    
-
-                    <span style="font-size: 8px; color: #fff;">EL SITIO WEB FINANCIADO POR EL BANCO DE DESARROLLO DE AMÉRICA LATINA</span>
-
+                    <div style=" margin-left:4%; border:1px">   <span style="font-size: 8px; color: #fff;">EL SITIO WEB FINANCIADO POR EL BANCO DE DESARROLLO DE AMÉRICA LATINA</span>
+</div>
+                 
                     
                         <a href="#" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250" alt="">
@@ -100,10 +100,10 @@
                 <div class="social" style="margin-top:55%">
                     <ul>
                         
-                        <li><a href="#" target="_blank" class="icon-facebook"><i class="fab fa-facebook-f fa-sm"></i></a></li>
-                        <li><a href="#" target="_blank" class="icon-youtube"><i class="fab fa-youtube fa-sm"></i></a>
+                        <li><a href="#" target="_blank" class="icon-facebook"><i style="margin-top: 20%;" class="fab fa-facebook-f fa-sm"></i></a></li>
+                        <li><a href="#" target="_blank" class="icon-youtube"><i style="margin-top: 20%;" class="fab fa-youtube fa-sm"></i></a>
                         </li>
-                        <li><a href="#" target="_blank" class="icon-twitter"><i class="fab fa-twitter fa-sm"></i></a>
+                        <li><a href="#" target="_blank" class="icon-twitter"><i style="margin-top: 20%;" class="fab fa-twitter fa-sm"></i></a>
                         </li>
                     </ul>
                 </div>
