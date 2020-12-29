@@ -28,7 +28,7 @@ Editar noticia
     @include('admin.layouts.partials.session-flash-status')
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-12">
             <!-- Collapsable Card Data -->
             <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
@@ -45,37 +45,66 @@ Editar noticia
                                 required>
                         </div>
                         <div class="form-group">
-                            <label for="author">Url periódico</label>
-                            <input type="text" id="author" name="author" class="form-control" value="{{ old('url_periodico', $news->url_periodico) }}"
+                            <label for="url_periodico">Url periódico</label>
+                            <input type="text" id="url_periodico" name="url_periodico" class="form-control" value="{{ old('url_periodico', $news->url_periodico) }}"
                                 required>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="id_img">Periódico</label>
+                                <select name="id_img" class="form-control" id="id_img">
+                                    <option value="">-Seleccione un periódico-</option>
+                                    @foreach ($periodicos as $periodico)
+                                        {{-- <option value="{{$periodico->id}}">{{$periodico->nombreperiodico}}</option> --}}
+                                        <option value="{{$periodico->id}}"
+                                            {{$periodico->id==$news->id_img ? 'selected' : 'Seleccione periódico'}}
+                                            >{{$periodico->nombreperiodico}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="status_news">Estatus: </label>
+                                <select name="status_news" class="form-control" id="">
+                                    @if ($news->status_news=='Pendiente')
+                                        <option value="Pendiente" selected>Pendiente</option>
+                                        <option value="Publicado">Publicado</option>
+                                    @elseif($news->status_news=='Publicado')
+                                        <option value="Publicado" selected>Publicado</option>
+                                        <option value="Pendiente">Pendiente</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
                         
-                        <div class="form-group">
-                            <label for="published">Estatus: </label>
-                            <input type="checkbox" id="published" data-toggle="toggle" data-on="<i class='fa fa-check'></i> Publicar" data-off="No publicar" data-onstyle="success" data-offstyle="warning">
-                            <input type="hidden" id="published_hidden" name="published" value="{{ $news->published }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="published">Fecha publicado: </label>
-                            <input type="text" id="created_at" name="created_at" class="form-control"
-                                value="{{ old('created_at', $news->created_at->format('d-M-Y h:i A') ) }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="created_at">Fecha de creación</label>
-                            <input type="text" id="created_at" name="created_at" class="form-control"
-                                value="{{ old('created_at', $news->created_at->format('d-M-Y h:i A') ) }}" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="updated_at">Última modificación</label>
-                            <input type="text" id="updated_at" name="updated_at" class="form-control"
-                                value="{{ old('updated_at', $news->updated_at->format('d-M-Y h:i A') ) }}" disabled>
+                        
+                        
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="update_published">Fecha publicado: </label>
+                                    @php
+                                        $newDate = date("d-M-Y h:i A", strtotime($news->update_published));
+                                    @endphp
+                                <input type="text" id="update_published" name="update_published" class="form-control"
+                                    value="{{ old('update_published', $newDate) }}" disabled>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="created_at">Fecha de creación</label>
+                                <input type="text" id="created_at" name="created_at" class="form-control"
+                                    value="{{ old('created_at', $news->created_at->format('d-M-Y h:i A') ) }}" disabled>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="updated_at">Última modificación</label>
+                                <input type="text" id="updated_at" name="updated_at" class="form-control"
+                                    value="{{ old('updated_at', $news->updated_at->format('d-M-Y h:i A') ) }}" disabled>
+                            </div>
                         </div>
                        
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-7">
+        {{-- <div class="col-lg-7">
             <!-- Collapsable Card Content -->
             <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
@@ -90,7 +119,7 @@ Editar noticia
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </form>
 

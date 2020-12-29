@@ -490,6 +490,7 @@ class HomeController extends Controller
         $journal=DB::table('news')
         ->join('tbl_img','news.id_img','=','tbl_img.id')
         ->select('news.*','tbl_img.*')
+        ->where('news.status_news','=','Publicado')
         ->get();
 
         return view('front.journal',['journal'=>$journal]);

@@ -24,7 +24,7 @@ Noticias
     <h1 class="h3 mb-0 text-gray-800">Noticias</h1>
     <a href="#modalPeridico" style="margin-left: 64%" class="btn btn-sm btn-primary shadow-sm" data-toggle="modal">
         <i class="fas fa-plus fa-sm text-white-50"></i>
-        Nuevo periódico
+        Periódicos
     </a>
     <a href="#modalCreate" class="btn btn-sm btn-primary shadow-sm" data-toggle="modal">
         <i class="fas fa-plus fa-sm text-white-50"></i>
@@ -56,7 +56,7 @@ Noticias
                 <tbody>
                     @foreach ($news as $new)
                     <tr>
-                        <td>{{ $new->title }}</td>
+                        <td><small>{{ $new->title }}</small></td>
                         <td style="width: 160px;">
                             @if ( !empty( $new->url_periodico ) )
                             {{ $new->url_periodico }}
@@ -65,29 +65,21 @@ Noticias
                             @endif
                         </td>
                         <td class="text-center">
-                            @if ( !empty( $new->id_img ) )
-                            <a href="#showModalContent-{{ $new->id }}" data-toggle="modal"
-                                class="btn btn-primary btn-circle btn-sm">
-                                <i class="fas fa-eye"></i>
-                            </a>
+                            @php
+                                $periodicos_r = DB::table('tbl_img')
+                                ->select('tbl_img.*')
+                                ->where('id','=',$new->id_img)
+                                ->get(); 
+                            @endphp
+                            @if ( count($periodicos_r)==0 )
+                                <span class="badge badge-info">Sin periódico </span> 
                             @else
-                                <span class="badge badge-info">Sin periódico </span> <a href="" class="btn btn-primary btn-circle btn-sm ">+</a>
+                                @foreach ($periodicos_r as $periodicor)
+                                    <img src="{{asset($periodicor->rutaimg)}}" width="30px" alt=""><br>
+                                    <label for="">{{$periodicor->nombreperiodico}}</label>
+                                @endforeach
                             @endif
                         </td>
-                        {{-- <td>
-                            @if ( !empty( $new->author ) )
-                            {{ $new->author }}
-                            @else
-                            <span class="badge badge-info">Sin autor</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if ( $new->published )
-                            <span class="badge badge-success">Publicado</span>
-                            @else
-                            <span class="badge badge-info">No publicado</span>
-                            @endif
-                        </td> --}}
                         <td>
                             @if ($new->status_news=='Publicado')
                                 <span class="badge badge-success">{{$new->status_news}}</span>
@@ -110,30 +102,7 @@ Noticias
                             </form>
                         </td>
                     </tr>
-                    @if ( !empty( $new->content ) )
-                    <!-- Modal view content-->
-                    <div class="modal fade" id="showModalContent-{{ $new->id }}" tabindex="-1" role="dialog"
-                        aria-labelledby="ModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalLongTitle"><i class="fa fa-asterisk"></i> Noticia: {{ $new->title }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    @php
-                                        echo $new->content
-                                    @endphp
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Listo, cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
+                    
                     @endforeach
                 </tbody>
             </table>
@@ -195,7 +164,7 @@ Noticias
 </div>
 
 <div class="modal fade" id="modalPeridico" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-title"><i class="fa fa-asterisk"></i> Nuevo periódico</h5>
@@ -204,23 +173,71 @@ Noticias
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{route('news.periodico')}}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="title">Título:</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="title" name="nombreperiodico" required>
-                        </div>
-                        <label class="control-label col-sm-12" for="title">Imagen de periódico</label>
-                        <div class="col-sm-12">
-                            <input type="file" class="form-control" id="title" name="rutaimg" required>
+                <div class="row">
+                    <div class="col-md-8">
+                        <form method="POST" action="{{route('news.periodico')}}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="title">Título:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="title" name="nombreperiodico" required>
+                                </div>
+                                <label class="control-label col-sm-12 mt-3" for="title">Imagen de periódico<br><small style="margin-left: 30px">Toma en cuenta la anchura de 230px y altura 100px</small></label>
+                                
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control" id="title" name="rutaimg" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer m-t-10">
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
+                        <hr>
+                        <h5>
+                            Periódicos registrados
+                        </h5>
+                        <div style="overflow-y:scroll; height: 200px;">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Periódico</th>
+                                    <th>Imagen</th>
+                                    <th>Acciones</th>
+                                </thead>
+                                <tbody>
+                                   <tbody>
+                                       @if (count($periodicos)==0)
+                                           <center>no hay periódicos</center>
+                                       @else
+                                       <form action="" method="post">
+                                           @foreach ($periodicos as $perio)
+                                               <tr>
+                                                   <td>{{$perio->id}}</td>
+                                                   <td>{{$perio->nombreperiodico}}</td>
+                                                   <td><img src="{{asset($perio->rutaimg)}}" width="25" alt=""></td>
+                                                    <td>
+                                                        
+                                                        <form action="{{url('periodico-delete/'.$perio->id)}}" method="POST"
+                                                            style="display:inline-block;" id="delete">
+                                                            {{-- @method('DELETE') --}}
+                                                            @csrf
+                                                            <input type="submit" class="btn btn-danger btn-circle btn-sm btnDelete" value="x"
+                                                                data-id="{{$perio->id}}" />
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                           @endforeach
+                                        </form>
+                                       @endif
+                                   </tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="modal-footer m-t-10">
-                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Guardar</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

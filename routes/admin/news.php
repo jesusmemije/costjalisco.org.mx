@@ -13,3 +13,5 @@ Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('news.
 Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 
 Route::post('/admin/periodico', [NewsController::class, 'crear_periodico'])->name('news.periodico');
+Route::post('/periodico-delete/{id}', [NewsController::class, 'delete_periodico'])->name('perioddico_delete');
+

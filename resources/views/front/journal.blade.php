@@ -195,19 +195,19 @@ Notas perodísticas
         @foreach ($journal as $jour)
             <div class="media" style="margin-left: 8%; margin-bottom:4%;">
                 <div id="mural" style="height:112px;"  class="col-md-3">
-                    <img style="margin-top:10%; margin-left:10%;" src="{{asset($jour->rutaimg)}}" height="40"  alt="">
+                    <img style="margin-top: 3%" src="{{asset($jour->rutaimg)}}" width="230px" height="100px" alt="">
                 </div>
         
                 <div class="media-body">
                     <div id="titulo" style="margin-top:4%;">
                         @php
-                            $titulo=substr($jour->title,0,35).'...';
+                            $titulo=substr($jour->title,0,38).'...';
                         @endphp
                         
                         <h3 style="margin-left:3%;">{{ $titulo }}</h3>
                     </div>
                     
-                    <div id="url" class="col-md-8" style="background-color: #d8d8cd; height:40px;">
+                    <div id="url" class="col-md-10" style="background-color: #d8d8cd; height:40px;">
                         <div style="padding-top: 1%;">
                             <a  style="margin-left:3%; color:black" target="_blank" href="{{$jour->url_periodico}}">{{$jour->url_periodico}}</a>
                         </div>
@@ -219,7 +219,7 @@ Notas perodísticas
     
     
 
-<div class="media" style="margin-left: 8%; margin-bottom:4%;">
+{{-- <div class="media" style="margin-left: 8%; margin-bottom:4%;">
         <div id="mural"  style="height:112px;"  class="col-md-3">
         <img style="margin-top:10%; margin-left:10%;" src="assets/img/journal/2-eldiario-logo.png" height="60" alt="">
         </div>
@@ -249,7 +249,7 @@ Notas perodísticas
    <div style="padding-top: 1%;">   <a  style="margin-left:3%; color:black" target="_blank" href="https://www.cronicajalisco.com">www.cronicajalisco.com</a></div>
    </div>
   </div>
-</div>
+</div> --}}
 
 
 </div>
@@ -258,12 +258,12 @@ Notas perodísticas
 <div class="col-md-12 "> 
 
 <div class="d-flex justify-content-end" style="font-size: 20px;">
-<div>
-<img height="50" width="50" src="{{asset('assets/img/journal/izq.png')}}" alt="">
+{{-- <div>
+    <img height="50" width="50" src="{{asset('assets/img/journal/izq.png')}}" alt="">
     <span>1 de 3</span>
     <img height="50" width="50" src="{{asset('assets/img/journal/der.png')}}" alt="">
-</div>
-   
+</div> --}}
+   <br><br><br><br>
 </div>
 
 </div>     

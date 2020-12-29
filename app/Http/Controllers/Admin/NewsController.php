@@ -17,6 +17,7 @@ class NewsController extends Controller
         $periodicos = DB::table('tbl_img')
             ->select('tbl_img.*')
             ->get();  
+            // dd($periodicos);
         
         return view('admin.news.index', ['news' => $news,'periodicos'=>$periodicos]);
     }
@@ -24,11 +25,13 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $fechaActual = date('Y-m-d h:i');
         News::create([
             'title'   => $request->title,
             'url_periodico'   => $request->url_periodico,
             'status_news'   => $request->status_news,
             'id_img'   => $request->id_img,
+            'update_published'   => $fechaActual
         ]);
 
         return back()->with('status', '¡Noticia creada con éxito!');
@@ -36,18 +39,35 @@ class NewsController extends Controller
 
     public function edit(News $news)
     {
-        return view("admin.news.edit", ['news' => $news]);
+        $periodicos = DB::table('tbl_img')
+            ->select('tbl_img.*')
+            ->orderBy('tbl_img.nombreperiodico','asc')
+            ->get();  
+        return view("admin.news.edit", ['news' => $news,'periodicos'=>$periodicos]);
     }
 
     public function update(Request $request, News $news)
     {   
-        $news->update([
-            'title'       => $request->title,
-            'description' => $request->description,
-            'content'     => $request->content,
-            'author'      => $request->author,
-            'published'   => $request->published
-        ]);
+
+        $fechaActual = date('Y-m-d h:i');
+        if ($request->status_news=='Publicado') {
+            $news->update([
+                'title'       => $request->title,
+                'id_img' => $request->id_img,
+                'url_periodico' => $request->url_periodico,
+                'status_news'     => $request->status_news,
+                'update_published'   => $fechaActual
+            ]);
+        } else {
+            $news->update([
+                'title'       => $request->title,
+                'id_img' => $request->id_img,
+                'url_periodico' => $request->url_periodico,
+                'status_news'     => $request->status_news,
+            ]);
+        }
+        
+        
 
         return back()->with('status', '¡Noticia actualizada con éxito!');
     }
@@ -79,5 +99,10 @@ class NewsController extends Controller
         }
 
         return back()->with('status', '¡Periódico guardado con éxito!');
+    }
+    public function delete_periodico($id_img){
+
+        DB::table('tbl_img')->where('id','=',$id_img)->delete();
+        return back()->with('status', '¡Periódico eliminado con éxito!');
     }
 }
