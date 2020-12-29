@@ -10,6 +10,9 @@ Sitios de Interés
     dl, ol, ul {
         margin-bottom: 0;
     }
+    .mya{
+        color: #000000;
+    }
 </style>
 
 <!-- Title - Sitios de interés -->
@@ -30,17 +33,18 @@ Sitios de Interés
                 </h3>
             </div>
         </div>
+        
         <div class="row mb-5">
             <div class="col-md-12">
                 <ul>
-                    <li>Gobierno del Estado de Jalisco</li>
-                    <li>Ayuntamiento de Guadalajara</li>
-                    <li>Ayuntamiento de Zapopan</li>
-                    <li>Ayuntamiento de Tonalá</li>
-                    <li>Instituto de Transparencia, Información Pública y Protección de Datos <br>
-                        Personales del Estado de Jalisco (ITEI) (Preside)</li>
-                    <li>Instituto Nacional de Transparencia, Acceso a la Información y <br>
-                        Protección de Datos Personales (INAI)</li>
+                    <li><a class="mya" href="https://www.jalisco.gob.mx/">Gobierno del Estado de Jalisco</a></li>
+                    <li><a class="mya" href="https://guadalajara.gob.mx/">Ayuntamiento de Guadalajara</a></li>
+                    <li><a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
+                    <li><a class="mya" href="https://tonala.gob.mx/portal/">Ayuntamiento de Tonalá</a></li>
+                    <li><a class="mya" href="https://www.itei.org.mx/v4/">Instituto de Transparencia, Información Pública y Protección de Datos <br>
+                        Personales del Estado de Jalisco (ITEI) (Preside)</a></li>
+                    <li><a class="mya" href="https://home.inai.org.mx/">Instituto Nacional de Transparencia, Acceso a la Información y <br>
+                        Protección de Datos Personales (INAI)</a></li>
                 </ul>
             </div>
         </div>
@@ -55,9 +59,9 @@ Sitios de Interés
         <div class="row mb-5">
             <div class="col-md-12">
                 <ul>
-                    <li>Universidad de Guadalajara (UdeG)</li>
-                    <li>Instituto Tecnológico y de Estudios Superiores de Occidente AC (ITESO)</li>
-                    <li>Ayuntamiento de Zapopan</li>
+                    <li><a class="mya" href="https://www.udg.mx/">Universidad de Guadalajara (UdeG)</a></li>
+                    <li><a class="mya" href="https://www.iteso.mx/">Instituto Tecnológico y de Estudios Superiores de Occidente AC (ITESO)</a></li>
+                    <li> <a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
                 </ul>
             </div>
         </div>
@@ -72,10 +76,10 @@ Sitios de Interés
         <div class="row mb-5">
             <div class="col-md-12">
                 <ul>
-                    <li>Cámara Mexicana de la Industria de la Construcción Delegación Jalisco <br>
-                    (CMIC Jalisco)</li>
-                    <li>Colegio de Ingenieros Civiles del Estado de Jalisco (CICEJ)</li>
-                    <li>Consejo Mexicano de Comercio Exterior de Occidente A.C (COMCE)</li>
+                    <li><a class="mya" href="https://cmicjalisco.org.mx/">Cámara Mexicana de la Industria de la Construcción Delegación Jalisco <br>
+                    (CMIC Jalisco)</a></li>
+                    <li><a class="mya" href="https://cicej.org/">Colegio de Ingenieros Civiles del Estado de Jalisco (CICEJ)</a</li>
+                    <li><a class="mya" href="http://comceoccte.org.mx/">Consejo Mexicano de Comercio Exterior de Occidente A.C (COMCE)</a></li>
                 </ul>
             </div>
         </div>
@@ -90,9 +94,9 @@ Sitios de Interés
         <div class="row mb-5">
             <div class="col-md-12">
                 <ul>
-                    <li>Comité de Participación Social del Sistema Estatal Anticorrupción (CPS)</li>
-                    <li>Colectivo Ciudadanos por Municipios Transparentes (CIMTRA)</li>
-                    <li>México Evalúa, Centro de Análisis de Políticas Públicas A.C.</li>
+                    <li><a class="mya" href="http://cpsjalisco.org/">Comité de Participación Social del Sistema Estatal Anticorrupción (CPS)</a></li>
+                    <li><a class="mya" href="http://www.cimtra.org.mx/portal/">Colectivo Ciudadanos por Municipios Transparentes (CIMTRA)</a></li>
+                    <li><a class="mya" href="https://www.mexicoevalua.org/">México Evalúa, Centro de Análisis de Políticas Públicas A.C.</a></li>
                 </ul>
             </div>
         </div>
@@ -107,11 +111,19 @@ Sitios de Interés
         <div class="row mb-5">
             <div class="col-md-12">
                 <ul>
-                    <li>Transversal Think Tank</li>
+                    <li><a class="mya" target="_blank" href="http://transversalthinktank.org/about">Transversal Think Tank</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+@section('scripts')
+
+<script>
+
+$('.mya').attr('target', '_blank');
+</script>
+
+@endsection
 
 @endsection

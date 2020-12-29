@@ -147,6 +147,21 @@ Datos del proyecto
     <div class="container">
         <div class="my-5">
             {{ $project->purpose }}
+            <br><br>
+            <span><b>Nombre de la persona que registra el proyecto</b></span><br>
+            <span>{{$project->responsable}}</span><br>
+            <span><b>Correo electrónico (Institucional)</b></span><br>
+            <span>{{$project->email}}</span>
+            <br>
+            <span><b>Organismo al que pertenece</b></span><br>
+            <span>{{$project->organismo}}</span>
+            <br>
+            <span><b>Puesto que desempeña dentro del organismo</b></span><br>
+            <span>{{$project->puesto}}</span>
+            <br>
+            <span><b>Otros involucrados en el registro del proyecto</b></span><br>
+            <span>{{$project->involucrado}}</span>
+            
         </div>
         
     </div>
@@ -248,17 +263,36 @@ Datos del proyecto
                     impacto ambiental</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">{{$project->responsableAmbiental}}
-                    </span><br><br>
+               
+
+                    </span><br>
+                    <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_ambiental}}</span>
+                    <br>
+                    <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionAmbiental}}</span>
+          
+                    <br><br>
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     factibilidad</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$project->responsableFactibilidad}}</span><br><br>
+                <span style="font-weight: 700;">{{$project->responsableFactibilidad}}</span>
+                <br>
+                    <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_factibilidad}}</span>
+                    <br>
+                    <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionFactibilidad}}</span>
+          
+                <br><br>
                 <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio
                     de
                     impacto de terreno y asentamientos</span><br>
                 <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
                 <span style="font-weight: 700;">{{$project->responsableImpacto}}</span>
+                
+                <br>
+                    <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_impacto}}</span>
+                    <br>
+                    <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionimpacto}}</span>
+          
             </div>
         </div>
         <div class="row">

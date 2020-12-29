@@ -27,9 +27,9 @@ Revestimiento y saneamiento del canal de aguas pluviales
 
  <center> 
 
-
-  <img id="sitio" src="assets/img/mapa.png" width=" " height="650">
-
+  <div style="margin-left:8%;"><img id="sitio" src="{{asset('assets/img/mapa.png')}}" width=" " height="650">
+</div>
+  
  </center> 
 
  
