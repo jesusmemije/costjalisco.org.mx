@@ -177,7 +177,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/admin/projects/{id}', [AdminProjectController::class, 'destroy'])->name('project.destroy');
 
 
-
     //delete project documents
     Route::post('/admin/projects/deletedocument/', [AdminProjectController::class, 'deletedocument'])->name('project.deletedocument');
 

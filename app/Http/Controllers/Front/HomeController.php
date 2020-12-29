@@ -487,7 +487,12 @@ class HomeController extends Controller
     }
 
     public function journal(){
-        return view('front.journal');
+        $journal=DB::table('news')
+        ->join('tbl_img','news.id_img','=','tbl_img.id')
+        ->select('news.*','tbl_img.*')
+        ->get();
+
+        return view('front.journal',['journal'=>$journal]);
     }
 
    
