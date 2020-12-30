@@ -212,7 +212,21 @@ class ProjectController extends Controller
            $responsableproyecto=DB::table('responsableproyecto')
            ->where('id_project',$id)
            ->get();
-         
+            $tipoAmbiental=DB::table('catambiental')
+            ->where('id','=',$all->tipoAmbiental)
+            ->select('titulo')
+            ->first();
+
+            $tipoFactibilidad=DB::table('catfac')
+            ->where('id','=',$all->tipoFactibilidad)
+            ->select('titulo')
+            ->first();
+            $tipoImpacto=DB::table('catimpactoterreno')
+            ->where('id','=',$all->tipoImpacto)
+            ->select('titulo')
+            ->first();
+    
+
 
             $avance = 0;
             
@@ -293,6 +307,9 @@ class ProjectController extends Controller
                 'avance' => $avance,
                 'project_imgs'=>$project_imgs,
                 'responsableproyecto'=>$responsableproyecto,
+                'tipoAmbiental'=>$tipoAmbiental,
+                'tipoFactibilidad'=>$tipoFactibilidad,
+                'tipoImpacto'=>$tipoImpacto,
             ]);
         } else {
             return redirect()->route('list-projects');

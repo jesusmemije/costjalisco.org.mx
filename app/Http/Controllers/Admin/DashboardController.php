@@ -32,4 +32,21 @@ class DashboardController extends Controller
        
         return view('admin.formwizard');
     }
+
+    public function admincarousel(){
+
+        $h=DB::table('documents')
+        ->where('description','=','carrusel')
+        ->get();
+
+        if(sizeof($h)==0){
+           $edit=false;
+        }else{
+            $edit=true;
+        }
+
+        print_r($h);
+
+        return view('admin.admincarousel',['edit'=>false]);
+    }
 }
