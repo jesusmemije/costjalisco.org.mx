@@ -87,6 +87,11 @@ Route::namespace('Front')->group(function () {
 /*=============  Dashboard ============== */
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
+    //Banner
+
+    Route::get('/admin/admincarousel', [DashboardController::class, 'admincarousel'])->name('admincarousel');
+
+
     Route::get('/admin/testmap', [AdminProjectController::class, 'testmap'])->name('testmap');
     Route::get('/admin/testmap2', [AdminProjectController::class, 'testmap2'])->name('testmap2');
    

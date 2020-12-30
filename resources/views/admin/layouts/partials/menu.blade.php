@@ -132,6 +132,7 @@ use Illuminate\Support\Facades\Auth;
         </a>
         <a class="collapse-item" href="{{ route('news.index')}}">
           <span>Suscripctores</span>
+          
         </a>
       </div>
     </div>
@@ -140,6 +141,12 @@ use Illuminate\Support\Facades\Auth;
     <a class="nav-link" href="{{ route('events.index') }}">
       <i class="far fa-calendar"></i>
       <span>Eventos</span></a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('admincarousel') }}">
+    <i class="fas fa-image"></i>
+      <span>Carrusel</span></a>
   </li>
 
   <!-- Divider -->

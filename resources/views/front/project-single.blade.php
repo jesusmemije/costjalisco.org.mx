@@ -238,26 +238,41 @@ Datos del proyecto
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-5 mb-2">
-                <?php
-                $adjudicacion = [];
-                $impacto_ambiental = [];
-                $factibilidad = [];
-                $impacto = [];
-                $adjudicacion[] = ['nombre' => '', 'email'];
-                ?>
+              <!--
                 <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de
                     impacto en terreno y asentamientos, con <br>
                     recursos federales. <br>
                     Con la Unidad de Presupuesto y Contratación
                     de Obra Publica como entidad de ajudicación. </p>
+-->
             </div>
             <div class="col-md-12">
-                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsable del
-                    contacto de
-                    la entidad de adjudicación</span><br>
-                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$project->entidadadjudicacion}}</span><br>
+            
                 
+                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Estudios de impacto: {{$tipoAmbiental->titulo}}</span><br>
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <span style="font-weight: 700;">Responsable: {{$project->responsableAmbiental}}</span><br>
+                <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_ambiental}}</span>
+                <br>
+                <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionAmbiental}}</span>
+                    <br>
+
+                    <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Estudios de factibilidad: {{$tipoFactibilidad->titulo}}</span><br>
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <span style="font-weight: 700;">Responsable: {{$project->responsableFactibilidad}}</span><br>
+                <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_factibilidad}}</span>
+                <br>
+                <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionFactibilidad}}</span>
+                    <br>
+
+                    <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Estudios de factibilidad: {{$tipoImpacto->titulo}}</span><br>
+                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
+                <span style="font-weight: 700;">Responsable: {{$project->responsableImpacto}}</span><br>
+                <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_impacto}}</span>
+                <br>
+                <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionimpacto}}</span>
+                    <br>
+                <!-- old version
                 <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
                     estudios de
                     impacto ambiental</span><br>
@@ -292,8 +307,8 @@ Datos del proyecto
                     <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_impacto}}</span>
                     <br>
                     <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionimpacto}}</span>
-          
-            </div>
+-->
+            </div> 
         </div>
         <div class="row">
             <div class="col-md-12 text-right">
