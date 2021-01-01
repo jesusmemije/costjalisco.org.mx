@@ -44,7 +44,8 @@ Eventos
                         <th>Descripción</th>
                         <th>Lugar</th>
                         <th>Inicio</th>
-                        <th>Portada</th>
+                        <th>Contacto</th>
+                        <th>Estatus</th>
                         <th>Creado</th>
                         <th>Acciones</th>
                     </tr>
@@ -68,17 +69,28 @@ Eventos
                             @endif
                         </td>
                         <td>
+                            @php
+                                $newDate = date("d/m/Y h:i", strtotime($event->date_start));
+                            @endphp
                             @if ( !empty( $event->date_start ) )
-                            {{ $event->date_start }}
+                            {{ $newDate }}
                             @else
                             <span class="badge badge-info">Sin fecha</span>
                             @endif
                         </td>
                         <td>
-                            @if ( !empty( $event->cover_image ) )
-                            {{ $event->cover_image }}
+                            @if ( !empty( $event->contact ) )
+                            {{ $event->contact }}
                             @else
-                            <span class="badge badge-info">Sin imagen</span>
+                            <span class="badge badge-info">Sin contacto</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if ( $event->status=='Publicado' )
+                                <span class="badge badge-success">{{ $event->status }}</span>
+                            
+                            @else
+                            <span class="badge badge-info">{{ $event->status }}</span>
                             @endif
                         </td>
                         <td style="font-size: 11px;">{{ $event->created_at->format('d-M-Y h:i A') }}</td>

@@ -72,6 +72,9 @@ Eventos
     .title{
      
      background-color: #61a8bd;
+     width: 276px;
+     border: 0;
+
     }
     .title h6{
         color:white;
@@ -133,38 +136,180 @@ td.first {
 <div class="container" >
     <div class="row eventos" style="margin-bottom: 10%;">
         <div class="col-md-3 col-12 part1">
-            <div class="row title" style="margin-top:1%;">
-                <h6>Noviembre</h6> 
-            </div>
-            <div class="row title" style="margin-top:1%;">
-                <h6>Diciembre</h6> 
-            </div>
-            <div class="row title" style="margin-top:1%;">
-                <h6>Enero 2020</h6> 
-            </div>
-            <div class="row title" style="margin-top:1%;">
-                <h6>Febrero 2020</h6> 
-            </div>
+            @php
+                $cont1=0;    
+                $cont2=0;    
+                $cont3=0;    
+                $cont4=0;    
+                $cont5=0;    
+                $cont6=0;    
+                $cont7=0;    
+                $cont8=0;    
+                $cont9=0;    
+                $cont10=0;    
+                $cont11=0;    
+                $cont12=0;    
+            @endphp
+            @foreach ($eventos as $evento)
+                @php
+                    $newDate = date("M", strtotime($evento->date_start));
+                @endphp
+
+                @if ($newDate=='Jan')
+                    @php
+                        $cont1+=1;
+                    @endphp
+                @elseif($newDate=='Feb')
+                    @php
+                        $cont2+=1;    
+                    @endphp
+                @elseif($newDate=='Mar')
+                    @php
+                        $cont3+=1;    
+                    @endphp
+                @elseif($newDate=='Apr')
+                    @php
+                        $cont4+=1;    
+                    @endphp
+                @elseif($newDate=='May')
+                    @php
+                        $cont5+=1;    
+                    @endphp
+                @elseif($newDate=='Jun')
+                    @php
+                        $cont6+=1;    
+                    @endphp
+                @elseif($newDate=='Jul')
+                    @php
+                        $cont7+=1;    
+                    @endphp
+                @elseif($newDate=='Aug')
+                    @php
+                        $cont8+=1;    
+                    @endphp
+                @elseif($newDate=='Sep')
+                    @php
+                        $cont9+=1;    
+                    @endphp
+                @elseif($newDate=='Oct')
+                    @php
+                        $cont10+=1;    
+                    @endphp
+                @elseif($newDate=='Nov')
+                    @php
+                        $cont11+=1;    
+                    @endphp
+                @elseif($newDate=='Dec')
+                    @php
+                        $cont12+=1;    
+                    @endphp
+                    
+                @endif
+
+
+            @endforeach
+                @if ($cont1>=1)
+                    <button onclick="mostrar_dias('01','Enero')" class="row title" style="margin-top:1%;">
+                        <h6>Enero {{$cont1}} eventos</h6> 
+                    </button>
+                    
+                @else
+                
+                @endif
+                @if ($cont2>=1)
+                    <button onclick="mostrar_dias('02','Febrero')" class="row title" style="margin-top:1%;">
+                        <h6>Febrero {{$cont2}} eventos</h6> 
+                    </button>
+                        
+                @else
+                    
+                @endif
+                @if ($cont3>=1)
+                    <button onclick="mostrar_dias('03','Marzo')" class="row title" style="margin-top:1%;">
+                        <h6>Marzo {{$cont3}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont4>=1)
+                    <button onclick="mostrar_dias('04','Abril')" class="row title" style="margin-top:1%;">
+                        <h6>Abril {{$cont4}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont5>=1)
+                    <button onclick="mostrar_dias('05','Mayo')" class="row title" style="margin-top:1%;">
+                        <h6>Mayo {{$cont5}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont6>=1)
+                    <button onclick="mostrar_dias('06','Junio')" class="row title" style="margin-top:1%;">
+                        <h6>Junio {{$cont6}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont7>=1)
+                    <button onclick="mostrar_dias('07','Julio')" class="row title" style="margin-top:1%;">
+                        <h6>Julio {{$cont7}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont8>=1)
+                    <button onclick="mostrar_dias('08','Agosto')" class="row title" style="margin-top:1%;">
+                        <h6>Agosto {{$cont8}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont9>=1)
+                    <button onclick="mostrar_dias('09','Septiembre')" class="row title" style="margin-top:1%;">
+                        <h6>Septiembre {{$cont9}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont10>=1)
+                    <button onclick="mostrar_dias('10','Octubre')" class="row title" style="margin-top:1%;">
+                        <h6>Octubre {{$cont10}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont11>=1)
+                    <button onclick="mostrar_dias('11','Noviembre')" class="row title" style="margin-top:1%;">
+                        <h6>Noviembre {{$cont11}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
+                @if ($cont12>=1)
+                    <button onclick="mostrar_dias('12','Diciembre')" class="row title" style="margin-top:1%;">
+                        <h6>Diciembre {{$cont12}} eventos</h6> 
+                    </button>
+                @else
+                    
+                @endif
         </div>
-        <div class="col-md-1.9" style="margin-top:4%;">
-            <div style="margin-left:20%" class="color2">
-                <h1> 01 </h1>
-                <h5>Noviembre</h5> 
+        <div class="col-md-1.9" style="margin-top:1%;">
+            <div style="margin-left:20%" id="id_dias">
+                <center><small>Clic en el mes</small></center>    
             </div>
         </div>
         <div style="margin-left:2%" class="col-md-7" style="background-color:white">
-            <div class="content1"  style="margin-top: 1%;">
-                <h5> 
-                LANZAMIENTO DE LA INICIATIVA INTERNACIONAL, EN EL TRANSPARENCIA EN INFRAESTRUCTURA, COST Y CONFORMACIÓN DEL GRUPO MULTISECTORIAL
+            <div  class="content1"  style="margin-top: 1%;">
+                <div class="col-md-12" ></div>
+                <h5 id="titulo"> 
+                    <center>Seleccione un mes y despues el dia</center>
+                
                 </h5>
                 <p></p>
-                <h8> 
-                Lanzamiento de la iniciatiava en tranparencia en la construcción? CoST?, que tiene como objetivo inhibir las malasa prácticas en 
-                las contrataciones de obra pública y mejorar la eficiencia de los recursos públicos, a través de adoptar amplios estandares de 
-                transparencia, basados en un modelo de contrataciones abiertas, y vigilado por auditoria sociales, asi como conformar un Grupo
-                Multisectorial integrado por la sociedad civil organizada en temas de transparencia y anticorrupción, el gremio de la construccion,
-                y la academia, asi como los entes públicos antes mencionados y este instituto de Transparencia, como presidente del Grupo Multisectorial
-                y coordinador de los trabajos
+                <h8 id="descripcion">
+                    
                 </h8>
                 <br></br>
             </div>
@@ -180,24 +325,28 @@ td.first {
                     <td>
                         <div class="col-md-9 px-0 py-1">
                             <span style="font-weight: 400; margin-left: 300px; color: white;"><p><i class="fas fa-clock mr-2 fa-lg"></i> <a href="#">
-                            <strong>Hora de Inicio:</strong> 10:00 am</a></p></span>    
+                            <strong>Hora de Inicio:</strong> <span id="hora"> </span></a></p></span>  
+                            
                         </div>
                     </td>
                     <td>
                         <div class="col-md-8 px-0 py-1">
                             <span style="font-weight: 400; margin-left: 350px; color: white;"><p><i class="fas fa-map-marker-alt mr-2 fa-lg"></i> <a href="#">
-                            <strong>Caja Jalisco</strong><p>Manuel Acuña #2624 Col. Ladrón de
-                            Guevara. Guadalajara, Jalisco</a></p>
+                            {{-- <strong>Caja Jalisco</strong><p>Manuel Acuña #2624 Col. Ladrón de
+                            Guevara. Guadalajara, Jalisco</a></p> --}}
+                            <strong>Ubicación</strong><br>
+                            <span id="ubicacion"></span>
                             </span>
                         </div>
                     </td>
                     <td>
                         <div class="col-md-8 px-0 py-1">
                             <span style="font-weight: 400; margin-left: 550px; color: white;"><p><i class="fas fa-users mr-1 fa-lg"></i> <a href="#">
-                            <strong>Contacto:</strong>
-                            <p>Luis Arturo Perez Villegas
+                            <strong>Contacto:</strong><br>
+                            <span id="contacto"></span>
+                            {{-- <p>Luis Arturo Perez Villegas
                             luis.perez@itei.org.mx
-                            3630 5745 ext. 1510</a></p>
+                            3630 5745 ext. 1510</a></p> --}}
                             </span>
                         </div>      
                     </td>
@@ -220,6 +369,75 @@ td.first {
     
 <script>
     var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+</script>
+
+<script>
+    function mostrar_dias(mes,name)
+    {
+
+        if ($.trim(mes) != ''){
+                    // $('#loading2').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="20" style="margin-left: 45%; margin-top:15px;" />');
+                    $.get('mostrar_dias',{mes:mes}, function (dias) {
+                        // $('#loading2').fadeIn(700).html('');
+                        $('#id_dias').empty();
+                        // $('#id_dias').append("<option value=''>Seleccione subsector</option>");
+                        $.each(dias, function (index, value){
+                            $('#id_dias').append("<button onclick='mostrar_contenido("+index+")' style=' border: 5px solid #61a8bd; background: transparent; border-top: 3px solid #0000; border-bottom: 3px solid #0000; border-left: 3px solid #0000;'><h1>"+value+"</h1><small>"+name+"</small></button>")
+                        })
+                    })
+                }
+    }
+
+    function mostrar_contenido(id_event)
+    { 
+        if ($.trim(id_event) != ''){
+            $.ajax({
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id_event": id_event
+                    }, //datos que se envian a traves de ajax
+                    url: "{{ url('mostrar_contenido') }}", //archivo que recibe la peticion
+                    type: 'post', //método de envio
+                    dataType: "json",
+                    success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+
+                    console.log(resp);
+                    const foriginal = resp[0].date_start;
+                    const hora = foriginal.slice(10, -3);
+                    const hora_d = foriginal.slice(11, -6);
+                    console.log(hora_d);
+                    const h =12;
+                        if (hora_d>=h) {
+                            $("#hora").empty();
+                            $("#hora").append(hora +' PM');
+                        } else {
+                            $("#hora").empty();
+                            $("#hora").append(hora +' AM');
+                        }
+                        $("#titulo").empty();
+                        $("#descripcion").empty();
+                        
+                        $("#ubicacion").empty();
+                        $("#contacto").empty();
+
+                        $("#titulo").append(resp[0].title);
+                        $("#descripcion").append(resp[0].description);
+                        
+                        $("#ubicacion").append(resp[0].location);
+                        $("#contacto").append(resp[0].contact);
+
+
+
+
+                    },
+                    error: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+
+                    // alert("Ha ocurrido un error, intente de nuevo.");
+                        console.log(response);
+                    }
+                    });
+        }
+    }
 </script>
 @endsection
 
