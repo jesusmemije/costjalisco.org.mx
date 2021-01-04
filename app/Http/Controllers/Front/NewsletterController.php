@@ -13,6 +13,7 @@ class NewsletterController extends Controller
         $eventos=DB::table('events')
         ->select('events.*')
         ->where('status','=','Publicado')
+        ->orderBy('date_start','DESC')
         ->distinct()
         ->get();
 
