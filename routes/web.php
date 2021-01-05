@@ -62,6 +62,9 @@ Route::namespace('Front')->group(function () {
    
     //Newsletter
     Route::get('/eventos', [NewsletterController::class, 'eventos'])->name('eventos');
+    Route::get('/mostrar_dias', [NewsletterController::class, 'mostrar_dias'])->name('mostrar_dias');
+    Route::post('/mostrar_contenido', [NewsletterController::class, 'mostrar_contenido'])->name('mostrar_contenido');
+    
     Route::get('/newsletters', [NewsletterController::class, 'newsletters'])->name('newsletters');
     Route::get('/newsletter-single', [NewsletterController::class, 'newsletter_single'])->name('newsletter-single');
     Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');

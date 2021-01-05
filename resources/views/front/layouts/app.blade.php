@@ -14,7 +14,9 @@
     <!-- Main CSS -->
     <link href="{{asset("assets/css/styles.css")}}" rel="stylesheet">
     <!-- Incluir estilos en ciertas secciones -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    
+
     @yield('styles')
 </head>
 
@@ -31,7 +33,7 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Icons FontAwesome -->
     <script src="https://kit.fontawesome.com/94880949ce.js" crossorigin="anonymous"></script>
-
+    
     @yield('scripts')
     
     <!-- Main js -->

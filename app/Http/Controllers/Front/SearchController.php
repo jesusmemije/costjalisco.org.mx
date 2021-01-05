@@ -22,7 +22,8 @@ class SearchController extends Controller
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                     ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                     ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
+                    ->orderBy('project.created_at', 'desc') 
                     ->get();
             } else {
                 if (empty($request->id_sector)) {
@@ -33,6 +34,7 @@ class SearchController extends Controller
                         ->join('address', 'locations.id_address', '=', 'address.id')
                         ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                         ->where('address.locality', '=', $request->municipio)
+                        ->orderBy('project.created_at', 'desc')
                         ->get();
                 } else {
                     if (empty($request->id_subsector)) {
@@ -44,6 +46,7 @@ class SearchController extends Controller
                             ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
+                            ->orderBy('project.created_at', 'desc')
                             ->get();
                     } else {
                         if (empty($request->codigo_postal)) {
@@ -56,6 +59,7 @@ class SearchController extends Controller
                                 ->where('address.locality', '=', $request->municipio)
                                 ->where('project.sector', '=', $request->id_sector)
                                 ->where('project.subsector', '=', $request->id_subsector)
+                                ->orderBy('project.created_at', 'desc')
                                 ->get();
                         } else {
                             $projects = DB::table('project')
@@ -68,6 +72,7 @@ class SearchController extends Controller
                                 ->where('project.sector', '=', $request->id_sector)
                                 ->where('project.subsector', '=', $request->id_subsector)
                                 ->where('address.postalCode', '=', $request->codigo_postal)
+                                ->orderBy('project.created_at', 'desc')
                                 ->get();
                         }
                     }
@@ -82,6 +87,7 @@ class SearchController extends Controller
                     ->join('address', 'locations.id_address', '=', 'address.id')
                     ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
+                    ->orderBy('project.created_at', 'desc')
                     ->get();
             } else {
 
@@ -93,6 +99,7 @@ class SearchController extends Controller
                     ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                     ->where('address.locality', '=', $request->municipio)
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
+                    ->orderBy('project.created_at', 'desc')
                     ->get();
                 
             }
@@ -113,6 +120,7 @@ class SearchController extends Controller
                 ->join('address', 'locations.id_address', '=', 'address.id')
                 ->select('projectsector.*')
                 ->where('address.locality', '=', $request->municipio_id)
+                ->orderBy('projectsector.titulo', 'asc')
                 ->get();
             if (count($sectores) == 0) {
                 $sectoresArray[0] = 'No se encontraron sectores';
@@ -132,10 +140,9 @@ class SearchController extends Controller
             $sub_sectores = DB::table('subsector')
                 ->join('sectorsubsector', 'subsector.id', '=', 'sectorsubsector.id_subsector')
                 ->join('projectsector', 'sectorsubsector.id_sector', '=', 'projectsector.id')
-                // ->join('locations','project_locations.id_location','=','locations.id')
-                // ->join('address','locations.id_address','=','address.id')
                 ->select('subsector.*')
                 ->where('projectsector.id', '=', $request->sector_id)
+                ->orderBy('subsector.titulo', 'asc')
                 ->get();
 
             if (count($sub_sectores) == 0) {
@@ -159,6 +166,7 @@ class SearchController extends Controller
                 ->join('address', 'locations.id_address', '=', 'address.id')
                 ->select('address.*')
                 ->where('project.subsector', '=', $request->sub_sector_id)
+                ->orderBy('address.postalCode', 'asc')
                 ->get();
 
             if (count($codigo_postales) == 0) {

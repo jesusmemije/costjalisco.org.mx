@@ -12,7 +12,7 @@ Nosotros
     <div class="row mx-0 my-4" id="cost-jalisco">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>CoST Jalisco</h3>
             </div>
         </div>
@@ -71,7 +71,7 @@ Nosotros
     <div class="row mx-0 my-4" id="objetivo-general">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>Objetivo General</h3>
             </div>
         </div>

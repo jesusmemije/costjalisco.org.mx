@@ -22,7 +22,7 @@ Conoce más
     <div class="row mx-0 my-4" id="que-es-cost">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>¿Qué es CoST?</h3>
             </div>
         </div>
@@ -89,7 +89,7 @@ Conoce más
     <div class="row mx-0 my-4" id="beneficios">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>Beneficios</h3>
             </div>
         </div>
@@ -131,7 +131,7 @@ Conoce más
     <div class="row mx-0 my-4" id="procesos-de-cost">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
                 background-size: cover;'>Procesos de CoST</h3>
             </div>
         </div>
@@ -141,7 +141,7 @@ Conoce más
     <div class="row mx-0 my-4" id="divulgacion">
         <div class="col-md-6 px-0">
             <div class="text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-gris.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg"); background-repeat: no-repeat;
                 background-size: 500px; padding-left: 6rem; font-size: 24px;'>Divulgación</h3>
             </div>
         </div>
@@ -165,7 +165,7 @@ Conoce más
     <div class="row mx-0 my-4" id="aseguramiento">
         <div class="col-md-6 px-0">
             <div class="text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-gris.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg"); background-repeat: no-repeat;
                 background-size: 500px; padding-left: 6rem; font-size: 24px;'>Aseguramiento</h3>
             </div>
         </div>
@@ -198,7 +198,7 @@ Conoce más
     <div class="row mx-0 my-4" id="auditoria-social">
         <div class="col-md-6 px-0">
             <div class="text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("/assets/img/background-gris.jpg"); background-repeat: no-repeat;
+                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg"); background-repeat: no-repeat;
                 background-size: 500px; padding-left: 6rem; font-size: 24px;'>Auditoria Social</h3>
             </div>
         </div>

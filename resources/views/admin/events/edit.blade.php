@@ -84,21 +84,34 @@ Editar evento
                         </div>
                         <div class="form-group">
                             <label for="date_start">Fecha y hora de inicio</label>
+                            @php
+                                $newDate = date("d/m/Y h:i", strtotime($event->date_start));
+                            @endphp
                             <div class="input-group date" id="datetimepicker" data-target-input="nearest">
-                                <input type="text" name="datetimepicker" class="form-control datetimepicker-input" data-target="#datetimepicker">
+                                <input type="text" name="date_start" class="form-control datetimepicker-input" data-target="#datetimepicker" value="{{ old('date_start',$newDate ) }}">
                                 <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="cover_image">Imagen de fondo: </label>
-                            <input type="file" id="cover_image" class="form-control" name="cover_image">
+                            <label for="cover_image">Contacto: </label>
+                            
+                            <input type="text" id="contact" class="form-control" name="contact" value="{{ old('contact',$event->contact ) }}">
                         </div>
                         <div class="form-group">
                             <label for="status">Estatus: </label>
-                            <input type="checkbox" id="status" data-toggle="toggle" data-on="<i class='fa fa-check'></i> Activo" data-off="Inactivo" data-onstyle="success" data-offstyle="dark">
-                            <input type="hidden" id="status_hidden" name="status" value="{{ $event->status }}">
+                            <select name="status" class="form-control" id="">
+                                @if ($event->status=='Pendiente')
+                                    <option value="Pendiente" selected>Pendiente</option>
+                                    <option value="Publicado">Publicado</option>
+                                @elseif($event->status=='Publicado')
+                                    <option value="Publicado" selected>Publicado</option>
+                                    <option value="Pendiente">Pendiente</option>
+                                @endif
+                            </select>
+                            {{-- <input type="checkbox" id="status" data-toggle="toggle" data-on="<i class='fa fa-check'></i> Activo" data-off="Inactivo" data-onstyle="success" data-offstyle="dark">
+                            <input type="hidden" id="status_hidden" name="status" value="{{ $event->status }}"> --}}
                         </div>
                     </div>
                 </div>
