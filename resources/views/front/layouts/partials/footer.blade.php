@@ -1,5 +1,8 @@
-<!-- Footer -->
-<footer class="page-footer font-small" style="background-color: #628EA0">
+
+
+
+<!-- Footer Desktop -->
+<footer class="page-footer font-small hidden-phone" style="background-color: #628EA0">
 
     <div style="background-color: #58707B;">
         <div class="container">
@@ -22,22 +25,20 @@
         <div class="row">
             <!-- Grid column -->
             <div class="col-md-7 col-lg-7 mx-auto">
-        <!--titulo de banco de desarrollo-->
+                <!--titulo de banco de desarrollo-->
 
-            <!--Banco de desarrollo -->
-                 <div class="row mb-4 align-items-center" style="margin-right:35%">
-                   
+                <!--Banco de desarrollo -->
+                <div class="row mb-4 align-items-center" style="margin-right:35%">
+
                     <div class="col-md-12 text-right pt-4 px-0" style="line-height: 1.5;">
-
-                   
-                    <div style=" margin-left:4%; border:1px">   <span style="font-size: 8px; color: #fff;">EL SITIO WEB FINANCIADO POR EL BANCO DE DESARROLLO DE AMÉRICA LATINA</span>
-</div>
-                 
-                    
+                        <div style=" margin-left:4%; border:1px"> <span style="font-size: 8px; color: #fff;">EL SITIO
+                                WEB FINANCIADO POR EL BANCO DE DESARROLLO DE AMÉRICA LATINA</span>
+                        </div>
                         <a href="https://www.caf.com/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250" alt="">
+                            <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250"
+                                alt="">
                         </a>
-                    </div>  
+                    </div>
                 </div>
 
                 <!-- Content -->
@@ -54,7 +55,8 @@
                     </div>
                     <div class="col-md-3">
                         <a href="https://www.itei.org.mx/v4/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" width="50" alt="">
+                            <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" width="50"
+                                alt="">
                         </a>
                     </div>
                 </div>
@@ -66,7 +68,8 @@
                     </div>
                     <div class="col-md-3">
                         <a href="https://guadalajara.gob.mx/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/guadalajara.png') }}" class="img-fluid" width="60" alt="">
+                            <img src="{{ asset('assets/img/footer/guadalajara.png') }}" class="img-fluid" width="60"
+                                alt="">
                         </a>
                     </div>
                     <div class="col-md-3">
@@ -82,47 +85,92 @@
                 </div>
             </div>
             <!-- Grid column -->
-            
+
             <div class="col-md-4 col-lg-4 mx-auto mb-md-0 md-4 text-white" style="margin-top:6%">
                 <!-- Links -->
-                
+
                 <p><i class="fas fa-mobile-alt mr-3 fa-lg"></i> <a href="tel:+3336305745">33 3630-5745 ext 1510</a></p>
-               
-                <p><i class="fas fa-envelope mr-3"></i> <a href="mailto:jalisco@infrastructuretransparency.org">jalisco@infrastructuretransparency.org</a></p>
-                <p><i class="fas fa-globe mr-3"></i> <a href="https://infrastructuretransparency.org/">https://infrastructuretransparency.org</a></p>
-        
+
+                <p><i class="fas fa-envelope mr-3"></i> <a
+                        href="mailto:jalisco@infrastructuretransparency.org">jalisco@infrastructuretransparency.org</a>
+                </p>
+                <p><i class="fas fa-globe mr-3"></i> <a
+                        href="https://infrastructuretransparency.org/">https://infrastructuretransparency.org</a></p>
+
                 <p style="margin-left: 34px"> <a href="">REVISA EL AVISO DE PRIVACIDAD</a></p>
             </div>
-            
-            
+
             <!-- Grid column -->
             <div class="col-md-1 col-lg-1 text-center mx-auto my-4">
                 <div class="social" style="margin-top:55%">
                     <ul>
-                        
-                        <li><a href="https://www.facebook.com/CoSTransparency/" target="_blank" class="icon-facebook"><i style="margin-top: 20%;" class="fab fa-facebook-f fa-sm"></i></a></li>
-                        <li><a href="https://www.youtube.com/watch?v=nd2Bc99HgRE&feature=emb_title" target="_blank" class="icon-youtube"><i style="margin-top: 20%;" class="fab fa-youtube fa-sm"></i></a>
+
+                        <li><a href="https://www.facebook.com/CoSTransparency/" target="_blank" class="icon-facebook"><i
+                                    style="margin-top: 20%;" class="fab fa-facebook-f fa-sm"></i></a></li>
+                        <li><a href="https://www.youtube.com/watch?v=nd2Bc99HgRE&feature=emb_title" target="_blank"
+                                class="icon-youtube"><i style="margin-top: 20%;" class="fab fa-youtube fa-sm"></i></a>
                         </li>
-                        <li><a href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw" target="_blank" class="icon-twitter"><i style="margin-top: 20%;" class="fab fa-twitter fa-sm"></i></a>
+                        <li><a href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw" target="_blank"
+                                class="icon-twitter"><i style="margin-top: 20%;" class="fab fa-twitter fa-sm"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="btn-go-top">
                 <a onclick="smoothScroll(document.getElementById('header'))" style="cursor: pointer;">
-                    <img src="{{ asset('assets/img/home/btn-up.png') }}" class="img-fluid"  alt="">
+                    <img src="{{ asset('assets/img/home/btn-up.png') }}" class="img-fluid" alt="">
                 </a>
             </div>
         </div>
     </div>
     </div>
-    
+
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
         <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados
     </div>
-</div>
-
+    </div>
 
 </footer>
+<!-- End Footer Desktop
+
+<!-- Footer Phone ->
+<!-- Footer -->
+<footer class="page-footer font-small hidden-desktop" style="background-color: #628EA0">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-1">
+        <!-- Grid row -->
+        <div class="row justify-content-center h-100">
+
+            <!-- Grid column -->
+            <div class="col-md-12 text-center mx-auto" style="margin: 20px 0">
+                <div class="social">
+                        <a href="https://www.facebook.com/CoSTransparency/" target="_blank" class="icon-facebook"><i
+                                class="fab fa-facebook-f fa-sm" style="margin: 0 20px; margin: 0 20px;
+                                background: #3b5998;
+                                border-radius: 100px;
+                                padding: 4px 8px; color: #fff;"></i></a>
+                        <a href="https://www.youtube.com/watch?v=nd2Bc99HgRE&feature=emb_title" target="_blank"
+                                class="icon-youtube" style="margin: 0 20px; margin: 0 20px;
+                                background: #c4302b;
+                                border-radius: 100px;
+                                padding: 4px 8px; color: #fff;"><i class="fab fa-youtube fa-sm"></i></a>
+                        <a href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw" target="_blank"
+                                class="icon-twitter" style="margin: 0 20px; margin: 0 20px;
+                                background: #00abf0;
+                                border-radius: 100px;
+                                padding: 4px 8px; color: #fff;"><i class="fab fa-twitter fa-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
+        <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados
+    </div>
+
+</footer>
+<!-- End Footer Phone -->
