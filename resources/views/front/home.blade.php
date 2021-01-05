@@ -147,8 +147,16 @@ Inicio
         <div class="col-3 px-0">
             <div class="card-indice-title">Proyectos de la iniciativa</div>
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
-            <div class="card-indice-counter">512</div>
+            
+            
+            <center>
+                <input type="text" value="{{$iniciativa_proyectos}}" >
+            </center>
+            
+        
+
         </div>
+        
         <div class="col-3 px-0">
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">

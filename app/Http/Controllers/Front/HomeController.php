@@ -98,6 +98,34 @@ class HomeController extends Controller
         }
         
         return view('front.statistics',['total_contrato'=>$total_contrato,'total_proyectos'=>$total_proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
+    
+
+        $proyectos = DB::table('project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->select(DB::raw('count(*) as iniciativa_proyectos'))
+        ->get();
+
+        if (empty($proyectos[0]->iniciativa_proyectos)) {
+            $iniciativa_proyectos=0;
+        } else {
+            $iniciativa_proyectos=$proyectos[0]->iniciativa_proyectos;
+        }
+             
+        $monto_contrato = DB::table('project')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->select(DB::raw('SUM(montocontrato) as monto_total'))
+            ->get();
+
+        if (empty($monto_contrato[0]->monto_total)) {
+            $total_contrato=0;
+        } else {
+            $total_contrato=$monto_contrato[0]->monto_total;
+        }
+        
+        return view('front.home',['total_contrato'=>$iniciativa_contrato,'total_proyectos'=>$iniciativa_proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
+
+    
     }
 
     public function interest_sites()
