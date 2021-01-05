@@ -24,6 +24,7 @@ class ProjectController extends Controller
                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                 ->join('address', 'locations.id_address', '=', 'address.id')
                 ->select('project.*')
+                ->orderBy('project.created_at', 'desc')
                 ->get();
             } else {
                 $projects = DB::table('project')
@@ -34,6 +35,7 @@ class ProjectController extends Controller
                 ->join('address', 'locations.id_address', '=', 'address.id')
                 ->select('project.*')
                 ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
+                ->orderBy('project.created_at', 'desc')
                 ->get();
             }
             
@@ -50,6 +52,7 @@ class ProjectController extends Controller
                         ->join('address', 'locations.id_address', '=', 'address.id')
                         ->select('project.*')
                         ->where('address.locality', '=', $request->municipio)
+                        ->orderBy('project.created_at', 'desc')
                         ->get();
 
                     } else {
@@ -62,6 +65,7 @@ class ProjectController extends Controller
                         ->select('project.*')
                         ->where('address.locality', '=', $request->municipio)
                         ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
+                        ->orderBy('project.created_at', 'desc')
                         ->get();
                     }
             } else {
@@ -74,6 +78,7 @@ class ProjectController extends Controller
                         ->select('project.*')
                         ->where('address.locality', '=', $request->municipio)
                         ->where('project.sector', '=', $request->id_sector)
+                        ->orderBy('project.created_at', 'desc')
                         ->get();
                 } else {
                     if (empty($request->codigo_postal)) {
@@ -86,6 +91,7 @@ class ProjectController extends Controller
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->where('project.subsector', '=', $request->id_subsector)
+                            ->orderBy('project.created_at', 'desc')
                             ->get();
                     } else {
 
@@ -100,6 +106,7 @@ class ProjectController extends Controller
                             ->where('project.sector', '=', $request->id_sector)
                             ->where('project.subsector', '=', $request->id_subsector)
                             ->where('address.postalCode', '=', $request->codigo_postal)
+                            ->orderBy('project.created_at', 'desc')
                             ->get();
                         } else {
                             $projects = DB::table('project')
@@ -114,6 +121,7 @@ class ProjectController extends Controller
                             ->where('project.subsector', '=', $request->id_subsector)
                             ->where('address.postalCode', '=', $request->codigo_postal)
                             ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
+                            ->orderBy('project.created_at', 'desc')
                             ->get();
                         }
                         
@@ -136,7 +144,8 @@ class ProjectController extends Controller
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
         ->select('project.*','projectsector.titulo as sector','subsector.titulo as subsector')
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return view('front.card-projects', [
             'projects' => $projects

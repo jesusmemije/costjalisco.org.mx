@@ -5,11 +5,20 @@ Georreferenciación
 @endsection
 
 @section('styles')
+
+    {{-- <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script> --}}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+
 @endsection
 
 
 @section('content')
+<link rel="stylesheet" href="{{asset("css/select2.min.css")}}">
+<script src="{{asset("js/select2.min.js")}}"></script>
 <style>
     .formulario-projects-search{
         background: rgb(255, 255, 255);
@@ -67,200 +76,139 @@ Georreferenciación
 </style>
 
 <div class="container-fluid pt-4">
-    <!-- Section - Descripción General del proyecto -->
-    {{-- <div class="row" style="background-color: #d8d8cd;">
-        <div class="col-md-3 px-0">
-            <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-9 px-0">
-            <div class="media-body">
-                <div id="titleproject" class="col-md-12">
-                    <span>REVESTIMIENTO Y SANEAMIENTO DEL <br> CANAL DE AGUAS PLUVIALES</span>
-                </div>
-                <div id="benefited" class="col-md-12">
-                    <div class="row mx-0 align-items-baseline">
-                        <img src="{{ asset('assets/img/project/icons/people.png') }}" class="img-fluid ml-3" width="60"
-                            alt="">
-                        <label class="ml-3" style="color:#628ea0; font-size: 28px; font-weight: 600;" for="">246,523
-                            ciudadanos beneficiados</label>
-                    </div>
-                    <div class="row mx-0">
-                        <div id="btns">
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button onclick="smoothScroll(document.getElementById('datos-generales'))"
-                                    class="btn btn-gris btn-sm"
-                                    style="background: linear-gradient(90deg, rgba(145,145,145,1) 0%, rgba(136,136,136,1) 100%); ">DATOS
-                                    GENERALES</button>
-                                <button onclick="smoothScroll(document.getElementById('identificacion'))"
-                                    class="btn btn-gris btn-sm"
-                                    style="background: linear-gradient(90deg, rgba(135,135,135,1) 0%, rgba(126,126,126,1) 100%);">IDENTIFICACIÓN</button>
-                                <button onclick="smoothScroll(document.getElementById('preparacion'))"
-                                    class="btn btn-gris btn-sm"
-                                    style="background: linear-gradient(90deg, rgba(125,125,125,1) 0%, rgba(115,115,115,1) 100%);">PREPARACIÓN</button>
-                                <button onclick="smoothScroll(document.getElementById('contratacion'))"
-                                    class="btn btn-gris btn-sm"
-                                    style="background: linear-gradient(90deg, rgba(114,114,114,1) 0%, rgba(93,93,93,1) 100%); ">PROCEDIMIENTO
-                                    DE CONTRATACIÓN</button>
-                                <button onclick="smoothScroll(document.getElementById('ejecucion'))"
-                                    class="btn btn-gris btn-sm"
-                                    style="background: linear-gradient(90deg, rgba(91,91,91,1) 0%, rgba(83,83,83,1) 100%);">EJECUCIÓN</button>
-                                <button onclick="smoothScroll(document.getElementById('finalizacion'))"
-                                    class="btn btn-gris btn-sm"
-                                    style="background: linear-gradient(90deg, rgba(82,82,82,1) 0%, rgba(73,73,73,1) 100%);">FINALIZACIÓN</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid" id="status">
-                    <div class="row pt-2">
-                        <div class="col-md-4">
-                            <span style="font-size: 22px; font-weight: 700;">Estatus:</span>
-                        </div>
-                        <div class="col-md-8 d-flex justify-content-end align-items-baseline">
-                            <span
-                                style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="line-date-inagurado" class="py-1">
-                    <span style="color: #2C4143"><b>Inagurado: 03/oct/2020</b></span>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <!-- Section - Mapa de la localización -->
     <div class="row" >
         <div class="col-md-12">
             <form action="{{url('georeferencing')}}" class="formulario-projects-search" method="get">
-                <select name="municipio" id="municipio">
+                <select name="municipio" id="municipio" >
                     <option value="">Seleccione entidad o municipio</option>
-                    <option value="Guadalajara">Guadalajara</option>
-                    <option value="Zapopan">Zapopan</option>
-                    <option value="San Cristóbal de la Barranca">San Cristóbal de la Barranca</option>
-                    <option value="Ixtlahuacán del Río">Ixtlahuacán del Río</option>
-                    <option value="Tala">Tala</option>
-                    <option value="El Arenal">El Arenal</option>
-                    <option value="Amatitán">Amatitán</option>
-                    <option value="Tonalá">Tonalá</option>
-                    <option value="Zapotlanejo">Zapotlanejo</option>
                     <option value="Acatic">Acatic</option>
-                    <option value="Cuquío">Cuquío</option>
-                    <option value="San Pedro Tlaquepaque">San Pedro Tlaquepaque</option>
-                    <option value="Tlajomulco de Zúñiga">Tlajomulco de Zúñiga</option>
-                    <option value="El Salto">El Salto</option>
                     <option value="Acatlán de Juárez">Acatlán de Juárez</option>
-                    <option value="Villa Corona">Villa Corona</option>
-                    <option value="Zacoalco de Torres">Zacoalco de Torres</option>
-                    <option value="Atemajac de Brizuela">Atemajac de Brizuela</option>
-                    <option value="Jocotepec">Jocotepec</option>
-                    <option value="Ixtlahuacán de los Membrillos">Ixtlahuacán de los Membrillos</option>
-                    <option value="Juanacatlán">Juanacatlán</option>
-                    <option value="Chapala">Chapala</option>
-                    <option value="Poncitlán">Poncitlán</option>
-                    <option value="Zapotlán del Rey">Zapotlán del Rey</option>
-                    <option value="Huejuquilla el Alto">Huejuquilla el Alto</option>
-                    <option value="Mezquitic">Mezquitic</option>
-                    <option value="Villa Guerrero">Villa Guerrero</option>
-                    <option value="Bolaños">Bolaños</option>
-                    <option value="Totatiche">Totatiche</option>
-                    <option value="Colotlán">Colotlán</option>
-                    <option value="Santa María de los Ángeles">Santa María de los Ángeles</option>
-                    <option value="Huejúcar">Huejúcar</option>
-                    <option value="Chimaltitán">Chimaltitán</option>
-                    <option value="San Martín de Bolaños">San Martín de Bolaños</option>
-                    <option value="Tequila">Tequila</option>
-                    <option value="Hostotipaquillo">Hostotipaquillo</option>
-                    <option value="Magdalena">Magdalena</option>
-                    <option value="Etzatlán">Etzatlán</option>
-                    <option value="San Marcos">San Marcos</option>
-                    <option value="San Juanito de Escobedo">San Juanito de Escobedo</option>
-                    <option value="Ameca">Ameca</option>
                     <option value="Ahualulco de Mercado">Ahualulco de Mercado</option>
-                    <option value="Teuchitlán">Teuchitlán</option>
-                    <option value="San Martín Hidalgo">San Martín Hidalgo</option>
-                    <option value="Guachinango">Guachinango</option>
-                    <option value="Mixtlán">Mixtlán</option>
-                    <option value="Mascota">Mascota</option>
-                    <option value="San Sebastián del Oeste">San Sebastián del Oeste</option>
-                    <option value="San Juan de los Lagos">San Juan de los Lagos</option>
-                    <option value="Jalostotitlán">Jalostotitlán</option>
-                    <option value="San Miguel el Alto">San Miguel el Alto</option>
-                    <option value="San Julián">San Julián</option>
+                    <option value="Amacueca">Amacueca</option>
+                    <option value="Amatitán">Amatitán</option>
+                    <option value="Ameca">Ameca</option>
                     <option value="Arandas">Arandas</option>
-                    <option value="San Ignacio Cerro Gordo">San Ignacio Cerro Gordo</option>
-                    <option value="Teocaltiche">Teocaltiche</option>
-                    <option value="Villa Hidalgo">Villa Hidalgo</option>
-                    <option value="Encarnación de Díaz">Encarnación de Díaz</option>
-                    <option value="Yahualica de González Gallo">Yahualica de González Gallo</option>
-                    <option value="Mexticacán">Mexticacán</option>
-                    <option value="Cañadas de Obregón">Cañadas de Obregón</option>
-                    <option value="Valle de Guadalupe">Valle de Guadalupe</option>
-                    <option value="Lagos de Moreno">Lagos de Moreno</option>
-                    <option value="Ojuelos de Jalisco">Ojuelos de Jalisco</option>
-                    <option value="Unión de San Antonio">Unión de San Antonio</option>
-                    <option value="San Diego de Alejandría">San Diego de Alejandría</option>
-                    <option value="Tepatitlán de Morelos">Tepatitlán de Morelos</option>
-                    <option value="Tototlán">Tototlán</option>
-                    <option value="Atotonilco el Alto">Atotonilco el Alto</option>
-                    <option value="Ocotlán">Ocotlán</option>
-                    <option value="Jamay">Jamay</option>
-                    <option value="La Barca">La Barca</option>
-                    <option value="Ayotlán">Ayotlán</option>
-                    <option value="Jesús María">Jesús María</option>
-                    <option value="Degollado">Degollado</option>
-                    <option value="Unión de Tula">Unión de Tula</option>
-                    <option value="Ayutla">Ayutla</option>
-                    <option value="Atenguillo">Atenguillo</option>
-                    <option value="Cuautla">Cuautla</option>
+                    <option value="Atemajac de Brizuela">Atemajac de Brizuela</option>
                     <option value="Atengo">Atengo</option>
-                    <option value="Talpa de Allende">Talpa de Allende</option>
-                    <option value="Puerto Vallarta">Puerto Vallarta</option>
+                    <option value="Atenguillo">Atenguillo</option>
+                    <option value="Atotonilco el Alto">Atotonilco el Alto</option>
+                    <option value="Atoyac">Atoyac</option>
+                    <option value="Autlán de Navarro">Autlán de Navarro</option>
+                    <option value="Ayotlán">Ayotlán</option>
+                    <option value="Ayutla">Ayutla</option>
+                    <option value="Bolaños">Bolaños</option>
                     <option value="Cabo Corrientes">Cabo Corrientes</option>
-                    <option value="Tomatlán">Tomatlán</option>
+                    <option value="Casimiro Castillo">Casimiro Castillo</option>
+                    <option value="Cañadas de Obregón">Cañadas de Obregón</option>
+                    <option value="Chapala">Chapala</option>
+                    <option value="Chimaltitán">Chimaltitán</option>
+                    <option value="Chiquilistlán">Chiquilistlán</option>
+                    <option value="Cihuatlán">Cihuatlán</option>
                     <option value="Cocula">Cocula</option>
+                    <option value="Colotlán">Colotlán</option>
+                    <option value="Concepción de Buenos Aires">Concepción de Buenos Aires</option>
+                    <option value="Cuautitlán de García Barragán">Cuautitlán de García Barragán</option>
+                    <option value="Cuautla">Cuautla</option>
+                    <option value="Cuquío">Cuquío</option>
+                    <option value="Degollado">Degollado</option>
+                    <option value="Ejutla">Ejutla</option>
+                    <option value="El Arenal">El Arenal</option>
+                    <option value="El Grullo">El Grullo</option>
+                    <option value="El Limón">El Limón</option>
+                    <option value="El Salto">El Salto</option>
+                    <option value="Encarnación de Díaz">Encarnación de Díaz</option>
+                    <option value="Etzatlán">Etzatlán</option>
+                    <option value="Guachinango">Guachinango</option>
+                    <option value="Guadalajara">Guadalajara</option>
+                    <option value="Gómez Farías">Gómez Farías</option>
+                    <option value="Hostotipaquillo">Hostotipaquillo</option>
+                    <option value="Huejuquilla el Alto">Huejuquilla el Alto</option>
+                    <option value="Huejúcar">Huejúcar</option>
+                    <option value="Ixtlahuacán de los Membrillos">Ixtlahuacán de los Membrillos</option>
+                    <option value="Ixtlahuacán del Río">Ixtlahuacán del Río</option>
+                    <option value="Jalostotitlán">Jalostotitlán</option>
+                    <option value="Jamay">Jamay</option>
+                    <option value="Jesús María">Jesús María</option>
+                    <option value="Jilotlán de los Dolores">Jilotlán de los Dolores</option>
+                    <option value="Jocotepec">Jocotepec</option>
+                    <option value="Juanacatlán">Juanacatlán</option>
+                    <option value="Juchitlán">Juchitlán</option>
+                    <option value="La Barca">La Barca</option>
+                    <option value="La Huerta">La Huerta</option>
+                    <option value="La Manzanilla de la Paz">La Manzanilla de la Paz</option>
+                    <option value="Lagos de Moreno">Lagos de Moreno</option>
+                    <option value="Magdalena">Magdalena</option>
+                    <option value="Mascota">Mascota</option>
+                    <option value="Mazamitla">Mazamitla</option>
+                    <option value="Mexticacán">Mexticacán</option>
+                    <option value="Mezquitic">Mezquitic</option>
+                    <option value="Mixtlán">Mixtlán</option>
+                    <option value="Ocotlán">Ocotlán</option>
+                    <option value="Ojuelos de Jalisco">Ojuelos de Jalisco</option>
+                    <option value="Pihuamo">Pihuamo</option>
+                    <option value="Poncitlán">Poncitlán</option>
+                    <option value="Puerto Vallarta">Puerto Vallarta</option>
+                    <option value="Quitupan">Quitupan</option>
+                    <option value="San Cristóbal de la Barranca">San Cristóbal de la Barranca</option>
+                    <option value="San Diego de Alejandría">San Diego de Alejandría</option>
+                    <option value="San Gabriel">San Gabriel</option>
+                    <option value="San Ignacio Cerro Gordo">San Ignacio Cerro Gordo</option>
+                    <option value="San Juan de los Lagos">San Juan de los Lagos</option>
+                    <option value="San Juanito de Escobedo">San Juanito de Escobedo</option>
+                    <option value="San Julián">San Julián</option>
+                    <option value="San Marcos">San Marcos</option>
+                    <option value="San Martín de Bolaños">San Martín de Bolaños</option>
+                    <option value="San Martín Hidalgo">San Martín Hidalgo</option>
+                    <option value="San Miguel el Alto">San Miguel el Alto</option>
+                    <option value="San Pedro Tlaquepaque">San Pedro Tlaquepaque</option>
+                    <option value="San Sebastián del Oeste">San Sebastián del Oeste</option>
+                    <option value="Santa María de los Ángeles">Santa María de los Ángeles</option>
+                    <option value="Santa María del Oro">Santa María del Oro</option>
+                    <option value="Sayula">Sayula</option>
+                    <option value="Tala">Tala</option>
+                    <option value="Talpa de Allende">Talpa de Allende</option>
+                    <option value="Tamazula de Gordiano">Tamazula de Gordiano</option>
+                    <option value="Tapalpa">Tapalpa</option>
+                    <option value="Tecalitlán">Tecalitlán</option>
+                    <option value="Techaluta de Montenegro">Techaluta de Montenegro</option>
                     <option value="Tecolotlán">Tecolotlán</option>
                     <option value="Tenamaxtlán">Tenamaxtlán</option>
-                    <option value="Juchitlán">Juchitlán</option>
-                    <option value="Chiquilistlán">Chiquilistlán</option>
-                    <option value="Ejutla">Ejutla</option>
-                    <option value="El Limón">El Limón</option>
-                    <option value="El Grullo">El Grullo</option>
-                    <option value="Tonaya">Tonaya</option>
-                    <option value="Tuxcacuesco">Tuxcacuesco</option>
-                    <option value="Villa Purificación">Villa Purificación</option>
-                    <option value="La Huerta">La Huerta</option>
-                    <option value="Autlán de Navarro">Autlán de Navarro</option>
-                    <option value="Casimiro Castillo">Casimiro Castillo</option>
-                    <option value="Cuautitlán de García Barragán">Cuautitlán de García Barragán</option>
-                    <option value="Cihuatlán">Cihuatlán</option>
-                    <option value="Zapotlán el Grande">Zapotlán el Grande</option>
-                    <option value="Gómez Farías">Gómez Farías</option>
-                    <option value="Concepción de Buenos Aires">Concepción de Buenos Aires</option>
-                    <option value="Atoyac">Atoyac</option>
-                    <option value="Techaluta de Montenegro">Techaluta de Montenegro</option>
+                    <option value="Teocaltiche">Teocaltiche</option>
                     <option value="Teocuitatlán de Corona">Teocuitatlán de Corona</option>
-                    <option value="Sayula">Sayula</option>
-                    <option value="Tapalpa">Tapalpa</option>
-                    <option value="Amacueca">Amacueca</option>
+                    <option value="Tepatitlán de Morelos">Tepatitlán de Morelos</option>
+                    <option value="Tequila">Tequila</option>
+                    <option value="Teuchitlán">Teuchitlán</option>
                     <option value="Tizapán el Alto">Tizapán el Alto</option>
-                    <option value="Tuxcueca">Tuxcueca</option>
-                    <option value="La Manzanilla de la Paz">La Manzanilla de la Paz</option>
-                    <option value="Mazamitla">Mazamitla</option>
-                    <option value="Valle de Juárez">Valle de Juárez</option>
-                    <option value="Quitupan">Quitupan</option>
-                    <option value="Zapotiltic">Zapotiltic</option>
-                    <option value="Tamazula de Gordiano">Tamazula de Gordiano</option>
-                    <option value="San Gabriel">San Gabriel</option>
+                    <option value="Tlajomulco de Zúñiga">Tlajomulco de Zúñiga</option>
                     <option value="Tolimán">Tolimán</option>
-                    <option value="Zapotitlán de Vadillo">Zapotitlán de Vadillo</option>
-                    <option value="Tuxpan">Tuxpan</option>
+                    <option value="Tomatlán">Tomatlán</option>
+                    <option value="Tonalá">Tonalá</option>
+                    <option value="Tonaya">Tonaya</option>
                     <option value="Tonila">Tonila</option>
-                    <option value="Pihuamo">Pihuamo</option>
-                    <option value="Tecalitlán">Tecalitlán</option>
-                    <option value="Jilotlán de los Dolores">Jilotlán de los Dolores</option>
-                    <option value="Santa María del Oro">Santa María del Oro</option>
+                    <option value="Totatiche">Totatiche</option>
+                    <option value="Tototlán">Tototlán</option>
+                    <option value="Tuxcacuesco">Tuxcacuesco</option>
+                    <option value="Tuxcueca">Tuxcueca</option>
+                    <option value="Tuxpan">Tuxpan</option>
+                    <option value="Unión de San Antonio">Unión de San Antonio</option>
+                    <option value="Unión de Tula">Unión de Tula</option>
+                    <option value="Valle de Guadalupe">Valle de Guadalupe</option>
+                    <option value="Valle de Juárez">Valle de Juárez</option>
+                    <option value="Villa Corona">Villa Corona</option>
+                    <option value="Villa Guerrero">Villa Guerrero</option>
+                    <option value="Villa Hidalgo">Villa Hidalgo</option>
+                    <option value="Villa Purificación">Villa Purificación</option>
+                    <option value="Yahualica de González Gallo">Yahualica de González Gallo</option>
+                    <option value="Zacoalco de Torres">Zacoalco de Torres</option>
+                    <option value="Zapopan">Zapopan</option>
+                    <option value="Zapotiltic">Zapotiltic</option>
+                    <option value="Zapotitlán de Vadillo">Zapotitlán de Vadillo</option>
+                    <option value="Zapotlanejo">Zapotlanejo</option>
+                    <option value="Zapotlán del Rey">Zapotlán del Rey</option>
+                    <option value="Zapotlán el Grande">Zapotlán el Grande</option>
                 </select>
+                
                 <div id="loading"></div>
                 <select name="id_sector" id="sector">
                     <option value="">No hay sectores</option>
@@ -349,7 +297,11 @@ Georreferenciación
 @endsection
 
 @section('scripts')
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#prueba').select2();
+    });
+</script>
 <script>
     $(document).ready(function(){
         $('#municipio').on('change',function(){
@@ -468,5 +420,6 @@ Georreferenciación
             L.marker(["20.8811927","-103.8440796"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Tequila Jalisco</b></a><br>Zapopan");*/
     });
 </script>
+
   
 @endsection

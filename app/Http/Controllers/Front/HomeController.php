@@ -47,11 +47,11 @@ class HomeController extends Controller
 
     public function statistics()
     {
-        $sectores = DB::table('project')
-        ->join('projectsector','project.sector','=','projectsector.id')
-        ->select('projectsector.*')
-        ->distinct()
-        ->get();
+        // $sectores = DB::table('project')
+        // ->join('projectsector','project.sector','=','projectsector.id')
+        // ->select('projectsector.*')
+        // ->distinct()
+        // ->get();
 
         $sector1 = DB::table('project')
         ->join('projectsector','project.sector','=','projectsector.id')
@@ -74,23 +74,9 @@ class HomeController extends Controller
         ->where('project.sector','=',4)
         ->get();
 
-
-        // if (count($sectores)==0) {
-        //     $sectorarray=0;
-        // } else {
-        //     foreach ($sectores as $sector) {
-                
-
-        //         $sectorarray[$sector->titulo] = $proyects[0]->t_proyect;
-        //     }
-        // }
-        // dd($sectorarray);
-
-        
-        
-
-
         $proyectos = DB::table('project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
         ->select(DB::raw('count(*) as total_proyectos'))
         ->get();
 
@@ -111,7 +97,7 @@ class HomeController extends Controller
             $total_contrato=$monto_contrato[0]->monto_total;
         }
         
-        return view('front.statistics',['total_contrato'=>$total_contrato,'total_proyectos'=>$total_proyectos,'sectores'=>$sectores,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
+        return view('front.statistics',['total_contrato'=>$total_contrato,'total_proyectos'=>$total_proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
     }
 
     public function interest_sites()

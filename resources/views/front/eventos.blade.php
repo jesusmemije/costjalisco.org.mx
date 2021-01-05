@@ -297,6 +297,7 @@ td.first {
         </div>
         <div class="col-md-1.9" style="margin-top:1%;">
             <div style="margin-left:20%" id="id_dias">
+                
                 <center><small>Clic en el mes</small></center>    
             </div>
         </div>
@@ -304,7 +305,7 @@ td.first {
             <div  class="content1"  style="margin-top: 1%;">
                 <div class="col-md-12" ></div>
                 <h5 id="titulo"> 
-                    <center>Seleccione un mes y despues el dia</center>
+                    Seleccione un mes y despues el día
                 
                 </h5>
                 <p></p>
@@ -376,9 +377,17 @@ td.first {
     {
 
         if ($.trim(mes) != ''){
-                    // $('#loading2').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="20" style="margin-left: 45%; margin-top:15px;" />');
+                    $("#titulo").empty();
+                    $("#titulo").append('Seleccione un mes y despues el día');
+                    $("#descripcion").empty();
+                    $("#hora").empty();
+                    
+                    $("#ubicacion").empty();
+                    $("#contacto").empty();
+                    $('#id_dias').empty();
+                    $('#id_dias').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="30" style="margin-left: 30px; margin-top:15px;" />');
                     $.get('mostrar_dias',{mes:mes}, function (dias) {
-                        // $('#loading2').fadeIn(700).html('');
+                        $('#id_dias').fadeIn(900).html('');
                         $('#id_dias').empty();
                         // $('#id_dias').append("<option value=''>Seleccione subsector</option>");
                         $.each(dias, function (index, value){
@@ -391,6 +400,15 @@ td.first {
     function mostrar_contenido(id_event)
     { 
         if ($.trim(id_event) != ''){
+            
+            $("#titulo").empty();
+            $("#descripcion").empty();
+            $("#hora").empty();
+            
+            $("#ubicacion").empty();
+            $("#contacto").empty();
+            
+            $('#titulo').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="30" style="margin-left: 30px; margin-top:15px;" />');
             $.ajax({
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -400,6 +418,7 @@ td.first {
                     type: 'post', //método de envio
                     dataType: "json",
                     success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                    $('#titulo').fadeIn(900).html('');
 
                     console.log(resp);
                     const foriginal = resp[0].date_start;
@@ -421,7 +440,7 @@ td.first {
                         $("#contacto").empty();
 
                         $("#titulo").append(resp[0].title);
-                        $("#descripcion").append(resp[0].description);
+                        $("#descripcion").append("<p style='text-align: justify;'>"+resp[0].description+"</p>");
                         
                         $("#ubicacion").append(resp[0].location);
                         $("#contacto").append(resp[0].contact);
