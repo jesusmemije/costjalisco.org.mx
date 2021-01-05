@@ -94,8 +94,7 @@
                 @endif
                 <td>
                 @if(!empty($project->updated))
-                {{ $project->updated}}
-              
+                {{$project->fechap}}
                 </td>
                 @else
                 <span class="badge badge-info">Sin información</span>
@@ -119,14 +118,20 @@
                 @endif
                 <td>
                
-                <a class="btn btn-sm btn-warning shadow-sm" href="{{route('project.generaldata2',$project->id_project)}}">
+                <a class="btn btn-sm btn-circle btn-warning shadow-sm" href="{{route('project.generaldata2',$project->id_project)}}">
                     <i class="fas fa-edit fa-sm text-white-50"></i>
-                    Editar
+                    
                   </a>
-                  <button class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $project->id_project}}" data-name="{{ $project->title }}">
+                  <button class="btn btn-sm btn-danger btn-circle shadow-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $project->id_project}}" data-name="{{ $project->title }}">
                     <i class="fas fa-trash fa-sm text-white-50"></i>
-                    Eliminar
+                  
                   </button>
+                  <!--
+                  <a style="margin-top: 3%;" class="btn btn-sm btn-success btn-circle shadow-sm" href="{{route('projectexport',$project->id)}}">
+                    <i class="fas fa-file-excel fa-sm text-white-50"></i>
+              -->
+                  
+              </a>
                 </td>
               </tr>
             @endforeach

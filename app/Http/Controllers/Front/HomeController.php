@@ -19,8 +19,13 @@ class HomeController extends Controller
             ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
             ->get();
         
+            $h=DB::table('documents')
+            ->where('description','=','carrusel')
+            ->get();
+
         return view('front.home', [
-            'projects' => $projects
+            'projects' => $projects,
+            'h'=>$h,
         ]);
     }
 

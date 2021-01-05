@@ -4,13 +4,89 @@
 Inicio
 @endsection
 
+@section('styles')
+    <style>
+
+        .titulo-sitios-interes {
+            font-size: 30px; 
+            font-weight: 700;
+            margin-left: 30px;
+        }
+
+        .nav-login {
+            font-size: 16px;
+        }
+
+        @media only screen and (max-width: 480px) {
+
+            .card-indice-title {
+                font-size: 14px;
+            }
+            .card-indice-counter {
+                font-size: 26px;
+            }
+
+            .hidden-br {
+                display: none;
+            }
+
+            .line-red-vertical {
+                border-right: none;
+            }
+
+            .mb-5, .my-5 {
+                margin-bottom: 0 !important;
+            }
+
+            .mb-4, .my-4 {
+                margin-bottom: 0 !important;
+            }
+
+            .ver-mas-font {
+                color: #fff;
+                font-size: 13px;
+                font-weight: 700;
+                font-style: italic;
+                background: #628EA0;
+                padding: 8px 10px;
+                border-radius: 24px;
+            }
+
+            .line-red-center {
+                margin-top: 0;
+                border-bottom: none;
+            }
+
+            .titulo-sitios-interes {
+                font-size: 22px; 
+            }
+
+            .rectangulo-rojo-avance-carousel {
+                display: none;
+            }
+
+            .mya {
+                font-size: 14px;
+                color: #2C4143;
+            }
+
+            .nav-login {
+                margin-right: 0;
+                margin-left: 50px;
+                font-size: 15px;
+            }
+        }
+        
+    </style>
+@endsection
+
 @section('content')
 
 <!-- Contenido -->
 <div class="main">
 
     <!--MODAL-->
-    <div class="chatbot text-center">
+    <div class="chatbot text-center hidden-phone">
         <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
             alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">
@@ -91,7 +167,9 @@ Inicio
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
     </script>
 
-    <!-- Section - Carousel main -->
+    
+    <!-- Section - Carousel main default -->
+    @if(sizeof($h)==0)
     <div id="carouselHome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
@@ -129,6 +207,52 @@ Inicio
             </div>
         </div>
     </div>
+
+    @else
+    <div id="carouselHome" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+            <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselHome" data-slide-to="1"></li>
+            <li data-target="#carouselHome" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+
+            <?php 
+    $ruta=asset('assets/img/home/slider-main/'.$h[0]->url);
+   
+    ?>
+
+
+                <img src="{{$ruta }}"
+                    alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
+                        <span class="font-title-carousel">VALORADA</span>
+                    </div>
+                </div>
+            </div>
+
+            @for ($i = 1; $i < sizeof($h); $i++)
+            <div class="carousel-item">
+            <?php 
+    $ruta=asset('assets/img/home/slider-main/'.$h[$i]->url);
+    
+    ?> 
+                <img src="{{$ruta }}" alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
+                        <span class="font-title-carousel">VALORADA</span>
+                    </div>
+                </div>
+            </div>
+           @endfor
+        </div>
+    </div>
+
+    @endif
 
     <!-- Btn Agenda -->
     <!--
@@ -186,22 +310,22 @@ Inicio
 
     <!-- Section - Índices -->
     <div class="row mx-0">
-        <div class="col-3 px-0">
+        <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Organizaciones</div>
             <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
             <div class="card-indice-counter">36</div>
         </div>
-        <div class="col-3 px-0">
+        <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Proyectos de la iniciativa</div>
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
             <div class="card-indice-counter">512</div>
         </div>
-        <div class="col-3 px-0">
+        <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
             <div class="card-indice-counter">521,256</div>
         </div>
-        <div class="col-3 px-0">
+        <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Presupuesto utilizado</div>
             <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid"
                 alt="Indice de presupuesto">
@@ -233,26 +357,26 @@ Inicio
             <div class="col-md-6 line-red-vertical">
                 <div class="my-4" style="letter-spacing: -.2px;">
                     <p>
-                        La iniciativa de Transparencia en Infraestructura <strong>[Construction <br>
-                            Sector Transparency Initiative] o "CoST" por sus siglas en <br>
-                            inglés,</strong> es la encargada de promover la transparencia y la <br>
-                        rendición de cuentas dentro de las diferentes etapas de los <br>
+                        La iniciativa de Transparencia en Infraestructura <strong>[Construction <br class="hidden-br">
+                            Sector Transparency Initiative] o "CoST" por sus siglas en <br class="hidden-br">
+                            inglés,</strong> es la encargada de promover la transparencia y la <br class="hidden-br">
+                        rendición de cuentas dentro de las diferentes etapas de los <br class="hidden-br">
                         proyectos de infraestructura y obra pública.
                     </p>
                     <p>
-                        Actualmente, tiene presencia en 19 países distribuidos en <br>
-                        cuatro continentes, donde trabaja directamente con el Gobierno, <br>
-                        la sociedad civil y la industria del ramo de la contrucción para <br>
-                        promover la divulgación, validación e interpretación de datos de <br>
+                        Actualmente, tiene presencia en 19 países distribuidos en <br class="hidden-br">
+                        cuatro continentes, donde trabaja directamente con el Gobierno, <br class="hidden-br">
+                        la sociedad civil y la industria del ramo de la contrucción para <br class="hidden-br">
+                        promover la divulgación, validación e interpretación de datos de <br class="hidden-br">
                         proyectos de infraestructura y obra pública.
                     </p>
                     <br>
                 </div>
             </div>
             <div class="col-md-6 text-center">
-                <br><br>
+                <br class="hidden-br"><br class="hidden-br">
                 <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
-                <br><br>
+                <br class="hidden-br"><br class="hidden-br">
                 <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
                         https://infrastructuretransparency.org/</a></span>
             </div>
@@ -277,12 +401,12 @@ Inicio
             <div class="col-md-7 line-red-vertical">
                 <div class="mt-5" style="letter-spacing: -.2px;">
                     <p>
-                        El Grupo Multisectorial "GMS" está conformado por instituciones de <br>
+                        El Grupo Multisectorial "GMS" está conformado por instituciones de <br class="hidden-br">
                         Gobierno, del sector privado, del sector académico y de la sociedad civil.
                     </p>
                     <p>
-                        Este grupo, a través de los representantes de cada una de las <br>
-                        instituciones que lo integra, es el responsable de guiar el desarrollo, la <br>
+                        Este grupo, a través de los representantes de cada una de las <br class="hidden-br">
+                        instituciones que lo integra, es el responsable de guiar el desarrollo, la <br class="hidden-br">
                         implementación y supervisión de la iniciativa de CoST en Jalisco.
                     </p>
                 </div>
@@ -296,36 +420,36 @@ Inicio
     </div>
 
     <!-- Section - Sector público-->
-    <div class="container mt-5">
+    <div class="container mt-5 hidden-phone">
         <div style="border-left: 5px solid #2C4143;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Público
+                    <h3 class="titulo-sitios-interes">Sector Público
                     </h3>
                 </div>
             </div>
             <div class="row align-items-center">
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 col-2 text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </div>
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
                         width="70" alt="">
                 </div>
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
                         alt="">
                 </div>
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
                         alt="">
                 </div>
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </div>
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </div>
@@ -334,11 +458,11 @@ Inicio
     </div>
 
     <!-- Section - Sector Académico-->
-    <div class="container mt-5">
+    <div class="container mt-5 hidden-phone">
         <div style="border-left: 5px solid #D60000;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 class="text-red" style="font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Académico
+                    <h3 class="text-red titulo-sitios-interes">Sector Académico
                     </h3>
                 </div>
             </div>
@@ -356,11 +480,11 @@ Inicio
     </div>
 
     <!-- Section - Sector Privado-->
-    <div class="container mt-5">
+    <div class="container mt-5 hidden-phone">
         <div style="border-left: 5px solid #FFCE32;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #FFCE32; font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Privado
+                    <h3 style="color: #FFCE32;" class="titulo-sitios-interes">Sector Privado
                     </h3>
                 </div>
             </div>
@@ -382,11 +506,11 @@ Inicio
     </div>
 
     <!-- Section - Sociedad Civil Organizada-->
-    <div class="container mt-5">
+    <div class="container mt-5 hidden-phone">
         <div style="border-left: 5px solid #61A8BD;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #61A8BD; font-size: 30px; font-weight: 700; margin-left: 30px;">Sociedad Civil
+                    <h3 style="color: #61A8BD;" class="titulo-sitios-interes">Sociedad Civil
                         Organizada</h3>
                 </div>
             </div>
@@ -408,11 +532,11 @@ Inicio
     </div>
 
     <!-- Section - Aliados Estratégicos-->
-    <div class="container mt-5">
+    <div class="container mt-5 hidden-phone">
         <div style="border-left: 5px solid #D8D8CD;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #D8D8CD; font-size: 30px; font-weight: 700; margin-left: 30px;">Aliados
+                    <h3 style="color: #D8D8CD;" class="titulo-sitios-interes">Aliados
                         Estratégicos</h3>
                 </div>
             </div>
@@ -424,6 +548,101 @@ Inicio
             </div>
         </div>
     </div>
+
+
+    <!-- Section - Sector público-->
+<div class="container mt-5 hidden-desktop">
+    <div style="border-left: 5px solid #2C4143;">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <h3 class="titulo-sitios-interes">Sector Público
+                </h3>
+            </div>
+        </div>
+        
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <ul>
+                    <li><a class="mya" href="https://www.jalisco.gob.mx/">Gobierno del Estado de Jalisco</a></li>
+                    <li><a class="mya" href="https://guadalajara.gob.mx/">Ayuntamiento de Guadalajara</a></li>
+                    <li><a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
+                    <li><a class="mya" href="https://tonala.gob.mx/portal/">Ayuntamiento de Tonalá</a></li>
+                    <li><a class="mya" href="https://www.itei.org.mx/v4/">Instituto de Transparencia, Información Pública y Protección de Datos <br>
+                        Personales del Estado de Jalisco (ITEI) (Preside)</a></li>
+                    <li><a class="mya" href="https://home.inai.org.mx/">Instituto Nacional de Transparencia, Acceso a la Información y <br>
+                        Protección de Datos Personales (INAI)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="border-left: 5px solid #D60000;">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <h3 style="color:#D60000;" class="titulo-sitios-interes">Sector Académico
+                </h3>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <ul>
+                    <li><a class="mya" href="https://www.udg.mx/">Universidad de Guadalajara (UdeG)</a></li>
+                    <li><a class="mya" href="https://www.iteso.mx/">Instituto Tecnológico y de Estudios Superiores de Occidente AC (ITESO)</a></li>
+                    <li> <a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="border-left: 5px solid #FFCE32;">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <h3 style="color: #FFCE32;" class="titulo-sitios-interes">Sector Privado
+                </h3>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <ul>
+                    <li><a class="mya" href="https://cmicjalisco.org.mx/">Cámara Mexicana de la Industria de la Construcción Delegación Jalisco <br>
+                    (CMIC Jalisco)</a></li>
+                    <li><a class="mya" href="https://cicej.org/">Colegio de Ingenieros Civiles del Estado de Jalisco (CICEJ)</a</li>
+                    <li><a class="mya" href="http://comceoccte.org.mx/">Consejo Mexicano de Comercio Exterior de Occidente A.C (COMCE)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="border-left: 5px solid #61A8BD;">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <h3 style="color: #61A8BD;" class="titulo-sitios-interes">Sociedad Civil Organizada
+                </h3>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <ul>
+                    <li><a class="mya" href="http://cpsjalisco.org/">Comité de Participación Social del Sistema Estatal Anticorrupción (CPS)</a></li>
+                    <li><a class="mya" href="http://www.cimtra.org.mx/portal/">Colectivo Ciudadanos por Municipios Transparentes (CIMTRA)</a></li>
+                    <li><a class="mya" href="https://www.mexicoevalua.org/">México Evalúa, Centro de Análisis de Políticas Públicas A.C.</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="border-left: 5px solid #D8D8CD;">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <h3 style="color: #D8D8CD;" class="titulo-sitios-interes">Aliados Estratégicos
+                </h3>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <ul>
+                    <li><a class="mya" target="_blank" href="http://transversalthinktank.org/about">Transversal Think Tank</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Título - Proyectos-->
     <div class="container pt-5">
@@ -451,7 +670,7 @@ Inicio
                                 <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
                                     class="img-fluid" alt="">
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 hidden-phone">
                                 <h2 class="font-weight-bold my-4 text-red">{{ $project->title }}</h2>
                                 <div class="row">
                                     <div class="col-md-6" style="border-right: 1px solid #777;">
@@ -501,7 +720,7 @@ Inicio
     </div>
 
     <!-- Section - newsletter -->
-    <div class="row mx-0 my-4 align-items-center">
+    <div class="row mx-0 my-4 align-items-center hidden-phone">
         <div class="col-md-12 px-0">
             <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid"
                 alt="Newsletter - CoST Jalisco">
@@ -529,7 +748,7 @@ Inicio
     </div>
 
     <!-- Section - Timeline redes sociales -->
-    <div class="container pb-5">
+    <div class="container pb-5 hidden-phone">
         <div class="row">
             <div class="col-md-4">
                 <div class="timeline"></div>
@@ -558,7 +777,7 @@ Inicio
     </div>
 
     <!-- Section - Visitas -->
-    <div class="container py-5">
+    <div class="container py-5 hidden-phone">
         <div class="row line-top-right">
             <div class="border-left-visitantes"></div>
             <div class="col-md-5 text-right pt-4 px-0" style="line-height: 1.1;">
