@@ -581,3 +581,19 @@ position: relative;
   top: 20px;
   z-index: 3000;
 }
+
+
+
+@media only screen and (max-width: 480px) {
+
+  .hidden-phone {
+      display: none!important;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+
+  .hidden-desktop {
+    display: none!important;
+  }
+}
