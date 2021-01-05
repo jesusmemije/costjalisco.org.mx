@@ -52,7 +52,8 @@ Inicio
 
 
     
-    <!-- Section - Carousel main -->
+    <!-- Section - Carousel main default -->
+    @if(sizeof($h)==0)
     <div id="carouselHome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
@@ -90,6 +91,52 @@ Inicio
             </div>
         </div>
     </div>
+
+    @else
+    <div id="carouselHome" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+            <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselHome" data-slide-to="1"></li>
+            <li data-target="#carouselHome" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+
+            <?php 
+    $ruta=asset('assets/img/home/slider-main/'.$h[0]->url);
+   
+    ?>
+
+
+                <img src="{{$ruta }}"
+                    alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
+                        <span class="font-title-carousel">VALORADA</span>
+                    </div>
+                </div>
+            </div>
+
+            @for ($i = 1; $i < sizeof($h); $i++)
+            <div class="carousel-item">
+            <?php 
+    $ruta=asset('assets/img/home/slider-main/'.$h[$i]->url);
+    
+    ?> 
+                <img src="{{$ruta }}" alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <span class="font-title-carousel font-weight-bold">INFRAESTRUCTURA</span>
+                        <span class="font-title-carousel">VALORADA</span>
+                    </div>
+                </div>
+            </div>
+           @endfor
+        </div>
+    </div>
+
+    @endif
 
     <!-- Btn Agenda -->
     <!--

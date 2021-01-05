@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Exports\ProjectDataExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use stdClass;
 
 class ProjectController extends Controller
@@ -217,14 +219,30 @@ class ProjectController extends Controller
             ->select('titulo')
             ->first();
 
+            if(!$tipoAmbiental){
+                $tipoAmbiental=new stdClass();
+                $tipoAmbiental->titulo="";
+            }
+         
+
             $tipoFactibilidad=DB::table('catfac')
             ->where('id','=',$all->tipoFactibilidad)
             ->select('titulo')
             ->first();
+            if(!$tipoFactibilidad){
+                $tipoFactibilidad=new stdClass();
+                $tipoFactibilidad->titulo="";
+            }
+
             $tipoImpacto=DB::table('catimpactoterreno')
             ->where('id','=',$all->tipoImpacto)
             ->select('titulo')
             ->first();
+
+            if(!$tipoImpacto){
+                $tipoImpacto=new stdClass();
+                $tipoImpacto->titulo="";
+            }
     
 
 
@@ -286,6 +304,9 @@ class ProjectController extends Controller
             ->where('id_project','=',$project->id)
             ->get();
            
+
+        
+            
           
 
 
@@ -329,5 +350,61 @@ class ProjectController extends Controller
 
 
         echo json_encode($data);
+    }
+
+    public function export($id) 
+    {
+
+        
+    /*
+
+    El archivo debe guardarse en el servidor o solo está disponible para descargar?.
+    $h=DB::table('project_documents')
+    ->join('documents','project_documents.id_document','=','documents.id')
+    ->where('project_documents.id_project','=',$id)
+    ->where('documents.description','=','excel')
+    ->first();
+
+  
+
+    if($h){
+       $aux=asset('documents/'.$h->url);
+       print_r($aux);
+       die();
+    }else{
+       
+    }
+    */
+
+    
+
+
+   
+    //print_r($all);
+    $name='data'.$id.'.xlsx';
+    
+    $excel=Excel::download(new ProjectDataExport($id), $name);
+       /* 
+    if($excel){
+//save excel bd & server
+
+$d=new Documents();
+$d->description='excel';
+$d->url= $name;
+$d->save();
+
+$pd=new ProjectDocuments();
+$pd->id_project=$id;
+$pd->id_document=$d->id;
+$pd->save();
+
+return $excel;
+    }
+    */
+
+    
+    
+
+
     }
 }

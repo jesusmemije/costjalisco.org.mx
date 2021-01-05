@@ -487,8 +487,9 @@ Datos del proyecto
             </a>
         </div>
         <div class="col-md-6 text-center my-5">
+           
             <img src="{{asset('/assets/img/project/icons/excel.png')}}" class="img-fluid" width="100"><br><br>
-            <button class="btn btn-sm btn-documents">ABRIR DOCUMENTO XLS</button>
+            <a class="btn btn-sm btn-documents"  href="{{route('projectexport',$project->id_project)}}">ABRIR DOCUMENTO XLS</a>
         </div>
     </div>
 </div>

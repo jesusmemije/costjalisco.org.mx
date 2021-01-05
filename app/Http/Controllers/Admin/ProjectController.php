@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+use App\Exports\ProjectDataExport;
 use App\Models\ProjectStatus;
 use App\Models\ProjectSector;
 use App\Http\Controllers\Controller;
@@ -20,12 +22,14 @@ use App\Models\Estudios;
 use App\Models\ProjectDocuments;
 use App\Models\ProjectLocations;
 use App\Models\SubSector;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Block\Element\Document;
+use Maatwebsite\Excel\Facades\Excel;
 use stdClass;
 
 class ProjectController extends Controller
@@ -50,7 +54,7 @@ class ProjectController extends Controller
         ->leftJoin('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('doproject','project.id','=','doproject.id_project')
         ->where('doproject.id_user','=',$id_user)
-        ->select('project.*','project.id as id_project','organization.name  as orgname',
+        ->select('project.*','project.id as id_project','project.updated_at as fechap','organization.name  as orgname',
         'proyecto_contratacion.montocontrato as montocontrato','generaldata.*')
          ->get();
 
@@ -78,7 +82,7 @@ class ProjectController extends Controller
         }
      
      
-       
+
         return view('admin.projects.index',['projects'=>$projects]);
     }
 
@@ -1673,4 +1677,5 @@ echo  $json;
 
 
     }
+   
 }

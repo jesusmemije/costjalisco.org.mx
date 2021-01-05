@@ -90,6 +90,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Banner
 
     Route::get('/admin/admincarousel', [DashboardController::class, 'admincarousel'])->name('admincarousel');
+    Route::post('/admin/savecarousel', [DashboardController::class, 'savecarousel'])->name('savecarousel');
+    Route::post('/admin/deletecarousel', [DashboardController::class, 'deletecarousel'])->name('deletecarousel');
 
 
     Route::get('/admin/testmap', [AdminProjectController::class, 'testmap'])->name('testmap');
@@ -201,6 +203,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/admin/organizations/storeRol', [OrganizationsController::class, 'storeRol'])->name('organizations.storeRol');
         Route::post('/admin/organizations/updateRol/', [OrganizationsController::class, 'updateRol'])->name('organizations.updateRol');
         Route::post('/admin/organizations/destroyRol/', [OrganizationsController::class, 'destroyRol'])->name('organizations.destroyRol');
+   
+        Route::get('admin/project/export/{id}',  [AdminProjectController::class, 'export'])->name('projectexport');
     });
 
     //Routes Users

@@ -756,7 +756,7 @@ $("#del").on('click', function(evt){
                draggable: false
            }).addTo(map);
 
-           marker.addClass('selectedMarker');
+          // marker.addClass('selectedMarker');
            
 
 
@@ -772,13 +772,7 @@ $("#del").on('click', function(evt){
 
        var here=document.getElementsByName('selectedMarker');
        console.log(here);
-       for (const key in here) {
-        key.addEventListener('contextmenu', function(ev) {
-    ev.preventDefault();
-    alert('success!');
-    return false;
-}, false);
-       }
+    
      
 
 </script>
