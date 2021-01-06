@@ -318,7 +318,7 @@ Inicio
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Proyectos de la iniciativa</div>
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
-            <div class="card-indice-counter">512</div>
+            <div class="card-indice-counter"><h2>{{$total_proyectos}}</h2></div>
         </div>
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Personas beneficiadas</div>
@@ -329,7 +329,7 @@ Inicio
             <div class="card-indice-title">Presupuesto utilizado</div>
             <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid"
                 alt="Indice de presupuesto">
-            <div class="card-indice-counter">1,025,236</div>
+            <div class="card-indice-counter"><h4>$ {{number_format($total_contrato,2)}}</h4></div>
         </div>
     </div>
 
