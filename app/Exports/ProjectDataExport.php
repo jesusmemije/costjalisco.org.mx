@@ -126,6 +126,28 @@ class ProjectDataExport implements FromCollection
        $tipoImpacto->titulo="";
    }
 
+   $origenrecurso=DB::table('project_budgetbreakdown')
+    ->join('budget_breakdown','project_budgetbreakdown.id_budget','=','budget_breakdown.id')
+    ->join('period','budget_breakdown.id_period','=','period.id')
+    ->where('id_project',$this->id)
+    ->first();
+
+    if($origenrecurso!=null){
+        
+        $catorigenrecurso=DB::table('catorigenrecurso')
+        ->where('id','=',$origenrecurso->description)
+        ->first();
+    }else{
+
+        $origenrecurso=new stdClass();
+        $origenrecurso->sourceParty_name="";
+        $origenrecurso->origenrecurso="";
+        $origenrecurso->startDate="";
+        $catorigenrecurso=new stdClass();
+        $catorigenrecurso->titulo="";
+      
+    }
+
 
     $empresas = $all->empresasparticipantes;
     $empresasparticipantes = explode(",", $empresas);
@@ -158,28 +180,7 @@ class ProjectDataExport implements FromCollection
     $people=$project->people;
 
 
-    $origenrecurso=DB::table('project_budgetbreakdown')
-    ->join('budget_breakdown','project_budgetbreakdown.id_budget','=','budget_breakdown.id')
-    ->join('period','budget_breakdown.id_period','=','period.id')
-    ->where('id_project',$this->id)
-    ->first();
-
-    if($origenrecurso!=null){
-        
-        $catorigenrecurso=DB::table('catorigenrecurso')
-        ->where('id','=',$origenrecurso->description)
-        ->first();
-    }else{
-
-        $origenrecurso=new stdClass();
-        $origenrecurso->sourceParty_name="";
-        $origenrecurso->origenrecurso="";
-        $origenrecurso->startDate="";
-        $catorigenrecurso=new stdClass();
-        $catorigenrecurso->titulo="";
-        $catorigenrecurso->sourceParty_name="";
-        $catorigenrecurso->startDate="";
-    }
+    
 
    
 
