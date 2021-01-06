@@ -766,6 +766,8 @@ class ProjectController extends Controller
         $locations->description = $request->description;
         $locations->id_geometry = 1;
         $locations->id_gazetter = 1;
+        $locations->principal=$request->principal;
+        $locations->names=$request->names;
         $locations->lat = $request->lat;
         $locations->lng = $request->lng;
        
@@ -1405,6 +1407,8 @@ class ProjectController extends Controller
         $locations->id_geometry = 1;
         $locations->id_gazetter = 1;
         $locations->id_address = $address->id;
+        $locations->principal=$request->principal;
+        $locations->names=$request->names;
         $locations->lat = $request->lat;
         $locations->lng = $request->lng;
         $locations->save();

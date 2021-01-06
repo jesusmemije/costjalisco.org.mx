@@ -1,4 +1,57 @@
 @extends("admin.layouts.app")
+@section('content')
+
+<link href="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.css")}}" rel="stylesheet">
+
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+
+
+@section('styles')
+  <!-- Custom styles for this page -->
+ 
+  <style>
+     #map {
+    height: 500px;
+    width: 100%;
+  }
+
+  #myInput {
+  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+#myTable {
+  border-collapse: collapse; /* Collapse borders */
+  width: 100%; /* Full-width */
+  border: 1px solid #ddd; /* Add a grey border */
+  font-size: 18px; /* Increase font-size */
+}
+
+#myTable th, #myTable td {
+  text-align: left; /* Left-align text */
+  padding: 12px; /* Add padding */
+}
+
+#myTable tr {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+}
+  </style>
+
+
+@endsection
 <?php
 
 if (isset($datos)) {
@@ -9,23 +62,7 @@ if (isset($datos)) {
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8" />
 
-<head>
-  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-
-  <style>
-    #map {
-      height: 400px;
-    }
-  </style>
-
-</head>
-
-<body>
   <div id="map"></div>
 <hr>
  <form id="form" method="POST" enctype="multipart/form-data">
@@ -39,11 +76,12 @@ if (isset($datos)) {
  </form>
 
   <hr>
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 
-  <table class="table">
+  <table  id="myTable" class="table">
     <thead>
       <tr>
-        <th>Nonbre</th>
+        <th>Nombre</th>
         <th>Latitud</th>
         <th>Longitud</th>
         <th>Acciones</th>
@@ -52,23 +90,37 @@ if (isset($datos)) {
     </thead>
 
     <tbody id="cuerpo">
+  
+  
     </tbody>
   </table>
-    <label for="">Here start the dynamic</label>
-  <div class="wrapper-comp-setting" id="flashcard-list">
-  </div>
+   
 
-  <button onclick="consulta()">Consulta puntos</button>
+  </div>
+  <!--
+  <button id="test2">append</button>
+  <button onclick="consulta()">Consulta puntos</button>-->
 
   <form action="{{route('tm')}}" method="POST">
     @csrf
-    <textarea name="nombre" id="nombre" cols="30" rows="10"></textarea>
+    <textarea name="name" id="name" cols="30" rows="10"></textarea>
     <textarea name="lat" id="lat" cols="30" rows="10">{{$datos['lat']}}</textarea>
     <textarea name="lng" id="lng" cols="30" rows="10">{{$datos['lng']}}</textarea>
+    <textarea name="punto" id="punto" cols="30" rows="10"></textarea>
     <input type="submit" name="send">
   </form>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
+
+@endsection
+
+
+@section('scripts')
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="{{asset("admin_assets/vendor/datatables/jquery.dataTables.min.js")}}"></script>
+  <script src="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{asset("admin_assets/js/demo/datatables-demo.js")}}"></script>
   <script>
 
     //File Validation
@@ -91,11 +143,50 @@ if (isset($datos)) {
 
     //ajax processing
     var mydata=[];
-   
+    var markers = new Array();
+    var names=new Array();
+    var fromfile=false;
+    var fromclic=false;
+    var index=0;
+    var i = 0;
+    var jsonFeatures = [];
 
-    $("#form").on('submit', function(evt){
-    evt.preventDefault();  
 
+    //icons
+
+    var greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+var blueIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+const myLatlng = {
+      lat: 20.6566500419128,
+      lng: -103.35528485969786
+    };
+
+  var map = L.map('map').
+        setView(myLatlng,
+            12);
+
+          
+
+ 
+    $("#subir").on('click', function(evt){
+      fromfile=true;
+      evt.preventDefault();  
+      if( $('#ver').val()!=""){
   
     $.ajax({
       data: {
@@ -107,23 +198,61 @@ if (isset($datos)) {
       type: 'post', //método de envio
       dataType: "json",
       success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-       
-        for (let index = 0; index < resp.length; index++) {
+        console.log(resp);
+        for (; index < resp.length; index++) {
         
        
-       if((resp[index][0])=='Latitud' || resp[index][1]=="Longitud" || resp[index][0]==null || resp[index][1]==undefined){
+       if((resp[index][1])=='Latitud' || (resp[index][0])=='Nombre' || resp[index][2]=="Longitud" || resp[index][0]==null || resp[index][1]==undefined){
      
        }else{
-        mydata.push({latitud:resp[index][0],longitud:resp[index][1]});
+      
+
+
+        mydata.push({latitud:resp[index][1],longitud:resp[index][2]});
+
+        let ll=resp[index][1];
+        let lgg=resp[index][2];
+       let= aux_marker = L.marker([ll,lgg]);
+
+
+        markers.push(aux_marker)
         
+
+        names.push(resp[index][0]);
+        let name = document.getElementById('name');
+           name.value = resp[index][0] + '|' + name.value;
+
+        let l = document.getElementById('lat');
+           l.value = resp[index][1] + '|' + l.value;
+
+         let lng = document.getElementById('lng');
+           lng.value = resp[index][2] + '|' + lng.value;
+
+           var auxfields = `<tr class=` + index + `>
+        <td>  <label id=`+index+` >`+resp[index][0]+`</label>
+          <td>` +resp[index][1]+ `</td>
+            <td>` +resp[index][2] + `</td>
+            <td><button disabled>Eliminar</button>
+            <i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + (index-1) + `)'>
+            </td>
+            </td>
+            <td> <div class="form-check">
+    <input type="radio" name="inputs" class="form-check-input exampleCheck1" onchange='puntop(`+resp[index][1]+`,`+resp[index][2]+`)'>
+    
+  </div></td>
+        </tr>`;
+        
+
+      flashCardList.insertAdjacentHTML("beforeend", auxfields );
+      aux_marker.addTo(map);
        }
       
             
         }
                     
-      console.log(mydata);
+      //console.log(mydata);
 
-      pintarPuntos(mydata);
+     // pintarPuntos(mydata);
 
       },
       error: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
@@ -132,7 +261,34 @@ if (isset($datos)) {
         //console.log(response);
       }
     });
+      }else{
+        alert("Debe seleccionar un archivo .csv para colocar los puntos en el mapa");
+      }
  });
+
+
+ function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
 
 
 
@@ -141,6 +297,19 @@ if (isset($datos)) {
     let f = l.value.split(',')
 
 
+ function cambioinput(inputvalue){
+   //alert("hola");
+   let name = document.getElementById('name');
+   name.value = inputvalue + '|' + name.value;
+
+   names.push(inputvalue);
+
+    }
+    function puntop(lat,lng){
+      //alert(val);
+      let punto = document.getElementById('punto');
+      punto.value=lat+'|'+lng;
+    }
 
 
 
@@ -152,11 +321,7 @@ if (isset($datos)) {
      let lng = document.getElementById('lng');
      let f2= lng.value.split(',')
     */
-    var map = L.map('map').
-    setView([41.66, -4.72],
-      14);
-
-
+  
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
@@ -165,57 +330,8 @@ if (isset($datos)) {
     //this is for put the markes on the map getting the data from the inputs.
     L.control.scale().addTo(map);
 
-    /*
-      
-        for (let i = 0; i < f.length ; i++) {
-        
-        var markers=  L.marker([f[i].lat,f[i].lng]).addTo(map);
-          
-        }
-        */
-        /*
-        
-
-        var states = [{
-    "type": "Feature",
-    "properties": {"party": "Republican"},
-    "geometry": {
-        "type": "Point",
-        "coordinates": [[
-            [-104.05, 48.99],
-            [-97.22,  48.98],
-            [-96.58,  45.94],
-            [-104.03, 45.94],
-            [-104.05, 48.99]
-        ]]
-    }
-}];
-
-L.geoJSON(states, {
-    style: function(feature) {
-        switch (feature.properties.party) {
-            case 'Republican': return {color: "#ff0000"};
-            case 'Democrat':   return {color: "#0000ff"};
-        }
-    }
-}).addTo(map);
-*/
-
-
-var data = [{
-"latitud": 43.526523590087891,
-"longitud": -5.6150951385498047
-}, {
-"latitud": 43.511680603027344,
-"longitud": -5.6671133041381836
-},
-{
-"latitud": 43.526451110839844,
-"longitud": -5.6140098571777344
-}]
-
 function pintarPuntos(data){
-    var jsonFeatures = [];
+    
 
 data.forEach(function(point){
     var lat = point.latitud;
@@ -240,176 +356,170 @@ L.geoJson(geoJson).addTo(map);
 
 
 
-  var flashCardList  = document.getElementById('flashcard-list')
-    var markers = new Array();
+  var flashCardList  = document.getElementById('cuerpo')
+   
     var tr = new Array();
     var td;
     var inputvalues=new Array();
-    var i = 0;
+    var x=false;
     //var lat;
     //var lng;
 
-    let letras = ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I'];
+    
 
     //function to draw the markers on the map.
     function onMapClick(e) {
 
-
-      $("#cuerpo").html("");
-
+      fromclic=true;
+    
+    /*Para concatenar los valores de latlng en los inputs correspondientes*/
       aux_marker = L.marker(e.latlng);
+      //aux_marker.setIcon(greenIcon);
+        let l = document.getElementById('lat');
+      l.value=l.value+e.latlng.lat+'|';
+
+      let lng = document.getElementById('lng');
+      lng.value=lng.value+e.latlng.lng+'|';
+
+    
       markers.push(aux_marker);
+     
 
-
-
-
-
-
-      /*
-      aux_tr = `<tr class=` + i + `>
-        <td>  <input id=`+i+` type="text"  name="array[]" onchange='cambioinput(this.value)'></td>
+      //Para rellenar la tabla con los inputs en base a la selección de puntos en el mapa.
+      if(fromfile){
+      i=index;
+       fromfile=false;
+       x=true;
+      }
+    var auxfields = `<tr class=` + i + `>
+        <td>  <input id=`+i+` type="text" name="array[]" onchange='cambioinput(this.value)'></td>
           <td>` + e.latlng.lat + `</td>
             <td>` + e.latlng.lng + `</td>
-            <td><button onclick='delrow(` + i + `)'>Eliminar</button></td>
+            <td><button style="margin-right:2%;"  onclick='delrow(` + i + `)'>Eliminar</button>
+            <i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + i + `)'>
+            </td>
             <td> <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <input type="radio" class="form-check-input exampleCheck1" name="inlineRadioOptions" onchange='puntop(`+e.latlng.lat+`,`+e.latlng.lng+`)'>
+    
     
   </div></td>
         </tr>`;
-        */
+        
+      
 
 
 
       aux_marker.addTo(map);
-      //tr.push(aux_tr);
-      //$("#cuerpo").append(tr);
-      //$('#cuerpo').insertAdjacentHTML("beforeend", tr );
-      var fields = '<div class="fc-item">\n\
-        <label class="label setting-label" for="flashcards">Flashcard (' + i + ')</label>\n\
-        <input class="input setting-input" name="front" placeholder="Front" type="text" />\n\
-        </div>';
-        flashCardList.insertAdjacentHTML("beforeend", fields );
-
-
-
-
-
-      let m = "";
-      let l = document.getElementById('lat');
-      for (let i = 0; i < markers.length; i++) {
-        if (markers[i] != null) {
-
-
-          m = markers[i]._latlng.lat + '|' + m;
-        }
-      }
-      l.value = m;
-
-      /*
-
-      let lng = document.getElementById('lng');
-      lng.value = e.latlng.lng + '|' + lng.value;
-
-      */
-
-
-
-      let n = "";
-      let lng = document.getElementById('lng');
-      for (let i = 0; i < markers.length; i++) {
-        if (markers[i] != null) {
-          n = markers[i]._latlng.lng + '|' + n;
-        }
-      }
-      lng.value = n;
-
-
-      //l.value=marker;
+      flashCardList.insertAdjacentHTML("beforeend", auxfields );
+    
       i++;
     }
 
-    function cambioinput(inputvalue){
-   alert("hola");
-   inputvalues.push(inputvalue);
-   //console.log(inputvalues);
-   x=tr[0].value=inputvalues[0];
-   console.log(x);
-   console.log(tr);
-    }
-
-    function consulta() {
-      for (let i = 0; i < markers.length; i++) {
-        markers[i].addTo(map);
-
-        aux_tr = `<tr class=` + i + `>
-        <td>` + letras[i] + `</td>
-          <td>` + markers[i]._latlng.lat + `</td>
-            <td>` + markers[i]._latlng.lng + `</td>
-            <td><button onclick='delrow(` + i + `)'>Eliminar</button></td>
-        </tr>`;
-
-
-        tr.push(aux_tr);
-
-        //console.log(markers[i]._latlng.lat);
+  
+  
+    
+    function greenpoint(event,index){
+     
+      if(x){
+        index=index-2;
+       
       }
-      $("#cuerpo").append(tr);
 
+
+      //console.log(index);
+      console.log(markers);
+      //if(index)
+      var checkbox = event.target;
+
+if (checkbox.checked) {
+    //Checkbox has been checked
+    markers[index].setIcon(greenIcon);
+    
+} else {
+    //Checkbox has been unchecked
+    markers[index].setIcon(blueIcon);
+}
+  /*
+    markers[index].setIcon(greenIcon);
+    aux=markers[index].options.icon;
+    aux=aux.options.iconUrl
+    console.log(aux);
+
+    if(aux=="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png"){
+      console.log('si');
     }
-
+    */
+    }
 
     function delrow(dato) {
+      console.log(names);
+     
+      auxdato=dato;
+      var c=0;
+       if(x){
+        dato=dato-2;
+        c=dato;
+      }
 
-      $('.' + dato).remove();
+     
 
-      delete tr[dato];
+      $('.' + auxdato).remove();
 
+  
 
-      markers[dato].remove();
-
+    markers[dato].remove();
+  
 
 
       delete markers[dato];
-      console.log(markers);
+      delete names[dato];
 
+
+      console.log(names);
+   
+  
+
+   let b = "";
+      let name = document.getElementById('name');
+      for (let i=0; i< names.length; i++) {
+        if (names[i] != null) {
+
+
+          b = names[i]+ '|' + b;
+        }
+      }
+      name.value = b;
+    
+     
       let m = "";
       let l = document.getElementById('lat');
-      for (let i = 0; i < markers.length; i++) {
+      for (let i=0; i < markers.length; i++) {
+        console.log(i);
         if (markers[i] != null) {
 
 
           m = markers[i]._latlng.lat + '|' + m;
         }
       }
+     
       l.value = m;
-
-
-
-      lng = document.getElementById('lng');
-      lng.value = e.latlng.lng + '|' + lng.value;
-      //agregar buscador de direcciones y
-      //que dibuje el punto cuando lo busque.
-      //añadirle al punto la letra a la cual hace referencia.
 
 
       let n = "";
       let lng = document.getElementById('lng');
-      for (let i = 0; i < markers.length; i++) {
+      for (let i=0;i< markers.length; i++) {
         if (markers[i] != null) {
 
           n = markers[i]._latlng.lng + '|' + n;
         }
       }
       lng.value = n;
-
-
-
+  
     }
 
 
 
     map.on('click', onMapClick);
   </script>
-</body>
 
-</html>
+  @endsection

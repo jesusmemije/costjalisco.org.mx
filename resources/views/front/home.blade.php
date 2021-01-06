@@ -320,7 +320,8 @@ Inicio
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
             <div class="card-indice-counter"><h2>{{$total_proyectos}}</h2></div>
         </div>
-        <div class="col-md-3 col-6 px-0">
+        
+        <div class="col-3 px-0">
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
             <div class="card-indice-counter">521,256</div>
@@ -429,29 +430,41 @@ Inicio
                 </div>
             </div>
             <div class="row align-items-center">
-                <div class="col-md-2 col-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
+                <div class="col-md-2 text-center">
+                    <a href="https://www.jalisco.gob.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a> 
                 </div>
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
+                <div class="col-md-2 text-center">
+                    <a href="https://guadalajara.gob.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
                         width="70" alt="">
+                    </a>    
                 </div>
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
+                <div class="col-md-2 text-center">
+                    <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
                         alt="">
+                    </a>    
                 </div>
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
+                <div class="col-md-2 text-center">
+                    <a href="https://tonala.gob.mx/portal/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
                         alt="">
+                    </a>    
                 </div>
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
+                <div class="col-md-2 text-center">
+                    <a href=" https://home.inai.org.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
+                <div class="col-md-2 text-center">
+                    <a href="https://www.itei.org.mx/v4/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -468,12 +481,16 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60"
+                    <a href="https://www.udg.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60"
                         alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-academico/iteso.jpg') }}" class="img-fluid" width="50"
+                    <a href="https://www.iteso.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-academico/iteso.jpg') }}" class="img-fluid" width="50"
                         alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -490,16 +507,22 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100"
+                    <a href="https://cmicjalisco.org.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/cicej.jpg') }}" class="img-fluid" width="100"
+                    <a href="https://www.cicej.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-privado/cicej.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/comce.jpg') }}" class="img-fluid" width="100"
+                    <a href="http://www.comceoccte.org.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-privado/comce.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -516,16 +539,22 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid"
+                    <a href="http://cpsjalisco.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid"
                         width="100" alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cimtra.jpg') }}" class="img-fluid"
+                    <a href="http://cimtrajalisco.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cimtra.jpg') }}" class="img-fluid"
                         width="100" alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/mexico.jpg') }}" class="img-fluid"
+                    <a href="http://www.mexicoevalua.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sociedad-civil-organizada/mexico.jpg') }}" class="img-fluid"
                         width="120" alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -542,8 +571,10 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-3 text-center">
-                    <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"
+                    <a href="http://transversalthinktank.org/about" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"
                         width="200" alt="">
+                    </a>    
                 </div>
             </div>
         </div>
