@@ -91,6 +91,38 @@ Inicio
             alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">
     </div>
+    <style>
+        #box-search{
+            position: fixed;
+            top: 192px;
+            left: 49.5%;
+            transform: translateX(-50%);
+            width: 465px;
+            background: #fff;
+            z-index: 8;
+            overflow: hidden;
+            display: block;
+            padding: 0;
+        }
+        #box-search li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #box-search li a{
+            display: block;
+            width: 465px;
+            color: #58707B;
+            padding: 12px 20px;
+        }
+        #box-search li a:hover{
+            background: #f3f3f3;
+        }
+        #box-search li a i{
+            background: #f3f3f3;
+            margin-right: 10px;
+        }
+    </style>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -99,19 +131,34 @@ Inicio
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">x</button>   
                     </button>
                 </div>
+                <form >
                 <div class="modal-body">
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
+                    
                         <div class="input-group">
-                            <label for="message-text" class="col-form-label">Busca por una palabra:</label>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
+
+                            <input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        
                         </div>
-                    </form>
+                        <ul id="box-search" >
+                            <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i>PHP</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i>Como crear</a></li>
+                        </ul>
+
+                    <br><br>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -271,9 +318,14 @@ Inicio
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Proyectos de la iniciativa</div>
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
-            <div class="card-indice-counter">512</div>
+            <div class="card-indice-counter">521</div>
         </div>
+<<<<<<< HEAD
+        
+        <div class="col-3 px-0">
+=======
         <div class="col-md-3 col-6 px-0">
+>>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
             <div class="card-indice-counter">521,256</div>
@@ -382,29 +434,71 @@ Inicio
                 </div>
             </div>
             <div class="row align-items-center">
+<<<<<<< HEAD
+                <div class="col-md-2 text-center">
+                    <a href="https://www.jalisco.gob.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
+=======
                 <div class="col-md-2 col-2 text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
+>>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
+                    </a> 
                 </div>
+<<<<<<< HEAD
+                <div class="col-md-2 text-center">
+                    <a href="https://guadalajara.gob.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
+=======
                 <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
+>>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         width="70" alt="">
+                    </a>    
                 </div>
+<<<<<<< HEAD
+                <div class="col-md-2 text-center">
+                    <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
+=======
                 <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
+>>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
+                    </a>    
                 </div>
+<<<<<<< HEAD
+                <div class="col-md-2 text-center">
+                    <a href="https://tonala.gob.mx/portal/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
+=======
                 <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
+>>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
+                    </a>    
                 </div>
+<<<<<<< HEAD
+                <div class="col-md-2 text-center">
+                    <a href=" https://home.inai.org.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
+=======
                 <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
+>>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
+                    </a>    
                 </div>
+<<<<<<< HEAD
+                <div class="col-md-2 text-center">
+                    <a href="https://www.itei.org.mx/v4/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
+=======
                 <div class="col-md-2 col-2  text-center">
                     <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
+>>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -421,12 +515,16 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60"
+                    <a href="https://www.udg.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60"
                         alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-academico/iteso.jpg') }}" class="img-fluid" width="50"
+                    <a href="https://www.iteso.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-academico/iteso.jpg') }}" class="img-fluid" width="50"
                         alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -443,16 +541,22 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100"
+                    <a href="https://cmicjalisco.org.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/cicej.jpg') }}" class="img-fluid" width="100"
+                    <a href="https://www.cicej.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-privado/cicej.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-privado/comce.jpg') }}" class="img-fluid" width="100"
+                    <a href="http://www.comceoccte.org.mx/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sector-privado/comce.jpg') }}" class="img-fluid" width="100"
                         alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -469,16 +573,22 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid"
+                    <a href="http://cpsjalisco.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid"
                         width="100" alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cimtra.jpg') }}" class="img-fluid"
+                    <a href="http://cimtrajalisco.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cimtra.jpg') }}" class="img-fluid"
                         width="100" alt="">
+                    </a>    
                 </div>
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/home/sociedad-civil-organizada/mexico.jpg') }}" class="img-fluid"
+                    <a href="http://www.mexicoevalua.org/" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/sociedad-civil-organizada/mexico.jpg') }}" class="img-fluid"
                         width="120" alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -495,8 +605,10 @@ Inicio
             </div>
             <div class="row align-items-center">
                 <div class="col-md-3 text-center">
-                    <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"
+                    <a href="http://transversalthinktank.org/about" target="_BLANK">
+                        <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"
                         width="200" alt="">
+                    </a>    
                 </div>
             </div>
         </div>
@@ -754,14 +866,35 @@ Inicio
 @section('scripts')
 
 <script>
-    function showEventosAgenda() {
-    var eventosAgenda = document.getElementById("panel-oculto");
-    if (eventosAgenda.style.display === "none") {
-        eventosAgenda.style.display = "block";  
-    } else {
-        eventosAgenda.style.display = "none";        
+    // //Ejecutando funciones
+    // document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+    // document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
+
+    //Declarando variables
+    // bars_search =       document.getElementById("ctn-bars-search");
+    // cover_ctn_search =  document.getElementById("cover-ctn-search");
+    inputSearch =       document.getElementById("inputSearch");
+    box_search =        document.getElementById("box-search");
+
+    document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+
+    function buscador_interno(){
+        filter = inputSearch.value.toUpperCase();
+        li = box_search.getElementByTagName("li");
+
+        for (i=0; i<li.length; i++){
+            a = li[i].getElementByTagName("a")[0];
+            textValue= a.textContent || a.innerText;
+
+            if(textValue.toUpperCase().indexOf(filter) > -1){
+                li[i].style.display="";
+            }else{
+                li[i].style.display="none";
+            }
+
+        }
+
     }
-}
 
 </script>
 @endsection
