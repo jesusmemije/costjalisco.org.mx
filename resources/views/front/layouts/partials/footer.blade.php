@@ -1,6 +1,3 @@
-
-
-
 <!-- Footer Desktop -->
 <footer class="page-footer font-small hidden-phone" style="background-color: #628EA0">
 
@@ -146,25 +143,36 @@
 
             <!-- Grid column -->
             <div class="col-md-12 text-center mx-auto" style="margin: 20px 0">
-                <div class="social">
-                        <a href="https://www.facebook.com/CoSTransparency/" target="_blank" class="icon-facebook"><i
-                                class="fab fa-facebook-f fa-sm" style="margin: 0 20px; margin: 0 20px;
-                                background: #3b5998;
-                                border-radius: 100px;
-                                padding: 4px 8px; color: #fff;"></i></a>
-                        <a href="https://www.youtube.com/watch?v=nd2Bc99HgRE&feature=emb_title" target="_blank"
-                                class="icon-youtube" style="margin: 0 20px; margin: 0 20px;
-                                background: #c4302b;
-                                border-radius: 100px;
-                                padding: 4px 8px; color: #fff;"><i class="fab fa-youtube fa-sm"></i></a>
-                        <a href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw" target="_blank"
-                                class="icon-twitter" style="margin: 0 20px; margin: 0 20px;
-                                background: #00abf0;
-                                border-radius: 100px;
-                                padding: 4px 8px; color: #fff;"><i class="fab fa-twitter fa-sm"></i></a>
+                <div class="social" style="border-bottom: solid 1px #2C4143;">
+                    <a href="https://www.facebook.com/CoSTransparency/" style="margin: 0 20px;" target="_blank">
+                        <img src="{{ asset('assets/img/footer/FB.png') }}" class="img-fluid" alt="">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=nd2Bc99HgRE&feature=emb_title" style="margin: 0 20px;"
+                        target="_blank">
+                        <img src="{{ asset('assets/img/footer/YT.png') }}" class="img-fluid" alt="">
+                    </a>
+                    <a href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw" style="margin: 0 20px;"
+                        target="_blank">
+                        <img src="{{ asset('assets/img/footer/TW.png') }}" class="img-fluid" alt="">
+                    </a>
+                    <br><br>
                 </div>
             </div>
         </div>
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12 text-center" style="margin: 12px 0;">
+                
+                    <a href="https://www.facebook.com/CoSTransparency/" style="margin: 0 20px;" target="_blank">
+                        <img src="{{ asset('assets/img/footer/contacto.png') }}" class="img-fluid" alt="">
+                        <span style="font-weight: bold">CONTACTO</span>
+                    </a>
+
+               
+            </div>
+        </div>
+
     </div>
 
     <!-- Copyright -->
