@@ -11,6 +11,47 @@ class HomeController extends Controller
 {
     public function index()
     {   
+        // dd('kjhghgffcgh');
+
+        $proyectos = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        ->select(DB::raw('count(*) as total_proyectos'))
+        ->get();
+
+        if (empty($proyectos[0]->total_proyectos)) {
+            $total_proyectos=0;
+        } else {
+            $total_proyectos=$proyectos[0]->total_proyectos;
+        }
+
+        $monto_contrato = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
+        ->get();
+        
+        if (empty($monto_contrato[0]->monto_total)) {
+            $total_contrato=0;
+        } else {
+            $total_contrato=$monto_contrato[0]->monto_total;
+        }
+
+        
         $projects = DB::table('project')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
@@ -26,6 +67,8 @@ class HomeController extends Controller
         return view('front.home', [
             'projects' => $projects,
             'h'=>$h,
+            'total_proyectos'=>$total_proyectos,
+            'total_contrato'=>$total_contrato,
         ]);
     }
 
@@ -57,31 +100,91 @@ class HomeController extends Controller
         // ->select('projectsector.*')
         // ->distinct()
         // ->get();
+        // $all = DB::table('project')
+        // ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        // ->join('project_locations','project.id','=','project_locations.id_project')
+        // ->join('locations','project_locations.id_location','=','locations.id')
+        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        // ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        // ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->select(
+        //     'project.*','proyecto_contratacion.*')
+        //     // 'generaldata.*',
+        //     // 'locations.*',
+        //     // 'locations.description as descriptionlocation',
+        //     // 'estudiosambiental.*',
+        //     // 'estudiosfactibilidad.*',
+        //     // 'estudiosimpacto.*',)
+        // // ->where('project.id', '=', $this->id)
+        // ->get();
+
 
         $sector1 = DB::table('project')
-        ->join('projectsector','project.sector','=','projectsector.id')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->where('project.sector','=',1)
         ->get();
         $sector2 = DB::table('project')
-        ->join('projectsector','project.sector','=','projectsector.id')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->where('project.sector','=',2)
         ->get();
         $sector3 = DB::table('project')
-        ->join('projectsector','project.sector','=','projectsector.id')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->where('project.sector','=',3)
         ->get();
         $sector4 = DB::table('project')
-        ->join('projectsector','project.sector','=','projectsector.id')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->where('project.sector','=',4)
         ->get();
 
         $proyectos = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('count(*) as total_proyectos'))
         ->get();
 
@@ -92,10 +195,18 @@ class HomeController extends Controller
         }
              
         $monto_contrato = DB::table('project')
-            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-            ->select(DB::raw('SUM(montocontrato) as monto_total'))
-            ->get();
-
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
+        ->get();
+        
         if (empty($monto_contrato[0]->monto_total)) {
             $total_contrato=0;
         } else {
