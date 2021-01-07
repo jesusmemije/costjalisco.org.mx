@@ -791,7 +791,7 @@ Inicio
 </div>
 
 <!-- Título - Nuestras redes-->
-<div class="container pt-5">
+<div class="container pt-5 hidden-phone">
     <div class="row">
         <div class="col-md-12 bg-gris">
             <h3 class="text-center font-weight-bold">NUESTRAS REDES
