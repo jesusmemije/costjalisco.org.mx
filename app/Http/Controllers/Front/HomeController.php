@@ -11,8 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {   
-        // dd('kjhghgffcgh');
-
+        
         $proyectos = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
         ->join('project_locations','project.id','=','project_locations.id_project')
@@ -31,6 +30,39 @@ class HomeController extends Controller
         } else {
             $total_proyectos=$proyectos[0]->total_proyectos;
         }
+
+
+
+        $organizacion=DB::table('organization')
+        ->select(DB::raw('count(*) as total_organization'))
+        ->get();
+
+        if (empty($organizacion[0]->total_organization)) {
+            $total_organization=0;
+        } else {
+            $total_organization=$organizacion[0]->total_organization;
+        }
+
+
+        $personas_beneficiadas = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        ->select(DB::raw('SUM(project.people) as total_p_beneficiada'))
+        ->get();
+
+        if (empty($personas_beneficiadas[0]->total_p_beneficiada)) {
+            $total_beneficiarios=0;
+        } else {
+            $total_beneficiarios=$personas_beneficiadas[0]->total_p_beneficiada;
+        }
+
 
         $monto_contrato = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
@@ -53,12 +85,18 @@ class HomeController extends Controller
 
         
         $projects = DB::table('project')
-            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-            ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
-            ->join('locations', 'project_locations.id_location', '=', 'locations.id')
-            ->join('address', 'locations.id_address', '=', 'address.id')
-            ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
-            ->get();
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('address', 'locations.id_address', '=', 'address.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        ->select('project.*', 'address.*','proyecto_contratacion.montocontrato') 
+        ->get();
         
             $h=DB::table('documents')
             ->where('description','=','carrusel')
@@ -67,8 +105,10 @@ class HomeController extends Controller
         return view('front.home', [
             'projects' => $projects,
             'h'=>$h,
+            'total_organization'=>$total_organization,
             'total_proyectos'=>$total_proyectos,
             'total_contrato'=>$total_contrato,
+            'total_beneficiarios'=>$total_beneficiarios,
         ]);
     }
 

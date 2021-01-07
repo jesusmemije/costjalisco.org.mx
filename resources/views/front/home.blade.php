@@ -313,7 +313,7 @@ Inicio
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Organizaciones</div>
             <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
-            <div class="card-indice-counter">36</div>
+            <div class="card-indice-counter"><h2>{{$total_organization}}</h2></div>
         </div>
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Proyectos de la iniciativa</div>
@@ -324,7 +324,7 @@ Inicio
         <div class="col-3 px-0">
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
-            <div class="card-indice-counter">521,256</div>
+            <div class="card-indice-counter"><h2>{{$total_beneficiarios}}</h2></div>
         </div>
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Presupuesto utilizado</div>
@@ -582,7 +582,7 @@ Inicio
 
 
     <!-- Section - Sector público-->
-<div class="container mt-5 hidden-desktop">
+{{-- <div class="container mt-5 hidden-desktop">
     <div style="border-left: 5px solid #2C4143;">
         <div class="row mb-3">
             <div class="col-md-12">
@@ -673,7 +673,7 @@ Inicio
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
     <!-- Título - Proyectos-->
     <div class="container pt-5">
@@ -712,16 +712,16 @@ Inicio
                                     <div class="col-md-6 pl-4">
                                         <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
                                                 class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Inversión: </strong> 20 mil millones de pesos</p>
+                                            <strong>&nbsp; Inversión: </strong> $ {{number_format($project->montocontrato,2)}}</p>
                                         <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
                                                 class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Periodo de construcción: </strong> 2014-2020</p>
+                                            <strong>&nbsp; Periodo de construcción: </strong> {{$project->period}}</p>
                                         <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
                                                 class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Ubicación: </strong> Zapopan, Guadalajara, Tlaquepaque.</p>
+                                            <strong>&nbsp; Ubicación: </strong> {{$project->streetAddress}} {{$project->locality}} {{$project->region}}</p>
                                         <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
                                                 class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Beneficiarios: </strong> 240 mil pasajeros al día</p>
+                                            <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
                                         <br>
                                         <span><a href="{{ route('project-single', $project->id) }}" class="text-red"
                                                 style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
@@ -730,7 +730,7 @@ Inicio
                                 </div>
                             </div>
                             <div class="rectangulo-rojo-avance-carousel text-white"><span
-                                    style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;"
+                                    style="font-size: 32px;"><strong>{{$project->porcentaje_obra}}%</strong></span><span style="font-size: 14px;"
                                     class="mx-2">completado</span></div>
                         </div>
                     </div>
