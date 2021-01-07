@@ -91,37 +91,252 @@ Inicio
             alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">
     </div>
+    
     <style>
-        #box-search{
-            position: fixed;
-            top: 192px;
-            left: 49.5%;
-            transform: translateX(-50%);
-            width: 465px;
-            background: #fff;
-            z-index: 8;
-            overflow: hidden;
-            display: block;
-            padding: 0;
-        }
-        #box-search li {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        #box-search li a{
-            display: block;
-            width: 465px;
-            color: #58707B;
-            padding: 12px 20px;
-        }
-        #box-search li a:hover{
-            background: #f3f3f3;
-        }
-        #box-search li a i{
-            background: #f3f3f3;
-            margin-right: 10px;
-        }
+/*Buscador de contenido*/
+
+#ctn-icon-search{
+    position: absolute;
+    right: 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ctn-icon-search i{
+    font-size: 18px;
+    color: #777777;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+#ctn-icon-search i:hover{
+    color: #46a2fd;
+}
+
+
+#ctn-bars-search{
+    position: fixed;
+    top: -10px;
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    z-index: 9;
+    transition: all 600ms;
+}
+
+#ctn-bars-search input{
+    display: block;
+    width: 1200px;
+    margin: auto;
+    padding: 10px;
+    font-size: 18px;
+    outline: 0;
+}
+
+#box-search{
+    position: fixed;
+    top: 165px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px;
+    background: #fff;
+    z-index: 8;
+    overflow: hidden;
+    display: none;
+    
+}
+
+#box-search li a{
+    display: block;
+    width: 1200px;
+    color: #777777;
+    padding: 12px 20px;
+}
+
+#box-search li a:hover{
+    background: #f3f3f3;
+}
+
+#box-search li a i{
+    margin-right: 10px;
+    color: #777777;
+}
+
+
+#cover-ctn-search{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 7;
+    display: none;
+}
+
+    /*Footer - pie de pagina*/
+
+.container-footer{
+    width: 100%;
+    padding: 40px 0;
+    background: #fff;
+    margin-top: 40px;
+}
+
+.container-footer footer{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.container-footer footer .logo-footer{
+    text-align: center;
+}
+
+.container-footer footer .logo-footer img{
+    width: 100px;
+}
+
+.container-footer footer .redes-footer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.container-footer footer .redes-footer .icon-redes-footer{
+    font-size: 20px;
+    margin: 20px;
+    background: #efefef;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    color: #a2a2a2;
+}
+
+footer .redes-footer .fa-facebook-f:hover{
+    background: #41579A;
+    color: #fff;
+}
+
+footer .redes-footer .fa-google-plus-g:hover{
+    background: #DE4C34;
+    color: #fff;
+}
+
+footer .redes-footer .fa-instagram:hover{
+    background: linear-gradient(to top right, #FCDE30, #E9712A, #D2313B, #AE4198, #7540A1, #5443A8);
+    color: #fff;
+}
+
+
+.container-footer footer hr{
+    margin-top: 20px;
+    border: none;
+    height: 2px;
+    background: #c0c0c07a;
+}
+
+
+.container-footer h4{
+    text-align: center;
+    margin-top: 40px;
+    color: #8e8e8e;
+    font-weight: 500;
+}
+
+/* Responsive Design - adaptable a dispositivos moviles*/
+
+@media screen and (max-width: 1220px){
+
+    .header-content,
+    .container-footer footer{
+        max-width: 1000px;
+        padding: 0 20px;
+    }
+
+    #ctn-bars-search,
+    #ctn-bars-search input,
+    #box-search{
+        width: 100%;
+    }
+
+}
+
+
+
+@media screen and (max-width: 800px){
+
+    body{
+        overflow-x: hidden;
+    }
+
+    .container-all{
+        transition: all 300ms cubic-bezier(1,0,0,1);
+    }
+
+    .move-container-all{
+        transform: translateX(300px);
+    }
+
+    .menu{
+        width: 0px;
+        height: 100vh;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        background: #fff;
+        overflow: hidden;
+        transform: translateX(-350px);
+        box-shadow: 10px 0 20px -25px black;
+        transition: all 300ms cubic-bezier(1,0,0,1);
+    }
+
+    .show-lateral {
+        width: 300px;
+        transform: translateX(0px);
+    }
+
+    .menu nav ul {
+        flex-direction: column;
+    }
+
+    .menu nav ul li{
+        max-width: 200px;
+        height: 50px;
+        justify-content: flex-start;
+    }
+
+    .menu-selected:before{
+        width: 0;
+    }
+
+    .menu nav ul li a{
+        margin-top: 40px;
+        color: #858585;
+    }
+
+    .menu nav ul li a i{
+        width: 20px;
+        display: inline-block;
+        margin-right: 10px;
+        color: #46a2fd;
+    }
+
+    #icon-menu{
+        display: flex;
+        right: 60px;
+    }
+
+    .container-aside{
+        flex-wrap: wrap;
+    }
+
+}    
+
     </style>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -320,12 +535,8 @@ Inicio
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
             <div class="card-indice-counter">521</div>
         </div>
-<<<<<<< HEAD
         
         <div class="col-3 px-0">
-=======
-        <div class="col-md-3 col-6 px-0">
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
             <div class="card-indice-counter">521,256</div>
@@ -434,69 +645,39 @@ Inicio
                 </div>
             </div>
             <div class="row align-items-center">
-<<<<<<< HEAD
                 <div class="col-md-2 text-center">
                     <a href="https://www.jalisco.gob.mx/" target="_BLANK">
                         <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
-=======
-                <div class="col-md-2 col-2 text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
                     </a> 
                 </div>
-<<<<<<< HEAD
                 <div class="col-md-2 text-center">
                     <a href="https://guadalajara.gob.mx/" target="_BLANK">
                         <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
-=======
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         width="70" alt="">
                     </a>    
                 </div>
-<<<<<<< HEAD
                 <div class="col-md-2 text-center">
                     <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
                         <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
-=======
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
                     </a>    
                 </div>
-<<<<<<< HEAD
                 <div class="col-md-2 text-center">
                     <a href="https://tonala.gob.mx/portal/" target="_BLANK">
                         <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
-=======
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
                     </a>    
                 </div>
-<<<<<<< HEAD
                 <div class="col-md-2 text-center">
                     <a href=" https://home.inai.org.mx/" target="_BLANK">
                         <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
-=======
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
                     </a>    
                 </div>
-<<<<<<< HEAD
                 <div class="col-md-2 text-center">
                     <a href="https://www.itei.org.mx/v4/" target="_BLANK">
                         <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
-=======
-                <div class="col-md-2 col-2  text-center">
-                    <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
                         alt="">
                     </a>    
                 </div>
@@ -873,28 +1054,78 @@ Inicio
     //Declarando variables
     // bars_search =       document.getElementById("ctn-bars-search");
     // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    inputSearch =       document.getElementById("inputSearch");
-    box_search =        document.getElementById("box-search");
 
-    document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+//Ejecutando funciones
+document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
 
-    function buscador_interno(){
-        filter = inputSearch.value.toUpperCase();
-        li = box_search.getElementByTagName("li");
+//Declarando variables
+bars_search =       document.getElementById("ctn-bars-search");
+cover_ctn_search =  document.getElementById("cover-ctn-search");
+inputSearch =       document.getElementById("inputSearch");
+box_search =        document.getElementById("box-search");
 
-        for (i=0; i<li.length; i++){
-            a = li[i].getElementByTagName("a")[0];
-            textValue= a.textContent || a.innerText;
 
-            if(textValue.toUpperCase().indexOf(filter) > -1){
-                li[i].style.display="";
-            }else{
-                li[i].style.display="none";
+//Funcion para mostrar el buscador
+function mostrar_buscador(){
+
+    bars_search.style.top = "80px";
+    cover_ctn_search.style.display = "block";
+    inputSearch.focus();
+
+    if (inputSearch.value === ""){
+        box_search.style.display = "none";
+    }
+
+}
+
+//Funcion para ocultar el buscador
+function ocultar_buscador(){
+
+    bars_search.style.top = "-10px";
+    cover_ctn_search.style.display = "none";
+    inputSearch.value = "";
+    box_search.style.display = "none";
+
+}
+ 
+
+//Creando filtrado de busqueda
+
+document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+
+function buscador_interno(){
+
+
+    filter = inputSearch.value.toUpperCase();
+    li = box_search.getElementsByTagName("li");
+
+    //Recorriendo elementos a filtrar mediante los "li"
+    for (i = 0; i < li.length; i++){
+
+        a = li[i].getElementsByTagName("a")[0];
+        textValue = a.textContent || a.innerText;
+
+        if(textValue.toUpperCase().indexOf(filter) > -1){
+
+            li[i].style.display = "";
+            box_search.style.display = "block";
+
+            if (inputSearch.value === ""){
+                box_search.style.display = "none";
             }
 
+        }else{
+            li[i].style.display = "none";
         }
 
     }
+
+
+
+}
+
+
 
 </script>
 @endsection
