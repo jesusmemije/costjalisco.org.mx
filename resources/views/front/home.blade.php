@@ -118,9 +118,9 @@ Inicio
 
         #ctn-bars-search{
             position: fixed;
-            top: -10px;
-            width: 100%;
-            background: #fff;
+            top: 125px;
+            width: -60%;
+           
             padding: 20px;
             z-index: 9;
             transition: all 600ms;
@@ -128,8 +128,8 @@ Inicio
 
         #ctn-bars-search input{
             display: block;
-            width: 1200px;
-            margin: auto;
+            width: 400px;
+            margin: none;
             padding: 10px;
             font-size: 18px;
             outline: 0;
@@ -137,10 +137,10 @@ Inicio
 
         #box-search{
             position: fixed;
-            top: 165px;
+            top: 220px;
             left: 50%;
             transform: translateX(-50%);
-            width: 1200px;
+            width: 480px;
             background: #fff;
             z-index: 8;
             overflow: hidden;
@@ -166,8 +166,8 @@ Inicio
 
 
         #cover-ctn-search{
-            width: 100%;
-            height: 100%;
+            width: 10%;
+            height: 10%;
             position: fixed;
             left: 0;
             background: rgba(0,0,0,0.5);
@@ -184,32 +184,38 @@ Inicio
                     </button>
                 </div>
                 <form >
-                <div class="modal-body">
+                    <div class="modal-body">
                         <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
                     
                         <div class="input-group">
 
-                            <input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">
+                            <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                <div id="ctn-icon-search">
+                                    <i class="fas fa-search" id="icon-search"></i>
+                                </div>
                             </div>
-                        
-                        </div>
-                        <ul id="box-search" >
-                            <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>PHP</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>Como crear</a></li>
-                        </ul>
+                          
 
-                    <br><br>
-                </div>
+                            <div id="ctn-bars-search">
+                                <input type="text" id="inputSearch" placeholder="¿Ingresa palabras clave?">
+                            </div>
+                        </div>
+                            
+                            <ul id="box-search">
+                                <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>PHP</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>Como crear</a></li>
+                            </ul>
+                            <div id="cover-ctn-search"></div>
+                        </div>
+                        <br><br>
+                    </div>
                 </form>
             </div>
         </div>
