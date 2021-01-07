@@ -92,13 +92,56 @@ Inicio
             alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">
     </div>
-    <style>
-        #box-search {
+    
+        <style>
+        /*Buscador de contenido*/
+
+        #ctn-icon-search{
+            position: absolute;
+            right: 20px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #ctn-icon-search i{
+            font-size: 18px;
+            color: #777777;
+            cursor: pointer;
+            transition: all 300ms;
+        }
+
+        #ctn-icon-search i:hover{
+            color: #46a2fd;
+        }
+
+
+        #ctn-bars-search{
             position: fixed;
-            top: 192px;
-            left: 49.5%;
+            top: 125px;
+            width: 80%;
+           
+            padding: 20px;
+            z-index: 9;
+            transition: all 600ms;
+        }
+
+        #ctn-bars-search input{
+            display: block;
+            width: 400px;
+            margin: none;
+            padding: 10px;
+            font-size: 18px;
+            outline: 0;
+        }
+
+        #box-search{
+            position: fixed;
+            top: 210px;
+            left: 50%;
             transform: translateX(-50%);
-            width: 465px;
+            width: 480px;
             background: #fff;
             z-index: 8;
             overflow: hidden;
@@ -127,7 +170,18 @@ Inicio
             background: #f3f3f3;
             margin-right: 10px;
         }
-    </style>
+
+
+        #cover-ctn-search{
+            width: 10%;
+            height: 10%;
+            position: fixed;
+            left: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 7;
+            display: none;
+        }
+        </style>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -136,30 +190,37 @@ Inicio
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">x</button>
                     </button>
                 </div>
-                <form>
+                <form >
                     <div class="modal-body">
                         <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
                         <div class="input-group">
-                            <input type="text" id="inputSearch" class="form-control"
-                                placeholder="Ingresa palabras clave" aria-label="Search"
-                                aria-describedby="basic-addon2">
+
+                            <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                <div id="ctn-icon-search">
+                                    <i class="fas fa-search" id="icon-search"></i>
+                                </div>
+                            </div>
+                          
+
+                            <div id="ctn-bars-search">
+                                <input type="text" id="inputSearch" placeholder="¿Ingresa palabras clave?">
                             </div>
                         </div>
-                        <ul id="box-search">
-                            <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>PHP</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>Como crear</a></li>
-                        </ul>
-
+                            
+                            <ul id="box-search">
+                                <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
+                                <li><a href="https://www.itei.org.mx/cost/"><i class="fas fa-search"></i>PHP</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
+                                <li><a href="https://www.itei.org.mx/cost/"><i class="fas fa-search"></i>Como crear</a></li>
+                            </ul>
+                            <div id="cover-ctn-search"></div>
+                        </div>
+                       
                         <br><br>
                     </div>
                 </form>
@@ -859,27 +920,84 @@ Inicio
     //Declarando variables
     // bars_search =       document.getElementById("ctn-bars-search");
     // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    inputSearch =       document.getElementById("inputSearch");
-    box_search =        document.getElementById("box-search");
+    document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
 
-    document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+function mostrar_menu(){
 
-    function buscador_interno(){
-        filter = inputSearch.value.toUpperCase();
-        li = box_search.getElementByTagName("li");
+    document.getElementById("move-content").classList.toggle('move-container-all');
+    document.getElementById("show-menu").classList.toggle('show-lateral');
+}
 
-        for (i=0; i<li.length; i++){
-            a = li[i].getElementByTagName("a")[0];
-            textValue= a.textContent || a.innerText;
+//Ejecutando funciones
+document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
 
-            if(textValue.toUpperCase().indexOf(filter) > -1){
-                li[i].style.display="";
-            }else{
-                li[i].style.display="none";
+//Declarando variables
+bars_search =       document.getElementById("ctn-bars-search");
+cover_ctn_search =  document.getElementById("cover-ctn-search");
+inputSearch =       document.getElementById("inputSearch");
+box_search =        document.getElementById("box-search");
+
+
+//Funcion para mostrar el buscador
+function mostrar_buscador(){
+
+    bars_search.style.top = "80px";
+    cover_ctn_search.style.display = "block";
+    inputSearch.focus();
+
+    if (inputSearch.value === ""){
+        box_search.style.display = "none";
+    }
+
+}
+
+//Funcion para ocultar el buscador
+function ocultar_buscador(){
+
+    bars_search.style.top = "-10px";
+    cover_ctn_search.style.display = "none";
+    inputSearch.value = "";
+    box_search.style.display = "none";
+
+}
+
+
+//Creando filtrado de busqueda
+
+document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+
+function buscador_interno(){
+
+
+    filter = inputSearch.value.toUpperCase();
+    li = box_search.getElementsByTagName("li");
+
+    //Recorriendo elementos a filtrar mediante los "li"
+    for (i = 0; i < li.length; i++){
+
+        a = li[i].getElementsByTagName("a")[0];
+        textValue = a.textContent || a.innerText;
+
+        if(textValue.toUpperCase().indexOf(filter) > -1){
+
+            li[i].style.display = "";
+            box_search.style.display = "block";
+
+            if (inputSearch.value === ""){
+                box_search.style.display = "none";
             }
+
+        }else{
+            li[i].style.display = "none";
         }
 
     }
+
+
+
+}
+
 
 </script>
 @endsection
