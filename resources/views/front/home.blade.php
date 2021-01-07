@@ -312,7 +312,7 @@ Inicio
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Organizaciones</div>
             <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
-            <div class="card-indice-counter">36</div>
+            <div class="card-indice-counter"><h2>{{$total_organization}}</h2></div>
         </div>
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Proyectos de la iniciativa</div>
@@ -323,7 +323,7 @@ Inicio
         <div class="col-3 px-0">
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
-            <div class="card-indice-counter">521,256</div>
+            <div class="card-indice-counter"><h2>{{$total_beneficiarios}}</h2></div>
         </div>
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Presupuesto utilizado</div>
