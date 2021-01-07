@@ -106,10 +106,17 @@ Inicio
         }
 
         #ctn-icon-search i{
-            font-size: 18px;
+            font-size: 30px;
             color: #777777;
             cursor: pointer;
             transition: all 300ms;
+            padding: 9px;
+            padding-bottom: 10px;
+            margin-top: 43px;
+            border-top: 1px solid #000;  
+            border-right: 1px solid #000;  
+            border-bottom: 1px solid #000;  
+
         }
 
         #ctn-icon-search i:hover{
@@ -122,18 +129,24 @@ Inicio
             top: 125px;
             width: 80%;
            
-            padding: 20px;
+            padding-top: 25px;
             z-index: 9;
             transition: all 600ms;
         }
 
         #ctn-bars-search input{
             display: block;
-            width: 400px;
+            width: 38%;
             margin: none;
             padding: 10px;
-            font-size: 18px;
+            font-size: 19px;
             outline: 0;
+            border: 0px;
+            border-top: 1px solid #000;  
+            border-left: 1px solid #000;  
+            border-bottom: 1px solid #000;  
+        
+            
         }
 
         #box-search{
@@ -145,7 +158,7 @@ Inicio
             background: #fff;
             z-index: 8;
             overflow: hidden;
-            display: block;
+            display: none;
             padding: 0;
         }
 
@@ -196,15 +209,12 @@ Inicio
                         <div class="input-group">
 
                             <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
-                            <div class="input-group-append">
+                            <div class="input-group-append" >
                                 <div id="ctn-icon-search">
                                     <i class="fas fa-search" id="icon-search"></i>
                                 </div>
-                            </div>
-                          
-
-                            <div id="ctn-bars-search">
-                                <input type="text" id="inputSearch" placeholder="¿Ingresa palabras clave?">
+                           <div id="ctn-bars-search">
+                                <input type="text" id="inputSearch" placeholder="Escribe palabras clave">
                             </div>
                         </div>
                             
@@ -780,11 +790,26 @@ Inicio
                 <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
-                                class="img-fluid" alt="">
+                            @php
+                                $imagen=DB::table('projects_imgs')
+                                ->select('projects_imgs.imgroute')
+                                ->where('projects_imgs.id_project','=',$project->id)
+                                ->get();
+                            @endphp
+                            @if (count($imagen)==0)
+                                <img src="{{ asset('projects_imgs/sinimagen.png') }}"  width="100%px" height="320px" alt="">
+                            @else
+                                {{-- <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325" height="310"  alt=""> --}}
+                                
+                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}"
+                                class="img-fluid" width="100%px" height="320px" alt="">
+                            @endif
                         </div>
                         <div class="col-md-8 hidden-phone">
-                            <h2 class="font-weight-bold my-4 text-red">{{ $project->title }}</h2>
+                            @php
+                                $titulo=substr($project->title,0,42).'..';
+                            @endphp
+                            <h2 class="font-weight-bold my-4 text-red">{{ $titulo }}</h2>
                             <div class="row">
                                 <div class="col-md-6" style="border-right: 1px solid #777;">
                                     <p>
@@ -792,7 +817,10 @@ Inicio
                                     </p>
                                 </div>
                                 <div class="col-md-6 pl-4">
-                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
+                                    
+                                   
+                                    <p>
+                                        <img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Inversión: </strong> $ {{number_format($project->montocontrato,2)}}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
@@ -920,21 +948,21 @@ Inicio
     //Declarando variables
     // bars_search =       document.getElementById("ctn-bars-search");
     // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
+//     document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
 
-function mostrar_menu(){
+// function mostrar_menu(){
 
-    document.getElementById("move-content").classList.toggle('move-container-all');
-    document.getElementById("show-menu").classList.toggle('show-lateral');
-}
+//     document.getElementById("move-content").classList.toggle('move-container-all');
+//     document.getElementById("show-menu").classList.toggle('show-lateral');
+// }
 
-//Ejecutando funciones
-document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
-document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
+// //Ejecutando funciones
+// document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+// document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
 
-//Declarando variables
-bars_search =       document.getElementById("ctn-bars-search");
-cover_ctn_search =  document.getElementById("cover-ctn-search");
+// //Declarando variables
+// bars_search =       document.getElementById("ctn-bars-search");
+// cover_ctn_search =  document.getElementById("cover-ctn-search");
 inputSearch =       document.getElementById("inputSearch");
 box_search =        document.getElementById("box-search");
 
