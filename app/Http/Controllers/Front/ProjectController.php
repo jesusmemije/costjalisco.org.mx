@@ -199,6 +199,8 @@ class ProjectController extends Controller
             $all = DB::table('project')
                 
                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+                ->join('project_locations','project.id','=','project_locations.id_project')
+                ->join('locations','project_locations.id_location','=','locations.id')
                 ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
                 ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                 ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
@@ -208,6 +210,8 @@ class ProjectController extends Controller
                 ->select(
                     'project.*',
                     'generaldata.*',
+                    'locations.id_address','locations.principal',
+                    'locations.description as descriptionlocation',
                     'estudiosambiental.*',
                     'estudiosfactibilidad.*',
                     'estudiosimpacto.*',
@@ -312,10 +316,23 @@ class ProjectController extends Controller
             $project_imgs=DB::table('projects_imgs')
             ->where('id_project','=',$project->id)
             ->get();
-           
-
         
-            
+         
+    $address=DB::table('address')
+    ->where('id','=',$all->id_address)
+    ->first();
+
+    $address_f=($address->streetAddress).",".($address->locality).','.($address->region);
+    
+    $principal= $all->principal;
+    $principal= explode("|", $principal);
+  
+    if(sizeof($principal)==1){
+        $principal[0]="";
+        $principal[1]="";
+       
+    }
+  
           
 
 
@@ -340,6 +357,8 @@ class ProjectController extends Controller
                 'tipoAmbiental'=>$tipoAmbiental,
                 'tipoFactibilidad'=>$tipoFactibilidad,
                 'tipoImpacto'=>$tipoImpacto,
+                'address_f'=>$address_f,
+                'principal'=>$principal
             ]);
         } else {
             return redirect()->route('list-projects');
@@ -393,6 +412,7 @@ class ProjectController extends Controller
     $name='data'.$id.'.xlsx';
     
     $excel=Excel::download(new ProjectDataExport($id), $name);
+    return $excel;
        /* 
     if($excel){
 //save excel bd & server

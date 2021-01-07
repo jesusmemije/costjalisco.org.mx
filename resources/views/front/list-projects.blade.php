@@ -89,7 +89,7 @@ switch ($project->status) {
                 </div>
                 <div class="col-md-11 d-flex justify-content-end align-items-baseline"
                     style="background-color: #d60000;">
-                    <span style="font-size: 26px; font-weight: 700; color:white">{{$avance}}%</span>&nbsp;&nbsp;<span
+                    <span style="font-size: 26px; font-weight: 700; color:white">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
                         style="color:white">completado</span>
                 </div>
             </div>

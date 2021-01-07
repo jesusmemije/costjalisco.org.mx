@@ -120,31 +120,31 @@ Organizaciones
     }
 
     .tr1 {
-        background-image: url("assets/img/organizations/publico2.png");
+        background-image: url("http://pice-software.com/costjalisco/public/assets/img/organizations/publico2.png");
         color: #fff;
         font-size: 1em;
     }
 
     .tr2 {
-        background-image: url("assets/img/organizations/academico2.png");
+        background-image: url("http://pice-software.com/costjalisco/public/assets/img/organizations/academico2.png");
         color: #fff;
         font-size: 1em;
     }
 
     .tr3 {
-        background-image: url("assets/img/organizations/privado2.png");
+        background-image: url("http://pice-software.com/costjalisco/public/assets/img/organizations/privado2.png");
         color: #fff;
         font-size: 1em;
     }
 
     .tr4 {
-        background-image: url("assets/img/organizations/civil2.png");
+        background-image: url("http://pice-software.com/costjalisco/public/assets/img/organizations/civil2.png");
         color: #fff;
         font-size: 1em;
     }
 
     .tr5 {
-        background-image: url("assets/img/organizations/estrategico2.png");
+        background-image: url("http://pice-software.com/costjalisco/public/assets/img/organizations/estrategico2.png");
         color: #fff;
         font-size: 1em;
     }
@@ -169,16 +169,16 @@ Organizaciones
         <table class="table col-md-12 table-bordered">
             <tr class="tr1">
                 <th style="width: 35%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-inst.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-inst.png')}}"
                         height="30">
                     <span>Institución</span>
                 </th>
                 <th style="width: 30%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u.png')}}"
                         height="30">
                     Titular</th>
                 <th style="width: 40%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u2.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u2.png')}}"
                         height="30">
                     Enlace</th>
             </tr>
@@ -213,16 +213,16 @@ Organizaciones
         <table class="table col-md-12 table-bordered">
             <tr class="tr2">
                 <th style="width: 35%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-inst.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-inst.png')}}"
                         height="30">
                     <span>Institución</span>
                 </th>
                 <th style="width: 30%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u.png')}}"
                         height="30">
                     Titular</th>
                 <th style="width: 40%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u2.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u2.png')}}"
                         height="30">
                     Enlace</th>
             </tr>
@@ -255,16 +255,16 @@ Organizaciones
         <table class="table col-md-12 table-bordered">
             <tr class="tr3">
                 <th style="width: 35%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-inst.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-inst.png')}}"
                         height="30">
                     <span>Institución</span>
                 </th>
                 <th style="width: 30%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u.png')}}"
                         height="30">
                     Titular</th>
                 <th style="width: 40%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u2.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u2.png')}}"
                         height="30">
                     Enlace</th>
             </tr>
@@ -297,16 +297,16 @@ Organizaciones
         <table class="table col-md-12 table-bordered">
             <tr class="tr4">
                 <th style="width: 35%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-inst.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-inst.png')}}"
                         height="30">
                     <span>Institución</span>
                 </th>
                 <th style="width: 30%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u.png')}}"
                         height="30">
                     Titular</th>
                 <th style="width: 40%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u2.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u2.png')}}"
                         height="30">
                     Enlace</th>
             </tr>
@@ -339,16 +339,16 @@ Organizaciones
         <table class="table col-md-12 table-bordered">
             <tr class="tr5">
                 <th style="width: 35%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-inst.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-inst.png')}}"
                         height="30">
                     <span>Institución</span>
                 </th>
                 <th style="width: 30%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u.png')}}"
                         height="30">
                     Titular</th>
                 <th style="width: 40%;">
-                    <img style="padding-right:4%; margin-bottom:2%;" src="assets/img/organizations/icon-u2.png"
+                    <img style="padding-right:4%; margin-bottom:2%;" src="{{asset('assets/img/organizations/icon-u2.png')}}"
                         height="30">
                     Enlace</th>
             </tr>

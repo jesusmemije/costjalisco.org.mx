@@ -725,6 +725,8 @@ class ProjectController extends Controller
      }
 
      public function updateidentificacion(Request $request){
+
+        
         $fecha_in = date('Y-m-d');
 
        
@@ -743,6 +745,7 @@ class ProjectController extends Controller
         $project->purpose = $request->propositoProyecto;
         $project->type = $request->tipoProyecto;
         $project->people=$request->people;
+        $project->porcentaje_obra=$request->porcentaje_obra;
       
         $project->publicAuthority_name = '';
         $project->publicAuthority_id = $request->autoridadP;
@@ -766,6 +769,8 @@ class ProjectController extends Controller
         $locations->description = $request->description;
         $locations->id_geometry = 1;
         $locations->id_gazetter = 1;
+        $locations->principal=$request->principal;
+        $locations->names=$request->names;
         $locations->lat = $request->lat;
         $locations->lng = $request->lng;
        
@@ -1310,6 +1315,9 @@ class ProjectController extends Controller
     }
      
     public function saveidentificacion(Request $request){
+
+
+       
         
         $fecha_in = date('Y-m-d');
         
@@ -1324,6 +1332,7 @@ class ProjectController extends Controller
             'subsector'=>'required|max:50',
             'tipoProyecto'=>'required|max:50',
             'people'=>'required|max:50',
+            'porcentaje_obra'=>'required|max:3',
 
             'streetAddress'=>'required|max:50',
             'locality'=>'required|max:50',
@@ -1360,6 +1369,7 @@ class ProjectController extends Controller
         $project->purpose = $request->propositoProyecto;
         $project->type = $request->tipoProyecto;
         $project->people = $request->people;
+        $project->porcentaje_obra=$request->porcentaje_obra;
         
       
         $project->publicAuthority_name = '';
@@ -1405,6 +1415,8 @@ class ProjectController extends Controller
         $locations->id_geometry = 1;
         $locations->id_gazetter = 1;
         $locations->id_address = $address->id;
+        $locations->principal=$request->principal;
+        $locations->names=$request->names;
         $locations->lat = $request->lat;
         $locations->lng = $request->lng;
         $locations->save();
@@ -1662,17 +1674,29 @@ class ProjectController extends Controller
     }
     public function uploadExcel(){
        // print_r($_FILES);
+        
+       
+       $file=$_FILES['excel']['name'];
+       $file=str_replace(' ', '', $file);
+       $aux_file=time().$file;
+      
+       
+        
+       //move_uploaded_file($file,asset('documents/'.$file));
+       move_uploaded_file($_FILES['excel']['tmp_name'],'documents/'.$aux_file);
 
-       // $file=$_FILES['excel']['name'];
-
-        $file=asset('documents/'.$_POST["excel"]);
+        $file=asset('documents/'.$aux_file);
       
         
         $csv= file_get_contents($file);
 $array = array_map("str_getcsv", explode("\n", $csv));
 $json = json_encode($array);
+//$json= fopen(asset('documents/'.$aux_file), 'r');
 
-echo  $json;
+//$f=asset('documents/'.$aux_file);
+
+
+return $json;
 
 
 
