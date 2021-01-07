@@ -119,7 +119,7 @@ Inicio
         #ctn-bars-search{
             position: fixed;
             top: 125px;
-            width: -60%;
+            width: 80%;
            
             padding: 20px;
             z-index: 9;
@@ -137,7 +137,7 @@ Inicio
 
         #box-search{
             position: fixed;
-            top: 220px;
+            top: 210px;
             left: 50%;
             transform: translateX(-50%);
             width: 480px;
@@ -200,19 +200,20 @@ Inicio
                             <div id="ctn-bars-search">
                                 <input type="text" id="inputSearch" placeholder="¿Ingresa palabras clave?">
                             </div>
-                        </div>
+                        
                             
                             <ul id="box-search">
                                 <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i>PHP</a></li>
+                                <li><a href="https://www.itei.org.mx/cost/"><i class="fas fa-search"></i>PHP</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i>Como crear</a></li>
+                                <li><a href="https://www.itei.org.mx/cost/"><i class="fas fa-search"></i>Como crear</a></li>
                             </ul>
                             <div id="cover-ctn-search"></div>
+                        </div>
                         </div>
                         <br><br>
                     </div>
