@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @extends("admin.layouts.app")
 
 
@@ -242,6 +243,14 @@
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
+            <div class="form-group col-md-3">
+            <label for="porcentaje_obra">Porcentaje de avance la obra</label>
+            <input required maxlength="3" placeholder="p.ej. 100" type="number" name="porcentaje_obra" id="porcentaje_obra" class="form-control @error('porcentaje_obra') is-invalid @enderror" value="{{old('porcentaje_obra',$project->porcentaje_obra)}}">
+            
+            @error('people')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            </div>
             
    </div>
             
@@ -256,12 +265,14 @@
 
 
 <div class="col-md-9">
-<input class="btn btn-sm btn-outline-primary" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
+
+<input class="btn btn-sm btn-outline-primary"  form="formId" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
   <a class="btn btn-sm btn-outline-info" style="color:blue">Descargar formato</a>
   <input type="hidden" id="ver">
   
-  <button class="btn btn-outline-success btn-sm" id="subir">Subir</button>
+  <button type="submit" class="btn btn-outline-success btn-sm"  form="formId" id="subir">Subir</button>
 </div>
+
 
   <div class="col-md-3">
   <button id="del" class="btn btn-outline-danger btn-sm d-flex justify-content-end">Eliminar puntos del mapa</button>
@@ -513,6 +524,7 @@
         </div>
 
     </form>
+    <form  id='formId'>@csrf</form>
   </div>
 
 </div>
@@ -584,25 +596,33 @@ const myLatlng = {
             12);
 
             
+  $('#formId').submit( function( e ) {
+    e.preventDefault();
+
+    var data = new FormData();
+jQuery.each(jQuery('#formId')[0].files, function(i, file) {
+    data.append('file-'+i, file);
+});
 
 
+    
+    
+    var fileform = new FormData(this); // <-- 'this' is your form element
+    var token = $('meta[name="csrf-token"]').attr('content');
 
-$("#subir").on('click', function(evt){
-  fromfile=true;
-  x=false;
-  evt.preventDefault();  
-  if( $('#ver').val()!=""){
-
+ 
 $.ajax({
-  data: {
-    "_token": "{{ csrf_token() }}",
-    "excel": xd,
-   
-  }, //datos que se envian a traves de ajax
-  url: "{{ route('uploadExcel') }}", //archivo que recibe la peticion
-  type: 'post', //método de envio
-  dataType: "json",
-  success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+      headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  },
+      cache: false,
+    contentType: false,
+    processData: false,
+            url: "{{ route('uploadExcel') }}",
+            data: fileform,
+            type: 'POST',   
+           dataType:'json',
+           success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
     console.log(resp);
     for (; index < resp.length; index++) {
     
@@ -637,7 +657,7 @@ $.ajax({
        <td> <label id=`+index+` >`+resp[index][0]+`</label>
       <td>` +resp[index][1]+ `</td>
         <td>` +resp[index][2] + `</td>
-        <td><button disabled>Eliminar</button>
+        
         <i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + (index-1) + `)'>
         </td>
         </td>
@@ -660,16 +680,13 @@ $.ajax({
  // pintarPuntos(mydata);
 
   },
-  error: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+          
+  })
+  
+  });
 
-   // alert("Ha ocurrido un error, intente de nuevo.");
-    //console.log(response);
-  }
-});
-  }else{
-    alert("Debe seleccionar un archivo .csv para colocar los puntos en el mapa");
-  }
-});
+   
+          
 
 
 

@@ -53,6 +53,14 @@
         .h3, h3 {
             font-size: 1.25rem;
         }
+
+        .navbar-toggler {
+            padding: 0;
+        }
+
+        .nav-link {
+            padding: .8rem 1rem;
+        }
     }
 
     @media only screen and (max-width: 400px) {
@@ -217,10 +225,10 @@
 <!--============= End Header Desktop ==================-->
 
 <!--============= Header Phone ==================-->
-<header id="header-phone" style="background-image: url('/assets/img/header/menu-superior.jpg');
+<header id="header-phone" style="background-image: url('/assets/img/header/background-movil.jpg');
 background-repeat: no-repeat;
 background-size: cover; height: 56px;">
-    <div class="row h-100 align-items-center">
+    <div class="row h-100 align-items-center mx-0">
         <div class="col-md-12 d-flex justify-content-between" style="align-items: center;">
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -233,24 +241,39 @@ background-size: cover; height: 56px;">
             </button>
 
             <a href="{{ route('index') }}">
-                <img src="{{ asset('assets/img/header/logo-costjalisco.png') }}" width="100" alt="Logo-costjalisco">
+                <img src="{{ asset('assets/img/header/logo-movil.png') }}" width="100" alt="Logo-costjalisco">
             </a>
 
-            @if (Route::has('login'))
-                @auth
-                <a href="{{ route('dashboard') }}" class="p-2 text-white nav-login">DASHBOARD</a>
-                @else
-                <a href="{{ route('login') }}" class="p-2 text-white nav-login">INGRESAR</a>
+            <div style="margin-left: 36px;">
+                <a href="{{ route('index') }}">
+                    <img src="{{ asset('assets/img/header/home.png') }}" class="img-fluid" alt="Home-costjalisco">
+                </a>
+    
+                @if (Route::has('login'))
+                    @auth
+                    <a href="{{ route('dashboard') }}" class="p-2 text-white nav-login">DASHBOARD</a>
+                    @else
+                    <a href="{{ route('login') }}" class="p-2 text-white nav-login">INGRESAR</a>
+                    @endif
                 @endif
-            @endif
+    
+                <a class="p-2" href="{{route('search-engine')}}">
+                    <img src="{{ asset('assets/img/header/search.png') }}" class="img-fluid" width="20" alt="">
+                </a>
+            </div>
 
-            <a class="p-2" href="{{route('search-engine')}}" style="margin-right: 10px;">
-                <img src="{{ asset('assets/img/header/search.png') }}" class="img-fluid" width="20" alt=""></a>
         </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 12px;">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 12px; padding-right: 28px; max-width: 80%; border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="border-bottom: solid 1px #61A8BD;">
+                    <a class="nav-link dropdown-toggle" href="{{ route('index') }}" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        INICIO
+                    </a>
+                </li>
+                <li class="nav-item dropdown" style="border-bottom: solid 1px #61A8BD;">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownConoceMas" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         CONOCE MÁS
@@ -276,7 +299,7 @@ background-size: cover; height: 56px;">
                     </div>
                 </li>
     
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="border-bottom: solid 1px #61A8BD;">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownNosotros" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         NOSOTROS
@@ -291,7 +314,7 @@ background-size: cover; height: 56px;">
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="border-bottom: solid 1px #61A8BD;">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownProyectos" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         PROYECTOS
@@ -307,7 +330,7 @@ background-size: cover; height: 56px;">
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="border-bottom: solid 1px #61A8BD;">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRecursos" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         RECURSOS
