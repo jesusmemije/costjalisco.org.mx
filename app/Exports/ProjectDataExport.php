@@ -244,9 +244,16 @@ $export=  new Collection([
     [$all->id_project,$all->responsable,$all->email,$all->organismo,$all->puesto,$all->involucrado,$rutas,
     $all->title,$all->ocid,$all->description,$all->purpose,$sector,$subsector,$projecttype,$people,
     $address->streetAddress,$address->locality,$address->region,$address->postalCode,$address->countryName,
-    $all->descriptionlocation,$responsableproyecto->nombreresponsable,$responsableproyecto->cargoresponsable,
-    $responsableproyecto->telefonoresponsable,$responsableproyecto->correoresponsable,$responsableproyecto->domicilioresponsable,
-    $responsableproyecto->horarioresponsable,$tipoAmbiental->titulo,$all->fecharealizacionAmbiental,$all->responsableAmbiental,
+    $all->descriptionlocation,
+    
+    // $responsableproyecto->nombreresponsable,
+    // $responsableproyecto->cargoresponsable,
+    // $responsableproyecto->telefonoresponsable,
+    // $responsableproyecto->correoresponsable,
+    // $responsableproyecto->domicilioresponsable,
+    // $responsableproyecto->horarioresponsable,
+    
+    $tipoAmbiental->titulo,$all->fecharealizacionAmbiental,$all->responsableAmbiental,
     $all->numeros_ambiental,$tipoFactibilidad->titulo,$all->fecharealizacionFactibilidad,$all->responsableFactibilidad,
     $all->numeros_factibilidad,$tipoImpacto->titulo,$all->fecharealizacionimpacto,$all->responsableImpacto,
     $all->numeros_impacto,$catorigenrecurso->titulo,$origenrecurso->sourceParty_name,$origenrecurso->startDate
