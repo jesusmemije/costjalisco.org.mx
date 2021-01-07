@@ -79,6 +79,8 @@ Route::namespace('Front')->group(function () {
     Route::get('/georeferencing', [SearchController::class, 'georeferencing'])->name('georeferencing');
 
     /* Fines de programación */
+    Route::get('export/{id}',  [FrontProjectController::class, 'export'])->name('projectexport');
+    
     Route::post('getdocumentsproject', [FrontProjectController::class, 'getdocumentsproject'])->name('getdocumentsproject');
 
     Route::get('/sectores', [SearchController::class, 'sectores'])->name('home.sectores');
@@ -207,7 +209,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/admin/organizations/updateRol/', [OrganizationsController::class, 'updateRol'])->name('organizations.updateRol');
         Route::post('/admin/organizations/destroyRol/', [OrganizationsController::class, 'destroyRol'])->name('organizations.destroyRol');
    
-        Route::get('admin/project/export/{id}',  [AdminProjectController::class, 'export'])->name('projectexport');
+       
     });
 
     //Routes Users

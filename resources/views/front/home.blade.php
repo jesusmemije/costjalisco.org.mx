@@ -320,12 +320,8 @@ Inicio
             <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
             <div class="card-indice-counter">521</div>
         </div>
-<<<<<<< HEAD
         
         <div class="col-3 px-0">
-=======
-        <div class="col-md-3 col-6 px-0">
->>>>>>> 9600cf7962b13da9d57f0bb5b0c73d3b86f19b37
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
             <div class="card-indice-counter">521,256</div>

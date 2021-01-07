@@ -110,7 +110,7 @@ Datos del proyecto
                         </div>
                         <div class="col-md-8 d-flex justify-content-end align-items-baseline">
                             <span
-                                style="font-size: 26px; font-weight: 700;">{{$avance}}%</span>&nbsp;&nbsp;<span>completado</span>
+                                style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span>completado</span>
                         </div>
                     </div>
                 </div>
@@ -444,11 +444,16 @@ Datos del proyecto
         <div class="row align-items-baseline">
             <div class="col-md-7" style="background-color:#d60000; color:#fff;">
                 <div class="d-flex justify-content-end align-items-baseline">
-                    <span style="font-size: 26px; font-weight: 700;">100%</span>&nbsp;&nbsp;<span>completado</span>
+                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}</span>&nbsp;&nbsp;<span>completado</span>
                 </div>
             </div>
             <div class="col-md-3">
-                <span style="font-weight: 700;">Inagurada: {{$project->fechafinalizacion}}</span>
+                <?php
+                $f=strtotime($project->fechafinalizacion);
+                ?>
+                <span style="font-weight: 700;">Inagurada: 
+                {{date('d/m/Y',$f)}}
+              </span>
             </div>
             
         </div>
@@ -465,7 +470,7 @@ Datos del proyecto
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
             <div class="col-md-3 text-center text-white py-3">
                 <img src="{{ asset('/assets/img/project/icons/ubicacion.png') }}" class="img-fluid" width="16" alt="">
-                &nbsp<span>Colonia Mariano Otero, Zapopan.</span>
+                &nbsp<span>{{$address_f}}</span>
             </div>
             <div style="height: 1.5em;
             border-left: 1px solid #B0C6CF;" class="mt-3"></div>
