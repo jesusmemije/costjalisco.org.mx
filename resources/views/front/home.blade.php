@@ -68,8 +68,8 @@ Inicio
             background: #fff;
             z-index: 8;
             overflow: hidden;
-            display: block;
-            padding: 0;
+            display: none;
+           
         }
 
         #box-search li {
@@ -127,19 +127,35 @@ Inicio
                           
 
                             <div id="ctn-bars-search">
-                                <input type="text" id="inputSearch" placeholder="¿Ingresa palabras clave?">
+                                <input type="text" id="inputSearch" placeholder="¿Ingresa palabras clave?" class="form-control" aria-label="Search" aria-describedby="basic-addon2">
                             </div>
                         </div>
                             
                             <ul id="box-search">
-                                <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
-                                <li><a href="https://www.itei.org.mx/cost/"><i class="fas fa-search"></i>PHP</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
-                                <li><a href="https://www.itei.org.mx/cost/"><i class="fas fa-search"></i>Como crear</a></li>
+                            
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more"><i class="fas fa-search"></i>Historia</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#que-es-cost"><i class="fas fa-search"></i>¿Que es CoST?</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#beneficios"><i class="fas fa-search"></i>Beneficios</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#procesos-de-cost"><i class="fas fa-search"></i>Procesos de CoST</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#divulgacion"><i class="fas fa-search"></i>Divulgacion</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#aseguramiento"><i class="fas fa-search"></i>Aseguramiento</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#auditoria-social"><i class="fas fa-search"></i>Auditoria Social</a></li>
+
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/about-us#cost-jalisco"><i class="fas fa-search"></i>CoST Jalisco</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/about-us#objetivo-general"><i class="fas fa-search"></i>Objetivo de CoST jalisco</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/multisectorial"><i class="fas fa-search"></i>Grupo Multisectorial</a></li>
+
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/statistics"><i class="fas fa-search"></i>Estadisticas</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/search-engine"><i class="fas fa-search"></i>Motor de búsqueda</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/georeferencing"><i class="fas fa-search"></i>Georreferenciación</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/list-projects"><i class="fas fa-search"></i>Listado de obras</a></li>
+                                
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/resources"><i class="fas fa-search"></i>Documentos de interes</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/support-material"><i class="fas fa-search"></i>Material de apoyo</a></li>
+                                
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/eventos"><i class="fas fa-search"></i>Eventos</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/newsletters"><i class="fas fa-search"></i>Boletines</a></li>
+                                <li><a href="http://pice-software.com/costjalisco/public/index.php/journal"><i class="fas fa-search"></i>Notas Periodisticas</a></li>
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
@@ -862,14 +878,7 @@ Inicio
     //Declarando variables
     // bars_search =       document.getElementById("ctn-bars-search");
     // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
-
-function mostrar_menu(){
-
-    document.getElementById("move-content").classList.toggle('move-container-all');
-    document.getElementById("show-menu").classList.toggle('show-lateral');
-}
-
+    
 //Ejecutando funciones
 document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
 document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
