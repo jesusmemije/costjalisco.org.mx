@@ -312,7 +312,7 @@ Inicio
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Organizaciones</div>
             <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
-            <div class="card-indice-counter"><h2>{{$total_organization}}</h2></div>
+            <div class="card-indice-counter">36</div>
         </div>
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Proyectos de la iniciativa</div>
@@ -323,7 +323,7 @@ Inicio
         <div class="col-3 px-0">
             <div class="card-indice-title">Personas beneficiadas</div>
             <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
-            <div class="card-indice-counter"><h2>{{$total_beneficiarios}}</h2></div>
+            <div class="card-indice-counter">521,256</div>
         </div>
         <div class="col-md-3 col-6 px-0">
             <div class="card-indice-title">Presupuesto utilizado</div>
@@ -332,20 +332,6 @@ Inicio
             <div class="card-indice-counter"><h4>$ {{number_format($total_contrato,2)}}</h4></div>
         </div>
     </div>
-
-    <div class="col-md-3 col-6 px-0">
-        <div class="card-indice-title">Personas beneficiadas</div>
-        <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
-        <div class="card-indice-counter">521,256</div>
-    </div>
-    <div class="col-md-3 col-6 px-0">
-        <div class="card-indice-title">Presupuesto utilizado</div>
-        <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
-        <div class="card-indice-counter">
-            ${{number_format($total_contrato,2)}}
-        </div>
-    </div>
-</div>
 
 <!-- Label de actuaización -->
 <div class="row mx-0">
@@ -722,6 +708,7 @@ Inicio
 </div>
 
 <!-- Section - Carousel proyectos -->
+
 <div class="row mx-0">
     <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 px-0">
         <div id="carouselProjects" class="carousel slide" data-ride="carousel">
@@ -729,46 +716,42 @@ Inicio
 
                 @foreach ($projects as $project)
 
-                    <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
-                                    class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-8 hidden-phone">
-                                <h2 class="font-weight-bold my-4 text-red">{{ $project->title }}</h2>
-                                <div class="row">
-                                    <div class="col-md-6" style="border-right: 1px solid #777;">
-                                        <p>
-                                            {{ $project->description }}
-                                        </p>
-                                    </div>
-                                    <div class="col-md-6 pl-4">
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Inversión: </strong> $ {{number_format($project->montocontrato,2)}}</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Periodo de construcción: </strong> {{$project->period}}</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Ubicación: </strong> {{$project->streetAddress}} {{$project->locality}} {{$project->region}}</p>
-                                        <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
-                                                class="img-fluid icon-img-carousel" alt="">
-                                            <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
-                                        <br>
-                                        <span><a href="{{ route('project-single', $project->id) }}" class="text-red"
-                                                style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
-                                                más <span style="letter-spacing: -4px">>></span></a></span>
-                                    </div>
+                <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
+                                class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-8 hidden-phone">
+                            <h2 class="font-weight-bold my-4 text-red">{{ $project->title }}</h2>
+                            <div class="row">
+                                <div class="col-md-6" style="border-right: 1px solid #777;">
+                                    <p>
+                                        {{ $project->description }}
+                                    </p>
+                                </div>
+                                <div class="col-md-6 pl-4">
+                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
+                                            class="img-fluid icon-img-carousel" alt="">
+                                        <strong>&nbsp; Inversión: </strong> $ {{number_format($project->montocontrato,2)}}</p>
+                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
+                                            class="img-fluid icon-img-carousel" alt="">
+                                        <strong>&nbsp; Periodo de construcción: </strong> {{$project->period}}</p>
+                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
+                                            class="img-fluid icon-img-carousel" alt="">
+                                        <strong>&nbsp; Ubicación: </strong> {{$project->streetAddress}} {{$project->locality}} {{$project->region}}</p>
+                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
+                                            class="img-fluid icon-img-carousel" alt="">
+                                        <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
+                                    <br>
+                                    <span><a href="{{ route('project-single', $project->id) }}" class="text-red"
+                                            style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
+                                            más <span style="letter-spacing: -4px">>></span></a></span>
                                 </div>
                             </div>
-                            <div class="rectangulo-rojo-avance-carousel text-white"><span
-                                    style="font-size: 32px;"><strong>{{$project->porcentaje_obra}}%</strong></span><span style="font-size: 14px;"
-                                    class="mx-2">completado</span></div>
                         </div>
                         <div class="rectangulo-rojo-avance-carousel text-white"><span
-                                style="font-size: 32px;"><strong>100%</strong></span><span style="font-size: 14px;"
+                                style="font-size: 32px;"><strong>{{$project->porcentaje_obra}}%</strong></span><span style="font-size: 14px;"
                                 class="mx-2">completado</span></div>
                     </div>
                 </div>
