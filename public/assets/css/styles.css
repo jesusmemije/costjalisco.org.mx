@@ -67,6 +67,7 @@ a:hover {
 .nav-login {
   margin-right: 2rem;
   margin-left: 2rem;
+  font-size: 12px;
 }
 
 .nav-link {
@@ -607,10 +608,6 @@ a:hover {
   font-size: 30px;
   font-weight: 700;
   margin-left: 30px;
-}
-
-.nav-login {
-  font-size: 16px;
 }
 
 .bg-gris {
