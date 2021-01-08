@@ -263,8 +263,7 @@ class HomeController extends Controller
 
     public function account()
     {
-          
-       // return view('auth.account'); ?????????????????
+       return view('auth.account');
     }
 
     public function contact_us()
