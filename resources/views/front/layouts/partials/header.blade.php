@@ -1,84 +1,3 @@
-
-<style>
-    @media only screen and (max-width: 480px) {
-        #header {
-            display: none;
-        }
-
-        .navbar-collapse {
-            background-color: #2D4044 !important;
-            z-index: 100;
-            position: inherit;
-        }
-
-        .navbar-toggler {
-            height: 56px;
-        }
-
-        .dropdown-menu {
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-
-        #carouselHome .carousel-item {
-            height: 242px;
-        }
-
-        #carouselHome .carousel-indicators {
-            bottom: 0;
-        }
-
-        .carousel {
-            margin-top: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        #carouselHome .font-title-carousel {
-            color: white;
-            font-size: 16px;
-            letter-spacing: .8px;
-        }
-
-        #carouselHome .carousel-indicators li {
-            width: 14px;
-            height: 14px;
-            margin-right: 2px;
-            margin-left: 2px;
-        }
-
-        #carouselHome .carousel-caption {
-            right: 50%;
-        }
-
-        .h3, h3 {
-            font-size: 1.25rem;
-        }
-
-        .navbar-toggler {
-            padding: 0;
-        }
-
-        .nav-link {
-            padding: .8rem 1rem;
-        }
-    }
-
-    @media only screen and (max-width: 400px) {
-
-        #carouselHome .carousel-item {
-            height: 210px;
-        }
-
-    }
-
-    @media only screen and (min-width: 480px) {
-        #header-phone {
-            display: none;
-        }
-    }
-
-</style>
-
 <!--============= Header Desktop ==================-->
 <header id="header">
     <div class="header-top">
@@ -240,6 +159,8 @@ background-size: cover; height: 56px;">
                 </svg>
             </button>
 
+            <div style="border-left: solid 1px #95A0A0; height: 25px;"></div>
+
             <a href="{{ route('index') }}">
                 <img src="{{ asset('assets/img/header/logo-movil.png') }}" width="100" alt="Logo-costjalisco">
             </a>
@@ -257,7 +178,7 @@ background-size: cover; height: 56px;">
                     @endif
                 @endif
     
-                <a class="p-2" href="{{route('search-engine')}}">
+                <a href="{{route('search-engine')}}" style="border-left: solid 1px #95A0A0; padding: .2rem .5rem !important;">
                     <img src="{{ asset('assets/img/header/search.png') }}" class="img-fluid" width="20" alt="">
                 </a>
             </div>
