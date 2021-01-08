@@ -32,32 +32,6 @@ Listado de obras
         @foreach ($projects as $project)
 
 
-        <?php
-$avance = 0;
-
-        
-switch ($project->status) {
-    case 1:
-        $avance = 20;
-        break;
-    case 2:
-        $avance = 40;
-        break;
-    case 3:
-        $avance = 60;
-        break;
-    case 4:
-        $avance = 80;
-        break;
-    case 5:
-        $avance = 100;
-        break;
-    default:
-        $avance = 100;
-}
-        
-        ?>
-
         <div class="media" style="background-color: #d8d8cd;  margin-top:2%;">
             @php
                 $imagen=DB::table('projects_imgs')

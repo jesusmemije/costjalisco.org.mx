@@ -5,12 +5,6 @@ Georreferenciación
 @endsection
 
 @section('styles')
-
-    {{-- <script
-        src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous">
-    </script> --}}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
 @endsection
@@ -299,7 +293,7 @@ Georreferenciación
 @section('scripts')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#prueba').select2();
+        $('#municipio').select2();
     });
 </script>
 <script>

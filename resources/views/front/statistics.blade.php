@@ -189,7 +189,7 @@ Estadísticas
                     </label>
                     
                 
-                        <div id="piechart" style="width: 500px; height: 300px; margin-left: 35%; background: red"></div>
+                        <div id="piechart" style="width: 500px; height: 300px; margin-left: 35%;"></div>
                 
                     <label style="margin-left: 20%">
                         @if (empty($sector3[0]->titulo))
