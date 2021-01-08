@@ -9,14 +9,7 @@ Inicio
 <!-- Contenido -->
 <div class="main">
 
-    <!--MODAL-->
-    <div class="chatbot text-center">
-        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
-            alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo">
-    </div>
-    
-        <style>
+    <style>
         /*Buscador de contenido*/
 
         #ctn-icon-search{
@@ -29,10 +22,17 @@ Inicio
         }
 
         #ctn-icon-search i{
-            font-size: 18px;
+            font-size: 30px;
             color: #777777;
             cursor: pointer;
-            transition: all 300ms;
+            /* transition: all 300ms; */
+            padding: 9px;
+            padding-bottom: 9px;
+            margin-top: 41px;
+            border-top: 1px solid #000;  
+            border-right: 1px solid #000;  
+            border-bottom: 1px solid #000;  
+
         }
 
         #ctn-icon-search i:hover{
@@ -43,20 +43,26 @@ Inicio
         #ctn-bars-search{
             position: fixed;
             top: 125px;
-            width: 80%;
-           
-            padding: 20px;
+            width: 77%;
+        
+            padding-top: 25px;
             z-index: 9;
-            transition: all 600ms;
+            /* transition: all 600ms; */
         }
 
         #ctn-bars-search input{
             display: block;
-            width: 400px;
+            width: 38%;
             margin: none;
             padding: 10px;
-            font-size: 18px;
+            font-size: 19px;
             outline: 0;
+            border: 0px;
+            border-top: 1px solid #000;  
+            border-left: 1px solid #000;  
+            border-bottom: 1px solid #000;  
+        
+            
         }
 
         #box-search{
@@ -69,7 +75,7 @@ Inicio
             z-index: 8;
             overflow: hidden;
             display: none;
-           
+            padding: 0;
         }
 
         #box-search li {
@@ -104,7 +110,15 @@ Inicio
             z-index: 7;
             display: none;
         }
-        </style>
+    </style>
+    <!--MODAL-->
+    <div class="chatbot text-center">
+        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
+            alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo">
+    </div>
+    
+        
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -119,48 +133,46 @@ Inicio
                         <div class="input-group">
 
                             <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
-                            <div class="input-group-append">
+                            <div class="input-group-append" >
                                 <div id="ctn-icon-search">
                                     <i class="fas fa-search" id="icon-search"></i>
                                 </div>
-                            </div>
-                          
-
-                            <div id="ctn-bars-search">
-                                <input type="text" id="inputSearch" placeholder="¿Ingresa palabras clave?" class="form-control" aria-label="Search" aria-describedby="basic-addon2">
+                           <div id="ctn-bars-search">
+                                <input type="text" id="inputSearch" placeholder="Escribe palabras clave">
                             </div>
                         </div>
                             
                             <ul id="box-search">
                             
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more"><i class="fas fa-search"></i>Historia</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#que-es-cost"><i class="fas fa-search"></i>¿Que es CoST?</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#beneficios"><i class="fas fa-search"></i>Beneficios</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#procesos-de-cost"><i class="fas fa-search"></i>Procesos de CoST</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#divulgacion"><i class="fas fa-search"></i>Divulgacion</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#aseguramiento"><i class="fas fa-search"></i>Aseguramiento</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/know-more#auditoria-social"><i class="fas fa-search"></i>Auditoria Social</a></li>
+                                <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio > Nosotros</a></li>
+                                <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más > Historia</a></li>
+                                <li><a href="{{url('know-more#que-es-cost')}}"><i class="fas fa-search"></i>Conoce más > ¿Que es CoST?</a></li>
+                                <li><a href="{{url('know-more#beneficios')}}"><i class="fas fa-search"></i>Conoce más > Beneficios</a></li>
+                                <li><a href="{{url('know-more#procesos-de-cost')}}"><i class="fas fa-search"></i>Conoce más > Procesos de CoST</a></li>
+                                <li><a href="{{url('know-more#divulgacion')}}"><i class="fas fa-search"></i>Conoce más > Divulgacion</a></li>
+                                <li><a href="{{url('know-more#aseguramiento')}}"><i class="fas fa-search"></i>Conoce más > Aseguramiento</a></li>
+                                <li><a href="{{url('know-more#auditoria-social')}}"><i class="fas fa-search"></i>Conoce más > Auditoria Social</a></li>
 
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/about-us#cost-jalisco"><i class="fas fa-search"></i>CoST Jalisco</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/about-us#objetivo-general"><i class="fas fa-search"></i>Objetivo de CoST jalisco</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/multisectorial"><i class="fas fa-search"></i>Grupo Multisectorial</a></li>
+                                <li><a href="{{url('about-us#cost-jalisco')}}"><i class="fas fa-search"></i>Nosotros > CoST Jalisco</a></li>
+                                <li><a href="{{url('about-us#objetivo-general')}}"><i class="fas fa-search"></i>Nosotros > Objetivo de CoST jalisco</a></li>
+                                <li><a href="{{url('multisectorial')}}"><i class="fas fa-search"></i>Nosotros > Grupo Multisectorial</a></li>
 
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/statistics"><i class="fas fa-search"></i>Estadisticas</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/search-engine"><i class="fas fa-search"></i>Motor de búsqueda</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/georeferencing"><i class="fas fa-search"></i>Georreferenciación</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/list-projects"><i class="fas fa-search"></i>Listado de obras</a></li>
+                                <li><a href="{{url('statistics')}}"><i class="fas fa-search"></i>Proyectos > Estadisticas</a></li>
+                                <li><a href="{{url('search-engine')}}"><i class="fas fa-search"></i>Proyectos > Motor de búsqueda</a></li>
+                                <li><a href="{{url('georeferencing')}}"><i class="fas fa-search"></i>Proyectos > Georreferenciación</a></li>
+                                <li><a href="{{url('list-projects')}}"><i class="fas fa-search"></i>Proyectos > Listado de obras</a></li>
                                 
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/resources"><i class="fas fa-search"></i>Documentos de interes</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/support-material"><i class="fas fa-search"></i>Material de apoyo</a></li>
+                                <li><a href="{{url('resources')}}"><i class="fas fa-search"></i>Recursos > Documentos de interes</a></li>
+                                <li><a href="{{url('support-material')}}"><i class="fas fa-search"></i>Recursos > Material de apoyo</a></li>
                                 
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/eventos"><i class="fas fa-search"></i>Eventos</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/newsletters"><i class="fas fa-search"></i>Boletines</a></li>
-                                <li><a href="http://pice-software.com/costjalisco/public/index.php/journal"><i class="fas fa-search"></i>Notas Periodisticas</a></li>
+                                <li><a href="{{url('eventos')}}"><i class="fas fa-search"></i>Noticias > Eventos</a></li>
+                                <li><a href="{{url('newsletters')}}"><i class="fas fa-search"></i>Noticias > Boletines</a></li>
+                                <li><a href="{{url('journal')}}"><i class="fas fa-search"></i>Noticias > Notas Periodisticas</a></li>
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
                        
-                        <br><br>
+                        <br><br><br>
                     </div>
                 </form>
             </div>
@@ -301,7 +313,7 @@ Inicio
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center font-weight-bold">NOSOTROS</h3>
+            <h3 class="text-center font-weight-bold" id="inicio-nosotros">NOSOTROS</h3>
             <div class="section-divider"></div>
         </div>
     </div>
@@ -730,8 +742,20 @@ Inicio
                 <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
-                                class="img-fluid" alt="">
+                            @php
+                                $imagen=DB::table('projects_imgs')
+                                ->select('projects_imgs.imgroute')
+                                ->where('projects_imgs.id_project','=',$project->id)
+                                ->get();
+                            @endphp
+                            @if (count($imagen)==0)
+                                <img src="{{ asset('projects_imgs/sinimagen.png') }}"  width="100%px" height="320px" alt="">
+                            @else
+                                {{-- <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325" height="310"  alt=""> --}}
+                                
+                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}"
+                                class="img-fluid" width="100%px" height="320px" alt="">
+                            @endif
                         </div>
                         <div class="hidden-desktop"
                         style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; font-size: 26px; text-align: center; padding: 0 30px;">
@@ -740,7 +764,10 @@ Inicio
                             </span>
                         </div>
                         <div class="col-md-8 hidden-phone">
-                            <h2 class="font-weight-bold my-4 text-red">{{ $project->title }}</h2>
+                            @php
+                                $titulo=substr($project->title,0,42).'..';
+                            @endphp
+                            <h2 class="font-weight-bold my-4 text-red">{{ $titulo }}</h2>
                             <div class="row">
                                 <div class="col-md-6" style="border-right: 1px solid #777;">
                                     <p>
@@ -748,7 +775,10 @@ Inicio
                                     </p>
                                 </div>
                                 <div class="col-md-6 pl-4">
-                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
+                                    
+                                   
+                                    <p>
+                                        <img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Inversión: </strong> $
                                         {{number_format($project->montocontrato,2)}}</p>
@@ -878,14 +908,21 @@ Inicio
     //Declarando variables
     // bars_search =       document.getElementById("ctn-bars-search");
     // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    
-//Ejecutando funciones
-document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
-document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
+//     document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
 
-//Declarando variables
-bars_search =       document.getElementById("ctn-bars-search");
-cover_ctn_search =  document.getElementById("cover-ctn-search");
+// function mostrar_menu(){
+
+//     document.getElementById("move-content").classList.toggle('move-container-all');
+//     document.getElementById("show-menu").classList.toggle('show-lateral');
+// }
+
+// //Ejecutando funciones
+// document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+// document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
+
+// //Declarando variables
+// bars_search =       document.getElementById("ctn-bars-search");
+// cover_ctn_search =  document.getElementById("cover-ctn-search");
 inputSearch =       document.getElementById("inputSearch");
 box_search =        document.getElementById("box-search");
 
