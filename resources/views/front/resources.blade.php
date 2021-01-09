@@ -6,14 +6,20 @@ Recursos
 
 @section('content')
 
-
+<style>
+.subtitle-barra-gris{
+    
+	  background-image: url("assets/img/background-gris.jpg");
+}
+</style>
 
 <!-- Title - Documentos de interés -->
 <div class="row mx-0 my-4" id="documentos-interes">
     <div class="col-md-6 px-0">
    
         <div class="text-center text-white">
-            <h3 class="py-2 font-weight-bold title-barra-roja">Documentos de interés</h3>
+            <h3 class="py-2 font-weight-bold title-barra-roja" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                background-size: cover;'>Documentos de interés</h3>
         </div>
     </div>
 </div>
