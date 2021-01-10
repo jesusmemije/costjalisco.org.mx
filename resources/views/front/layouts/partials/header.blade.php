@@ -1,6 +1,6 @@
 <!--============= Header Desktop ==================-->
 <header id="header">
-    <div class="header-top">
+    <div class="header-top" style="background-image: url({{ asset('assets/img/header/menu-superior.jpg') }});">
         <div class="row flex-nowrap justify-content-between align-items-center mx-0">
             <div class="col-12 d-flex justify-content-end align-items-center">
                 <div class="nav-scroller py-1">
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="header-menu">
+    <div class="header-menu" style="background-image: url({{ asset('assets/img/header/menu-principal.jpg') }});">
         <div class="container">
             <div class="nav-scroller mb-2">
                 <nav class="nav d-flex justify-content-between">

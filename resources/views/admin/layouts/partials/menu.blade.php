@@ -127,10 +127,10 @@ use Illuminate\Support\Facades\Auth;
     <div id="collapseNewsletter" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Secciones</h6>
-        <a class="collapse-item" href="{{ route('news.index')}}">
+        <a class="collapse-item" href="{{ route('newsletter.index')}}">
           <span>Listado</span>
         </a>
-        <a class="collapse-item" href="{{ route('news.index')}}">
+        <a class="collapse-item" href="{{ route('newsletter.index')}}">
           <span>Suscripctores</span>
           
         </a>
