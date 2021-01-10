@@ -17,7 +17,10 @@ Eventos
         background-color: #fff;
     }
 
- 
+    .subtitle-barra-gris {
+	 
+	  background-image: url("assets/img/newsletters/background-title.png");
+}
 
     .c2 {
         color: #d60000;

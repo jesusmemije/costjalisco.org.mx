@@ -6,7 +6,7 @@ Motor de búsqueda
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-@endsection
+<link rel="stylesheet" type="text/css" href="css/select2.css">
 
 @section('content')
 <style>
@@ -63,20 +63,6 @@ Motor de búsqueda
         background: #d9ebf3;
         padding: 120px;
     }
-
-    @media only screen and (max-width: 480px) {
-        
-        .fondo {
-            background: #F7F7F7;
-            padding: 50px 30px;
-        }
-
-        .formulario-projects-search {
-            background: rgb(255, 255, 255);
-            width: 100%;
-        }
-    }
-
 </style>
 
 <div class="container-fluid">
@@ -90,14 +76,15 @@ Motor de búsqueda
         </div>
     </div>
     <div class="row fondo mt-3">
-        <div class="col-md-6 hidden-phone">
+        <div class="col-md-6">
             <br><br><br>
             <center>
                 <img src="{{asset('assets/img/login/Grupo928.png')}}" width="50%" alt="">
             </center>
         </div>
-        <div class="col-md-6 col-12 mt-4 mb-4">
+        <div class="col-md-6 mt-4 mb-4">
             <form action="{{url('list-projects')}}" class="formulario-projects-search" method="get">
+                
                 <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
                     <option value="Acatic">Acatic</option>
@@ -248,11 +235,15 @@ Motor de búsqueda
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="jquery-3.1.1.min.js"></script>
+<script src="js/select2.js"></script>
 <script>
+
     $(document).ready(function(){
             $('#municipio').on('change',function(){
                 
@@ -302,5 +293,14 @@ Motor de búsqueda
                 }
             })
         })
+
 </script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+			$('#municipio').select2();
+	});
+</script>
+
 @endsection

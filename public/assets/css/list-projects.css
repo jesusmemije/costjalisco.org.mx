@@ -1,0 +1,145 @@
+.media {
+    width: 100%;
+    height: 310px;
+    background-color: #d8d8cd;
+    margin-top: 2%;
+}
+
+.bg-rojo {
+    background-image: url('/assets/img/titulo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.topic {
+    font-weight: 700;
+    margin-left: 160px;
+}
+
+.subtopic {
+    padding-top: 1%;
+    padding-left: 1%;
+    font-weight: 700;
+}
+
+.container-subtopic {
+    height: 60px;
+    border-left: 4px solid #2c4143;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.title-obra {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.description-obra {
+    text-align: justify;
+    margin-left: 6%;
+    font-weight: 300;
+}
+
+.container-btn {
+    margin-left: 40%;
+    margin-bottom: 4%;
+}
+
+.btn-conoce-mas {
+    background-color: #2c4143;
+    color: white;
+    border-radius: 15px;
+    width: 130%;
+    height: 30px;
+    box-shadow: 0px 6px 6px 0px gray;
+}
+
+.porcentaje {
+    font-size: 26px;
+    font-weight: 700;
+    color: white
+}
+
+.organismo-publico {
+    color: gray;
+    font-weight: 700;
+}
+
+.bg-red {
+    background-color: #d60000;
+}
+
+.img-obra {
+    width: 30%;
+}
+
+.container-card {
+    background: #fff;
+}
+
+.mx-container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .container-card {
+        background: #D8D8CD;
+    }
+
+    .mx-container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .background-title {
+        font-size: 22px;
+    }
+
+    .topic {
+        margin-left: 50px;
+    }
+
+    .title-obra {
+        margin-left: 0 !important;
+    }
+
+    .description-obra {
+        margin-left: 0;
+    }
+
+    .container-subtopic {
+        height: unset;
+        border-left: unset;
+    }
+
+    .container-fluid {
+        padding-top: 0 !important;
+    }
+
+    .img-obra {
+        width: 100%;
+    }
+
+    .media {
+        display: inline-table;
+    }
+
+    .form-row {
+        flex-wrap: inherit;
+    }
+
+    .btn-conoce-mas {
+        width: 100%;
+    }
+
+    .container-btn {
+        margin-left: 0;
+    }
+
+    .container-organismo-publico {
+        margin-left: 0 !important;
+    }
+
+}
