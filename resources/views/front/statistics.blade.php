@@ -136,7 +136,7 @@ Estadísticas
     <div class="container">
         <div class="my-5 seccione-project">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; " >
-                <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
+                <h2 class="my-4 py-0 font-weight-bold" style="padding: 0" id="project">
                 <span style="font-weight: 700; margin-left: 0px; padding: 0; color: red;" ><b> Proyectos</b></span>    
                 </h2><br>
             </div>
@@ -189,7 +189,7 @@ Estadísticas
                     </label>
                     
                 
-                        <div id="piechart" style="width: 500px; height: 300px; margin-left: 35%; background: red"></div>
+                        <div id="piechart" style="width: 500px; height: 300px; margin-left: 35%;"></div>
                 
                     <label style="margin-left: 20%">
                         @if (empty($sector3[0]->titulo))
@@ -238,7 +238,7 @@ Estadísticas
             
         </div>
         <div class="col-md-12" style="margin-bottom: 100px"></div>
-        <div class="my-1 seccione-project">
+        <div class="my-1 seccione-project" id="iniciativa">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; " >
                 <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
                 <span style="font-weight: 700; margin-left: 0px; padding: 0; color: red;" ><b> Proyectos de la iniciativa</b></span>    
@@ -253,7 +253,7 @@ Estadísticas
             
         </div>
         <div class="col-md-12" style="margin-bottom: 100px"></div>
-        <div class="my-1 seccione-project">
+        <div class="my-1 seccione-project" id="presupuesto">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; " >
                 <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
                 <span style="font-weight: 700; margin-left: 0px; padding: 0; color: red;" ><b> Presupuesto utilizado</b></span>    

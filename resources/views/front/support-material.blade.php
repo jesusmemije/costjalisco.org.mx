@@ -135,7 +135,7 @@ Material de Apoyo
     
 
     <div class="col-md-5 col-12 part1">
-        <div class="row title" style="margin-top:8%;">
+        <div class="row title" style="margin-top:8%;" id="seminarioabierto">
            <h6>SEMINARIO DE DATOS ABIERTOS:</h6> 
         </div>
         <div class="content1"  style="margin-top: 4%;">

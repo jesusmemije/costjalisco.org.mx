@@ -66,7 +66,7 @@ Route::namespace('Front')->group(function () {
     Route::post('/mostrar_contenido', [NewsletterController::class, 'mostrar_contenido'])->name('mostrar_contenido');
     
     Route::get('/newsletters', [NewsletterController::class, 'newsletters'])->name('newsletters');
-    Route::get('/newsletter-single', [NewsletterController::class, 'newsletter_single'])->name('newsletter-single');
+    Route::get('/newsletter-single/{id}', [NewsletterController::class, 'newsletter_single'])->name('newsletter-single');
     Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
     //Project
@@ -230,6 +230,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Routes Events
     require 'admin/events.php';
+
+    //Routes Events
+    require 'admin/newletter.php';
 
     //Uploads images the CKEditor
     Route::post('/ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');

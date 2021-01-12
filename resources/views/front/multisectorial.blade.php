@@ -15,7 +15,8 @@ Nosotros
     <div class="row mx-0">
         <div class="col-md-6 px-0 mt-2">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold title-barra-roja">Grupo Multisectorial</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                background-size: cover;'>Grupo Multisectorial</h3>
             </div>
         </div>
         <div class="col-md-6">

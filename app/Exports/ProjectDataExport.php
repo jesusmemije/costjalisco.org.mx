@@ -338,10 +338,6 @@ $export=  new Collection([
     ['Razones de cambio en el proyecto',$all->razonescambioproyecto],
     ['Documentos del proyecto',$docs],
     
-
-
-
-
  
 
 

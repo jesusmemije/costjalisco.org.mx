@@ -6,7 +6,7 @@ Motor de búsqueda
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-@endsection
+<link rel="stylesheet" type="text/css" href="css/select2.css">
 
 @section('content')
 <style>
@@ -240,6 +240,8 @@ Motor de búsqueda
 
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="jquery-3.1.1.min.js"></script>
+<script src="js/select2.js"></script>
 <script>
 
     $(document).ready(function(){
@@ -291,5 +293,14 @@ Motor de búsqueda
                 }
             })
         })
+
 </script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+			$('#municipio').select2();
+	});
+</script>
+
 @endsection

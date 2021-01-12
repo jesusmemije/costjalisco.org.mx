@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Newsletter;
 
 class NewsletterController extends Controller
 {
@@ -23,12 +24,17 @@ class NewsletterController extends Controller
 
     public function newsletters()
     {
-        return view('front.newsletters');
+        $boletines=DB::table('newsletters')
+        ->select('newsletters.*')
+        ->where('status','=','Publicado')
+        ->get();
+        return view('front.newsletters',['boletines'=>$boletines]);
     }
 
-    public function newsletter_single()
+    public function newsletter_single($id)
     {
-        return view('front.newsletter-single');
+        $boletin=Newsletter::find($id);
+        return view('front.newsletter-single',['boletin'=>$boletin]);
     }
 
     public function subscribe(Request $request)

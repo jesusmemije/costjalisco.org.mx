@@ -134,13 +134,19 @@
 
 <!-- Footer Phone ->
 <!-- Footer -->
+<div class="container pt-5 hidden-desktop">
+    <div class="row">
+        <div class="col-md-12 bg-gris" style="border-bottom: 1px solid #000;">
+            <h3 class="text-center font-weight-bold">NUESTRAS REDES
+            </h3>
+        </div>
+    </div>
+</div>
 <footer class="page-footer font-small hidden-desktop" style="background-color: #628EA0">
-
     <!-- Footer Links -->
-    <div class="container text-center text-md-left mt-1">
+    <div class="container text-center text-md-left">
         <!-- Grid row -->
-        <div class="row justify-content-center h-100">
-
+        <div class="row justify-content-center">
             <!-- Grid column -->
             <div class="col-md-12 text-center mx-auto" style="margin: 20px 0">
                 <div class="social" style="border-bottom: solid 1px #2C4143;">
@@ -160,25 +166,18 @@
             </div>
         </div>
         <div class="row">
-
             <!-- Grid column -->
             <div class="col-md-12 text-center" style="margin: 12px 0;">
-                
-                    <a href="https://www.facebook.com/CoSTransparency/" style="margin: 0 20px;" target="_blank">
-                        <img src="{{ asset('assets/img/footer/contacto.png') }}" class="img-fluid" alt="">
-                        <span style="font-weight: bold">CONTACTO</span>
-                    </a>
-
-               
+                <a href="mailto:jalisco@infrastructuretransparency.org" style="margin: 0 20px;" target="_blank">
+                    <img src="{{ asset('assets/img/footer/contacto.png') }}" class="img-fluid" alt="">
+                    <span style="font-weight: bold">CONTACTO</span>
+                </a>
             </div>
         </div>
-
     </div>
-
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
         <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados
     </div>
-
 </footer>
 <!-- End Footer Phone -->

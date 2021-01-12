@@ -1,13 +1,12 @@
 @extends('front.layouts.app')
 
 @section('title')
-    Crear cuenta
+Crear cuenta
 @endsection
 
 @section('content')
 
 <style>
-
     .form {
         height: 550px;
         border-top-right-radius: 30px;
@@ -50,9 +49,9 @@
 
     .input-group-text {
         border: 1px solid #617882;
-            border-right-color: rgb(0, 0, 0);
-            border-right-style: solid;
-            border-right-width: 1px;
+        border-right-color: rgb(0, 0, 0);
+        border-right-style: solid;
+        border-right-width: 1px;
     }
 
     .form-control {
@@ -64,7 +63,8 @@
         box-shadow: none;
     }
 
-    .input-group > .custom-select:not(:first-child), .input-group > .form-control:not(:first-child) {
+    .input-group>.custom-select:not(:first-child),
+    .input-group>.form-control:not(:first-child) {
         border-radius: 0;
     }
 
@@ -78,19 +78,34 @@
         margin-bottom: 0;
     }
 
+    @media only screen and (max-width: 480px) {
+        body {
+            background: #F7F7F7;
+        }
+
+        .form {
+            height: auto;
+            border-top-right-radius: unset;
+            background-color: #f7f7f7;
+            margin-top: 0;
+            margin-bottom: 0;
+            box-shadow: unset;
+        }
+    }
+    
 </style>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 logo">
+        <div class="col-md-6 logo hidden-phone">
             <div class="inspecost">
                 <img src="assets/img/login/Grupo928.png" alt="" height="230">
             </div>
         </div>
-
-        <div class="form col-md-4">
+        <div class="form col-md-4 col-12">
             <div>
-                <h4 style="margin-bottom:5%; margin-top:12%; padding-left:10%; font-weight: 600;">CREA UNA NUEVA CUENTA</h4>
+                <h4 style="margin-bottom:5%; margin-top:12%; padding-left:10%; font-weight: 600;">CREA UNA NUEVA CUENTA
+                </h4>
                 <form>
                     @csrf
                     <div class="inps">
@@ -114,7 +129,6 @@
                     </div>
                 </form>
             </div>
-
             @include('admin.layouts.partials.validation-error')
         </div>
     </div>

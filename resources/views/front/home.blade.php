@@ -4,105 +4,77 @@
 Inicio
 @endsection
 
-@section('styles')
-<style>
-    .titulo-sitios-interes {
-        font-size: 30px;
-        font-weight: 700;
-        margin-left: 30px;
-    }
-
-    .nav-login {
-        font-size: 16px;
-    }
-
-    @media only screen and (max-width: 480px) {
-
-        .card-indice-title {
-            font-size: 14px;
-        }
-
-        .card-indice-counter {
-            font-size: 20px;
-        }
-
-        .hidden-br {
-            display: none;
-        }
-
-        .line-red-vertical {
-            border-right: none;
-        }
-
-        .mb-5,
-        .my-5 {
-            margin-bottom: 0 !important;
-        }
-
-        .mb-4,
-        .my-4 {
-            margin-bottom: 0 !important;
-        }
-
-        .ver-mas-font {
-            color: #fff;
-            font-size: 13px;
-            font-weight: 700;
-            font-style: italic;
-            background: #628EA0;
-            padding: 8px 10px;
-            border-radius: 24px;
-        }
-
-        .line-red-center {
-            margin-top: 0;
-            border-bottom: none;
-        }
-
-        .titulo-sitios-interes {
-            font-size: 22px;
-        }
-
-        .rectangulo-rojo-avance-carousel {
-            display: none;
-        }
-
-        .mya {
-            font-size: 14px;
-            color: #2C4143;
-        }
-
-        .nav-login {
-            margin-right: 0;
-            margin-left: 0;
-            font-size: 14px;
-        }
-    }
-</style>
-@endsection
-
 @section('content')
 
 <!-- Contenido -->
 <div class="main">
 
-    <!--MODAL-->
-    <div class="chatbot text-center hidden-phone">
-        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
-            alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo">
-    </div>
     <style>
-        #box-search {
+        /*Buscador de contenido*/
+
+        #ctn-icon-search{
+            position: absolute;
+            right: 20px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #ctn-icon-search i{
+            font-size: 30px;
+            color: #777777;
+            cursor: pointer;
+            /* transition: all 300ms; */
+            padding: 9px;
+            padding-bottom: 9px;
+            margin-top: 41px;
+            border-top: 1px solid #000;  
+            border-right: 1px solid #000;  
+            border-bottom: 1px solid #000;  
+
+        }
+
+        #ctn-icon-search i:hover{
+            color: #46a2fd;
+        }
+
+
+        #ctn-bars-search{
             position: fixed;
-            top: 192px;
-            left: 49.5%;
+            top: 125px;
+            width: 77%;
+        
+            padding-top: 25px;
+            z-index: 9;
+            /* transition: all 600ms; */
+        }
+
+        #ctn-bars-search input{
+            display: block;
+            width: 38%;
+            margin: none;
+            padding: 10px;
+            font-size: 19px;
+            outline: 0;
+            border: 0px;
+            border-top: 1px solid #000;  
+            border-left: 1px solid #000;  
+            border-bottom: 1px solid #000;  
+        
+            
+        }
+
+        #box-search{
+            position: fixed;
+            top: 210px;
+            left: 50%;
             transform: translateX(-50%);
-            width: 465px;
+            width: 480px;
             background: #fff;
             z-index: 8;
             overflow: hidden;
-            display: block;
+            display: none;
             padding: 0;
         }
 
@@ -127,7 +99,32 @@ Inicio
             background: #f3f3f3;
             margin-right: 10px;
         }
+
+
+        #cover-ctn-search{
+            width: 10%;
+            height: 10%;
+            position: fixed;
+            left: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 7;
+            display: none;
+        }
+
+        @media only screen and (max-width: 480px) {
+
+
+        }
+        
     </style>
+    <!--MODAL-->
+    <div class="chatbot text-center">
+        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
+            alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo">
+    </div>
+    
+        
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -136,31 +133,70 @@ Inicio
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">x</button>
                     </button>
                 </div>
-                <form>
+                <form >
                     <div class="modal-body">
                         <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
                         <div class="input-group">
-                            <input type="text" id="inputSearch" class="form-control"
-                                placeholder="Ingresa palabras clave" aria-label="Search"
-                                aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+
+                            <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
+                            <div class="input-group-append" >
+                                <div id="ctn-icon-search">
+                                    <i class="fas fa-search" id="icon-search"></i>
+                                </div>
+                           <div id="ctn-bars-search">
+                                <input type="text" id="inputSearch" placeholder="Escribe palabras clave">
                             </div>
                         </div>
-                        <ul id="box-search">
-                            <li><a href="#"><i class="fas fa-search"></i>HTML</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>CSS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>JavaScript</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>PHP</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>NODEJS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>VUEJS</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>Como hacer</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i>Como crear</a></li>
-                        </ul>
+                            
+                            <ul id="box-search">
 
-                        <br><br>
+                                <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio > Nosotros</a></li>
+                                <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más > Historia</a></li>
+                                <li><a href="{{url('know-more#que-es-cost')}}"><i class="fas fa-search"></i>Conoce más > ¿Que es CoST?</a></li>
+                                <li><a href="{{url('know-more#beneficios')}}"><i class="fas fa-search"></i>Conoce más > Beneficios</a></li>
+                                <li><a href="{{url('know-more#procesos-de-cost')}}"><i class="fas fa-search"></i>Conoce más > Procesos de CoST</a></li>
+                                <li><a href="{{url('know-more#divulgacion')}}"><i class="fas fa-search"></i>Conoce más > Divulgacion</a></li>
+                                <li><a href="{{url('know-more#aseguramiento')}}"><i class="fas fa-search"></i>Conoce más > Aseguramiento</a></li>
+                                <li><a href="{{url('know-more#auditoria-social')}}"><i class="fas fa-search"></i>Conoce más > Auditoria Social</a></li>
+
+                                <li><a href="{{url('about-us#cost-jalisco')}}"><i class="fas fa-search"></i>Nosotros > CoST Jalisco</a></li>
+                                <li><a href="{{url('about-us#objetivo-general')}}"><i class="fas fa-search"></i>Nosotros > Objetivo de CoST jalisco</a></li>
+                                <li><a href="{{url('multisectorial')}}"><i class="fas fa-search"></i>Nosotros > Grupo Multisectorial</a></li>
+
+                                <li><a href="{{url('statistics')}}"><i class="fas fa-search"></i>Proyectos > Estadisticas</a></li>
+                                <li><a href="{{url('search-engine')}}"><i class="fas fa-search"></i>Proyectos > Motor de búsqueda</a></li>
+                                <li><a href="{{url('georeferencing')}}"><i class="fas fa-search"></i>Proyectos > Georreferenciación</a></li>
+                                <li><a href="{{url('list-projects')}}"><i class="fas fa-search"></i>Proyectos > Listado de obras</a></li>
+                                
+                                <li><a href="{{url('resources')}}"><i class="fas fa-search"></i>Recursos > Documentos de interes</a></li>
+                                <li><a href="{{url('support-material')}}"><i class="fas fa-search"></i>Recursos > Material de apoyo</a></li>
+                                
+                                <li><a href="{{url('eventos')}}"><i class="fas fa-search"></i>Noticias > Eventos</a></li>
+                                <li><a href="{{url('newsletters')}}"><i class="fas fa-search"></i>Noticias > Boletines</a></li>
+                                <li><a href="{{url('journal')}}"><i class="fas fa-search"></i>Noticias > Notas Periodisticas</a></li>
+
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos</a></li>
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos de la iniciativa</a></li>
+                                <li><a href="{{url('statistics#presupuesto')}}"><i class="fas fa-search"></i>Presupuesto utilizado</a></li>
+                                
+                                <li><a href="{{url('list-projects#sectorpublico')}}"><i class="fas fa-search"></i>Sector público</a></li>
+                                <li><a href="{{url('resources#cartaapoyo')}}"><i class="fas fa-search"></i>Cartas de apoyo</a></li>
+                                <li><a href="{{url('resources#cartaintencion')}}"><i class="fas fa-search"></i>Cartas de intención</a></li>
+                                <li><a href="{{url('resources#cartaaplicacion')}}"><i class="fas fa-search"></i>Cartas de aplicación</a></li>
+                                <li><a href="{{url('resources#cartaaprobacion')}}"><i class="fas fa-search"></i>Cartas de aprobación</a></li>
+                                <li><a href="{{url('resources#plantrabajo')}}"><i class="fas fa-search"></i>Plan de trabajo</a></li>
+                                <li><a href="{{url('resources#actas')}}"><i class="fas fa-search"></i>Actas</a></li>
+                                <li><a href="{{url('resources#informe')}}"><i class="fas fa-search"></i>Informes de aseguramiento</a></li>
+                                <li><a href="{{url('resources#reglamentos')}}"><i class="fas fa-search"></i>Reglamentos</a></li>
+                                <li><a href="{{url('resources#estandares')}}"><i class="fas fa-search"></i>Estándares</a></li>
+                                <li><a href="{{url('resources#mapasitio')}}"><i class="fas fa-search"></i>Mapa de sitio aprobado</a></li>
+                                <li><a href="{{url('support-material#seminarioabierto')}}"><i class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
+
+                            </ul>
+                            <div id="cover-ctn-search"></div>
+                        </div>
+                       
+                        <br><br><br>
                     </div>
                 </form>
             </div>
@@ -301,37 +337,44 @@ Inicio
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center font-weight-bold">NOSOTROS</h3>
+            <h3 class="text-center font-weight-bold" id="inicio-nosotros">NOSOTROS</h3>
             <div class="section-divider"></div>
         </div>
     </div>
 </div>
 
-    <!-- Section - Índices -->
-    <div class="row mx-0">
-        <div class="col-md-3 col-6 px-0">
-            <div class="card-indice-title">Organizaciones</div>
-            <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
-            <div class="card-indice-counter"><h2>{{$total_organization}}</h2></div>
-        </div>
-        <div class="col-md-3 col-6 px-0">
-            <div class="card-indice-title">Proyectos de la iniciativa</div>
-            <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
-            <div class="card-indice-counter"><h2>{{$total_proyectos}}</h2></div>
-        </div>
-        
-        <div class="col-3 px-0">
-            <div class="card-indice-title">Personas beneficiadas</div>
-            <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
-            <div class="card-indice-counter"><h2>{{$total_beneficiarios}}</h2></div>
-        </div>
-        <div class="col-md-3 col-6 px-0">
-            <div class="card-indice-title">Presupuesto utilizado</div>
-            <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid"
-                alt="Indice de presupuesto">
-            <div class="card-indice-counter"><h4>$ {{number_format($total_contrato,2)}}</h4></div>
+<!-- Section - Índices -->
+<div class="row mx-0">
+    <div class="col-md-3 col-6 px-0">
+        <div class="card-indice-title">Organizaciones</div>
+        <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
+        <div class="card-indice-counter">
+            {{$total_organization}}
         </div>
     </div>
+    <div class="col-md-3 col-6 px-0">
+        <div class="card-indice-title">Proyectos de la iniciativa</div>
+        <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
+        <div class="card-indice-counter">
+            {{$total_proyectos}}
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6 px-0">
+        <div class="card-indice-title">Personas beneficiadas</div>
+        <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
+        <div class="card-indice-counter">
+            {{$total_beneficiarios}}
+        </div>
+    </div>
+    <div class="col-md-3 col-6 px-0">
+        <div class="card-indice-title">Presupuesto utilizado</div>
+        <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
+        <div class="card-indice-counter">
+            ${{number_format($total_contrato,2)}}
+        </div>
+    </div>
+</div>
 
 <!-- Label de actuaización -->
 <div class="row mx-0">
@@ -382,6 +425,8 @@ Inicio
         </div>
     </div>
 </div>
+
+<br class="hidden-desktop">
 
 <!-- Title - Grupo multisectorial-->
 <div class="row mx-0">
@@ -579,111 +624,114 @@ Inicio
     </div>
 </div>
 
-
-    <!-- Section - Sector público-->
-{{-- <div class="container mt-5 hidden-desktop">
 <!-- Section - Sector público-->
 <div class="container mt-5 hidden-desktop">
-    <div style="border-left: 5px solid #2C4143;">
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <h3 class="titulo-sitios-interes">Sector Público
-                </h3>
+    <!-- Section - Sector público-->
+    <div class="container mt-5 hidden-desktop">
+        <div style="border-left: 5px solid #2C4143; margin-bottom: 3rem;">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h3 class="titulo-sitios-interes">Sector Público
+                    </h3>
+                </div>
             </div>
-        </div>
 
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <ul>
-                    <li><a class="mya" href="https://www.jalisco.gob.mx/">Gobierno del Estado de Jalisco</a></li>
-                    <li><a class="mya" href="https://guadalajara.gob.mx/">Ayuntamiento de Guadalajara</a></li>
-                    <li><a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
-                    <li><a class="mya" href="https://tonala.gob.mx/portal/">Ayuntamiento de Tonalá</a></li>
-                    <li><a class="mya" href="https://www.itei.org.mx/v4/">Instituto de Transparencia, Información
-                            Pública y Protección de Datos <br>
-                            Personales del Estado de Jalisco (ITEI) (Preside)</a></li>
-                    <li><a class="mya" href="https://home.inai.org.mx/">Instituto Nacional de Transparencia, Acceso a la
-                            Información y <br>
-                            Protección de Datos Personales (INAI)</a></li>
-                </ul>
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <ul style="margin-bottom: 0;">
+                        <li><a class="mya" href="https://www.jalisco.gob.mx/">Gobierno del Estado de Jalisco</a></li>
+                        <li><a class="mya" href="https://guadalajara.gob.mx/">Ayuntamiento de Guadalajara</a></li>
+                        <li><a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
+                        <li><a class="mya" href="https://tonala.gob.mx/portal/">Ayuntamiento de Tonalá</a></li>
+                        <li><a class="mya" href="https://www.itei.org.mx/v4/">Instituto de Transparencia, Información
+                                Pública y Protección de Datos <br>
+                                Personales del Estado de Jalisco (ITEI) (Preside)</a></li>
+                        <li><a class="mya" href="https://home.inai.org.mx/">Instituto Nacional de Transparencia, Acceso
+                                a la
+                                Información y <br>
+                                Protección de Datos Personales (INAI)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="border-left: 5px solid #D60000; margin-bottom: 3rem;">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h3 style="color:#D60000;" class="titulo-sitios-interes">Sector Académico
+                    </h3>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <ul style="margin-bottom: 0;">
+                        <li><a class="mya" href="https://www.udg.mx/">Universidad de Guadalajara (UdeG)</a></li>
+                        <li><a class="mya" href="https://www.iteso.mx/">Instituto Tecnológico y de Estudios Superiores
+                                de
+                                Occidente AC (ITESO)</a></li>
+                        <li> <a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="border-left: 5px solid #FFCE32; margin-bottom: 3rem;">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h3 style="color: #FFCE32;" class="titulo-sitios-interes">Sector Privado
+                    </h3>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <ul style="margin-bottom: 0;">
+                        <li><a class="mya" href="https://cmicjalisco.org.mx/">Cámara Mexicana de la Industria de la
+                                Construcción Delegación Jalisco <br>
+                                (CMIC Jalisco)</a></li>
+                        <li><a class="mya" href="https://cicej.org/">Colegio de Ingenieros Civiles del Estado de Jalisco
+                                (CICEJ)</a</li> <li><a class="mya" href="http://comceoccte.org.mx/">Consejo Mexicano de
+                                    Comercio Exterior de Occidente A.C (COMCE)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="border-left: 5px solid #61A8BD; margin-bottom: 3rem;">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h3 style="color: #61A8BD;" class="titulo-sitios-interes">Sociedad Civil Organizada
+                    </h3>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <ul style="margin-bottom: 0;">
+                        <li><a class="mya" href="http://cpsjalisco.org/">Comité de Participación Social del Sistema
+                                Estatal
+                                Anticorrupción (CPS)</a></li>
+                        <li><a class="mya" href="http://www.cimtra.org.mx/portal/">Colectivo Ciudadanos por Municipios
+                                Transparentes (CIMTRA)</a></li>
+                        <li><a class="mya" href="https://www.mexicoevalua.org/">México Evalúa, Centro de Análisis de
+                                Políticas Públicas A.C.</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="border-left: 5px solid #D8D8CD; margin-bottom: 3rem;">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h3 style="color: #D8D8CD;" class="titulo-sitios-interes">Aliados Estratégicos
+                    </h3>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <ul style="margin-bottom: 0;">
+                        <li><a class="mya" target="_blank" href="http://transversalthinktank.org/about">Transversal
+                                Think
+                                Tank</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div style="border-left: 5px solid #D60000;">
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <h3 style="color:#D60000;" class="titulo-sitios-interes">Sector Académico
-                </h3>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <ul>
-                    <li><a class="mya" href="https://www.udg.mx/">Universidad de Guadalajara (UdeG)</a></li>
-                    <li><a class="mya" href="https://www.iteso.mx/">Instituto Tecnológico y de Estudios Superiores de
-                            Occidente AC (ITESO)</a></li>
-                    <li> <a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div style="border-left: 5px solid #FFCE32;">
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <h3 style="color: #FFCE32;" class="titulo-sitios-interes">Sector Privado
-                </h3>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <ul>
-                    <li><a class="mya" href="https://cmicjalisco.org.mx/">Cámara Mexicana de la Industria de la
-                            Construcción Delegación Jalisco <br>
-                            (CMIC Jalisco)</a></li>
-                    <li><a class="mya" href="https://cicej.org/">Colegio de Ingenieros Civiles del Estado de Jalisco
-                            (CICEJ)</a</li> <li><a class="mya" href="http://comceoccte.org.mx/">Consejo Mexicano de
-                                Comercio Exterior de Occidente A.C (COMCE)</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div style="border-left: 5px solid #61A8BD;">
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <h3 style="color: #61A8BD;" class="titulo-sitios-interes">Sociedad Civil Organizada
-                </h3>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <ul>
-                    <li><a class="mya" href="http://cpsjalisco.org/">Comité de Participación Social del Sistema Estatal
-                            Anticorrupción (CPS)</a></li>
-                    <li><a class="mya" href="http://www.cimtra.org.mx/portal/">Colectivo Ciudadanos por Municipios
-                            Transparentes (CIMTRA)</a></li>
-                    <li><a class="mya" href="https://www.mexicoevalua.org/">México Evalúa, Centro de Análisis de
-                            Políticas Públicas A.C.</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div style="border-left: 5px solid #D8D8CD;">
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <h3 style="color: #D8D8CD;" class="titulo-sitios-interes">Aliados Estratégicos
-                </h3>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <ul>
-                    <li><a class="mya" target="_blank" href="http://transversalthinktank.org/about">Transversal Think
-                            Tank</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
     <div class="row">
         <div class="col-md-12 text-right hidden-desktop">
@@ -698,7 +746,7 @@ Inicio
 <!-- Título - Proyectos-->
 <div class="container pt-5">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 bg-gris">
             <a href="{{route('card-projects')}}">
                 <h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3>
             </a>
@@ -708,7 +756,6 @@ Inicio
 </div>
 
 <!-- Section - Carousel proyectos -->
-
 <div class="row mx-0">
     <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 px-0">
         <div id="carouselProjects" class="carousel slide" data-ride="carousel">
@@ -719,11 +766,32 @@ Inicio
                 <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ asset('assets/img/home/slider-proyectos/aguas-pluviales.jpg') }}"
-                                class="img-fluid" alt="">
+                            @php
+                                $imagen=DB::table('projects_imgs')
+                                ->select('projects_imgs.imgroute')
+                                ->where('projects_imgs.id_project','=',$project->id)
+                                ->get();
+                            @endphp
+                            @if (count($imagen)==0)
+                                <img src="{{ asset('projects_imgs/sinimagen.png') }}"  width="100%px" height="320px" alt="">
+                            @else
+                                {{-- <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325" height="310"  alt=""> --}}
+                                
+                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}"
+                                class="img-fluid" width="100%px" height="320px" alt="">
+                            @endif
+                        </div>
+                        <div class="hidden-desktop"
+                        style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; font-size: 26px; text-align: center; padding: 0 30px;">
+                            <span class="font-weight-bold" style="color: #fff; text-shadow: 0.1em 0.1em 0.2em black">
+                                <a href="{{ route('project-single', $project->id) }}">{{ $project->title }}</a>
+                            </span>
                         </div>
                         <div class="col-md-8 hidden-phone">
-                            <h2 class="font-weight-bold my-4 text-red">{{ $project->title }}</h2>
+                            @php
+                                $titulo=substr($project->title,0,42).'..';
+                            @endphp
+                            <h2 class="font-weight-bold my-4 text-red">{{ $titulo }}</h2>
                             <div class="row">
                                 <div class="col-md-6" style="border-right: 1px solid #777;">
                                     <p>
@@ -731,15 +799,20 @@ Inicio
                                     </p>
                                 </div>
                                 <div class="col-md-6 pl-4">
-                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
+                                    
+                                   
+                                    <p>
+                                        <img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
-                                        <strong>&nbsp; Inversión: </strong> $ {{number_format($project->montocontrato,2)}}</p>
+                                        <strong>&nbsp; Inversión: </strong> $
+                                        {{number_format($project->montocontrato,2)}}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Periodo de construcción: </strong> {{$project->period}}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
-                                        <strong>&nbsp; Ubicación: </strong> {{$project->streetAddress}} {{$project->locality}} {{$project->region}}</p>
+                                        <strong>&nbsp; Ubicación: </strong> {{$project->streetAddress}}
+                                        {{$project->locality}} {{$project->region}}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
@@ -751,8 +824,8 @@ Inicio
                             </div>
                         </div>
                         <div class="rectangulo-rojo-avance-carousel text-white"><span
-                                style="font-size: 32px;"><strong>{{$project->porcentaje_obra}}%</strong></span><span style="font-size: 14px;"
-                                class="mx-2">completado</span></div>
+                                style="font-size: 32px;"><strong>{{$project->porcentaje_obra}}%</strong></span><span
+                                style="font-size: 14px;" class="mx-2">completado</span></div>
                     </div>
                 </div>
 
@@ -788,9 +861,9 @@ Inicio
 </div>
 
 <!-- Título - Nuestras redes-->
-<div class="container pt-5">
+<div class="container pt-5 hidden-phone">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 bg-gris">
             <h3 class="text-center font-weight-bold">NUESTRAS REDES
             </h3>
             <div class="section-divider"></div>
@@ -859,27 +932,84 @@ Inicio
     //Declarando variables
     // bars_search =       document.getElementById("ctn-bars-search");
     // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    inputSearch =       document.getElementById("inputSearch");
-    box_search =        document.getElementById("box-search");
+//     document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
 
-    document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+// function mostrar_menu(){
 
-    function buscador_interno(){
-        filter = inputSearch.value.toUpperCase();
-        li = box_search.getElementByTagName("li");
+//     document.getElementById("move-content").classList.toggle('move-container-all');
+//     document.getElementById("show-menu").classList.toggle('show-lateral');
+// }
 
-        for (i=0; i<li.length; i++){
-            a = li[i].getElementByTagName("a")[0];
-            textValue= a.textContent || a.innerText;
+// //Ejecutando funciones
+// document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+// document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
 
-            if(textValue.toUpperCase().indexOf(filter) > -1){
-                li[i].style.display="";
-            }else{
-                li[i].style.display="none";
+// //Declarando variables
+// bars_search =       document.getElementById("ctn-bars-search");
+// cover_ctn_search =  document.getElementById("cover-ctn-search");
+inputSearch =       document.getElementById("inputSearch");
+box_search =        document.getElementById("box-search");
+
+
+//Funcion para mostrar el buscador
+function mostrar_buscador(){
+
+    bars_search.style.top = "80px";
+    cover_ctn_search.style.display = "block";
+    inputSearch.focus();
+
+    if (inputSearch.value === ""){
+        box_search.style.display = "none";
+    }
+
+}
+
+//Funcion para ocultar el buscador
+function ocultar_buscador(){
+
+    bars_search.style.top = "-10px";
+    cover_ctn_search.style.display = "none";
+    inputSearch.value = "";
+    box_search.style.display = "none";
+
+}
+
+
+//Creando filtrado de busqueda
+
+document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+
+function buscador_interno(){
+
+
+    filter = inputSearch.value.toUpperCase();
+    li = box_search.getElementsByTagName("li");
+
+    //Recorriendo elementos a filtrar mediante los "li"
+    for (i = 0; i < li.length; i++){
+
+        a = li[i].getElementsByTagName("a")[0];
+        textValue = a.textContent || a.innerText;
+
+        if(textValue.toUpperCase().indexOf(filter) > -1){
+
+            li[i].style.display = "";
+            box_search.style.display = "block";
+
+            if (inputSearch.value === ""){
+                box_search.style.display = "none";
             }
+
+        }else{
+            li[i].style.display = "none";
         }
 
     }
+
+
+
+}
+
 
 </script>
 @endsection
