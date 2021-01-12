@@ -142,6 +142,11 @@ use Illuminate\Support\Facades\Auth;
       <i class="far fa-calendar"></i>
       <span>Eventos</span></a>
   </li>
+   <li class="nav-item">
+    <a class="nav-link" href="{{ route('support-material-admin') }}">
+      <i class="far fa-calendar"></i>
+      <span>Material de apoyo</span></a>
+  </li>
 
   <li class="nav-item">
     <a class="nav-link" href="{{ route('admincarousel') }}">

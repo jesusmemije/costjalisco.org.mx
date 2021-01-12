@@ -92,6 +92,16 @@ Route::namespace('Front')->group(function () {
 /*=============  Dashboard ============== */
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
+    
+    //Material de apoyo
+
+    Route::get('/admin/support-material', [DashboardController::class, 'support_material'])->name('support-material-admin');
+    Route::post('/admin/materialstore', [DashboardController::class, 'materialstore'])->name('materialstore');
+    Route::post('/admin/materialedit', [DashboardController::class, 'materialedit'])->name('materialedit');
+    Route::post('/admin/materialdestroy', [DashboardController::class, 'materialdestroy'])->name('materialdestroy');
+    
+    
+    
     //Banner
 
     Route::get('/admin/admincarousel', [DashboardController::class, 'admincarousel'])->name('admincarousel');

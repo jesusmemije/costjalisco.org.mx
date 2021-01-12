@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use stdClass;
 
-class ProjectDataExport implements FromCollection
+class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder implements FromCollection,ShouldAutoSize, WithStyles,WithCustomValueBinder 
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -20,6 +24,23 @@ class ProjectDataExport implements FromCollection
     public function __construct($id)
     {
         $this->id = $id;
+    }
+    public function styles(Worksheet $sheet)
+    {   
+       
+
+        
+     return [
+            // Style the first row as bold text.
+
+         
+            'A' => ['font' => ['bold' => true]],
+            'a' => ['font' => ['bold' => true]],
+
+         
+        ];
+
+
     }
     public function collection()
     {
@@ -225,7 +246,7 @@ class ProjectDataExport implements FromCollection
 
   
 $export=  new Collection([
-
+    /*
     ['id_project','Nombre de la persona que registra el proyecto',
     'Correo electrónico (Institucional)','Organismo al que pertenece',
     'Puesto que desempeña dentro del organismo','En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar',
@@ -250,11 +271,31 @@ $export=  new Collection([
     $all->numeros_ambiental,$tipoFactibilidad->titulo,$all->fecharealizacionFactibilidad,$all->responsableFactibilidad,
     $all->numeros_factibilidad,$tipoImpacto->titulo,$all->fecharealizacionimpacto,$all->responsableImpacto,
     $all->numeros_impacto,$catorigenrecurso->titulo,$origenrecurso->sourceParty_name,$origenrecurso->startDate
-
+        
+    ],
+    */
+    ['id_project',$all->id_project],
+    ['Nombre de la persona que registra el proyecto',$all->responsable],
+    ['Correo electrónico (Institucional)',$all->email],
+    ['Organismo al que pertenece',$all->organismo],
+    ['Puesto que desempeña dentro del organismo',$all->puesto],
+    ['En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar',$all->involucrado],
+    ['Imágenes de la obra',$rutas],
+    ['Título del proyecto',$all->title],
+    ['Número que identifica al proyecto',$all->ocid],
+    ['Descripción',$all->description],
+    ['Próposito',$all->purpose],
+    ['Sector',$sector],
+    ['Subsector',$subsector],
+    ['Tipo de proyecto',$projecttype],
+    ['Personas beneficiadas',$people],
+    ['Calle',$address->streetAddress],
+    ['Localidad',$address->locality],
+    ['Región',$address->region],
+    ['Código Postal',$address->postalCode],
  
 
-    
-    ],
+
  
 ]);
 
@@ -267,4 +308,8 @@ return $export;
 
       
     }
+
+    
+   
+
 }

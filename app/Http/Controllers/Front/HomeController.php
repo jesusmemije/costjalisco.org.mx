@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\SupportMaterial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -443,7 +444,8 @@ class HomeController extends Controller
     
     public function support_material()
     {
-        return view('front.support-material');
+        $materials = SupportMaterial::orderBy('created_at', 'desc')->get();
+        return view('front.support-material',['materials'=>$materials]);
     }
 
     
