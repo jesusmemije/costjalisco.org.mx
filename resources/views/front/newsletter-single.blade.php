@@ -47,14 +47,16 @@
 }
 
 </style>
-
+<div class="row mx-0 my-4" id="sitios-interes">
+    <div class="col-md-6 px-0">
+        <div class="text-center text-white">
+            <h3 class="py-2 font-weight-bold title-barra-roja" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                background-size: cover;'>Boletines</h3>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
-        <div class="row">
-        <div class="col-md-6 boletin">
-           <span>Boletines</span>
-
-         
-        </div>   
+    
         </div>
 
         <div class="row">
@@ -69,22 +71,23 @@
             <span style="font-size:25px;">{{ $boletin->title}}</span>
         </div>
 
-        <div class="col-md-8 date">
+        <div class="col-md-6 date" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+        background-size: cover;">
             @if (empty($boletin->date))
-            <center>No hay fecha</center>
-        @else
-            @php
-                setlocale(LC_TIME, "spanish");
-                $mi_fecha = $boletin->date;
-                $mi_fecha = str_replace("/", "-", $mi_fecha);			
-                $Nueva_Fecha = date("d-M-Y", strtotime($mi_fecha));	
-                $fecha_correcta = strftime("%d de %B de %Y", strtotime($Nueva_Fecha));
+                <center>No hay fecha</center>
+            @else
+                @php
+                    setlocale(LC_TIME, "spanish");
+                    $mi_fecha = $boletin->date;
+                    $mi_fecha = str_replace("/", "-", $mi_fecha);			
+                    $Nueva_Fecha = date("d-M-Y", strtotime($mi_fecha));	
+                    $fecha_correcta = strftime("%d de %B de %Y", strtotime($Nueva_Fecha));
 
-                // echo $Mes_Anyo;
-            @endphp
-            {{ $fecha_correcta }}
-            
-        @endif
+                    // echo $Mes_Anyo;
+                @endphp
+                {{ $fecha_correcta }}
+                
+            @endif
         </div>
 
         </div>
