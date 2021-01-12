@@ -1,80 +1,28 @@
 @extends('front.layouts.app')
- 
+
 @section('title')
 Georreferenciación
 @endsection
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-
+<link rel="stylesheet" href="{{asset("css/select2.min.css")}}">
+<link href="{{asset("assets/css/georeferencing.css")}}" rel="stylesheet">
 @endsection
 
-
 @section('content')
-<link rel="stylesheet" href="{{asset("css/select2.min.css")}}">
-<script src="{{asset("js/select2.min.js")}}"></script>
-<style>
-    .formulario-projects-search{
-        background: rgb(255, 255, 255);
-        padding: 20px 20px 5px 20px;
-        border-radius: 0px 30px 0px 0px;
-        position: absolute; 
-        float: left; 
-        z-index: 100;
-        width: 250px;
-        box-shadow: 5px 5px 2px #999;
-        top: 90px;
-        left: 40px;
-    }
-    .mapa{
-        z-index: 1;
-    }
-    .formulario-projects-search select{
-        width: 95%;
-        height: 32px;
-        margin-top: 9px;
-        border-radius: 50px;
-        padding: 5px 0px 5px 5px;
-        font-size: 14px;
-        font-weight: bold;
-        color: darkslategrey;
-    }
-    .formulario-projects-search input{
-        width: 95%;
-        height: 27px;
-        margin-top: 9px;
-        padding: 5px 0px 5px 9px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #628ea0;
-        border: 1px solid #628ea0;
-    }
-    .formulario-projects-search button{
-        margin-top: 25px;
-        margin-bottom: 5px;
-        background: #2C4143;
-        color: #fff;
-        border-radius: 50px;
-        font-size: 13px;
-        padding: 4px 24px;
-        border: 0;
-        font-weight: bold;
-    }
-
-    .content-label{
-        text-align: left;
-        color: #2C4143;
-        font-size: 12px;
-    }
-    
-</style>
 
 <div class="container-fluid pt-4">
     <!-- Section - Mapa de la localización -->
-    <div class="row" >
-        <div class="col-md-12">
+
+    <div id="map" class="row mapa"></div>
+
+    <br class="hidden-desktop">
+
+    <div class="row">
+        <div class="col-md-12 bg-gris-phone">
             <form action="{{url('georeferencing')}}" class="formulario-projects-search" method="get">
-                <select name="municipio" id="municipio" >
+                <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
                     <option value="Acatic">Acatic</option>
                     <option value="Acatlán de Juárez">Acatlán de Juárez</option>
@@ -202,7 +150,6 @@ Georreferenciación
                     <option value="Zapotlán del Rey">Zapotlán del Rey</option>
                     <option value="Zapotlán el Grande">Zapotlán el Grande</option>
                 </select>
-                
                 <div id="loading"></div>
                 <select name="id_sector" id="sector">
                     <option value="">No hay sectores</option>
@@ -214,60 +161,30 @@ Georreferenciación
                 <div id="loading3"></div>
                 <select name="codigo_postal" id="codigo_postal">
                     <option value="">No hay C.P.</option>
-    
                 </select>
                 {{-- <input type="text" name="presupuesto" placeholder="Presupuesto"> --}}
                 <input type="text" name="nombre_proyecto" placeholder="Nombre del proyecto">
                 <center>
                     <button type="submit">BÚSQUEDA</button>
                 </center>
-                <a href="#" style="float: right; color: #2C4143">X</a>
+                <a href="#" class="hidden-phone" style="float: right; color: #2C4143">X</a>
             </form>
-            
         </div>
     </div>
-    <div id="map" class="row mapa"></div>
     
-
-
     <!-- Section - Datos generales -->
     <div class="row mt-5">
         <div class="col-md-8 px-0 py-1">
             <h3 class="py-2 font-weight-bold" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/project/barra resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
-            <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>    
+                <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>
             </h3>
-            
         </div>
     </div>
     <div class="container">
-        <style>
-            .links-color{
-                color: #628ea0;
-                font-weight: bold;
-            }
-            .btn-conoce-mas{
-                float: right;
-                background: red;
-                padding: 5px 30px 5px 30px;
-                border-radius: 50px;
-                box-shadow: 5px 5px 2px #999;
-
-            }
-            .btn-conoce-mas:hover{
-                background: rgba(218, 3, 3, 0.904);
-                color: rgb(230, 230, 230);
-            }
-            .secciones-projects{
-                padding: 25px 40px 20px 40px; 
-                border-top: 1px solid #628ea0; 
-                border-left: 8px solid #628ea0; 
-                border-right: 1px solid #628ea0;
-            }
-        </style>
 
         @foreach ($projects as $project)
-            
+
         <div class="my-5 secciones-projects">
             <h5><b>{{ $project->title }}</b></h5>
             {{ $project->description }}
@@ -282,15 +199,16 @@ Georreferenciación
 
         @endforeach
 
-        
-        
     </div>
-    <br><br><br>
+    <br><br class="hidden-phone"><br class="hidden-phone">
 </div>
 
 @endsection
 
 @section('scripts')
+
+<script src="{{asset("js/select2.min.js")}}"></script>
+
 <script type="text/javascript">
     $(document).ready(function(){
         $('#municipio').select2();
@@ -349,33 +267,6 @@ Georreferenciación
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-<style>
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-        background: #d5d6be;
-        width: 200px;
-        color: #628ea0;
-        font-weight: bold;
-        border-radius: 0px 20px 0px 0px;
-        box-shadow: 5px 5px 2px #999;
-        font-size: 13px;
-    }
-
-    .leaflet-container a.leaflet-popup-close-button {
-        padding: 10px 22px 0 0;
-        color: #2C4143;
-    }
-
-    .leaflet-btn-detalle-project {
-        background: #2C4143;
-        color: #fff!important;
-        border-radius: 50px;
-        font-size: 13px;
-        padding: 4px 20px;
-        border: 0;
-    }
-
-</style>
-
 <script type="text/javascript">
     // listen for screen resize events
       var zona = 0;
@@ -415,5 +306,4 @@ Georreferenciación
     });
 </script>
 
-  
 @endsection

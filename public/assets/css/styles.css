@@ -769,7 +769,7 @@ a:hover {
   }
 
   .title-barra-roja {
-    background-size: auto;
+    background-image: url("/assets/img/bg-rojo-phone.jpg");
   }
 }
 

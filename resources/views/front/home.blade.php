@@ -4,6 +4,11 @@
 Inicio
 @endsection
 
+
+<!-- CDN Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 @section('content')
 
 <!-- Contenido -->
@@ -110,6 +115,18 @@ Inicio
             z-index: 7;
             display: none;
         }
+
+        .modaltitle{
+            font-size: 20px;
+        }
+        .modalbtn{
+            font-size: 15px;
+        }
+
+        @media only screen and (max-width: 480px) {
+
+
+        }
         
     </style>
     <!--MODAL-->
@@ -144,7 +161,7 @@ Inicio
                         </div>
                             
                             <ul id="box-search">
-                            
+
                                 <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio > Nosotros</a></li>
                                 <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más > Historia</a></li>
                                 <li><a href="{{url('know-more#que-es-cost')}}"><i class="fas fa-search"></i>Conoce más > ¿Que es CoST?</a></li>
@@ -170,7 +187,23 @@ Inicio
                                 <li><a href="{{url('newsletters')}}"><i class="fas fa-search"></i>Noticias > Boletines</a></li>
                                 <li><a href="{{url('journal')}}"><i class="fas fa-search"></i>Noticias > Notas Periodisticas</a></li>
 
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos</a></li>
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos de la iniciativa</a></li>
                                 <li><a href="{{url('statistics#presupuesto')}}"><i class="fas fa-search"></i>Presupuesto utilizado</a></li>
+                                
+                                <li><a href="{{url('list-projects#sectorpublico')}}"><i class="fas fa-search"></i>Sector público</a></li>
+                                <li><a href="{{url('resources#cartaapoyo')}}"><i class="fas fa-search"></i>Cartas de apoyo</a></li>
+                                <li><a href="{{url('resources#cartaintencion')}}"><i class="fas fa-search"></i>Cartas de intención</a></li>
+                                <li><a href="{{url('resources#cartaaplicacion')}}"><i class="fas fa-search"></i>Cartas de aplicación</a></li>
+                                <li><a href="{{url('resources#cartaaprobacion')}}"><i class="fas fa-search"></i>Cartas de aprobación</a></li>
+                                <li><a href="{{url('resources#plantrabajo')}}"><i class="fas fa-search"></i>Plan de trabajo</a></li>
+                                <li><a href="{{url('resources#actas')}}"><i class="fas fa-search"></i>Actas</a></li>
+                                <li><a href="{{url('resources#informe')}}"><i class="fas fa-search"></i>Informes de aseguramiento</a></li>
+                                <li><a href="{{url('resources#reglamentos')}}"><i class="fas fa-search"></i>Reglamentos</a></li>
+                                <li><a href="{{url('resources#estandares')}}"><i class="fas fa-search"></i>Estándares</a></li>
+                                <li><a href="{{url('resources#mapasitio')}}"><i class="fas fa-search"></i>Mapa de sitio aprobado</a></li>
+                                <li><a href="{{url('support-material#seminarioabierto')}}"><i class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
+
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
@@ -368,8 +401,7 @@ Inicio
 <div class="row mx-0">
     <div class="col-md-6 px-0 mb-5">
         <div class="text-center text-white">
-            <h3 class="py-2 font-weight-bold title-barra-roja" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
-                background-size: cover;'>¿Qué es CoST?</h3>
+            <h3 class="py-2 font-weight-bold title-barra-roja">¿Qué es CoST?</h3>
         </div>
     </div>
 </div>
@@ -412,8 +444,7 @@ Inicio
 <div class="row mx-0">
     <div class="col-md-6 px-0 mt-2">
         <div class="text-center text-white">
-            <h3 class="py-2 font-weight-bold title-barra-roja" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
-                background-size: cover;'>Grupo Multisectorial</h3>
+            <h3 class="py-2 font-weight-bold title-barra-roja">Grupo Multisectorial</h3>
         </div>
     </div>
     <div class="col-md-6">
@@ -825,12 +856,44 @@ Inicio
     </div>
 </div>
 
+@if (session('status'))
+<!--
+    <div class="alert alert-success alert-dismissible col-sm-12">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert">
+            <span>x</span>
+        </button>
+    </div>
+
+    --->
+ <script>
+Swal.fire(
+{
+    icon:'info',
+    title:'{{session("status")}}',
+    customClass: {
+   
+  title: 'modaltitle',
+  button:'modalbtn'
+},
+width: '400px'
+}
+)
+
+
+</script>
+
+    
+@endif
+
+
 <!-- Section - newsletter -->
 <div class="row mx-0 my-4 align-items-center hidden-phone">
     <div class="col-md-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
         <div class="form-newsletter">
-            <form action="">
+            <form action="{{route('savemailsubscriber')}}" method="POST">
+            @csrf
                 <h6 style="font-size: 16px; font-weight: 600;" class="mb-3">¡Regístrate para seguir próximos
                     proyectos!</h6>
                 <input type="email" id="email" name="email" placeholder="Tu correo aquí" class="input-newsletter"
@@ -904,6 +967,7 @@ Inicio
 @endsection
 
 @section('scripts')
+
 
 <script>
     // //Ejecutando funciones
