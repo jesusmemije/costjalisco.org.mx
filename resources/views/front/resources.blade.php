@@ -27,7 +27,7 @@ Recursos
 <!-- Sub-Title - Cartas de apoyo -->
 <div class="row mx-0 my-4" id="apoyo">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="cartaapoyo">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Cartas de apoyo</h3>
         </div>
     </div>
@@ -85,7 +85,7 @@ Recursos
 <!-- Sub-Title - Cartas de intención -->
 <div class="row mx-0 my-4" id="intencion">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="cartaintencion">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Cartas de intención</h3>
         </div>
     </div>
@@ -140,7 +140,7 @@ Recursos
 <!-- Sub-Title - Cartas de aplicación -->
 <div class="row mx-0 mt-3" id="aplicacion">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="cartaaplicacion">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Cartas de aplicación</h3>
         </div>
     </div>
@@ -166,7 +166,7 @@ Recursos
 <!-- Sub-Title - Cartas de aprobación -->
 <div class="row mx-0 mt-3" id="aprobacion">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="cartaaprobacion">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Cartas de aprobación</h3>
         </div>
     </div>
@@ -192,7 +192,7 @@ Recursos
 <!-- Sub-Title - Plan de trabajo -->
 <div class="row mx-0 mt-3" id="plan-trabajo">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="plantrabajo">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Plan de trabajo</h3>
         </div>
     </div>
@@ -217,7 +217,7 @@ Recursos
 <!-- Sub-Title - Actas -->
 <div class="row mx-0 mt-3" id="actas">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="actas">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Actas</h3>
         </div>
     </div>
@@ -242,7 +242,7 @@ Recursos
 <!-- Sub-Title - Informes de aseguramiento -->
 <div class="row mx-0 mt-3" id="informes-aseguramiento">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="informe">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Informes de aseguramiento</h3>
         </div>
     </div>
@@ -267,7 +267,7 @@ Recursos
 <!-- Sub-Title - Reglamentos -->
 <div class="row mx-0 mt-3" id="reglamentos">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="reglamentos">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Reglamentos</h3>
         </div>
     </div>
@@ -292,7 +292,7 @@ Recursos
 <!-- Sub-Title - Estándares -->
 <div class="row mx-0 mt-3" id="estandares">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="estandares">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Estándares</h3>
         </div>
     </div>
@@ -317,7 +317,7 @@ Recursos
 <!-- Sub-Title - Mapa de sitio aprobado -->
 <div class="row mx-0 mt-3" id="mapa-sitio">
     <div class="col-md-6 px-0">
-        <div class="text-white">
+        <div class="text-white" id="mapasitio">
             <h3 class="py-2 font-weight-bold subtitle-barra-gris">Mapa de sitio aprobado</h3>
         </div>
     </div>
