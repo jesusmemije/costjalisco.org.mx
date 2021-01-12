@@ -253,7 +253,7 @@ Estadísticas
             
         </div>
         <div class="col-md-12" style="margin-bottom: 100px"></div>
-        <div class="my-1 seccione-project">
+        <div class="my-1 seccione-project" id="presupuesto">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; " >
                 <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
                 <span style="font-weight: 700; margin-left: 0px; padding: 0; color: red;" ><b> Presupuesto utilizado</b></span>    

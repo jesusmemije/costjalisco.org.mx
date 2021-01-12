@@ -26,6 +26,8 @@ Boletines
         <i class="fas fa-plus fa-sm text-white-50"></i>
         Nuevo boletín
     </a>
+    
+    
 </div>
 
 @include('admin.layouts.partials.session-flash-status')
@@ -117,6 +119,16 @@ Boletines
                                 @csrf
                                 <input type="submit" class="btn btn-danger btn-circle btn-sm btnDelete" value="x"
                                     data-id="{{$newletter->id}}" />
+                            </form>
+                            <form action="{{route('newsletter.correo')}}" method="post">
+                                @csrf
+                
+                                <input type="text" name="name">
+                                <input type="text" name="email" >
+                                <input type="text" name="subject">
+                                <input type="text" name="content" value="{{$newletter->content}}">
+                                <button class="btn btn-primary btn-circle btn-sm" type="submit"><i class="fas fa-share-alt"></i></button>
+                                
                             </form>
                         </td>
                     </tr>

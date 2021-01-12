@@ -169,6 +169,8 @@ Inicio
                                 <li><a href="{{url('eventos')}}"><i class="fas fa-search"></i>Noticias > Eventos</a></li>
                                 <li><a href="{{url('newsletters')}}"><i class="fas fa-search"></i>Noticias > Boletines</a></li>
                                 <li><a href="{{url('journal')}}"><i class="fas fa-search"></i>Noticias > Notas Periodisticas</a></li>
+
+                                <li><a href="{{url('statistics#presupuesto')}}"><i class="fas fa-search"></i>Presupuesto utilizado</a></li>
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>

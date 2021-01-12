@@ -136,7 +136,9 @@ Datos del proyecto
 
     <!-- Section - Datos generales -->
     <div class="row mt-5" id="datos-generales">
-        <div class="col-md-6 background-title px-0 py-1">
+        
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Datos Generales</span>
         </div>
         <div class="col-md-6 px-0">
@@ -168,7 +170,8 @@ Datos del proyecto
 
     <!-- Section - Identificación -->
     <div class="row mt-5" id="identificacion">
-        <div class="col-md-6 background-title px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
         </div>
         <div class="col-md-6 px-0">
@@ -227,7 +230,8 @@ Datos del proyecto
 
     <!-- Section - Preparación -->
     <div class="row mt-5" id="preparacion">
-        <div class="col-md-6 background-title px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
         </div>
         <div class="col-md-6 px-0">
@@ -320,7 +324,8 @@ Datos del proyecto
 
     <!-- Section - Procedimiento de contratación -->
     <div class="row mt-5" id="contratacion">
-        <div class="col-md-6 background-title px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
         </div>
         <div class="col-md-6 px-0">
@@ -367,7 +372,8 @@ Datos del proyecto
 
     <!-- Section - Ejecución -->
     <div class="row mt-5" id="ejecucion">
-        <div class="col-md-6 background-title px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
         </div>
         <div class="col-md-6 px-0">
@@ -406,7 +412,8 @@ Datos del proyecto
 
     <!-- Section - Finalización -->
     <div class="row mt-5" id="finalizacion">
-        <div class="col-md-6 background-title px-0 py-1">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
             <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
         </div>
         <div class="col-md-6 px-0">
@@ -444,7 +451,7 @@ Datos del proyecto
         <div class="row align-items-baseline">
             <div class="col-md-7" style="background-color:#d60000; color:#fff;">
                 <div class="d-flex justify-content-end align-items-baseline">
-                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}</span>&nbsp;&nbsp;<span>completado</span>
+                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}% </span>&nbsp;&nbsp;<span> completado</span>
                 </div>
             </div>
             <div class="col-md-3">

@@ -19,7 +19,8 @@ Sitios de Interés
 <div class="row mx-0 my-4" id="sitios-interes">
     <div class="col-md-6 px-0">
         <div class="text-center text-white">
-            <h3 class="py-2 font-weight-bold title-barra-roja">Sitios de interés</h3>
+            <h3 class="py-2 font-weight-bold title-barra-roja" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
+                background-size: cover;'>Sitios de interés</h3>
         </div>
     </div>
 </div>
@@ -28,6 +29,7 @@ Sitios de Interés
 <div class="container mt-4">
     <div style="border-left: 5px solid #2C4143;">
         <div class="row mb-3">
+            
             <div class="col-md-12">
                 <h3 style="font-size: 30px; font-weight: 700; margin-left: 30px;">Sector Público
                 </h3>
