@@ -1,0 +1,155 @@
+.icon-people {
+    width: 6%;
+}
+
+.title-project-single {
+    font-weight: 700;
+    font-size: 32px;
+    margin-left: 140px;
+}
+
+.text-personas-beneficiadas {
+    color: #628ea0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.bg-gris-single-project {
+    background-color: #d8d8cd;
+}
+
+.text-inaguracion {
+    text-align: left;
+    padding-right: 0;
+}
+
+.border-left-empresas {
+    border-left: 1px solid #628ea0;
+}
+
+.border-top-empresas {
+    border-top: unset;
+}
+
+.preparacion-subtitle {
+    padding-left: 34px;
+    font-size: 18px;
+    color: #628ea0;
+    font-weight: bold;
+}
+
+.text-descargar {
+    color: #fff;
+    font-size: unset;
+}
+
+.btn-documents {
+    margin-bottom: unset;
+}
+
+.border-vertical-resumen {
+    height: 1.5em;
+    border-left: 1px solid #B0C6CF;
+}
+
+.text-resumen {
+    font-size: unset;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .container-single-pt {
+        padding-top: 0 !important;
+    }
+
+    .carousel {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #benefited {
+        background-color: #fff;
+        margin-top: 0;
+    }
+
+    .icon-people {
+        width: 10%;
+    }
+
+    .title-project-single {
+        font-size: 20px;
+        margin-left: 40px;
+    }
+
+    .text-personas-beneficiadas {
+        font-size: 20px;
+    }
+
+    .bg-gris-single-project {
+        background-color: #fff;
+    }
+
+    #map {
+        height: 320px;
+    }
+
+    .text-inaguracion {
+        text-align: end;
+    }
+
+    .border-left-empresas {
+        border-left: unset;
+    }
+
+    .border-top-empresas {
+        border-top: 1px solid #628ea0;
+    }
+
+    .title-empresas {
+        margin-left: 0 !important;
+    }
+
+    .preparacion-subtitle {
+        padding-left: 0;
+    }
+
+    #background-docs {
+        background-image: url("/assets/img/project/background-docs-phone.jpg");
+    }
+
+    .icon-excel {
+        width: 30%;
+    }
+
+    .icon-clic {
+        width: 20%;
+    }
+
+    .text-descargar {
+        font-size: 12px;
+    }
+
+    .btn-documents {
+        font-size: 10px;
+        margin-bottom: 15px;
+    }
+
+    #background-resumen {
+        background: linear-gradient(45deg, #638E9F 50%, #58707C 50%);
+    }
+
+    .border-vertical-resumen {
+        height: 3.5em;
+    }
+
+    .text-resumen {
+        font-size: 10px;
+    }
+
+    .background-title {
+        font-size: unset;
+        background-image: url("/assets/img/bg-gris-phone.jpg");
+        background-size: 98%;
+    }
+
+}
