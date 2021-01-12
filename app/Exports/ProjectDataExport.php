@@ -55,7 +55,7 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
 
 
 
-
+    $docs=array();
     $identificacion = array();
     $preparacion = array();
     $contratacion = array();
@@ -63,7 +63,8 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
     $finalizacion = array();
 
     foreach ($project_documents as $document) {
-
+        $aux=asset('documents/'.$document->url);
+        array_push($docs,$aux);
         switch ($document->description) {
             case 'identificacion':
                 array_push($identificacion, $document->url);
@@ -82,6 +83,7 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
                 break;
         }
     }
+    $docs=implode('|',$docs);
 
     $all = DB::table('project')
         
@@ -132,7 +134,7 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
    ->where('id','=',$all->tipoFactibilidad)
    ->select('titulo')
    ->first();
-   if(!$tipoFactibilidad){
+   if($tipoFactibilidad==null){
        $tipoFactibilidad=new stdClass();
        $tipoFactibilidad->titulo="";
    }
@@ -216,6 +218,9 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
         $tipocontrato = new stdClass();
         $tipocontrato->titulo = "";
     }
+
+    //Contratación.
+
     $modalidadcontratacion = DB::table('catmodalidad_contratacion')
         ->where('id', '=', $all->modalidadcontrato)
         ->first();
@@ -225,17 +230,29 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
     }
 
 
+
     $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
         ->where('id', '=', $all->modalidadadjudicacion)
         ->first();
+
+        if ($modalidadadjudicacion == null) {
+            $modalidadadjudicacion = new stdClass();
+            $modalidadadjudicacion->titulo = "";
+        }
     $estadoactual = DB::table('contractingprocess_status')
         ->where('id', '=', $all->estadoactual)
         ->first();
+        if ($estadoactual == null) {
+            $estadoactual = new stdClass();
+            $estadoactual->titulo = "";
+        }
+    
 
     $project_imgs=DB::table('projects_imgs')
     ->where('id_project','=',$project->id)
     ->get();
 
+    /***Rutas para las imagenes del proyecto */
     $rutas=array();
 
     foreach($project_imgs as $ruta){
@@ -246,34 +263,7 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
 
   
 $export=  new Collection([
-    /*
-    ['id_project','Nombre de la persona que registra el proyecto',
-    'Correo electrónico (Institucional)','Organismo al que pertenece',
-    'Puesto que desempeña dentro del organismo','En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar',
-    'Imágenes de la obra','Título del proyecto','Número que identifica al proyecto','Descripción',
-    'Próposito','Sector','Subsector','Tipo de proyecto','Personas beneficiadas','Calle','Localidad',
-    'Región','Código Postal','País','Descripción del lugar','Nombre del responsable del proyecto',
-    'Cargo','Télefono','Correo electrónico','Domicilio','Horario de oficina','Estudios de Impacto Ambiental',
-    'Fecha de realización','Responsable del estudio','Número o números de identificación del estudio de impacto ambiental',
-    'Estudios de Factibilidad','Fecha de realización','Responsable del estudio','Número o números de identificación del estudio de factibilidad',
-    'Estudios de Impacto en el terreno y asentamientos','Fecha de realización','Responsable del estudio','Número o números de identificación del estudio de factibilidad',
-    'Origen del recurso','Fondo o fuente de financiamiento y partida presupuestal','Fecha de aprobación del monto de recurso autorizado'
-    ],
-
-
-    
-    [$all->id_project,$all->responsable,$all->email,$all->organismo,$all->puesto,$all->involucrado,$rutas,
-    $all->title,$all->ocid,$all->description,$all->purpose,$sector,$subsector,$projecttype,$people,
-    $address->streetAddress,$address->locality,$address->region,$address->postalCode,$address->countryName,
-    $all->descriptionlocation,$responsableproyecto->nombreresponsable,$responsableproyecto->cargoresponsable,
-    $responsableproyecto->telefonoresponsable,$responsableproyecto->correoresponsable,$responsableproyecto->domicilioresponsable,
-    $responsableproyecto->horarioresponsable,$tipoAmbiental->titulo,$all->fecharealizacionAmbiental,$all->responsableAmbiental,
-    $all->numeros_ambiental,$tipoFactibilidad->titulo,$all->fecharealizacionFactibilidad,$all->responsableFactibilidad,
-    $all->numeros_factibilidad,$tipoImpacto->titulo,$all->fecharealizacionimpacto,$all->responsableImpacto,
-    $all->numeros_impacto,$catorigenrecurso->titulo,$origenrecurso->sourceParty_name,$origenrecurso->startDate
-        
-    ],
-    */
+  
     ['id_project',$all->id_project],
     ['Nombre de la persona que registra el proyecto',$all->responsable],
     ['Correo electrónico (Institucional)',$all->email],
@@ -293,6 +283,65 @@ $export=  new Collection([
     ['Localidad',$address->locality],
     ['Región',$address->region],
     ['Código Postal',$address->postalCode],
+    ['País',$address->countryName],
+    ['Descripción del lugar',$all->descriptionlocation],
+    ['Nombre del responsable del proyecto',$responsableproyecto->nombreresponsable],
+    ['Cargo',$responsableproyecto->cargoresponsable],
+    ['Télefono',$responsableproyecto->telefonoresponsable],
+    ['Correo electrónico',$responsableproyecto->correoresponsable],
+    ['Domicilio',$responsableproyecto->domicilioresponsable],
+    ['Horario de oficina',$responsableproyecto->horarioresponsable],
+    ['Estudios de Impacto Ambiental',$tipoAmbiental->titulo],
+    ['Fecha de realización',$all->fecharealizacionAmbiental],
+    ['Responsable del estudio',$all->responsableAmbiental],
+    ['Número o números de identificación del estudio de impacto ambiental',$all->numeros_ambiental],
+    ['Estudios de Factibilidad',$tipoFactibilidad->titulo],
+    ['Fecha de realización',$all->fecharealizacionFactibilidad],
+    ['Responsable del estudio',$all->responsableFactibilidad],
+    ['Número o números de identificación del estudio de factibilidad',$all->numeros_factibilidad],
+    ['Estudios de Impacto en el terreno y asentamientos',$tipoImpacto->titulo],
+    ['Fecha de realización',$all->fecharealizacionimpacto],
+    ['Responsable del estudio',$all->responsableImpacto],
+    ['Número o números de identificación del estudio de factibilidad',$all->numeros_impacto],
+    ['Origen del recurso',$catorigenrecurso->titulo],
+    ['Fondo o fuente de financiamiento y partida presupuestal',$origenrecurso->sourceParty_name],
+    ['Fecha de aprobación del monto de recurso autorizado',$origenrecurso->startDate],
+    ['Datos de contacto de la entidad de adjudicación',$all->datosdecontacto],
+    ['Fecha de publicación',$all->fechapublicacion],
+    ['Entidad de adjudicación',$all->entidadadjudicacion],
+    ['Nombre del responsable',$all->nombreresponsable],
+    ['Modalidad de la adjudicación',$modalidadadjudicacion->titulo],
+    ['Tipo de contrato',$tipocontrato->titulo],
+    ['Modalidad de de contratación',$modalidadcontratacion->titulo],
+    ['Estado actual de la contratación',$estadoactual->titulo],
+    ['Empresas participantes',$all->empresasparticipantes],
+    ['Entidad administradora del contrato',$all->entidad_admin_contrato],
+    ['Título del contrato',$all->titulocontrato],
+    ['Empresa contratada',$all->empresacontratada],
+    ['Vía por la que presenta su propuesta',$all->viapropuesta],
+    ['Fecha de presentación de su propuesta',$all->fechapresentacionpropuesta],
+    ['Monto del contrato',$all->montocontrato],
+    ['Alcance del trabajo según el contrato',$all->alcancecontrato],
+    ['Fecha de inicio del contrato',$all->fechainiciocontrato],
+    ['Duración del proyecto de acuerdo con lo establecido en el contrato',$all->duracionproyecto_contrato],
+    ['Variaciones en el precio del contrato',$all->variacionespreciocontrato],
+    ['Razones de cambio en el precio del contrato',$all->razonescambiopreciocontrato],
+    ['Variaciones en la duración del contrato',$all->variacionesduracioncontrato],
+    ['Razones de cambio en la duración del contrato',$all->razonescambioduracioncontrato],
+    ['Variaciones en el alcance del contrato',$all->variacionesalcancecontrato],
+    ['Razones de cambios en el alcance del contrato',$all->razonescambiosalcancecontrato],
+    ['Aplicación de escalatoria',$all->aplicacionescalatoria],
+    ['Estado actual del proyecto',$all->estadoactualproyecto],
+    ['Costo de finalización',$all->costofinalizacion],
+    ['Fecha de finalización',$all->fechafinalizacion],
+    ['Alcance a la finalización',$all->alcancefinalizacion],
+    ['Razones de cambio en el proyecto',$all->razonescambioproyecto],
+    ['Documentos del proyecto',$docs],
+    
+
+
+
+
  
 
 
