@@ -130,7 +130,7 @@ use Illuminate\Support\Facades\Auth;
         <a class="collapse-item" href="{{ route('newsletter.index')}}">
           <span>Listado</span>
         </a>
-        <a class="collapse-item" href="{{ route('newsletter.index')}}">
+        <a class="collapse-item" href="{{ route('mailsubscriber')}}">
           <span>Suscripctores</span>
           
         </a>

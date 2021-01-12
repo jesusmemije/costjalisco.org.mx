@@ -639,6 +639,8 @@ class HomeController extends Controller
         return view('front.journal',['journal'=>$journal]);
     }
 
+    
+
    
 
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\CatalogsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrganizationsController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\NewsletterController as AdminNewsletterController;
 
 
 /*
@@ -59,7 +60,10 @@ Route::namespace('Front')->group(function () {
 
     Route::get('/sitemap', [HomeController::class, 'sitemap'])->name('sitemap');
 
-   
+   //savemailsubscriber
+   Route::post('/savemailsubscriber', [NewsletterController::class, 'savemailsubscriber'])->name('savemailsubscriber');
+    
+
     //Newsletter
     Route::get('/eventos', [NewsletterController::class, 'eventos'])->name('eventos');
     Route::get('/mostrar_dias', [NewsletterController::class, 'mostrar_dias'])->name('mostrar_dias');
@@ -78,6 +82,10 @@ Route::namespace('Front')->group(function () {
     Route::get('/search-engine', [SearchController::class, 'search_engine'])->name('search-engine');
     Route::get('/georeferencing', [SearchController::class, 'georeferencing'])->name('georeferencing');
 
+    //Subscriptor email
+
+   
+
     /* Fines de programación */
     Route::get('export/{id}',  [FrontProjectController::class, 'export'])->name('projectexport');
     
@@ -93,6 +101,17 @@ Route::namespace('Front')->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     
+    //Subscribers
+
+     
+     Route::get('/admin/mailsubscriber', [AdminNewsletterController::class, 'mailsubscriber'])->name('mailsubscriber');
+     Route::post('/admin/savemailsubscriber', [AdminNewsletterController::class, 'savemailsubscriber'])->name('savemailsubscriber');
+    
+     Route::post('/admin/destroymailsubscriber', [AdminNewsletterController::class, 'destroymailsubscriber'])->name('destroymailsubscriber');
+    
+     
+
+
     //Material de apoyo
 
     Route::get('/admin/support-material', [DashboardController::class, 'support_material'])->name('support-material-admin');
