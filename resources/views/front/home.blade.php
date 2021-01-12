@@ -187,12 +187,6 @@ Inicio
                                 <li><a href="{{url('resources#mapasitio')}}"><i class="fas fa-search"></i>Mapa de sitio aprobado</a></li>
                                 <li><a href="{{url('support-material#seminarioabierto')}}"><i class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
 
-
-
-
-
-
-
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
