@@ -144,7 +144,7 @@ Inicio
                         </div>
                             
                             <ul id="box-search">
-                            
+
                                 <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio > Nosotros</a></li>
                                 <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más > Historia</a></li>
                                 <li><a href="{{url('know-more#que-es-cost')}}"><i class="fas fa-search"></i>Conoce más > ¿Que es CoST?</a></li>
@@ -169,6 +169,30 @@ Inicio
                                 <li><a href="{{url('eventos')}}"><i class="fas fa-search"></i>Noticias > Eventos</a></li>
                                 <li><a href="{{url('newsletters')}}"><i class="fas fa-search"></i>Noticias > Boletines</a></li>
                                 <li><a href="{{url('journal')}}"><i class="fas fa-search"></i>Noticias > Notas Periodisticas</a></li>
+
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos</a></li>
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos de la iniciativa</a></li>
+                                <li><a href="{{url('statistics#presupuesto')}}"><i class="fas fa-search"></i>Presupuesto utilizado</a></li>
+                                
+                                <li><a href="{{url('list-projects#sectorpublico')}}"><i class="fas fa-search"></i>Sector público</a></li>
+                                <li><a href="{{url('resources#cartaapoyo')}}"><i class="fas fa-search"></i>Cartas de apoyo</a></li>
+                                <li><a href="{{url('resources#cartaintencion')}}"><i class="fas fa-search"></i>Cartas de intención</a></li>
+                                <li><a href="{{url('resources#cartaaplicacion')}}"><i class="fas fa-search"></i>Cartas de aplicación</a></li>
+                                <li><a href="{{url('resources#cartaaprobacion')}}"><i class="fas fa-search"></i>Cartas de aprobación</a></li>
+                                <li><a href="{{url('resources#plantrabajo')}}"><i class="fas fa-search"></i>Plan de trabajo</a></li>
+                                <li><a href="{{url('resources#actas')}}"><i class="fas fa-search"></i>Actas</a></li>
+                                <li><a href="{{url('resources#informe')}}"><i class="fas fa-search"></i>Informes de aseguramiento</a></li>
+                                <li><a href="{{url('resources#reglamentos')}}"><i class="fas fa-search"></i>Reglamentos</a></li>
+                                <li><a href="{{url('resources#estandares')}}"><i class="fas fa-search"></i>Estándares</a></li>
+                                <li><a href="{{url('resources#mapasitio')}}"><i class="fas fa-search"></i>Mapa de sitio aprobado</a></li>
+                                <li><a href="{{url('support-material#seminarioabierto')}}"><i class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
+
+
+
+
+
+
+
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
