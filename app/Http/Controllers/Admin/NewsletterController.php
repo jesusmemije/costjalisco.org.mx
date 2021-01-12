@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Newsletter;
+use App\Models\Subscriber;
+use Illuminate\Support\Facades\DB;
 
 class NewsletterController extends Controller
 {
@@ -127,4 +129,39 @@ class NewsletterController extends Controller
         $newletter->delete();
         return back()->with('status', 'Boletín eliminado con éxito!');
     }
+
+    public function mailsubscriber(){
+        $subscribers=DB::table('subscribers')
+        ->get();
+
+        return view('admin.newsletter.mailsubscriber',['subscribers'=>$subscribers]);
+    }
+
+    public function savemailsubscriber(Request $request){
+        /*
+        $s=DB::table('subscribers')
+        ->insert(['email'=>$request->email]);
+        return back()->with('status', 'Subscrito correctamente');
+        */
+
+        $existe=Subscriber::where('email',$request->email)->get();
+        if(sizeof($existe)==0){
+            $s=new Subscriber();
+            $s->email=$request->email;
+            $s->save();
+            return back()->with('status', 'Subscrito correctamente');
+        }else{
+            return back()->with('status', 'El correo ya se encuentra registrado');
+        }
+      
+
+      
+    }
+    public function destroymailsubscriber(Request $request){
+        $s=Subscriber::find($request->id)->delete();
+        return back()->with('status', 'Subscriptor eliminado correctamente');
+    }
+    
+
+   
 }

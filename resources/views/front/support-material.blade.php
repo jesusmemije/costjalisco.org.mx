@@ -31,6 +31,13 @@ Material de Apoyo
             </a>
         </div>
     </div>-->
+<div class="container" ><!--
+    <div class="row material" style="margin-bottom: 5%;">
+    
+
+    <div class="col-md-5 col-12 part1">
+        <div class="row title" style="margin-top:8%;" id="seminarioabierto">
+           <h6>SEMINARIO DE DATOS ABIERTOS:</h6> 
 <div class="container">
     <div class="row material">
         <div class="col-md-5 col-12 part1">
@@ -103,6 +110,60 @@ Material de Apoyo
             </div>
         </div>
     </div>
+   --->
+   
+
+
+   @foreach($materials as $material)
+
+   <div class="row material" style="margin-bottom: 5%;">
+    
+
+    <div class="col-md-5 col-12 part1">
+        <div class="row title" style="margin-top:8%;">
+           <h6>{{$material->titulo}}</h6> 
+        </div>
+        <div class="content1"  style="margin-top: 4%;">
+           <h5>{{$material->descripcion}}
+</h5>
+        </div>
+    </div>
+
+    <div class="col-md-5" style="background-color:#2c4143;">
+    <iframe class="iframe" src="{{$material->url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="col-md-2" style="background-color:#d60000;">
+        <div style="color:white; margin-top:40%">
+       
+       <?php
+       
+       $claves = array_map('trim', preg_split('/\R/', $material->modulo));
+       
+       ?>
+
+       @foreach($claves as $clave)
+       <span>{{$clave}}</span><br>
+       @endforeach
+      
+      
+        </div>
+     
+    <div class="row" style="background-color: #ffce32; margin-top:32%; font-weight:600; justify-content: center;
+  align-items: center;">
+    <span>{{$material->created_at->format('d/m/Y h:i A') }}</span>
+    </div>
+      
+    </div>
+
+
+
+    </div>
+
+
+   @endforeach
+
+
 </div>
 
 @endsection

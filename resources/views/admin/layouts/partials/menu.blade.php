@@ -130,7 +130,7 @@ use Illuminate\Support\Facades\Auth;
         <a class="collapse-item" href="{{ route('newsletter.index')}}">
           <span>Listado</span>
         </a>
-        <a class="collapse-item" href="{{ route('newsletter.index')}}">
+        <a class="collapse-item" href="{{ route('mailsubscriber')}}">
           <span>Suscripctores</span>
           
         </a>
@@ -141,6 +141,11 @@ use Illuminate\Support\Facades\Auth;
     <a class="nav-link" href="{{ route('events.index') }}">
       <i class="far fa-calendar"></i>
       <span>Eventos</span></a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href="{{ route('support-material-admin') }}">
+      <i class="far fa-calendar"></i>
+      <span>Material de apoyo</span></a>
   </li>
 
   <li class="nav-item">

@@ -4,6 +4,11 @@
 Inicio
 @endsection
 
+
+<!-- CDN Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 @section('content')
 
 <!-- Contenido -->
@@ -109,6 +114,13 @@ Inicio
             background: rgba(0,0,0,0.5);
             z-index: 7;
             display: none;
+        }
+
+        .modaltitle{
+            font-size: 20px;
+        }
+        .modalbtn{
+            font-size: 15px;
         }
 
         @media only screen and (max-width: 480px) {
@@ -844,12 +856,44 @@ Inicio
     </div>
 </div>
 
+@if (session('status'))
+<!--
+    <div class="alert alert-success alert-dismissible col-sm-12">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert">
+            <span>x</span>
+        </button>
+    </div>
+
+    --->
+ <script>
+Swal.fire(
+{
+    icon:'info',
+    title:'{{session("status")}}',
+    customClass: {
+   
+  title: 'modaltitle',
+  button:'modalbtn'
+},
+width: '400px'
+}
+)
+
+
+</script>
+
+    
+@endif
+
+
 <!-- Section - newsletter -->
 <div class="row mx-0 my-4 align-items-center hidden-phone">
     <div class="col-md-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
         <div class="form-newsletter">
-            <form action="">
+            <form action="{{route('savemailsubscriber')}}" method="POST">
+            @csrf
                 <h6 style="font-size: 16px; font-weight: 600;" class="mb-3">¡Regístrate para seguir próximos
                     proyectos!</h6>
                 <input type="email" id="email" name="email" placeholder="Tu correo aquí" class="input-newsletter"
@@ -923,6 +967,7 @@ Inicio
 @endsection
 
 @section('scripts')
+
 
 <script>
     // //Ejecutando funciones
