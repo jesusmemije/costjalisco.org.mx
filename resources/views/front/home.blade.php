@@ -4,213 +4,124 @@
 Inicio
 @endsection
 
-
-<!-- CDN Sweet Alert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+@section('styles')
+<link rel="stylesheet" href="{{asset("assets/css/home.css")}}">
+@endsection
 
 @section('content')
-
 <!-- Contenido -->
 <div class="main">
 
-    <style>
-        /*Buscador de contenido*/
-
-        #ctn-icon-search{
-            position: absolute;
-            right: 20px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #ctn-icon-search i{
-            font-size: 30px;
-            color: #777777;
-            cursor: pointer;
-            /* transition: all 300ms; */
-            padding: 9px;
-            padding-bottom: 9px;
-            margin-top: 41px;
-            border-top: 1px solid #000;  
-            border-right: 1px solid #000;  
-            border-bottom: 1px solid #000;  
-
-        }
-
-        #ctn-icon-search i:hover{
-            color: #46a2fd;
-        }
-
-
-        #ctn-bars-search{
-            position: fixed;
-            top: 125px;
-            width: 77%;
-        
-            padding-top: 25px;
-            z-index: 9;
-            /* transition: all 600ms; */
-        }
-
-        #ctn-bars-search input{
-            display: block;
-            width: 38%;
-            margin: none;
-            padding: 10px;
-            font-size: 19px;
-            outline: 0;
-            border: 0px;
-            border-top: 1px solid #000;  
-            border-left: 1px solid #000;  
-            border-bottom: 1px solid #000;  
-        
-            
-        }
-
-        #box-search{
-            position: fixed;
-            top: 210px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 480px;
-            background: #fff;
-            z-index: 8;
-            overflow: hidden;
-            display: none;
-            padding: 0;
-        }
-
-        #box-search li {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #box-search li a {
-            display: block;
-            width: 465px;
-            color: #58707B;
-            padding: 12px 20px;
-        }
-
-        #box-search li a:hover {
-            background: #f3f3f3;
-        }
-
-        #box-search li a i {
-            background: #f3f3f3;
-            margin-right: 10px;
-        }
-
-
-        #cover-ctn-search{
-            width: 10%;
-            height: 10%;
-            position: fixed;
-            left: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 7;
-            display: none;
-        }
-
-        .modaltitle{
-            font-size: 20px;
-        }
-        .modalbtn{
-            font-size: 15px;
-        }
-
-        @media only screen and (max-width: 480px) {
-
-
-        }
-        
-    </style>
     <!--MODAL-->
     <div class="chatbot text-center">
         <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
             alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">
     </div>
-    
-        
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Super Inspe-CoST</h5>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">x</button>
-                    </button>
                 </div>
-                <form >
+                <form>
                     <div class="modal-body">
                         <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
                         <div class="input-group">
 
                             <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
-                            <div class="input-group-append" >
+                            <div class="input-group-append">
                                 <div id="ctn-icon-search">
                                     <i class="fas fa-search" id="icon-search"></i>
                                 </div>
-                           <div id="ctn-bars-search">
-                                <input type="text" id="inputSearch" placeholder="Escribe palabras clave">
+                                <div id="ctn-bars-search">
+                                    <input type="text" id="inputSearch" placeholder="Escribe palabras clave">
+                                </div>
                             </div>
-                        </div>
-                            
+
                             <ul id="box-search">
+                                <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio >
+                                        Nosotros</a></li>
+                                <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más >
+                                        Historia</a></li>
+                                <li><a href="{{url('know-more#que-es-cost')}}"><i class="fas fa-search"></i>Conoce más >
+                                        ¿Que es CoST?</a></li>
+                                <li><a href="{{url('know-more#beneficios')}}"><i class="fas fa-search"></i>Conoce más >
+                                        Beneficios</a></li>
+                                <li><a href="{{url('know-more#procesos-de-cost')}}"><i class="fas fa-search"></i>Conoce
+                                        más > Procesos de CoST</a></li>
+                                <li><a href="{{url('know-more#divulgacion')}}"><i class="fas fa-search"></i>Conoce más >
+                                        Divulgacion</a></li>
+                                <li><a href="{{url('know-more#aseguramiento')}}"><i class="fas fa-search"></i>Conoce más
+                                        > Aseguramiento</a></li>
+                                <li><a href="{{url('know-more#auditoria-social')}}"><i class="fas fa-search"></i>Conoce
+                                        más > Auditoria Social</a></li>
 
-                                <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio > Nosotros</a></li>
-                                <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más > Historia</a></li>
-                                <li><a href="{{url('know-more#que-es-cost')}}"><i class="fas fa-search"></i>Conoce más > ¿Que es CoST?</a></li>
-                                <li><a href="{{url('know-more#beneficios')}}"><i class="fas fa-search"></i>Conoce más > Beneficios</a></li>
-                                <li><a href="{{url('know-more#procesos-de-cost')}}"><i class="fas fa-search"></i>Conoce más > Procesos de CoST</a></li>
-                                <li><a href="{{url('know-more#divulgacion')}}"><i class="fas fa-search"></i>Conoce más > Divulgacion</a></li>
-                                <li><a href="{{url('know-more#aseguramiento')}}"><i class="fas fa-search"></i>Conoce más > Aseguramiento</a></li>
-                                <li><a href="{{url('know-more#auditoria-social')}}"><i class="fas fa-search"></i>Conoce más > Auditoria Social</a></li>
+                                <li><a href="{{url('about-us#cost-jalisco')}}"><i class="fas fa-search"></i>Nosotros >
+                                        CoST Jalisco</a></li>
+                                <li><a href="{{url('about-us#objetivo-general')}}"><i class="fas fa-search"></i>Nosotros
+                                        > Objetivo de CoST jalisco</a></li>
+                                <li><a href="{{url('multisectorial')}}"><i class="fas fa-search"></i>Nosotros > Grupo
+                                        Multisectorial</a></li>
 
-                                <li><a href="{{url('about-us#cost-jalisco')}}"><i class="fas fa-search"></i>Nosotros > CoST Jalisco</a></li>
-                                <li><a href="{{url('about-us#objetivo-general')}}"><i class="fas fa-search"></i>Nosotros > Objetivo de CoST jalisco</a></li>
-                                <li><a href="{{url('multisectorial')}}"><i class="fas fa-search"></i>Nosotros > Grupo Multisectorial</a></li>
+                                <li><a href="{{url('statistics')}}"><i class="fas fa-search"></i>Proyectos >
+                                        Estadisticas</a></li>
+                                <li><a href="{{url('search-engine')}}"><i class="fas fa-search"></i>Proyectos > Motor de
+                                        búsqueda</a></li>
+                                <li><a href="{{url('georeferencing')}}"><i class="fas fa-search"></i>Proyectos >
+                                        Georreferenciación</a></li>
+                                <li><a href="{{url('list-projects')}}"><i class="fas fa-search"></i>Proyectos > Listado
+                                        de obras</a></li>
 
-                                <li><a href="{{url('statistics')}}"><i class="fas fa-search"></i>Proyectos > Estadisticas</a></li>
-                                <li><a href="{{url('search-engine')}}"><i class="fas fa-search"></i>Proyectos > Motor de búsqueda</a></li>
-                                <li><a href="{{url('georeferencing')}}"><i class="fas fa-search"></i>Proyectos > Georreferenciación</a></li>
-                                <li><a href="{{url('list-projects')}}"><i class="fas fa-search"></i>Proyectos > Listado de obras</a></li>
-                                
-                                <li><a href="{{url('resources')}}"><i class="fas fa-search"></i>Recursos > Documentos de interes</a></li>
-                                <li><a href="{{url('support-material')}}"><i class="fas fa-search"></i>Recursos > Material de apoyo</a></li>
-                                
-                                <li><a href="{{url('eventos')}}"><i class="fas fa-search"></i>Noticias > Eventos</a></li>
-                                <li><a href="{{url('newsletters')}}"><i class="fas fa-search"></i>Noticias > Boletines</a></li>
-                                <li><a href="{{url('journal')}}"><i class="fas fa-search"></i>Noticias > Notas Periodisticas</a></li>
+                                <li><a href="{{url('resources')}}"><i class="fas fa-search"></i>Recursos > Documentos de
+                                        interes</a></li>
+                                <li><a href="{{url('support-material')}}"><i class="fas fa-search"></i>Recursos >
+                                        Material de apoyo</a></li>
 
-                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos</a></li>
-                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos de la iniciativa</a></li>
-                                <li><a href="{{url('statistics#presupuesto')}}"><i class="fas fa-search"></i>Presupuesto utilizado</a></li>
-                                
-                                <li><a href="{{url('list-projects#sectorpublico')}}"><i class="fas fa-search"></i>Sector público</a></li>
-                                <li><a href="{{url('resources#cartaapoyo')}}"><i class="fas fa-search"></i>Cartas de apoyo</a></li>
-                                <li><a href="{{url('resources#cartaintencion')}}"><i class="fas fa-search"></i>Cartas de intención</a></li>
-                                <li><a href="{{url('resources#cartaaplicacion')}}"><i class="fas fa-search"></i>Cartas de aplicación</a></li>
-                                <li><a href="{{url('resources#cartaaprobacion')}}"><i class="fas fa-search"></i>Cartas de aprobación</a></li>
-                                <li><a href="{{url('resources#plantrabajo')}}"><i class="fas fa-search"></i>Plan de trabajo</a></li>
+                                <li><a href="{{url('eventos')}}"><i class="fas fa-search"></i>Noticias > Eventos</a>
+                                </li>
+                                <li><a href="{{url('newsletters')}}"><i class="fas fa-search"></i>Noticias >
+                                        Boletines</a></li>
+                                <li><a href="{{url('journal')}}"><i class="fas fa-search"></i>Noticias > Notas
+                                        Periodisticas</a></li>
+
+                                <li><a href="{{url('statistics#iniciativa')}}"><i
+                                            class="fas fa-search"></i>Proyectos</a></li>
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos de
+                                        la iniciativa</a></li>
+                                <li><a href="{{url('statistics#presupuesto')}}"><i class="fas fa-search"></i>Presupuesto
+                                        utilizado</a></li>
+
+                                <li><a href="{{url('list-projects#sectorpublico')}}"><i class="fas fa-search"></i>Sector
+                                        público</a></li>
+                                <li><a href="{{url('resources#cartaapoyo')}}"><i class="fas fa-search"></i>Cartas de
+                                        apoyo</a></li>
+                                <li><a href="{{url('resources#cartaintencion')}}"><i class="fas fa-search"></i>Cartas de
+                                        intención</a></li>
+                                <li><a href="{{url('resources#cartaaplicacion')}}"><i class="fas fa-search"></i>Cartas
+                                        de aplicación</a></li>
+                                <li><a href="{{url('resources#cartaaprobacion')}}"><i class="fas fa-search"></i>Cartas
+                                        de aprobación</a></li>
+                                <li><a href="{{url('resources#plantrabajo')}}"><i class="fas fa-search"></i>Plan de
+                                        trabajo</a></li>
                                 <li><a href="{{url('resources#actas')}}"><i class="fas fa-search"></i>Actas</a></li>
-                                <li><a href="{{url('resources#informe')}}"><i class="fas fa-search"></i>Informes de aseguramiento</a></li>
-                                <li><a href="{{url('resources#reglamentos')}}"><i class="fas fa-search"></i>Reglamentos</a></li>
-                                <li><a href="{{url('resources#estandares')}}"><i class="fas fa-search"></i>Estándares</a></li>
-                                <li><a href="{{url('resources#mapasitio')}}"><i class="fas fa-search"></i>Mapa de sitio aprobado</a></li>
-                                <li><a href="{{url('support-material#seminarioabierto')}}"><i class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
-                                <li><a href="{{url('project-single',['id'=>31])}}"><i class="fas fa-search"></i>Proyectos Especificos</a></li>
-
-
-                                
+                                <li><a href="{{url('resources#informe')}}"><i class="fas fa-search"></i>Informes de
+                                        aseguramiento</a></li>
+                                <li><a href="{{url('resources#reglamentos')}}"><i
+                                            class="fas fa-search"></i>Reglamentos</a></li>
+                                <li><a href="{{url('resources#estandares')}}"><i
+                                            class="fas fa-search"></i>Estándares</a></li>
+                                <li><a href="{{url('resources#mapasitio')}}"><i class="fas fa-search"></i>Mapa de sitio
+                                        aprobado</a></li>
+                                <li><a href="{{url('support-material#seminarioabierto')}}"><i
+                                            class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
+                                <li><a href="{{url('project-single',['id'=>31])}}"><i
+                                            class="fas fa-search"></i>Proyectos Especificos</a></li>
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
-                       
                         <br><br><br>
                     </div>
                 </form>
@@ -221,7 +132,6 @@ Inicio
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
     </script>
-
 
     <!-- Section - Carousel main default -->
     @if(sizeof($h)==0)
@@ -415,26 +325,26 @@ Inicio
         <div class="col-md-6 line-red-vertical">
             <div class="my-4" style="letter-spacing: -.2px;">
                 <p>
-                    La iniciativa de Transparencia en Infraestructura <strong>[Construction <br class="hidden-br">
-                        Sector Transparency Initiative] o "CoST" por sus siglas en <br class="hidden-br">
-                        inglés,</strong> es la encargada de promover la transparencia y la <br class="hidden-br">
-                    rendición de cuentas dentro de las diferentes etapas de los <br class="hidden-br">
+                    La iniciativa de Transparencia en Infraestructura <strong>[Construction <br class="hidden-phone">
+                        Sector Transparency Initiative] o "CoST" por sus siglas en <br class="hidden-phone">
+                        inglés,</strong> es la encargada de promover la transparencia y la <br class="hidden-phone">
+                    rendición de cuentas dentro de las diferentes etapas de los <br class="hidden-phone">
                     proyectos de infraestructura y obra pública.
                 </p>
                 <p>
-                    Actualmente, tiene presencia en 19 países distribuidos en <br class="hidden-br">
-                    cuatro continentes, donde trabaja directamente con el Gobierno, <br class="hidden-br">
-                    la sociedad civil y la industria del ramo de la contrucción para <br class="hidden-br">
-                    promover la divulgación, validación e interpretación de datos de <br class="hidden-br">
+                    Actualmente, tiene presencia en 19 países distribuidos en <br class="hidden-phone">
+                    cuatro continentes, donde trabaja directamente con el Gobierno, <br class="hidden-phone">
+                    la sociedad civil y la industria del ramo de la contrucción para <br class="hidden-phone">
+                    promover la divulgación, validación e interpretación de datos de <br class="hidden-phone">
                     proyectos de infraestructura y obra pública.
                 </p>
                 <br>
             </div>
         </div>
         <div class="col-md-6 text-center">
-            <br class="hidden-br"><br class="hidden-br">
+            <br class="hidden-phone"><br class="hidden-phone">
             <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
-            <br class="hidden-br"><br class="hidden-br">
+            <br class="hidden-phone"><br class="hidden-phone">
             <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
                     https://infrastructuretransparency.org/</a></span>
         </div>
@@ -461,12 +371,12 @@ Inicio
         <div class="col-md-7 line-red-vertical">
             <div class="mt-5" style="letter-spacing: -.2px;">
                 <p>
-                    El Grupo Multisectorial "GMS" está conformado por instituciones de <br class="hidden-br">
+                    El Grupo Multisectorial "GMS" está conformado por instituciones de <br class="hidden-phone">
                     Gobierno, del sector privado, del sector académico y de la sociedad civil.
                 </p>
                 <p>
-                    Este grupo, a través de los representantes de cada una de las <br class="hidden-br">
-                    instituciones que lo integra, es el responsable de guiar el desarrollo, la <br class="hidden-br">
+                    Este grupo, a través de los representantes de cada una de las <br class="hidden-phone">
+                    instituciones que lo integra, es el responsable de guiar el desarrollo, la <br class="hidden-phone">
                     implementación y supervisión de la iniciativa de CoST en Jalisco.
                 </p>
             </div>
@@ -782,29 +692,30 @@ Inicio
                     <div class="row">
                         <div class="col-md-4">
                             @php
-                                $imagen=DB::table('projects_imgs')
-                                ->select('projects_imgs.imgroute')
-                                ->where('projects_imgs.id_project','=',$project->id)
-                                ->get();
+                            $imagen=DB::table('projects_imgs')
+                            ->select('projects_imgs.imgroute')
+                            ->where('projects_imgs.id_project','=',$project->id)
+                            ->get();
                             @endphp
                             @if (count($imagen)==0)
-                                <img src="{{ asset('projects_imgs/sinimagen.png') }}"  width="100%px" height="320px" alt="">
+                            <img src="{{ asset('projects_imgs/sinimagen.png') }}" width="100%px" height="320px" alt="">
                             @else
-                                {{-- <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325" height="310"  alt=""> --}}
-                                
-                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}"
-                                class="img-fluid" width="100%px" height="320px" alt="">
+                            {{-- <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325"
+                            height="310" alt=""> --}}
+
+                            <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-fluid"
+                                width="100%px" height="320px" alt="">
                             @endif
                         </div>
                         <div class="hidden-desktop"
-                        style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; font-size: 26px; text-align: center; padding: 0 30px;">
+                            style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; font-size: 26px; text-align: center; padding: 0 30px;">
                             <span class="font-weight-bold" style="color: #fff; text-shadow: 0.1em 0.1em 0.2em black">
                                 <a href="{{ route('project-single', $project->id) }}">{{ $project->title }}</a>
                             </span>
                         </div>
                         <div class="col-md-8 hidden-phone">
                             @php
-                                $titulo=substr($project->title,0,42).'..';
+                            $titulo=substr($project->title,0,42).'..';
                             @endphp
                             <h2 class="font-weight-bold my-4 text-red">{{ $titulo }}</h2>
                             <div class="row">
@@ -814,8 +725,6 @@ Inicio
                                     </p>
                                 </div>
                                 <div class="col-md-6 pl-4">
-                                    
-                                   
                                     <p>
                                         <img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
@@ -859,44 +768,13 @@ Inicio
     </div>
 </div>
 
-@if (session('status'))
-<!--
-    <div class="alert alert-success alert-dismissible col-sm-12">
-        {{ session('status') }}
-        <button type="button" class="close" data-dismiss="alert">
-            <span>x</span>
-        </button>
-    </div>
-
-    --->
- <script>
-Swal.fire(
-{
-    icon:'info',
-    title:'{{session("status")}}',
-    customClass: {
-   
-  title: 'modaltitle',
-  button:'modalbtn'
-},
-width: '400px'
-}
-)
-
-
-</script>
-
-    
-@endif
-
-
 <!-- Section - newsletter -->
 <div class="row mx-0 my-4 align-items-center hidden-phone">
     <div class="col-md-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
         <div class="form-newsletter">
             <form action="{{route('savemailsubscriber')}}" method="POST">
-            @csrf
+                @csrf
                 <h6 style="font-size: 16px; font-weight: 600;" class="mb-3">¡Regístrate para seguir próximos
                     proyectos!</h6>
                 <input type="email" id="email" name="email" placeholder="Tu correo aquí" class="input-newsletter"
@@ -960,7 +838,7 @@ width: '400px'
             <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
             <div class="text-white visitantes-counter" style="font-size: 38px;">
                 <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh"
-                    border="0"></a>
+                    border="0">
             </div>
         </div>
     </div>
@@ -970,7 +848,27 @@ width: '400px'
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+@if (session('status'))
+<!-- <div class="alert alert-success alert-dismissible col-sm-12">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert">
+            <span>x</span>
+        </button>
+    </div> --->
+<script>
+    Swal.fire({
+            icon:'info',
+            title:'{{session("status")}}',
+            customClass: {
+                title: 'modaltitle',
+                button:'modalbtn'
+            },
+            width: '400px'
+        })
+</script>
+@endif
 
 <script>
     // //Ejecutando funciones
@@ -980,84 +878,77 @@ width: '400px'
     //Declarando variables
     // bars_search =       document.getElementById("ctn-bars-search");
     // cover_ctn_search =  document.getElementById("cover-ctn-search");
-//     document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
+    //     document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
 
-// function mostrar_menu(){
+    // function mostrar_menu(){
 
-//     document.getElementById("move-content").classList.toggle('move-container-all');
-//     document.getElementById("show-menu").classList.toggle('show-lateral');
-// }
+    //     document.getElementById("move-content").classList.toggle('move-container-all');
+    //     document.getElementById("show-menu").classList.toggle('show-lateral');
+    // }
 
-// //Ejecutando funciones
-// document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
-// document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
+    // //Ejecutando funciones
+    // document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+    // document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
 
-// //Declarando variables
-// bars_search =       document.getElementById("ctn-bars-search");
-// cover_ctn_search =  document.getElementById("cover-ctn-search");
-inputSearch =       document.getElementById("inputSearch");
-box_search =        document.getElementById("box-search");
-
-
-//Funcion para mostrar el buscador
-function mostrar_buscador(){
-
-    bars_search.style.top = "80px";
-    cover_ctn_search.style.display = "block";
-    inputSearch.focus();
-
-    if (inputSearch.value === ""){
-        box_search.style.display = "none";
-    }
-
-}
-
-//Funcion para ocultar el buscador
-function ocultar_buscador(){
-
-    bars_search.style.top = "-10px";
-    cover_ctn_search.style.display = "none";
-    inputSearch.value = "";
-    box_search.style.display = "none";
-
-}
+    // //Declarando variables
+    // bars_search =       document.getElementById("ctn-bars-search");
+    // cover_ctn_search =  document.getElementById("cover-ctn-search");
+    inputSearch =       document.getElementById("inputSearch");
+    box_search =        document.getElementById("box-search");
 
 
-//Creando filtrado de busqueda
+    //Funcion para mostrar el buscador
+    function mostrar_buscador(){
 
-document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+        bars_search.style.top = "80px";
+        cover_ctn_search.style.display = "block";
+        inputSearch.focus();
 
-function buscador_interno(){
-
-
-    filter = inputSearch.value.toUpperCase();
-    li = box_search.getElementsByTagName("li");
-
-    //Recorriendo elementos a filtrar mediante los "li"
-    for (i = 0; i < li.length; i++){
-
-        a = li[i].getElementsByTagName("a")[0];
-        textValue = a.textContent || a.innerText;
-
-        if(textValue.toUpperCase().indexOf(filter) > -1){
-
-            li[i].style.display = "";
-            box_search.style.display = "block";
-
-            if (inputSearch.value === ""){
-                box_search.style.display = "none";
-            }
-
-        }else{
-            li[i].style.display = "none";
+        if (inputSearch.value === ""){
+            box_search.style.display = "none";
         }
 
     }
 
+    //Funcion para ocultar el buscador
+    function ocultar_buscador(){
+
+        bars_search.style.top = "-10px";
+        cover_ctn_search.style.display = "none";
+        inputSearch.value = "";
+        box_search.style.display = "none";
+
+    }
+
+    //Creando filtrado de busqueda
+
+    document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+
+    function buscador_interno(){
 
 
-}
+        filter = inputSearch.value.toUpperCase();
+        li = box_search.getElementsByTagName("li");
 
+        //Recorriendo elementos a filtrar mediante los "li"
+        for (i = 0; i < li.length; i++){
 
+            a = li[i].getElementsByTagName("a")[0];
+            textValue = a.textContent || a.innerText;
+
+            if(textValue.toUpperCase().indexOf(filter) > -1){
+
+                li[i].style.display = "";
+                box_search.style.display = "block";
+
+                if (inputSearch.value === ""){
+                    box_search.style.display = "none";
+                }
+
+            }else{
+                li[i].style.display = "none";
+            }
+        }
+    }
 </script>
 @endsection
