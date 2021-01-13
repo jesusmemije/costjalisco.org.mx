@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Mail\MessageReceived;
 
@@ -13,26 +14,41 @@ use App\Mail\MessageReceived;
 class CorreoController extends Controller
 {
     public function store(){
-        $objDemo = new\stdClass();
-        $objDemo->demo_one = 'Demo One Value';
-        // $objDemo->demo_two = 'Demo Two Value';
-        $objDemo->sender = 'SenderUserName';
-        $objDemo->receiver = 'ReceiverUserName';
-       
-       
-        // $sms=    request()->validate([
+        
 
-        //             'name'=>'required',
-        //             'email'=> 'required|email',
-        //             'subject'=> 'required',
-        //             'content'=> 'required|min:3',
-        //         ], [
-        //             'name.required'=> __('I need your name')
+        $sms=    request()->validate([
+
+            'name'=>'required',
+            'email'=> 'required|email',
+            'subject'=> 'required',
+            'content'=> 'required|min:3',
+            'titulo'=> 'required|min:3',
+            'fecha'=> 'required|min:3',
+            'url'=> 'required|min:3',
+            
+        ], [
+            'name.required'=> __('I need your name')
+        
+        ]);
+
+        $suscriptores=DB::table('subscribers')
+                ->select('subscribers.*')
+                ->where('subscribers.status','=','suscrito')
+                ->get();
+
+
+        if (count($suscriptores)==0) {
+            return back()->with('status', '¡No se pudo compartir por falta de suscriptores!');
+        } else {
+            foreach ($suscriptores as $suscriptor) {
                 
-        //         ]);
-                
-                Mail::to('pablodiazorgin@gmail.com')->queue(new MessageReceived($objDemo));
+                Mail::to($suscriptor->email)->queue(new MessageReceived($sms));
                 // return new MessageReceived($sms); 
-                return 'Mensaje enviado';
+                // return 'Mensaje enviado';
+                
+            }
+
+            return back()->with('status', '¡Boletín compartido con éxito!');
+        }
     }
 }

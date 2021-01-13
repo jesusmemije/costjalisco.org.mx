@@ -11,7 +11,7 @@ class MessageReceived extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject='Mensaje recibido';
+    public $subject='Nuevo boletín';
     public $sms;
 
     /**
@@ -38,10 +38,6 @@ class MessageReceived extends Mailable
                       [
                             'testVarOne' => '1',
                             // 'testVarTwo' => '2',
-                      ])
-                      ->attach(public_path('/news_imgs').'/1610257967_foto.png', [
-                              'as' => '1610257967_foto.png',
-                              'mime' => 'image/png',
                       ]);
         // return $this->view('admin.correos.message-received');
     }

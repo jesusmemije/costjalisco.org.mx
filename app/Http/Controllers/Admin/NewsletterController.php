@@ -122,7 +122,7 @@ class NewsletterController extends Controller
      */
     public function destroy($id)
     {
-        
+        dd('hshhsdhdsh');
 
         $newletter = Newsletter::find($id);
         
