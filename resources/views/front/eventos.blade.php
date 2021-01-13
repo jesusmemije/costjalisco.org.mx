@@ -211,7 +211,7 @@ td.first {
 
             @endforeach
                 @if ($cont1>=1)
-                    <button onclick="mostrar_dias('01','Enero')" class="row title" style="margin-top:1%;">
+                    <button onclick="mostrar_dias('01','Enero')" class="row title" id="enero" style="margin-top:1%;">
                         <h6>Enero {{$cont1}} eventos</h6> 
                     </button>
                     
