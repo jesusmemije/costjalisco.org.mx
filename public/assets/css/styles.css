@@ -115,6 +115,15 @@ a:hover {
   color: #FF0000;
 }
 
+.line-red-center {
+  margin-top: 30px;
+  border-bottom: 1px solid #D60000;
+}
+
+.line-red-vertical {
+  border-right: 1px solid #D60000;
+}
+
 /* ========================== Footer ========================== */
 
 .social ul {
@@ -201,6 +210,21 @@ a:hover {
     font-size: unset;
     background-image: url("/assets/img/bg-gris-phone.jpg");
     background-size: 98%;
+  }
+
+  .title-barra-roja {
+    background-image: url("/assets/img/bg-rojo-phone.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .line-red-center {
+    margin-top: 0;
+    border-bottom: none;
+  }
+
+  .line-red-vertical {
+    border-right: none;
   }
 
 }

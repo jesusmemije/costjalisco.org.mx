@@ -146,15 +146,6 @@
     font-size: 32px;
 }
 
-.line-red-center {
-    margin-top: 30px;
-    border-bottom: 1px solid #D60000;
-}
-
-.line-red-vertical {
-    border-right: 1px solid #D60000;
-}
-
 .ver-mas-font {
     color: #D60000;
     font-size: 18px;
@@ -512,10 +503,6 @@
         font-size: 20px;
     }
 
-    .line-red-vertical {
-        border-right: none;
-    }
-
     .mb-5,
     .my-5 {
         margin-bottom: 0 !important;
@@ -539,11 +526,6 @@
         background: #628EA0;
         padding: 10px 16px;
         border-radius: 24px;
-    }
-
-    .line-red-center {
-        margin-top: 0;
-        border-bottom: none;
     }
 
     .titulo-sitios-interes {
