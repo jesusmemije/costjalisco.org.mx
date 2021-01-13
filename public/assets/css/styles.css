@@ -91,6 +91,12 @@ a:hover {
   background-size: cover;
 }
 
+.title-sector {
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 30px;
+}
+
 .subtitle-barra-gris {
   background-image: url("/assets/img/background-gris.jpg");
   background-repeat: no-repeat;
@@ -123,6 +129,7 @@ a:hover {
 .line-red-vertical {
   border-right: 1px solid #D60000;
 }
+
 
 /* ========================== Footer ========================== */
 
@@ -216,6 +223,10 @@ a:hover {
     background-image: url("/assets/img/bg-rojo-phone.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  .title-sector {
+    font-size: 24px;
   }
 
   .line-red-center {

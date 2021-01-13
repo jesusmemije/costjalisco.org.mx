@@ -325,12 +325,6 @@
     text-align: end;
 }
 
-.titulo-sitios-interes {
-    font-size: 30px;
-    font-weight: 700;
-    margin-left: 30px;
-}
-
 .bg-gris {
     background: unset;
     padding-top: 0;
@@ -526,10 +520,6 @@
         background: #628EA0;
         padding: 10px 16px;
         border-radius: 24px;
-    }
-
-    .titulo-sitios-interes {
-        font-size: 22px;
     }
 
     .rectangulo-rojo-avance-carousel {

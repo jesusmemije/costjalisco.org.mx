@@ -11,17 +11,7 @@ Nosotros
         padding: 24px;
     }
 
-    .title-sector {
-        font-size: 30px;
-        font-weight: 700;
-        margin-left: 30px;
-    }
-
     @media only screen and (max-width: 480px) {
-
-        .title-sector {
-            font-size: 24px;
-        }
 
         .title-barra-roja {
             width: 90%;

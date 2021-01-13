@@ -392,7 +392,7 @@ Inicio
     <div style="border-left: 5px solid #2C4143;">
         <div class="row mb-3">
             <div class="col-md-12">
-                <h3 class="titulo-sitios-interes">Sector Público
+                <h3 class="title-sector">Sector Público
                 </h3>
             </div>
         </div>
@@ -442,7 +442,7 @@ Inicio
     <div style="border-left: 5px solid #D60000;">
         <div class="row mb-3">
             <div class="col-md-12">
-                <h3 class="text-red titulo-sitios-interes">Sector Académico
+                <h3 class="text-red title-sector">Sector Académico
                 </h3>
             </div>
         </div>
@@ -468,7 +468,7 @@ Inicio
     <div style="border-left: 5px solid #FFCE32;">
         <div class="row mb-3">
             <div class="col-md-12">
-                <h3 style="color: #FFCE32;" class="titulo-sitios-interes">Sector Privado
+                <h3 style="color: #FFCE32;" class="title-sector">Sector Privado
                 </h3>
             </div>
         </div>
@@ -500,7 +500,7 @@ Inicio
     <div style="border-left: 5px solid #61A8BD;">
         <div class="row mb-3">
             <div class="col-md-12">
-                <h3 style="color: #61A8BD;" class="titulo-sitios-interes">Sociedad Civil
+                <h3 style="color: #61A8BD;" class="title-sector">Sociedad Civil
                     Organizada</h3>
             </div>
         </div>
@@ -532,7 +532,7 @@ Inicio
     <div style="border-left: 5px solid #D8D8CD;">
         <div class="row mb-3">
             <div class="col-md-12">
-                <h3 style="color: #D8D8CD;" class="titulo-sitios-interes">Aliados
+                <h3 style="color: #D8D8CD;" class="title-sector">Aliados
                     Estratégicos</h3>
             </div>
         </div>
@@ -554,7 +554,7 @@ Inicio
         <div style="border-left: 5px solid #2C4143; margin-bottom: 3rem;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 class="titulo-sitios-interes">Sector Público
+                    <h3 class="title-sector">Sector Público
                     </h3>
                 </div>
             </div>
@@ -580,7 +580,7 @@ Inicio
         <div style="border-left: 5px solid #D60000; margin-bottom: 3rem;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color:#D60000;" class="titulo-sitios-interes">Sector Académico
+                    <h3 style="color:#D60000;" class="title-sector">Sector Académico
                     </h3>
                 </div>
             </div>
@@ -599,7 +599,7 @@ Inicio
         <div style="border-left: 5px solid #FFCE32; margin-bottom: 3rem;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #FFCE32;" class="titulo-sitios-interes">Sector Privado
+                    <h3 style="color: #FFCE32;" class="title-sector">Sector Privado
                     </h3>
                 </div>
             </div>
@@ -619,7 +619,7 @@ Inicio
         <div style="border-left: 5px solid #61A8BD; margin-bottom: 3rem;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #61A8BD;" class="titulo-sitios-interes">Sociedad Civil Organizada
+                    <h3 style="color: #61A8BD;" class="title-sector">Sociedad Civil Organizada
                     </h3>
                 </div>
             </div>
@@ -640,7 +640,7 @@ Inicio
         <div style="border-left: 5px solid #D8D8CD; margin-bottom: 3rem;">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <h3 style="color: #D8D8CD;" class="titulo-sitios-interes">Aliados Estratégicos
+                    <h3 style="color: #D8D8CD;" class="title-sector">Aliados Estratégicos
                     </h3>
                 </div>
             </div>
