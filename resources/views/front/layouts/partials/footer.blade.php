@@ -131,7 +131,7 @@
 <div class="container pt-5 hidden-desktop">
     <div class="row">
         <div class="col-md-12 bg-gris" style="border-bottom: 1px solid #000;">
-            <h3 class="text-center font-weight-bold">NUESTRAS REDES
+            <h3 class="text-center font-weight-bold" style="font-size: 20px;">NUESTRAS REDES
             </h3>
         </div>
     </div>

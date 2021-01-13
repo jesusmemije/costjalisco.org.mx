@@ -325,11 +325,6 @@
     text-align: end;
 }
 
-.bg-gris {
-    background: unset;
-    padding-top: 0;
-}
-
 .chatbot {
     width: unset;
 }
@@ -529,11 +524,6 @@
     .mya {
         font-size: 14px;
         color: #2C4143;
-    }
-
-    .bg-gris {
-        background: #D8D8CD;
-        padding-top: 18px;
     }
 
     .chatbot {

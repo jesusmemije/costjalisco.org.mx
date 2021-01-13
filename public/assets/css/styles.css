@@ -113,6 +113,11 @@ a:hover {
   background-size: 102%;
 }
 
+.bg-gris {
+  background: unset;
+  padding-top: 0;
+}
+
 .text-red {
   color: #D60000;
 }
@@ -217,6 +222,11 @@ a:hover {
     font-size: unset;
     background-image: url("/assets/img/bg-gris-phone.jpg");
     background-size: 98%;
+  }
+
+  .bg-gris {
+    background: #D8D8CD;
+    padding-top: 18px;
   }
 
   .title-barra-roja {
