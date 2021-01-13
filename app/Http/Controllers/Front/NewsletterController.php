@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Newsletter;
+use App\Models\Subscriber;
 
 class NewsletterController extends Controller
 {
@@ -70,5 +71,23 @@ class NewsletterController extends Controller
             ->where('id','=',$request->id_event)
             ->get();
         echo json_encode($contenido);
+    }
+
+    public function savemailsubscriber(Request $request){
+        /*
+        $s=DB::table('subscribers')
+        ->insert(['email'=>$request->email]);
+        return back()->with('status', 'Subscrito correctamente');
+        */
+        $existe=Subscriber::where('email',$request->email)->get();
+        if(sizeof($existe)==0){
+            $s=new Subscriber();
+            $s->email=$request->email;
+            $s->save();
+            return back()->with('status', 'Subscrito correctamente');
+        }else{
+            return back()->with('status', 'El correo ya se encuentra registrado');
+        }
+      
     }
 }

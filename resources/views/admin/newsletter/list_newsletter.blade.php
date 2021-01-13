@@ -26,6 +26,8 @@ Boletines
         <i class="fas fa-plus fa-sm text-white-50"></i>
         Nuevo boletín
     </a>
+    
+    
 </div>
 
 @include('admin.layouts.partials.session-flash-status')
@@ -50,77 +52,100 @@ Boletines
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($newsletter as $newletter)
-                    <tr>
-                        <td>{{ $newletter->title }}</td>
-                        <td style="width: 160px;">
-                            @if ( !empty( $newletter->content ) )
-                            <a href="#modalContenido" class="btn btn-sm btn-info shadow-sm" data-toggle="modal">
-                                <i class="fas fa-eyes fa-sm text-white-50"></i>
-                                Ver
-                            </a>
-                            @else
-                            <span class="badge badge-info">Sin contenido</span>
-                            @endif
-                        </td>
-                        <td style="font-size: 11px;">
-                            
-                            @if ( !empty( $newletter->date ) )
-                                @php
-                                    setlocale(LC_TIME, "spanish");
-                                    $mi_fecha = $newletter->date;
-                                    $mi_fecha = str_replace("/", "-", $mi_fecha);			
-                                    $Nueva_Fecha = date("d-M-Y", strtotime($mi_fecha));	
-                                    $fecha_correcta = strftime("%d de %B de %Y", strtotime($Nueva_Fecha));
+                    @if (count($newsletter)==0)
+                        <center>No hay boletines</center>
+                    @else
+                        @foreach ($newsletter as $newletter)
+                        <tr>
+                            <td>{{ $newletter->title }}</td>
+                            <td style="width: 160px;">
+                                @if ( !empty( $newletter->content ) )
+                                <a href="#modalContenido" class="btn btn-sm btn-info shadow-sm" data-toggle="modal">
+                                    <i class="fas fa-eyes fa-sm text-white-50"></i>
+                                    Ver
+                                </a>
+                                @else
+                                <span class="badge badge-info">Sin contenido</span>
+                                @endif
+                            </td>
+                            <td style="font-size: 11px;">
+                                
+                                @if ( !empty( $newletter->date ) )
+                                    @php
+                                        setlocale(LC_TIME, "spanish");
+                                        $mi_fecha = $newletter->date;
+                                        $mi_fecha = str_replace("/", "-", $mi_fecha);			
+                                        $Nueva_Fecha = date("d-M-Y", strtotime($mi_fecha));	
+                                        $fecha_correcta = strftime("%d de %B de %Y", strtotime($Nueva_Fecha));
 
-                                    // echo $Mes_Anyo;
-                                @endphp
-                                {{ $fecha_correcta }}
-                            @else
-                            <span class="badge badge-info">Sin fecha</span>
-                            @endif
-                        </td>
-                        <td class="text-center">
-                            @if ( !empty( $newletter->img_rute ) )
-                            ver imagen
-                            @else
-                            <span class="badge badge-info">Sin imagen</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if (!empty( $newletter->status ) )
-                                <span class="badge badge-success">{{ $newletter->status }}</span>
+                                        // echo $Mes_Anyo;
+                                    @endphp
+                                    {{ $fecha_correcta }}
+                                @else
+                                <span class="badge badge-info">Sin fecha</span>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                @if ( !empty( $newletter->img_rute ) )
+                                ver imagen
+                                @else
+                                <span class="badge badge-info">Sin imagen</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if (!empty( $newletter->status ) )
+                                    <span class="badge badge-success">{{ $newletter->status }}</span>
+                                
+                                @else
+                                <span class="badge badge-info">{{ $newletter->status }}</span>
+                                @endif
+                            </td>
                             
-                            @else
-                            <span class="badge badge-info">{{ $newletter->status }}</span>
-                            @endif
-                        </td>
-                        
-                        <td style="font-size: 11px;">
-                                @php
-                                    setlocale(LC_TIME, "spanish");
-                                    $fecha_c = $newletter->created_at;
-                                    $fecha_c = str_replace("/", "-", $fecha_c);			
-                                    $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
-                                    $fecha_created = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
+                            <td style="font-size: 11px;">
+                                    @php
+                                        setlocale(LC_TIME, "spanish");
+                                        $fecha_c = $newletter->created_at;
+                                        $fecha_c = str_replace("/", "-", $fecha_c);			
+                                        $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
+                                        $fecha_created = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
 
-                                    // echo $Mes_Anyo;
-                                @endphp
-                            {{ $fecha_created}}</td>
-                        <td>
-                            <a href="{{ route('newsletter.edit', $newletter->id) }}" class="btn btn-warning btn-circle btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form action="{{route('newsletter.destroy',$newletter->id)}}" method="POST"
-                                style="display:inline-block;" id="delete">
-                                @method('DELETE')
-                                @csrf
-                                <input type="submit" class="btn btn-danger btn-circle btn-sm btnDelete" value="x"
-                                    data-id="{{$newletter->id}}" />
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
+                                        // echo $Mes_Anyo;
+                                    @endphp
+                                {{ $fecha_created}}</td>
+                            <td class="d-flex">
+                                <a href="{{ route('newsletter.edit', $newletter->id) }}" class="btn btn-warning btn-circle btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form action="{{route('newsletter.destroy',$newletter->id)}}" method="POST"
+                                    style="display:inline-block;" id="delete">
+                                    @method('DELETE')
+                                    @csrf
+                                    <input type="submit" class="btn btn-danger btn-circle btn-sm btnDelete" value="x"
+                                        data-id="{{$newletter->id}}" />
+                                </form>
+                                <form action="{{route('newsletter.correo')}}" method="post">
+                                    @csrf
+                    
+                                    <input type="hidden" name="name" value="admin">
+                                    <input type="hidden" name="email" value="admin@costjalisco.org">
+                                    <input type="hidden" name="subject" value="Nuevo boletín">
+                                    <input type="hidden" name="content" value="{{$newletter->content }}">
+                                    <input type="hidden" name="titulo" value="{{$newletter->title }}">
+                                    @if ( !empty( $newletter->date ) )
+                                        <input type="hidden" name="fecha" value="{{$fecha_correcta}}">
+                                    @else
+                                        <input type="text" name="fecha" value="Ingresa la fecha" disabled>
+
+                                    @endif
+                                    <input type="hidden" name="url" value="http://localhost/pice_software/costjalisco/public/newsletter-single/{{$newletter->id}}">
+                                    <button class="btn btn-primary btn-circle btn-sm" type="submit"><i class="fas fa-share-alt"></i></button>
+                                    
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @endif
+                    
                 </tbody>
             </table>
         </div>
@@ -156,7 +181,7 @@ Boletines
     </div>
 </div>
 
-<div class="modal fade" id="modalContenido" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="modalContenido" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -189,7 +214,7 @@ Boletines
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
 
 @section('scripts')

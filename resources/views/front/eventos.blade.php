@@ -130,10 +130,9 @@ td.first {
     </div>
 </div>
 <div class="row mx-0 my-5">
-    <div class="col-md-5 px-0 mb-3">
-        <div class=" text-center text-white">
-            <h1 class="py-1 font-weight-bold subtitle-barra-gris">VER POR MES</h1>
-        </div>
+    <div class="col-md-5 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+        background-size: cover;">
+        <span style="font-weight: 700; margin-left: 140px;">VER POR MES</span>
     </div>
 </div>
 <div class="container" >

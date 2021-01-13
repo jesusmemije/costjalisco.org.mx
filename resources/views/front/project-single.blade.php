@@ -150,20 +150,32 @@ Datos del proyecto
 
 </div>
 
-<!-- Section - Identificación -->
-<div class="row mt-5" id="identificacion">
-    <div class="col-md-6 md-12 background-title px-0 py-1">
-        <span class="title-project-single">Identificación</span>
+    <!-- Section - Datos generales -->
+    <div class="row mt-5" id="datos-generales">
+        
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Datos Generales</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
     </div>
     <div class="col-md-6 px-0 hidden-phone">
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6 my-2">
-        <br class="hidden-desktop">
-        <h3 style="color:#628ea0; font-weight: 700; margin-bottom: 0;" class="ml-4">Responsables del proyecto</h3>
+
+    <!-- Section - Identificación -->
+    <div class="row mt-5" id="identificacion">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
     </div>
 </div>
 <div class="container">
@@ -203,10 +215,15 @@ Datos del proyecto
     <div class="row">
         <div class="col-md-12 text-right">
 
-            <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-            <button class="btn btn-sm btn-documents" data-titulo='identificacion'
-                data-idproject="{{$project->id_project}}" data-toggle="modal" data-target="#deleteUserModal"
-                style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+    <!-- Section - Preparación -->
+    <div class="row mt-5" id="preparacion">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
 </div>
@@ -311,10 +328,16 @@ Datos del proyecto
     </div>
 </div>
 
-<!-- Section - Procedimiento de contratación -->
-<div class="row mt-5" id="contratacion">
-    <div class="col-md-6 col-12 background-title px-0 py-1">
-        <span class="title-project-single">Procedimiento de contratación</span>
+    <!-- Section - Procedimiento de contratación -->
+    <div class="row mt-5" id="contratacion">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
     </div>
     <div class="col-md-6 px-0 hidden-phone">
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
@@ -353,12 +376,16 @@ Datos del proyecto
             @endforeach
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-            <button data-toggle="modal" data-target="#deleteUserModal" class="btn btn-sm btn-documents"
-                data-titulo='contratacion' data-idproject="{{$project->id_project}}" data-toggle="modal"
-                data-target="#deleteUserModal" style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+
+    <!-- Section - Ejecución -->
+    <div class="row mt-5" id="ejecucion">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
 </div>
@@ -404,10 +431,16 @@ Datos del proyecto
                 <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
             </div> -->
 
-<!-- Section - Finalización -->
-<div class="row mt-5" id="finalizacion">
-    <div class="col-md-6 col-12 background-title px-0 py-1">
-        <span class="title-project-single">Finalización</span>
+    <!-- Section - Finalización -->
+    <div class="row mt-5" id="finalizacion">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;">
+        </div>  
     </div>
     <div class="col-md-6 px-0 hidden-phone">
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;">
@@ -433,15 +466,15 @@ Datos del proyecto
                 style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
         </div>
     </div>
-
-</div>
-
-<div class="container mt-5">
-    <div class="row align-items-baseline">
-        <div class="col-md-7" style="background-color:#d60000; color:#fff;">
-            <div class="d-flex justify-content-end align-items-baseline">
-                <span
-                    style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}</span>&nbsp;&nbsp;<span>completado</span>
+   
+  
+           
+    <div class="container mt-5">
+        <div class="row align-items-baseline">
+            <div class="col-md-7" style="background-color:#d60000; color:#fff;">
+                <div class="d-flex justify-content-end align-items-baseline">
+                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}% </span>&nbsp;&nbsp;<span> completado</span>
+                </div>
             </div>
         </div>
         <div class="col-md-3 text-inaguracion">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Documents;
+use App\Models\SupportMaterial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -84,5 +85,39 @@ class DashboardController extends Controller
         }
         $deletedRows = Documents::where('description', 'carrusel')->delete();
         return back()->with('status', '¡Las imágenes han sido eliminadas correctamente!');
+    }
+
+    public function support_material(){
+
+        $materials = SupportMaterial::orderBy('created_at', 'desc')->get();
+        return view('admin.support-material',['materials'=>$materials]);
+    }
+    public function materialstore(Request $request){
+
+       // print_r($_POST);
+
+        $sm= new SupportMaterial();
+        $sm->titulo=$request->titulo;
+        $sm->descripcion=$request->descripcion;
+        $sm->url=$request->url;
+        $sm->modulo=$request->modulo;
+        $sm->save();
+
+
+        return back()->with('status', '¡El material de apoyo se ha guardado correctamente!');
+    }
+    public function materialedit(Request $request){
+
+        $sm=SupportMaterial::find($request->id);
+        $sm->titulo=$request->titulo;
+        $sm->descripcion=$request->descripcion;
+        $sm->url=$request->url;
+        $sm->modulo=$request->modulo;
+        $sm->save();
+        return back()->with('status', '¡El material de apoyo se ha actualizado correctamente!');
+    }
+    public function materialdestroy(Request $request){
+       SupportMaterial::destroy($request->id);
+       return back()->with('status', '¡El material de apoyo se ha eliminado correctamente!');
     }
 }
