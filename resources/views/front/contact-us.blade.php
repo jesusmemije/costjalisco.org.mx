@@ -1,74 +1,14 @@
 @extends('front.layouts.app')
 
-<style>
-    .container-fluid {
-        background-color: #deedf1;
-        margin-top: 2%;
-    }
+@section('title')
+    Contactanos
+@endsection
 
-    .form {
-        height: 550px;
-        border-top-right-radius: 30px;
-        margin-top: 10%;
-        background-color: #f7f7f7;
-        margin-bottom: 10%;
-        box-shadow: 6px 6px 0px 0px #a9b4b7;
-    }
+@section('styles')
+    <link rel="stylesheet" href="{{asset("assets/css/contact-us.css")}}">
+@endsection
 
-    .inps {
-        padding-left: 10%;
-    }
-
-    .inps input {
-        width: 80% !important;
-        border-radius: 0px !important;
-    }
-
-    .inps textarea {
-        width: 80% !important;
-        border-radius: 0px !important;
-    }
-
-    .logo {
-        margin-top: 10%;
-        height: 400px;
-    }
-
-    .sub {
-        width: 50%;
-        border-radius: 100px !important;
-    }
-
-    .nc {
-        padding-left: 20%;
-        padding-top: 12%;
-    }
-
-    .inspecost {
-        margin-top: 30%;
-        margin-left: 45%;
-        width: 40%;
-        height: 40%;
-    }
-
-    @media only screen and (max-width: 480px) {
-        body {
-            background: #F7F7F7;
-        }
-
-        .form {
-            height: auto;
-            border-top-right-radius: unset;
-            background-color: #f7f7f7;
-            margin-top: 0;
-            margin-bottom: 0;
-            box-shadow: unset;
-        }
-    }
-
-</style>
 @section('content')
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 logo hidden-phone">
