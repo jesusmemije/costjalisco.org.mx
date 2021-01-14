@@ -5,86 +5,31 @@ Motor de búsqueda
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-<link rel="stylesheet" type="text/css" href="css/select2.css">
+<link rel="stylesheet" type="text/css" href="{{asset("css/select2.min.css")}}">
+<link rel="stylesheet" type="text/css" href="{{asset("assets/css/search-engine.css")}}">
+@endsection
 
 @section('content')
-<style>
-    .formulario-projects-search {
-        background: rgb(255, 255, 255);
-        padding: 20px 20px 5px 20px;
-        border-radius: 0px 30px 0px 0px;
-        /* position: absolute;  */
-        /* float: left;  */
-        /* z-index: 100; */
-        width: 335px;
-        box-shadow: 8px 5px 2px #999;
-        /* top: 90px;
-        left: 40px; */
-    }
-
-    .formulario-projects-search select {
-        width: 98%;
-        height: 35px;
-        margin-top: 13px;
-        border-radius: 50px;
-        padding: 5px 0px 5px 5px;
-        font-size: 15px;
-        font-weight: bold;
-        color: darkslategrey;
-    }
-
-    .formulario-projects-search input {
-        width: 98%;
-        height: 35px;
-        margin-top: 13px;
-        padding: 5px 0px 5px 9px;
-        font-size: 15px;
-        font-weight: bold;
-        color: #628ea0;
-        border: 1px solid #628ea0;
-    }
-
-    .formulario-projects-search button {
-        margin: 30px auto;
-        background: rgb(206, 0, 0);
-        color: #fff;
-        border-radius: 50px;
-        font-size: 15px;
-        padding: 2px 30px 2px 30px;
-        border: 0;
-    }
-
-    .formulario-projects-search button:hover {
-        background: rgb(182, 1, 1);
-    }
-
-    .fondo {
-        background: #d9ebf3;
-        padding: 120px;
-    }
-</style>
 
 <div class="container-fluid">
     <!-- Section - Mapa de la localización -->
     <div class="row mt-3">
-        <div class="col-md-8 px-0 py-1">
-            <h3 class="py-2 font-weight-bold" style="color:#fff; background-image: url('http://pice-software.com/costjalisco/public/assets/img/titulo.png'); background-repeat: no-repeat;
-                background-size: cover;">
-                <span style="font-weight: 700; margin-left: 115px;">Buscador</span>
+        <div class="col-md-8 col-12 px-0 py-1">
+            <h3 class="py-2 font-weight-bold container-title">
+                <span class="title-buscador">Buscador</span>
             </h3>
         </div>
     </div>
     <div class="row fondo mt-3">
-        <div class="col-md-6">
+        <div class="col-md-6 hidden-phone">
             <br><br><br>
             <center>
                 <img src="{{asset('assets/img/login/Grupo928.png')}}" width="50%" alt="">
             </center>
         </div>
-        <div class="col-md-6 mt-4 mb-4">
+        <div class="col-md-6 col-12 mt-4 mb-4">
             <form action="{{url('list-projects')}}" class="formulario-projects-search" method="get">
-                
+
                 <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
                     <option value="Acatic">Acatic</option>
@@ -240,10 +185,8 @@ Motor de búsqueda
 
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="jquery-3.1.1.min.js"></script>
-<script src="js/select2.js"></script>
+<script src="{{asset("js/select2.js")}}"></script>
 <script>
-
     $(document).ready(function(){
             $('#municipio').on('change',function(){
                 
@@ -296,9 +239,8 @@ Motor de búsqueda
 
 </script>
 
-
 <script type="text/javascript">
-	$(document).ready(function(){
+    $(document).ready(function(){
 			$('#municipio').select2();
 	});
 </script>

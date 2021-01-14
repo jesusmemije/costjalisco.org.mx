@@ -1,16 +1,6 @@
 <!--============= Header Desktop ==================-->
-<style>
-.header-top {
-	 
-     background-image: url("assets/img/header/menu-superior.jpg");
-}
-
-.header-menu {
-    background-image: url("assets/img/header/menu-principal.jpg");  
-}
-</style>
-<header id="header">
-    <div class="header-top" style="background-image: url({{ asset('assets/img/header/menu-superior.jpg') }});">
+<header id="header" class="hidden-phone">
+    <div class="header-top">
         <div class="row flex-nowrap justify-content-between align-items-center mx-0">
             <div class="col-12 d-flex justify-content-end align-items-center">
                 <div class="c">
@@ -49,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="header-menu" style="background-image: url({{ asset('assets/img/header/menu-principal.jpg') }});">
+    <div class="header-menu">
         <div class="container">
             <div class="nav-scroller mb-2">
                 <nav class="nav d-flex justify-content-between">
@@ -154,7 +144,7 @@
 <!--============= End Header Desktop ==================-->
 
 <!--============= Header Phone ==================-->
-<header id="header-phone" style="background-image: url('/assets/img/header/background-movil.jpg');
+<header id="header-phone" class="hidden-desktop" style="background-image: url('/assets/img/header/background-movil.jpg');
 background-repeat: no-repeat;
 background-size: cover; height: 56px;">
     <div class="row h-100 align-items-center mx-0">

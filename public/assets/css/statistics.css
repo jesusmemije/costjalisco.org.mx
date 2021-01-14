@@ -1,0 +1,146 @@
+.btn-conoce-mas {
+    position: relative;
+    float: right;
+    bottom: 100px;
+    background: #d60000;
+    color: #fff;
+    padding: 5px 30px 5px 30px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 2px #999;
+}
+
+.btn-conoce-mas:hover {
+    background: rgba(218, 3, 3, 0.904);
+    color: rgb(230, 230, 230);
+}
+
+.seccion-project {
+    padding: 20px 0px 0px 0px;
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+}
+
+.title-estadisticas {
+    font-weight: 700;
+    margin-left: 140px;
+}
+
+#piechart {
+    width: 500px;
+    height: 300px;
+    margin-left: 35%;
+}
+
+.cuadro-1 {
+    margin-left: 20%;
+}
+
+.cuadro-2 {
+    position: absolute;
+    margin-left: 28%;
+    z-index: 10;
+}
+
+.cuadro-3 {
+    margin-left: 20%;
+}
+
+.cuadro-4 {
+    position: absolute;
+    margin-left: 35%;
+    z-index: 10;
+}
+
+.cuadros-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cuadro {
+    border: 1px solid rgb(116, 116, 116);
+    padding: 5px 15px 5px 15px;
+    font-size: 30px;
+    font-weight: bold
+}
+
+.title-section {
+    font-weight: 700;
+    margin-left: 0px;
+    padding: 0;
+    color: red;
+    font-size: 2rem;
+}
+
+.bg-background-total {
+    background-image: url('/assets/img/estadisticas/presupuesto-imagen.png');
+    text-align: unset;
+}
+
+.total-presupuesto {
+    font-weight: 700;
+    margin-left: 55%;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .seccion-project {
+        padding: unset;
+    }
+
+    .title-estadisticas {
+        font-size: 24px;
+        margin-left: 50px;
+    }
+
+    .cuadro-1 {
+        margin-left: 0;
+    }
+
+    .cuadro-2 {
+        text-align: right;
+        margin-left: 0;
+    }
+
+    .cuadro-3 {
+        margin-left: 0;
+    }
+
+    .cuadro-4 {
+        text-align: right;
+        margin-left: 0;
+    }
+
+    .cuadros-title {
+        font-size: 12px;
+    }
+
+    .cuadro {
+        font-size: 24px;
+    }
+
+    #piechart {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
+
+    .title-section {
+        font-size: 26px;
+    }
+
+    .btn-conoce-mas {
+        bottom: -10px;
+    }
+
+    .total-presupuesto {
+        margin-left: unset;
+        margin-right: 20px;
+    }
+
+    .bg-background-total {
+        background-size: cover;
+        text-align: right;
+    }
+
+}

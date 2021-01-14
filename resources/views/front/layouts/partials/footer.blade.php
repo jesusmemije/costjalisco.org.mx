@@ -1,6 +1,5 @@
 <!-- Footer Desktop -->
 <footer class="page-footer font-small hidden-phone" style="background-color: #628EA0">
-
     <div style="background-color: #58707B;">
         <div class="container">
             <!-- Grid row-->
@@ -121,23 +120,18 @@
             </div>
         </div>
     </div>
-    </div>
-
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
         <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados
     </div>
-    </div>
-
 </footer>
-<!-- End Footer Desktop
+<!-- End Footer Desktop -->
 
-<!-- Footer Phone ->
-<!-- Footer -->
+<!-- Footer Phone -->
 <div class="container pt-5 hidden-desktop">
     <div class="row">
         <div class="col-md-12 bg-gris" style="border-bottom: 1px solid #000;">
-            <h3 class="text-center font-weight-bold">NUESTRAS REDES
+            <h3 class="text-center font-weight-bold" style="font-size: 20px;">NUESTRAS REDES
             </h3>
         </div>
     </div>
