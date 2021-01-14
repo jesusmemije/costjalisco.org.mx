@@ -31,6 +31,7 @@ class SearchController extends Controller
                     ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
                     ->orderBy('project.created_at', 'desc') 
                     ->get();
+
             } else {
                 if (empty($request->id_sector)) {
                     $projects = DB::table('project')

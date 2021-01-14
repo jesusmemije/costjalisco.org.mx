@@ -96,7 +96,7 @@ class HomeController extends Controller
         ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
         ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
         ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-        ->select('project.*', 'address.*','proyecto_contratacion.montocontrato') 
+        ->select('project.*','project.id as id_project', 'address.*','proyecto_contratacion.montocontrato') 
         ->get();
         
             $h=DB::table('documents')
