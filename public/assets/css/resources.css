@@ -1,0 +1,32 @@
+.links-doc {
+    color: darkslategrey;
+    font-weight: bold;
+}
+
+.subtitle-barra-gris {
+    padding-left: 32%;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .title-barra-roja {
+        font-size: 24px;
+        background-size: 98%;
+    }
+
+    .subtitle-barra-gris {
+        font-size: 18px;
+        background-size: 80%;
+        padding-left: 40px;
+    }
+
+    .listStyle {
+        padding: 0;
+    }
+
+    .form-row {
+        -ms-flex-wrap: initial;
+        flex-wrap: initial;
+    }
+
+}
