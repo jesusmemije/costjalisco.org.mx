@@ -771,7 +771,7 @@ Inicio
     <div class="col-md-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
         <div class="form-newsletter">
-            <form action="{{route('savemailsubscriber')}}" method="POST">
+            <form action="{{route('savesubscriber')}}" method="POST">
                 @csrf
                 <h6 style="font-size: 16px; font-weight: 600;" class="mb-3">¡Regístrate para seguir próximos
                     proyectos!</h6>
