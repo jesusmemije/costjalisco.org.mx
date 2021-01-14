@@ -61,7 +61,7 @@ Route::namespace('Front')->group(function () {
     Route::get('/sitemap', [HomeController::class, 'sitemap'])->name('sitemap');
 
    //savemailsubscriber
-   Route::post('/savemailsubscriber', [NewsletterController::class, 'savemailsubscriber'])->name('savesubscriber');
+   Route::post('/savemailsubscriber', [NewsletterController::class, 'savemailsubscriber'])->name('savemailsubscriber');
     
 
     //Newsletter

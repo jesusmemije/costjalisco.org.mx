@@ -79,8 +79,6 @@ class NewsletterController extends Controller
         ->insert(['email'=>$request->email]);
         return back()->with('status', 'Subscrito correctamente');
         */
-     
-        
         $existe=Subscriber::where('email',$request->email)->get();
         if(sizeof($existe)==0){
             $s=new Subscriber();
