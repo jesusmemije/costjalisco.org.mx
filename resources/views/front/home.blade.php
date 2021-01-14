@@ -781,25 +781,26 @@ Inicio
                 <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
                     <div class="row">
                         <div class="col-md-4">
+                        
                             @php
                                 $imagen=DB::table('projects_imgs')
                                 ->select('projects_imgs.imgroute')
-                                ->where('projects_imgs.id_project','=',$project->id)
+                                ->where('projects_imgs.id_project','=',$project->id_project)
                                 ->get();
                             @endphp
                             @if (count($imagen)==0)
-                                <img src="{{ asset('projects_imgs/sinimagen.png') }}"  width="100%px" height="320px" alt="">
+                                <img src="{{ asset('projects_imgs/sinimagen.png') }}"  width="100%" height="320px" alt="">
                             @else
                                 {{-- <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325" height="310"  alt=""> --}}
                                 
                                 <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}"
-                                class="img-fluid" width="100%px" height="320px" alt="">
+                                 width="445px" height="310px" alt="">
                             @endif
                         </div>
                         <div class="hidden-desktop"
                         style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; font-size: 26px; text-align: center; padding: 0 30px;">
                             <span class="font-weight-bold" style="color: #fff; text-shadow: 0.1em 0.1em 0.2em black">
-                                <a href="{{ route('project-single', $project->id) }}">{{ $project->title }}</a>
+                                <a href="{{ route('project-single', $project->id_project) }}">{{ $project->title }}</a>
                             </span>
                         </div>
                         <div class="col-md-8 hidden-phone">
@@ -832,7 +833,7 @@ Inicio
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
                                     <br>
-                                    <span><a href="{{ route('project-single', $project->id) }}" class="text-red"
+                                    <span><a href="{{ route('project-single', $project->id_project) }}" class="text-red"
                                             style="font-size: 18px; font-weight: 700; font-style: italic;">Ver
                                             más <span style="letter-spacing: -4px">>></span></a></span>
                                 </div>

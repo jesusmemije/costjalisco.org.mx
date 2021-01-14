@@ -162,9 +162,9 @@ Datos del proyecto
             border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
-    <div class="col-md-6 px-0 hidden-phone">
+    {{-- <div class="col-md-6 px-0 hidden-phone">
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
-    </div>
+    </div> --}}
 
     <!-- Section - Identificación -->
     <div class="row mt-5" id="identificacion">
