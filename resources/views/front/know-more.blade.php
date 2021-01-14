@@ -16,14 +16,29 @@ Conoce más
         color: #2C4143;
     }
 
+    .subtitle-barra-gris {
+        background-size: 500px;
+        padding-left: 6rem;
+        font-size: 24px;
+    }
+
     @media only screen and (max-width: 480px) {
         p {
-            margin-top: 1rem;
+            margin-top: 0;
             margin-bottom: 1rem;
+        }
+
+        .title-barra-roja {
+            font-size: 24px;
+        }
+
+        .subtitle-barra-gris {
+            background-size: 300px;
+            padding-left: 3rem;
+            font-size: 22px;
         }
     }
 
-    
 </style>
 
 <div class="main">
@@ -31,8 +46,7 @@ Conoce más
     <div class="row mx-0 my-4" id="que-es-cost">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
-                background-size: cover;'>¿Qué es CoST?</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja">¿Qué es CoST?</h3>
             </div>
         </div>
     </div>
@@ -98,8 +112,7 @@ Conoce más
     <div class="row mx-0 my-4" id="beneficios">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
-                background-size: cover;'>Beneficios</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja">Beneficios</h3>
             </div>
         </div>
     </div>
@@ -140,8 +153,7 @@ Conoce más
     <div class="row mx-0 my-4" id="procesos-de-cost">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;
-                background-size: cover;'>Procesos de CoST</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja">Procesos de CoST</h3>
             </div>
         </div>
     </div>
@@ -150,8 +162,7 @@ Conoce más
     <div class="row mx-0 my-4" id="divulgacion">
         <div class="col-md-6 px-0">
             <div class="text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg"); background-repeat: no-repeat;
-                background-size: 500px; padding-left: 6rem; font-size: 24px;'>Divulgación</h3>
+                <h3 class="py-2 font-weight-bold subtitle-barra-gris">Divulgación</h3>
             </div>
         </div>
     </div>
@@ -174,8 +185,7 @@ Conoce más
     <div class="row mx-0 my-4" id="aseguramiento">
         <div class="col-md-6 px-0">
             <div class="text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg"); background-repeat: no-repeat;
-                background-size: 500px; padding-left: 6rem; font-size: 24px;'>Aseguramiento</h3>
+                <h3 class="py-2 font-weight-bold subtitle-barra-gris">Aseguramiento</h3>
             </div>
         </div>
     </div>
@@ -207,14 +217,13 @@ Conoce más
     <div class="row mx-0 my-4" id="auditoria-social">
         <div class="col-md-6 px-0">
             <div class="text-white">
-                <h3 class="py-2 font-weight-bold" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg"); background-repeat: no-repeat;
-                background-size: 500px; padding-left: 6rem; font-size: 24px;'>Auditoria Social</h3>
+                <h3 class="py-2 font-weight-bold subtitle-barra-gris">Auditoria Social</h3>
             </div>
         </div>
     </div>
 
     <!-- Section - Auditoria social -->
-    <div class="container mb-5">
+    <div class="container mb-md-5">
         <div class="row">
             <div class="col-md-12">
                 <p>
