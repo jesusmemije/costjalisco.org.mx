@@ -11,12 +11,7 @@ Datos del proyecto
 
 @section('content')
 <!-- Section - Descripción General del proyecto -->
-
-<!--<img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">-->
-<div class="container-fluid container-single-pt pt-4">
-
-    <!-- <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt=""> -->
-
+<div class="container-fluid container-single pt-4">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="row mb-5 bg-gris-single-project">
             <div class="col-md-3 px-0">
@@ -33,7 +28,8 @@ Datos del proyecto
                             $ruta=asset('projects_imgs/'.$project_imgs[0]->imgroute);
                         ?>
                         <img src="{{$ruta}}" class="d-block w-100" height="300" alt="">
-                        <h2 class="hidden-desktop" style="position: absolute; text-align: center;">{{ $project->title }}</h2>
+                        <h2 class="hidden-desktop" style="position: absolute; text-align: center;">{{ $project->title }}
+                        </h2>
                     </div>
                     @for ($i = 1; $i < sizeof($project_imgs); $i++) <div
                         class="carousel-item d-flex align-items-center justify-content-center">
@@ -128,6 +124,7 @@ Datos del proyecto
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
     </div>
 </div>
+
 <div class="container">
     <div class="my-5">
         {{ $project->purpose }}
@@ -145,39 +142,19 @@ Datos del proyecto
         <br>
         <span><b>Otros involucrados en el registro del proyecto</b></span><br>
         <span>{{$project->involucrado}}</span>
-
     </div>
-
 </div>
 
-    <!-- Section - Datos generales -->
-    <div class="row mt-5" id="datos-generales">
-        
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
-            <span style="font-weight: 700; margin-left: 140px;">Datos Generales</span>
-        </div>
-        <div class="col-md-6 px-0">
-            <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
-        </div>
+<!-- Section - Identificación -->
+<div class="row mt-5" id="identificacion">
+    <div class="col-md-6 col-12 background-title px-0 py-1">
+        <span class="title-project-single">Identificación</span>
     </div>
-    {{-- <div class="col-md-6 px-0 hidden-phone">
+    <div class="col-md-6 px-0 hidden-phone">
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
-    </div> --}}
-
-    <!-- Section - Identificación -->
-    <div class="row mt-5" id="identificacion">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
-            <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
-        </div>
-        <div class="col-md-6 px-0">
-            <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
-        </div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 data mt-4">
@@ -193,9 +170,6 @@ Datos del proyecto
             </span><br>
         </div>
         <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
-            <?php
-               
-                ?>
             @foreach($responsableproyecto as $responsable)
             <br>
             @if($responsable->nombreresponsable!='')
@@ -209,21 +183,6 @@ Datos del proyecto
             <span style="padding-left:34px;">{{$responsable->correoresponsable}}</span><br>
             @endif
             @endforeach
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-right">
-
-    <!-- Section - Preparación -->
-    <div class="row mt-5" id="preparacion">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
-            <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
-        </div>
-        <div class="col-md-6 px-0">
-            <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
         </div>
     </div>
 </div>
@@ -237,19 +196,17 @@ Datos del proyecto
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-5 mb-2">
-            <!--
-                <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de
-                    impacto en terreno y asentamientos, con <br>
-                    recursos federales. <br>
-                    Con la Unidad de Presupuesto y Contratación
-                    de Obra Publica como entidad de ajudicación. </p>
--->
+            <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de
+                impacto en terreno y asentamientos, con <br>
+                recursos federales. <br>
+                Con la Unidad de Presupuesto y Contratación
+                de Obra Publica como entidad de ajudicación. </p>
         </div>
         <div class="col-md-12">
-
             <span class="preparacion-subtitle">Estudios de impacto:
                 {{$tipoAmbiental->titulo}}</span><br>
             <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
@@ -257,7 +214,8 @@ Datos del proyecto
             <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio:
                 </b>{{$project->numeros_ambiental}}</span>
             <br>
-            <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionAmbiental}}</span>
+            <span style="padding-left:34px;"><b>Fecha de realización:
+                </b>{{$project->fecharealizacionAmbiental}}</span>
             <br>
             <br class="hidden-desktop">
             <span class="preparacion-subtitle">Estudios de factibilidad:
@@ -278,44 +236,10 @@ Datos del proyecto
             <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio:
                 </b>{{$project->numeros_impacto}}</span>
             <br>
-            <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionimpacto}}</span>
+            <span style="padding-left:34px;"><b>Fecha de realización:
+                </b>{{$project->fecharealizacionimpacto}}</span>
             <br>
             <br class="hidden-desktop">
-            <!-- old version
-                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
-                    estudios de
-                    impacto ambiental</span><br>
-                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$project->responsableAmbiental}}
-            
-                    </span><br>
-                    <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_ambiental}}</span>
-                    <br>
-                    <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionAmbiental}}</span>
-          
-                    <br><br>
-                <span style="padding-left:34px;font-size:18px; color:#628ea0; font-weight:bold;">Responsables de
-                    estudios de
-                    factibilidad</span><br>
-                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$project->responsableFactibilidad}}</span>
-                <br>
-                    <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_factibilidad}}</span>
-                    <br>
-                    <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionFactibilidad}}</span>
-          
-                <br><br>
-                <span style="padding-left:34px;font-size:18px;color:#628ea0; font-weight:bold;">Responsable del estudio
-                    de
-                    impacto de terreno y asentamientos</span><br>
-                <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
-                <span style="font-weight: 700;">{{$project->responsableImpacto}}</span>
-                
-                <br>
-                    <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio: </b>{{$project->numeros_impacto}}</span>
-                    <br>
-                    <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionimpacto}}</span>
--->
         </div>
     </div>
     <div class="row">
@@ -328,25 +252,19 @@ Datos del proyecto
     </div>
 </div>
 
-    <!-- Section - Procedimiento de contratación -->
-    <div class="row mt-5" id="contratacion">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
-            <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
-        </div>
-        <div class="col-md-6 px-0">
-            <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
-        </div>
+<!-- Section - Procedimiento de contratación -->
+<div class="row mt-5" id="contratacion">
+    <div class="col-md-6 col-12 background-title px-0 py-1">
+        <span class="title-project-single">Procedimiento de contratación</span>
     </div>
     <div class="col-md-6 px-0 hidden-phone">
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5">
-
             <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
             <span><b>Modalidad de contratación:</b>{{$modalidadcontratacion->titulo}}</span><br>
             <span><b>Entidad administradora del contrato:</b>{{$project->entidad_admin_contrato}}</span><br>
@@ -376,18 +294,6 @@ Datos del proyecto
             @endforeach
         </div>
     </div>
-
-    <!-- Section - Ejecución -->
-    <div class="row mt-5" id="ejecucion">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
-            <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
-        </div>
-        <div class="col-md-6 px-0">
-            <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;"></div>
-        </div>
-    </div>
 </div>
 
 <!-- Section - Ejecución -->
@@ -399,13 +305,15 @@ Datos del proyecto
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5">
             <span><b>Variaciones en el precio del contrato:</b>{{$project->variacionespreciocontrato}}</span><br>
             <span><b>Razones de cambio en el precio del
                     contrato:</b>{{$project->razonescambiopreciocontrato}}</span><br>
-            <span><b>Variaciones en la duración del contrato:</b>{{$project->variacionesduracioncontrato	}}</span><br>
+            <span><b>Variaciones en la duración del
+                    contrato:</b>{{$project->variacionesduracioncontrato	}}</span><br>
             <span><b>Razones de cambio en la duración del
                     contrato:</b>{{$project->razonescambioduracioncontrato}}</span><br>
             <span><b>Variaciones en el alcance del contrato:</b>{{$project->variacionesalcancecontrato}}</span><br>
@@ -426,25 +334,13 @@ Datos del proyecto
     </div>
 </div>
 
-<!-- <div class="col-md-2 text-right">
-                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
-                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
-            </div> -->
-
-    <!-- Section - Finalización -->
-    <div class="row mt-5" id="finalizacion">
-        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
-            <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
-        </div>
-        <div class="col-md-6 px-0">
-            <div class="" style="margin-top: 25px;
-            border-bottom: 1px solid #628ea0;">
-        </div>  
+<!-- Section - Finalización -->
+<div class="row mt-5" id="finalizacion">
+    <div class="col-md-6 col-12 background-title px-0 py-1">
+        <span class="title-project-single">Finalización</span>
     </div>
     <div class="col-md-6 px-0 hidden-phone">
-        <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;">
-        </div>
+        <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
     </div>
 </div>
 
@@ -466,14 +362,13 @@ Datos del proyecto
                 style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
         </div>
     </div>
-   
-  
-           
+
     <div class="container mt-5">
         <div class="row align-items-baseline">
             <div class="col-md-7" style="background-color:#d60000; color:#fff;">
                 <div class="d-flex justify-content-end align-items-baseline">
-                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}% </span>&nbsp;&nbsp;<span> completado</span>
+                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}%
+                    </span>&nbsp;&nbsp;<span> completado</span>
                 </div>
             </div>
         </div>
@@ -524,9 +419,7 @@ Datos del proyecto
         <img src="{{asset('/assets/img/project/icons/excel.png')}}" class="img-fluid icon-excel" width="100"><br><br>
         <a class="btn btn-sm btn-documents" href="{{route('projectexport',$project->id_project)}}">ABRIR DOCUMENTO
             XLS</a>
-
     </div>
-</div>
 </div>
 
 <!-- Modal -->
@@ -555,12 +448,11 @@ Datos del proyecto
                 </div>
             </div>
             <div class="modal-footer">
-                </form>
+                
             </div>
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('scripts')
