@@ -165,9 +165,8 @@ Proyectos
                         @else
                         <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" style="width: 100%;" width="255" height="280"
                             alt="">
-
                         @endif
-                        {{-- <img src="http://pice-software.com/costjalisco/public/assets/img/project/proyecto1.jpg" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco" style="background: #647d80"> --}}
+
                         <div class="pie-project">
                             @php
                             $sector_rec=substr($project->sector,0,12).'..';
@@ -188,8 +187,7 @@ Proyectos
                     <div class="projets-pro-buscar">
                         <br><br>
                         <center>
-                            <img src="http://pice-software.com/costjalisco/public/assets/img/home/chatbot.png"
-                                class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco">
+                            <img src="{{asset("assets/img/home/chatbot.png")}}" class="img-fluid" width="280" alt="Chatbot - Página CoST Jalisco">
                         </center>
                         <br>
                         <ul>

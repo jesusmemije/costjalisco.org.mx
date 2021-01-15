@@ -13,7 +13,7 @@ Listado de obras
 <div class="container-fluid pt-4 container-card">
     <!-- Section - Datos generales -->
     <div class="row mt-3" id="datos-generales" style="background: #fff">
-        <div class="col-md-6 background-title bg-rojo px-0 py-1" style='background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg"); background-repeat: no-repeat;background-size: cover;'>
+        <div class="col-md-6 background-title bg-rojo px-0 py-1">
             <span class="topic">Listado de Obras</span>
         </div>
     </div>
