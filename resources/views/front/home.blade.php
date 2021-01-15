@@ -830,7 +830,15 @@ Inicio
         <div class="col-md-5 text-right pt-4 px-0" style="line-height: 1.1;">
             <br><span style="font-size: 38px;" class="font-weight-bold text-red">Eres el visitante
                 número:</span><br>
-            <span style="font-size: 14px; color: #58707B;">Actualizado al 27 de Noviembre de 2020</span>
+                @php
+                    setlocale(LC_TIME, "spanish");
+                    $fecha_c = $complements[0]->fecha_actualizacion;
+                    $fecha_c = str_replace("/", "-", $fecha_c);			
+                    $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
+                    $fecha_created = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
+
+                @endphp
+            <span style="font-size: 14px; color: #58707B;">Actualizado al {{$fecha_created}}</span>
         </div>
         <div class="col-md-7 pt-4">
             <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">

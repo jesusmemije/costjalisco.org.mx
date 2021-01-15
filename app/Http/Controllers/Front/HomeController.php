@@ -103,6 +103,10 @@ class HomeController extends Controller
             ->where('description','=','carrusel')
             ->get();
 
+            $complementos=DB::table('complements')
+            ->select('complements.*')
+            ->get();
+
         return view('front.home', [
             'projects' => $projects,
             'h'=>$h,
@@ -110,6 +114,7 @@ class HomeController extends Controller
             'total_proyectos'=>$total_proyectos,
             'total_contrato'=>$total_contrato,
             'total_beneficiarios'=>$total_beneficiarios,
+            'complements'=>$complementos,
         ]);
     }
 

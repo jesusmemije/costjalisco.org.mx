@@ -95,12 +95,12 @@ Iniciar sesión
     <div class="row">
         <div class="col-md-6 logo hidden-phone">
             <div class="inspecost">
-                <img src="assets/img/login/Grupo928.png" alt="" height="230">
+                <img src="{{asset('assets/img/login/Grupo928.png')}}" alt="" height="230">
             </div>
         </div>
         <div class="form col-md-4 col-12">
             <div class="nc">
-                <a href="{{route('account')}}" style="color:#5e6e70;">crea una nueva cuenta</a>
+                {{-- <a href="{{route('account')}}" style="color:#5e6e70;">crea una nueva cuenta</a> --}}
             </div>
             <div align="center">
                 <h4 style="margin-bottom:15%; margin-top:12%; font-weight: 600;">INICIA SESIÓN</h4>
