@@ -1,4 +1,4 @@
-@extends('front.layouts.app')
+{{-- @extends('front.layouts.app')
 
 @section('title')
 Crear cuenta
@@ -99,7 +99,7 @@ Crear cuenta
     <div class="row">
         <div class="col-md-6 logo hidden-phone">
             <div class="inspecost">
-                <img src="assets/img/login/Grupo928.png" alt="" height="230">
+                <img src="{{asset('assets/img/login/Grupo928.png')}}" alt="" height="230">
             </div>
         </div>
         <div class="form col-md-4 col-12">
@@ -134,4 +134,4 @@ Crear cuenta
     </div>
 </div>
 
-@endsection
+@endsection --}}

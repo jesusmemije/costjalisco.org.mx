@@ -153,6 +153,13 @@ use Illuminate\Support\Facades\Auth;
     <i class="fas fa-image"></i>
       <span>Carrusel</span></a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('complements.edit') }}">
+    <i class="fas fa-image"></i>
+      <span>complementos</span></a>
+  </li>
+
+  
 
   <!-- Divider -->
   <hr class="sidebar-divider">

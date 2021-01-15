@@ -152,15 +152,15 @@ Georreferenciación
                 </select>
                 <div id="loading"></div>
                 <select name="id_sector" id="sector">
-                    <option value="">No hay sectores</option>
+                    <option value="">Sectores</option>
                 </select>
                 <div id="loading2"></div>
                 <select name="id_subsector" id="sub_sector">
-                    <option value="">No hay subsectores</option>
+                    <option value="">Subsectores</option>
                 </select>
                 <div id="loading3"></div>
                 <select name="codigo_postal" id="codigo_postal">
-                    <option value="">No hay C.P.</option>
+                    <option value="">C.P.</option>
                 </select>
                 {{-- <input type="text" name="presupuesto" placeholder="Presupuesto"> --}}
                 <input type="text" name="nombre_proyecto" placeholder="Nombre del proyecto">

@@ -146,6 +146,10 @@
     font-size: 32px;
 }
 
+.presupuesto {
+    font-size: 22px;
+}
+
 .ver-mas-font {
     color: #D60000;
     font-size: 18px;
@@ -490,6 +494,10 @@
 
     .card-indice-counter {
         font-size: 20px;
+    }
+
+    .presupuesto {
+        font-size: 12px;
     }
 
     .mb-5,

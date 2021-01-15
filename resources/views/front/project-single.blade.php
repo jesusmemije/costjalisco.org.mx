@@ -11,12 +11,7 @@ Datos del proyecto
 
 @section('content')
 <!-- Section - Descripción General del proyecto -->
-
-<!--<img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt="">-->
-<div class="container-fluid container-single-pt pt-4">
-
-    <!-- <img src="{{ asset('assets/img/project/proyecto-2.jpg') }}" class="img-fluid" alt=""> -->
-
+<div class="container-fluid container-single pt-4">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="row mb-5 bg-gris-single-project">
             <div class="col-md-3 px-0">
@@ -33,7 +28,8 @@ Datos del proyecto
                             $ruta=asset('projects_imgs/'.$project_imgs[0]->imgroute);
                         ?>
                         <img src="{{$ruta}}" class="d-block w-100" height="300" alt="">
-                        <h2 class="hidden-desktop" style="position: absolute; text-align: center;">{{ $project->title }}</h2>
+                        <h2 class="hidden-desktop" style="position: absolute; text-align: center;">{{ $project->title }}
+                        </h2>
                     </div>
                     @for ($i = 1; $i < sizeof($project_imgs); $i++) <div
                         class="carousel-item d-flex align-items-center justify-content-center">
@@ -128,6 +124,7 @@ Datos del proyecto
         <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
     </div>
 </div>
+
 <div class="container">
     <div class="my-5">
         {{ $project->purpose }}
@@ -145,9 +142,7 @@ Datos del proyecto
         <br>
         <span><b>Otros involucrados en el registro del proyecto</b></span><br>
         <span>{{$project->involucrado}}</span>
-
     </div>
-
 </div>
 
    
@@ -220,16 +215,13 @@ Datos del proyecto
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-5 mb-2">
-            <!--
-                <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de
-                    impacto en terreno y asentamientos, con <br>
-                    recursos federales. <br>
-                    Con la Unidad de Presupuesto y Contratación
-                    de Obra Publica como entidad de ajudicación. </p>
--->
+            <p>Se realizaron estudios sobre el impacto ambiental, así como estudios de factibilidad y estudios de
+                impacto en terreno y asentamientos, con <br>
+                recursos federales. <br>
+                Con la Unidad de Presupuesto y Contratación
+                de Obra Publica como entidad de ajudicación. </p>
         </div>
         <div class="col-md-12">
-
             <span class="preparacion-subtitle">Estudios de impacto:
                 {{$tipoAmbiental->titulo}}</span><br>
             <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid mx-1" width="22" alt="">
@@ -237,7 +229,8 @@ Datos del proyecto
             <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio:
                 </b>{{$project->numeros_ambiental}}</span>
             <br>
-            <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionAmbiental}}</span>
+            <span style="padding-left:34px;"><b>Fecha de realización:
+                </b>{{$project->fecharealizacionAmbiental}}</span>
             <br>
             <br>
             <br class="hidden-desktop">
@@ -260,7 +253,8 @@ Datos del proyecto
             <span style="padding-left:34px;"><b>Numero(s) de identificación del estudio:
                 </b>{{$project->numeros_impacto}}</span>
             <br>
-            <span style="padding-left:34px;"><b>Fecha de realización: </b>{{$project->fecharealizacionimpacto}}</span>
+            <span style="padding-left:34px;"><b>Fecha de realización:
+                </b>{{$project->fecharealizacionimpacto}}</span>
             <br>
             <br class="hidden-desktop">
            
@@ -434,7 +428,8 @@ Datos del proyecto
         <div class="row align-items-baseline">
             <div class="col-md-7" style="background-color:#d60000; color:#fff;">
                 <div class="d-flex justify-content-end align-items-baseline">
-                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}% </span>&nbsp;&nbsp;<span> completado</span>
+                    <span style="font-size: 26px; font-weight: 700;">{{$project->porcentaje_obra}}%
+                    </span>&nbsp;&nbsp;<span> completado</span>
                 </div>
             </div>
             <div class="col-md-3 text-inaguracion">
@@ -485,7 +480,6 @@ Datos del proyecto
         <img src="{{asset('/assets/img/project/icons/excel.png')}}" class="img-fluid icon-excel" width="100"><br><br>
         <a class="btn btn-sm btn-documents" href="{{route('projectexport',$project->id_project)}}">ABRIR DOCUMENTO
             XLS</a>
-
     </div>
 </div>
 
@@ -517,7 +511,7 @@ Datos del proyecto
                 </div>
             </div>
             <div class="modal-footer">
-                </form>
+                
             </div>
         </div>
     </div>
