@@ -293,7 +293,7 @@ Inicio
     <div class="col-md-3 col-6 px-0">
         <div class="card-indice-title">Presupuesto utilizado</div>
         <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
-        <div class="card-indice-counter">
+        <div class="card-indice-counter presupuesto">
             ${{number_format($total_contrato,2)}}
         </div>
     </div>
