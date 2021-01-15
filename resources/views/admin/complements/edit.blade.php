@@ -44,23 +44,39 @@ Editar complementos
                     <div class="card-body">
                         <div class="form-group">
                             <label for="fecha_actualizacion">Fecha actualizacion del sitio</label>
-                            <input type="text" id="title" name="fecha_actualizacion" class="form-control" value="{{ old('fecha_actualizacion', $complements[0]->fecha_actualizacion) }}"
+                            @php
+                                $originalf_a =  $complements[0]->fecha_actualizacion;
+                                $newf_a = date("d/m/Y", strtotime($originalf_a));
+                            @endphp
+                            <input type="text" id="title" name="fecha_actualizacion" class="form-control" value="{{ old('fecha_actualizacion',$newf_a) }}"
                                 required>
                         </div>
                         <div class="form-group">
                             <label for="fecha_actualizacion">Año Cost</label>
+                            @php
+                                $originalanio = $complements[0]->anio;
+                                $newanio = date("d/m/Y", strtotime($originalanio));
+                            @endphp
                             <input type="text" id="description" name="anio" class="form-control"
-                                value="{{ old('anio', $complements[0]->anio) }}" required>
+                                value="{{ old('anio', $newanio) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="created_at">Fecha de creación</label>
+                            @php
+                                $originalcre = $complements[0]->created_at;
+                                $newcre = date("d/m/Y", strtotime($originalcre));
+                            @endphp
                             <input type="text" id="created_at" name="created_at" class="form-control"
-                                value="{{ old('created_at', $complements[0]->created_at ) }}" disabled>
+                                value="{{ old('created_at', $newcre ) }}" disabled>
                         </div>
                         <div class="form-group">
                             <label for="updated_at">Última modificación</label>
+                            @php
+                                $originalupd = $complements[0]->updated_at;
+                                $newupd = date("d/m/Y", strtotime($originalupd));
+                            @endphp
                             <input type="text" id="updated_at" name="updated_at" class="form-control"
-                                value="{{ old('updated_at', $complements[0]->updated_at ) }}" disabled>
+                                value="{{ old('updated_at',$newupd  ) }}" disabled>
                         </div>
                     </div>
                 </div>

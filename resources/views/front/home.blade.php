@@ -303,7 +303,15 @@ Inicio
 <div class="row mx-0">
     <div class="col-md-12">
         <div class="text-right mt-3 mb-3">
-            <h6 class="text-muted">Actualizado al 25/Nov/2020</h6>
+            @php
+                setlocale(LC_TIME, "spanish");
+                $fecha_c = $complements[0]->fecha_actualizacion;
+                $fecha_c = str_replace("/", "-", $fecha_c);			
+                $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
+                $fecha_update = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
+
+            @endphp
+            <h6 class="text-muted">Actualizado al {{$fecha_update}}</h6>
         </div>
     </div>
 </div>
@@ -771,13 +779,13 @@ Inicio
     <div class="col-md-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
         <div class="form-newsletter">
-            <form action="{{route('savemailsubscriber')}}" method="POST">
+            <form action="{{route('savemailsubscriberf')}}" method="POST">
                 @csrf
                 <h6 style="font-size: 16px; font-weight: 600;" class="mb-3">¡Regístrate para seguir próximos
                     proyectos!</h6>
                 <input type="email" id="email" name="email" placeholder="Tu correo aquí" class="input-newsletter"
                     required>
-                <button class="btn-newsletter mt-3">SUSCRIBIRSE</button>
+                <button type="submit" class="btn-newsletter mt-3">SUSCRIBIRSE</button>
             </form>
         </div>
     </div>
@@ -830,15 +838,7 @@ Inicio
         <div class="col-md-5 text-right pt-4 px-0" style="line-height: 1.1;">
             <br><span style="font-size: 38px;" class="font-weight-bold text-red">Eres el visitante
                 número:</span><br>
-                @php
-                    setlocale(LC_TIME, "spanish");
-                    $fecha_c = $complements[0]->fecha_actualizacion;
-                    $fecha_c = str_replace("/", "-", $fecha_c);			
-                    $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
-                    $fecha_created = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
-
-                @endphp
-            <span style="font-size: 14px; color: #58707B;">Actualizado al {{$fecha_created}}</span>
+            <span style="font-size: 14px; color: #58707B;">Actualizado al {{$fecha_update}}</span>
         </div>
         <div class="col-md-7 pt-4">
             <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">

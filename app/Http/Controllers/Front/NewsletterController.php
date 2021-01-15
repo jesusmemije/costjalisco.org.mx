@@ -73,7 +73,7 @@ class NewsletterController extends Controller
         echo json_encode($contenido);
     }
 
-    public function savemailsubscriber(Request $request){
+    public function savemailsubscriberf(Request $request){
         /*
         $s=DB::table('subscribers')
         ->insert(['email'=>$request->email]);
