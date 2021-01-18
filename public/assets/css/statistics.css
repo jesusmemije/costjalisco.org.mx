@@ -74,12 +74,13 @@
 
 .bg-background-total {
     background-image: url('/assets/img/estadisticas/presupuesto-imagen.png');
-    text-align: unset;
+    text-align: right;
 }
 
 .total-presupuesto {
     font-weight: 700;
-    margin-left: 55%;
+    margin-right: 20px;
+    margin-left: unset;
 }
 
 @media only screen and (max-width: 480px) {
@@ -135,12 +136,10 @@
 
     .total-presupuesto {
         margin-left: unset;
-        margin-right: 20px;
     }
 
     .bg-background-total {
         background-size: cover;
-        text-align: right;
     }
 
 }
