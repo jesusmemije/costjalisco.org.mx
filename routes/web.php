@@ -71,7 +71,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     require 'admin/events.php';
 
     //Newsletter
-    require 'admin/newletter.php';
+    require 'admin/newsletter.php';
 
     //Complements
     require 'admin/complements.php';
