@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 //Class Front
 use App\Http\Controllers\Front\HomeController;
@@ -22,7 +23,6 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 */
 
 /*============= Front ============= */
-
 Route::namespace('Front')->group(function () {
 
     //Interiors
@@ -101,4 +101,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/admin/uploadExcel', [AdminProjectController::class, 'uploadExcel'])->name('uploadExcel');
 
     Route::post('/admin/tm', [AdminProjectController::class, 'tm'])->name('tm');
+});
+
+/*=============  Clear cache commands ============== */
+
+Route::get('/clear-cache', function () {
+    echo Artisan::call('config:clear');
+    echo Artisan::call('config:cache');
+    echo Artisan::call('cache:clear');
+    echo Artisan::call('route:clear');
 });
