@@ -24,6 +24,20 @@ body {
   background-size: cover;
 }
 
+.header-menu a {
+  color: #fff;
+}
+
+.header-menu a:focus,
+.header-menu a:hover {
+  color: #9EC2D5;
+  text-decoration: none;
+}
+
+.logo-costjalisco {
+  width: 100%;
+}
+
 .divider {
   height: 1.5em;
   border-left: 1px solid #777;
@@ -76,12 +90,12 @@ body {
 
 /* ========================== Content ========================== */
 a {
-  color: #fff;
+  color: #2C4143;
 }
 
 a:focus,
 a:hover {
-  color: #9EC2D5;
+  color: #2C4143;
   text-decoration: none;
 }
 
@@ -172,6 +186,10 @@ a:hover {
   /* Cambiamos el fondo cuando el usuario pase el mouse */
 }
 
+.social {
+  margin-top:55%;
+}
+
 .btn-go-top {
   position: relative;
   float: left;
@@ -182,8 +200,37 @@ a:hover {
   z-index: 3000;
 }
 
+footer a {
+  color: #fff;
+}
 
-@media only screen and (max-width: 480px) {
+footer a:focus,
+footer a:hover {
+  color: #9EC2D5;
+  text-decoration: none;
+}
+
+/* Desktop mini */
+@media only screen and (max-width: 992px) {
+
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 768px) {
+
+  .logo-costjalisco{
+    width: 80%;
+  }
+
+  .hidden-tablet {
+    display: none!important;
+  }
+
+}
+
+/* Phone */
+@media only screen and (max-width: 576px) {
 
   .hidden-phone {
     display: none !important;
@@ -251,7 +298,7 @@ a:hover {
 
 }
 
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 576px) {
   .hidden-desktop {
     display: none !important;
   }

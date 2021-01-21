@@ -26,9 +26,9 @@
     <div class="header-img">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-5">
+                <div class="col-md-5 col-sm-12 text-center">
                     <a href="{{ route('index') }}">
-                        <img src="{{ asset('assets/img/header/logo-costjalisco.png') }}" class="img-fluid"
+                        <img src="{{ asset('assets/img/header/logo-costjalisco.png') }}" class="img-fluid logo-costjalisco"
                             alt="Logo-costjalisco">
                     </a>
                 </div>
