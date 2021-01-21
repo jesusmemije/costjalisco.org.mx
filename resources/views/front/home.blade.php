@@ -31,16 +31,17 @@ Inicio
                         <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
                         <div class="input-group">
 
-                            <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
-                            <div class="input-group-append">
-                                <div id="ctn-icon-search">
-                                    <i class="fas fa-search" id="icon-search"></i>
+                            <div class="row no-gutters w-100">
+                                <div class="col">
+                                    <input class="form-control border-secondary border-right-0 rounded-0" type="text" id="inputSearch" placeholder="Escribe palabras clave">
                                 </div>
-                                <div id="ctn-bars-search">
-                                    <input type="text" id="inputSearch" placeholder="Escribe palabras clave">
+                                <div class="col-auto">
+                                    <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </div>
                             </div>
-
+                            
                             <ul id="box-search">
                                 <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio >
                                         Nosotros</a></li>

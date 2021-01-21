@@ -7,6 +7,25 @@
     padding-left: 32%;
 }
 
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    .subtitle-barra-gris {
+        padding-left: 22%;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    .subtitle-barra-gris {
+        padding-left: 16%;
+    }
+    
+}
+
+/* Phone */
 @media only screen and (max-width: 480px) {
 
     .title-barra-roja {

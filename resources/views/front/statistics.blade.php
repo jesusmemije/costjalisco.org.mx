@@ -16,7 +16,7 @@
         <div class="col-md-6 col-12 background-title px-0 py-1">
             <span class="title-estadisticas">Estadísticas</span>
         </div>
-        <div class="col-md-6 px-0 hidden-phone">
+        <div class="col-md-6 px-0 hidden-desktop-mini">
             <div class="" style="margin-top: 25px;
             border-bottom: 1px solid #628ea0;"></div>
         </div>

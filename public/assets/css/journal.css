@@ -56,6 +56,27 @@ h3 {
     color: black;
 }
 
+.img-journal {
+    margin-top: 3%;
+}
+
+
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    #url {
+        height: auto;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    
+}
+
+/* Phone */
 @media only screen and (max-width: 480px) {
 
     .my2 {
@@ -66,12 +87,13 @@ h3 {
         display: initial;
     }
 
-    #url {
-        height: auto;
-    }
-
     .url-a {
         margin-left: 0;
+    }
+
+    .img-journal {
+        margin-top: 0px;
+        height: inherit;
     }
 
 }

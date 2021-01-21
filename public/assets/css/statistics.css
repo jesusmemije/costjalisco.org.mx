@@ -21,6 +21,10 @@
     border-right: 1px solid red;
 }
 
+.background-title {
+    background-size: cover;
+}
+
 .title-estadisticas {
     font-weight: 700;
     margin-left: 140px;
@@ -83,6 +87,41 @@
     margin-left: unset;
 }
 
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    #piechart {
+        margin-left: 25%;
+    }
+
+    .title-estadisticas {
+        margin-left: 100px;
+    }
+
+    .cuadro-2 {
+        margin-left: 12%;
+    }
+
+    .cuadro-4 {
+        margin-left: 20%;
+    }
+
+    .btn-conoce-mas {
+        bottom: unset;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    #piechart {
+        margin-left: 10%;
+    }
+
+}
+
+/* Phone */
 @media only screen and (max-width: 480px) {
 
     .seccion-project {
@@ -100,7 +139,6 @@
 
     .cuadro-2 {
         text-align: right;
-        margin-left: 0;
     }
 
     .cuadro-3 {
@@ -109,7 +147,6 @@
 
     .cuadro-4 {
         text-align: right;
-        margin-left: 0;
     }
 
     .cuadros-title {

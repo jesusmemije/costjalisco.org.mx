@@ -37,7 +37,7 @@ Boletines
                 </div>
                 <div class="col-md-12">
                     <div class="row ">
-                        <div class="col-md-8 date">
+                        <div class="col-lg-8 col-sm-6 date">
                             @if (empty($boletin->date))
                             <center>No hay fecha</center>
                             @else
@@ -54,7 +54,7 @@ Boletines
 
                             @endif
                         </div>
-                        <div class="col-md-3 mt-4 mb-2"><a href="{{route('newsletter-single',[$boletin->id])}}"
+                        <div class="col-lg-3 col-md-6 mt-4 mb-2"><a href="{{route('newsletter-single',[$boletin->id])}}"
                                 class="ver-mas"><i>Ver más >></i></a></div>
                     </div>
                 </div>

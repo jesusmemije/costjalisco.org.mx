@@ -21,13 +21,13 @@ Motor de búsqueda
         </div>
     </div>
     <div class="row fondo mt-3">
-        <div class="col-md-6 hidden-phone">
+        <div class="col-md-6 hidden-desktop-mini">
             <br><br><br>
             <center>
                 <img src="{{asset('assets/img/login/Grupo928.png')}}" width="50%" alt="">
             </center>
         </div>
-        <div class="col-md-6 col-12 mt-4 mb-4">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt-4 mb-4">
             <form action="{{url('list-projects')}}" class="formulario-projects-search" method="get">
 
                 <select name="municipio" id="municipio">

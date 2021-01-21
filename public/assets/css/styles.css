@@ -217,10 +217,18 @@ footer a:hover {
     display: none!important;
   }
 
+  .divider {
+    display: none;
+  }
+
 }
 
 /* Tablet */
 @media only screen and (max-width: 768px) {
+
+  .social {
+    margin-top: unset;
+  }
 
   .logo-costjalisco{
     width: 80%;

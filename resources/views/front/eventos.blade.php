@@ -20,13 +20,13 @@ Eventos
     </div>
 </div>
 <div class="row mx-0 my-5">
-    <div class="col-md-5 subtitle-barra-gris px-0 py-1">
+    <div class="col-lg-5 col-md-9 subtitle-barra-gris px-0 py-1">
         <span class="text-por-mes">VER POR MES</span>
     </div>
 </div>
 <div class="container">
     <div class="row eventos" style="margin-bottom: 10%;">
-        <div class="col-md-3 col-12 part1">
+        <div class="col-lg-3 col-md-3 col-12 part1">
             @php
                 $cont1=0;
                 $cont2=0;
@@ -184,13 +184,12 @@ Eventos
 
             @endif
         </div>
-        <div class="col-md-1.9" style="margin-top:1%;">
-            <div style="margin-left:20%" id="id_dias">
-
+        <div class="col-lg-1 col-md-4 col-sm-4" style="margin-top:1%;">
+            <div id="id_dias">
                 <center><small>Clic en el mes</small></center>
             </div>
         </div>
-        <div style="margin-left:2%" class="col-md-7" style="background-color:white">
+        <div style="margin-left:2%" class="col-lg-7 col-md-8" style="background-color:white">
             <div class="content1" style="margin-top: 1%;">
                 <div class="col-md-12"></div>
                 <h5 id="titulo">
@@ -236,16 +235,16 @@ Eventos
                 <table>
                     <tr>
                         <td>
-                            <div class="col-md-9 px-0 py-1">
-                                <span style="font-weight: 400; margin-left: 200px; color: white;">
+                            <div class="col-md-9 col-sm-9 px-0 py-1">
+                                <span class="result-item">
                                     <p><i class="fas fa-clock mr-2 fa-lg"></i> <a href="#">
                                     <strong>Hora de Inicio:</strong> <span id="hora"> </span></a></p>
                                 </span>
                             </div>
                         </td>
                         <td>
-                            <div class="col-md-8 px-0 py-1">
-                                <span style="font-weight: 400; margin-left: 200px; color: white;">
+                            <div class="col-md-8 col-sm-8 px-0 py-1">
+                                <span class="result-item">
                                     <p><i class="fas fa-map-marker-alt mr-2 fa-lg"></i> <a href="#">
                                     <strong>Ubicación</strong><br>
                                     <span id="ubicacion"></span>
@@ -253,8 +252,8 @@ Eventos
                             </div>
                         </td>
                         <td>
-                            <div class="col-md-8 px-0 py-1">
-                                <span style="font-weight: 400; margin-left: 200px; color: white;">
+                            <div class="col-md-8 col-sm-8 px-0 py-1">
+                                <span class="result-item">
                                     <p><i class="fas fa-users mr-1 fa-lg"></i> <a href="#">
                                     <strong>Contacto:</strong><br>
                                     <span id="contacto"></span>

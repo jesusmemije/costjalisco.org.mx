@@ -13,7 +13,7 @@ Listado de obras
 <div class="container-fluid pt-4 container-card">
     <!-- Section - Datos generales -->
     <div class="row mt-3" id="datos-generales" style="background: #fff">
-        <div class="col-md-6 background-title bg-rojo px-0 py-1">
+        <div class="col-lg-6 col-md-12 col-sm-12 background-title bg-rojo px-0 py-1">
             <span class="topic">Listado de Obras</span>
         </div>
     </div>
@@ -38,17 +38,22 @@ Listado de obras
                 <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
             @endif
 
+            @php
+                $title = substr($project->title,0,36).'...';
+                $description = substr($project->description,0,140).'...';
+            @endphp
+
             <div class="media-body">
-                <div class="mt-5 ml-5 title-obra">{{ $project->title }}</div>
+                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }}</div>
                 <br class="hidden-desktop">
-                <div class="col-md-10 col-12 px-0 description-obra">
-                    <span> {{ $project->description }} </span>
+                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                    <span> {{ $description }} </span>
                 </div>
                 <div class="form-row">
-                    <div class="mt-4 form-group col-md-3 col-6 ml-5 container-organismo-publico">
+                    <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
                         <span class="organismo-publico">Gobierno de Jalisco</span>
                     </div>
-                    <div class="form-group mt-4 col-md-2 col-6 container-btn">
+                    <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
                         <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
                             Conoce más
                         </a>

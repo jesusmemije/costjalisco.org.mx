@@ -21,8 +21,8 @@ Notas perodísticas
     @else
     @foreach ($journal as $jour)
     <div class="media" style="margin-left: 8%; margin-bottom:4%;">
-        <div id="mural" style="height:112px; text-align: center;" class="col-md-3">
-            <img style="margin-top: 3%" src="{{asset($jour->rutaimg)}}" width="230px" height="100px" alt="">
+        <div id="mural" style="height:112px; text-align: center; display: flex; align-items: center;" class="col-md-3 col-sm-3">
+            <img src="{{asset($jour->rutaimg)}}" class="img-fluid img-journal" alt="">
         </div>
 
         <div class="media-body">
@@ -33,7 +33,7 @@ Notas perodísticas
 
                 <h3 style="margin-left:3%;">{{ $titulo }}</h3>
             </div>
-            <div id="url" class="col-md-10" style="background-color: #d8d8cd;">
+            <div id="url" class="col-md-10 col-sm-10" style="background-color: #d8d8cd;">
                 <div class="py-2">
                     <a class="url-a" target="_blank" href="{{$jour->url_periodico}}">{{$jour->url_periodico}}</a>
                 </div>
