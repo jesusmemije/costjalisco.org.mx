@@ -213,6 +213,9 @@ footer a:hover {
 /* Desktop mini */
 @media only screen and (max-width: 992px) {
 
+  .hidden-desktop-mini {
+    display: none!important;
+  }
 
 }
 

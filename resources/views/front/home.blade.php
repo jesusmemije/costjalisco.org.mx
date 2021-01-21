@@ -353,7 +353,7 @@ Inicio
         <div class="col-md-6 text-center">
             <br class="hidden-phone"><br class="hidden-phone">
             <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
-            <br class="hidden-phone"><br class="hidden-phone">
+            <br class="hidden-phone"><br>
             <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
                     https://infrastructuretransparency.org/</a></span>
         </div>
@@ -699,7 +699,7 @@ Inicio
 
                 <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4" style="display: flex; align-items: center;">
                         
                             @php
                                 $imagen=DB::table('projects_imgs')
@@ -715,21 +715,23 @@ Inicio
                                 <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" alt="">
                             @endif
                         </div>
+                        @php
+                            $title = substr($project->title,0,42).'...';
+                            $description = substr($project->description,0,100).'...';
+                            $ubicacion = substr($project->streetAddress." ".$project->locality." ".$project->region, 0, 32).'...';
+                        @endphp
                         <div class="hidden-desktop"
                             style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; font-size: 26px; text-align: center; padding: 0 30px;">
                             <span class="font-weight-bold" style="color: #fff; text-shadow: 0.1em 0.1em 0.2em black">
-                                <a href="{{ route('project-single', $project->id_project) }}">{{ $project->title }}</a>
+                                <a href="{{ route('project-single', $project->id_project) }}">{{ $title }}</a>
                             </span>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 hidden-phone">
-                            @php
-                            $titulo=substr($project->title,0,42).'..';
-                            @endphp
-                            <h2 class="font-weight-bold my-4 text-red">{{ $titulo }}</h2>
+                            <h2 class="font-weight-bold my-4 text-red font-size-title">{{ $title }}</h2>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6" style="border-right: 1px solid #777;">
                                     <p>
-                                        {{ $project->description }}
+                                        {{ $description }}
                                     </p>
                                 </div>
                                 <div class="col-md-6 col-sm-6 pl-4">
@@ -738,13 +740,12 @@ Inicio
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Inversión: </strong> $
                                         {{number_format($project->montocontrato,2)}}</p>
-                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
+                                    <p class="hidden-desktop-mini"><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Periodo de construcción: </strong> {{$project->period}}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
-                                        <strong>&nbsp; Ubicación: </strong> {{$project->streetAddress}}
-                                        {{$project->locality}} {{$project->region}}</p>
+                                        <strong>&nbsp; Ubicación: </strong>{{ $ubicacion }}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
@@ -777,8 +778,8 @@ Inicio
 </div>
 
 <!-- Section - newsletter -->
-<div class="row mx-0 my-4 align-items-center hidden-phone">
-    <div class="col-md-12 px-0">
+<div class="row mx-0 my-4 align-items-center hidden-tablet">
+    <div class="col-md-12 col-sm-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
         <div class="form-newsletter">
             <form action="{{route('savemailsubscriberf')}}" method="POST">

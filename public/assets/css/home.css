@@ -456,10 +456,30 @@
         font-size: 30px;
     }
 
+    #carouselProjects .img-obra {
+        height: 270px;
+    }
+
+    .font-size-title {
+        font-size: 2rem;
+    }
+
+    .form-newsletter {
+        right: 18%;
+    }
+
+    .visitantes-counter {
+        top: 10%;
+    }
+
+    .font-size-title {
+        font-size: 26px;
+    }
+
 }
 
 /* Tablet */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 766px) {
 
     .social {
         margin-top: unset;
@@ -467,6 +487,18 @@
 
     #carouselHome .font-title-carousel {
         font-size: 23px;
+    }
+
+    #carouselProjects .img-obra {
+        height: 220px;
+    }
+
+    .visitantes-counter {
+        top: 22%;
+    }
+
+    .font-size-title {
+        font-size: 22px;
     }
   
 }
