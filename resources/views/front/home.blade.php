@@ -301,11 +301,17 @@ Inicio
     <div class="col-md-12">
         <div class="text-right mt-3 mb-3">
             @php
-                setlocale(LC_TIME, "spanish");
+
+                if(sizeof($complements)!=0){
+                    setlocale(LC_TIME, "spanish");
                 $fecha_c = $complements[0]->fecha_actualizacion;
                 $fecha_c = str_replace("/", "-", $fecha_c);			
                 $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
                 $fecha_update = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
+                }else{
+                    $fecha_update="";
+                }
+               
 
             @endphp
             <h6 class="text-muted">Actualizado al {{$fecha_update}}</h6>

@@ -298,7 +298,7 @@
             <table id="myTable" class="table">
     <thead>
       <tr>
-        <th>Nonbre</th>
+        <th>Nombre</th>
         <th>Latitud</th>
         <th>Longitud</th>
         <th>Acciones</th>
@@ -321,7 +321,7 @@
                 <input type="hidden" name="principal" id="punto" >
 
                 <label for="streetAddress">Calle </label>
-                <input required maxlength="50" placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
+                <input required  placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
                  @error('streetAddress')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -329,14 +329,14 @@
               </div>
               <div class="col-lg-6">
                 <label for="locality" >Localidad </label>
-                <input required maxlength="50" type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
+                <input required type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
                  @error('locality')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
               <div class="col-lg-6">
                 <label  for="region">Región </label>
-                <input required maxlength="50" type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
+                <input required  type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
                  @error('region')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -358,7 +358,7 @@
             </div>
 
             <label for="description">Descripción del lugar</label>
-            <textarea required maxlength="50" name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror">{{$project->description}}</textarea>
+            <textarea required  name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror">{{$project->description}}</textarea>
              @error('description')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
