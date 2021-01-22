@@ -141,7 +141,7 @@ Proyectos
             <div class="row">
 
                 @foreach ($projects as $project)
-                <div class="col-md-3 mb-5">
+                <div class="col-lg-3 col-md-6 col-sm-6 mb-5">
                     <div class="projets-pro">
                         <div class="encabezado-project">
                             <h5>
@@ -183,7 +183,7 @@ Proyectos
                 </div>
                 @endforeach
 
-                <div class="col-md-3 my-4">
+                <div class="col-lg-3 col-md-6 col-sm-6 my-4">
                     <div class="projets-pro-buscar">
                         <br><br>
                         <center>

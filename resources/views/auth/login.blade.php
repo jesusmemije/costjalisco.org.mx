@@ -128,8 +128,8 @@ Iniciar sesión
                     @error('email')
                     <div class="invalid-feedback" style="display: block !important;">{{ $message }}</div>
                     @enderror
-                    <a style="color: #9a9a9a;" href="{{ route('password.request') }}">¿olvidaste la contraseña?</a><br>
-                    <a style="color: #9a9a9a;" href="">¿no eres miembro aún?</a><br>
+                    <a style="color: #9a9a9a;" href="{{ route('password.request') }}">¿Olvidaste la contraseña?</a><br>
+                    <a style="color: #9a9a9a;" href="">¿No eres miembro aún?</a><br>
                     <button class="btn sub" type="submit"
                         style="font-weight:600; margin-top:5%; background-color:#2c4143; color:#fff;">ACEPTAR</button>
                 </form>
