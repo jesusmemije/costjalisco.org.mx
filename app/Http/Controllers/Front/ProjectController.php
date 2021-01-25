@@ -199,18 +199,13 @@ class ProjectController extends Controller
 
     public function project_single($id)
     {
-
         $project = Project::find($id);
         if ($project != null) {
 
-
             $project_documents = DB::table('project_documents')
-                ->join('documents', 'project_documents.id_document', '=', 'documents.id')
-                ->where('id_project', '=', $id)
-                ->get();
-
-
-
+            ->join('documents', 'project_documents.id_document', '=', 'documents.id')
+            ->where('id_project', '=', $id)
+            ->get();
 
             $identificacion = array();
             $preparacion = array();
@@ -240,144 +235,138 @@ class ProjectController extends Controller
             }
 
             $all = DB::table('project')
-                
-                ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
-                ->join('project_locations','project.id','=','project_locations.id_project')
-                ->join('locations','project_locations.id_location','=','locations.id')
-                ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
-                ->leftJoin('proyecto_ejecucion', 'project.id', '=', 'proyecto_ejecucion.id_project')
-                ->leftJoin('proyecto_finalizacion', 'project.id', '=', 'proyecto_finalizacion.id_project')
-                ->select(
-                    'project.*',
-                    'generaldata.*',
-                    'locations.id_address','locations.principal',
-                    'locations.description as descriptionlocation',
-                    'estudiosambiental.*',
-                    'estudiosfactibilidad.*',
-                    'estudiosimpacto.*',
-                    'proyecto_contratacion.*',
-                    'proyecto_ejecucion.*',
-                    'proyecto_ejecucion.*',
-                    'proyecto_finalizacion.*',
-                    'project.id as id_project'
-                )
+
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
+            ->join('locations', 'project_locations.id_location', '=', 'locations.id')
+            ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+            ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+            ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+            ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+            ->leftJoin('proyecto_ejecucion', 'project.id', '=', 'proyecto_ejecucion.id_project')
+            ->leftJoin('proyecto_finalizacion', 'project.id', '=', 'proyecto_finalizacion.id_project')
+            ->select(
+                'project.*',
+                'generaldata.*',
+                'locations.id_address',
+                'locations.principal',
+                'locations.lat as lat',
+                'locations.lng as lng',
+                'locations.description as descriptionlocation',
+                'estudiosambiental.*',
+                'estudiosfactibilidad.*',
+                'estudiosimpacto.*',
+                'proyecto_contratacion.*',
+                'proyecto_ejecucion.*',
+                'proyecto_ejecucion.*',
+                'proyecto_finalizacion.*',
+                'project.id as id_project'
+            )
                 ->where('project.id', '=', $id)
                 ->first();
 
-           $responsableproyecto=DB::table('responsableproyecto')
-           ->where('id_project',$id)
-           ->get();
-            $tipoAmbiental=DB::table('catambiental')
-            ->where('id','=',$all->tipoAmbiental)
-            ->select('titulo')
-            ->first();
+            $responsableproyecto = DB::table('responsableproyecto')
+            ->where('id_project', $id)
+            ->get();
+            $tipoAmbiental = DB::table('catambiental')
+            ->where('id', '=', $all->tipoAmbiental)
+                ->select('titulo')
+                ->first();
 
-            if(!$tipoAmbiental){
-                $tipoAmbiental=new stdClass();
-                $tipoAmbiental->titulo="";
-            }
-         
-
-            $tipoFactibilidad=DB::table('catfac')
-            ->where('id','=',$all->tipoFactibilidad)
-            ->select('titulo')
-            ->first();
-            if(!$tipoFactibilidad){
-                $tipoFactibilidad=new stdClass();
-                $tipoFactibilidad->titulo="";
+            if (!$tipoAmbiental) {
+                $tipoAmbiental = new stdClass();
+                $tipoAmbiental->titulo = "";
             }
 
-            $tipoImpacto=DB::table('catimpactoterreno')
-            ->where('id','=',$all->tipoImpacto)
-            ->select('titulo')
-            ->first();
-
-            if(!$tipoImpacto){
-                $tipoImpacto=new stdClass();
-                $tipoImpacto->titulo="";
+            $tipoFactibilidad = DB::table('catfac')
+            ->where('id', '=', $all->tipoFactibilidad)
+                ->select('titulo')
+                ->first();
+            if (!$tipoFactibilidad) {
+                $tipoFactibilidad = new stdClass();
+                $tipoFactibilidad->titulo = "";
             }
-    
 
+            $tipoImpacto = DB::table('catimpactoterreno')
+            ->where('id', '=', $all->tipoImpacto)
+                ->select('titulo')
+                ->first();
+
+            if (!$tipoImpacto) {
+                $tipoImpacto = new stdClass();
+                $tipoImpacto->titulo = "";
+            }
 
             $avance = 0;
-            
-        switch ($all->status) {
-            case 1:
-                $avance = 20;
-                break;
-            case 2:
-                $avance = 40;
-                break;
-            case 3:
-                $avance = 60;
-                break;
-            case 4:
-                $avance = 80;
-                break;
-            case 5:
-                $avance = 100;
-                break;
-            default:
-                $avance = 100;
-        }
+
+            switch ($all->status) {
+                case 1:
+                    $avance = 20;
+                    break;
+                case 2:
+                    $avance = 40;
+                    break;
+                case 3:
+                    $avance = 60;
+                    break;
+                case 4:
+                    $avance = 80;
+                    break;
+                case 5:
+                    $avance = 100;
+                    break;
+                default:
+                    $avance = 100;
+            }
 
             $empresas = $all->empresasparticipantes;
             $empresasparticipantes = explode(",", $empresas);
 
             $subsector = DB::table('subsector')
-                ->where('id', '=', $project->subsector)
+            ->where('id', '=', $project->subsector)
                 ->select('titulo')
                 ->first();
 
             //validate null 
             $tipocontrato = DB::table('cattipo_contrato')
-                ->where('id', '=', $all->tipocontrato)
+            ->where('id', '=', $all->tipocontrato)
                 ->first();
             if ($tipocontrato == null) {
                 $tipocontrato = new stdClass();
                 $tipocontrato->titulo = "";
             }
             $modalidadcontratacion = DB::table('catmodalidad_contratacion')
-                ->where('id', '=', $all->modalidadcontrato)
+            ->where('id', '=', $all->modalidadcontrato)
                 ->first();
             if ($modalidadcontratacion == null) {
                 $modalidadcontratacion = new stdClass();
                 $modalidadcontratacion->titulo = "";
             }
 
-
             $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
-                ->where('id', '=', $all->modalidadadjudicacion)
+            ->where('id', '=', $all->modalidadadjudicacion)
                 ->first();
             $estadoactual = DB::table('contractingprocess_status')
-                ->where('id', '=', $all->estadoactual)
+            ->where('id', '=', $all->estadoactual)
                 ->first();
 
-            $project_imgs=DB::table('projects_imgs')
-            ->where('id_project','=',$project->id)
-            ->get();
-        
-         
-    $address=DB::table('address')
-    ->where('id','=',$all->id_address)
-    ->first();
+            $project_imgs = DB::table('projects_imgs')
+            ->where('id_project', '=', $project->id)
+                ->get();
 
-    $address_f=($address->streetAddress).",".($address->locality).','.($address->region);
-    
-    $principal= $all->principal;
-    $principal= explode("|", $principal);
-  
-    if(sizeof($principal)==1){
-        $principal[0]="";
-        $principal[1]="";
-       
-    }
-  
-          
+            $address = DB::table('address')
+            ->where('id', '=', $all->id_address)
+            ->first();
 
+            $address_f = ($address->streetAddress) . "," . ($address->locality) . ',' . ($address->region);
+
+            $principal = $all->principal;
+            $principal = explode("|", $principal);
+
+            if (sizeof($principal) == 1) {
+                $principal[0] = "";
+                $principal[1] = "";
+            }
 
             return view('front.project-single', [
 
@@ -395,13 +384,13 @@ class ProjectController extends Controller
                 'estadoactual' => $estadoactual,
                 'project_documents' => $project_documents,
                 'avance' => $avance,
-                'project_imgs'=>$project_imgs,
-                'responsableproyecto'=>$responsableproyecto,
-                'tipoAmbiental'=>$tipoAmbiental,
-                'tipoFactibilidad'=>$tipoFactibilidad,
-                'tipoImpacto'=>$tipoImpacto,
-                'address_f'=>$address_f,
-                'principal'=>$principal
+                'project_imgs' => $project_imgs,
+                'responsableproyecto' => $responsableproyecto,
+                'tipoAmbiental' => $tipoAmbiental,
+                'tipoFactibilidad' => $tipoFactibilidad,
+                'tipoImpacto' => $tipoImpacto,
+                'address_f' => $address_f,
+                'principal' => $principal
             ]);
         } else {
             return redirect()->route('list-projects');

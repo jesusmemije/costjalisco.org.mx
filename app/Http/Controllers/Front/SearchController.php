@@ -148,6 +148,8 @@ class SearchController extends Controller
             }
         }
 
+        //dd($projects);
+
         return view('front.georeferencing', [
             'projects' => $projects
         ]);
