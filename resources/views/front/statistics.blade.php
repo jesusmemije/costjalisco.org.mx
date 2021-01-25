@@ -184,7 +184,8 @@
         var options = {
             //title: 'My Daily Activities',
             chartArea: {'width': '100%', 'height': '90%'},
-            colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32']
+            colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32'],
+            fontSize: 22,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
