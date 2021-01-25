@@ -87,6 +87,23 @@
     margin-left: 115px;
 }
 
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    .formulario-projects-search {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    
+}
+
+/* Phone */
 @media only screen and (max-width: 480px) {
 
     .fondo {

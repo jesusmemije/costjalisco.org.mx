@@ -24,9 +24,8 @@
                 <!--titulo de banco de desarrollo-->
 
                 <!--Banco de desarrollo -->
-                <div class="row mb-4 align-items-center" style="margin-right:35%">
-
-                    <div class="col-md-12 text-right pt-4 px-0" style="line-height: 1.5;">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-12 text-center pt-4 px-0" style="line-height: 1.5;">
                         <div style=" margin-left:4%; border:1px"> <span style="font-size: 8px; color: #fff;">EL SITIO
                                 WEB FINANCIADO POR EL BANCO DE DESARROLLO DE AMÉRICA LATINA</span>
                         </div>
@@ -39,17 +38,17 @@
 
                 <!-- Content -->
                 <div class="row mb-4 align-items-center">
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-sm-5">
                         <a href="https://infrastructuretransparency.org/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/cost.png') }}" class="img-fluid" width="140" alt="">
                         </a>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-4">
                         <a href="https://www.itei.org.mx/v4/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/itei.png') }}" class="img-fluid" width="80" alt="">
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-3">
                         <a href="https://www.itei.org.mx/v4/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" width="50"
                                 alt="">
@@ -57,23 +56,23 @@
                     </div>
                 </div>
                 <div class="row mb-3 align-items-center">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-3">
                         <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/zapopan.png') }}" class="img-fluid" width="50" alt="">
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-3">
                         <a href="https://guadalajara.gob.mx/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/guadalajara.png') }}" class="img-fluid" width="60"
                                 alt="">
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-3">
                         <a href="https://www.jalisco.gob.mx/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/jalisco.png') }}" class="img-fluid" width="60" alt="">
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-3">
                         <a href="https://tonala.gob.mx/portal/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/tonala.png') }}" class="img-fluid" width="50" alt="">
                         </a>
@@ -98,9 +97,8 @@
 
             <!-- Grid column -->
             <div class="col-md-1 col-lg-1 text-center mx-auto my-4">
-                <div class="social" style="margin-top:55%">
+                <div class="social">
                     <ul>
-
                         <li><a href="https://www.facebook.com/CoSTransparency/" target="_blank" class="icon-facebook"><i
                                     style="margin-top: 20%;" class="fab fa-facebook-f fa-sm"></i></a></li>
                         <li><a href="https://www.youtube.com/watch?v=nd2Bc99HgRE&feature=emb_title" target="_blank"
@@ -126,13 +124,20 @@
             $complements = DB::table('complements')
             ->select('complements.*')
             // ->orderBy('complements.nombreperiodico','asc')
-            ->get(); 
-            
-            setlocale(LC_TIME, "spanish");
+            ->get();
+
+            if(sizeof($complements)!=0){
+                setlocale(LC_TIME, "spanish");
             $fecha_a = $complements[0]->anio;
             $fecha_a = str_replace("/", "-", $fecha_a);			
             $Nueva_Fecha_a = date("d-M-Y", strtotime($fecha_a));	
             $fecha_anio = strftime("%Y", strtotime($Nueva_Fecha_a)); 
+            }else{
+                
+                $fecha_anio=date('Y');
+            } 
+            
+            
         @endphp
         <strong>CoST Jalisco {{$fecha_anio}}</strong> | Todos los derechos reservados
     </div>

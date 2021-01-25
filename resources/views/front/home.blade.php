@@ -31,16 +31,17 @@ Inicio
                         <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
                         <div class="input-group">
 
-                            <!--<input type="text" id="inputSearch" class="form-control" placeholder="Ingresa palabras clave" aria-label="Search" aria-describedby="basic-addon2">-->
-                            <div class="input-group-append">
-                                <div id="ctn-icon-search">
-                                    <i class="fas fa-search" id="icon-search"></i>
+                            <div class="row no-gutters w-100">
+                                <div class="col">
+                                    <input class="form-control border-secondary border-right-0 rounded-0" type="text" id="inputSearch" placeholder="Escribe palabras clave">
                                 </div>
-                                <div id="ctn-bars-search">
-                                    <input type="text" id="inputSearch" placeholder="Escribe palabras clave">
+                                <div class="col-auto">
+                                    <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </div>
                             </div>
-
+                            
                             <ul id="box-search">
                                 <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio >
                                         Nosotros</a></li>
@@ -114,9 +115,6 @@ Inicio
                                 <li><a href="{{url('support-material#seminarioabierto')}}"><i class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
                                 <li><a href="{{url('eventos#enero')}}"><i class="fas fa-search"></i>Eventos de enero</a></li>
 
-
-
-                                
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
@@ -268,14 +266,14 @@ Inicio
 
 <!-- Section - Índices -->
 <div class="row mx-0">
-    <div class="col-md-3 col-6 px-0">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Organizaciones</div>
         <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
         <div class="card-indice-counter">
             {{$total_organization}}
         </div>
     </div>
-    <div class="col-md-3 col-6 px-0">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Proyectos de la iniciativa</div>
         <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
         <div class="card-indice-counter">
@@ -283,14 +281,14 @@ Inicio
         </div>
     </div>
 
-    <div class="col-md-3 col-6 px-0">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Personas beneficiadas</div>
         <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
         <div class="card-indice-counter">
             {{$total_beneficiarios}}
         </div>
     </div>
-    <div class="col-md-3 col-6 px-0">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Presupuesto utilizado</div>
         <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
         <div class="card-indice-counter presupuesto">
@@ -304,11 +302,17 @@ Inicio
     <div class="col-md-12">
         <div class="text-right mt-3 mb-3">
             @php
-                setlocale(LC_TIME, "spanish");
+
+                if(sizeof($complements)!=0){
+                    setlocale(LC_TIME, "spanish");
                 $fecha_c = $complements[0]->fecha_actualizacion;
                 $fecha_c = str_replace("/", "-", $fecha_c);			
                 $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
                 $fecha_update = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
+                }else{
+                    $fecha_update="";
+                }
+               
 
             @endphp
             <h6 class="text-muted">Actualizado al {{$fecha_update}}</h6>
@@ -350,7 +354,7 @@ Inicio
         <div class="col-md-6 text-center">
             <br class="hidden-phone"><br class="hidden-phone">
             <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
-            <br class="hidden-phone"><br class="hidden-phone">
+            <br class="hidden-phone"><br>
             <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
                     https://infrastructuretransparency.org/</a></span>
         </div>
@@ -405,37 +409,37 @@ Inicio
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://www.jalisco.gob.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://guadalajara.gob.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
                         width="70" alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://tonala.gob.mx/portal/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href=" https://home.inai.org.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://www.itei.org.mx/v4/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
                         alt="">
@@ -455,13 +459,13 @@ Inicio
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://www.udg.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://www.iteso.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-academico/iteso.jpg') }}" class="img-fluid" width="50"
                         alt="">
@@ -481,19 +485,19 @@ Inicio
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://cmicjalisco.org.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="https://www.cicej.org/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-privado/cicej.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="http://www.comceoccte.org.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-privado/comce.jpg') }}" class="img-fluid" width="100"
                         alt="">
@@ -513,19 +517,19 @@ Inicio
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="http://cpsjalisco.org/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid"
                         width="100" alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="http://cimtrajalisco.org/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cimtra.jpg') }}" class="img-fluid"
                         width="100" alt="">
                 </a>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center">
                 <a href="http://www.mexicoevalua.org/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sociedad-civil-organizada/mexico.jpg') }}" class="img-fluid"
                         width="120" alt="">
@@ -545,7 +549,7 @@ Inicio
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 col-sm-3 text-center">
                 <a href="http://transversalthinktank.org/about" target="_BLANK">
                     <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"
                         width="200" alt="">
@@ -688,7 +692,7 @@ Inicio
 
 <!-- Section - Carousel proyectos -->
 <div class="row mx-0">
-    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 px-0">
+    <div class="col-lg-12  col-md-12 col-sm-12 col-12 px-0">
         <div id="carouselProjects" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
 
@@ -696,7 +700,7 @@ Inicio
 
                 <div class="carousel-item @if($loop->first) active @endif" style="background-color: #D8D8CD;">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4" style="display: flex; align-items: center;">
                         
                             @php
                                 $imagen=DB::table('projects_imgs')
@@ -705,44 +709,44 @@ Inicio
                                 ->get();
                             @endphp
                             @if (count($imagen)==0)
-                                <img src="{{ asset('projects_imgs/sinimagen.png') }}"  width="100%" height="320px" alt="">
+                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" alt="">
                             @else
                                 {{-- <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="325" height="310"  alt=""> --}}
                                 
-                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}"
-                                 width="445px" height="310px" alt="">
+                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" alt="">
                             @endif
                         </div>
+                        @php
+                            $title = substr($project->title,0,42).'...';
+                            $description = substr($project->description,0,100).'...';
+                            $ubicacion = substr($project->streetAddress." ".$project->locality." ".$project->region, 0, 32).'...';
+                        @endphp
                         <div class="hidden-desktop"
                             style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; font-size: 26px; text-align: center; padding: 0 30px;">
                             <span class="font-weight-bold" style="color: #fff; text-shadow: 0.1em 0.1em 0.2em black">
-                                <a href="{{ route('project-single', $project->id_project) }}">{{ $project->title }}</a>
+                                <a href="{{ route('project-single', $project->id_project) }}">{{ $title }}</a>
                             </span>
                         </div>
-                        <div class="col-md-8 hidden-phone">
-                            @php
-                            $titulo=substr($project->title,0,42).'..';
-                            @endphp
-                            <h2 class="font-weight-bold my-4 text-red">{{ $titulo }}</h2>
+                        <div class="col-lg-8 col-md-8 col-sm-8 hidden-phone">
+                            <h2 class="font-weight-bold my-4 text-red font-size-title">{{ $title }}</h2>
                             <div class="row">
-                                <div class="col-md-6" style="border-right: 1px solid #777;">
+                                <div class="col-md-6 col-sm-6" style="border-right: 1px solid #777;">
                                     <p>
-                                        {{ $project->description }}
+                                        {{ $description }}
                                     </p>
                                 </div>
-                                <div class="col-md-6 pl-4">
+                                <div class="col-md-6 col-sm-6 pl-4">
                                     <p>
                                         <img src="{{ asset('assets/img/home/slider-proyectos/icons/dinero.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Inversión: </strong> $
                                         {{number_format($project->montocontrato,2)}}</p>
-                                    <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
+                                    <p class="hidden-desktop-mini"><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Periodo de construcción: </strong> {{$project->period}}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
-                                        <strong>&nbsp; Ubicación: </strong> {{$project->streetAddress}}
-                                        {{$project->locality}} {{$project->region}}</p>
+                                        <strong>&nbsp; Ubicación: </strong>{{ $ubicacion }}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
@@ -775,8 +779,8 @@ Inicio
 </div>
 
 <!-- Section - newsletter -->
-<div class="row mx-0 my-4 align-items-center hidden-phone">
-    <div class="col-md-12 px-0">
+<div class="row mx-0 my-4 align-items-center hidden-tablet">
+    <div class="col-md-12 col-sm-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
         <div class="form-newsletter">
             <form action="{{route('savemailsubscriberf')}}" method="POST">
@@ -805,26 +809,26 @@ Inicio
 <!-- Section - Timeline redes sociales -->
 <div class="container pb-5 hidden-phone">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="timeline"></div>
             <div class="timeline-icon-position"><i class="fab fa-twitter fa-sm"></i></div>
             <a class="twitter-timeline" data-lang="es" data-height="280" data-theme="light"
                 href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw">Tweets by CostJalisco</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="timeline"></div>
             <div class="timeline-icon-position"><i class="fab fa-youtube fa-sm"></i></div>
-            <iframe width="350" height="280" src="https://www.youtube.com/embed/nd2Bc99HgRE" frameborder="0"
+            <iframe width="350" height="280" style="width: 100%;" src="https://www.youtube.com/embed/nd2Bc99HgRE" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-12 col-sm-12 text-center">
             <div class="timeline"></div>
             <div class="timeline-icon-position"><i class="fab fa-facebook-f fa-sm"></i></div>
             <iframe
                 src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCoSTransparency&tabs=timeline&width=350&height=280&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                width="350" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                width="350" height="280" style="border:none;overflow:hidden;" scrolling="no" frameborder="0"
                 allowfullscreen="true"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
         </div>

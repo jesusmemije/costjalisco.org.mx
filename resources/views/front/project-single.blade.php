@@ -145,24 +145,31 @@ Datos del proyecto
     </div>
 </div>
 
-<!-- Section - Identificación -->
-<div class="row mt-5" id="identificacion">
-    <div class="col-md-6 col-12 background-title px-0 py-1">
-        <span class="title-project-single">Identificación</span>
+   
+
+    <!-- Section - Identificación -->
+    <div class="row mt-5" id="identificacion">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
     </div>
-    <div class="col-md-6 px-0 hidden-phone">
-        <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
-    </div>
-</div>
 
 <div class="container">
     <div class="row">
         <div class="col-md-6 data mt-4">
+            <i class="fas fa-edit"></i>
             <span><b>Número del acto público, ID.Entidad:</b></span><br>
             <span>{{$project->ocid}}</span><br>
+           
             <span>En el subsector de
                 {{$subsector->titulo}}
             </span><br>
+            <i class="fas fa-file-alt"></i>
             <span><b>Número o números de identificación del estudio del impacto en el terreno y
                     asentamientos:</b></span><br>
             <span>
@@ -170,6 +177,10 @@ Datos del proyecto
             </span><br>
         </div>
         <div class="col-md-6 data" style="border-left:1px solid #628ea0;">
+            <h3  style="padding-left:34px; font-weight: bold; color:#628ea0;" >Responsables del proyecto</h3>
+            <?php
+               
+                ?>
             @foreach($responsableproyecto as $responsable)
             <br>
             @if($responsable->nombreresponsable!='')
@@ -183,19 +194,23 @@ Datos del proyecto
             <span style="padding-left:34px;">{{$responsable->correoresponsable}}</span><br>
             @endif
             @endforeach
+
         </div>
     </div>
 </div>
+    
+    <!-- Section - Preparación -->
+    <div class="row mt-5" id="preparacion">
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
+    </div>
 
-<!-- Section - Preparación -->
-<div class="row mt-5" id="preparacion">
-    <div class="col-md-6 col-12 background-title px-0 py-1">
-        <span class="title-project-single">Preparación</span>
-    </div>
-    <div class="col-md-6 px-0 hidden-phone">
-        <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
-    </div>
-</div>
 
 <div class="container">
     <div class="row">
@@ -217,6 +232,7 @@ Datos del proyecto
             <span style="padding-left:34px;"><b>Fecha de realización:
                 </b>{{$project->fecharealizacionAmbiental}}</span>
             <br>
+            <br>
             <br class="hidden-desktop">
             <span class="preparacion-subtitle">Estudios de factibilidad:
                 {{$tipoFactibilidad->titulo}}</span><br>
@@ -227,6 +243,7 @@ Datos del proyecto
             <br>
             <span style="padding-left:34px;"><b>Fecha de realización:
                 </b>{{$project->fecharealizacionFactibilidad}}</span>
+            <br>
             <br>
             <br class="hidden-desktop">
             <span class="preparacion-subtitle">Estudios de factibilidad:
@@ -240,6 +257,7 @@ Datos del proyecto
                 </b>{{$project->fecharealizacionimpacto}}</span>
             <br>
             <br class="hidden-desktop">
+           
         </div>
     </div>
     <div class="row">
@@ -252,26 +270,38 @@ Datos del proyecto
     </div>
 </div>
 
-<!-- Section - Procedimiento de contratación -->
-<div class="row mt-5" id="contratacion">
-    <div class="col-md-6 col-12 background-title px-0 py-1">
-        <span class="title-project-single">Procedimiento de contratación</span>
-    </div>
-    <div class="col-md-6 px-0 hidden-phone">
-        <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
-    </div>
-</div>
+   
 
+
+ <!-- Section - Procedimiento de contratación -->
+    <div class="row mt-5" id="contratacion" >
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
+    </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 mt-5">
+        <div class="col-md-6 mt-5" style="border-right:1px solid #628ea0;">
+            <i class="fas fa-file-alt"></i>
             <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
-            <span><b>Modalidad de contratación:</b>{{$modalidadcontratacion->titulo}}</span><br>
-            <span><b>Entidad administradora del contrato:</b>{{$project->entidad_admin_contrato}}</span><br>
+            <i class="fas fa-file-signature"></i>
+            <span><b>Modalidad de contratación:</b> {{$modalidadcontratacion->titulo}}</span><br>
+            <i class="fas fa-edit"></i>
+            <span><b>Entidad administradora del contrato:</b> {{$project->entidad_admin_contrato}}</span><br>
+            <i class="fas fa-file-invoice"></i>
             <span><b>Título del contrato:</b> {{$project->titulocontrato}}</span><br>
-            <span><b>Vía por la que presenta su propuesta:</b>{{$project->viapropuesta}}</span><br>
-            <span><b>Monto del contrato (cantidad estipulada):</b>{{$project->montocontrato}}</span><br>
-            <span><b>Alcance del trabajo según el contrato:</b>{{$project->alcancecontrato}}</span><br>
+            <i class="fas fa-print"></i>
+            <span><b>Vía por la que presenta su propuesta:</b> {{$project->viapropuesta}}</span><br>
+            <i class="fas fa-hand-holding-usd"></i>
+            <span><b>Monto del contrato (cantidad estipulada):</b> {{$project->montocontrato}}</span><br>
+            <i class="fas fa-hard-hat"></i>
+            <span><b>Alcance del trabajo según el contrato:</b> {{$project->alcancecontrato}}</span><br>
+            <i class="far fa-clock"></i>
             <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b>
                 {{$project->duracionproyecto_contrato}}</span><br>
             <br class="hidden-desktop">
@@ -279,7 +309,7 @@ Datos del proyecto
 
         <div class="col-md-6 border-top-empresas">
             <br class="hidden-desktop">
-            <h3 class="ml-4 title-empresas">Empresas participantes</h3>
+            <h3 class="ml-4 title-empresas"  style="font-weight: bold; color:#628ea0;">Empresas participantes</h3>
 
             @foreach($empresasparticipantes as $empresa)
             <div class="row py-4 border-left-empresas">
@@ -294,33 +324,50 @@ Datos del proyecto
             @endforeach
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+            <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='preparacion'
+                data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents"
+                style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+        </div>
+    </div>
+   
 </div>
 
-<!-- Section - Ejecución -->
-<div class="row mt-5" id="ejecucion">
-    <div class="col-md-6 col-12 background-title px-0 py-1">
-        <span class="title-project-single">Ejecución</span>
+ <!-- Section - Procedimiento de contratación -->
+ <div class="row mt-5" id="ejecucion" >
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;"></div>
+        </div>
     </div>
-    <div class="col-md-6 px-0 hidden-phone">
-        <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
-    </div>
-</div>
-
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5">
+        <i class="fas fa-hand-holding-usd"></i>
             <span><b>Variaciones en el precio del contrato:</b>{{$project->variacionespreciocontrato}}</span><br>
+            <i class="fas fa-file-alt"></i>
             <span><b>Razones de cambio en el precio del
                     contrato:</b>{{$project->razonescambiopreciocontrato}}</span><br>
-            <span><b>Variaciones en la duración del
-                    contrato:</b>{{$project->variacionesduracioncontrato	}}</span><br>
+                    <i class="fas fa-file-alt"></i>
+            <span><b>Variaciones en la duración del contrato:</b>{{$project->variacionesduracioncontrato	}}</span><br>
+            <i class="far fa-clock"></i>
             <span><b>Razones de cambio en la duración del
                     contrato:</b>{{$project->razonescambioduracioncontrato}}</span><br>
-            <span><b>Variaciones en el alcance del contrato:</b>{{$project->variacionesalcancecontrato}}</span><br>
-            <span><b>Razones de cambios en el alcance del
+                    <i class="fas fa-file-alt"></i>
+                    <span><b>Variaciones en el alcance del contrato:</b>{{$project->variacionesalcancecontrato}}</span><br>
+                    <i class="fas fa-file-alt"></i>
+                    <span><b>Razones de cambios en el alcance del
                     contrato:</b>{{$project->razonescambiosalcancecontrato}}</span><br>
-            <span><b>Aplicación de escalatoria:</b>{{$project->aplicacionescalatoria}}</span><br>
-            <span><b>Estado actual del proyecto:</b>{{$project->estadoactualproyecto}}</span><br>
+                    <i class="fas fa-file-alt"></i>
+                    <span><b>Aplicación de escalatoria:</b>{{$project->aplicacionescalatoria}}</span><br>
+                    <i class="fas fa-check-square"></i>
+                    <span><b>Estado actual del proyecto:</b>{{$project->estadoactualproyecto}}</span><br>
         </div>
     </div>
     <br class="hidden-desktop">
@@ -334,14 +381,23 @@ Datos del proyecto
     </div>
 </div>
 
-<!-- Section - Finalización -->
-<div class="row mt-5" id="finalizacion">
-    <div class="col-md-6 col-12 background-title px-0 py-1">
-        <span class="title-project-single">Finalización</span>
+<!-- <div class="col-md-2 text-right">
+                <img src="{{asset('assets/img/project/icons/pdf.png')}}" class="img-fluid" width="32">
+                <button class="btn btn-sm btn-documents" style="font-size: 11px;">ABRIR PDF</button>
+            </div> -->
+
+    <!-- Section - Finalización -->
+    <div class="row mt-5" id="finalizacion" >
+        <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
+            background-size: cover;">
+            <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
+        </div>
+        <div class="col-md-6 px-0">
+            <div class="" style="margin-top: 25px;
+            border-bottom: 1px solid #628ea0;">
+        </div>  
     </div>
-    <div class="col-md-6 px-0 hidden-phone">
-        <div style="margin-top: 25px; border-bottom: 1px solid #628ea0;"></div>
-    </div>
+   
 </div>
 
 <div class="container">
@@ -362,8 +418,13 @@ Datos del proyecto
                 style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
         </div>
     </div>
+   
+  
+           
+ 
+</div>
 
-    <div class="container mt-5">
+<div class="container mt-5">
         <div class="row align-items-baseline">
             <div class="col-md-7" style="background-color:#d60000; color:#fff;">
                 <div class="d-flex justify-content-end align-items-baseline">
@@ -371,8 +432,7 @@ Datos del proyecto
                     </span>&nbsp;&nbsp;<span> completado</span>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3 text-inaguracion">
+            <div class="col-md-3 text-inaguracion">
             <?php
                 $f=strtotime($project->fechafinalizacion);
                 ?>
@@ -380,8 +440,9 @@ Datos del proyecto
                 {{date('d/m/Y',$f)}}
             </span>
         </div>
+        </div>
+       
     </div>
-</div>
 
 <!-- Barra - Resumen -->
 <div class="row" id="background-resumen">
@@ -422,6 +483,8 @@ Datos del proyecto
     </div>
 </div>
 
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -453,6 +516,10 @@ Datos del proyecto
         </div>
     </div>
 </div>
+<input type="hidden" name="" id="lat" value="{{$principal[0]}}">
+<input type="hidden" id="lng" value="{{$principal[1]}}">
+
+
 @endsection
 
 @section('scripts')
@@ -475,8 +542,10 @@ Datos del proyecto
                   layers: [osm],
                   
               });
-  
-            L.marker(["20.689742","-103.3928097"]).addTo(map);
+            lat=document.getElementById('lat').value;
+            lng=document.getElementById('lng').value;
+
+            L.marker([lat,lng]).addTo(map);
 
     });
 

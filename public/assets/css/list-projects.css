@@ -70,7 +70,8 @@
 }
 
 .img-obra {
-    width: 30%;
+    width: 29%;
+    height: auto;
 }
 
 .container-card {
@@ -82,6 +83,41 @@
     padding-left: 15px;
 }
 
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    .container, .container-sm {
+        max-width: 100%;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    .background-title {
+        font-size: 28px;
+    }
+
+    .topic {
+        margin-left: 100px;
+    }
+
+    .container, .container-sm {
+        max-width: 100%;
+    }
+
+    .container-btn {
+        margin-left: 20%;
+    }
+
+    .description-obra {
+        margin-left: 48px;
+    }
+    
+}
+
+/* Phone */
 @media only screen and (max-width: 480px) {
 
     .container-card {
@@ -120,6 +156,7 @@
 
     .img-obra {
         width: 100%;
+        height: auto;
     }
 
     .media {

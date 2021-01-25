@@ -16,7 +16,7 @@
         <div class="col-md-6 col-12 background-title px-0 py-1">
             <span class="title-estadisticas">Estadísticas</span>
         </div>
-        <div class="col-md-6 px-0 hidden-phone">
+        <div class="col-md-6 px-0 hidden-desktop-mini">
             <div class="" style="margin-top: 25px;
             border-bottom: 1px solid #628ea0;"></div>
         </div>
@@ -66,8 +66,8 @@
                     @endphp
                     <span class="cuadro">
                         {{count($sector1)}}
-                    </span><br><br>
-                    <span style="font-weight: bold;">{{$sector1[0]->titulo}}</span>
+                    </span><br><br class="hidden-phone">
+                    <span class="cuadros-title">{{$sector1[0]->titulo}}</span>
                     @endif
                 </label>
 
@@ -110,8 +110,8 @@
                         @endphp
                         <span class="cuadro">
                             {{count($sector2)}}
-                        </span><br><br>
-                        <span style="font-weight: bold;">{{$sector2[0]->titulo}}</span>
+                        </span><br><br class="hidden-phone">
+                        <span class="cuadros-title">{{$sector2[0]->titulo}}</span>
                     @endif
                 </label>
             </div>

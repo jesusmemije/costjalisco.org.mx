@@ -95,15 +95,42 @@ body {
     align-items: center;
 }
 
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    .tlt {
+        padding-top: 0;
+    }
+
+    .my2 {
+        height: unset;
+    }
+
+    .material {
+        height: auto;
+    }
+
+    .container-modulo {
+        margin-top: 16px;
+    }
+
+    .fecha-material {
+        margin-top: 16px;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    
+}
+
+/* Phone */
 @media only screen and (max-width: 480px) {
 
     .my2 {
         all: unset;
-    }
-
-    .material {
-        margin-bottom: 5%;
-        height: auto;
     }
 
     .content1 h5 {

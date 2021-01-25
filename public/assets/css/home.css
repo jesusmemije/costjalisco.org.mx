@@ -11,14 +11,8 @@
 }
 
 /* Declare heights because of positioning of img element */
-#carouselHome .carousel-item {
-    height: 790px;
-}
 
 #carouselHome .carousel-item>img {
-    position: absolute;
-    top: 0;
-    left: 0;
     min-width: 100%;
 }
 
@@ -164,6 +158,11 @@
 
 #carouselProjects .carousel-inner {
     max-height: 410px !important;
+}
+
+#carouselProjects .img-obra {
+    width: 100%;
+    height: 320px;
 }
 
 #carouselProjects .carousel-control-next-icon {
@@ -333,58 +332,8 @@
     width: unset;
 }
 
-/*Buscador de contenido*/
-#ctn-icon-search {
-    position: absolute;
-    right: 20px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#ctn-icon-search i {
-    font-size: 30px;
-    color: #777777;
-    cursor: pointer;
-    /* transition: all 300ms; */
-    padding: 9px;
-    padding-bottom: 9px;
-    margin-top: 41px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-
-}
-
-#ctn-icon-search i:hover {
-    color: #46a2fd;
-}
-
-
-#ctn-bars-search {
-    position: fixed;
-    top: 125px;
-    width: 77%;
-
-    padding-top: 25px;
-    z-index: 9;
-    /* transition: all 600ms; */
-}
-
-#ctn-bars-search input {
-    display: block;
-    width: 38%;
-    margin: none;
-    padding: 10px;
-    font-size: 19px;
-    outline: 0;
-    border: 0px;
-    border-top: 1px solid #000;
-    border-left: 1px solid #000;
-    border-bottom: 1px solid #000;
-
-
+#inputSearch {
+    box-shadow: unset;
 }
 
 #box-search {
@@ -442,11 +391,63 @@
 }
 
 
-@media only screen and (max-width: 480px) {
+/* Desktop */
+@media only screen and (max-width: 992px) {
 
-    #carouselHome .carousel-item {
-        height: 242px;
+
+    .timeline {
+        border: 23px solid transparent;
     }
+
+    #carouselHome .font-title-carousel {
+        font-size: 30px;
+    }
+
+    #carouselProjects .img-obra {
+        height: 270px;
+    }
+
+    .font-size-title {
+        font-size: 2rem;
+    }
+
+    .form-newsletter {
+        right: 18%;
+    }
+
+    .visitantes-counter {
+        top: 10%;
+    }
+
+    .font-size-title {
+        font-size: 26px;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    #carouselHome .font-title-carousel {
+        font-size: 23px;
+    }
+
+    #carouselProjects .img-obra {
+        height: 220px;
+    }
+
+    .visitantes-counter {
+        top: 22%;
+    }
+
+    .font-size-title {
+        font-size: 22px;
+    }
+  
+}
+
+/* Phone */
+@media only screen and (max-width: 576px) {
 
     #carouselHome .carousel-indicators {
         bottom: 0;
@@ -543,10 +544,4 @@
         background-image: url("/assets/img/bg-rojo-phone.jpg");
     }
 
-}
-
-@media only screen and (max-width: 400px) {
-    #carouselHome .carousel-item {
-        height: 210px;
-    }
 }
