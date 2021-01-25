@@ -41,6 +41,7 @@ Usuarios
             <th>Nombre</th>
             <th>Apellidos</th>
             <th>Teléfono</th>
+            <th>Tipo</th>
             <th>Correo</th>
             <th>Status</th>
             <th>Creación</th>
@@ -53,6 +54,27 @@ Usuarios
             <td>{{ $user->name }}</td>
             <td>{{ $user->last_name }}</td>
             <td>{{ $user->phone }}</td>
+            <td>
+
+
+            <?php
+            switch ($user->role_id) {
+               
+                   case 1: echo "Administrador";
+                    break;
+
+                   case 2: echo "Master";
+                    break;
+               
+                   case 3: echo "Agente sectorial";
+                    break;
+                
+                   case 4: echo "Visitante";
+                    break;
+            }
+            ?>
+          </td>
+
             <td>{{ $user->email }}</td>
             <td class="text-center">
               @if ( $user->status == 'Activo' )

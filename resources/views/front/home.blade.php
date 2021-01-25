@@ -321,14 +321,14 @@ Inicio
     <div class="row">
         <div class="col-md-6 line-red-vertical">
             <div class="my-4" style="letter-spacing: -.2px;">
-                <p  style="text-align: justify;">
+                <p style="text-align: justify;">
                     La iniciativa de Transparencia en Infraestructura <strong>[Construction 
                         Sector Transparency Initiative] o "CoST" por sus siglas en 
                         inglés,</strong> es la encargada de promover la transparencia y la 
                     rendición de cuentas dentro de las diferentes etapas de los 
                     proyectos de infraestructura y obra pública.
                 </p>
-                <p  style="text-align: justify;">
+                <p style="text-align: justify;">
                     Actualmente, tiene presencia en 19 países distribuidos en 
                     cuatro continentes, donde trabaja directamente con el Gobierno, 
                     la sociedad civil y la industria del ramo de la contrucción para 
@@ -370,8 +370,8 @@ Inicio
                 <p style="text-align: justify;">
                     El Grupo Multisectorial "GMS" está conformado por instituciones de 
                     Gobierno, del sector privado, del sector académico y de la sociedad civil.
-                </p style="text-align: justify;">
-                <p>
+                </p>
+                <p style="text-align: justify;">
                     Este grupo, a través de los representantes de cada una de las 
                     instituciones que lo integra, es el responsable de guiar el desarrollo, la
                     implementación y supervisión de la iniciativa de CoST en Jalisco.
