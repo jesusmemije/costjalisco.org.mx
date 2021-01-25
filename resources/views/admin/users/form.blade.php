@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-lg-12">
     <!-- Collapsable Card Data -->
@@ -38,7 +39,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="rol">Rol de usuario</label>
-              <select id="rol" name="rol" class="form-control">
+              <select id="rol" name="rol" class="form-control"  onchange="getval(this);">
                 <!--<option selected disabled>Selecciona un rol...</option>-->
                 @foreach ($roles as $role)
                 @if ( old('rol', $user->role_id) == $role->id )
@@ -50,6 +51,23 @@
               </select>
             </div>
           </div>
+          <div class="form-row divorg" id="divorg" style="display:none">
+          <div class="form-group col-md-12">
+          <input type="hidden" id="auxrol" name="auxrol">
+          <label for="organization">Organización</label>
+          <select  name="organization" id="organization" class="form-control">
+          <option value="">Selecciona una organización</option>
+          @foreach($organizations as $organization)
+          @if ( old('organization', $user->id_organization) == $organization->id )
+          <option value="{{$organization->id}}" selected>{{$organization->name}}</option>
+          @else
+          <option value="{{$organization->id}}">{{$organization->name}}</option>
+          @endif
+          @endforeach
+          </select>
+          </div>
+          </div>
+          
           <div class="form-row" style="{{ $clt_create ? 'display:flex' : 'display:none' }}">
             <div class="form-group col-md-6">
               <label for="email">E-mail (usuario)</label>
@@ -78,6 +96,31 @@
 </div>
 
 <script>
+  var sf=document.getElementById('rol').selectedOptions[0].text;
+  if(sf=='Agente sectorial'){
+    document.getElementById('divorg').style.display = 'block'
+    document.getElementById("organization").required = true;
+    document.getElementById('auxrol').value='Agente sectorial';
+  }else{
+    document.getElementById('divorg').style.display = 'none'
+    document.getElementById("organization").required = false;
+    document.getElementById('auxrol').value='';
+  }
+
+  function getval(sel){
+   var dato=(sel.options[sel.selectedIndex].text);
+
+   if(dato=="Agente sectorial"){
+    document.getElementById('divorg').style.display = 'block'
+    document.getElementById("organization").required = true;
+    document.getElementById('auxrol').value='Agente sectorial';
+   }else{
+    document.getElementById('divorg').style.display = 'none'
+    document.getElementById("organization").required = false;
+    document.getElementById('auxrol').value='';
+   }
+  }
+
   function limpiarNumero(obj) {
       /* El evento "change" sólo saltará si son diferentes */
       obj.value = obj.value.replace(/\D/g, '');
