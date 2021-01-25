@@ -321,18 +321,18 @@ Inicio
     <div class="row">
         <div class="col-md-6 line-red-vertical">
             <div class="my-4" style="letter-spacing: -.2px;">
-                <p>
-                    La iniciativa de Transparencia en Infraestructura <strong>[Construction <br class="hidden-phone">
-                        Sector Transparency Initiative] o "CoST" por sus siglas en <br class="hidden-phone">
-                        inglés,</strong> es la encargada de promover la transparencia y la <br class="hidden-phone">
-                    rendición de cuentas dentro de las diferentes etapas de los <br class="hidden-phone">
+                <p  style="text-align: justify;">
+                    La iniciativa de Transparencia en Infraestructura <strong>[Construction 
+                        Sector Transparency Initiative] o "CoST" por sus siglas en 
+                        inglés,</strong> es la encargada de promover la transparencia y la 
+                    rendición de cuentas dentro de las diferentes etapas de los 
                     proyectos de infraestructura y obra pública.
                 </p>
-                <p>
-                    Actualmente, tiene presencia en 19 países distribuidos en <br class="hidden-phone">
-                    cuatro continentes, donde trabaja directamente con el Gobierno, <br class="hidden-phone">
-                    la sociedad civil y la industria del ramo de la contrucción para <br class="hidden-phone">
-                    promover la divulgación, validación e interpretación de datos de <br class="hidden-phone">
+                <p  style="text-align: justify;">
+                    Actualmente, tiene presencia en 19 países distribuidos en 
+                    cuatro continentes, donde trabaja directamente con el Gobierno, 
+                    la sociedad civil y la industria del ramo de la contrucción para 
+                    promover la divulgación, validación e interpretación de datos de 
                     proyectos de infraestructura y obra pública.
                 </p>
                 <br>
@@ -367,13 +367,13 @@ Inicio
     <div class="row align-items-center">
         <div class="col-md-7 line-red-vertical">
             <div class="mt-5" style="letter-spacing: -.2px;">
-                <p>
-                    El Grupo Multisectorial "GMS" está conformado por instituciones de <br class="hidden-phone">
+                <p style="text-align: justify;">
+                    El Grupo Multisectorial "GMS" está conformado por instituciones de 
                     Gobierno, del sector privado, del sector académico y de la sociedad civil.
-                </p>
+                </p style="text-align: justify;">
                 <p>
-                    Este grupo, a través de los representantes de cada una de las <br class="hidden-phone">
-                    instituciones que lo integra, es el responsable de guiar el desarrollo, la <br class="hidden-phone">
+                    Este grupo, a través de los representantes de cada una de las 
+                    instituciones que lo integra, es el responsable de guiar el desarrollo, la
                     implementación y supervisión de la iniciativa de CoST en Jalisco.
                 </p>
             </div>
