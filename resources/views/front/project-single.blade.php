@@ -516,9 +516,9 @@ Datos del proyecto
         </div>
     </div>
 </div>
-<input type="hidden" name="" id="lat" value="{{$principal[0]}}">
-<input type="hidden" id="lng" value="{{$principal[1]}}">
 
+<input type="hidden" id="lat" value="{{$project->lat}}">
+<input type="hidden" id="lng" value="{{$project->lng}}">
 
 @endsection
 
@@ -528,25 +528,54 @@ Datos del proyecto
 
 <script type="text/javascript">
     // listen for screen resize events
-      var zona = 0;
-      window.addEventListener('load', function(event){
+      
+    window.addEventListener('load', function(event){
+    
+        var width = document.documentElement.clientWidth;
 
-            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                          osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib });
-  
-              var map = new L.Map('map', {
-                  scrollWheelZoom: false,
-                  center: ["20.689742","-103.3928097"],
-                  zoom: 14,
-                  layers: [osm],
-                  
-              });
-            lat=document.getElementById('lat').value;
-            lng=document.getElementById('lng').value;
+        if (width < 1550) {
+            zona = 7;
+        } else {
+            zona = 8;
+        }
 
-            L.marker([lat,lng]).addTo(map);
+        var icon = L.icon({
+            iconUrl: '/assets/img/map/marker.png',
+            iconSize: [25, 35], // size of the icon
+        });
 
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib }),
+            bounds = new L.LatLngBounds(new L.LatLng(22.629, -103.886), new L.LatLng(18.489, -102.940));
+        
+        var map = new L.Map('map', {
+            scrollWheelZoom: false,
+            center: bounds.getCenter(),
+            zoom: zona,
+            layers: [osm],
+            maxBounds: bounds
+        });
+        
+        //Obtiene los campos oculttos lat y lng, y separa los valores con la fución split para guardar cada valor independiente
+        //en cada posición del array. Despúes valido que la cadena no este vacía y creo los puntos/marcadores.
+        
+        let lat   = document.getElementById('lat');
+        let lng = document.getElementById('lng');
+        
+        let lat_split = lat.value.split('|')
+        let lng_split = lng.value.split('|')
+        
+        if( lat_split[0] != "" ){
+            for(var i=0; i<=lat_split.length; i++){
+                if( lat_split[i] == "" || lat_split[i] == undefined || lat_split[i] == null ){
+                    console.log("Última localización de cada proyecto.")
+                } else {
+                    console.log([lat_split[i], lng_split[i]])
+                    marker = L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map); 
+                }
+            } 
+        }
     });
 
     window.onload = function() {
