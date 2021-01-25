@@ -45,15 +45,17 @@ class ProjectController extends Controller
     {
         //
 
-        $id_user = Auth::user()->id;
+        $id_user = Auth::user()->role_id;
+        //print_r($id_user);
 
-        $projects = DB::table('project')
+        if($id_user==1){
+            $projects = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
             ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
             ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
             ->join('doproject', 'project.id', '=', 'doproject.id_project')
-            ->where('doproject.id_user', '=', $id_user)
+            //  ->where('doproject.id_user', '=', $id_user)
             ->select(
                 'project.*',
                 'project.id as id_project',
@@ -63,6 +65,30 @@ class ProjectController extends Controller
                 'generaldata.*'
             )
             ->get();
+        }
+        //Agente sectorial
+        if($id_user==3){
+
+            $id_organization= Auth::user()->id_organization;
+            $projects = DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+            ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
+            ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+            ->join('doproject', 'project.id', '=', 'doproject.id_project')
+            ->where('project.publicAuthority_id', '=', $id_organization)
+            ->select(
+                'project.*',
+                'project.id as id_project',
+                'project.updated_at as fechap',
+                'organization.name  as orgname',
+                'proyecto_contratacion.montocontrato as montocontrato',
+                'generaldata.*'
+            )
+            ->get();
+        }
+
+     
 
         // $projects=Project::all()
         // ->select('project.id as id_project');
@@ -135,7 +161,7 @@ class ProjectController extends Controller
                 ->where('id_project', '=', $id)
                 ->first();
 
-
+      
 
             return view('admin.projects.generaldata', [
                 'project' => Project::find($id),
@@ -153,6 +179,8 @@ class ProjectController extends Controller
             $generaldata->organismo = '';
             $generaldata->puesto = '';
             $generaldata->involucrado = '';
+            $generaldata->video='';
+            $generaldata->observaciones='';
             return view('admin.projects.generaldata', [
                 'project' => new Project(),
                 'nav' => 'generaldata',
@@ -167,9 +195,6 @@ class ProjectController extends Controller
 
         $project = new Project();
 
-        //  print_r($_FILES);
-        //  die();
-
         $request->validate([
 
             'nombreresponsable' => 'required|max:50',
@@ -181,6 +206,11 @@ class ProjectController extends Controller
 
 
         $project->status = 7;
+
+        if(Auth::user()->id_organization!=""){
+            $project->publicAuthority_id=Auth::user()->id_organization;
+        }
+       
         $project->save();
 
 
@@ -209,6 +239,8 @@ class ProjectController extends Controller
                 'organismo' => $request->organismo,
                 'puesto' => $request->puesto,
                 'involucrado' => $request->involucrado,
+                'video'=>$request->video,
+                'observaciones'=>$request->observaciones,
 
             ]);
 
@@ -765,7 +797,7 @@ class ProjectController extends Controller
 
         $project->publicAuthority_name = '';
         $project->publicAuthority_id = $request->autoridadP;
-
+        $project->observaciones=$request->observaciones;
 
 
 
@@ -892,6 +924,7 @@ class ProjectController extends Controller
                 'fecharealizacionAmbiental' => $request->fecharealizacionAmbiental,
                 'responsableAmbiental' => $request->responsableAmbiental,
                 'numeros_ambiental' => $request->numeros_ambiental,
+                'observaciones'=>$request->observaciones,
             ]);
 
         DB::table('estudiosfactibilidad')
@@ -981,6 +1014,7 @@ class ProjectController extends Controller
                 'alcancecontrato' => $request->alcancecontrato,
                 'fechainiciocontrato' => $request->fechainiciocontrato,
                 'duracionproyecto_contrato' => $request->duracionproyecto_contrato,
+                'observaciones'=>$request->observaciones,
 
 
             ]);
@@ -1011,6 +1045,7 @@ class ProjectController extends Controller
                 'razonescambiosalcancecontrato' => $request->razonescambiosalcancecontrato,
                 'aplicacionescalatoria' => $request->aplicacionescalatoria,
                 'estadoactualproyecto' => $request->estadoactualproyecto,
+                'observaciones'=>$request->observaciones,
 
 
             ]);
@@ -1040,6 +1075,7 @@ class ProjectController extends Controller
                 'alcancefinalizacion' => $request->alcancefinalizacion,
                 'razonescambioproyecto' => $request->razonescambioproyecto,
                 'referenciainforme' => $request->referenciainforme,
+                'observaciones'=>$request->observaciones,
 
 
             ]);
@@ -1074,6 +1110,7 @@ class ProjectController extends Controller
                 'alcancefinalizacion' => $request->alcancefinalizacion,
                 'razonescambioproyecto' => $request->razonescambioproyecto,
                 'referenciainforme' => $request->referenciainforme,
+                'observaciones'=>$request->observaciones,
 
 
             ]);
@@ -1119,6 +1156,7 @@ class ProjectController extends Controller
                 'razonescambiosalcancecontrato' => $request->razonescambiosalcancecontrato,
                 'aplicacionescalatoria' => $request->aplicacionescalatoria,
                 'estadoactualproyecto' => $request->estadoactualproyecto,
+                'observaciones'=>$request->observaciones,
 
 
             ]);
@@ -1201,6 +1239,7 @@ class ProjectController extends Controller
                 'alcancecontrato' => $request->alcancecontrato,
                 'fechainiciocontrato' => $request->fechainiciocontrato,
                 'duracionproyecto_contrato' => $request->duracionproyecto_contrato,
+                'observaciones'=>$request->observaciones,
 
 
             ]);
@@ -1258,6 +1297,7 @@ class ProjectController extends Controller
             'fecharealizacionAmbiental' => $request->fecharealizacionAmbiental,
             'responsableAmbiental' => $request->responsableAmbiental,
             'numeros_ambiental' => $request->numeros_ambiental,
+            'observaciones'=>$request->observaciones,
         ]);
 
         DB::table('estudiosfactibilidad')->insert([
@@ -1352,6 +1392,8 @@ class ProjectController extends Controller
             'correoresponsable' => 'required|max:100',
             'domicilioresponsable' => 'required|max:100',
             'horarioresponsable' => 'required|max:50',
+            
+            
 
 
 
@@ -1378,7 +1420,7 @@ class ProjectController extends Controller
 
         $project->publicAuthority_name = '';
         $project->publicAuthority_id = $request->autoridadP;
-
+        $project->observaciones=$request->observaciones;
 
 
         $project->save();

@@ -58,6 +58,7 @@
 }
 
 .content-label {
+    display: none;
     text-align: left;
     color: #2C4143;
     font-size: 12px;

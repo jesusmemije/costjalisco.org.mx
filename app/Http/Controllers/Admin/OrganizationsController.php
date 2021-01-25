@@ -174,12 +174,12 @@ class OrganizationsController extends Controller
     {  
 
        
-
+       
         $dataorg=DB::table('organization')
         ->join('contact_point','organization.id_contact_point','=','contact_point.id')
         ->join('address','organization.id_address','=','address.id')
         ->join('party_role','organization.id_partyRole','=','party_role.id')
-        ->join('locations','address.id','=','locations.id_address')
+        ->leftJoin('locations','address.id','=','locations.id_address')
         ->where('organization.id','=',$organization->id)
         ->select('organization.name as orgname','organization.id as id_organization','contact_point.*','address.*','party_role.id as partyid','locations.description as description')
         ->first();
@@ -199,6 +199,8 @@ class OrganizationsController extends Controller
 
         $users=User::all();
         $party_rol=OrganizationsRol::all();
+     
+      
         return view('admin.organizations.edit',[
             'organization'=>$dataorg,
             'users'=>$users,

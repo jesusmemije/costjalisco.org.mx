@@ -230,16 +230,27 @@ function rellenar(img){
        
 
         
-
-
-
+        <br>
+   
+        <div class="col-md-6">
+        <label for="video">URL vídeo:</label>
+        <input type="text" name="video" name="video" class="form-control" value="{{old('video',$generaldata->video)}}">
+        </div>
+       
+        <div class="col-md-12">
+        <label for="observaciones">Observaciones:</label>
+        <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{old('observaciones',$generaldata->observaciones)}}">
+        </div>
 
           </div>
 
         </div>
- 
+
+      
 
       </div> <!-- end of card -->
+      
+
       <div class="d-flex justify-content-end">
               <button id="send" type="submit"  class="btn btn-sm btn-primary shadow-sm">
                 <i class="fas {{ $edit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
@@ -247,6 +258,7 @@ function rellenar(img){
               </button>
 
             </div>
+            <br>
             
     </form>
 

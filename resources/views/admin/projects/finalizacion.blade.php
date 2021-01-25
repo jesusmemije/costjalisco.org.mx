@@ -93,6 +93,12 @@
 
 
             </div>
+            <div class="form-row">
+          <div class="form-group col-md-12">
+        <label for="observaciones">Observaciones:</label>
+        <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{old('observaciones',$project->observaciones)}}">
+          </div>
+        </div>
             @include('admin.projects.selectdocuments')
     
 

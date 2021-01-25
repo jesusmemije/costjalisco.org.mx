@@ -269,38 +269,64 @@ Georreferenciación
 
 <script type="text/javascript">
     // listen for screen resize events
-      var zona = 0;
-      window.addEventListener('load', function(event){
-          // get the width of the screen after the resize event
-          var width = document.documentElement.clientWidth;
-          // tablets are between 768 and 922 pixels wide
-          // phones are less than 768 pixels wide
-          if (width < 1550) {
-              // set the zoom level to 10
-              zona = 7;
-          }  else {
-              // set the zoom level to 8
-              zona = 8;
-          }        
-            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                          osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib }),
-                          bounds = new L.LatLngBounds(new L.LatLng(22.629, -103.886), new L.LatLng(18.489, -102.940));
-  
-              var map = new L.Map('map', {
-                  scrollWheelZoom: false,
-                  center: bounds.getCenter(),
-                  zoom: zona,
-                  layers: [osm],
-                  maxBounds: bounds
-              });
-              
-            const projects = @json($projects);
+    var zona = 0;
+    window.addEventListener('load', function(event){
+        // get the width of the screen after the resize event
+        var width = document.documentElement.clientWidth;
+        // tablets are between 768 and 922 pixels wide
+        // phones are less than 768 pixels wide
+        if (width < 1550) {
+            // set the zoom level to 10
+            zona = 7;
+        }  else {
+            // set the zoom level to 8
+            zona = 8;
+        }
 
-            projects.forEach(function(item, index) {
-                L.marker([item.lat,item.lng]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
-            });
+        //Marker icon
+        var icon = L.icon({
+            iconUrl: '/assets/img/map/marker.png',
+            iconSize: [25, 35], // size of the icon
+        });
+
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib }),
+            bounds = new L.LatLngBounds(new L.LatLng(22.629, -103.886), new L.LatLng(18.489, -102.940));
+  
+        var map = new L.Map('map', {
+            scrollWheelZoom: false,
+            center: bounds.getCenter(),
+            zoom: zona,
+            layers: [osm],
+            maxBounds: bounds
+        });
+              
+        const projects = @json($projects);
+
+        projects.forEach(function(item, index) {
             
+            var lat   = item.lat;
+            var lng   = item.lng;
+            var title = item.title;
+
+            let lat_split = lat.split('|')
+            let lng_split = lng.split('|')
+
+            title = title.substr(0, 60) + "...";
+
+            if( lat_split[0] != "" ){
+                for(var i=0; i<=lat_split.length; i++){
+                    if( lat_split[i] == "" || lat_split[i] == undefined || lat_split[i] == null ){
+                        //console.log("Última localización de cada proyecto.")
+                    } else {
+                        //console.log([lat_split[i], lng_split[i]])
+                        console.log(title)
+                        L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
+                    }
+                } 
+            }
+        }); 
     });
 </script>
 

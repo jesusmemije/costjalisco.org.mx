@@ -120,26 +120,8 @@
     </div>
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
-        @php
-            $complements = DB::table('complements')
-            ->select('complements.*')
-            // ->orderBy('complements.nombreperiodico','asc')
-            ->get();
-
-            if(sizeof($complements)!=0){
-                setlocale(LC_TIME, "spanish");
-            $fecha_a = $complements[0]->anio;
-            $fecha_a = str_replace("/", "-", $fecha_a);			
-            $Nueva_Fecha_a = date("d-M-Y", strtotime($fecha_a));	
-            $fecha_anio = strftime("%Y", strtotime($Nueva_Fecha_a)); 
-            }else{
-                
-                $fecha_anio=date('Y');
-            } 
-            
-            
-        @endphp
-        <strong>CoST Jalisco {{$fecha_anio}}</strong> | Todos los derechos reservados
+       
+        <strong>CoST Jalisco 2021</strong> | Todos los derechos reservados
     </div>
 </footer>
 <!-- End Footer Desktop -->
