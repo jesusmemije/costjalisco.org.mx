@@ -56,44 +56,45 @@ Conoce más
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    CoST se lanzó desde el Reino Unido como una inicialiva global en 2012 con el apoyo del Banco Mundial
+                    <justify>CoST se lanzó desde el Reino Unido como una inicialiva global en 2012 con el apoyo del Banco Mundial
                     surgió de las <br class="hidden-desktop-mini">
                     lecciones aprendidas de un programa piloto de tres años que probó la viabilidad de un nuevo proceso
                     de transparencia y <br class="hidden-desktop-mini">
-                    responsabilidad en la infraestructura pública en ocho países.
+                    responsabilidad en la infraestructura pública en ocho países.</justify>
 
                 </p>
                 <p style="font-weight: 600;">
-                    Actualmente CoST trabaja globalmente con miembros distribuidos en 15 países de cuatro continentes,
+                    <justify>Actualmente CoST trabaja globalmente con miembros distribuidos en 15 países de cuatro continentes,
                     sus <br class="hidden-desktop-mini">
                     miembros son de gobiernos subnacionales y nacionales y representan economías emergentes y de bajos
                     ingresos e <br class="hidden-desktop-mini">
                     incluyen cinco Estados frágiles y afectados por conflictos.
+                    </justify>
                 </p>
                 <p>
-                    Además, colabora internacionalmente con organizaciones clave en materia de transparencia y en el
+                    <justify>Además, colabora internacionalmente con organizaciones clave en materia de transparencia y en el
                     combate a la corrupción <br class="hidden-desktop-mini">
                     para facilitar el intercambio global de experiencias y conocimientos sobre transparencia y
                     responsabilidad en la <br class="hidden-desktop-mini">
                     infraestructura pública. Entre los socios internacionales de CoST están: Article 19, Open
                     Contracting Partnership, <br class="hidden-desktop-mini">
-                    Transparency International, Open Government Partnership e Hivos.
+                    Transparency International, Open Government Partnership e Hivos.</justify>
                 </p>
                 <p style="font-weight: 600;">
-                    Esta Iniciativa trabaja con el Gobierno, la Industia y la sociedad civil para promover le
+                   <justify> Esta Iniciativa trabaja con el Gobierno, la Industia y la sociedad civil para promover le
                     divulgación, validación e <br class="hidden-desktop-mini">
-                    interpretación de datos de proyectos de infraestructura.
+                    interpretación de datos de proyectos de infraestructura.</justify>
                 </p>
                 <p>
-                    CoST tiene una trayectoria en ahorros de costos, reformas legales e institucionales y en el
+                    <justify>CoST tiene una trayectoria en ahorros de costos, reformas legales e institucionales y en el
                     desarrollo de capacidades de <br class="hidden-desktop-mini">
                     grupos interesados. Esto hace que la iniciativa esté idealmente posicionado para dirigir esfuerzos
                     futuros de aumento de la <br class="hidden-desktop-mini">
                     transparencia, rendición de cuentas, así como la mejora en el costo/efectividad en la entrega de la
-                    infraestructura pública.
+                    infraestructura pública.</justify>
                 </p>
                 <p>
-                    Dentro de su estructura, la Junta de CoST Internacional es responsable de gobernar la iniciativa:
+                    <justify>Dentro de su estructura, la Junta de CoST Internacional es responsable de gobernar la iniciativa:
                     entre sus tareas se <br class="hidden-desktop-mini">
                     encuentran; el aprobar la estrategia y los presupuestos, establecer los principios y los estándares
                     para la participación y la <br class="hidden-desktop-mini">
@@ -102,7 +103,7 @@ Conoce más
                         administrativo para el prograrna internacional de CoST, apoyar a los países interesados en
                         unirse a CoST, proveer <br class="hidden-desktop-mini">
                         guía y asistencia técnica a los programas nacionales y administrar fondos
-                        internacionales.</span>
+                        internacionales.</justify></span>
                 </p>
             </div>
         </div>
@@ -122,28 +123,28 @@ Conoce más
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    CoST representa un mejor valor para los gobiernos porque demuestra cómo se gasta el dinero público,
+                    <justify>CoST representa un mejor valor para los gobiernos porque demuestra cómo se gasta el dinero público,
                     identifica los <br class="hidden-desktop-mini">
                     potenciales ahorros eficientes y complementa las reformas en la gestión de finanzas públicas y
                     procesos de adquisición de <br class="hidden-desktop-mini">
-                    infraestructura, además de fomentar y desarrollar transparencia.
+                    infraestructura, además de fomentar y desarrollar transparencia.</justify>
                 </p>
                 <p style="font-weight: 600;">
-                    CoST representa un mejor valor para las comunidades porque asegura una entrega de infraestructura
+                    <justify>CoST representa un mejor valor para las comunidades porque asegura una entrega de infraestructura
                     eficiente en <br class="hidden-desktop-mini">
                     costos y con una mejor calidad, capaz de cambiar vidas. Las comunidades ganan acceso a trabajo y
                     mercados a <br class="hidden-desktop-mini">
                     través de carreteras y calles mejoradas, agua potable limpia, educación en escuelas bien construidas
                     o tratamiento <br class="hidden-desktop-mini">
-                    médico en hospitales seguros, entre otras.
+                    médico en hospitales seguros, entre otras.</justify>
                 </p>
                 <p>
-                    Esto ayuda a informar y empoderar a los ciudadanos, permitiéndoles exigirles cuentas a los tomadores
+                    <justify>Esto ayuda a informar y empoderar a los ciudadanos, permitiéndoles exigirles cuentas a los tomadores
                     de decisiones. <br class="hidden-desktop-mini">
                     Ciudadanos informados e instituciones públicas receptivas pueden liderar la introducción de reformas
                     que reducirán la mala <br class="hidden-desktop-mini">
                     gestión, ineficiencia, corrupción y el riesgo planteado al público como resultado de la mala
-                    infraestructura.
+                    infraestructura.</justify>
                 </p>
             </div>
         </div>
@@ -172,10 +173,10 @@ Conoce más
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    Consiste en garantizar que la información sobre el propósito, alcance, costos y ejecución de los
+                    <justify>Consiste en garantizar que la información sobre el propósito, alcance, costos y ejecución de los
                     proyectos de infraestructura <br class="hidden-desktop-mini">
                     y obra pública esté abierta y accesible al público, divulgándola de manera oportuna a través de la
-                    plataforma de divulgación.
+                    plataforma de divulgación.</justify>
                 </p>
             </div>
         </div>
@@ -195,17 +196,17 @@ Conoce más
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    Consiste en avaluar la credibilidad de la información divulgada a dos niveles:
+                    <justify>Consiste en avaluar la credibilidad de la información divulgada a dos niveles:</justify>
                     <ul class="know-more-list">
                         <li class="rojo">
-                            <p>A nivel de sector y a nivel de entidad de adquisición, sobre la integridad y exactitud de
+                            <p><justify>A nivel de sector y a nivel de entidad de adquisición, sobre la integridad y exactitud de
                                 la información divulgada, y sobre las <br class="hidden-desktop-mini">
-                                características generales de desempeño: y</p>
+                                características generales de desempeño: y </justify></p>
                         </li>
                         <li>
-                            <p>A nivel de proyecto, en una pequeña muestra aleatoria, en la cual se resaltan los asuntos
+                            <p><justify>A nivel de proyecto, en una pequeña muestra aleatoria, en la cual se resaltan los asuntos
                                 que pueden ser potencialmente <br class="hidden-desktop-mini">
-                                preocupantes para los actores clave involucrados en los proyectos.</p>
+                                preocupantes para los actores clave involucrados en los proyectos.</justify></p>
                         </li>
                     </ul>
                 </p>
@@ -227,26 +228,26 @@ Conoce más
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    Consiste en trabajar con las partes interesadas para promover los resultados del proceso de
+                    <justify>Consiste en trabajar con las partes interesadas para promover los resultados del proceso de
                     seguimiento, con la finalidad <br class="hidden-desktop-mini">
                     de poner los asuntos clave en el dominio público. De esta manera, la sociedad civil, los medios de
                     comunicación y los <br class="hidden-desktop-mini">
                     ciudadanos pueden ser conscientes de los problemas y demandar la rendición de cuentas a los
                     responsables de la toma de <br class="hidden-desktop-mini">
-                    decisiones.
+                    decisiones.</justify>
                 </p>
                 <p>
-                    La implementación de CoST en Jalisco, pretende mejorar la transparencia en los procesos de
+                    <justify>La implementación de CoST en Jalisco, pretende mejorar la transparencia en los procesos de
                     infraestructura, mediante el <br class="hidden-desktop-mini">
                     estándar de contrataciones abiertas, cuyos indicadores han sido ajustados por parte de los
                     integrantes del Grupo <br class="hidden-desktop-mini">
                     Multisectorial a los procesos y conceptos utilizados en la entidad, (identificación, preparación,
-                    contratación, ejecución y evaluación).
+                    contratación, ejecución y evaluación).</justify>
                 </p>
                 <p>
-                    Aunado a ello, se pretende generar capacidades a la sociedad civil para la vigilancia y monitoreo de
+                    <justify>Aunado a ello, se pretende generar capacidades a la sociedad civil para la vigilancia y monitoreo de
                     las obras públicas que <br class="hidden-desktop-mini">
-                    encuentren publicadas bajo los entándares antes referidos.
+                    encuentren publicadas bajo los entándares antes referidos.</justify>
                 </p>
             </div>
         </div>

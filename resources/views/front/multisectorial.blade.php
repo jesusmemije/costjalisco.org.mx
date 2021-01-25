@@ -37,14 +37,14 @@ Nosotros
         <div class="col-md-7 line-red-vertical">
             <div class="mt-md-5 mt-3" style="letter-spacing: -.2px;">
                 <p>
-                    El Grupo Multisectorial "GMS" está conformado por instituciones de <br class="hidden-phone">
-                    Gobierno, del sector privado, del sector académico y de la sociedad civil.
+                    <justify>El Grupo Multisectorial "GMS" está conformado por instituciones de <br class="hidden-phone">
+                    Gobierno, del sector privado, del sector académico y de la sociedad civil.</justify>
                 </p>
                 <p>
-                    Este grupo, a través de los representantes de cada una de las <br <br class="hidden-phone">
+                    <justify>Este grupo, a través de los representantes de cada una de las <br <br class="hidden-phone">
                     instituciones que lo integra, es el responsable de guiar el desarrollo, la <br <br
                         class="hidden-phone">
-                    implementación y supervisión de la iniciativa de CoST en Jalisco.
+                    implementación y supervisión de la iniciativa de CoST en Jalisco.</justify>
                 </p>
             </div>
         </div>
