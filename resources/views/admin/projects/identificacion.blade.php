@@ -149,6 +149,11 @@
               </div>
 
               <div class="form-group col-md-6">
+              <?php
+              $id_organization=auth()->user()->id_organization;
+             
+              ?>
+              @if($id_organization=="")
                 <label for="autoridadP">Autoridad Pública</label>
                 <select required id="autoridadP" name="autoridadP" class="form-control @error('autoridadP') is-invalid @enderror">
                   <option value="">Seleccionar</option>
@@ -166,6 +171,23 @@
                  @error('autoridadP')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+            @else
+            <label for="autoridadP">Autoridad Pública</label>
+                <select disabled required id="autoridadP" name="autoridadP" class="form-control @error('autoridadP') is-invalid @enderror">
+                  <option value="">Seleccionar</option>
+                  @foreach($autoridadP as $autoridad)
+
+                  @if($autoridad->id==$id_organization)
+
+                  <option value="{{$autoridad->id}}" selected>{{$autoridad->name}}</option>
+                  @else
+                  <option value="{{$autoridad->id}}">{{$autoridad->name}}</option>
+                  @endif
+                  @endforeach
+
+                </select>
+               
+            @endif
               </div>
             </div>
 
@@ -412,7 +434,7 @@
 
            </div>
            
-           
+          
 
 
 
@@ -447,6 +469,8 @@
                  @error('documenttype')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+
+            
               </div>
             
                
@@ -502,7 +526,12 @@
           @endif
           @endif
            
-           
+          <div class="form-row">
+          <div class="form-group col-md-12">
+        <label for="observaciones">Observaciones:</label>
+        <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{old('observaciones',$project->observaciones)}}">
+          </div>
+        </div>
            
             <hr>
             <div class="d-flex justify-content-end">
