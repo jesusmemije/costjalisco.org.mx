@@ -269,13 +269,14 @@
 .timeline {
     border: 23px solid #2C4143;
     border-top-right-radius: 25px;
+    width: 500px;
 }
 
 .timeline-icon-position {
     position: absolute;
     left: 0;
     top: 2px;
-    width: 90%;
+    width: 86%;
     font-size: 24px;
     text-align: end;
 }
@@ -388,6 +389,10 @@
 
 .modalbtn {
     font-size: 15px;
+}
+
+.title-barra-roja {
+    font-size: 32px;
 }
 
 

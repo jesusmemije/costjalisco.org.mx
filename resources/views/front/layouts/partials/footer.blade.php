@@ -26,9 +26,6 @@
                 <!--Banco de desarrollo -->
                 <div class="row mb-4 align-items-center">
                     <div class="col-md-12 text-center pt-4 px-0" style="line-height: 1.5;">
-                        <div style=" margin-left:4%; border:1px"> <span style="font-size: 8px; color: #fff;">EL SITIO
-                                WEB FINANCIADO POR EL BANCO DE DESARROLLO DE AMÉRICA LATINA</span>
-                        </div>
                         <a href="https://www.caf.com/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250"
                                 alt="">
@@ -89,10 +86,8 @@
                 <p><i class="fas fa-envelope mr-3"></i> <a
                         href="mailto:jalisco@infrastructuretransparency.org">jalisco@infrastructuretransparency.org</a>
                 </p>
-                <p><i class="fas fa-globe mr-3"></i> <a
-                        href="https://infrastructuretransparency.org/">https://infrastructuretransparency.org</a></p>
 
-                <p style="margin-left: 34px"> <a href="">REVISA EL AVISO DE PRIVACIDAD</a></p>
+                <p style="margin-left: 34px; margin-top: 34px;"> <a href="">REVISA EL AVISO DE PRIVACIDAD</a></p>
             </div>
 
             <!-- Grid column -->
