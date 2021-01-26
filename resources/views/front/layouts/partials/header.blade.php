@@ -4,7 +4,7 @@
         <div class="row flex-nowrap justify-content-between align-items-center mx-0">
             <div class="col-12 d-flex justify-content-end align-items-center">
                 <div class="c">
-                    <nav class="nav d-flex justify-content-between">
+                    <nav class="nav d-flex justify-content-between" >
                         <a class="p-2 text-white nav-link" href="{{ route('interest-sites') }}">Sitios de interés</a>
                         <div class="divider"></div>
 
