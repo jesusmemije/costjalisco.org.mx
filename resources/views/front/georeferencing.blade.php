@@ -322,7 +322,7 @@ Georreferenciación
                     } else {
                         //console.log([lat_split[i], lng_split[i]])
                         console.log(title)
-                        L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
+                        L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="http://pice-software.com/costjalisco/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
                     }
                 } 
             }

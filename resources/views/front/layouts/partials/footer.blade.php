@@ -85,9 +85,6 @@
                         </a>
                     </div>
                 </div>
-                <div class="row col-lg-12">
-                    <img src="{{ asset('assets/img/footer/sitiowebfinanciado.png') }}" class="img-fluid" alt="">
-                </div>
             </div>
             <!-- Grid column -->
 
@@ -119,11 +116,11 @@
                 </div>
             </div>
 
-            <div class="btn-go-top">
+            <!--<div class="btn-go-top">
                 <a onclick="smoothScroll(document.getElementById('header'))" style="cursor: pointer;">
                     <img src="{{ asset('assets/img/home/btn-up.png') }}" class="img-fluid" alt="">
                 </a>
-            </div>
+            </div>-->
         </div>
     </div>
     <!-- Copyright -->
@@ -132,11 +129,12 @@
             $fechaActual = date('Y');
         @endphp
         <div class="row mx-0">
-            <div class="col-lg-8 text-right">
-                <strong>CoST Jalisco {{$fechaActual}} | Todos los derechos reservados</strong>
-            </div>
-            <div class="col-lg-4 text-right" style="padding-right: 50px;">
-                <strong>CÓDIGO ABIERTO</strong>
+            <div class="col-lg-12">
+                <div class="container-footer d-flex justify-content-between align-items-center ">
+                    <img src="{{ asset('assets/img/footer/sitiowebfinanciado.png') }}" class="img-fluid" alt="">
+                    <strong>CoST Jalisco {{$fechaActual}} | Todos los derechos reservados</strong>
+                    <strong style="margin-left: 200px;">CÓDIGO ABIERTO</strong>
+                </div>
             </div>
         </div>
     </div>
