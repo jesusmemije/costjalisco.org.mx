@@ -36,7 +36,7 @@ Recursos
             <ul class="listStyle">
                 <div class="form-row">
                     <div class="form-group col-lg-2 col-md-4 col-sm-5">
-                        <img style="margin-left:15%" src="{{ asset('assets/img/documentos/1-cimtra logo.jpg') }}">
+                        <img style="margin-left:15%" src="{{ asset('assets/img/documentos/1-cimtra-logo.jpg') }}">
                     </div>
                     <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
                         <li><a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CIMTRA.pdf"
@@ -46,7 +46,7 @@ Recursos
 
                 <div class="form-row">
                     <div class="form-group col-lg-2 col-md-4 col-sm-5">
-                        <img style="margin-left:15%" src="{{ asset('assets/img/documentos/2-cmic logo.jpg') }}">
+                        <img style="margin-left:15%" src="{{ asset('assets/img/documentos/2-cmic-logo.jpg') }}">
                     </div>
                     <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:0.5%;">
                         <li><a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CMIC.pdf"
@@ -56,7 +56,7 @@ Recursos
 
                 <div class="form-row">
                     <div class="form-group col-lg-2 col-md-4 col-sm-5">
-                        <img style="margin-left:15%" src="{{ asset('assets/img/documentos/3-comce logo.jpg') }}">
+                        <img style="margin-left:15%" src="{{ asset('assets/img/documentos/3-comce-logo.jpg') }}">
                     </div>
                     <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
                         <li><a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_COMCE.pdf"
@@ -66,7 +66,7 @@ Recursos
 
                 <div class="form-row">
                     <div class="form-group col-lg-2 col-md-4 col-sm-5">
-                        <img style="margin-left:20%" src="{{ asset('assets/img/documentos/4-cps logo.jpg') }}">
+                        <img style="margin-left:20%" src="{{ asset('assets/img/documentos/4-cps-logo.jpg') }}">
                     </div>
                     <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
                         <li><a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CPS.pdf"
@@ -76,7 +76,7 @@ Recursos
 
                 <div class="form-row">
                     <div class="form-group col-lg-2 col-md-4 col-sm-5">
-                        <img style="margin-left:28%" src="{{ asset('assets/img/documentos/5-marhnos logo.jpg') }}">
+                        <img style="margin-left:28%" src="{{ asset('assets/img/documentos/5-marhnos-logo.jpg') }}">
                     </div>
                     <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
                         <li><a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_MARHNOS.pdf"
@@ -105,7 +105,7 @@ Recursos
 
                 <div class="form-row">
                     <div class="form-group col-lg-2 col-md-4 col-sm-5">
-                        <img style="margin-left:18%" src="{{ asset('assets/img/documentos/6-jal logo.jpg') }}">
+                        <img style="margin-left:18%" src="{{ asset('assets/img/documentos/6-jal-logo.jpg') }}">
                     </div>
                     <div class="form-group col-lg-6 col-md-4 col-sm-7" style="margin-top:0.5%;">
                         <li><a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Gob_del_Estado.pdf"
@@ -135,7 +135,7 @@ Recursos
 
                 <div class="form-row">
                     <div class="form-group col-lg-2 col-md-4 col-sm-5">
-                        <img style="margin-left:18%" src="{{ asset('assets/img/documentos/9-tonala logo.jpg') }}">
+                        <img style="margin-left:18%" src="{{ asset('assets/img/documentos/9-tonala-logo.jpg') }}">
                     </div>
                     <div class="form-group col-lg-6 col-md-4 col-sm-7" style="margin-top:1%;">
                         <li><a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Tonala.pdf"
