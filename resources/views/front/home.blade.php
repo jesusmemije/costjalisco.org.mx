@@ -254,16 +254,6 @@ Inicio
     </div>
 -->
 
-<!-- Título - Nosotros -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="text-center font-weight-bold" id="inicio-nosotros">NOSOTROS</h3>
-            <div class="section-divider"></div>
-        </div>
-    </div>
-</div>
-
 <!-- Section - Índices -->
 <div class="row mx-0">
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
@@ -307,11 +297,20 @@ Inicio
     </div>
 </div>
 
+<!-- Title - Nosotros -->
+<div class="row mx-0">
+    <div class="col-md-6 px-0 mb-4">
+        <div class="text-center text-white">
+            <h3 class="py-2 font-weight-bold title-barra-roja">NOSOTROS</h3>
+        </div>
+    </div>
+</div>
+
 <!-- Title - ¿Qúes es CoST? -->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mb-5">
         <div class="text-center text-white">
-            <h3 class="py-2 font-weight-bold title-barra-roja">¿Qué es CoST?</h3>
+            <h3 class="py-2 font-weight-bold subtitle-barra-gris">¿Qué es CoST?</h3>
         </div>
     </div>
 </div>
@@ -354,7 +353,7 @@ Inicio
 <div class="row mx-0">
     <div class="col-md-6 px-0 mt-2">
         <div class="text-center text-white">
-            <h3 class="py-2 font-weight-bold title-barra-roja">Grupo Multisectorial</h3>
+            <h3 class="py-2 font-weight-bold subtitle-barra-gris">Grupo Multisectorial</h3>
         </div>
     </div>
     <div class="col-md-6">
@@ -665,14 +664,13 @@ Inicio
 
 </div>
 
-<!-- Título - Proyectos-->
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-md-12 bg-gris">
+<!-- Title - Proyectos -->
+<div class="row mx-0">
+    <div class="col-md-6 px-0 mt-5">
+        <div class="text-center">
             <a href="{{route('card-projects')}}">
-                <h3 class="text-center font-weight-bold" style="color: #2C4143;">PROYECTOS</h3>
+                <h3 class="py-2 font-weight-bold text-white title-barra-roja">PROYECTOS</h3>
             </a>
-            <div class="section-divider"></div>
         </div>
     </div>
 </div>
@@ -782,13 +780,11 @@ Inicio
     </div>
 </div>
 
-<!-- Título - Nuestras redes-->
-<div class="container pt-5 hidden-phone">
-    <div class="row">
-        <div class="col-md-12 bg-gris">
-            <h3 class="text-center font-weight-bold">NUESTRAS REDES
-            </h3>
-            <div class="section-divider"></div>
+<!-- Title - Nuestras redes -->
+<div class="row mx-0 hidden-phone">
+    <div class="col-md-6 px-0 mt-5 mb-4">
+        <div class="text-center">
+            <h3 class="py-2 font-weight-bold text-white title-barra-roja">NUESTRAS REDES</h3>
         </div>
     </div>
 </div>
@@ -796,27 +792,18 @@ Inicio
 <!-- Section - Timeline redes sociales -->
 <div class="container pb-5 hidden-phone">
     <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="timeline"></div>
             <div class="timeline-icon-position"><i class="fab fa-twitter fa-sm"></i></div>
-            <a class="twitter-timeline" data-lang="es" data-height="280" data-theme="light"
+            <a class="twitter-timeline" data-lang="es" data-height="340" data-width="500" data-theme="light"
                 href="https://twitter.com/CostJalisco?ref_src=twsrc%5Etfw">Tweets by CostJalisco</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-        <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="timeline"></div>
-            <div class="timeline-icon-position"><i class="fab fa-youtube fa-sm"></i></div>
-            <iframe width="350" height="280" style="width: 100%;" src="https://www.youtube.com/embed/nd2Bc99HgRE" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-        </div>
-        <div class="col-lg-4 col-md-12 col-sm-12 text-center">
+        <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="timeline"></div>
             <div class="timeline-icon-position"><i class="fab fa-facebook-f fa-sm"></i></div>
-            <iframe
-                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCoSTransparency&tabs=timeline&width=350&height=280&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                width="350" height="280" style="border:none;overflow:hidden;" scrolling="no" frameborder="0"
-                allowfullscreen="true"
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCoSTransparency&tabs=timeline&width=500&height=340&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
+                width="500" height="340" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" 
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
         </div>
     </div>
