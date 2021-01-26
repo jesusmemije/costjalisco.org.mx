@@ -60,15 +60,6 @@
                             <a class="dropdown-item" href="{{ route('know-more') }}#procesos-de-cost">Procesos de
                                 CoST</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('know-more') }}#divulgacion">&nbsp;&bull;
-                                Divulgación</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('know-more') }}#aseguramiento">&nbsp;&bull;
-                                Aseguramiento</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('know-more') }}#auditoria-social">&nbsp;&bull;
-                                Auditoria Social</a>
-                            <div class="dropdown-divider"></div>
                         </div>
                     </li>
                     <div class="divider"></div>
@@ -207,15 +198,6 @@ background-size: cover; height: 56px;">
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('know-more') }}#procesos-de-cost">Procesos de
                             CoST</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('know-more') }}#divulgacion">&nbsp;&bull;
-                            Divulgación</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('know-more') }}#aseguramiento">&nbsp;&bull;
-                            Aseguramiento</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('know-more') }}#auditoria-social">&nbsp;&bull;
-                            Auditoria Social</a>
                     </div>
                 </li>
     
