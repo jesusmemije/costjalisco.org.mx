@@ -41,7 +41,7 @@ Usuarios
             <th>Nombre</th>
             <th>Apellidos</th>
             <th>Teléfono</th>
-            <th>Tipo</th>
+            {{--<th>Tipo</th>--}}
             <th>Correo</th>
             <th>Status</th>
             <th>Creación</th>
@@ -54,7 +54,7 @@ Usuarios
             <td>{{ $user->name }}</td>
             <td>{{ $user->last_name }}</td>
             <td>{{ $user->phone }}</td>
-            <td>
+           {{-- <td>
 
 
             <?php
@@ -73,7 +73,7 @@ Usuarios
                     break;
             }
             ?>
-          </td>
+          </td>--}}
 
             <td>{{ $user->email }}</td>
             <td class="text-center">
