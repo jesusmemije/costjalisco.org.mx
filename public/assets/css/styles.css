@@ -9,7 +9,7 @@ body {
 
 .header-top {
   font-size: 12px;
-  background-image: url("/assets/img/header/menu-superior.jpg");
+  background-image: url("http://pice-software.com/costjalisco/public/assets/img/header/menu-superior.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -19,7 +19,7 @@ body {
 }
 
 .header-menu {
-  background-image: url("/assets/img/header/menu-principal.jpg");
+  background-image: url("http://pice-software.com/costjalisco/public/assets/img/header/menu-principal.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -100,13 +100,13 @@ a:hover {
 }
 
 .title-barra-roja {
-  background-image: url("/assets/img/background-rojo.jpg");
+  background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .subtitle-barra-gris {
-  background-image: url("/assets/img/background-gris.jpg");
+  background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -115,7 +115,7 @@ a:hover {
   font-size: 32px;
   color: #fff;
   background-repeat: no-repeat;
-  background-image: url("/assets/img/project/background-title.png");
+  background-image: url("http://pice-software.com/costjalisco/public/assets/img/project/background-title.png");
   background-size: 102%;
 }
 
