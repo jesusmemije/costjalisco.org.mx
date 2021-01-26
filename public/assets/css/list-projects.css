@@ -83,6 +83,17 @@
     padding-left: 15px;
 }
 
+.container-item {
+    background: linear-gradient(45deg, #2C4143 35%, #58707B 35%);
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+
+.icon-arrow {
+    width: 14px; 
+    height: 16px;
+}
+
 /* Desktop */
 @media only screen and (max-width: 992px) {
 
