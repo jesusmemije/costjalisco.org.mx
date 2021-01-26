@@ -191,14 +191,17 @@ Eventos
         </div>
         <div style="margin-left:2%" class="col-lg-7 col-md-8" style="background-color:white">
             <div class="content1" style="margin-top: 1%;">
-                <div class="col-md-12"></div>
+                <div class="col-md-12" style="overflow-y: scroll; height: 250px;">
                 <h5 id="titulo">
                     Seleccione un mes y despues el día
                 </h5>
                 <p></p>
-                <h8 id="descripcion">
-                </h8>
+                
+                    <h8 id="descripcion">
+                    </h8>
+                
                 <br></br>
+                </div>
             </div>
         </div>
         <div>

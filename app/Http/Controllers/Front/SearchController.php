@@ -168,7 +168,7 @@ class SearchController extends Controller
                 ->orderBy('projectsector.titulo', 'asc')
                 ->get();
             if (count($sectores) == 0) {
-                $sectoresArray[0] = 'No se encontraron sectores';
+                $sectoresArray[0] = 'Sin resultados';
             } else {
                 foreach ($sectores as $sector) {
                     $sectoresArray[$sector->id] = $sector->titulo;
@@ -191,7 +191,7 @@ class SearchController extends Controller
                 ->get();
 
             if (count($sub_sectores) == 0) {
-                $subsectoresArray[0] = 'No se encontraron subsectores';
+                $subsectoresArray[0] = 'Sin resultados';
             } else {
                 foreach ($sub_sectores as $sub_sector) {
                     $subsectoresArray[$sub_sector->id] = $sub_sector->titulo;
@@ -215,7 +215,7 @@ class SearchController extends Controller
                 ->get();
 
             if (count($codigo_postales) == 0) {
-                $codigo_postalesArray[0] = 'No hay codigo postal';
+                $codigo_postalesArray[0] = 'Sin resultados';
             } else {
                 foreach ($codigo_postales as $codigo_postal) {
                     $codigo_postalesArray[$codigo_postal->postalCode] = $codigo_postal->postalCode;
