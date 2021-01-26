@@ -275,7 +275,7 @@ Inicio
         <div class="card-indice-title">Personas beneficiadas</div>
         <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
         <div class="card-indice-counter">
-            {{$total_beneficiarios}}
+            {{number_format($total_beneficiarios)}}
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
@@ -291,7 +291,16 @@ Inicio
 <div class="row mx-0">
     <div class="col-md-12">
         <div class="text-right mt-3 mb-3">
-            <h6 class="text-muted">Actualizado al 2021</h6>
+            @php
+                $fechaActual = date('d-m-Y');
+                setlocale(LC_TIME, "spanish");
+                $fecha_c = $fechaActual;
+                $fecha_c = str_replace("/", "-", $fecha_c);			
+                $Nueva_Fecha_c = date("d-M-Y", strtotime($fecha_c));	
+                $fecha_created = strftime("%d de %B de %Y", strtotime($Nueva_Fecha_c));
+
+            @endphp
+            <h6 class="text-muted">Actualizado al {{$fecha_created}}</h6>
         </div>
     </div>
 </div>
@@ -815,7 +824,7 @@ Inicio
         <div class="col-md-5 text-right pt-4 px-0" style="line-height: 1.1;">
             <br><span style="font-size: 38px;" class="font-weight-bold text-red">Eres el visitante
                 número:</span><br>
-            <span style="font-size: 14px; color: #58707B;">Actualizado al 2021</span>
+            <span style="font-size: 14px; color: #58707B;">Actualizado al {{$fecha_created}}</span>
         </div>
         <div class="col-md-7 pt-4">
             <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
