@@ -120,9 +120,7 @@
     </div>
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
-
         <strong>CoST Jalisco <?php echo date('d/m/Y');?></strong> | Todos los derechos reservados
-
     </div>
 </footer>
 <!-- End Footer Desktop -->
