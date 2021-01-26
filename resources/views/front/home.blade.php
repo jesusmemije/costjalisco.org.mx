@@ -302,7 +302,7 @@ Inicio
     <div class="col-md-12">
         <div class="text-right mt-3 mb-3">
            
-            <h6 class="text-muted">Actualizado al 2021</h6>
+            <h6 class="text-muted">Actualizado <?php echo date('d/m/Y'); ?></h6>
         </div>
     </div>
 </div>
@@ -829,7 +829,7 @@ Inicio
         <div class="col-md-5 text-right pt-4 px-0" style="line-height: 1.1;">
             <br><span style="font-size: 38px;" class="font-weight-bold text-red">Eres el visitante
                 número:</span><br>
-            <span style="font-size: 14px; color: #58707B;">Actualizado al 2021</span>
+            <span style="font-size: 14px; color: #58707B;">Actualizado <?php echo date('d/m/Y'); ?></span>
         </div>
         <div class="col-md-7 pt-4">
             <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">

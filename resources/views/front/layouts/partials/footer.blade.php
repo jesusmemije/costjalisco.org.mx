@@ -121,7 +121,14 @@
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
        
-        <strong>CoST Jalisco 2021</strong> | Todos los derechos reservados
+        @php
+            $originalupd = $complements[0]->updated_at;
+            $newupd = date("d/m/Y", strtotime($originalupd));
+        @endphp
+
+        <strong>CoST Jalisco <?php echo date('d/m/Y');?></strong> | Todos los derechos reservados
+        
+        
     </div>
 </footer>
 <!-- End Footer Desktop -->
