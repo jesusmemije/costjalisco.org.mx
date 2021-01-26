@@ -30,6 +30,7 @@ class ProjectController extends Controller
                 ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                 ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                 ->select('project.*')
+                ->whereNotNull('proyecto_contratacion.montocontrato')
                 ->orderBy('project.created_at', 'desc')
                 ->get();
             } else {
@@ -45,6 +46,7 @@ class ProjectController extends Controller
                 ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                 ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                 ->select('project.*')
+                ->whereNotNull('proyecto_contratacion.montocontrato')
                 ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
                 ->orderBy('project.created_at', 'desc')
                 ->get();
@@ -68,6 +70,7 @@ class ProjectController extends Controller
                         ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                         ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                         ->select('project.*')
+                        ->whereNotNull('proyecto_contratacion.montocontrato')
                         ->where('address.locality', '=', $request->municipio)
                         ->orderBy('project.created_at', 'desc')
                         ->get();
@@ -85,6 +88,7 @@ class ProjectController extends Controller
                         ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                         ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                         ->select('project.*')
+                        ->whereNotNull('proyecto_contratacion.montocontrato')
                         ->where('address.locality', '=', $request->municipio)
                         ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
                         ->orderBy('project.created_at', 'desc')
@@ -104,6 +108,7 @@ class ProjectController extends Controller
                         ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                         ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                         ->select('project.*')
+                        ->whereNotNull('proyecto_contratacion.montocontrato')
                         ->where('address.locality', '=', $request->municipio)
                         ->where('project.sector', '=', $request->id_sector)
                         ->orderBy('project.created_at', 'desc')
@@ -122,6 +127,7 @@ class ProjectController extends Controller
                             ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                             ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                             ->select('project.*')
+                            ->whereNotNull('proyecto_contratacion.montocontrato')
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->where('project.subsector', '=', $request->id_subsector)
@@ -142,6 +148,7 @@ class ProjectController extends Controller
                             ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                             ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                             ->select('project.*')
+                            ->whereNotNull('proyecto_contratacion.montocontrato')
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->where('project.subsector', '=', $request->id_subsector)
@@ -161,6 +168,7 @@ class ProjectController extends Controller
                             ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                             ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
                             ->select('project.*')
+                            ->whereNotNull('proyecto_contratacion.montocontrato')
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->where('project.subsector', '=', $request->id_subsector)
@@ -186,9 +194,18 @@ class ProjectController extends Controller
     public function card_projects()
     {
         $projects = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('address', 'locations.id_address', '=', 'address.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('project.*','projectsector.titulo as sector','subsector.titulo as subsector')
+        ->whereNotNull('proyecto_contratacion.montocontrato')
         ->orderBy('created_at', 'desc')
         ->get();
 
