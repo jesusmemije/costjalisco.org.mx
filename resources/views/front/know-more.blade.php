@@ -7,6 +7,12 @@ Conoce más
 @section('content')
 
 <style>
+
+    .tr1{
+    background-image: url("../assets/img/organizations/publico2.png");
+    color: #fff;
+    font-size: 1em;
+    }
     .know-more-list {
         color: red;
         list-style-type: disc;
@@ -23,7 +29,7 @@ Conoce más
     }
     .divcost{
        letter-spacing: normal;
-        width:75%;
+        width:78%;
     }
 
     @media only screen and (max-width: 480px) {
@@ -53,16 +59,16 @@ Conoce más
 
 <div class="main">
     <!-- Title - ¿Qúes es CoST? -->
-    <div class="row mx-0 my-4" id="que-es-cost">
+    <div class="row mx-0 my-4" id="historia">
         <div class="col-md-6 px-0">
-            <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold title-barra-roja">Historia</h3>
+            <div class="text-white" >
+                <h3 class="py-2 font-weight-bold title-barra-roja" style="padding-left:33%">Historia</h3>
             </div>
         </div>
     </div>
 
     <!-- Section - Descripción CoST -->
-    <div class="container divcost" style="border:1px solid blue;">
+    <div class="container divcost">
         <div class="row" >
             <div class="col-md-12"  style="text-align: justify;" >
             <div  class="hidden-desktop-mini" style="text-align: justify;">
@@ -120,42 +126,28 @@ Conoce más
     </div>
 
     <!-- Title - Beneficios -->
-    <div class="row mx-0 my-4 divcost" id="beneficios">
+    <div class="row mx-0 my-4" id="que-es-cost">
         <div class="col-md-6 px-0">
-            <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold title-barra-roja">¿Qué es CoST?</h3>
+            <div class="text-white">
+                <h3 class="py-2 font-weight-bold title-barra-roja" style="padding-left:30%">¿Qué es CoST?</h3>
             </div>
         </div>
     </div>
 
     <!-- Section - Beneficios -->
-    <div class="container">
+    <div class="container divcost">
         <div class="row">
             <div class="col-md-12">
                 <div style="text-align: justify;">
                 <p>
-                    CoST representa un mejor valor para los gobiernos porque demuestra cómo se gasta el dinero público,
-                    identifica los
-                    potenciales ahorros eficientes y complementa las reformas en la gestión de finanzas públicas y
-                    procesos de adquisición de
-                    infraestructura, además de fomentar y desarrollar transparencia.
-                </p>
-                <p style="font-weight: 600;">
-                    CoST representa un mejor valor para las comunidades porque asegura una entrega de infraestructura
-                    eficiente en
-                    costos y con una mejor calidad, capaz de cambiar vidas. Las comunidades ganan acceso a trabajo y
-                    mercados a
-                    través de carreteras y calles mejoradas, agua potable limpia, educación en escuelas bien construidas
-                    o tratamiento
-                    médico en hospitales seguros, entre otras.
+                La iniciativa de Transparencia en Infraestructura [Construction Sector Transparency Initiative] o "CoST" por sus siglas en
+                inglés, es la encargada de promover la transparencia y la rendición de cuentas dentro de las diferentes etapas de los proyectos
+                de infraestructura y obra pública.
                 </p>
                 <p>
-                    Esto ayuda a informar y empoderar a los ciudadanos, permitiéndoles exigirles cuentas a los tomadores
-                    de decisiones. 
-                    Ciudadanos informados e instituciones públicas receptivas pueden liderar la introducción de reformas
-                    que reducirán la mala
-                    gestión, ineficiencia, corrupción y el riesgo planteado al público como resultado de la mala
-                    infraestructura.
+                Actualmente, tiene presencia en 19 países distribuidos en cuatro continentes, donde trabaja directamente con el Gobierno, la
+                sociedad civil y la industra del ramo de la construcción para promover la divulgación, validación e interpretación de datos de 
+                proyectos de infraestructura y obra pública.
                 </p>
                 </div>
             </div>
@@ -163,13 +155,128 @@ Conoce más
     </div>
 
     <!-- Title - Beneficios -->
-    <div class="row mx-0 my-4" id="procesos-de-cost">
+    <div class="row mx-0 my-4" id="beneficios">
         <div class="col-md-6 px-0">
-            <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold title-barra-roja">Procesos de CoST</h3>
+            <div class="text-white">
+                <h3 class="py-2 font-weight-bold title-barra-roja" style="padding-left:30%">Beneficios</h3>
             </div>
         </div>
     </div>
+
+    <div class="container divcost">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="text-align: justify;">
+                <p>
+                CoST representa un mejor valor para los gobiernos porque demuestra cómo se gasta el dinero público, identifica los
+                potenciales ahorros eficientes y complementa las reformas en la gestión de finanzas públicas y procesos de adquisición de
+                infraestructura, además de fomentar y desarrollar transparencia.
+                </p>
+                <p style="font-weight: 600;">
+                CoST representa un mejor valor para las comunidades porque asegura una entrega de infraestructura eficiente en 
+                costos y con un majoer calidad, capaz de cambiar vidas. Las comunidades ganan acceso a trabajo y mercados a 
+                través de carreteras y calles mejoradas, agua potable limpia, educación en escuelas bien construidas o tratamiento
+                médico en hospitales seguros, entre otras.
+                </p>
+                <p>
+                Esto ayuda a inforarmar y empoderar a los ciudadanos, permitiéndoles exigirles cuentas a los tomadores de decisiones.
+                Ciudadanos informados e instituciones públicas receptivas pueden liderar la introducción de reformas que reducirán la mala
+                gestión, ineficiencia, corrupción y el riesgo planteado al público como resultado de la mala infraestructura.
+                </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mx-0 my-4" id="procesos-de-cost">
+        <div class="col-md-6 px-0">
+            <div class="text-white">
+                <h3 class="py-2 font-weight-bold title-barra-roja" style="padding-left:30%">Procesos de CoST</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container divcost">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="text-align: justify;">
+               
+                <table class="table col-md-12 table-bordered">
+            <tr class="tr1">
+                <th class="th-institucion" style="text-align: center; width:28%;">
+                    
+                    <h5 style="font-weight: 600;">DIVULGACIÓN</h5>
+                </th>
+                <th class="th-titular" style="text-align: center; width:32%;">
+                   
+                <h5 style="font-weight: 600;">ASEGURAMIENTO</h5>
+                </th>
+                <th class="th-enlace" style="text-align: center; width:40%;">
+                   
+                <h5 style="font-weight: 600;">AUDITORIA SOCIAL</h5>
+                </th>
+            </tr>
+            <tbody>
+               <tr>
+               
+               <td style="text-align: justify;"> 
+                    Consiste en garantizar que la información sobre el propósito, alcance, costos y ejecución de los
+                    proyectos de infraestructura
+                    y obra pública esté abierta y accesible al público, divulgándola de manera oportuna a través de la
+                    plataforma de divulgación.
+               </td>
+               <td>
+               Consiste en evaluar la credibilidad de la información divulgada a dos niveles:
+               
+                <ul class="know-more-list" style="text-align: justify; margin-top:4%">
+                        <li class="rojo">
+                            <p>A nivel de sector y a nivel de entidad de adquisición, sobre la integridad y exactitud de
+                                la información divulgada, y sobre las
+                                características generales de desempeño: y </p>
+                        </li>
+                        <li>
+                            <p>A nivel de proyecto, en una pequeña muestra aleatoria, en la cual se resaltan los asuntos
+                                que pueden ser potencialmente 
+                                preocupantes para los actores clave involucrados en los proyectos.</p>
+                        </li>
+                    </ul>
+               </td>
+               <td>
+
+               <p style="text-align: justify;">
+                    Consiste en trabajar con las partes interesadas para promover los resultados del proceso de
+                    seguimiento, con la finalidad 
+                    de poner los asuntos clave en el dominio público. De esta manera, la sociedad civil, los medios de
+                    comunicación y los 
+                    ciudadanos pueden ser conscientes de los problemas y demandar la rendición de cuentas a los
+                    responsables de la toma de 
+                    decisiones.
+                </p>
+
+                <p style="text-align: justify;">
+                   La implementación de CoST en Jalisco, pretende mejorar la transparencia en los procesos de
+                    infraestructura, mediante el 
+                    estándar de contrataciones abiertas, cuyos indicadores han sido ajustados por parte de los
+                    integrantes del Grupo 
+                    Multisectorial a los procesos y conceptos utilizados en la entidad, (identificación, preparación,
+                    contratación, ejecución y evaluación).
+                </p>
+                <p style="text-align: justify;">
+                    Aunado a ello, se pretende generar capacidades a la sociedad civil para la vigilancia y monitoreo de
+                    las obras públicas que 
+                    encuentren publicadas bajo los entándares antes referidos.
+                </p>
+               
+               </td>
+               
+               </tr>
+        </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

@@ -279,7 +279,7 @@ footer a:hover {
 
   .background-title {
     font-size: unset;
-    background-image: url("/assets/img/bg-gris-phone.jpg");
+    background-image: url("http://pice-software.com/costjalisco/public/assets/img/bg-gris-phone.jpg");
     background-size: 98%;
   }
 
@@ -289,13 +289,13 @@ footer a:hover {
   }
 
   .title-barra-roja {
-    background-image: url("/assets/img/bg-rojo-phone.jpg");
+    background-image: url("http://pice-software.com/costjalisco/public/assets/img/bg-rojo-phone.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }
 
   .subtitle-barra-gris {
-    background-image: url("/assets/img/bg-gris-phone.jpg");
+    background-image: url("http://pice-software.com/costjalisco/public/assets/img/bg-gris-phone.jpg");
   }
 
   .title-sector {
