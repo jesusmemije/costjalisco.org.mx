@@ -45,13 +45,13 @@
     height: auto;
     margin-top: 6%;
     margin-bottom: 6%;
-    background-image: url("/assets/img/project/background-docs.jpg");
+    background-image: url("http://pice-software.com/costjalisco/public/assets/img/project/background-docs.jpg");
     background-size: cover;
 }
 
 #background-resumen {
     margin-top: 3%;
-    background-image: url("/assets/img/project/background-resumen.jpg");
+    background-image: url("http://pice-software.com/costjalisco/public/assets/img/project/background-resumen.jpg");
     background-size: cover;
 }
 
@@ -206,7 +206,7 @@
     }
 
     #background-docs {
-        background-image: url("/assets/img/project/background-docs-phone.jpg");
+        background-image: url("http://pice-software.com/costjalisco/public/assets/img/project/background-docs-phone.jpg");
     }
 
     .icon-excel {
