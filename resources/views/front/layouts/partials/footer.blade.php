@@ -115,8 +115,9 @@
     </div>
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
-       
-        <strong>CoST Jalisco 2021</strong> | Todos los derechos reservados
+        <strong>CoST Jalisco <?php setlocale(LC_ALL,"ES");
+                                echo strftime("%d de %B del %Y");?>
+                                </strong> | Todos los derechos reservados
     </div>
 </footer>
 <!-- End Footer Desktop -->
