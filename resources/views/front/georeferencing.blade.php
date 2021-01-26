@@ -285,7 +285,7 @@ Georreferenciación
 
         //Marker icon
         var icon = L.icon({
-            iconUrl: '/assets/img/map/marker.png',
+            iconUrl: '{{asset('/assets/img/map/marker.png')}}',
             iconSize: [25, 35], // size of the icon
         });
 
