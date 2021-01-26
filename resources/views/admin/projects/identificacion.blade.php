@@ -910,7 +910,8 @@ function myFunction() {
       }
     }
   }
-}
+} 
+  //here
 	 let lf = document.getElementById('lat');
       
       let ff= lf.value.split('|')
@@ -918,7 +919,7 @@ function myFunction() {
       let lngf = document.getElementById('lng');
       let f2= lngf.value.split('|')
      
-  
+  console.log(ff);
 
        if(ff[0]!=""){
           
@@ -963,14 +964,14 @@ function onMapClick(e) {
    x=true;
   }
 var auxfields = `<tr class=` + i + `>
-    <td>  <input id=`+i+` type="text" name="array[]" onchange='cambioinput(this.value)'></td>
+    <td>  <input id=`+i+` type="text" name="array[]"  onchange='cambioinput(this.value)'></td>
       <td>` + e.latlng.lat + `</td>
         <td>` + e.latlng.lng + `</td>
         <td><button style="margin-right:2%;"  onclick='delrow(` + i + `)'>Eliminar</button>
         <i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + i + `)'>
         </td>
         <td> <div class="form-check">
-<input type="radio" class="form-check-input exampleCheck1" name="inlineRadioOptions" onchange='puntop(`+e.latlng.lat+`,`+e.latlng.lng+`)'>
+<input required type="radio" class="form-check-input exampleCheck1" name="inlineRadioOptions" onchange='puntop(`+e.latlng.lat+`,`+e.latlng.lng+`)'>
 
 
 </div></td>

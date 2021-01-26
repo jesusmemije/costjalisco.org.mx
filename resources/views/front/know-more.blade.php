@@ -21,6 +21,10 @@ Conoce más
         padding-left: 6rem;
         font-size: 24px;
     }
+    .divcost{
+       letter-spacing: normal;
+        width:75%;
+    }
 
     @media only screen and (max-width: 480px) {
         p {
@@ -52,15 +56,15 @@ Conoce más
     <div class="row mx-0 my-4" id="que-es-cost">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold title-barra-roja">¿Qué es CoST?</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja">Historia</h3>
             </div>
         </div>
     </div>
 
     <!-- Section - Descripción CoST -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="text-align: justify;" >
+    <div class="container divcost" style="border:1px solid blue;">
+        <div class="row" >
+            <div class="col-md-12"  style="text-align: justify;" >
             <div  class="hidden-desktop-mini" style="text-align: justify;">
                 <p>
                     CoST se lanzó desde el Reino Unido como una inicialiva global en 2012 con el apoyo del Banco Mundial
@@ -116,10 +120,10 @@ Conoce más
     </div>
 
     <!-- Title - Beneficios -->
-    <div class="row mx-0 my-4" id="beneficios">
+    <div class="row mx-0 my-4 divcost" id="beneficios">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
-                <h3 class="py-2 font-weight-bold title-barra-roja">Beneficios</h3>
+                <h3 class="py-2 font-weight-bold title-barra-roja">¿Qué es CoST?</h3>
             </div>
         </div>
     </div>
@@ -167,7 +171,10 @@ Conoce más
         </div>
     </div>
 
+
+
     <!-- Sub-Title - Divulgación -->
+        <!--
     <div class="row mx-0 my-4" id="divulgacion">
         <div class="col-md-6 px-0">
             <div class="text-white">
@@ -175,8 +182,10 @@ Conoce más
             </div>
         </div>
     </div>
+    -->
 
     <!-- Section - Divulgación -->
+        <!--
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -191,8 +200,10 @@ Conoce más
             </div>
         </div>
     </div>
+    -->
 
     <!-- Sub-Title - Aseguramiento -->
+    <!--
     <div class="row mx-0 my-4" id="aseguramiento">
         <div class="col-md-6 px-0">
             <div class="text-white">
@@ -201,7 +212,9 @@ Conoce más
         </div>
     </div>
 
+-->
     <!-- Section - Aseguramiento -->
+    <!--
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -223,8 +236,9 @@ Conoce más
             </div>
         </div>
     </div>
-
+   -->
     <!-- Sub-Title - Auditoria social -->
+     <!--
     <div class="row mx-0 my-4" id="auditoria-social">
         <div class="col-md-6 px-0">
             <div class="text-white">
@@ -233,7 +247,10 @@ Conoce más
         </div>
     </div>
 
+    -->
+
     <!-- Section - Auditoria social -->
+    <!--
     <div class="container mb-md-5">
         <div class="row">
             <div class="col-md-12">
@@ -262,6 +279,7 @@ Conoce más
             </div>
         </div>
     </div>
+    -->
 
 </div>
 
