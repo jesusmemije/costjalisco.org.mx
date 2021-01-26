@@ -115,9 +115,10 @@
     </div>
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
-        <strong>CoST Jalisco <?php setlocale(LC_ALL,"ES");
-                                echo strftime("%d de %B del %Y");?>
-                                </strong> | Todos los derechos reservados
+        @php
+            $fechaActual = date('Y');
+        @endphp
+        <strong>CoST Jalisco {{$fechaActual}} | Todos los derechos reservados
     </div>
 </footer>
 <!-- End Footer Desktop -->
@@ -166,7 +167,10 @@
     </div>
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
-        <strong>CoST Jalisco 2020</strong> | Todos los derechos reservados
+        @php
+            $fechaActual = date('Y');
+        @endphp
+        <strong>CoST Jalisco {{$fechaActual}}</strong> | Todos los derechos reservados
     </div>
 </footer>
 <!-- End Footer Phone -->
