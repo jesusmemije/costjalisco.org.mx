@@ -691,7 +691,7 @@ $.ajax({
         </td>
         </td>
         <td> <div class="form-check">
-<input type="radio" name="inputs" class="form-check-input exampleCheck1" onchange='puntop(`+resp[index][1]+`,`+resp[index][2]+`)'>
+<input required type="radio" name="inputs" class="form-check-input exampleCheck1" onchange='puntop(`+resp[index][1]+`,`+resp[index][2]+`)'>
 
 </div></td>
     </tr>`;
@@ -964,7 +964,7 @@ function onMapClick(e) {
    x=true;
   }
 var auxfields = `<tr class=` + i + `>
-    <td>  <input id=`+i+` type="text" name="array[]"  onchange='cambioinput(this.value)'></td>
+    <td>  <input required id=`+i+` type="text" name="array[]"  onchange='cambioinput(this.value)'></td>
       <td>` + e.latlng.lat + `</td>
         <td>` + e.latlng.lng + `</td>
         <td><button style="margin-right:2%;"  onclick='delrow(` + i + `)'>Eliminar</button>
