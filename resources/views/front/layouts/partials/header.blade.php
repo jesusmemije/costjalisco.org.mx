@@ -189,8 +189,7 @@ background-size: cover; height: 56px;">
         border-bottom-right-radius: 30px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown" style="border-bottom: solid 1px #61A8BD;">
-                    <a class="nav-link dropdown-toggle" href="{{ route('index') }}" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="{{ route('index') }}">
                         INICIO
                     </a>
                 </li>

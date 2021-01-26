@@ -27,7 +27,7 @@
                 <div class="row mb-4 align-items-center">
                     <div class="col-md-12 text-center pt-4 px-0" style="line-height: 1.5;">
                         <a href="https://www.caf.com/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="250"
+                            <img src="{{ asset('assets/img/footer/caflogo.png') }}" class="img-fluid" width="230"
                                 alt="">
                         </a>
                     </div>
@@ -35,45 +35,58 @@
 
                 <!-- Content -->
                 <div class="row mb-4 align-items-center">
-                    <div class="col-md-5 col-sm-5">
+                    <div class="col-lg-5 col-md-5 col-sm-5 text-center">
                         <a href="https://infrastructuretransparency.org/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/cost.png') }}" class="img-fluid" width="140" alt="">
+                            <img src="{{ asset('assets/img/footer/cost.png') }}" class="img-fluid" width="200" alt="">
                         </a>
                     </div>
-                    <div class="col-md-4 col-sm-4">
-                        <a href="https://www.itei.org.mx/v4/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/itei.png') }}" class="img-fluid" width="80" alt="">
+                    <div class="col-lg-4 col-md-4 col-sm-4 text-center">
+                        <a href="https://www.udg.mx" target="_BLANK">
+                            <img src="{{ asset('assets/img/footer/udg.png') }}" class="img-fluid" width="220" alt="">
                         </a>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-lg-3 col-md-3 col-sm-3 text-center">
                         <a href="https://www.itei.org.mx/v4/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" width="50"
+                            <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" width="60"
                                 alt="">
                         </a>
                     </div>
                 </div>
-                <div class="row mb-3 align-items-center">
-                    <div class="col-md-3 col-sm-3">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/zapopan.png') }}" class="img-fluid" width="50" alt="">
                         </a>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <a href="https://guadalajara.gob.mx/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/guadalajara.png') }}" class="img-fluid" width="60"
                                 alt="">
                         </a>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <a href="https://www.jalisco.gob.mx/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/jalisco.png') }}" class="img-fluid" width="60" alt="">
                         </a>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <a href="https://tlajomulco.gob.mx/" target="_BLANK">
+                            <img src="{{ asset('assets/img/footer/tlajomulco.png') }}" class="img-fluid" width="100" alt="">
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <a href="https://tonala.gob.mx/portal/" target="_BLANK">
                             <img src="{{ asset('assets/img/footer/tonala.png') }}" class="img-fluid" width="50" alt="">
                         </a>
                     </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <a href="https://www.tlaquepaque.gob.mx/views/" target="_BLANK">
+                            <img src="{{ asset('assets/img/footer/tlaquepaque.png') }}" class="img-fluid" width="50" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="row col-lg-12">
+                    <img src="{{ asset('assets/img/footer/sitiowebfinanciado.png') }}" class="img-fluid" alt="">
                 </div>
             </div>
             <!-- Grid column -->
@@ -114,11 +127,18 @@
         </div>
     </div>
     <!-- Copyright -->
-    <div class="footer-copyright text-center text-white py-3" style="background-color: #2C4143; font-size: 14px;">
+    <div class="footer-copyright text-white py-3" style="background-color: #2C4143; font-size: 14px;">
         @php
             $fechaActual = date('Y');
         @endphp
-        <strong>CoST Jalisco {{$fechaActual}} | Todos los derechos reservados
+        <div class="row mx-0">
+            <div class="col-lg-8 text-right">
+                <strong>CoST Jalisco {{$fechaActual}} | Todos los derechos reservados</strong>
+            </div>
+            <div class="col-lg-4 text-right" style="padding-right: 50px;">
+                <strong>CÓDIGO ABIERTO</strong>
+            </div>
+        </div>
     </div>
 </footer>
 <!-- End Footer Desktop -->
