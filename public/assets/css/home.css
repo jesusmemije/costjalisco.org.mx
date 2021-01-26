@@ -546,6 +546,7 @@
     }
 
     .title-barra-roja {
+        font-size: 1.25rem;
         background-image: url("/assets/img/bg-rojo-phone.jpg");
     }
 

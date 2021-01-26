@@ -34,6 +34,10 @@ body {
   text-decoration: none;
 }
 
+#header-phone a {
+  color: #fff;
+}
+
 .logo-costjalisco {
   width: 100%;
 }
