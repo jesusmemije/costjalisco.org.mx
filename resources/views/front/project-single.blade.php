@@ -59,8 +59,10 @@ Datos del proyecto
                     <div class="row mx-0 align-items-baseline">
                         <img src="{{ asset('/assets/img/project/icons/people.png') }}"
                             class="img-fluid ml-3 icon-people" width="60" alt="">
-                        <label class="ml-3 text-personas-beneficiadas" for="">{{number_format($project->people)}}
-                            ciudadanos beneficiados</label>
+                        <label class="ml-3 text-personas-beneficiadas" for="">{{money_format($project->people)}}
+                            personas beneficiados</label>
+                            <!--setlocale(LC_MONETARY, 'en_US');
+                                echo money_format('%(#10n', $number) . "\n";-->
                     </div>
                     <div class="row mx-0 hidden-phone">
                         <div id="btns">
@@ -265,7 +267,7 @@ Datos del proyecto
             <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
             <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='preparacion'
                 data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents"
-                style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
         </div>
     </div>
 </div>
@@ -329,7 +331,7 @@ Datos del proyecto
             <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
             <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='preparacion'
                 data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents"
-                style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
         </div>
     </div>
    
@@ -376,7 +378,7 @@ Datos del proyecto
             <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
             <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='ejecucion'
                 data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents"
-                style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
         </div>
     </div>
 </div>
@@ -415,7 +417,7 @@ Datos del proyecto
             <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
             <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='finalizacion'
                 data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents"
-                style="font-size: 11px;">DESCARGA DE DATOS ABIERTOS</button>
+                style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
         </div>
     </div>
    
@@ -478,8 +480,7 @@ Datos del proyecto
     </div>
     <div class="col-md-6 col-6 text-center my-5">
         <img src="{{asset('/assets/img/project/icons/excel.png')}}" class="img-fluid icon-excel" width="100"><br><br>
-        <a class="btn btn-sm btn-documents" href="{{route('projectexport',$project->id_project)}}">ABRIR DOCUMENTO
-            XLS</a>
+        <a class="btn btn-sm btn-documents" href="{{route('projectexport',$project->id_project)}}">DATOS ABIERTOS</a>
     </div>
 </div>
 
