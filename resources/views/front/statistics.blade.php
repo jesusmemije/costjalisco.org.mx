@@ -155,7 +155,7 @@
                                 @if (count($imagen)==0)
                                     <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
                                 @else
-                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" alt="">
+                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="90%" alt="">
                                 @endif
                                 <br>
                                 <small>{{$pro->name}}</small><br>
@@ -226,7 +226,7 @@
                                 @if (count($imagen)==0)
                                     <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
                                 @else
-                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" alt="">
+                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="90%" alt="">
                                 @endif
                                 <br>
                                 <small>{{$pro->name}}</small><br>
