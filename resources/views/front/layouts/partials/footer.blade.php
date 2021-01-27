@@ -116,11 +116,11 @@
                 </div>
             </div>
 
-            <!--<div class="btn-go-top">
+            <div class="btn-go-top">
                 <a onclick="smoothScroll(document.getElementById('header'))" style="cursor: pointer;">
                     <img src="{{ asset('assets/img/home/btn-up.png') }}" class="img-fluid" alt="">
                 </a>
-            </div>-->
+            </div>
         </div>
     </div>
     <!-- Copyright -->
