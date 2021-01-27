@@ -175,7 +175,7 @@ Georreferenciación
     <!-- Section - Datos generales -->
     <div class="row mt-5">
         <div class="col-md-8 px-0 py-1">
-            <h3 class="py-2 font-weight-bold" style="background-image: url('/assets/img/project/barra-resultados.png'); background-repeat: no-repeat;
+            <h3 class="py-2 font-weight-bold" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/project/barra-resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
                 <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>
             </h3>
