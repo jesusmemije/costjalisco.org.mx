@@ -26,13 +26,22 @@ class ProjectController extends Controller
                 ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                 ->join('subsector', 'project.subsector', '=', 'subsector.id')
+                ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+                ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
                 ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
                 ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                 ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                ->select('project.*')
+                ->select('project.*','organization.id as id_organization')
                 ->whereNotNull('proyecto_contratacion.montocontrato')
                 ->orderBy('project.created_at', 'desc')
                 ->get();
+
+                $organizacion = DB::table('organization')
+                ->select('organization.*')
+                ->orderBy('organization.created_at', 'desc')
+                ->get();
+
+                // dd($projects,$organizacion);
             } else {
                 $projects = DB::table('project')
                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
@@ -50,6 +59,7 @@ class ProjectController extends Controller
                 ->where('proyecto_contratacion.montocontrato','<=',$request->presupuesto)
                 ->orderBy('project.created_at', 'desc')
                 ->get();
+                
             }
             
             
@@ -186,7 +196,7 @@ class ProjectController extends Controller
 
 
         return view('front.list-projects', [
-            'projects' => $projects,
+            'projects' => $projects,'organizacion'=>$organizacion
             
         ]);
     }

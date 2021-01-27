@@ -165,7 +165,7 @@ Georreferenciación
                 {{-- <input type="text" name="presupuesto" placeholder="Presupuesto"> --}}
                 <input type="text" name="nombre_proyecto" placeholder="Nombre del proyecto">
                 <center>
-                    <button type="submit">BÚSQUEDA</button>
+                    <button id="boton" type="submit">BÚSQUEDA</button>
                 </center>
                 <a href="#" class="hidden-phone" style="float: right; color: #2C4143">X</a>
             </form>
@@ -227,6 +227,15 @@ Georreferenciación
                     $('#sub_sector').append("<option value=''>No se encontraron subsectores</option>");
                     $('#sector').append("<option value=''>Seleccione Sector</option>");
                     $.each(sectores, function (index, value){
+                        if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                         $('#sector').append("<option value='"+index+"'>"+value+"</option>")
                     })
                     
@@ -242,6 +251,15 @@ Georreferenciación
                     $('#sub_sector').empty();
                     $('#sub_sector').append("<option value=''>Seleccione subsector</option>");
                     $.each(subsectores, function (index, value){
+                        if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                         $('#sub_sector').append("<option value='"+index+"'>"+value+"</option>")
                     })
                 })
@@ -256,6 +274,15 @@ Georreferenciación
                     $('#codigo_postal').empty();
                     $('#codigo_postal').append("<option value=''>Seleccione codigo postal</option>");
                     $.each(codigo_postales, function (index, value){
+                        if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                         $('#codigo_postal').append("<option value='"+index+"'>"+value+"</option>")
                     })
                 })

@@ -193,7 +193,7 @@ Eventos
             <div class="content1" style="margin-top: 1%;">
                 <div class="col-md-12" style="overflow-y: scroll; height: 250px;">
                 <h5 id="titulo">
-                    Seleccione un mes y despues el día
+                    Seleccione un mes y después el día
                 </h5>
                 <p></p>
                 
@@ -277,7 +277,7 @@ Eventos
     {
         if ($.trim(mes) != ''){
             $("#titulo").empty();
-            $("#titulo").append('Seleccione un mes y despues el día');
+            $("#titulo").append('Seleccione un mes y después el día');
             $("#descripcion").empty();
 
             $("#hora").empty();
