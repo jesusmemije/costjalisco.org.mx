@@ -53,7 +53,7 @@ Datos del proyecto
         <div class="col-md-9 px-0">
             <div class="media-body">
                 <div id="titleproject" class="col-md-12 hidden-phone">
-                    <span>{{ $project->title }}</span>
+                    <span>strtoupper{{ $project->title }}</span>
                 </div>
                 <div id="benefited" class="col-md-12">
                     <div class="row mx-0 align-items-baseline">
