@@ -403,37 +403,43 @@ Inicio
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-2 col-sm-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center"style="margin-right: -4%;">
                 <a href="https://www.jalisco.gob.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://guadalajara.gob.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
                         width="70" alt="">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://tonala.gob.mx/portal/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
+                <a href="https://tlajomulco.gob.mx/" target="_BLANK">
+                    <img src="{{ asset('assets/img/home/sector-publico/tlajomulco.jpg') }}" class="img-fluid" width="130"
+                        alt="">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href=" https://home.inai.org.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-2 text-center">
+            <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://www.itei.org.mx/v4/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
                         alt="">
@@ -572,6 +578,7 @@ Inicio
                         <li><a class="mya" href="https://guadalajara.gob.mx/">Ayuntamiento de Guadalajara</a></li>
                         <li><a class="mya" href="https://www.zapopan.gob.mx/v3/">Ayuntamiento de Zapopan</a></li>
                         <li><a class="mya" href="https://tonala.gob.mx/portal/">Ayuntamiento de Tonalá</a></li>
+                        <li><a class="mya" href="https://tlajomulco.gob.mx/">Ayuntamiento de Tlajomulco</a></li>
                         <li><a class="mya" href="https://www.itei.org.mx/v4/">Instituto de Transparencia, Información
                                 Pública y Protección de Datos <br>
                                 Personales del Estado de Jalisco (ITEI) (Preside)</a></li>

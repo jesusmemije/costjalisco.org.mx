@@ -69,25 +69,28 @@ Nosotros
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-2 col-3 text-center container-img-sector">
+            <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
                 <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
                     alt="">
             </div>
-            <div class="col-md-2 col-3 text-center container-img-sector">
+            <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
                 <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid" width="70"
                     alt="">
             </div>
-            <div class="col-md-2 col-3 text-center container-img-sector">
+            <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
                 <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
                     alt="">
             </div>
-            <div class="col-md-2 col-3 text-center container-img-sector">
+            <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
                 <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80" alt="">
             </div>
-            <div class="col-md-2 col-3 text-center container-img-sector">
+            <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
+                <img src="{{ asset('assets/img/home/sector-publico/tlajomulco.jpg') }}" class="img-fluid" width="130" alt="">
+            </div>
+            <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
                 <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100" alt="">
             </div>
-            <div class="col-md-2 col-3 text-center container-img-sector">
+            <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
                 <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100" alt="">
             </div>
         </div>
