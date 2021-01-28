@@ -155,7 +155,7 @@
                                 @if (count($imagen)==0)
                                     <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
                                 @else
-                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="90%" alt="">
+                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="125" height="120" alt="">
                                 @endif
                                 <br>
                                 <small>{{$pro->name}}</small><br>
@@ -172,7 +172,7 @@
                     
                 
                 <br>
-                     <div id="donutchart" >
+                     <div id="donutchart" style="width: 400px; height: 250px;" >
                     </div>
                     {{-- <span style="position: absolute; bottom: 230px; right: 40px;">{{$contador}}</span> --}}
                 {{-- <input type="text" value="{{$total_proyectos}}" class="circle"> --}}
@@ -226,7 +226,7 @@
                                 @if (count($imagen)==0)
                                     <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
                                 @else
-                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" width="90%" alt="">
+                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="125" height="120" alt="">
                                 @endif
                                 <br>
                                 <small>{{$pro->name}}</small><br>
@@ -309,7 +309,7 @@
       var options = {
         // title: 'My Daily Activities',
         chartArea: {'width': '100%', 'height': '100%'},
-        colors: ['#ffce32'],
+        colors: ['#ffce32','#d60000', '#58707b', '#61a8bd'],
         pieHole: 0.5,
         fontSize: 22,
         legend: 'none',
