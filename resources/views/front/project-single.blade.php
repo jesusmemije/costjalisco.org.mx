@@ -59,7 +59,7 @@ Datos del proyecto
                     <div class="row mx-0 align-items-baseline">
                         <img src="{{ asset('/assets/img/project/icons/people.png') }}"
                             class="img-fluid ml-3 icon-people" width="60" alt="">
-                        <label class="ml-3 text-personas-beneficiadas" for="">{{money_format($project->people)}}
+                        <label class="ml-3 text-personas-beneficiadas" for="">{{number_format($project->people)}}
                             personas beneficiados</label>
                             <!--setlocale(LC_MONETARY, 'en_US');
                                 echo money_format('%(#10n', $number) . "\n";-->
