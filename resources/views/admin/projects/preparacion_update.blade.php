@@ -97,6 +97,13 @@
   font-weight: 500;
   padding: 6px 12px;
 }
+.btnmas{
+    color:#000; 
+    font-weight:bold; 
+}
+.btnme{
+  color: #000;
+}
     </style>
 @endsection   
 
@@ -104,7 +111,7 @@
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 <br>
 
-<form id="phase3" action="{{route($ruta)}}" method="POST" enctype="multipart/form-data">
+<form  action="{{route('guardarAmbiental')}}" method="POST">
 @csrf  
    
 
@@ -127,7 +134,7 @@
   <div class="collapse show" id="collapseCardExample1">
     <div class="card-body" >
 
-  <form>
+
   <div id="putbase1"></div>
 
 
@@ -141,12 +148,21 @@
     <div class="form-group col-md-4">
     <label for="">Estudios de Impacto Ambiental</label>
    
-  
+     <?php
+
+use App\Models\DocumentType;
+
+$check="";
+
+
+     ?> 
 
      @foreach($catambientals as $catambiental)  
      <div class="form-check">
      
-     
+      <?php
+    
+      ?>
 
      <input class="form-check-input" 
    
@@ -176,14 +192,27 @@
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
     </div>
-
+    
+   
+    </div>
+    
+    <div>
     <label for="numeros_ambiental">Número o números de identificación del estudio de impacto ambiental (En caso de ser más de uno favor de separarlos con una coma).</label>
     <input required type="text"  class="form-control" name="numeros_ambiental">
     </div>
+   
+ 
+      <hr>
+      
+      <div class="d-flex justify-content-end">
+     <a href="{{route('noaplica',$project->id)}}" class="btn btn-success" style="margin-right: 1%;">No aplica</a>
+    <input type="submit" class="btn btn-warning btnmas" value="Agregar">
+    </div>
+       
     @if(isset($ambiental))
     @if(sizeof($ambiental)!=0)
-      <hr>
     <div class="form-row">
+    
                             <div class="form-group">
                                
                                 <label for="">Listado de estudios</label>
@@ -218,13 +247,17 @@
                                           
                                           <td>
                                           <div class="form-row">
+                                          <?php 
+                                          $f = strtotime($dato->fecharealizacionAmbiental);
+                                          
+                                          ?>
 
                                           <div class="form-group">
-                                          <button class="btn btn-warning btn-sm btn-circle"><i class="fa fa-edit"></i></button>
+                                          <a data-toggle="modal" data-radio="{{$tipoAmbiental->id}}" data-target="#modalAmbiental" data-id="{{$dato->id}}" data-responsable="{{$dato->responsableAmbiental}}" data-numeros="{{$dato->numeros_ambiental}}" data-fecha="{{date('Y-m-d',$f)}}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-edit btnme"></i></a>
                                           </div>
 
                                           <div class="form-group">
-                                          <button class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
+                                          <a data-toggle="modal" data-target="#eliminarDato" data-id="{{$dato->id}}" data-caso="ambiental" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash btnme"></i></a>
                                           </div>
                                           
                                           </div>
@@ -258,7 +291,13 @@
 </div>
     
   </div>
-  
+  </form>
+
+
+  <form  action="{{route('guardarFactibilidad')}}" method="POST">
+@csrf  
+
+<input   hidden  type="text" value="{{$project->id}}" name="id_project">
   <div class="card shadow mb-4">
   <!-- Card Header - Accordion -->
   <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample2">
@@ -270,7 +309,7 @@
   <div class="collapse show" id="collapseCardExample2">
     <div class="card-body">
     
-  <form>
+
      
     
     <div class="form-row">
@@ -307,9 +346,14 @@
     <input required type="text"   class="form-control" name="numeros_factibilidad" id="numeros_factibilidad">
     </div>
 
+  
+  <hr>
+  <div class="d-flex justify-content-end">
+  <a href="{{route('noaplica',$project->id)}}" class="btn btn-success" style="margin-right: 1%;">No aplica</a>
+    <input type="submit" class="btn btn-warning btnmas" value="Agregar">
+    </div>
     @if(isset($factibilidad))
     @if(sizeof($factibilidad)!=0)
-  <hr>
     <div class="form-row">
                             <div class="form-group">
                                
@@ -345,13 +389,17 @@
                                           
                                           <td>
                                           <div class="form-row">
+                                          <?php 
+                                          $f = strtotime($dato->fecharealizacionFactibilidad);
+                                          
+                                          ?>
 
                                           <div class="form-group">
-                                          <button class="btn btn-warning btn-sm btn-circle"><i class="fa fa-edit"></i></button>
+                                          <a data-toggle="modal" data-target="#modalFactibilidad" data-id="{{$dato->id}}" data-responsable="{{$dato->responsableFactibilidad}}" data-numeros="{{$dato->numeros_factibilidad}}" data-fecha="{{date('Y-m-d',$f)}}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-edit btnme"></i></a>
                                           </div>
 
                                           <div class="form-group">
-                                          <button class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
+                                          <a data-toggle="modal" data-target="#eliminarDato" data-id="{{$dato->id}}" data-caso="factibilidad" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash btnme"></i></a>
                                           </div>
                                           
                                           </div>
@@ -384,7 +432,13 @@
   
 </div>
 
+</form>
 
+
+<form  action="{{route('guardarImpacto')}}" method="POST">
+@csrf  
+
+<input  hidden  type="text" value="{{$project->id}}" name="id_project">
 <div class="card shadow mb-4">
   <!-- Card Header - Accordion -->
   <a href="#collapseCardExample3" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample3">
@@ -396,7 +450,7 @@
   <div class="collapse show" id="collapseCardExample3">
     <div class="card-body">
     
-  <form>
+
   
     <div class="form-row">
     <div class="form-group col-md-4">
@@ -434,11 +488,14 @@
     <label for="numeros_impacto">Número o números de identificación del estudio del impacto en el terreno y asentamientos (En caso de ser más de uno favor de separaros con una coma)</label>
     <input required type="text"  class="form-control" name="numeros_impacto" id="numeros_impacto">
     </div>
+   
+  <hr>
+  <div class="d-flex justify-content-end">
+  <a href="{{route('noaplica',$project->id)}}" class="btn btn-success" style="margin-right: 1%;">No aplica</a>
+    <input type="submit" class="btn btn-warning btnmas" value="Agregar">
+    </div>
     @if(isset($impactos))
     @if(sizeof($impactos)!=0)
-  <hr>
-  
- 
     <div class="form-row">
                             <div class="form-group">
                                
@@ -474,13 +531,16 @@
                                           
                                           <td>
                                           <div class="form-row">
-
+                                          <?php 
+                                          $f = strtotime($dato->fecharealizacionimpacto);
+                                          
+                                          ?>
                                           <div class="form-group">
-                                          <button class="btn btn-warning btn-sm btn-circle"><i class="fa fa-edit"></i></button>
+                                          <a data-toggle="modal" data-target="#modalImpacto" data-id="{{$dato->id}}" data-responsable="{{$dato->responsableImpacto}}" data-numeros="{{$dato->numeros_impacto}}" data-fecha="{{date('Y-m-d',$f)}}" class="btn btn-warning btn-sm btn-circle btnme"><i class="fa fa-edit btnme"></i></a>
                                           </div>
 
                                           <div class="form-group">
-                                          <button class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
+                                          <a data-toggle="modal" data-target="#eliminarDato" data-id="{{$dato->id}}" data-caso="impacto" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash btnme"></i></a>
                                           </div>
                                           
                                           </div>
@@ -516,9 +576,14 @@
   
   
 </div>
+</form>
 
 <div class="col-lg-12">
 
+<form action="{{route('guardarRecurso')}}" method="POST">
+@csrf  
+
+<input hidden   type="text" value="{{$project->id}}" name="id_project">
 <div class="card shadow mb-4">
   <!-- Card Header - Accordion -->
   <a href="#collapseCardExample4" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample4">
@@ -564,6 +629,10 @@
     </div>
     
     </div>
+    <div class="d-flex justify-content-end">
+    <a href="{{route('noaplica',$project->id)}}" class="btn btn-success" style="margin-right: 1%;">No aplica</a>
+    <input type="submit" class="btn btn-warning btnmas" value="Agregar">
+    </div>
     @if(isset($origen_recurso))
     @if(sizeof($origen_recurso)!=0)
     <div class="form-row">
@@ -592,22 +661,24 @@
                                           $tipoRecurso=DB::table('catorigenrecurso')
                                           ->where('id','=',$dato->description)
                                           ->first();
+                                          $f = strtotime($dato->iniciopresupuesto);
                                           ?>
                                         
                                           <td>{{$tipoRecurso->titulo}}</td>
                                           <td>{{$dato->sourceParty_name}}</td>
-                                          <td>{{$dato->iniciopresupuesto}}</td>
+                                          <td>{{date('Y-m-d',$f)}}</td>
                                        
                                           
                                           <td>
                                           <div class="form-row">
 
+                                        
                                           <div class="form-group">
-                                          <button class="btn btn-warning btn-sm btn-circle"><i class="fa fa-edit"></i></button>
+                                          <a data-toggle="modal" data-target="#modalRecurso" data-id="{{$dato->id_recurso}}" data-responsable="{{$dato->sourceParty_name}}"  data-fecha="{{date('Y-m-d',$f)}}" class="btn btn-warning btn-sm btn-circle btnme"><i class="fa fa-edit btnme"></i></a>
                                           </div>
 
                                           <div class="form-group">
-                                          <button class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
+                                          <a data-toggle="modal" data-target="#eliminarDato" data-id="{{$dato->id_recurso}}" data-caso="recurso" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash btnme"></i></a>
                                           </div>
                                           
                                           </div>
@@ -643,60 +714,221 @@
   
 </div>
 
-
-
+</form>
+<form action="{{route('actualizarObservacionPreparacion')}}" method="POST">
+@csrf  
+<input hidden   type="text" value="{{$project->id}}" name="id_project">
 <div class="form-row">
           <div class="form-group col-md-12">
         <label for="observaciones">Observaciones:</label>
-        @if(isset($ambiental))
-        @if(sizeof($ambiental)>0)
-        <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{old('observaciones',$ambiental[0]->observaciones)}}">
-       
-        
-        @endif
+    
+        @if(sizeof($observaciones)>0)
+        <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{old('observaciones',$observaciones[0]->observaciones)}}">
         @else
+     
         <input type="text" name="observaciones" id="observaciones" class="form-control">
         @endif
           </div>
         </div>
+        <div class="d-flex justify-content-end">
+    <input type="submit" class="btn btn-warning btn-sm btnmas" value="Actualizar observaciones">
+   
+    </div>
+</form>
 </div>
 </div>
 
 </div>
 
+<form action="{{route('guardarDocumentosPreparacion')}}" enctype="multipart/form-data" method="POST">
+@csrf  
+<div class="col-lg-6">
+<input hidden   type="text" value="{{$project->id}}" name="id_project">
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#collapseCardExample5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample5">
+
+        <h6 class="m-0 font-weight-bold text-primary">Documentos</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+
+    <div class="collapse show" id="collapseCardExample5">
+        <div class="card-body">
+
+            <form>
 
 
-@include('admin.projects.selectdocuments')
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="">Seleccionar documentos</label>
+                        <input type="file" class="form-control" name="documents[]" multiple>
+                        <label>Tipo de documento</label>
+                        <select name="documenttype" id="documenttype" class="form-control @error('documenttype') is-invalid @enderror">
+                <option value="">Selecciona un opción</option>
+                @foreach($documentstype as $type)
+              
+                <option value="{{$type->id}}">{{$type->titulo}}</option>
+
+                @endforeach
+
+                </select>
+                 @error('documenttype')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
+                        @if(sizeof($documents)!=0)
+                        <br>
+                        <label for="">Lista de documentos</label>
+
+
+                        <div class="col-md-12">
+
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Nombre del documento</th>
+                                    <th>Tipo de documento</th>
+                                    <th>Acciones</th>
+                                </tr>
+
+
+                                <tbody>
+                                    @foreach($documents as $document)
+                                    <?php
+                                    $ruta = 'documents/' . $document->url;
+                                    $tipo=DocumentType::find($document->documentType);
+                                    ?>
+
+
+                                    <tr>
+                                        <td>
+                                            <a target="_blank" class="badge badge-pill badge-info" href="{{asset($ruta)}}">{{$document->url}}</a>
+                                        </td>
+
+                                        <td>
+              {{$tipo->titulo}}
+            </td>
+
+                                        <td>
+
+                                            <a id="deldoc" href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $document->id }}" data-name="{{ $document->url }}">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+
+
+                                        </td>
+                                    </tr>
+
+                                    @endforeach
+                                </tbody>
+
+                            </table>
+                        </div>
+                        @endif
+
+                    </div>
+
+
+
+                </div>
+                
+        <div class="d-flex justify-content-end">
+    <input type="submit" class="btn btn-warning btn-sm btnmas" value="Guardar documentos">
+   
+    </div>
+        </div>
+
     
-
-
-
+    </div>
+</div>
 
 
 </div>
-<div class="d-flex justify-content-end">
-                <button onclick="sendphase3()"  type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
-                    <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
-                    {{ $medit ? 'Actualizar' : 'Siguiente' }}
-                </button>
-            </div>
 </form>
 
 
 
-@include('admin.projects.modaldeletedocument')
-  
+
+</div>
+
+
+
+
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Seguro que desea eliminar el documento  <strong><span class="name-user"></span></strong>?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
+            <i class="fas fa-times fa-sm text-white-50"></i>
+            No, salir
+          </button>
+          <form id="formDelete" action="{{ route('project.deletedocument') }}" method="POST">
+           
+            @csrf
+            <input type="hidden" value="" id="doc_id" name="doc_id">
+            <button type="submit" class="btn btn-sm btn-danger shadow-sm">
+              <i class="fas fa-trash fa-sm text-white-50"></i>
+              Si, eliminar
+            </button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="eliminarDato" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Confirmar eliminación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Seguro que desea eliminar el registro? </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
+            <i class="fas fa-times fa-sm text-white-50"></i>
+            No, salir
+          </button>
+          <form id="formDelete" action="{{route('eliminarEstudio')}}" data-action=" " method="POST">
+       
+            @csrf
+            <input type="hidden" name="id_eliminar" id="id_eliminar">
+            <input type="hidden" name="caso" id="caso">
+
+            <button type="submit" class="btn btn-sm btn-danger shadow-sm">
+              <i class="fas fa-trash fa-sm text-white-50"></i>
+              Si, eliminar
+            </button>
+           
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+@include('admin.projects.modalAmbiental')
+@include('admin.projects.modalFactibilidad')
+@include('admin.projects.modalImpacto')
+@include('admin.projects.modalRecurso')
 
 @section('scripts')
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
 <script>
-
-base1=document.getElementById('baseclonar1').style.display='none';
-
-//var checkcloned=document.getElementById('checkclon');
-  //console.log(checkcloned);
-  //checkcloned.setAttribute('name','');
-  
 
 $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
@@ -714,41 +946,120 @@ $('input').keypress(function(e) {
         return false;
     }
 });
-var i_clon=0;
-function nuevoambiental(){
-  i_clon++;
-  var c = document.getElementById("baseclonar1");
-  var clon = c.cloneNode(true);
-  var checkcloned=document.getElementById('checkclon');
-  //console.log(checkcloned);
-  checkcloned.setAttribute('name','ptmjimbo');
+
+
+
+</script>
+
+
+<script>
+//Para los modales
+
+
+
+$('#modalAmbiental').on('show.bs.modal', function(event) {
+   
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var id = button.data('id') // Extract info from data-* attributes
+ //   var name = button.data('name')
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    
+    var fecha=button.data('fecha');
+    
+    var responsable=button.data('responsable');
+    var numeros=button.data('numeros');
+    $('#id_estudio').val(id);
+    $('#fechamodalAmbiental').val(fecha);
+    $('#responsablemodalAmbiental').val(responsable);
+    $('#numerosmodal_ambiental').val(numeros);
+    console.log(responsable);
+    //var modal = $(this)
+    //modal.find('.modal-title').text(title)
+    
+
+})
+
+$('#modalFactibilidad').on('show.bs.modal', function(event) {
+   
+   var button = $(event.relatedTarget) // Button that triggered the modal
+   var id = button.data('id') // Extract info from data-* attributes
+//   var name = button.data('name')
+       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+   
+   var fecha=button.data('fecha');
+   
+   var responsable=button.data('responsable');
+   var numeros=button.data('numeros');
+   $('#id_estudio2').val(id);
+   $('#fechamodalFactibilidad').val(fecha);
+   $('#responsablemodalFactibilidad').val(responsable);
+   $('#numerosmodal_factibilidad').val(numeros);
+   console.log(id);
+   //var modal = $(this)
+   //modal.find('.modal-title').text(title)
+   
+
+})
+
+$('#modalImpacto').on('show.bs.modal', function(event) {
+   
+   var button = $(event.relatedTarget) // Button that triggered the modal
+   var id = button.data('id') // Extract info from data-* attributes
+//   var name = button.data('name')
+       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+   
+   var fecha=button.data('fecha');
+   
+   var responsable=button.data('responsable');
+   var numeros=button.data('numeros');
+   $('#id_estudio3').val(id);
+   $('#fechamodalImpacto').val(fecha);
+   $('#responsablemodalImpacto').val(responsable);
+   $('#numerosmodal_impacto').val(numeros);
+   console.log(id);
+   //var modal = $(this)
+   //modal.find('.modal-title').text(title)
+   
+
+})
+
+$('#modalRecurso').on('show.bs.modal', function(event) {
+   
+   var button = $(event.relatedTarget) // Button that triggered the modal
+   var id = button.data('id') // Extract info from data-* attributes
+//   var name = button.data('name')
+       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+   
+   var fecha=button.data('fecha');
+   
+   var responsable=button.data('responsable');
+   var numeros=button.data('numeros');
+   $('#id_recurso').val(id);
+
+   $('#fuenterecursomodal').val(responsable)
+   $('#fecharecursomodal').val(fecha)
   
-  clon.id='newclon'+i_clon;
-  clon.style.display='block';
+   console.log(id);
+   //var modal = $(this)
+   //modal.find('.modal-title').text(title)
+   
 
-  divclon= document.getElementById('putbase1')
+})
 
-  divclon.prepend(clon);
-}
+$('#eliminarDato').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id') // Extract info from data-* attributes
+        var name = button.data('name')
+        var caso=button.data('caso');
+        $('#id_eliminar').val(id);
+        $('#caso').val(caso);
 
-function eliminarclon(){
-
-  document.getElementById("baseclonar1").remove();
-}
-function sendphase3(){
-  eliminarclon();
- 
-}
-
-function nuevoambiental2(){
-
-  var radioHtml = '<input type="radio" name="' + name + '" />';
-
-  divclon= document.getElementById('putbase1');
-
-  divclon.innerHTML = radioHtml;
-}
-
+       
+    })
 
 </script>
 

@@ -17,7 +17,10 @@ class CreateAddressTable extends Migration
             $table->id();
             $table->text('streetAddress')->nullable();
             $table->text('locality')->nullable();
+            $table->text('suburb')->nullable();
+
             $table->text('region')->nullable();
+            $table->text('state')->nullable();
             $table->string('postalCode',6)->nullable();
             $table->text('countryName')->nullable();
             $table->timestamps();

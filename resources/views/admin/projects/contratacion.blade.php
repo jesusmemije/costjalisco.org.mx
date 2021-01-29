@@ -40,8 +40,20 @@
 
             <div class="row">
                 <div class="col-md-12">
+                <label for=""><b>Datos de contacto de la entidad de adjudicación:</b></label>
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                                    <label for="">Entidad de adjudicación</label>
+                                    <input  maxlength="50" type="text" class="form-control @error('entidadadjudicacion') is-invalid @enderror" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
+                                    @error('entidadadjudicacion')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                </div>
                     <div class="form-row">
 
+                   
+                                   
 
                         <!--
                         <div class="form-group col-md-6">
@@ -52,18 +64,42 @@
                         </div>
 -->
                         <div class="form-group col-md-6">
-                            <div class="form-row">
-                                <div class="col-md-12">
-                                    <label for="">Datos de contacto de la entidad de adjudicación</label>
-                                    <input maxlength="50" type="text" class="form-control @error('datosdecontacto') is-invalid @enderror" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
+                        <label for="nombrecontacto">Nombre</label>
+                        <input type="text" name="nombrecontacto" id="nombrecontacto" class="form-control" value="{{old('nombrecontacto',$project->nombrecontacto)}}">
+                        
+                                   <!-- <input maxlength="50" type="text" class="form-control @error('datosdecontacto') is-invalid @enderror" name="datosdecontacto" value="{{old('datosdecontacto',$project->datosdecontacto)}}">
                                     @error('datosdecontacto')
                                     <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                    @enderror-->
+                             
 
 
 
-                                <div class="form-group col-md-6">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                        <label for="email">Correo electrónico</label>
+                        <input type="text" id="emailcontacto"  maxlength="150" name="emailcontacto" class="form-control" value="{{old('emailcontacto',$project->emailcontacto)}}">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                        <label for="telefonocontacto"  >Télefono</label>
+                        <input type="number"   name="telefonocontacto" id="telefonocontacto" class="form-control" value="{{old('telefonocontacto',$project->telefonocontacto)}}">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+            <div class="form-group col-md-12">
+                        <label for="domiciliocontacto">Domicilio</label>
+                        <input type="text" id="domiciliocontacto" name="domiciliocontacto" class="form-control" value="{{old('domiciliocontacto',$project->domiciliocontacto)}}">
+                        </div>
+            </div>
+            <div class="form-row">
+          
+            <div class="form-group col-md-6">
                                     <label for="">Fecha de publicación</label>
                                     <input maxlength="50" type="date" class="form-control @error('fechapublicacion') is-invalid @enderror" name="fechapublicacion" value="{{old('fechapublicacion',$project->fechapublicacion)}}">
                                     @error('fechapublicacion')
@@ -72,25 +108,8 @@
 
                                 </div>
 
-                                <div class="form-group col-md-6">
-                                    <label for="">Entidad de adjudicación</label>
-                                    <input  maxlength="50" type="text" class="form-control @error('entidadadjudicacion') is-invalid @enderror" name="entidadadjudicacion" value="{{old('entidadadjudicacion',$project->entidadadjudicacion)}}">
-                                    @error('entidadadjudicacion')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                               
                                 </div>
-                            </div>
-
-
-
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-
 
             <div class="form-row">
                 <div class="form-group col-md-3">

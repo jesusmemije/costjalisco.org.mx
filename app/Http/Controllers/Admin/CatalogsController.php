@@ -128,8 +128,8 @@ class CatalogsController extends Controller
     }
 
     public function deleteestudioAmbiental(Request $request){
-        
-        $r=DB::table('catambiental')->delete($request->to_id);
+     
+        $r=DB::table('catambiental')->delete($request->delete_id);
         if($r){
             
             return back()->with('status', '¡Estudio eliminado correctamente!');
@@ -181,8 +181,8 @@ class CatalogsController extends Controller
         }
     
         public function deleteestudioFactibilidad(Request $request){
-            
-            $r=DB::table('catfac')->delete($request->to_id);
+          
+            $r=DB::table('catfac')->delete($request->delete_id);
             if($r){
                 
                 return back()->with('status', '¡Estudio eliminado correctamente!');
@@ -273,7 +273,7 @@ class CatalogsController extends Controller
        
 
         $del=DB::table('subsector')
-        ->where('id','=',$request->to_id)
+        ->where('id','=',$request->delete_id)
         ->delete();
 
         if($del){
@@ -393,6 +393,7 @@ class CatalogsController extends Controller
         ->join('subsector','sectorsubsector.id_subsector','=','subsector.id')
         ->where('id_sector','=',$id)
         ->select('subsector.id','titulo')
+        ->orderBy('titulo', 'asc')
         ->get();
 
       return $data;

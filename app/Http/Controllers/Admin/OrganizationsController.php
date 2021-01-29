@@ -221,8 +221,6 @@ class OrganizationsController extends Controller
     public function update(Request $request)
     {
         //
-
-
        
         $id_organization=$request->id_organization;
        
@@ -253,10 +251,15 @@ class OrganizationsController extends Controller
         $locations=DB::table('locations')
         ->where('id_address','=',$address->id)
         ->first();
+      
+        if($locations==null){
+        }else{
+            $l=DB::table('locations')
+            ->where('id_address','=',$locations->id_address)
+            ->update(['description'=>$request->description]);
+        }
         
-        $l=DB::table('locations')
-        ->where('id_address','=',$locations->id_address)
-        ->update(['description'=>$request->description]);
+        
 
         
 
@@ -278,19 +281,18 @@ class OrganizationsController extends Controller
         $organization->id_partyRole=$request->partyRole;
         $organization->save();
 
-        
+     
 
         if(!empty($request->imgOrg)){        
             $nombre_img = $_FILES['imgOrg']['name'];
             $url=time().$nombre_img;
             move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$url);
 
-            DB::table('orglogos')->insert([
-                'id_organization'=>$organization->id,
-                'imgroute'=>$url,
-            ]);
-    
-           
+            DB::table('orglogos')
+            ->updateOrInsert(
+                ['id_organization'=>$organization->id],
+                ['imgroute'=>$url]
+            );
                
             
             }

@@ -95,6 +95,29 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
     //Extras
+    Route::post('/admin/guardarAmbiental', [AdminProjectController::class, 'guardarAmbiental'])->name('guardarAmbiental');
+    Route::post('/admin/guardarFactibilidad', [AdminProjectController::class, 'guardarFactibilidad'])->name('guardarFactibilidad');
+    Route::post('/admin/guardarImpacto', [AdminProjectController::class, 'guardarImpacto'])->name('guardarImpacto');
+    Route::post('/admin/guardarRecurso', [AdminProjectController::class, 'guardarRecurso'])->name('guardarRecurso');
+
+    Route::get('/admin/noaplica/{id_project}', [AdminProjectController::class, 'noaplica'])->name('noaplica');
+
+
+    Route::post('/admin/guardarDocumentosPreparacion', [AdminProjectController::class, 'guardarDocumentosPreparacion'])->name('guardarDocumentosPreparacion');
+
+    Route::post('/admin/editarAmbiental', [AdminProjectController::class, 'editarAmbiental'])->name('editarAmbiental');
+    Route::post('/admin/editarFactibilidad', [AdminProjectController::class, 'editarFactibilidad'])->name('editarFactibilidad');
+    Route::post('/admin/editarImpacto', [AdminProjectController::class, 'editarImpacto'])->name('editarImpacto');
+    Route::post('/admin/editarRecurso', [AdminProjectController::class, 'editarRecurso'])->name('editarRecurso');
+    Route::post('/admin/eliminarEstudio', [AdminProjectController::class, 'eliminarEstudio'])->name('eliminarEstudio');
+    
+    
+    
+
+    Route::post('/admin/actualizarObservacionPreparacion', [AdminProjectController::class, 'actualizarObservacionPreparacion'])->name('actualizarObservacionPreparacion');
+
+
+    Route::get('/admin/delimgproject/{id_project}', [AdminProjectController::class, 'delimgproject'])->name('delimgproject');
     Route::get('/admin/testmap', [AdminProjectController::class, 'testmap'])->name('testmap');
     Route::get('/admin/testmap2', [AdminProjectController::class, 'testmap2'])->name('testmap2');
 

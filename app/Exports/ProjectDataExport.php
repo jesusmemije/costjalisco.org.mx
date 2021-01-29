@@ -270,7 +270,7 @@ $export=  new Collection([
     ['Organismo al que pertenece',$all->organismo],
     ['Puesto que desempeña dentro del organismo',$all->puesto],
     ['En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar',$all->involucrado],
-    ['Imágenes de la obra',$rutas],
+    //['Imágenes de la obra',$rutas],
     ['Título del proyecto',$all->title],
     ['Número que identifica al proyecto',$all->ocid],
     ['Descripción',$all->description],

@@ -101,7 +101,7 @@
         </div>
             @include('admin.projects.selectdocuments')
     
-
+           
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-sm btn-primary shadow-sm offset-md-10">
                     <i class="fas {{ $medit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
@@ -124,10 +124,11 @@
 
 
 
-
+@include('admin.projects.modaldeletedocument')
 
 
 @endsection
 
 @section('scripts')
+<script src="{{asset('js/deletemodaldocument.js')}}"></script>
 @endsection

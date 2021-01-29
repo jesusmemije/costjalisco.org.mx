@@ -142,7 +142,7 @@
                 <label for="descripcionProyecto">
                   Descripción
                 </label>
-                <textarea required maxlength="255" placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->descripcionProyecto}}</textarea>
+                <textarea required placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->descripcionProyecto}}</textarea>
                 @error('descripcionProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -150,7 +150,11 @@
 
               <div class="form-group col-md-6">
               <?php
-              $id_organization=auth()->user()->id_organization;
+
+use App\Models\DocumentType;
+
+
+$id_organization=auth()->user()->id_organization;
              
               ?>
               @if($id_organization=="")
@@ -192,7 +196,7 @@
             </div>
 
             <label for="propositoProyecto">
-              Próposito
+              Propósito
             </label>
             <input required maxlength="100" placeholder="Objetivo del proyecto" type="text" class="form-control @error('propositoProyecto') is-invalid @enderror" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
              @error('propositoProyecto')
@@ -289,7 +293,7 @@
 <div class="col-md-9">
 
 <input class="btn btn-sm btn-outline-primary"  form="formId" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
-  <a class="btn btn-sm btn-outline-info" style="color:blue">Descargar formato</a>
+  <a class="btn btn-sm btn-outline-info" href="{{asset('documents/puntosdeejemplo.csv')}}" style="color:blue">Descargar formato</a>
   <input type="hidden" id="ver">
   
   <button type="submit" class="btn btn-outline-success btn-sm"  form="formId" id="subir">Subir</button>
@@ -336,7 +340,7 @@
   <hr>
 
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-4">
               <input  type="hidden"name="names" id="name" >
                 <input type="hidden" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
                 <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
@@ -349,20 +353,35 @@
             @enderror
 
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-4">
+                <label for="suburb" >Colonia </label>
+                <input required type="text" id="suburb" name="suburb" class="form-control @error('suburb') is-invalid @enderror" value="{{old('suburb',$project->suburb)}}">
+                 @error('suburb')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+              </div>
+              <div class="col-lg-4">
                 <label for="locality" >Localidad </label>
                 <input required type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
                  @error('locality')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-4">
                 <label  for="region">Región </label>
                 <input required  type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
                  @error('region')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
+              <div class="col-lg-4">
+                <label  for="state">Estado </label>
+                <input required  type="text" id="state" name="state" class="form-control @error('state') is-invalid @enderror" value="{{old('state',$project->state)}}">
+                 @error('state')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+              </div>
+
               <div class="col-lg-2">
                 <label  for="postalCode">Código Postal </label>
                 <input required minlength="5" maxlength="5" type="text" id="postalCode" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{old('postalCode',$project->postalCode)}}">
@@ -399,10 +418,6 @@
 
             </div>
             
-            
-           
-
-
              </div>
 
              <div>
@@ -485,6 +500,7 @@
             <table class="table table-sm">
             <tr>
             <th>Nombre del documento</th>
+            <th>Tipo de documento</th>
             <th>Acciones</th>
             </tr>
         
@@ -493,6 +509,8 @@
             @foreach($documents as $document)
             <?php 
               $ruta='documents/'.$document->url;
+              $tipo=DocumentType::find($document->documentType);
+            
              
             ?>
 
@@ -500,6 +518,10 @@
             <tr>
             <td>
             <a target="_blank" class="badge badge-pill badge-info" href="{{asset($ruta)}}">{{$document->url}}</a>
+            </td>
+
+            <td>
+              {{$tipo->titulo}}
             </td>
            
             <td>
@@ -567,6 +589,11 @@
 
 <script>
 
+
+var org=document.querySelector('autoridadP');
+
+console.log(org);
+
 //File Validation
 var fileInput = document.getElementById('excel');
  var xd;
@@ -620,8 +647,9 @@ const myLatlng = {
       lng: -103.35528485969786
     };
 
-  var map = L.map('map').
+  var map = L.map('map',{scrollWheelZoom: false,}).
         setView(myLatlng,
+
             12);
 
             
@@ -687,7 +715,7 @@ $.ajax({
       <td>` +resp[index][1]+ `</td>
         <td>` +resp[index][2] + `</td>
         
-        <i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + (index-1) + `)'>
+        <td><i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + (index-1) + `)'></td>
         </td>
         </td>
         <td> <div class="form-check">
@@ -751,7 +779,7 @@ function puntop(lat,lng){
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-  maxZoom: 12
+  maxZoom: 15
 }).addTo(map);
 //this is for put the markes on the map getting the data from the inputs.
 L.control.scale().addTo(map);

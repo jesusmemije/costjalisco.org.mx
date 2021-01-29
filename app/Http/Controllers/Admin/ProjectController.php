@@ -197,11 +197,11 @@ class ProjectController extends Controller
 
         $request->validate([
 
-            'nombreresponsable' => 'required|max:50',
-            'email' => 'required|max:50',
-            'organismo' => 'required|max:255',
-            'puesto' => 'required|max:255',
-            'involucrado' => 'required|max:50',
+            'nombreresponsable' => 'required',
+            'email' => 'required',
+            'organismo' => 'required',
+            'puesto' => 'required',
+            'involucrado' => 'required',
         ]);
 
 
@@ -252,24 +252,62 @@ class ProjectController extends Controller
 
         return redirect()->route('project.editidentificacion', ['project' => $project->id]);
     }
+
+    public function delimgproject($id_project){
+        $projects_imgs = DB::table('projects_imgs')
+                ->where('id_project', '=', $id_project)
+                ->get();
+
+
+            foreach ($projects_imgs as $project_img) {
+                $ruta = 'projects_imgs/' . $project_img->imgroute;
+                if (file_exists(($ruta))) { 
+                    unlink($ruta);
+                }
+            }
+       DB::table('projects_imgs')->where('id_project', '=', $id_project)->delete();
+       return back()->with('status', '¡Las imágenes del proyecto se eliminaron correctamente!');
+
+    }
     public function updategeneraldata(Request $request)
     {
-
+       
 
 
 
         $request->validate([
 
-            'nombreresponsable' => 'required|max:50',
-            'email' => 'required|max:50',
-            'organismo' => 'required|max:255',
-            'puesto' => 'required|max:255',
-            'involucrado' => 'required|max:50',
+            'nombreresponsable' => 'required',
+            'email' => 'required',
+            'organismo' => 'required',
+            'puesto' => 'required',
+            'involucrado' => 'required',
         ]);
 
 
+      
+           $aux_img= explode("|", $request->urlimgs);
 
+           
+   
+        $imagenes_proyecto=DB::table('projects_imgs')
+        ->where('id_project','=',$request->id_project)
+        ->get();
 
+       
+
+        for($i=0; $i<sizeof($aux_img)-1; $i++){
+            
+            if($aux_img[$i]==$imagenes_proyecto[$i]){
+               
+            }else{
+                DB::table('projects_imgs')->where('imgroute', '=', $aux_img[$i])->delete();
+            }
+        }
+        $imagenes_proyecto=DB::table('projects_imgs')
+        ->where('id_project','=',$request->id_project)
+        ->get();
+       
 
 
         if ($request->hasFile('images')) {
@@ -296,6 +334,8 @@ class ProjectController extends Controller
                 'organismo' => $request->organismo,
                 'puesto' => $request->puesto,
                 'involucrado' => $request->involucrado,
+                'video'=>$request->video,
+                'observaciones'=>$request->observaciones,
 
             ]);
 
@@ -307,6 +347,10 @@ class ProjectController extends Controller
 
     public function identificacion($id = null)
     {
+
+   
+
+      
         $project = Project::find($id);
 
 
@@ -314,11 +358,11 @@ class ProjectController extends Controller
         if (!empty($project)) {
 
 
-            $sectors = ProjectSector::all();
-            $types = ProjectType::all();
+            $sectors = ProjectSector::orderBy('titulo', 'asc')->get();
+            $types = ProjectType::orderBy('titulo', 'asc')->get();
 
-            $autoridadPublica = Organization::all();
-            $documentstype = DocumentType::all();
+            $autoridadPublica = Organization::orderBy('name', 'asc')->get();
+            $documentstype = DocumentType::orderBy('titulo', 'asc')->get();
 
             if ($project->title == "") {
 
@@ -346,7 +390,7 @@ class ProjectController extends Controller
                     ->join('documents', 'project_documents.id_document', '=', 'documents.id')
                     ->where('project.id', '=', $id)
                     ->where('documents.description', '=', 'identificacion')
-                    ->select('documents.url', 'documents.id')
+                    ->select('documents.url', 'documents.id','documents.documentType')
                     ->get();
 
 
@@ -365,7 +409,9 @@ class ProjectController extends Controller
                         'locations.description as description',
                         'address.streetAddress',
                         'address.locality',
+                        'address.suburb',
                         'address.region',
+                        'address.state',
                         'address.postalCode',
                         'address.countryName',
                         'responsableproyecto.nombreresponsable',
@@ -377,7 +423,6 @@ class ProjectController extends Controller
                     )
                     ->where('project.id', '=', $id)
                     ->first();
-
 
 
 
@@ -400,7 +445,10 @@ class ProjectController extends Controller
                     ]
                 );
             }
-        }
+        
+    }else{
+        return redirect()->route('project.generaldata');
+    }
     }
     public function editidentificacion($id)
     {
@@ -479,103 +527,456 @@ class ProjectController extends Controller
         if (!empty($id)) {
 
 
-            $catfac = DB::table('catfac')->get();
-            $catambiental = DB::table('catambiental')->get();
-            $catimpacto = DB::table('catimpactoterreno')->get();
-            $catorigenrecurso = DB::table('catorigenrecurso')->get();
-
+            $catfac = DB::table('catfac')->orderBy('titulo', 'asc')->get();
+            $catambiental = DB::table('catambiental')->orderBy('titulo', 'asc')->get();
+            $catimpacto = DB::table('catimpactoterreno')->orderBy('titulo', 'asc')->get();
+            $catorigenrecurso = DB::table('catorigenrecurso')->orderBy('titulo', 'asc')->get();
+            $documentstype = DocumentType::orderBy('titulo', 'asc')->get();
             $documents = DB::table('project')
                 ->join('project_documents', 'project.id', '=', 'project_documents.id_project')
                 ->join('documents', 'project_documents.id_document', '=', 'documents.id')
                 ->where('project.id', '=', $id)
                 ->wherE('documents.description', '=', 'preparacion')
-                ->select('documents.url', 'documents.id')
+                ->select('documents.url', 'documents.id','documents.documentType')
                 ->get();
 
 
-
+     
             $project = DB::table('project')
-                ->join('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                ->join('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                ->join('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                ->join('project_budgetbreakdown', 'project.id', '=', 'project_budgetbreakdown.id_project')
-                ->join('budget_breakdown', 'project_budgetbreakdown.id_budget', '=', 'budget_breakdown.id')
-                ->join('period', 'budget_breakdown.id_period', '=', 'period.id')
+               
                 ->where('project.id', '=', $id)
-                ->select(
-                    'estudiosambiental.*',
-                    'estudiosfactibilidad.*',
-                    'estudiosimpacto.*',
-                    'project.id as id',
-                    'project.status',
-                    'budget_breakdown.description',
-                    'budget_breakdown.sourceParty_name',
-                    'period.startDate as iniciopresupuesto'
-                )
-                ->first(); //solo un registro.
-            //description = origenRecurso
-            // print_r($project);
-
-            if ($project == null) {
-                $project = Project::find($id);
-                $medit = false;
-
-                if ($project == null) {
-                    return redirect()->route('project.identificacion');
-                }
-                return view(
-                    'admin.projects.preparacion',
-                    [
-                        'project' => $project,
-                        'nav' => 'preparacion',
-                        'documents' => $documents,
-                        'catfacs' => $catfac,
-                        'catambientals' => $catambiental,
-                        'catimpactos' => $catimpacto,
-                        'catorigenrecurso' => $catorigenrecurso,
-                        'medit' => $medit,
-                        'edit' => true,
-                        'ruta' => 'project.savepreparacion',
+                ->first(); 
 
 
+            $ambiental = DB::table('project')
+                ->join('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+                ->where('project.id', '=', $id)
+                ->get(); 
 
-                    ]
-                );
-            } else {
+            $observaciones=DB::table('preparacionobservacion')
+            ->where('id_project','=',$id)
+            ->get();
+ 
 
-                $medit = true;
+            $factibilidad= DB::table('project')
+            ->join('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+            ->where('project.id', '=', $id)
+            ->get(); 
+
+            $impacto= DB::table('project')
+            ->join('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+            ->where('project.id', '=', $id)
+            ->get(); 
+
+           $origen_recurso=DB::table('project')
+           ->join('project_budgetbreakdown', 'project.id', '=', 'project_budgetbreakdown.id_project')
+            ->join('budget_breakdown', 'project_budgetbreakdown.id_budget', '=', 'budget_breakdown.id')
+            ->join('period', 'budget_breakdown.id_period', '=', 'period.id')
+           ->where('project.id', '=', $id)
+           ->select(
+            'budget_breakdown.id as id_recurso',
+           'budget_breakdown.description',
+           'budget_breakdown.sourceParty_name',
+           'period.startDate as iniciopresupuesto'
+           )
+           ->get(); 
+           $project = Project::find($id);
+           $medit = false;
+           //$project->observaciones="";
+           if ($project == null) {
+               return redirect()->route('project.identificacion');
+           }
 
 
+           
+           
 
-                return view(
-                    'admin.projects.preparacion',
-                    [
-                        'project' => $project,
-                        'nav' => 'preparacion',
-                        'documents' => $documents,
-                        'catfacs' => $catfac,
-                        'catambientals' => $catambiental,
-                        'catimpactos' => $catimpacto,
-                        'catorigenrecurso' => $catorigenrecurso,
-                        'edit' => true,
-                        'medit' => $medit,
-                        'ruta' => 'project.updatepreparacion',
+           if($project->status>=1 && $project->status!=7){
+
+         
+
+           return view(
+            'admin.projects.preparacion_update',
+            [
+                'project' => $project,
+                'ambiental'=>$ambiental,
+                'factibilidad'=>$factibilidad,
+                'impactos'=>$impacto,
+                'origen_recurso'=>$origen_recurso,
+                'nav' => 'preparacion',
+                'documents' => $documents,
+                'catfacs' => $catfac,
+                'catambientals' => $catambiental,
+                'catimpactos' => $catimpacto,
+                'catorigenrecurso' => $catorigenrecurso,
+                'edit' => true,
+                'medit' => $medit,
+                'ruta' => 'project.updatepreparacion',
+                'documentstype'=>$documentstype,
+                'observaciones'=>$observaciones,
 
 
-                    ]
-                );
-            }
+            ]
+        );
+    }else{
+       
+        return redirect()->route('project.identificacion', ['project' => $id]);
+    }
+          
+            
         } else {
             return redirect()->route('project.identificacion');
         }
     }
+
+    public function guardarAmbiental(Request $request){
+        $fecha_in = date('Y-m-d');
+        $request->validate([
+            'tipoAmbiental' => 'required',
+            'fecharealizacionAmbiental' => 'required|max:50',
+            'responsableAmbiental' => 'required|max:255',
+            'numeros_ambiental' => 'required',
+]);
+
+
+        DB::table('estudiosambiental')->insert([
+            'id_project' => $request->id_project,
+            'descripcionAmbiental' => $request->descripcionAmbiental,
+            'tipoAmbiental' => $request->tipoAmbiental,
+            'fecharealizacionAmbiental' => $request->fecharealizacionAmbiental,
+            'responsableAmbiental' => $request->responsableAmbiental,
+            'numeros_ambiental' => $request->numeros_ambiental,
+            'observaciones'=>$request->observaciones,
+        ]);
+
+        DB::table('project')
+        ->where('id', $request->id_project)
+        ->update(['status' => 2]);
+
+        return back()->with('status', '¡Nuevo estudio guardado correctamente!');
+    }
+    public function guardarFactibilidad(Request $request){
+        $request->validate([
+            
+
+            'tipoFactibilidad' => 'required',
+            'fecharealizacionFactibilidad' => 'required|max:50',
+            'responsableFactibilidad' => 'required|max:255',
+            'numeros_factibilidad' => 'required',
+
+          
+
+        ]);
+        DB::table('estudiosfactibilidad')->insert([
+            'id_project' => $request->id_project,
+            'descripcionFactibilidad' => $request->descripcionFactibilidad,
+            'tipoFactibilidad' => $request->tipoFactibilidad,
+            'fecharealizacionFactibilidad' => $request->fecharealizacionFactibilidad,
+            'responsableFactibilidad' => $request->responsableFactibilidad,
+            'numeros_factibilidad' => $request->numeros_factibilidad,
+        ]);
+        DB::table('project')
+        ->where('id', $request->id_project)
+        ->update(['status' => 2]);
+        return back()->with('status', '¡Nuevo estudio guardado correctamente!');
+
+    }
+    public function guardarImpacto(Request $request){
+
+        $request->validate([
+          
+
+            'tipoImpacto' => 'required',
+            'fecharealizacionImpacto' => 'required|max:50',
+            'responsableImpacto' => 'required|max:255',
+            'numeros_impacto' => 'required',
+
+
+        ]);
+        DB::table('estudiosimpacto')->insert([
+            'id_project' => $request->id_project,
+            'descripcionImpacto' => $request->descripcionImpacto,
+            'tipoImpacto' => $request->tipoImpacto,
+            'fecharealizacionImpacto' => $request->fecharealizacionImpacto,
+            'responsableImpacto' => $request->responsableImpacto,
+            'numeros_impacto' => $request->numeros_impacto,
+        ]);
+        DB::table('project')
+        ->where('id', $request->id_project)
+        ->update(['status' => 2]);
+        return back()->with('status', '¡Nuevo estudio guardado correctamente!');
+    }
+    public function guardarRecurso(Request $request){
+        $request->validate([
+            
+
+            'origenrecurso' => 'required',
+            'fuenterecurso' => 'required|max:255',
+            'fecharecurso' => 'required|max:50'
+
+        ]);
+        $presupuesto = new BudgetBreakdown();
+        $presupuesto->description = $request->origenrecurso;
+        $presupuesto->sourceParty_name = $request->fuenterecurso;
+
+
+        $period = new Period();
+        $period->startDate = $request->fecharecurso;
+        $period->save();
+
+        $presupuesto->id_period = $period->id;
+        $presupuesto->save();
+
+        DB::table('project_budgetbreakdown')
+            ->insert([
+
+                'id_project' => $request->id_project,
+                'id_budget' => $presupuesto->id,
+            ]);
+
+            DB::table('project')
+            ->where('id', $request->id_project)
+            ->update(['status' => 2]);
+            return back()->with('status', '¡Nuevo recurso guardado correctamente!');
+    }
+
+    public function editarAmbiental(Request $request){
+      
+    
+        if(empty($request->tipomodalAmbiental)){
+            DB::table('estudiosambiental')
+            ->where('id', '=', $request->id_estudio)
+            ->update([
+                'fecharealizacionAmbiental'=>$request->fechamodalAmbiental,
+                'responsableAmbiental'=>$request->responsablemodalAmbiental,
+                'numeros_ambiental'=>$request->numerosmodal_ambiental,
+               
+                ]);
+
+        }else{
+            DB::table('estudiosambiental')
+            ->where('id', '=', $request->id_estudio)
+            ->update([
+                'tipoAmbiental'=>$request->tipomodalAmbiental,
+                'fecharealizacionAmbiental'=>$request->fechamodalAmbiental,
+                'responsableAmbiental'=>$request->responsablemodalAmbiental,
+                'numeros_ambiental'=>$request->numerosmodal_ambiental,
+               
+                ]);
+        }
+        return back()->with('status', '¡Estudio actualizado correctamente!');
+    }
+    public function editarFactibilidad(Request $request){
+    
+        if(empty($request->tipomodalFactibilidad)){
+            DB::table('estudiosfactibilidad')
+            ->where('id', '=', $request->id_estudio)
+            ->update([
+                'fecharealizacionFactibilidad'=>$request->fechamodalFactibilidad,
+                'responsableFactibilidad'=>$request->responsablemodalFactibilidad,
+                'numeros_factibilidad'=>$request->numerosmodal_factibilidad,
+               
+                ]);
+
+        }else{
+            DB::table('estudiosfactibilidad')
+            ->where('id', '=', $request->id_estudio)
+            ->update([
+                'tipoAmbiental'=>$request->tipomodalAmbiental,
+                'fecharealizacionFactibilidad'=>$request->fechamodalFactibilidad,
+                'responsableFactibilidad'=>$request->responsablemodalFactibilidad,
+                'numeros_factibilidad'=>$request->numerosmodal_factibilidad,
+               
+                ]);
+        }
+        return back()->with('status', '¡Estudio actualizado correctamente!');
+        
+    }
+    public function editarImpacto(Request $request){
+   
+        if(empty($request->tipomodalImpacto)){
+            DB::table('estudiosimpacto')
+            ->where('id', '=', $request->id_estudio)
+            ->update([
+                'fecharealizacionimpacto'=>$request->fechamodalImpacto,
+                'responsableImpacto'=>$request->responsablemodalImpacto,
+                'numeros_impacto'=>$request->numerosmodal_impacto,
+               
+                ]);
+
+        }else{
+            DB::table('estudiosimpacto')
+            ->where('id', '=', $request->id_estudio)
+            ->update([
+                'tipoImpacto'=>$request->tipomodalImpacto,
+                'fecharealizacionimpacto'=>$request->fechamodalImpacto,
+                'responsableImpacto'=>$request->responsablemodalImpacto,
+                'numeros_impacto'=>$request->numerosmodal_impacto,
+               
+                ]);
+        }
+        return back()->with('status', '¡Estudio actualizado correctamente!');
+        
+    }
+    public function editarRecurso(Request $request){
+    
+        $period=DB::table('budget_breakdown')
+        ->where('id', '=', $request->id_recurso)
+        ->first();
+        $period=$period->id_period;
+
+        $perdiod=DB::table('period')
+        ->where('id','=',$period)
+        ->update(['startDate'=>$request->fecharecursomodal]);
+
+    
+
+       if(empty($request->origenrecursomodal)){
+        DB::table('budget_breakdown')
+        ->where('id', '=', $request->id_recurso)
+        ->update([
+            'sourceParty_name'=>$request->fuenterecursomodal,
+           
+            ]);
+       }else{
+        DB::table('budget_breakdown')
+        ->where('id', '=', $request->id_recurso)
+        ->update([
+            'description'=>$request->origenrecursomodal,
+            'sourceParty_name'=>$request->fuenterecursomodal,
+           
+            ]);
+       }
+       return back()->with('status', 'Origen del recurso actualizado correctamente!');
+    }
+    public function eliminarEstudio(Request $request){
+
+
+        switch($request->caso){
+
+            case 'ambiental':
+                DB::table('estudiosambiental')->where('id', '=', $request->id_eliminar)->delete();
+                break;
+            case 'factibilidad':
+                DB::table('estudiosfactibilidad')->where('id', '=', $request->id_eliminar)->delete();
+                break;
+            case 'impacto':
+                DB::table('estudiosimpacto')->where('id', '=', $request->id_eliminar)->delete();
+                break;
+            case 'recurso':
+                DB::table('budget_breakdown')->where('id', '=', $request->id_eliminar)->delete();
+                break;
+        }
+        return back()->with('status', '¡Registro eliminado correctamente!');
+
+    }
+
+    public function guardarDocumentosPreparacion(Request $request){
+        ProjectController::havedocuments($request, 'preparacion');
+        return back()->with('status', '¡Los documentos han sido guardados correctamente!');
+    }
+
+    public function actualizarObservacionPreparacion(Request $request){
+        
+    
+      DB::table('preparacionobservacion')     
+      ->updateOrInsert(
+        ['id_project' =>$request->id_project],
+        ['observaciones'=>$request->observaciones]
+    );
+
+    return back()->with('status', '¡Las observaciones han sido actualizadas!');
+    }
+
     public function contratacion($id = null)
     {
         if (empty($id)) {
             return redirect()->route('project.identificacion');
         } else {
+            
+            $check=Project::find($id);
+       
+            if($check!=null){
+                if($check->status>=2 && $check->status!=7){
+                    
+                   
+                    $documents = DB::table('project')
+                    ->join('project_documents', 'project.id', '=', 'project_documents.id_project')
+                    ->join('documents', 'project_documents.id_document', '=', 'documents.id')
+                    ->where('project.id', '=', $id)
+                    ->where('documents.description', '=', 'contratacion')
+                    ->select('documents.url', 'documents.id','documents.documentType')
+                    ->get();
+    
+                    $documentstype = DocumentType::orderBy('titulo', 'asc')->get();
+                $project = DB::table('proyecto_contratacion')
+                    ->join('project', 'proyecto_contratacion.id_project', '=', 'project.id')
+                    ->select('proyecto_contratacion.*', 'project.status', 'project.id as id')
+                    ->where('id_project', '=', $id)
+                    ->first();
+    
+                $catmodalidad_adjudicacion = DB::table('catmodalidad_adjudicacion')->orderBy('titulo','asc')->get();
+                $cattipo_contrato = DB::table('cattipo_contrato')->orderBy('titulo','asc')->get();
+                $catmodalidad_contratacion = DB::table('catmodalidad_contratacion')->orderBy('titulo','asc')->get();
+                $contractingprocess_status = DB::table('contractingprocess_status')->orderBy('titulo','asc')->get();
+    
+          
+    
+                if ($project == null) {
+    
+                    $project=Project::find($id);
+                 
+                    if($project==null){
+                        return redirect()->route('project.preparacion', ['project' => $id]);
+                    }
+                    $project->observaciones="";
+                    return view(
+                        'admin.projects.contratacion',
+                        [
+                            'project' => $project,
+                            'nav' => 'contratacion',
+                            'documents' => $documents,
+                            'edit' => true,
+                            'catmodalidad_adjudicacion' => $catmodalidad_adjudicacion,
+                            'cattipo_contrato' => $cattipo_contrato,
+                            'catmodalidad_contratacion' => $catmodalidad_contratacion,
+                            'contractingprocess_status' => $contractingprocess_status,
+                            'medit' => false,
+                            'ruta' => 'project.savecontratacion',
+                            'documentstype'=>$documentstype,
+    
+    
+                        ]
+                    );
+                } else {
+                   
+                    return view(
+                        'admin.projects.contratacion',
+                        [
+                            'project' => $project,
+                            'nav' => 'contratacion',
+                            'documents' => $documents,
+                            'edit' => true,
+                            'catmodalidad_adjudicacion' => $catmodalidad_adjudicacion,
+                            'cattipo_contrato' => $cattipo_contrato,
+                            'catmodalidad_contratacion' => $catmodalidad_contratacion,
+                            'contractingprocess_status' => $contractingprocess_status,
+                            'medit' => true,
+                            'ruta' => 'project.updatecontratacion',
+                            'documentstype'=>$documentstype,
+    
+                        ]
+                    );
+                }
+                }else{
+                    return redirect()->route('project.preparacion', ['project' => $id]);
+              
 
-
+                }
+            }
+            
+           
+            /*
             $checkambiental = DB::table('estudiosambiental')
                 ->where('id_project', '=', $id)
                 ->get();
@@ -583,67 +984,9 @@ class ProjectController extends Controller
 
                 return redirect()->route('project.preparacion', ['project' => $id]);
             }
+            */
 
-            $documents = DB::table('project')
-                ->join('project_documents', 'project.id', '=', 'project_documents.id_project')
-                ->join('documents', 'project_documents.id_document', '=', 'documents.id')
-                ->where('project.id', '=', $id)
-                ->where('documents.description', '=', 'contratacion')
-                ->select('documents.url', 'documents.id')
-                ->get();
-
-
-            $project = DB::table('proyecto_contratacion')
-                ->join('project', 'proyecto_contratacion.id_project', '=', 'project.id')
-                ->select('proyecto_contratacion.*', 'project.status', 'project.id as id')
-                ->where('id_project', '=', $id)
-                ->first();
-
-            $catmodalidad_adjudicacion = DB::table('catmodalidad_adjudicacion')->get();
-            $cattipo_contrato = DB::table('cattipo_contrato')->get();
-            $catmodalidad_contratacion = DB::table('catmodalidad_contratacion')->get();
-            $contractingprocess_status = DB::table('contractingprocess_status')->get();
-
-
-
-            if ($project == null) {
-
-                $project = Project::find($id);
-                return view(
-                    'admin.projects.contratacion',
-                    [
-                        'project' => $project,
-                        'nav' => 'contratacion',
-                        'documents' => $documents,
-                        'edit' => true,
-                        'catmodalidad_adjudicacion' => $catmodalidad_adjudicacion,
-                        'cattipo_contrato' => $cattipo_contrato,
-                        'catmodalidad_contratacion' => $catmodalidad_contratacion,
-                        'contractingprocess_status' => $contractingprocess_status,
-                        'medit' => false,
-                        'ruta' => 'project.savecontratacion',
-
-
-                    ]
-                );
-            } else {
-                return view(
-                    'admin.projects.contratacion',
-                    [
-                        'project' => $project,
-                        'nav' => 'contratacion',
-                        'documents' => $documents,
-                        'edit' => true,
-                        'catmodalidad_adjudicacion' => $catmodalidad_adjudicacion,
-                        'cattipo_contrato' => $cattipo_contrato,
-                        'catmodalidad_contratacion' => $catmodalidad_contratacion,
-                        'contractingprocess_status' => $contractingprocess_status,
-                        'medit' => true,
-                        'ruta' => 'project.updatecontratacion',
-
-                    ]
-                );
-            }
+          
         }
     }
 
@@ -663,12 +1006,13 @@ class ProjectController extends Controller
                 ->join('documents', 'project_documents.id_document', '=', 'documents.id')
                 ->where('project.id', '=', $id)
                 ->wherE('documents.description', '=', 'ejecucion')
-                ->select('documents.url', 'documents.id')
+                ->select('documents.url', 'documents.id','documents.documentType')
                 ->get();
+                $documentstype = DocumentType::orderBy('titulo', 'asc')->get();
             if ($project == null) {
 
                 $project = Project::find($id);
-
+                $project->observaciones="";
 
                 if ($project == null) {
                     return redirect()->route('project.contratacion', ['project' => $id]);
@@ -686,6 +1030,7 @@ class ProjectController extends Controller
                             'edit' => true,
                             'medit' => false,
                             'ruta' => 'project.saveejecucion',
+                            'documentstype'=>$documentstype,
 
                         ]
                     );
@@ -700,6 +1045,7 @@ class ProjectController extends Controller
                         'edit' => true,
                         'medit' => true,
                         'ruta' => 'project.updateejecucion',
+                        'documentstype'=>$documentstype,
 
                     ]
                 );
@@ -720,15 +1066,16 @@ class ProjectController extends Controller
                 ->join('documents', 'project_documents.id_document', '=', 'documents.id')
                 ->where('project.id', '=', $id)
                 ->wherE('documents.description', '=', 'finalizacion')
-                ->select('documents.url', 'documents.id')
+                ->select('documents.url', 'documents.id','documents.documentType')
                 ->get();
+                $documentstype = DocumentType::orderBy('titulo', 'asc')->get();
 
             if ($project == null) {
 
 
                 $project = Project::find($id);
 
-
+                $project->observaciones="";
 
 
 
@@ -748,6 +1095,7 @@ class ProjectController extends Controller
                             'edit' => true,
                             'medit' => false,
                             'ruta' => 'project.savefinalizacion',
+                            'documentstype'=>$documentstype,
 
                         ]
                     );
@@ -765,15 +1113,47 @@ class ProjectController extends Controller
                         'edit' => true,
                         'medit' => true,
                         'ruta' => 'project.updatefinalizacion',
+                        'documentstype'=>$documentstype,
+
                     ]
                 );
             }
         }
     }
 
+    public function noaplica($id_project){
+
+        //si el status es 1 
+
+        $project=Project::find($id_project);
+
+        if($project->status==1){
+            DB::table('project')
+            ->where('id',$id_project)
+            ->update(['status' => 2]);
+
+            return redirect()->route('project.contratacion', [
+                'project' => $id_project,
+            ]);
+        }else{
+            return redirect()->route('project.contratacion', [
+                'project' => $id_project,
+            ]);
+        }
+
+    
+
+       
+    }
+
     public function updateidentificacion(Request $request)
     {
 
+        $request->validate([
+            'people' => 'required|max:11',
+            'porcentaje_obra' => 'required|max:11',
+            'telefonoresponsable'=>'max:20',
+        ]);
 
         $fecha_in = date('Y-m-d');
 
@@ -830,11 +1210,11 @@ class ProjectController extends Controller
         $address->postalCode = $request->postalCode;
         $address->countryName = $request->countryName;
 
+        $address->suburb=$request->suburb;
+        $address->state=$request->state;
 
 
-
-
-
+      
 
 
 
@@ -863,7 +1243,7 @@ class ProjectController extends Controller
 
             for ($i = 0; $i < sizeof($request->docfase1); $i++) {
                 $nombre_img = $_FILES['docfase1']['name'][$i];
-
+                $nombre_img =str_replace(' ', '', $nombre_img);
                 move_uploaded_file($_FILES['docfase1']['tmp_name'][$i], 'documents/' . $nombre_img);
                 $url = $nombre_img;
 
@@ -913,6 +1293,7 @@ class ProjectController extends Controller
 
         ]);
 
+  
 
 
         DB::table('estudiosambiental')
@@ -977,7 +1358,12 @@ class ProjectController extends Controller
         return back()->with('status', '¡La fase de preparación ha sido actualizada correctamente!');
     }
     public function updatecontratacion(Request $request)
-    {
+    {   
+        $request->validate([
+
+            'telefonocontacto'=>'max:10',
+            'montocontrato'=>'max:20',
+        ]);
 
         if (!empty($request->fechapublicacion)) {
             $request->validate([
@@ -998,7 +1384,11 @@ class ProjectController extends Controller
                 'fechapublicacion' => $request->fechapublicacion,
 
                 'entidadadjudicacion' => $request->entidadadjudicacion,
-                'datosdecontacto' => $request->datosdecontacto,
+                //'datosdecontacto' => $request->datosdecontacto,
+                'nombrecontacto'=>$request->nombrecontacto,
+                'emailcontacto'=>$request->emailcontacto,
+                'telefonocontacto'=>$request->telefonocontacto,
+                'domiciliocontacto'=>$request->domiciliocontacto,
                 'nombreresponsable' => $request->nombreresponsable,
                 'modalidadadjudicacion' => $request->modalidadadjudicacion,
                 'tipocontrato' => $request->tipocontrato,
@@ -1100,6 +1490,11 @@ class ProjectController extends Controller
             
         ]);
         */
+        $request->validate([
+
+            'costofinalizacion'=>'max:20',
+        
+        ]);
 
         $proyecto_finalizacion = DB::table('proyecto_finalizacion')
             ->insert([
@@ -1205,6 +1600,11 @@ class ProjectController extends Controller
         
         ]);
         */
+        $request->validate([
+
+            'telefonocontacto'=>'max:10',
+            'montocontrato'=>'max:22',
+        ]);
 
         if (!empty($request->fechapublicacion)) {
             $request->validate([
@@ -1223,7 +1623,11 @@ class ProjectController extends Controller
                 'descripcion' => $request->descripcion,
                 'fechapublicacion' => $request->fechapublicacion,
                 'entidadadjudicacion' => $request->entidadadjudicacion,
-                'datosdecontacto' => $request->datosdecontacto,
+                //'datosdecontacto' => $request->datosdecontacto,
+                'nombrecontacto'=>$request->nombrecontacto,
+                'emailcontacto'=>$request->emailcontacto,
+                'telefonocontacto'=>$request->telefonocontacto,
+                'domiciliocontacto'=>$request->domiciliocontacto,
                 'nombreresponsable' => $request->nombreresponsable,
                 'modalidadadjudicacion' => $request->modalidadadjudicacion,
                 'tipocontrato' => $request->tipocontrato,
@@ -1354,7 +1758,7 @@ class ProjectController extends Controller
 
         return redirect()->route('project.contratacion', [
             'project' => $request->id_project,
-        ]);;
+        ]);
     }
 
     public function saveidentificacion(Request $request)
@@ -1375,12 +1779,14 @@ class ProjectController extends Controller
             'sectorProyecto' => 'required|max:50',
             'subsector' => 'required|max:50',
             'tipoProyecto' => 'required|max:50',
-            'people' => 'required|max:50',
-            'porcentaje_obra' => 'required|max:3',
+            'people' => 'required|max:11',
+            'porcentaje_obra' => 'required|max:11',
 
             'streetAddress' => 'required',
+            'suburb'=>'required',
             'locality' => 'required',
             'region' => 'required',
+            'state'=>'required',
             'postalCode' => 'required|max:50',
             'countryName' => 'required',
             'description' => 'required',
@@ -1450,6 +1856,8 @@ class ProjectController extends Controller
 
         $address = new Address();
         $address->streetAddress = $request->streetAddress;
+        $address->suburb=$request->suburb;
+        $address->state=$request->state;
         $address->locality = $request->locality;
         $address->region = $request->region;
         $address->postalCode = $request->postalCode;
@@ -1486,6 +1894,7 @@ class ProjectController extends Controller
 
             for ($i = 0; $i < sizeof($request->docfase1); $i++) {
                 $nombre_img = $_FILES['docfase1']['name'][$i];
+                $nombre_img =str_replace(' ', '', $nombre_img);
 
                 move_uploaded_file($_FILES['docfase1']['tmp_name'][$i], 'documents/' . $nombre_img);
                 $url = $nombre_img;
@@ -1658,10 +2067,10 @@ class ProjectController extends Controller
         $document = Documents::find($request->doc_id);
 
         $url = public_path() . '/documents' . '/' . $document->url;
+        if (file_exists(($url))) {
+            unlink($url);
+        }
 
-
-
-        unlink($url);
         $document->delete();
         return back()->with('status', '¡Documento eliminado!');
     }
@@ -1673,15 +2082,15 @@ class ProjectController extends Controller
 
             for ($i = 0; $i < sizeof($request->documents); $i++) {
                 $nombre_img = $_FILES['documents']['name'][$i];
-
+                $nombre_img =str_replace(' ', '', $nombre_img);
                 move_uploaded_file($_FILES['documents']['tmp_name'][$i], 'documents/' . $nombre_img);
                 $url = $nombre_img;
 
 
-
+       
 
                 $documents = new Documents();
-                $documents->documentType = 1;
+                $documents->documentType = $request->documenttype;
                 $documents->description = $fase;
                 $documents->url = $url;
                 $documents->save();
