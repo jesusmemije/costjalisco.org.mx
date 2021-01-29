@@ -53,14 +53,14 @@ Datos del proyecto
         <div class="col-md-9 px-0">
             <div class="media-body">
                 <div id="titleproject" class="col-md-12 hidden-phone">
-                    <span>strtoupper{{ $project->title }}</span>
+                    <span>{{ $project->title }}</span>
                 </div>
                 <div id="benefited" class="col-md-12">
                     <div class="row mx-0 align-items-baseline">
                         <img src="{{ asset('/assets/img/project/icons/people.png') }}"
                             class="img-fluid ml-3 icon-people" width="60" alt="">
                         <label class="ml-3 text-personas-beneficiadas" for="">{{number_format($project->people)}}
-                            personas beneficiados</label>
+                            personas beneficiadas</label>
                             <!--setlocale(LC_MONETARY, 'en_US');
                                 echo money_format('%(#10n', $number) . "\n";-->
                     </div>
