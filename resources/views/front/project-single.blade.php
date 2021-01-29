@@ -55,9 +55,12 @@ Datos del proyecto
                 </div>
                 <div id="benefited" class="col-md-12">
                     <div class="row mx-0 align-items-baseline">
-                        <img src="{{ asset('/assets/img/project/icons/people.png') }}" class="img-fluid ml-3 icon-people" width="60" alt="">
+                        <img src="{{ asset('/assets/img/project/icons/people.png') }}"
+                            class="img-fluid ml-3 icon-people" width="60" alt="">
                         <label class="ml-3 text-personas-beneficiadas" for="">{{number_format($project->people)}}
-                            ciudadanos beneficiados</label>
+                            personas beneficiadas</label>
+                            <!--setlocale(LC_MONETARY, 'en_US');
+                                echo money_format('%(#10n', $number) . "\n";-->
                     </div>
                     <div class="row mx-0 hidden-phone">
                         <div id="btns">
