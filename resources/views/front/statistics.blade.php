@@ -116,6 +116,35 @@
                 </label>
             </div>
         </div>
+        <!--Modalidad de la adjudicación-->
+        <div class="col-md-12" style="margin-bottom: 100px"></div>
+        <div class="my-1 seccion-project" id="presupuesto">
+            <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
+                <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
+                    <span class="title-section"><b> Modalidad de la adjudicación</b></span>
+                </h2><br>
+            </div>
+        </div>
+        
+        <!--Procedimiento por etapas-->
+        <div class="col-md-12" style="margin-bottom: 100px"></div>
+        <div class="my-1 seccion-project" id="presupuesto">
+            <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
+                <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
+                    <span class="title-section"><b> Procedimiento por etapas</b></span>
+                </h2><br>
+            </div>
+        </div>
+        <!--Personas beneficiadas-->
+        <div class="col-md-12" style="margin-bottom: 100px"></div>
+        <div class="my-1 seccion-project" id="presupuesto">
+            <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
+                <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
+                    <span class="title-section"><b> Personas beneficiadas</b></span>
+                </h2><br>
+            </div>
+        </div>
+        <!--Proyectos de la iniciativa-->
         <div class="col-md-12" style="margin-bottom: 100px"></div>
         <div class="my-1 seccion-project" id="iniciativa">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
@@ -155,7 +184,7 @@
                                 @if (count($imagen)==0)
                                     <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
                                 @else
-                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="125" height="120" alt="">
+                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="90" height="90" alt="">
                                 @endif
                                 <br>
                                 <small>{{$pro->name}}</small><br>
@@ -242,7 +271,7 @@
                                 @if (count($imagen)==0)
                                     <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
                                 @else
-                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="125" height="120" alt="">
+                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="90" height="90" alt="">
                                 @endif
                                 <br>
                                 <small>{{$pro->name}}</small><br>
