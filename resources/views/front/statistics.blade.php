@@ -172,7 +172,7 @@
                     
                 
                 <br>
-                     <div id="donutchart" style="width: 400px; height: 250px;" >
+                     <div id="donutchart" style="width: 450px; height: 300px;" >
                     </div>
                     {{-- <span style="position: absolute; bottom: 230px; right: 40px;">{{$contador}}</span> --}}
                 {{-- <input type="text" value="{{$total_proyectos}}" class="circle"> --}}
@@ -190,8 +190,24 @@
         </div>
         <div style="margin-left: 20px; position: relative; bottom: 20px">
             <div class="col-md-9 background-title bg-background-total px-0 py-1">
-                    
-                <span class="total-presupuesto">$ {{number_format($total_contrato,2)}}</span>
+                @php
+                    $total_contrato=0;
+                    $totalfinalizacion=0;
+                    $total_sumado=0;
+                @endphp
+
+                @if (count($monto_contrato)==0)
+                    @php
+                        $total_sumado=0;
+                    @endphp
+                @else
+                    @foreach ($monto_contrato as $monto_c)
+                            
+                    @endforeach
+                @endif
+                
+
+                <span class="total-presupuesto">$ {{number_format($total_sumado,2)}}</span>
             </div>
         </div>
         <div class="col-md-12" style="margin-left: 2%">
@@ -309,7 +325,7 @@
       var options = {
         // title: 'My Daily Activities',
         chartArea: {'width': '100%', 'height': '100%'},
-        colors: ['#ffce32','#d60000', '#58707b', '#61a8bd'],
+        colors: ['#ffce32','#d60000', '#58707b', '#61a8bd','#2c4143','#638e7f'],
         pieHole: 0.5,
         fontSize: 22,
         legend: 'none',

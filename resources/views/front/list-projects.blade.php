@@ -19,470 +19,71 @@ Listado de obras
     </div>
 
     <div class="container mt-5">
-        <div class="row mb-5">
-            <div class="col-lg-6">
-                <a href="">
-                    <div class="container-item d-flex justify-content-between align-items-center text-white">
-                        <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                        <strong>GOBIERNO DEL ESTADO DE JALISCO (SIOP)</strong>
-                        <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt="">
-                    </div>
-                </a>
+        @php
+            $num1=0;
+            $num2=0;
+            $num3=0;
+            $num4=0;
+            $num5=0;
+        @endphp
+        @if (count($projects)==0)
+            <div class="col-md-12">
+                <center>
+                    Nigún proyecto
+                </center>
             </div>
-            @php
-                $contar2=0;
-                $conta22=0;
-            @endphp
+        @else
             @foreach ($projects as $project)
-                
-                    
                 @if ($project->id_organization==2)
                     @php
-                        $contar2+=1;
+                        $num1=1;
                     @endphp
-                    {{-- <b>{{$contar}}</b> --}}
-                    @if ($contar2<=1)
-                            <style>
-                                #content2{
-                                    display: none;
-                                }
-                            </style>
-                            <div style="margin-left: 3%;" class="col-md-12">
-                                <div class="media" >
-                                        @php
-                                        $imagen = DB::table('projects_imgs')
-                                        ->select('projects_imgs.imgroute')
-                                        ->where('projects_imgs.id_project','=',$project->id)
-                                        ->get();
-                                        @endphp
-                                        @if (count($imagen) == 0)
-                                            <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                            style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                        @else
-                                            <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                        @endif
-                        
-                                        @php
-                                            $title = substr($project->title,0,36).'...';
-                                            $description = substr($project->description,0,140).'...';
-                                        @endphp
-                        
-                                    <div class="media-body">
-                                        <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
-                                        <br class="hidden-desktop">
-                                        <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                            <span> {{ $description }} </span>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                <span class="organismo-publico">{{$project->name_organization}}</span>
-                                            </div>
-                                            <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                    Conoce más
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                            <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                style="color:white">completado</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    @else
-                        
-                    @endif
-                    @if ($contar2>1 && $contar2<3)
-                        <div class="col-md-12">
-                            <button id="show2" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
-                            <button id="hide2" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
-                            
-                        </div>
-                    @else
-                    @endif
-                @else
-                    
+                @elseif($project->id_organization==7)
+                    @php
+                        $num2=1;
+                    @endphp
+                @elseif($project->id_organization==8)
+                    @php
+                        $num3=1;
+                    @endphp
+                @elseif($project->id_organization==9)
+                    @php
+                        $num4=1;
+                    @endphp
+                @elseif($project->id_organization==10)
+                    @php
+                        $num5=1;
+                    @endphp
                 @endif
-                
             @endforeach
-            <div style="margin-left: 3%;" class="col-md-12" id="content2" style="display: none">
+        @endif
+
+        @if ($num1==1)
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <a href="">
+                        <div class="container-item d-flex justify-content-between align-items-center text-white">
+                            <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
+                            <strong>GOBIERNO DEL ESTADO DE JALISCO (SIOP)</strong>
+                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
+                        </div>
+                    </a>
+                </div>
+                @php
+                    $contar2=0;
+                    $conta22=0;
+                @endphp
                 @foreach ($projects as $project)
+                    
                         
                     @if ($project->id_organization==2)
                         @php
-                            $conta22+=1;
-                        @endphp
-                        {{-- <b>{{$conta2}}</b> --}}
-                        @if ($conta22>1)
-                                <div class="media" >
-                                        @php
-                                        $imagen = DB::table('projects_imgs')
-                                        ->select('projects_imgs.imgroute')
-                                        ->where('projects_imgs.id_project','=',$project->id)
-                                        ->get();
-                                        @endphp
-                                        @if (count($imagen) == 0)
-                                            <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                            style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                        @else
-                                            <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                        @endif
-                        
-                                        @php
-                                            $title = substr($project->title,0,36).'...';
-                                            $description = substr($project->description,0,140).'...';
-                                        @endphp
-                        
-                                    <div class="media-body">
-                                        <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
-                                        <br class="hidden-desktop">
-                                        <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                            <span> {{ $description }} </span>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                <span class="organismo-publico">{{$project->name_organization}}</span>
-                                            </div>
-                                            <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                    Conoce más
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                            <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                style="color:white">completado</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                        @else
-                        
-                        @endif
-                    @else
-                    
-                    @endif
-                @endforeach
-            </div>
-        </div>        
-        <div class="row mb-5">
-            <div class="col-lg-6">
-                <a href="">
-                    <div class="container-item d-flex justify-content-between align-items-center text-white">
-                        <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                        <strong>AYUNTAMIENTO DE ZAPOPAN</strong>
-                        <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt="">
-                    </div>
-                </a>
-            </div>
-                @php
-                    $contar8=0;
-                    $conta28=0;
-                @endphp
-                @foreach ($projects as $project)
-                    
-                        
-                    @if ($project->id_organization==8)
-                        @php
-                            $contar8+=1;
+                            $contar2+=1;
                         @endphp
                         {{-- <b>{{$contar}}</b> --}}
-                        @if ($contar8<=1)
-                            <style>
-                                #content8{
-                                    display: none;
-                                }
-                            </style>
-                                <div style="margin-left: 3%;" class="col-md-12">
-                                    <div class="media" >
-                                            @php
-                                            $imagen = DB::table('projects_imgs')
-                                            ->select('projects_imgs.imgroute')
-                                            ->where('projects_imgs.id_project','=',$project->id)
-                                            ->get();
-                                            @endphp
-                                            @if (count($imagen) == 0)
-                                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                                style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                            @else
-                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                            @endif
-                            
-                                            @php
-                                                $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
-                                            @endphp
-                            
-                                        <div class="media-body">
-                                            <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
-                                            <br class="hidden-desktop">
-                                            <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                                <span> {{ $description }} </span>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
-                                                </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                        Conoce más
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                                <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                    style="color:white">completado</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        @else
-                            
-                        @endif
-                        @if ($contar8>1 && $contar8<3)
-                            <div class="col-md-12">
-                                <button id="show8" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
-                                <button id="hide8" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
-                            </div>
-                        @else
-                        @endif
-                    @else
-                        
-                    @endif
-                    
-                @endforeach
-                <div style="margin-left: 3%;" class="col-md-12" id="content8" style="display: none">
-                    @foreach ($projects as $project)
-                            
-                        @if ($project->id_organization==8)
-                            @php
-                                $conta28+=1;
-                            @endphp
-                            {{-- <b>{{$conta2}}</b> --}}
-                            @if ($conta28>1)
-                                    <div class="media" >
-                                            @php
-                                            $imagen = DB::table('projects_imgs')
-                                            ->select('projects_imgs.imgroute')
-                                            ->where('projects_imgs.id_project','=',$project->id)
-                                            ->get();
-                                            @endphp
-                                            @if (count($imagen) == 0)
-                                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                                style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                            @else
-                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                            @endif
-                            
-                                            @php
-                                                $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
-                                            @endphp
-                            
-                                        <div class="media-body">
-                                            <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
-                                            <br class="hidden-desktop">
-                                            <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                                <span> {{ $description }} </span>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
-                                                </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                        Conoce más
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                                <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                    style="color:white">completado</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                            @else
-                            
-                            @endif
-                        @else
-                        
-                        @endif
-                    @endforeach
-                </div>
-        </div>    
-        <div class="row mb-5">
-            <div class="col-lg-6">
-                <a href="">
-                    <div class="container-item d-flex justify-content-between align-items-center text-white">
-                        <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                        <strong>AYUNTAMIENTO DE TONALÁ</strong>
-                        <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt="">
-                    </div>
-                </a>
-            </div>
-                @php
-                    $contar9=0;
-                    $conta29=0;
-                @endphp
-                @foreach ($projects as $project)
-                    
-                        
-                    @if ($project->id_organization==9)
-                        @php
-                            $contar9+=1;
-                        @endphp
-                        {{-- <b>{{$contar}}</b> --}}
-                        @if ($contar9<=1)
-                            <style>
-                                #content9{
-                                    display: none;
-                                }
-                            </style>
-                                <div style="margin-left: 3%;" class="col-md-12">
-                                    <div class="media" >
-                                            @php
-                                            $imagen = DB::table('projects_imgs')
-                                            ->select('projects_imgs.imgroute')
-                                            ->where('projects_imgs.id_project','=',$project->id)
-                                            ->get();
-                                            @endphp
-                                            @if (count($imagen) == 0)
-                                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                                style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                            @else
-                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                            @endif
-                            
-                                            @php
-                                                $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
-                                            @endphp
-                            
-                                        <div class="media-body">
-                                            <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
-                                            <br class="hidden-desktop">
-                                            <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                                <span> {{ $description }} </span>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
-                                                </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                        Conoce más
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                                <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                    style="color:white">completado</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        @else
-                            
-                        @endif
-                        @if ($contar9>1 && $contar9<3)
-                            <div class="col-md-12">
-                                <button id="show9" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
-                                <button id="hide9" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
-                            </div>
-                        @else
-                        @endif
-                    @else
-                        
-                    @endif
-                    
-                @endforeach
-                <div style="margin-left: 3%;" class="col-md-12" id="content9" style="display: none">
-                    @foreach ($projects as $project)
-                            
-                        @if ($project->id_organization==9)
-                            @php
-                                $conta29+=1;
-                            @endphp
-                            {{-- <b>{{$conta2}}</b> --}}
-                            @if ($conta29>1)
-                                    <div class="media" >
-                                            @php
-                                            $imagen = DB::table('projects_imgs')
-                                            ->select('projects_imgs.imgroute')
-                                            ->where('projects_imgs.id_project','=',$project->id)
-                                            ->get();
-                                            @endphp
-                                            @if (count($imagen) == 0)
-                                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                                style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                            @else
-                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                            @endif
-                            
-                                            @php
-                                                $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
-                                            @endphp
-                            
-                                        <div class="media-body">
-                                            <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
-                                            <br class="hidden-desktop">
-                                            <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                                <span> {{ $description }} </span>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
-                                                </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                        Conoce más
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                                <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                    style="color:white">completado</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                            @else
-                            
-                            @endif
-                        @else
-                        
-                        @endif
-                    @endforeach
-                </div>
-        </div>  
-        <div class="row mb-5">
-            <div class="col-lg-6">
-                <a href="">
-                    <div class="container-item d-flex justify-content-between align-items-center text-white">
-                        <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                        <strong>AYUNTAMIENTO DE TLAJOMULCO de ZÚÑIGA</strong>
-                        <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt="">
-                    </div>
-                </a>
-            </div>
-                @php
-                    $contar10=0;
-                    $conta210=0;
-                @endphp
-                @foreach ($projects as $project)
-                    
-                        
-                    @if ($project->id_organization==10)
-                        @php
-                            $contar10+=1;
-                        @endphp
-                        {{-- <b>{{$contar}}</b> --}}
-                        @if ($contar10<=1)
+                        @if ($contar2<=1)
                                 <style>
-                                    #content10{
+                                    #content2{
                                         display: none;
                                     }
                                 </style>
@@ -498,12 +99,12 @@ Listado de obras
                                                 <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
                                                 style="border: 2px solid rgb(180, 180, 180)" alt="">
                                             @else
-                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="30" alt="">
                                             @endif
                             
                                             @php
                                                 $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
+                                                $description = substr($project->description,0,120).'...';
                                             @endphp
                             
                                         <div class="media-body">
@@ -513,10 +114,10 @@ Listado de obras
                                                 <span> {{ $description }} </span>
                                             </div>
                                             <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
+                                                <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
                                                     <span class="organismo-publico">{{$project->name_organization}}</span>
                                                 </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
+                                                <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
                                                     <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
                                                         Conoce más
                                                     </a>
@@ -532,10 +133,11 @@ Listado de obras
                         @else
                             
                         @endif
-                        @if ($contar10>1 && $contar10<3)
+                        @if ($contar2>1 && $contar2<3)
                             <div class="col-md-12">
-                                <button id="show10" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
-                                <button id="hide10" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
+                                <button id="show2" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
+                                <button id="hide2" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
+                                
                             </div>
                         @else
                         @endif
@@ -544,15 +146,15 @@ Listado de obras
                     @endif
                     
                 @endforeach
-                <div style="margin-left: 3%;" class="col-md-12" id="content10" style="display: none">
+                <div style="margin-left: 3%;" class="col-md-12" id="content2" style="display: none">
                     @foreach ($projects as $project)
                             
-                        @if ($project->id_organization==10)
+                        @if ($project->id_organization==2)
                             @php
-                                $conta210+=1;
+                                $conta22+=1;
                             @endphp
                             {{-- <b>{{$conta2}}</b> --}}
-                            @if ($conta210>1)
+                            @if ($conta22>1)
                                     <div class="media" >
                                             @php
                                             $imagen = DB::table('projects_imgs')
@@ -569,7 +171,7 @@ Listado de obras
                             
                                             @php
                                                 $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
+                                                $description = substr($project->description,0,120).'...';
                                             @endphp
                             
                                         <div class="media-body">
@@ -579,10 +181,10 @@ Listado de obras
                                                 <span> {{ $description }} </span>
                                             </div>
                                             <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
+                                                <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
                                                     <span class="organismo-publico">{{$project->name_organization}}</span>
                                                 </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
+                                                <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
                                                     <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
                                                         Conoce más
                                                     </a>
@@ -603,169 +205,615 @@ Listado de obras
                         @endif
                     @endforeach
                 </div>
-        </div>  
-        <div class="row mb-5">
-            <div class="col-lg-6">
-                <a href="">
-                    <div class="container-item d-flex justify-content-between align-items-center text-white">
-                        <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                        <strong>AYUNTAMIENTO DE GUADALAJARA</strong>
-                        <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt="">
-                    </div>
-                </a>
-            </div>
-                @php
-                    $contar7=0;
-                    $conta27=0;
-                @endphp
-                @foreach ($projects as $project)
-                    
-                        
-                    @if ($project->id_organization==7)
-                        @php
-                            $contar7+=1;
-                        @endphp
-                        {{-- <b>{{$contar}}</b> --}}
-                        @if ($contar7<=1)
-                                <style>
-                                    #content7{
-                                        display: none;
-                                    }
-                                </style>
-                                <div style="margin-left: 3%;" class="col-md-12">
-                                    <div class="media" >
-                                            @php
-                                            $imagen = DB::table('projects_imgs')
-                                            ->select('projects_imgs.imgroute')
-                                            ->where('projects_imgs.id_project','=',$project->id)
-                                            ->get();
-                                            @endphp
-                                            @if (count($imagen) == 0)
-                                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                                style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                            @else
-                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                            @endif
-                            
-                                            @php
-                                                $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
-                                            @endphp
-                            
-                                        <div class="media-body">
-                                            <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }}  </div>
-                                            <br class="hidden-desktop">
-                                            <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                                <span> {{ $description }} </span>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
-                                                </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                        Conoce más
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                                <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                    style="color:white">completado</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        @else
-                            
-                        @endif
-                        @if ($contar7>1 && $contar7<3)
-                            <div class="col-md-12">
-                                <button id="show7" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
-                                <button id="hide7" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
-                            
-                            </div>
-                        @else
-                        @endif
-                    @else
-                        
-                    @endif
-                    
-                @endforeach
-                <div style="margin-left: 3%;" class="col-md-12" id="content7" style="display: none">
+            </div>  
+        @else
+            
+        @endif
+
+        @if ($num2==1)
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <a href="">
+                        <div class="container-item d-flex justify-content-between align-items-center text-white">
+                            <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
+                            <strong>AYUNTAMIENTO DE GUADALAJARA</strong>
+                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
+                        </div>
+                    </a>
+                </div>
+                    @php
+                        $contar7=0;
+                        $conta27=0;
+                    @endphp
                     @foreach ($projects as $project)
+                        
                             
                         @if ($project->id_organization==7)
                             @php
-                                $conta27+=1;
+                                $contar7+=1;
                             @endphp
-                            @if ($conta27>1)
-                                    <div class="media" >
-                                            @php
-                                            $imagen = DB::table('projects_imgs')
-                                            ->select('projects_imgs.imgroute')
-                                            ->where('projects_imgs.id_project','=',$project->id)
-                                            ->get();
-                                            @endphp
-                                            @if (count($imagen) == 0)
-                                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
-                                                style="border: 2px solid rgb(180, 180, 180)" alt="">
-                                            @else
-                                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
-                                            @endif
-                            
-                                            @php
-                                                $title = substr($project->title,0,36).'...';
-                                                $description = substr($project->description,0,140).'...';
-                                            @endphp
-                            
-                                        <div class="media-body">
-                                            <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
-                                            <br class="hidden-desktop">
-                                            <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
-                                                <span> {{ $description }} </span>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="mt-4 form-group col-md-3 col-sm-3 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
+                            {{-- <b>{{$contar}}</b> --}}
+                            @if ($contar7<=1)
+                                    <style>
+                                        #content7{
+                                            display: none;
+                                        }
+                                    </style>
+                                    <div style="margin-left: 3%;" class="col-md-12">
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }}  </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
                                                 </div>
-                                                <div class="form-group mt-4 col-md-2 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
-                                                        Conoce más
-                                                    </a>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
-                                                <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
-                                                    style="color:white">completado</span>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                            @else
                                 
+                            @endif
+                            @if ($contar7>1 && $contar7<3)
+                                <div class="col-md-12">
+                                    <button id="show7" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
+                                    <button id="hide7" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
+                                
+                                </div>
+                            @else
+                            @endif
+                        @else
+                            
+                        @endif
+                        
+                    @endforeach
+                    <div style="margin-left: 3%;" class="col-md-12" id="content7" style="display: none">
+                        @foreach ($projects as $project)
+                                
+                            @if ($project->id_organization==7)
+                                @php
+                                    $conta27+=1;
+                                @endphp
+                                @if ($conta27>1)
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                @else
+                                
+                                @endif
                             @else
                             
                             @endif
-                        @else
-                        
-                        @endif
-                    @endforeach
-                </div>
-        </div> 
-    </div>
-       
-        
-
-        {{-- <div class="row mb-5">
-            <div class="col-lg-5">
-                <a href="">
-                    <div class="container-item d-flex justify-content-between align-items-center text-white">
-                        <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                        <strong>Ayuntamiento de Zapopan</strong>
-                        <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt="">
+                        @endforeach
                     </div>
-                </a>
-            </div>
-        </div> --}}
-    {{-- </div> --}}
+            </div> 
+        @else
+            
+        @endif
+        
+        @if ($num3==1)
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <a href="">
+                        <div class="container-item d-flex justify-content-between align-items-center text-white">
+                            <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
+                            <strong>AYUNTAMIENTO DE ZAPOPAN</strong>
+                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
+                        </div>
+                    </a>
+                </div>
+                    @php
+                        $contar8=0;
+                        $conta28=0;
+                    @endphp
+                    @foreach ($projects as $project)
+                        
+                            
+                        @if ($project->id_organization==8)
+                            @php
+                                $contar8+=1;
+                            @endphp
+                            {{-- <b>{{$contar}}</b> --}}
+                            @if ($contar8<=1)
+                                <style>
+                                    #content8{
+                                        display: none;
+                                    }
+                                </style>
+                                    <div style="margin-left: 3%;" class="col-md-12">
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            @else
+                                
+                            @endif
+                            @if ($contar8>1 && $contar8<3)
+                                <div class="col-md-12">
+                                    <button id="show8" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
+                                    <button id="hide8" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
+                                </div>
+                            @else
+                            @endif
+                        @else
+                            
+                        @endif
+                        
+                    @endforeach
+                    <div style="margin-left: 3%;" class="col-md-12" id="content8" style="display: none">
+                        @foreach ($projects as $project)
+                                
+                            @if ($project->id_organization==8)
+                                @php
+                                    $conta28+=1;
+                                @endphp
+                                {{-- <b>{{$conta2}}</b> --}}
+                                @if ($conta28>1)
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                @else
+                                
+                                @endif
+                            @else
+                            
+                            @endif
+                        @endforeach
+                    </div>
+            </div> 
+        @else
+            
+        @endif
+              
+        @if ($num4==1)
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <a href="">
+                        <div class="container-item d-flex justify-content-between align-items-center text-white">
+                            <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
+                            <strong>AYUNTAMIENTO DE TONALÁ</strong>
+                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
+                        </div>
+                    </a>
+                </div>
+                    @php
+                        $contar9=0;
+                        $conta29=0;
+                    @endphp
+                    @foreach ($projects as $project)
+                        
+                            
+                        @if ($project->id_organization==9)
+                            @php
+                                $contar9+=1;
+                            @endphp
+                            {{-- <b>{{$contar}}</b> --}}
+                            @if ($contar9<=1)
+                                <style>
+                                    #content9{
+                                        display: none;
+                                    }
+                                </style>
+                                    <div style="margin-left: 3%;" class="col-md-12">
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            @else
+                                
+                            @endif
+                            @if ($contar9>1 && $contar9<3)
+                                <div class="col-md-12">
+                                    <button id="show9" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
+                                    <button id="hide9" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
+                                </div>
+                            @else
+                            @endif
+                        @else
+                            
+                        @endif
+                        
+                    @endforeach
+                    <div style="margin-left: 3%;" class="col-md-12" id="content9" style="display: none">
+                        @foreach ($projects as $project)
+                                
+                            @if ($project->id_organization==9)
+                                @php
+                                    $conta29+=1;
+                                @endphp
+                                {{-- <b>{{$conta2}}</b> --}}
+                                @if ($conta29>1)
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                @else
+                                
+                                @endif
+                            @else
+                            
+                            @endif
+                        @endforeach
+                    </div>
+            </div> 
+        @else
+            
+        @endif
+           
+        @if ($num5==1)
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <a href="">
+                        <div class="container-item d-flex justify-content-between align-items-center text-white">
+                            <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
+                            <strong>AYUNTAMIENTO DE TLAJOMULCO DE ZÚÑIGA</strong>
+                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
+                        </div>
+                    </a>
+                </div>
+                    @php
+                        $contar10=0;
+                        $conta210=0;
+                    @endphp
+                    @foreach ($projects as $project)
+                        
+                            
+                        @if ($project->id_organization==10)
+                            @php
+                                $contar10+=1;
+                            @endphp
+                            {{-- <b>{{$contar}}</b> --}}
+                            @if ($contar10<=1)
+                                    <style>
+                                        #content10{
+                                            display: none;
+                                        }
+                                    </style>
+                                    <div style="margin-left: 3%;" class="col-md-12">
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            @else
+                                
+                            @endif
+                            @if ($contar10>1 && $contar10<3)
+                                <div class="col-md-12">
+                                    <button id="show10" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
+                                    <button id="hide10" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px; display: none">Cerrar</button>
+                                </div>
+                            @else
+                            @endif
+                        @else
+                            
+                        @endif
+                        
+                    @endforeach
+                    <div style="margin-left: 3%;" class="col-md-12" id="content10" style="display: none">
+                        @foreach ($projects as $project)
+                                
+                            @if ($project->id_organization==10)
+                                @php
+                                    $conta210+=1;
+                                @endphp
+                                {{-- <b>{{$conta2}}</b> --}}
+                                @if ($conta210>1)
+                                        <div class="media" >
+                                                @php
+                                                $imagen = DB::table('projects_imgs')
+                                                ->select('projects_imgs.imgroute')
+                                                ->where('projects_imgs.id_project','=',$project->id)
+                                                ->get();
+                                                @endphp
+                                                @if (count($imagen) == 0)
+                                                    <img src="{{ asset('projects_imgs/sinimagen.png') }}" class="img-obra" width="325" height="310"
+                                                    style="border: 2px solid rgb(180, 180, 180)" alt="">
+                                                @else
+                                                    <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" class="img-obra" width="325" height="310" alt="">
+                                                @endif
+                                
+                                                @php
+                                                    $title = substr($project->title,0,36).'...';
+                                                    $description = substr($project->description,0,120).'...';
+                                                @endphp
+                                
+                                            <div class="media-body">
+                                                <div class="mt-5 mt-sm-4 ml-5 title-obra">{{ $title }} </div>
+                                                <br class="hidden-desktop">
+                                                <div class="col-md-10 col-sm-10 col-12 px-0 description-obra">
+                                                    <span> {{ $description }} </span>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
+                                                        <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    </div>
+                                                    <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
+                                                        <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                            Conoce más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11 d-flex justify-content-end align-items-baseline bg-red">
+                                                    <span class="porcentaje">{{$project->porcentaje_obra}}%</span>&nbsp;&nbsp;<span
+                                                        style="color:white">completado</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                @else
+                                
+                                @endif
+                            @else
+                            
+                            @endif
+                        @endforeach
+                    </div>
+            </div> 
+        @else
+            
+        @endif
+    </div>
 
 </div>
 

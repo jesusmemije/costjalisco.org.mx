@@ -1,6 +1,6 @@
 .media {
     width: 100%;
-    height: 310px;
+    /* height: 310px; */
     background-color: #d8d8cd;
     margin-top: 2%;
 }
@@ -32,16 +32,18 @@
 .title-obra {
     font-weight: 700;
     font-size: 20px;
+    text-transform: uppercase;
 }
 
 .description-obra {
     text-align: justify;
     margin-left: 6%;
     font-weight: 300;
+    height: 50px;
 }
 
 .container-btn {
-    margin-left: 40%;
+    /* margin-left: 20%; */
     margin-bottom: 4%;
 }
 
@@ -49,7 +51,7 @@
     background-color: #2c4143;
     color: white;
     border-radius: 15px;
-    width: 130%;
+    width: 100%;
     height: 30px;
     box-shadow: 0px 6px 6px 0px gray;
 }
@@ -61,6 +63,7 @@
 }
 
 .organismo-publico {
+    
     color: gray;
     font-weight: 700;
 }
@@ -70,8 +73,8 @@
 }
 
 .img-obra {
-    width: 29%;
-    height: auto;
+    width: 35%;
+    height: 270px;
 }
 
 .container-card {
