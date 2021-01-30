@@ -220,20 +220,9 @@
         <div style="margin-left: 20px; position: relative; bottom: 20px">
             <div class="col-md-9 background-title bg-background-total px-0 py-1">
                 @php
-                    $total_contrato=0;
-                    $totalfinalizacion=0;
-                    $total_sumado=0;
+                    
+                    $total_sumado=$total_contrato+$total_costofin;
                 @endphp
-
-                @if (count($monto_contrato)==0)
-                    @php
-                        $total_sumado=0;
-                    @endphp
-                @else
-                    @foreach ($monto_contrato as $monto_c)
-                            
-                    @endforeach
-                @endif
                 
 
                 <span class="total-presupuesto">$ {{number_format($total_sumado,2)}}</span>
