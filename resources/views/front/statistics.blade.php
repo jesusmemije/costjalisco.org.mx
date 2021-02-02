@@ -22,6 +22,7 @@
         </div>
     </div>
     <div class="container">
+        <!-- proyectos---->
         <div class="my-md-5 my-3 seccion-project">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
                 <h2 class="my-4 py-0 font-weight-bold" style="padding: 0" id="project">
@@ -125,6 +126,15 @@
                 </h2><br>
             </div>
         </div>
+        <div class="my-md-5">
+            <div class="col-md-12">
+
+                <br class="hidden-desktop"><br class="hidden-desktop">
+                <div id="piechart2"></div>
+                <br class="hidden-desktop">
+
+            </div>
+        </div>
         
         <!--Procedimiento por etapas-->
         <div class="col-md-12" style="margin-bottom: 100px"></div>
@@ -135,6 +145,15 @@
                 </h2><br>
             </div>
         </div>
+        <div class="my-md-5">
+            <div class="col-md-12">
+
+                <br class="hidden-desktop"><br class="hidden-desktop">
+                <div id="piechart3"></div>
+                <br class="hidden-desktop">
+
+            </div>
+        </div>
         <!--Personas beneficiadas-->
         <div class="col-md-12" style="margin-bottom: 100px"></div>
         <div class="my-1 seccion-project" id="presupuesto">
@@ -143,6 +162,62 @@
                     <span class="title-section"><b> Personas beneficiadas</b></span>
                 </h2><br>
             </div>
+        </div>
+        <div class="col-md-12">
+            <center>
+                @php
+                    $contador=0;
+                    @endphp
+                @if (count($personas_beneficias)==0)
+                    @php
+                            $contador=0;
+                    @endphp
+                    <div class="row">
+                        <div class="col-md-12">
+                            <center>Ningún resultado</center>
+                        </div>
+                    </div>
+                @else
+                    <div class="row">
+                        @foreach ($personas_beneficias as $personas_b)
+                            @php
+                                $contador+=$personas_b->total_people;
+
+                                $imagen=DB::table('orglogos')
+                                    ->select('orglogos.imgroute')
+                                    ->where('orglogos.id_organization','=',$personas_b->id_organization)
+                                    ->get();
+
+                            @endphp
+                            
+                            <div class="col-md-3 mb-3">
+                                @if (count($imagen)==0)
+                                    <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
+                                @else
+                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="90" height="90" alt="">
+                                @endif
+                                <br>
+                                <small>{{$personas_b->name}}</small><br>
+                                <small for="">Personas beneficiadas: </small><br><b> {{number_format($personas_b->total_people)}}</b>
+                            
+                            </div>
+                            
+                                
+                        @endforeach
+                    </div>
+                @endif
+
+                
+                    
+                
+                <br>
+                     <div id="donutchart2" style="width: 450px; height: 300px;" >
+                    </div>
+                    {{-- <span style="position: absolute; bottom: 230px; right: 40px;">{{$contador}}</span> --}}
+                {{-- <input type="text" value="{{$total_proyectos}}" class="circle"> --}}
+                
+            </center>
+            {{-- <a href="{{route('card-projects')}}" class="btn-conoce-mas">Conoce más</a> --}}
         </div>
         <!--Proyectos de la iniciativa-->
         <div class="col-md-12" style="margin-bottom: 100px"></div>
@@ -188,7 +263,7 @@
                                 @endif
                                 <br>
                                 <small>{{$pro->name}}</small><br>
-                                <label for="">Proyectos <b> {{number_format($pro->total_proyectos)}}</b></label>
+                                <label for="">Proyectos: <b> {{number_format($pro->total_proyectos)}}</b></label>
                             
                             </div>
                             
@@ -270,6 +345,14 @@
                         @endforeach
                     </div>
                 @endif
+                <style>
+                    .kk{
+                        background: #a8a8a8;
+                        text-align: justify
+                    }
+                </style>
+                
+                
             </center>
         </div>
         
@@ -296,7 +379,6 @@
         })
     })
 </script>
-
 <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -329,6 +411,119 @@
       }
 </script>
 <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Modalidad', 'Total proyectos'],
+            @if (count($modalidad_adjudicacion)==0)
+            ['Sin proyectos', 0],
+            @else
+                @foreach ($modalidad_adjudicacion as $modalidad_ad)
+                    @if($modalidad_ad->total_project==1)
+                        ['{{$modalidad_ad->total_project}} proyecto {{$modalidad_ad->mod_adjudicacion}}  ', {{$modalidad_ad->total_project}}],
+                    @else
+                        ['{{$modalidad_ad->total_project}} proyectos {{$modalidad_ad->mod_adjudicacion}}  ', {{$modalidad_ad->total_project}}],
+                    @endif
+                @endforeach
+            @endif
+        ]);
+
+        var options = {
+            //title: 'My Daily Activities',
+            chartArea: {'width': '100%', 'height': '100%'},
+            colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8'],
+            fontSize: 22,
+            legend: { textStyle: { fontSize: 20}},
+            pieSliceTextStyle: {
+                color: 'black',
+                bold:true,
+            },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+      }
+</script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Modalidad', 'Total proyectos'],
+            @if (count($procedimiento_etapas)==0)
+            ['Sin proyectos', 0],
+            @else
+                @foreach ($procedimiento_etapas as $procedimiento_e)
+                    @if($procedimiento_e->estatus==1)
+                        ['Identificación', {{$procedimiento_e->total_status_project}}],
+                    @elseif($procedimiento_e->estatus==2)
+                        ['Preparación', {{$procedimiento_e->total_status_project}}],
+                    @elseif($procedimiento_e->estatus==3)
+                        ['Contratración', {{$procedimiento_e->total_status_project}}],
+                    @elseif($procedimiento_e->estatus==4)
+                        ['Ejecución', {{$procedimiento_e->total_status_project}}],
+                    @elseif($procedimiento_e->estatus==5)
+                        ['Finalizado', {{$procedimiento_e->total_status_project}}],
+                    @elseif($procedimiento_e->estatus==7)
+                        ['Finalizado', {{$procedimiento_e->total_status_project}}],
+                    @endif
+                @endforeach
+            @endif
+        ]);
+                  
+        var options = {
+            //title: 'My Daily Activities',
+            chartArea: {'width': '100%', 'height': '100%'},
+            colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8'],
+            fontSize: 22,
+            legend: { textStyle: { fontSize: 20}},
+            pieSliceTextStyle: {
+                color: 'black',
+                bold:true,
+            },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+
+        chart.draw(data, options);
+      }
+</script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Personas', 'Total'],
+        @foreach ($personas_beneficias as $personas_b)
+        ['{{$personas_b->name}}',     {{$personas_b->total_people}}],     
+        @endforeach
+        
+      ]);
+
+      var options = {
+        // title: 'My Daily Activities',
+        chartArea: {'width': '100%', 'height': '100%'},
+        colors: ['#ffce32','#d60000', '#58707b', '#61a8bd','#2c4143','#638e7f'],
+        pieHole: 0.5,
+        fontSize: 22,
+        legend: 'none',
+        pieSliceTextStyle: {
+            color: 'black',
+            bold:true,
+          },
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('donutchart2'));
+      chart.draw(data, options);
+    }
+</script>
+<script type="text/javascript">
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -356,5 +551,5 @@
       var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
       chart.draw(data, options);
     }
-  </script>
+</script>
 @endsection

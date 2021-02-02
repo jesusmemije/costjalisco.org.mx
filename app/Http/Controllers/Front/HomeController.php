@@ -281,8 +281,57 @@ class HomeController extends Controller
         } else {
             $total_costofin=$monto_costofinalizacion[0]->monto_costofin;
         }
+
+        $modalidad_adjudicacion = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('catmodalidad_adjudicacion','proyecto_contratacion.modalidadadjudicacion','=','catmodalidad_adjudicacion.id')
+        // ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+        ->select(DB::raw('count(*) as total_project, catmodalidad_adjudicacion.titulo as mod_adjudicacion'))
+        // ->whereNotNull('proyecto_finalizacion.costofinalizacion')
+        ->groupBy('catmodalidad_adjudicacion.titulo')
+        ->get();
+
+        $procedimiento_etapas = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        // ->join('catmodalidad_adjudicacion','proyecto_contratacion.modalidadadjudicacion','=','catmodalidad_adjudicacion.id')
+        // ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+        ->select(DB::raw('count(*) as total_status_project, project.status as estatus'))
+        // ->whereNotNull('proyecto_finalizacion.costofinalizacion')
+        ->groupBy('project.status')
+        ->get();
         
-        return view('front.statistics',['monto_contrato_or'=>$monto_contrato_or,'total_contrato'=>$total_contrato,'total_costofin'=>$total_costofin,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
+        $personas_beneficias = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        // ->join('catmodalidad_adjudicacion','proyecto_contratacion.modalidadadjudicacion','=','catmodalidad_adjudicacion.id')
+        // ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+        ->select(DB::raw('SUM(project.people) as total_people,project_organizations.id_organization,organization.name'))
+        // ->whereNotNull('proyecto_contratacion.montocontrato')
+        ->groupBy('project_organizations.id_organization','organization.name')
+        ->get();
+        
+        // dd($personas_beneficias);
+        return view('front.statistics',['personas_beneficias'=>$personas_beneficias,'procedimiento_etapas'=>$procedimiento_etapas,'modalidad_adjudicacion'=>$modalidad_adjudicacion,'monto_contrato_or'=>$monto_contrato_or,'total_contrato'=>$total_contrato,'total_costofin'=>$total_costofin,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
     }
 
     public function interest_sites()
