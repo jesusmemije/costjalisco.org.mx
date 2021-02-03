@@ -135,9 +135,7 @@
 <!--============= End Header Desktop ==================-->
 
 <!--============= Header Phone ==================-->
-<header id="header-phone" class="hidden-desktop" style="background-image: url('/assets/img/header/background-movil.jpg');
-background-repeat: no-repeat;
-background-size: cover; height: 56px;">
+<header id="header-phone" class="hidden-desktop">
     <div class="row h-100 align-items-center mx-0">
         <div class="col-md-12 d-flex justify-content-between" style="align-items: center;">
 

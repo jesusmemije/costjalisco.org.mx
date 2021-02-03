@@ -34,6 +34,12 @@ body {
   text-decoration: none;
 }
 
+#header-phone {
+  background-image: url('http://pice-software.com/costjalisco/public/assets/img/header/background-movil.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; height: 56px;
+}
+
 #header-phone a {
   color: #fff;
 }
