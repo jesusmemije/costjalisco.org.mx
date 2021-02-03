@@ -6,7 +6,7 @@
 }
 
 .bg-rojo {
-    background-image: url('http://pice-software.com/costjalisco/public/assets/img/titulo.png');
+    background-image: url('/assets/img/titulo.png');
     background-repeat: no-repeat;
     background-size: cover;
 }

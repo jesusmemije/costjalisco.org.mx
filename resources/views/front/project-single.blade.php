@@ -154,8 +154,7 @@ Datos del proyecto
 
 <!-- Section - Identificación -->
 <div class="row mt-5" id="identificacion">
-    <div class="col-md-6 background-title px-0 py-1" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
+    <div class="col-md-6 background-title px-0 py-1">
         <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
     </div>
     <div class="col-md-6 px-0">
@@ -232,8 +231,7 @@ Datos del proyecto
 
 <!-- Section - Preparación -->
 <div class="row mt-5" id="preparacion">
-    <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
+    <div class="col-md-6 background-title px-0 py-1">
         <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
     </div>
     <div class="col-md-6 px-0">
@@ -368,8 +366,7 @@ Datos del proyecto
 
 <!-- Section - Procedimiento de contratación -->
 <div class="row mt-5" id="contratacion">
-    <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
+    <div class="col-md-6 background-title px-0 py-1">
         <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
     </div>
     <div class="col-md-6 px-0">
@@ -440,8 +437,7 @@ Datos del proyecto
 
 <!-- Section - Procedimiento de contratación -->
 <div class="row mt-5" id="ejecucion">
-    <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
+    <div class="col-md-6 background-title px-0 py-1">
         <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
     </div>
     <div class="col-md-6 px-0">
@@ -494,8 +490,7 @@ Datos del proyecto
 
 <!-- Section - Finalización -->
 <div class="row mt-5" id="finalizacion">
-    <div class="col-md-6 background-title px-0 py-1" style="background-image: url('../../assets/img/newsletters/background-title.png'); background-repeat: no-repeat;
-            background-size: cover;">
+    <div class="col-md-6 background-title px-0 py-1">
         <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
     </div>
     <div class="col-md-6 px-0">
@@ -677,7 +672,7 @@ Datos del proyecto
         }
 
         var icon = L.icon({
-            iconUrl: '../../assets/img/map/marker.png',
+            iconUrl: '/assets/img/map/marker.png',
             iconSize: [25, 35], // size of the icon
         });
 
