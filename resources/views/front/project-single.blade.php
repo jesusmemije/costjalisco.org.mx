@@ -27,7 +27,7 @@ Datos del proyecto
                         $ruta = asset('projects_imgs/' . $project_imgs[0]->imgroute);
                         ?>
                         <img src="{{$ruta}}" class="d-block w-100" height="300" alt="">
-                        <h2 class="hidden-desktop" style="position: absolute; text-align: center;">{{ $project->title }}
+                        <h2 class="hidden-desktop" style="position: absolute; text-align: center; color: #fff;">{{ $project->title }}
                         </h2>
                     </div>
                     @for ($i = 1; $i < sizeof($project_imgs); $i++) <div class="carousel-item d-flex align-items-center justify-content-center">

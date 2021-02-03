@@ -14,7 +14,7 @@ Inicio
 
     <!--MODAL-->
     <div class="chatbot text-center">
-        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
+        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid"
             alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">
     </div>

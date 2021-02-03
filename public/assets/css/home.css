@@ -58,6 +58,8 @@
 }
 
 .chatbot {
+    width: 20%;
+    height: auto;
     position: fixed;
     right: 32px;
     bottom: 32px;
@@ -331,10 +333,6 @@
     top: 30%;
     width: 90%;
     text-align: end;
-}
-
-.chatbot {
-    width: unset;
 }
 
 #inputSearch {
