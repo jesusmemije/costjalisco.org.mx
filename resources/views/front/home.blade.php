@@ -309,7 +309,7 @@ Inicio
 <div class="row mx-0">
     <div class="col-md-6 px-0 mb-4">
         <div class="text-center text-white">
-            <h3 class="py-2 font-weight-bold title-barra-roja">NOSOTROS</h3>
+            <h3 class="py-2 font-weight-bold title-barra-roja">CONOCE MÁS</h3>
         </div>
     </div>
 </div>
@@ -351,6 +351,45 @@ Inicio
             <br class="hidden-phone"><br>
             <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
                     https://infrastructuretransparency.org/</a></span>
+        </div>
+    </div>
+</div>
+
+<br class="hidden-desktop">
+
+<!--NOSOTROS-->
+<div class="row mx-0">
+    <div class="col-md-6 px-0 mb-4">
+        <div class="text-center text-white">
+            <h3 class="py-2 font-weight-bold title-barra-roja">NOSOTROS</h3>
+        </div>
+    </div>
+</div>
+
+<!-- Title - ¿Qúes es CoST? -->
+<div class="row mx-0">
+    <div class="col-md-6 px-0 mb-5">
+        <div class="text-center text-white">
+            <h3 class="py-2 font-weight-bold subtitle-barra-gris">CoST Jalisco:</h3>
+        </div>
+    </div>
+</div>
+
+<!-- Section - Descripción CoST -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 line-red-vertical">
+            <div class="my-4" style="letter-spacing: -.2px;">
+                <p style="text-align: justify;">
+                <strong>CoST Jalisco</strong> es el capítulo local, único en México, 
+                de la Iniciativa Internacional de Transparencia en 
+                Infraestructura "CoST" , el cual es dirigido por un 
+                Grupo Multisectorial con la finalidad de mejorar el 
+                valor de las inversiones en infraestructura y obra pública, 
+                aumentando la Transparencia y la Rendición de Cuentas.
+                </p>
+                <br>
+            </div>
         </div>
     </div>
 </div>
