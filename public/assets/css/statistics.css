@@ -35,6 +35,21 @@
     height: 300px;
     margin-left: 27%;
 }
+#piechart2 {
+    width: 950px;
+    height: 350px;
+    margin-left: 10%;
+}
+#piechart3 {
+    width: 950px;
+    height: 350px;
+    margin-left: 10%;
+}
+#piechart4 {
+    width: 950px;
+    height: 500px;
+    margin-left: 10%;
+}
 
 .cuadro-1 {
     margin-left: 20%;

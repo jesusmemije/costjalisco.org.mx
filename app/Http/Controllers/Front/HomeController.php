@@ -20,9 +20,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('count(*) as total_proyectos'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -53,9 +53,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('SUM(project.people) as total_p_beneficiada'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -74,9 +74,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -96,9 +96,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('project.*','project.id as id_project', 'address.*','proyecto_contratacion.montocontrato') 
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -150,9 +150,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->where('project.sector','=',1)
@@ -164,9 +164,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->where('project.sector','=',2)
@@ -178,9 +178,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->where('project.sector','=',3)
@@ -192,9 +192,9 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('projectsector.*')
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->where('project.sector','=',4)
@@ -210,9 +210,9 @@ class HomeController extends Controller
         ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
         ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
 
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('count(*) as total_proyectos,project_organizations.id_organization,organization.name'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->groupBy('project_organizations.id_organization','organization.name')
@@ -229,9 +229,9 @@ class HomeController extends Controller
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
         ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
         ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total,project_organizations.id_organization,organization.name'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->groupBy('project_organizations.id_organization','organization.name')
@@ -243,24 +243,95 @@ class HomeController extends Controller
         ->join('project_locations','project.id','=','project_locations.id_project')
         ->join('locations','project_locations.id_location','=','locations.id')
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        // ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
         ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
         ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
+        ->whereNotExists(function ($query) {
+            $query->select(DB::raw(1))
+                  ->from('proyecto_finalizacion')
+                  ->whereColumn('proyecto_finalizacion.id_project', 'project.id');
+        })
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
-        
         if (empty($monto_contrato[0]->monto_total)) {
             $total_contrato=0;
         } else {
             $total_contrato=$monto_contrato[0]->monto_total;
         }
+
+        $monto_costofinalizacion = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+        ->select(DB::raw('SUM(proyecto_finalizacion.costofinalizacion) as monto_costofin'))
+        ->whereNotNull('proyecto_finalizacion.costofinalizacion')
+        ->get();
+
+        if (empty($monto_costofinalizacion[0]->monto_costofin)) {
+            $total_costofin=0;
+        } else {
+            $total_costofin=$monto_costofinalizacion[0]->monto_costofin;
+        }
+
+        $modalidad_adjudicacion = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        ->join('catmodalidad_adjudicacion','proyecto_contratacion.modalidadadjudicacion','=','catmodalidad_adjudicacion.id')
+        // ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+        ->select(DB::raw('count(*) as total_project, catmodalidad_adjudicacion.titulo as mod_adjudicacion'))
+        // ->whereNotNull('proyecto_finalizacion.costofinalizacion')
+        ->groupBy('catmodalidad_adjudicacion.titulo')
+        ->get();
+
+        $procedimiento_etapas = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        // ->join('catmodalidad_adjudicacion','proyecto_contratacion.modalidadadjudicacion','=','catmodalidad_adjudicacion.id')
+        // ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+        ->select(DB::raw('count(*) as total_status_project, project.status as estatus'))
+        // ->whereNotNull('proyecto_finalizacion.costofinalizacion')
+        ->groupBy('project.status')
+        ->get();
         
-        return view('front.statistics',['monto_contrato_or'=>$monto_contrato_or,'total_contrato'=>$total_contrato,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
+        $personas_beneficias = DB::table('project')
+        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        ->join('project_locations','project.id','=','project_locations.id_project')
+        ->join('locations','project_locations.id_location','=','locations.id')
+        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        // ->join('catmodalidad_adjudicacion','proyecto_contratacion.modalidadadjudicacion','=','catmodalidad_adjudicacion.id')
+        // ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+        ->select(DB::raw('SUM(project.people) as total_people,project_organizations.id_organization,organization.name'))
+        // ->whereNotNull('proyecto_contratacion.montocontrato')
+        ->groupBy('project_organizations.id_organization','organization.name')
+        ->get();
+        
+        // dd($personas_beneficias);
+        return view('front.statistics',['personas_beneficias'=>$personas_beneficias,'procedimiento_etapas'=>$procedimiento_etapas,'modalidad_adjudicacion'=>$modalidad_adjudicacion,'monto_contrato_or'=>$monto_contrato_or,'total_contrato'=>$total_contrato,'total_costofin'=>$total_costofin,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
     }
 
     public function interest_sites()
@@ -371,72 +442,10 @@ class HomeController extends Controller
                     ->select('project.*','locations.*')
                     ->where('address.locality','=',$request->municipio)
                     ->orWhere('project.title','like','%'.$request->nombre_proyecto.'%')
-                    ->get();
-                // if (empty($request->id_sector)) {
-                //     $projects=DB::table('project')
-                //     // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //     ->join('projectsector','project.sector','=','projectsector.id')
-                //     ->join('project_locations','project.id','=','project_locations.id_project')
-                //     ->join('locations','project_locations.id_location','=','locations.id')
-                //     ->join('address','locations.id_address','=','address.id')
-                //     ->select('project.*','locations.*')
-                //     ->where('address.locality','=',$request->municipio)
-                //     ->where('project.title','=',$request->nombre_proyecto)
-                //     ->get();
-                // } else {
-                //     if (empty($request->id_subsector)) {
-                //         $projects=DB::table('project')
-                //         // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //         ->join('projectsector','project.sector','=','projectsector.id')
-                //         ->join('project_locations','project.id','=','project_locations.id_project')
-                //         ->join('locations','project_locations.id_location','=','locations.id')
-                //         ->join('address','locations.id_address','=','address.id')
-                //         ->select('project.*','locations.*')
-                //         ->where('address.locality','=',$request->municipio)
-                //         ->where('project.sector','=',$request->id_sector)
-                //         ->get();
-                //     } else {
-                //         if (empty($request->codigo_postal)) {
-                //             $projects=DB::table('project')
-                //             // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //             ->join('projectsector','project.sector','=','projectsector.id')
-                //             ->join('project_locations','project.id','=','project_locations.id_project')
-                //             ->join('locations','project_locations.id_location','=','locations.id')
-                //             ->join('address','locations.id_address','=','address.id')
-                //             ->select('project.*','locations.*')
-                //             ->where('address.locality','=',$request->municipio)
-                //             ->where('project.sector','=',$request->id_sector)
-                //             ->where('project.subsector','=',$request->id_subsector)
-                //             ->get();
-                //         } else {
-                //             $projects=DB::table('project')
-                //             // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                //             ->join('projectsector','project.sector','=','projectsector.id')
-                //             ->join('project_locations','project.id','=','project_locations.id_project')
-                //             ->join('locations','project_locations.id_location','=','locations.id')
-                //             ->join('address','locations.id_address','=','address.id')
-                //             ->select('project.*','locations.*')
-                //             ->where('address.locality','=',$request->municipio)
-                //             ->where('project.sector','=',$request->id_sector)
-                //             ->where('project.subsector','=',$request->id_subsector)
-                //             ->where('address.postalCode','=',$request->codigo_postal)
-                //             ->get();
-                //         }
-                        
-                        
-                //     }
-                    
-                    
-                    
-                // }
-                
+                    ->get();                
             }
         }
         
-
-        
-
-        // $projects = DB::table('project')->get();
       
         return view('front.project_search', [
             'projects' => $projects
@@ -510,11 +519,7 @@ class HomeController extends Controller
                         ->where('address.postalCode','=',$request->codigo_postal)
                         ->get();
                     }
-                    
-                    
                 }
-                
-                
                 
             }
             
@@ -575,8 +580,6 @@ class HomeController extends Controller
                     $sectoresArray[$sector->id] = $sector->titulo;
                 }
             }
-            
-            
             return response()->json($sectoresArray);
         }
         
@@ -590,8 +593,6 @@ class HomeController extends Controller
             $sub_sectores=DB::table('subsector')
             ->join('sectorsubsector','subsector.id','=','sectorsubsector.id_subsector')
             ->join('projectsector','sectorsubsector.id_sector','=','projectsector.id')
-            // ->join('locations','project_locations.id_location','=','locations.id')
-            // ->join('address','locations.id_address','=','address.id')
             ->select('subsector.*')
             ->where('projectsector.id','=',$request->sector_id)
             ->get();
@@ -644,9 +645,4 @@ class HomeController extends Controller
 
         return view('front.journal',['journal'=>$journal]);
     }
-
-    
-
-   
-
 }
