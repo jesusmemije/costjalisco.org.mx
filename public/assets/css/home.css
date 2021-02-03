@@ -192,6 +192,10 @@
     justify-content: left;
 }
 
+#carouselProjects a {
+    color: #fff;
+}
+
 .icon-img-carousel {
     width: 24px;
 }
