@@ -330,11 +330,25 @@ Georreferenciación
         });
               
         const projects = @json($projects);
-
+      
         projects.forEach(function(item, index) {
+            var latlng=item.principal;
+            var title = item.title;
+            //console.log(item.principal);
+            if(latlng==null){
+
+            }else{
+                var auxlatlng=latlng.split('|');
+           // console.log(auxlatlng);
+
             
-            var lat   = item.lat;
-            var lng   = item.lng;
+            L.marker( [auxlatlng[0],auxlatlng[1]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="http://pice-software.com/costjalisco/public/index.php/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
+            }
+           
+           
+            /*
+            //var lat   = item.lat;
+            //var lng   = item.lng;
             var title = item.title;
 
             let lat_split = lat.split('|')
@@ -352,7 +366,7 @@ Georreferenciación
                         L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="http://pice-software.com/costjalisco/public/index.php/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
                     }
                 } 
-            }
+            }*/
         }); 
     });
 </script>

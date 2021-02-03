@@ -176,8 +176,10 @@ $id_organization=auth()->user()->id_organization;
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             @else
+            <div style="display: none;">
+           
             <label for="autoridadP">Autoridad Pública</label>
-                <select disabled required id="autoridadP" name="autoridadP" class="form-control @error('autoridadP') is-invalid @enderror">
+                <select  required id="autoridadP" name="autoridadP" class="form-control @error('autoridadP') is-invalid @enderror">
                   <option value="">Seleccionar</option>
                   @foreach($autoridadP as $autoridad)
 
@@ -190,7 +192,7 @@ $id_organization=auth()->user()->id_organization;
                   @endforeach
 
                 </select>
-               
+                </div>    
             @endif
               </div>
             </div>

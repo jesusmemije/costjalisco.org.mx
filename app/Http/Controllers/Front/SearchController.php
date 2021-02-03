@@ -25,13 +25,15 @@ class SearchController extends Controller
                     ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                     ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                     ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                    ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                    ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                    ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
-                    ->orderBy('project.created_at', 'desc') 
+                    //->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+                    //->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+                    //->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+                   // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng','locations.principal as principal')
+                   ->select('project.*','locations.principal as principal') 
+                  //  ->where('project.id','=',85)
+                   ->orderBy('project.created_at', 'desc') 
                     ->get();
-
+                  
             } else {
                 if (empty($request->id_sector)) {
                     $projects = DB::table('project')
@@ -42,13 +44,15 @@ class SearchController extends Controller
                         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                        ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                        ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                        ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                        ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                       // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+                       // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+                       // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+                        // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                        ->select('project.*','locations.principal as principal') 
                         ->where('address.locality', '=', $request->municipio)
                         ->orderBy('project.created_at', 'desc')
                         ->get();
+                      
                 } else {
                     if (empty($request->id_subsector)) {
                         $projects = DB::table('project')
@@ -59,14 +63,16 @@ class SearchController extends Controller
                             ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                            ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                            ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                            ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                            ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                         //   ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+                         //   ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+                         //   ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+                          //  ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                            ->select('project.*','locations.principal as principal') 
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
                             ->orderBy('project.created_at', 'desc')
                             ->get();
+                           
                     } else {
                         if (empty($request->codigo_postal)) {
                             $projects = DB::table('project')
@@ -77,15 +83,17 @@ class SearchController extends Controller
                                 ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                                 ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                                ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                                ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                                ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                                ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
-                                ->where('address.locality', '=', $request->municipio)
+                             //   ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+                             //   ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+                             //   ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+                               // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                               ->select('project.*','locations.principal as principal')  
+                               ->where('address.locality', '=', $request->municipio)
                                 ->where('project.sector', '=', $request->id_sector)
                                 ->where('project.subsector', '=', $request->id_subsector)
                                 ->orderBy('project.created_at', 'desc')
                                 ->get();
+                              
                         } else {
                             $projects = DB::table('project')
                                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
@@ -95,16 +103,19 @@ class SearchController extends Controller
                                 ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                                 ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                                ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                                ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                                ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                                ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                             //   ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+                             //   ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+                             //   ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+                                //->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                                ->select('project.*','locations.principal as principal') 
                                 ->where('address.locality', '=', $request->municipio)
                                 ->where('project.sector', '=', $request->id_sector)
                                 ->where('project.subsector', '=', $request->id_subsector)
                                 ->where('address.postalCode', '=', $request->codigo_postal)
                                 ->orderBy('project.created_at', 'desc')
                                 ->get();
+
+                               
                         }
                     }
                 }
@@ -122,8 +133,9 @@ class SearchController extends Controller
                     ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
                     ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                     ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
-                    ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
+                   // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
+                   ->select('project.*','locations.principal as principal')  
+                   ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
                     ->orderBy('project.created_at', 'desc')
                     ->get();
             } else {
@@ -139,8 +151,9 @@ class SearchController extends Controller
                     ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
                     ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                     ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                    ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
-                    ->where('address.locality', '=', $request->municipio)
+                  //  ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
+                  ->select('project.*','locations.principal as principal')  
+                  ->where('address.locality', '=', $request->municipio)
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
                     ->orderBy('project.created_at', 'desc')
                     ->get();
@@ -148,8 +161,7 @@ class SearchController extends Controller
             }
         }
 
-        //dd($projects);
-
+       // print_r($projects);
         return view('front.georeferencing', [
             'projects' => $projects
         ]);
