@@ -30,27 +30,6 @@
     margin-left: 140px;
 }
 
-#piechart {
-    width: 500px;
-    height: 300px;
-    margin-left: 27%;
-}
-#piechart2 {
-    width: 950px;
-    height: 350px;
-    margin-left: 10%;
-}
-#piechart3 {
-    width: 950px;
-    height: 350px;
-    margin-left: 10%;
-}
-#piechart4 {
-    width: 950px;
-    height: 500px;
-    margin-left: 10%;
-}
-
 .cuadro-1 {
     margin-left: 20%;
 }
@@ -100,6 +79,33 @@
     font-weight: 700;
     margin-right: 20px;
     margin-left: unset;
+}
+
+#resultado-estatics{
+    color: #375c6b;
+    text-align: left;
+}
+#imagen-subtitulo{
+    border-radius: 20px; 
+    margin-top: 10px; 
+    margin-right: 8px;
+}
+#subtitulo{
+    font-size: 16px;
+}
+#subtitulo b{
+    font-size: 19px;
+}
+#hr-statistic{
+    padding: 0; 
+    color: black; 
+    margin: 0; 
+    margin-top: 12px; 
+    border: black 1px solid;
+    margin-bottom: 10px
+}
+#name-organization{
+    height: 50px;
 }
 
 /* Desktop */
