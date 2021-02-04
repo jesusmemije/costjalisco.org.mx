@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,13 +12,14 @@
     <link href="{{asset("assets/css/bootstrap.min.css")}}" rel="stylesheet">
     <!-- Main CSS -->
     <link href="{{asset("assets/css/styles.css")}}" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png"/>
+
     <!-- Incluir estilos en ciertas secciones -->
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-    
-
     @yield('styles')
 </head>
-
 <body>
     
     @include('front.layouts.partials.header')
