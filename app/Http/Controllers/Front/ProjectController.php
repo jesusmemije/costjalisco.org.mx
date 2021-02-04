@@ -191,6 +191,8 @@ class ProjectController extends Controller
 
     public function card_projects()
     {
+        // Consultas para la vista card-projects
+        // Consultamos todos los proyectos que tienen asignado un valor en el campo de monto contrato
         $projects = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
