@@ -15,6 +15,7 @@ class SearchController extends Controller
 
     public function georeferencing(Request $request)
     {
+        // Hacemos la busqueda con el municipio
         if (empty($request->nombre_proyecto)) {
             if (empty($request->municipio)) {
                 $projects = DB::table('project')
@@ -25,17 +26,13 @@ class SearchController extends Controller
                     ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                     ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                     ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                    //->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                    //->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                    //->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                   // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng','locations.principal as principal')
                    ->select('project.*','locations.principal as principal') 
-                  //  ->where('project.id','=',85)
                    ->orderBy('project.created_at', 'desc') 
                     ->get();
                   
             } else {
                 if (empty($request->id_sector)) {
+                    // si no hay un sector seleccionado entonces solo hacemos la busqueda con el municipio
                     $projects = DB::table('project')
                         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                         ->join('project_locations','project.id','=','project_locations.id_project')
@@ -44,10 +41,6 @@ class SearchController extends Controller
                         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                       // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                       // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                       // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                        // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                         ->select('project.*','locations.principal as principal') 
                         ->where('address.locality', '=', $request->municipio)
                         ->orderBy('project.created_at', 'desc')
@@ -55,6 +48,7 @@ class SearchController extends Controller
                       
                 } else {
                     if (empty($request->id_subsector)) {
+                        // si no hay un subsector seleccionado entonces hacemos la buesqueda con el sector y el municipio
                         $projects = DB::table('project')
                             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -63,10 +57,6 @@ class SearchController extends Controller
                             ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                         //   ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                         //   ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                         //   ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                          //  ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                             ->select('project.*','locations.principal as principal') 
                             ->where('address.locality', '=', $request->municipio)
                             ->where('project.sector', '=', $request->id_sector)
@@ -75,6 +65,7 @@ class SearchController extends Controller
                            
                     } else {
                         if (empty($request->codigo_postal)) {
+                            // Hacemos la busqueda con el municipio, el sector y subsector porque no hay un codigo postal seleccionado
                             $projects = DB::table('project')
                                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                                 ->join('project_locations','project.id','=','project_locations.id_project')
@@ -83,11 +74,7 @@ class SearchController extends Controller
                                 ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                                 ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                             //   ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                             //   ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                             //   ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                               // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
-                               ->select('project.*','locations.principal as principal')  
+                                ->select('project.*','locations.principal as principal')  
                                ->where('address.locality', '=', $request->municipio)
                                 ->where('project.sector', '=', $request->id_sector)
                                 ->where('project.subsector', '=', $request->id_subsector)
@@ -95,6 +82,7 @@ class SearchController extends Controller
                                 ->get();
                               
                         } else {
+                            // Hacemos la busqueda con el municipio, sector, subsector y código postal
                             $projects = DB::table('project')
                                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                                 ->join('project_locations','project.id','=','project_locations.id_project')
@@ -103,10 +91,6 @@ class SearchController extends Controller
                                 ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
                                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
                                 ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                             //   ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                             //   ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                             //   ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                                //->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
                                 ->select('project.*','locations.principal as principal') 
                                 ->where('address.locality', '=', $request->municipio)
                                 ->where('project.sector', '=', $request->id_sector)
@@ -122,23 +106,7 @@ class SearchController extends Controller
             }
         } else {
             if (empty($request->municipio)) {
-                $projects = DB::table('project')
-                    ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
-                    ->join('project_locations','project.id','=','project_locations.id_project')
-                    ->join('locations','project_locations.id_location','=','locations.id')
-                    ->join('address', 'locations.id_address', '=', 'address.id')
-                    ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-                    ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-                    ->join('subsector', 'project.subsector', '=', 'subsector.id')
-                    ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-                    ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-                    ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                   // ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng')
-                   ->select('project.*','locations.principal as principal')  
-                   ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
-                    ->orderBy('project.created_at', 'desc')
-                    ->get();
-            } else {
+                // Hacemos la busqueda con el nombre del proyecto
 
                 $projects = DB::table('project')
                     ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
@@ -151,9 +119,25 @@ class SearchController extends Controller
                     ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
                     ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
                     ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
-                  //  ->select('project.*', 'locations.id_geometry', 'locations.id_gazetter', 'locations.uri', 'locations.id_address','locations.lat', 'locations.lng') 
-                  ->select('project.*','locations.principal as principal')  
-                  ->where('address.locality', '=', $request->municipio)
+                    ->select('project.*','locations.principal as principal')  
+                    ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
+                    ->orderBy('project.created_at', 'desc')
+                    ->get();
+            } else {
+                // Hacemos la busqueda con el municipio, y el nombre del proyecto
+                $projects = DB::table('project')
+                    ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+                    ->join('project_locations','project.id','=','project_locations.id_project')
+                    ->join('locations','project_locations.id_location','=','locations.id')
+                    ->join('address', 'locations.id_address', '=', 'address.id')
+                    ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+                    ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+                    ->join('subsector', 'project.subsector', '=', 'subsector.id')
+                    ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
+                    ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
+                    ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
+                    ->select('project.*','locations.principal as principal')  
+                    ->where('address.locality', '=', $request->municipio)
                     ->orWhere('project.title', 'like', '%' . $request->nombre_proyecto . '%')
                     ->orderBy('project.created_at', 'desc')
                     ->get();
@@ -161,7 +145,6 @@ class SearchController extends Controller
             }
         }
 
-       // print_r($projects);
         return view('front.georeferencing', [
             'projects' => $projects
         ]);
@@ -169,6 +152,7 @@ class SearchController extends Controller
 
     public function sectores(Request $request)
     {
+        // Hacemos la consulta de sectores pertenecientes al municipio seleccionado
         if ($request->ajax()) {
             $sectores = DB::table('project')
                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')
@@ -193,6 +177,7 @@ class SearchController extends Controller
 
     public function subsectores(Request $request)
     {
+        // Hacemos la consulta de sub sectores pertenecientes al sector seleccionado
         if ($request->ajax()) {
             $sub_sectores = DB::table('subsector')
                 ->join('sectorsubsector', 'subsector.id', '=', 'sectorsubsector.id_subsector')
@@ -215,6 +200,7 @@ class SearchController extends Controller
 
     public function codigo_postales(Request $request)
     {
+        // Hacemos la consulta de código postal pertenecientes al sub sector seleccionado
         if ($request->ajax()) {
             $codigo_postales = DB::table('project')
                 ->join('projectsector', 'project.sector', '=', 'projectsector.id')

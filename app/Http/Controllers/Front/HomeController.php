@@ -12,7 +12,9 @@ class HomeController extends Controller
 {
     public function index()
     {   
-        
+        // Consultas de la vista inicio o home
+
+        // Buscamos y contamos los proyectos que tienen un presupuesto asignado en el monto contrato
         $proyectos = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
         ->join('project_locations','project.id','=','project_locations.id_project')
@@ -20,9 +22,6 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('count(*) as total_proyectos'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -34,7 +33,7 @@ class HomeController extends Controller
         }
 
 
-
+        // Consultamos todas las organizaciones y los contamos
         $organizacion=DB::table('organization')
         ->select(DB::raw('count(*) as total_organization'))
         ->get();
@@ -45,7 +44,7 @@ class HomeController extends Controller
             $total_organization=$organizacion[0]->total_organization;
         }
 
-
+        // Consultamos la cantidad de personas beneficiadas
         $personas_beneficiadas = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
         ->join('project_locations','project.id','=','project_locations.id_project')
@@ -53,9 +52,6 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('SUM(project.people) as total_p_beneficiada'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -66,7 +62,7 @@ class HomeController extends Controller
             $total_beneficiarios=$personas_beneficiadas[0]->total_p_beneficiada;
         }
 
-
+        // Consultamos y contamos el monto total del presupuesto del contrato
         $monto_contrato = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
         ->join('project_locations','project.id','=','project_locations.id_project')
@@ -74,9 +70,6 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -87,7 +80,7 @@ class HomeController extends Controller
             $total_contrato=$monto_contrato[0]->monto_total;
         }
 
-        
+        // Consultamos todos lo proyectos que tengan ya el valor asiganado en monto contrato y lo mostramos el carousel 
         $projects = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
         ->join('project_locations','project.id','=','project_locations.id_project')
@@ -96,9 +89,6 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-        // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-        // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
         ->select('project.*','project.id as id_project', 'address.*','proyecto_contratacion.montocontrato') 
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
@@ -209,17 +199,10 @@ class HomeController extends Controller
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
             ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
             ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-
-            // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-            // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-            // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
             ->select(DB::raw('count(*) as total_proyectos,project_organizations.id_organization,organization.name'))
             ->whereNotNull('proyecto_contratacion.montocontrato')
             ->groupBy('project_organizations.id_organization','organization.name')
             ->get();
-
-// dd($proyectos);
-        
 
 // ------------aqui hacemos el cálculo para el presupuesto ejercido
         $organizaciones_presupuesto = DB::table('organization')
@@ -337,7 +320,6 @@ class HomeController extends Controller
 
         $total_presupuesto_ejercido=($total_contrato-$total_cont_restar)+$total_costofin;
 
-        // dd($total_contrato,$total_cont_restar, $total_costofin,$total_presupuesto_ejercido);
 
 // --------------------------------------------------------------------------------------------
 
@@ -378,11 +360,10 @@ class HomeController extends Controller
             ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
             ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
             ->select(DB::raw('SUM(project.people) as total_people,project_organizations.id_organization,organization.name'))
-            // ->whereNotNull('proyecto_contratacion.montocontrato')
             ->groupBy('project_organizations.id_organization','organization.name')
             ->get();
         
-        // dd($personas_beneficias);
+      
         return view('front.statistics',['costofinalizacion_contrato'=>$costofinalizacion_contrato,'organizaciones_presupuesto'=>$organizaciones_presupuesto,'personas_beneficias'=>$personas_beneficias,'procedimiento_etapas'=>$procedimiento_etapas,'modalidad_adjudicacion'=>$modalidad_adjudicacion,'costofinalizacion_or'=>$costofinalizacion_or,'monto_contrato_or'=>$monto_contrato_or,'total_presupuesto_ejercido'=>$total_presupuesto_ejercido,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
     }
 

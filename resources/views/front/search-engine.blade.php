@@ -186,6 +186,7 @@ Motor de búsqueda
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="{{asset("js/select2.js")}}"></script>
+{{-- buscamos en la base dedatos si hay algún proyecto del municipio seleccionado, y cargamos todos los resultados en el select --}}
 <script>
     $(document).ready(function(){
             $('#municipio').on('change',function(){
@@ -217,6 +218,7 @@ Motor de búsqueda
                     });
                 }
             })
+            // Buscamos los sectores en la base de datos y hacemos lo mismo que en la primera consulta
             $('#sector').on('change',function(){
                 var sector_id = $(this).val();
                 if ($.trim(sector_id) != ''){

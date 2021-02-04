@@ -16,7 +16,7 @@ class ProjectController extends Controller
     {
 
         if (empty($request->municipio)) {
-
+            // Hacemos la consulta de los proyectos que cumplan la condición de las tres primeras secciones de la alta de proyectos y que tenga el monto contrato
             if (empty($request->presupuesto)) {
                 $projects = DB::table('project')
                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
@@ -33,8 +33,8 @@ class ProjectController extends Controller
                 ->orderBy('project.created_at', 'desc')
                 ->get();
 
-
             } else {
+                // Hacemos la búsqueda con el presupuesto y que los resultados sean menor que el mismo
                 $projects = DB::table('project')
                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                 ->join('project_locations','project.id','=','project_locations.id_project')
@@ -54,8 +54,9 @@ class ProjectController extends Controller
             }
         } else {
             if (empty($request->id_sector)) {
-
+                // Hacemos el la búsqueda sin el sector y preguntamos de nuevo
                 if (empty($request->presupuesto)) {
+                    // Si no hay un presupuesto entonces solo hacemos la busqueda con el municipio seleccionado
                     $projects = DB::table('project')
                         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                         ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
@@ -72,6 +73,7 @@ class ProjectController extends Controller
                         ->orderBy('project.created_at', 'desc')
                         ->get();
                 } else {
+                    // Hacemos la búsqueda con el municipio y el presupuesto ingresado
                     $projects = DB::table('project')
                         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                         ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
@@ -91,6 +93,7 @@ class ProjectController extends Controller
                 }
             } else {
                 if (empty($request->id_subsector)) {
+                    // Hacemos la búsqueda con el municipio y el sector selecciondao
                     $projects = DB::table('project')
                         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                         ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
@@ -109,6 +112,7 @@ class ProjectController extends Controller
                         ->get();
                 } else {
                     if (empty($request->codigo_postal)) {
+                        // Hacemos la búsqueda con el municipio, el sector y el subsector seleccionado
                         $projects = DB::table('project')
                             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                             ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
@@ -129,6 +133,7 @@ class ProjectController extends Controller
                     } else {
 
                         if (empty($request->presupuesto)) {
+                            // Si no hay presupuesto entoces hacemos la búsqueda con el municipio, el sector, el subsector y el código postal
                             $projects = DB::table('project')
                             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -148,6 +153,7 @@ class ProjectController extends Controller
                             ->orderBy('project.created_at', 'desc')
                             ->get();
                         } else {
+                            // Si hay presupuesto entonces hacemos la búsqueda con el municipio, el sector, el subsector, el codigo postal y el presupuesto
                             $projects = DB::table('project')
                             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -192,9 +198,6 @@ class ProjectController extends Controller
             ->join('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-          //  ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-          //  ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-          //  ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
             ->select('project.*', 'projectsector.titulo as sector', 'subsector.titulo as subsector')
             ->whereNotNull('proyecto_contratacion.montocontrato')
             ->orderBy('created_at', 'desc')
@@ -304,37 +307,6 @@ class ProjectController extends Controller
             $responsableproyecto = DB::table('responsableproyecto')
                 ->where('id_project', $id)
                 ->get();
-            /*
-            $tipoAmbiental = DB::table('catambiental')
-            ->where('id', '=', $all->tipoAmbiental)
-                ->select('titulo')
-                ->first();
-
-            if (!$tipoAmbiental) {
-                $tipoAmbiental = new stdClass();
-                $tipoAmbiental->titulo = "";
-            }
-
-            $tipoFactibilidad = DB::table('catfac')
-            ->where('id', '=', $all->tipoFactibilidad)
-                ->select('titulo')
-                ->first();
-            if (!$tipoFactibilidad) {
-                $tipoFactibilidad = new stdClass();
-                $tipoFactibilidad->titulo = "";
-            }
-
-            $tipoImpacto = DB::table('catimpactoterreno')
-            ->where('id', '=', $all->tipoImpacto)
-                ->select('titulo')
-                ->first();
-
-            if (!$tipoImpacto) {
-                $tipoImpacto = new stdClass();
-                $tipoImpacto->titulo = "";
-            }
-            */
-
 
 
             $empresas = $all->empresasparticipantes;
@@ -455,52 +427,9 @@ class ProjectController extends Controller
     public function export($id)
     {
 
-
-        /*
-
-    El archivo debe guardarse en el servidor o solo está disponible para descargar?.
-    $h=DB::table('project_documents')
-    ->join('documents','project_documents.id_document','=','documents.id')
-    ->where('project_documents.id_project','=',$id)
-    ->where('documents.description','=','excel')
-    ->first();
-
-  
-
-    if($h){
-       $aux=asset('documents/'.$h->url);
-       print_r($aux);
-       die();
-    }else{
-       
-    }
-    */
-
-
-
-
-
-        //print_r($all);
         $name = 'data' . $id . '.xlsx';
 
         $excel = Excel::download(new ProjectDataExport($id), $name);
         return $excel;
-        /* 
-    if($excel){
-//save excel bd & server
-
-$d=new Documents();
-$d->description='excel';
-$d->url= $name;
-$d->save();
-
-$pd=new ProjectDocuments();
-$pd->id_project=$id;
-$pd->id_document=$d->id;
-$pd->save();
-
-return $excel;
-    }
-    */
     }
 }

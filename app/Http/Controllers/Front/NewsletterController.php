@@ -12,6 +12,7 @@ class NewsletterController extends Controller
 {
     public function eventos(){
 
+        // Mostramos todos los eventos
         $eventos=DB::table('events')
         ->select('events.*')
         ->where('status','=','Publicado')
@@ -19,7 +20,6 @@ class NewsletterController extends Controller
         ->distinct()
         ->get();
 
-            // dd($eventos);
         return view('front.eventos',['eventos'=>$eventos]);
     }
 
@@ -44,6 +44,7 @@ class NewsletterController extends Controller
     }
     public function mostrar_dias(Request $request){    
 
+        // Enviamos la respuesta obtenida del mes consultado
         if ($request->ajax()) {
             $dias=DB::table('events')
             ->select('events.*')
@@ -55,7 +56,6 @@ class NewsletterController extends Controller
             } else {
                 foreach ($dias as $dia) {
                     $f_per=$dia->date_start;
-                    // $d=date_format($date, 'd-M-Y H:i:s');
                     $fecha_format = date('d', strtotime($f_per));
 
                     $diasArray[$dia->id] =$fecha_format;
@@ -65,7 +65,7 @@ class NewsletterController extends Controller
         }
     }
     public function mostrar_contenido(Request $request){
-
+        // Buscamos el contenido del evento seleccionado y lo enviamos 
         $contenido=DB::table('events')
             ->select('events.*')
             ->where('id','=',$request->id_event)
@@ -74,18 +74,16 @@ class NewsletterController extends Controller
     }
 
     public function savemailsubscriberf(Request $request){
-        /*
-        $s=DB::table('subscribers')
-        ->insert(['email'=>$request->email]);
-        return back()->with('status', 'Subscrito correctamente');
-        */
+        // Consultamos si el email existe en la base de datos
         $existe=Subscriber::where('email',$request->email)->get();
         if(sizeof($existe)==0){
+            // Si no existe entonces guardamos el email
             $s=new Subscriber();
             $s->email=$request->email;
             $s->save();
             return back()->with('status', 'Subscrito correctamente');
         }else{
+            // Returnamos un mensaje de que el email ya existe en la base de datos
             return back()->with('status', 'El correo ya se encuentra registrado');
         }
       
