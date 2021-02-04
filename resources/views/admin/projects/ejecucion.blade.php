@@ -95,7 +95,7 @@
                 </div>
                 <div class="form-group col-md-4">
 
-                    <label for="">Estado actual del proyecto</label>
+                    <label for="">Porcentaje de avance financiero del proyecto</label>
                     <input  maxlength="50" type="text" class="form-control form-control-sm @error('estadoactualproyecto') is-invalid @enderror" name="estadoactualproyecto" value="{{old('estadoactualproyecto',$project->estadoactualproyecto)}}">
                     @error('estadoactualproyecto')
                     <div class="invalid-feedback">{{ $message }}</div>
