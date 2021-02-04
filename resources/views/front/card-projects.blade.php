@@ -47,9 +47,11 @@ Proyectos
             .encabezado-project {
                 height: 75px;
                 padding: 20px 20px 8px 20px;
+                
             }
 
             .pie-project {
+                height: 85px;
                 padding: 10px 20px 0px 20px;
                 background: #2C4143;
             }
@@ -83,24 +85,32 @@ Proyectos
                 padding: 30px 30px 30px 30px;
                 background: #628ea0;
                 border-radius: 30px 0px 0px 30px;
+                color: #fff;
 
             }
 
             .projets-pro-buscar ul li {
-                color: #fff;
                 font-size: 12px;
             }
 
             .projets-pro-buscar button {
                 margin: 20px 0px 10px 0px;
                 background: #2C4143;
-                color: #fff;
+                color: #fff ;
                 border-radius: 50px;
                 font-size: 13px;
                 padding: 1px 20px 1px 20px;
                 border: 0;
             }
-
+            
+            .projets-pro-buscar button a {
+                
+                color: #fff ;
+            }
+            .projets-pro-buscar button a:hover {
+                
+                color: rgb(184, 184, 184) ;
+            }
             .projets-pro-buscar button:hover {
                 background: #1d2a2c;
                 color: rgb(204, 204, 204);
@@ -143,11 +153,11 @@ Proyectos
                 @foreach ($projects as $project)
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-5">
                     <div class="projets-pro">
-                        <div class="encabezado-project">
+                        <div class="encabezado-project" >
                             <h5>
-                                <b>
+                                <b style="text-transform: uppercase;">
                                     @php
-                                    $titulo=substr($project->title,0,35).'...';
+                                    $titulo=substr($project->title,0,25).'...';
                                     @endphp
                                     {{ $titulo }}
                                 </b>
@@ -160,10 +170,10 @@ Proyectos
                         ->get();
                         @endphp
                         @if (count($imagen)==0)
-                        <img src="{{ asset('projects_imgs/sinimagen.png') }}" width="255" height="280"
+                        <img src="{{ asset('projects_imgs/sinimagen.png') }}" width="255" height="200"
                             style="border: 2px solid rgb(180, 180, 180); width: 100%;" alt="">
                         @else
-                        <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" style="width: 100%;" width="255" height="280"
+                        <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" style="width: 100%;" width="255" height="230"
                             alt="">
                         @endif
 
