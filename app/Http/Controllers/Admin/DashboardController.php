@@ -31,13 +31,13 @@ class DashboardController extends Controller
        
         return view('admin.formwizard');
     }
-
+    /** CRUD para el carrusel principal del sitio . */
     public function admincarousel(){
 
         $h=DB::table('documents')
         ->where('description','=','carrusel')
         ->get();
-
+        //Válida si existe uno actualemente para mostrarlo o no.
         if(sizeof($h)==0){
            $edit=false;
         }else{
@@ -48,7 +48,11 @@ class DashboardController extends Controller
 
         return view('admin.admincarousel',['edit'=>false]);
     }
-
+    /*Función que procesa el formulario de 'views->admincarousel.blade.php'
+    Verifica que contenga imágenes, y recorre el array de imagenes para guardarlas
+    con un nombre generado por la hora actual y el nombre original de la imagen y guardarlas
+    en la ruta 'public/assets/img/home/slider-main/'.
+    */
     public function savecarousel(Request $request){
         if($request->hasFile('images')){
 
@@ -66,8 +70,11 @@ class DashboardController extends Controller
            
     
         }
+        return back()->with('status', '¡Las imágenes han sido guardadas correctamente!');
+    }else{
+        return back()->with('status', '¡Las imágenes no se podieron guardar!');
     }
-    return back()->with('status', '¡Las imágenes han sido guardadas correctamente!');
+    
     }
     public function deletecarousel(){
 
@@ -86,7 +93,7 @@ class DashboardController extends Controller
         $deletedRows = Documents::where('description', 'carrusel')->delete();
         return back()->with('status', '¡Las imágenes han sido eliminadas correctamente!');
     }
-
+    /**CRUD para los materiales de apoyo */
     public function support_material(){
 
         $materials = SupportMaterial::orderBy('created_at', 'desc')->get();
@@ -120,4 +127,6 @@ class DashboardController extends Controller
        SupportMaterial::destroy($request->id);
        return back()->with('status', '¡El material de apoyo se ha eliminado correctamente!');
     }
+
+    /**Fin del CRUD para los materiales de apoyo */
 }

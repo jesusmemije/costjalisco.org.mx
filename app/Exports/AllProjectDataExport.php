@@ -9,6 +9,12 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use stdClass;
 
+/*
+Clase que hace uso de la librería 'Matwebsite para generar archivos CSV y excel dinámicamente.
+Para más información de la librería: https://docs.laravel-excel.com/
+El export generado será de todos los proyectos.
+*/
+
 class AllProjectDataExport implements FromArray,ShouldAutoSize 
 {
     /**
@@ -16,24 +22,7 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
     */
     public function array(): array
     {
-        /*
-        $projects = DB::table('project')
-        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
-        ->join('project_locations','project.id','=','project_locations.id_project')
-        ->join('locations','project_locations.id_location','=','locations.id')
-        ->join('address', 'locations.id_address', '=', 'address.id')
-        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-        ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
-        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-        ->select('project.*','organization.id as id_organization','organization.name as name_organization')
-        ->whereNotNull('proyecto_contratacion.montocontrato')
-        ->orderBy('project.created_at', 'desc')
-        ->get();
-        */
-
-        
+      
         
          $projects = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
@@ -58,32 +47,8 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
         'proyecto_finalizacion.costofinalizacion','proyecto_finalizacion.fechafinalizacion','proyecto_finalizacion.alcancefinalizacion','proyecto_finalizacion.razonescambioproyecto','proyecto_finalizacion.referenciainforme',
         'organization.id as id_organization','organization.name as name_organization')        
         ->whereNotNull('proyecto_contratacion.montocontrato')
-       
         ->orderBy('project.created_at', 'desc')
         ->get();
-       
-        /*
-        
-        $array=array();
-        foreach($projects as $project){
-            //echo $project->id.'<br>';
-            $auxea=DB::table('estudiosambiental')
-            ->where('id_project','=',$project->id_project)
-            ->get();
-            foreach($auxea as $aux){
-                array_push($array,[
-                    [
-                       $aux->responsableAmbiental,
-                    ]
-    
-                   
-                ]);
-            }
-        }
-        */
-       
-    
-    
 
         $datos=array();
         array_push($datos,[
@@ -381,9 +346,6 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
         $project->razonescambioproyecto,
         $docs,
         
-        
-
-
         ]
         ]
         );
@@ -392,52 +354,5 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
         return $datos;
     }
 
-    public function collection()
-    {
-        //
-
-
-        $projects = DB::table('project')
-        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
-        ->join('project_locations','project.id','=','project_locations.id_project')
-        ->join('locations','project_locations.id_location','=','locations.id')
-        ->join('address', 'locations.id_address', '=', 'address.id')
-        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-        ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
-        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-        ->select('project.*','organization.id as id_organization','organization.name as name_organization')
-        ->whereNotNull('proyecto_contratacion.montocontrato')
-        ->orderBy('project.created_at', 'desc')
-        ->get();
-        print_r($projects);
-        die();
-
-        $export=  new Collection();
-        //Titulos
-        $titulos = $export->pull('titulos');
-        $titulos[] = [
-
-            'id',
-            'nombre responsable'
-        ];
-        $datos=array();
-
-        $registros = $export->pull('registros');
-        
-        foreach($projects as $project){
-         
-            array_push($datos,$project->id);
-      
-        }
-        
-        $export->put('titulos',$titulos);
-        $export->put('registros',);
-    
-        
-
-
-        return $export;
-    }
+   
 }

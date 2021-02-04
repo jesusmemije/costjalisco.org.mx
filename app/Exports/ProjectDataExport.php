@@ -13,6 +13,13 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use stdClass;
 
+
+/*
+Clase que hace uso de la librería 'Matwebsite para generar archivos CSV y excel dinámicamente.
+Para más información de la librería: https://docs.laravel-excel.com/
+El export será de un proyecto especifico en base al id del proyecto pasado al constructor.
+*/
+
 class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder implements FromCollection,ShouldAutoSize, WithStyles,WithCustomValueBinder 
 {
     /**

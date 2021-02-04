@@ -177,6 +177,7 @@
         <!-- Card Header - Accordion -->
         <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample2">
         @php
+        //Verifica si el proyecto ya tiene imagenes asociadas.
             $imagen_obra=DB::table('projects_imgs')
             // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
             ->select('projects_imgs.imgroute')
@@ -189,6 +190,7 @@
         <div class="form-group col-md-10">
         <h6 class="m-0 font-weight-bold text-primary">Imagenes de la obra</h6>
         </div>
+        <!--Si ya tiene imagenes éstas se pueden eliminar (se habilita el botón) -->
         @if (count($imagen_obra)!=0)
         
         <div class="form-group d-flex justify-content-end">
@@ -211,12 +213,13 @@
           <div id="imagesdiv" class="input-images"></div>  
           @else
               <script>
-                var images=new Array();
-function rellenar(img){
-  images.push(img);
-}
+              /**Script que rellena el array images con las rutas de las imagenes asociadas al proyecto */
+              var images=new Array();
+              function rellenar(img){
+               images.push(img);
+              }
 
-</script>
+              </script>
           
               @foreach ($imagen_obra as $imagen)
             
@@ -284,7 +287,7 @@ function rellenar(img){
 
 <script>
 
-
+/**Verifica que al menos se haya seleccionado 1 imágen. */
 
 var x = document.getElementById("myDIV");
 $('#phase1').on('submit', function(event) {
@@ -320,7 +323,9 @@ let preloaded = [];
 var imagenescontrol=new Array();
 
 
-
+/**Se rellena el array preloaded con las rutas del array images.
+ * Si ya tiene imagenes entonces se manda el array a la propiedad 'preloaded' del script imageUploader.
+ */
 
 if(typeof images!='undefined'){
 
@@ -356,7 +361,7 @@ $('.input-images').imageUploader(
 
 
 
-
+/**Previene el submit del formulario con la tecla 'enter' */
   $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
@@ -374,53 +379,8 @@ $('.input-images').imageUploader(
     }
   });
 
-  function getFile(filePath) {
-        return filePath.substr(filePath.lastIndexOf('\\') + 1).split('.')[0];
-    }
+  
 
-    function getoutput() {
-        outputfile.value = getFile(inputfile.value);
-        extension.value = inputfile.value.split('.')[1];
-        return extetension.value;
-    }
-
-
-  $('#generaldataimgs').on("change", function(){ 
-    
-   // document.getElementById('urlimgs').innerHTML=getoutput();
-    //var hola=document.getElementById('imagesdiv').getElementsByTagName('img');
-
-     // console.log(hola);
-      /*
-      for(var i=0; i<numItems; i++){
-        imagenescontrol.push(hola[i]);
-      }
-      */
-    
-    });
-
-    $('#verificar').on('click',function(){
-      document.getElementById('urlimgs').innerHTML="";
-      var hola=document.getElementById('imagesdiv').getElementsByTagName('img');
-
-     console.log(hola);
-     
-     for(var i=0; i<hola.length; i++){
-       aux=document.getElementById('urlimgs').innerHTML;
-       document.getElementById('urlimgs').innerHTML=aux+hola[i].src+'|';
-   
-     }
-
-    });
-
-    function  get_id_button(myi){
-      alert(myi);
-      /*
-      var hola=document.getElementById('imagesdiv').getElementsByTagName('img');
-      recurso=hola[myi-1].src;
-      alert(recurso);
-      */
-    }
 
    
 </script>

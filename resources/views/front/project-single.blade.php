@@ -17,6 +17,7 @@ Datos del proyecto
             <div class="col-md-3 px-0">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <!--Recorre las imagenes del proyecto para colocarlo en el carrusel-->
                     @for ($i = 1; $i < sizeof($project_imgs); $i++) <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}">
                         </li>
                         @endfor
@@ -89,6 +90,7 @@ Datos del proyecto
                 </div>
                 <div id="line-date-inagurado" class="py-1 hidden-phone">
                     <?php
+                    /**Se formatea la fecha para mostrarla en formato para humanos */
                     setlocale(LC_ALL, 'es_ES');
                     $date = date_create($project->updated); ?>
                     @php
@@ -716,7 +718,8 @@ Datos del proyecto
     });
 
     window.onload = function() {
-
+        /**Modal que carga los documentos de determinada fase en base al titulo/nombre
+         * de la fase  y id del proyecto. */
         $('#deleteUserModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var titulo = button.data('titulo')
@@ -735,7 +738,10 @@ Datos del proyecto
                 dataType: "json",
                 success: function(resp) {
 
-                    //una vez que el archivo recibe el request lo procesa y lo devuelve
+                    /*una vez que el archivo recibe el request lo procesa y lo devuelve
+                    y  construye la tabla dentro del modal con el nombre y tipo del documento de 
+                    determinada fase
+                    */
 
                     console.log(resp);
                     $(".display tbody tr").remove();
@@ -762,8 +768,7 @@ Datos del proyecto
 
                 },
                 error: function(response) {
-                    //una vez que el archivo recibe el request lo procesa y lo devuelve
-                    // alert("Ha ocurrido un error, intente de nuevo.");
+                  
                 }
             });
 
