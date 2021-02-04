@@ -4,6 +4,7 @@
         <div class="row flex-nowrap justify-content-between align-items-center mx-0">
             <div class="col-12 d-flex justify-content-end align-items-center">
                 <div class="c">
+                <!-- // Mostramos todos los botones de Escritorio de encabezado -->
                     <nav class="nav d-flex justify-content-between" >
                         <a class="p-2 text-white nav-link" href="{{ route('interest-sites') }}">Sitios de interés</a>
                         <div class="divider"></div>
@@ -23,6 +24,7 @@
             </div>
         </div>
     </div>
+    <!--Mostramos los logos de costjalisco y el logo de ciudada jalisco-->
     <div class="header-img">
         <div class="container">
             <div class="row align-items-center">
@@ -39,17 +41,21 @@
             </div>
         </div>
     </div>
+    <!--Mostramos todos menú del costjalisco-->
     <div class="header-menu">
         <div class="container">
             <div class="nav-scroller mb-2">
                 <nav class="nav d-flex justify-content-between">
+                <!--Mostramos el boton de inicio-->
                     <a href="{{ route('index') }}" class="p-2">INICIO</a>
                     <div class="divider"></div>
+                    <!--Mostramos el boton de Conoce más-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownConoceMas" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             CONOCE MÁS
                         </a>
+                        <!--Mostramos los submenú que se encuentran dentro del menú de conoce más-->
                         <div class="dropdown-menu" aria-labelledby="dropdownConoceMas">
                             <a class="dropdown-item" href="{{ route('know-more') }}">Historia</a>
                             <div class="dropdown-divider"></div>
@@ -63,11 +69,13 @@
                         </div>
                     </li>
                     <div class="divider"></div>
+                    <!--Mostramos el boton de Nosotros-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownNosotros" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             NOSOTROS
                         </a>
+                         <!--Mostramos los submenú que se encuentran dentro del menú de NOSOTROS-->
                         <div class="dropdown-menu" aria-labelledby="dropdownNosotros">
                             <a class="dropdown-item" href="{{ route('about-us') }}#cost-jalisco">CoST Jalisco</a>
                             <div class="dropdown-divider"></div>
@@ -75,34 +83,40 @@
                                 Jalisco</a>
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('multisectorial') }}">Grupo Multisectorial</a>
+                            <a class="dropdown-item" href="{{ route('organizations') }}">Grupo Multisectorial</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
                     <div class="divider"></div>
+                    <!--Mostramos el boton de PROYECTOS-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownProyectos" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             PROYECTOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownProyectos">
+                        <!--Mostramos los submenú que se encuentran dentro del menú de PROYECTOS-->
+                            <a class="dropdown-item" href="{{route('list-projects')}}">Listado de obras</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{route('georeferencing')}}">Georreferenciación</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('statistics')}}">Estadísticas</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('search-engine')}}">Motor de búsqueda</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('georeferencing')}}">Georreferenciación</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('list-projects')}}">Listado de obras</a>
-                            <div class="dropdown-divider"></div>
+                           
+                            
                         </div>
                     </li>
                     <div class="divider"></div>
+                    <!--Mostramos el boton de RECURSOS-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownRecursos" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             RECURSOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownRecursos">
+                        <!--Mostramos los submenú que se encuentran dentro del menú de RECURSOS-->
                             <a class="dropdown-item" href="{{ route('resources') }}">Documentos de interés</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('support-material') }}">Material de apoyo</a>
@@ -110,12 +124,14 @@
                         </div>
                     </li>
                     <div class="divider"></div>
+                    <!--Mostramos el boton de NOTICIAS-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownNoticias" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             NOTICIAS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownNoticias">
+                        <!--Mostramos los submenú que se encuentran dentro del menú de NOTICIAS-->
                             <a class="dropdown-item" href="{{route('eventos')}}">Eventos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('newsletters')}}">Boletines</a>

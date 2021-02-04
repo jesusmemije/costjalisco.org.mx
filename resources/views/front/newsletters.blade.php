@@ -22,7 +22,7 @@ Boletines
             </div>
         </div>
         @if (count($boletines)==0)
-        <center>No hay boletines</center>
+            <center>No hay boletines</center>
         @else
         @foreach ($boletines as $boletin)
         <div class="row container-boletin">
@@ -42,15 +42,15 @@ Boletines
                             <center>No hay fecha</center>
                             @else
                             @php
+                            // Código para mostrar la fecha en español
                             setlocale(LC_TIME, "spanish");
                             $mi_fecha = $boletin->date;
                             $mi_fecha = str_replace("/", "-", $mi_fecha);
                             $Nueva_Fecha = date("d-M-Y", strtotime($mi_fecha));
                             $fecha_correcta = strftime("%d de %B de %Y", strtotime($Nueva_Fecha));
 
-                            // echo $Mes_Anyo;
                             @endphp
-                            {{ $fecha_correcta }}
+                                {{ $fecha_correcta }}
 
                             @endif
                         </div>

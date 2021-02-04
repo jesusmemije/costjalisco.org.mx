@@ -213,48 +213,7 @@ Inicio
 @endif
 
 <!-- Btn Agenda -->
-<!--
- <div class="btn-agenda">
-        <img src="{{ asset('assets/img/home/btn-eventos.png') }}" onclick="showEventosAgenda()" class="img-fluid"
-            style="cursor: pointer;" alt="Agenda CoST Jalisco">
-    </div> 
-    
-    <div id="panel-oculto" class="container-aventos-agenda">
-        <img src="{{ asset('assets/img/home/eventos-agenda.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
-        <div class="container-agenda-fechas">
-            <div class="row mx-0">
-                <div class="col-md-1"></div>
-                <div class="col-md-3 pl-1 pr-2 text-right">
-                    <div class="fecha">
-                        <label class="mr-3 agenda-day">01</label>
-                        <label class="agenda-mes">NOVIEMBRE</label><br>
-                        <label class="agenda-descripcion">Evento previo a día de muertos</label>
-                    </div>
-                    <div class="line-agenda-fechas"></div>
-                </div>
-                <div class="col-md-3 pl-1 pr-2 text-right">
-                    <div class="fecha">
-                        <label class="mr-3 agenda-day">12</label>
-                        <label class="agenda-mes">NOVIEMBRE</label><br>
-                        <label class="agenda-descripcion">"La insfraestructura y economía" Imparte: Luis Rosales. Auditorio
-                            Telmex 8:00 pm Cupo limitado</label>
-                    </div>
-                    <div class="line-agenda-fechas"></div>
-                </div>
-                <div class="col-md-3 pl-1 pr-2 text-right">
-                    <div class="fecha">
-                        <label class="mr-3 agenda-day">28</label>
-                        <label class="agenda-mes">NOVIEMBRE</label><br>
-                        <label class="agenda-descripcion">La insfraestructura y economía" Imparte: Luis Rosales. Auditorio
-                            Telmex 8:00 pm Cupo limitado</label>
-                    </div>
-                    <div class="line-agenda-fechas"></div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-    </div>
--->
+
 
 <!-- Section - Índices -->
 <!--Este parte del codigo tiene la funcion de tomar los registros que hay en la base de datos y mostrarlo-->
@@ -736,7 +695,7 @@ Inicio
 
 </div>
 
-<!-- Title - Proyectos -->
+<!--En está sección se muestra el titulo Proyectos -->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mt-5">
         <div class="text-center">
@@ -747,7 +706,7 @@ Inicio
     </div>
 </div>
 
-<!-- Section - Carousel proyectos -->
+<!--Esta parte del codigo es para que muestre el carrusel de todos los proyectos que se dieron de alta en backend-->
 <div class="row mx-0">
     <div class="col-lg-12  col-md-12 col-sm-12 col-12 px-0">
         <div id="carouselProjects" class="carousel slide" data-ride="carousel">
@@ -823,6 +782,7 @@ Inicio
                 @endforeach
 
             </div>
+            <!--Esta parte del código son lo botones que tiene el carrusel como de regresar y el de continuar-->
             <a class="carousel-control-prev" href="#carouselProjects" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -836,6 +796,7 @@ Inicio
 </div>
 
 <!-- Section - newsletter -->
+<!--Esta Sección muestra el boletin informativo para que el usuario se registre-->
 <div class="row mx-0 my-4 align-items-center hidden-tablet">
     <div class="col-md-12 col-sm-12 px-0">
         <img src="{{ asset('assets/img/home/box-newsletter.jpg') }}" class="img-fluid" alt="Newsletter - CoST Jalisco">
@@ -852,7 +813,7 @@ Inicio
     </div>
 </div>
 
-<!-- Title - Nuestras redes -->
+<!-- Muestra el titulo de NUESTRAS REDES -->
 <div class="row mx-0 hidden-phone">
     <div class="col-md-6 px-0 mt-5 mb-4">
         <div class="text-center">
@@ -861,7 +822,7 @@ Inicio
     </div>
 </div>
 
-<!-- Section - Timeline redes sociales -->
+<!-- Seccion de la cronologia redes sociales -->
 <div class="container pb-5 hidden-phone">
     <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12">
@@ -881,7 +842,7 @@ Inicio
     </div>
 </div>
 
-<!-- Section - Visitas -->
+<!--En esta sección se muestra la fecha actual y total de visitantes-->
 <div class="container py-5 hidden-phone">
     <div class="row line-top-right">
         <div class="border-left-visitantes"></div>
@@ -927,28 +888,6 @@ Inicio
 @endif
 
 <script>
-    // //Ejecutando funciones
-    // document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
-    // document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
-
-    //Declarando variables
-    // bars_search =       document.getElementById("ctn-bars-search");
-    // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    //     document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
-
-    // function mostrar_menu(){
-
-    //     document.getElementById("move-content").classList.toggle('move-container-all');
-    //     document.getElementById("show-menu").classList.toggle('show-lateral');
-    // }
-
-    // //Ejecutando funciones
-    // document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
-    // document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
-
-    // //Declarando variables
-    // bars_search =       document.getElementById("ctn-bars-search");
-    // cover_ctn_search =  document.getElementById("cover-ctn-search");
     inputSearch =       document.getElementById("inputSearch");
     box_search =        document.getElementById("box-search");
 
