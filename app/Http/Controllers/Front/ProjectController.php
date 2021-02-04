@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Exports\AllProjectDataExport;
 use App\Exports\ProjectDataExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -454,53 +455,22 @@ class ProjectController extends Controller
 
     public function export($id)
     {
-
-
-        /*
-
-    El archivo debe guardarse en el servidor o solo está disponible para descargar?.
-    $h=DB::table('project_documents')
-    ->join('documents','project_documents.id_document','=','documents.id')
-    ->where('project_documents.id_project','=',$id)
-    ->where('documents.description','=','excel')
-    ->first();
-
-  
-
-    if($h){
-       $aux=asset('documents/'.$h->url);
-       print_r($aux);
-       die();
-    }else{
-       
-    }
-    */
-
-
-
-
-
-        //print_r($all);
         $name = 'data' . $id . '.xlsx';
 
         $excel = Excel::download(new ProjectDataExport($id), $name);
         return $excel;
-        /* 
-    if($excel){
-//save excel bd & server
-
-$d=new Documents();
-$d->description='excel';
-$d->url= $name;
-$d->save();
-
-$pd=new ProjectDocuments();
-$pd->id_project=$id;
-$pd->id_document=$d->id;
-$pd->save();
-
-return $excel;
+    
     }
-    */
+    public function exportall(){
+        $name = 'alldataprojects.xlsx';
+
+        $excel = Excel::download(new AllProjectDataExport(), $name);
+        return $excel;
+    }
+    public function exportallcsv(){
+        $name = 'alldataprojects.csv';
+
+        $excel = Excel::download(new AllProjectDataExport(), $name);
+        return $excel;
     }
 }
