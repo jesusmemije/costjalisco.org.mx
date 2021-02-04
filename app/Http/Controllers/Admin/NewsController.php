@@ -10,7 +10,7 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    
+    // Funciones de noticias y periódicos
     public function index()
     {
         $news = News::orderBy('created_at', 'desc')->get();
@@ -24,7 +24,7 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        // Creamos la noticia
         $fechaActual = date('Y-m-d h:i');
         News::create([
             'title'   => $request->title,
@@ -39,6 +39,7 @@ class NewsController extends Controller
 
     public function edit(News $news)
     {
+        // Consulta de las imagenes del periodico para asignarle a la noticia
         $periodicos = DB::table('tbl_img')
             ->select('tbl_img.*')
             ->orderBy('tbl_img.nombreperiodico','asc')
@@ -48,7 +49,7 @@ class NewsController extends Controller
 
     public function update(Request $request, News $news)
     {   
-
+        // Actualizamos la noticia
         $fechaActual = date('Y-m-d h:i');
         if ($request->status_news=='Publicado') {
             $news->update([
@@ -79,8 +80,7 @@ class NewsController extends Controller
     }
 
     public function crear_periodico(Request $request){
-        // dd($request->all());
-
+        
         if($request->hasFile('rutaimg')){
 
                 $file=$request->file('rutaimg');

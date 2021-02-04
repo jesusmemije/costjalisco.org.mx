@@ -63,22 +63,87 @@ class HomeController extends Controller
         }
 
         // Consultamos y contamos el monto total del presupuesto del contrato
-        $monto_contrato = DB::table('project')
-        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
-        ->join('project_locations','project.id','=','project_locations.id_project')
-        ->join('locations','project_locations.id_location','=','locations.id')
-        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-        ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
-        ->whereNotNull('proyecto_contratacion.montocontrato')
-        ->get();
+        // $monto_contrato = DB::table('project')
+        // ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+        // ->join('project_locations','project.id','=','project_locations.id_project')
+        // ->join('locations','project_locations.id_location','=','locations.id')
+        // ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+        // ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+        // ->join('subsector', 'project.subsector', '=', 'subsector.id')
+        // ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
+        // ->whereNotNull('proyecto_contratacion.montocontrato')
+        // ->get();
         
+        // if (empty($monto_contrato[0]->monto_total)) {
+        //     $total_contrato=0;
+        // } else {
+        //     $total_contrato=$monto_contrato[0]->monto_total;
+        // }
+        // ------------------------------------------------------------------------------------
+
+        // Cantidad total monto contrato
+        $monto_contrato = DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+            ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+            ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as monto_total'))
+            ->whereNotNull('proyecto_contratacion.montocontrato')
+            ->get();
         if (empty($monto_contrato[0]->monto_total)) {
             $total_contrato=0;
         } else {
             $total_contrato=$monto_contrato[0]->monto_total;
         }
+        // Cantidad monto contrato con el campo costo finalización obligatorio 
+        $monto_contrato_restar = DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+            ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+            ->select(DB::raw('SUM(proyecto_contratacion.montocontrato) as total_contrato_restar'))
+            ->whereNotNull('proyecto_finalizacion.costofinalizacion')
+            ->get();
+
+        if (empty($monto_contrato_restar[0]->total_contrato_restar)) {
+            $total_cont_restar=0;
+        } else {
+            $total_cont_restar=$monto_contrato_restar[0]->total_contrato_restar;
+        }
+        // Cantidad total del campo costo finalización con el campo costo finalización obligatorio
+        $monto_costofinalizacion = DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+            ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+            ->select(DB::raw('SUM(proyecto_finalizacion.costofinalizacion) as monto_costofin'))
+            ->whereNotNull('proyecto_finalizacion.costofinalizacion')
+            ->get();
+
+        if (empty($monto_costofinalizacion[0]->monto_costofin)) {
+            $total_costofin=0;
+        } else {
+            $total_costofin=$monto_costofinalizacion[0]->monto_costofin;
+        }
+
+        // Calculamos el presupuesto total: al total del monto cotrato le restamos el total monto contrato con el campo costo finalización como obligatorio y sumamos el total del costo finalización
+        $total_presupuesto_ejercido=($total_contrato-$total_cont_restar)+$total_costofin;
+
+        // ----------------------------------------------------------------------------------------
 
         // Consultamos todos lo proyectos que tengan ya el valor asiganado en monto contrato y lo mostramos el carousel 
         $projects = DB::table('project')
@@ -103,7 +168,7 @@ class HomeController extends Controller
             'h'=>$h,
             'total_organization'=>$total_organization,
             'total_proyectos'=>$total_proyectos,
-            'total_contrato'=>$total_contrato,
+            'total_presupuesto_ejercido'=>$total_presupuesto_ejercido,
             'total_beneficiarios'=>$total_beneficiarios,
            
         ]);
@@ -195,7 +260,8 @@ class HomeController extends Controller
 
     public function statistics()
     {
-       
+    //    Consultas para la estadística
+        // Gráfico de proyectos
         $sector1 = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -203,9 +269,6 @@ class HomeController extends Controller
             ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-            // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-            // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-            // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
             ->select('projectsector.*')
             ->whereNotNull('proyecto_contratacion.montocontrato')
             ->where('project.sector','=',1)
@@ -217,9 +280,6 @@ class HomeController extends Controller
             ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-            // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-            // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-            // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
             ->select('projectsector.*')
             ->whereNotNull('proyecto_contratacion.montocontrato')
             ->where('project.sector','=',2)
@@ -231,9 +291,6 @@ class HomeController extends Controller
             ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-            // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-            // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-            // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
             ->select('projectsector.*')
             ->whereNotNull('proyecto_contratacion.montocontrato')
             ->where('project.sector','=',3)
@@ -245,14 +302,11 @@ class HomeController extends Controller
             ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-            // ->leftJoin('estudiosambiental', 'project.id', '=', 'estudiosambiental.id_project')
-            // ->leftJoin('estudiosfactibilidad', 'project.id', '=', 'estudiosfactibilidad.id_project')
-            // ->leftJoin('estudiosimpacto', 'project.id', '=', 'estudiosimpacto.id_project')
             ->select('projectsector.*')
             ->whereNotNull('proyecto_contratacion.montocontrato')
             ->where('project.sector','=',4)
             ->get();
-
+        // Consultamos todos los proyectos que tienen el valor asiganado en el campo monto contrato
         $proyectos = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -267,11 +321,23 @@ class HomeController extends Controller
             ->groupBy('project_organizations.id_organization','organization.name')
             ->get();
 
-// ------------aqui hacemos el cálculo para el presupuesto ejercido
-        $organizaciones_presupuesto = DB::table('organization')
-        ->select('organization.*')
-        ->get();
+// -----aqui hacemos el cálculo para el presupuesto asignado
+    
+        $organizaciones_presupuesto = DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+            ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+            ->select('organization.*')
+            ->whereNotNull('proyecto_contratacion.montocontrato')
+            ->distinct()
+            ->get();
 
+        // La cantidad total de los proyectos que tienen asignado en el campo monto contrato
         $monto_contrato_or = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -285,7 +351,7 @@ class HomeController extends Controller
             ->whereNotNull('proyecto_contratacion.montocontrato')
             ->groupBy('project_organizations.id_organization','organization.name','project.id')
             ->get();
-            
+        // La cantidad total del monto cotrato pero que con el campo obligatorio costo finalización
         $costofinalizacion_contrato = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -300,7 +366,7 @@ class HomeController extends Controller
             ->whereNotNull('proyecto_finalizacion.costofinalizacion')
             ->groupBy('project_organizations.id_organization','organization.name','project.id')
             ->get();
-
+        // La cantidad total del campo costo finalización como obligatorio
         $costofinalizacion_or = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -316,13 +382,7 @@ class HomeController extends Controller
             ->groupBy('project_organizations.id_organization','organization.name','project.id')
             ->get();
 
-        // dd($monto_contrato_or,$costofinalizacion_or);
-
-        // dd($monto_contrato_or);
-
-
-
-        // cantidad total
+        // Cantidad total monto contrato
         $monto_contrato = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -340,7 +400,7 @@ class HomeController extends Controller
         } else {
             $total_contrato=$monto_contrato[0]->monto_total;
         }
-
+        // Cantidad monto contrato con el campo costo finalización obligatorio 
         $monto_contrato_restar = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -360,7 +420,7 @@ class HomeController extends Controller
         } else {
             $total_cont_restar=$monto_contrato_restar[0]->total_contrato_restar;
         }
-
+        // Cantidad total del campo costo finalización con el campo costo finalización obligatorio
         $monto_costofinalizacion = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
@@ -381,11 +441,12 @@ class HomeController extends Controller
             $total_costofin=$monto_costofinalizacion[0]->monto_costofin;
         }
 
+        // Calculamos el presupuesto total: al total del monto cotrato le restamos el total monto contrato con el campo costo finalización como obligatorio y sumamos el total del costo finalización
         $total_presupuesto_ejercido=($total_contrato-$total_cont_restar)+$total_costofin;
 
 
-// --------------------------------------------------------------------------------------------
 
+// --------------------------------------------------------------------------------------------
 
         $modalidad_adjudicacion = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')

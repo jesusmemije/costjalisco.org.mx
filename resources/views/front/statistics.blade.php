@@ -234,7 +234,7 @@
         <div class="my-1 seccion-project" id="iniciativa">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
                 <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
-                    <span class="title-section"><b> Proyectos de la iniciativa</b></span>
+                    <span class="title-section"><b> Proyectos en la iniciativa</b></span>
                 </h2><br>
             </div>
         </div>
@@ -296,7 +296,7 @@
         <div class="my-1 seccion-project" id="presupuesto">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
                 <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
-                    <span class="title-section"><b> Presupuesto ejercido</b></span>
+                    <span class="title-section"><b> Presupuesto asignado</b></span>
                 </h2><br>
             </div>
         </div>

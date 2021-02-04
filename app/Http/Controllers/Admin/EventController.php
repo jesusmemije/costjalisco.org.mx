@@ -34,6 +34,7 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
+        // Convertimos la fecha al formato requerido
         $fechas=$request->date_start;
         $fs = str_split($fechas);
         $dias=$fs[0].$fs[1];
@@ -43,7 +44,6 @@ class EventController extends Controller
         $ms=$fs[14].$fs[15];
         $fecha_hora = $años.'-'.$mess.'-'.$dias.' '.$hs.':'.$ms.':00';
 
-        // dd($fecha_hora);
         $event->update([
             'title'       => $request->title,
             'description' => $request->description,

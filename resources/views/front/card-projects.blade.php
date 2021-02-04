@@ -6,7 +6,6 @@ Proyectos
 
 @section('content')
 <div class="container-fluid pt-4">
-    <!-- Section - Datos generales -->
     <div class="container">
         <style>
             .links-color {
@@ -37,8 +36,6 @@ Proyectos
 
             .projets-pro {
                 margin: 0px 25px 0px 25px;
-                /* padding: 20px 25px 0px 25px; */
-                /* width: 250px; */
                 width: 100%;
                 background: #d5d6be;
                 border-radius: 0px 30px 0px 0px;

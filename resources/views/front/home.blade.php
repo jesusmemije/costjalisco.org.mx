@@ -91,10 +91,10 @@ Inicio
 
                                 <li><a href="{{url('statistics#iniciativa')}}"><i
                                             class="fas fa-search"></i>Proyectos</a></li>
-                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos de
+                                <li><a href="{{url('statistics#iniciativa')}}"><i class="fas fa-search"></i>Proyectos en
                                         la iniciativa</a></li>
                                 <li><a href="{{url('statistics#presupuesto')}}"><i class="fas fa-search"></i>Presupuesto
-                                        utilizado</a></li>
+                                        asignado</a></li>
 
                                 <li><a href="{{url('list-projects#sectorpublico')}}"><i class="fas fa-search"></i>Sector
                                         público</a></li>
@@ -219,14 +219,14 @@ Inicio
 <!--Este parte del codigo tiene la funcion de tomar los registros que hay en la base de datos y mostrarlo-->
 <div class="row mx-0">
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
-        <div class="card-indice-title">Organizaciones</div>
+        <div class="card-indice-title">Instituciones públicas participantes</div>
         <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
         <div class="card-indice-counter">
             {{$total_organization}}
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
-        <div class="card-indice-title">Proyectos de la iniciativa</div>
+        <div class="card-indice-title">Proyectos en la iniciativa</div>
         <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
         <div class="card-indice-counter">
             {{$total_proyectos}}
@@ -241,10 +241,10 @@ Inicio
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
-        <div class="card-indice-title">Presupuesto utilizado</div>
+        <div class="card-indice-title">Presupuesto asignado</div>
         <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
         <div class="card-indice-counter presupuesto">
-            ${{number_format($total_contrato,2)}}
+            ${{number_format($total_presupuesto_ejercido,2)}}
         </div>
     </div>
 </div>
@@ -313,7 +313,7 @@ Inicio
         <!--La función de este codigo es mostrar el logotipo de la infraestructura-->
         <div class="col-md-6 text-center">
             <br class="hidden-phone"><br class="hidden-phone">
-            <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
+            <img src="{{ asset('assets/img/home/seccion.png') }}" class="img-fluid" width="460" alt="">
             <br class="hidden-phone"><br>
             <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
                     https://infrastructuretransparency.org/</a></span>
@@ -765,7 +765,7 @@ Inicio
                                         <strong>&nbsp; Ubicación: </strong>{{ $ubicacion }}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/usuarios.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
-                                        <strong>&nbsp; Beneficiarios: </strong> {{$project->people}}</p>
+                                        <strong>&nbsp; Beneficiarios: </strong> {{number_format($project->people)}}</p>
                                     <br>
                                     <span><a href="{{ route('project-single', $project->id_project) }}" class="text-red"
                                             style="font-size: 18px; font-weight: 700; font-style: italic;">Ver

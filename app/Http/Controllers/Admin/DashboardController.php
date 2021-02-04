@@ -101,7 +101,7 @@ class DashboardController extends Controller
     }
     public function materialstore(Request $request){
 
-       // print_r($_POST);
+       
 
         $sm= new SupportMaterial();
         $sm->titulo=$request->titulo;

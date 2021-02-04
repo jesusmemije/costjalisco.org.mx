@@ -35,7 +35,7 @@
                     </a>
                 </div>
                 <div class="col-md-7">
-                    <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid"
+                    <img src="{{ asset('assets/img/header/header.png') }}" class="img-fluid"
                         alt="Ciudad-costjalisco">
                 </div>
             </div>
