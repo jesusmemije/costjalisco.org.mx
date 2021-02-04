@@ -73,7 +73,7 @@ Conoce más
             <div class="col-md-12"  style="text-align: justify;" >
             <div  class="hidden-desktop-mini" style="text-align: justify;">
                 <p>
-                    CoST se lanzó desde el Reino Unido como una inicialiva global en 2012 con el apoyo del Banco Mundial
+                    CoST se lanzó desde el Reino Unido como una iniciativa global en 2012 con el apoyo del Banco Mundial
                     surgió de las 
                     lecciones aprendidas de un programa piloto de tres años que probó la viabilidad de un nuevo proceso
                     de transparencia y 
@@ -89,7 +89,7 @@ Conoce más
                 </p>
                 <p>
                     Además, colabora internacionalmente con organizaciones clave en materia de transparencia y en el
-                    combate a la corrupción>
+                    combate a la corrupción
                     para facilitar el intercambio global de experiencias y conocimientos sobre transparencia y
                     responsabilidad en la
                     infraestructura pública. Entre los socios internacionales de CoST están: Article 19, Open

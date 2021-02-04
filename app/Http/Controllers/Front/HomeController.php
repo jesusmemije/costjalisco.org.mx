@@ -119,11 +119,6 @@ class HomeController extends Controller
         return view('front.about-us');
     }
 
-    public function multisectorial()
-    {
-        return view('front.multisectorial');
-    }
-
 
     public function resources()
     {

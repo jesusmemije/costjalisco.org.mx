@@ -83,7 +83,7 @@
                                 Jalisco</a>
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('multisectorial') }}">Grupo Multisectorial</a>
+                            <a class="dropdown-item" href="{{ route('organizations') }}">Grupo Multisectorial</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
@@ -96,14 +96,16 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownProyectos">
                         <!--Mostramos los submenú que se encuentran dentro del menú de PROYECTOS-->
+                            <a class="dropdown-item" href="{{route('list-projects')}}">Listado de obras</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{route('georeferencing')}}">Georreferenciación</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('statistics')}}">Estadísticas</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('search-engine')}}">Motor de búsqueda</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('georeferencing')}}">Georreferenciación</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('list-projects')}}">Listado de obras</a>
-                            <div class="dropdown-divider"></div>
+                           
+                            
                         </div>
                     </li>
                     <div class="divider"></div>
