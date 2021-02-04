@@ -58,6 +58,8 @@
 }
 
 .chatbot {
+    width: 20%;
+    height: auto;
     position: fixed;
     right: 32px;
     bottom: 32px;
@@ -95,7 +97,7 @@
     position: absolute;
     width: 10px;
     height: 200px;
-    background-image: url('http://pice-software.com/costjalisco/public/assets/img/home/line-eventos.png');
+    background-image: url('/assets/img/home/line-eventos.png');
     background-size: contain;
     background-repeat: no-repeat;
     right: 0;
@@ -166,11 +168,11 @@
 }
 
 #carouselProjects .carousel-control-next-icon {
-    background-image: url("http://pice-software.com/costjalisco/public/assets/img/home/slider-proyectos/icons/arrow-right.png");
+    background-image: url("/assets/img/home/slider-proyectos/icons/arrow-right.png");
 }
 
 #carouselProjects .carousel-control-prev-icon {
-    background-image: url("http://pice-software.com/costjalisco/public/assets/img/home/slider-proyectos/icons/arrow-left.png");
+    background-image: url("/assets/img/home/slider-proyectos/icons/arrow-left.png");
 }
 
 #carouselProjects .carousel-control-next-icon,
@@ -190,6 +192,10 @@
 
 #carouselProjects .carousel-control-prev {
     justify-content: left;
+}
+
+#carouselProjects a {
+    color: #fff;
 }
 
 .icon-img-carousel {
@@ -311,7 +317,7 @@
     font-size: 30px;
     text-align: end;
     height: 120px;
-    background-image: url('http://pice-software.com/costjalisco/public/assets/img/home/line-visitas.png');
+    background-image: url('/assets/img/home/line-visitas.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -327,10 +333,6 @@
     top: 30%;
     width: 90%;
     text-align: end;
-}
-
-.chatbot {
-    width: unset;
 }
 
 #inputSearch {
@@ -547,7 +549,7 @@
 
     .title-barra-roja {
         font-size: 1.25rem;
-        background-image: url("http://pice-software.com/costjalisco/public/assets/img/bg-rojo-phone.jpg");
+        background-image: url("/assets/img/bg-rojo-phone.jpg");
     }
 
 }

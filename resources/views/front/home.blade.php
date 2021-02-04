@@ -13,12 +13,13 @@ Inicio
 <div class="main">
 
     <!--MODAL-->
+    <!--Muestra la imagen del inspeCost-->
     <div class="chatbot text-center">
-        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid" width="280"
+        <img src="{{ asset('assets/img/home/chatbot.png') }}" type="button" class="img-fluid"
             alt="Chatbot - Página CoST Jalisco" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">
     </div>
-
+    <!--Este es para que muestre el modal que el buscador -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -41,9 +42,9 @@ Inicio
                                     </button>
                                 </div>
                             </div>
-                            
+                            <!--Esta parte lo que hace es buscar la palabra que el usuario le ingrese-->
                             <ul id="box-search">
-                                <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inicicio >
+                                <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inico >
                                         Nosotros</a></li>
                                 <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más >
                                         Historia</a></li>
@@ -131,6 +132,7 @@ Inicio
 
     <!-- Section - Carousel main default -->
     @if(sizeof($h)==0)
+    <!--La funcion de este código es para que se muestre el carrusel en el el home-->
     <div id="carouselHome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
@@ -255,6 +257,7 @@ Inicio
 -->
 
 <!-- Section - Índices -->
+<!--Este parte del codigo tiene la funcion de tomar los registros que hay en la base de datos y mostrarlo-->
 <div class="row mx-0">
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Organizaciones</div>
@@ -288,6 +291,7 @@ Inicio
 </div>
 
 <!-- Label de actuaización -->
+<!--lo que hace este codigo es mostrar la fecha actual-->
 <div class="row mx-0">
     <div class="col-md-12">
         <div class="text-right mt-3 mb-3">
@@ -306,6 +310,7 @@ Inicio
 </div>
 
 <!-- Title - Nosotros -->
+<!--en esta parte lo que muestra es el titulo, remarcado en rojo-->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mb-4">
         <div class="text-center text-white">
@@ -315,6 +320,7 @@ Inicio
 </div>
 
 <!-- Title - ¿Qúes es CoST? -->
+<!--Este código muestra el subtitulo de conoce más-->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mb-5">
         <div class="text-center text-white">
@@ -323,7 +329,7 @@ Inicio
     </div>
 </div>
 
-<!-- Section - Descripción CoST -->
+<!-- Aqui se muestra la Descripción CoST -->
 <div class="container">
     <div class="row">
         <div class="col-md-6 line-red-vertical">
@@ -345,6 +351,7 @@ Inicio
                 <br>
             </div>
         </div>
+        <!--La función de este codigo es mostrar el logotipo de la infraestructura-->
         <div class="col-md-6 text-center">
             <br class="hidden-phone"><br class="hidden-phone">
             <img src="{{ asset('assets/img/header/vector-ciudad.png') }}" class="img-fluid" width="460" alt="">
@@ -357,7 +364,7 @@ Inicio
 
 <br class="hidden-desktop">
 
-<!--NOSOTROS-->
+<!--MUESTRA EL TITULO DE NOSOTROS-->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mb-4">
         <div class="text-center text-white">
@@ -366,7 +373,7 @@ Inicio
     </div>
 </div>
 
-<!-- Title - ¿Qúes es CoST? -->
+<!-- Muestra el subtitulo ¿Qúes es CoST? -->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mb-5">
         <div class="text-center text-white">
@@ -375,7 +382,7 @@ Inicio
     </div>
 </div>
 
-<!-- Section - Descripción CoST -->
+<!-- Muestra la Descripción CoST Jalisco -->
 <div class="container">
     <div class="row">
         <div class="col-md-6 line-red-vertical">
@@ -396,7 +403,7 @@ Inicio
 
 <br class="hidden-desktop">
 
-<!-- Title - Grupo multisectorial-->
+<!--Grupo multisectorial-->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mt-2">
         <div class="text-center text-white">
@@ -408,7 +415,7 @@ Inicio
     </div>
 </div>
 
-<!-- Section - Descripción Grupo multisectorial-->
+<!--Descripción Grupo multisectorial-->
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-7 line-red-vertical">
@@ -432,7 +439,7 @@ Inicio
     </div>
 </div>
 
-<!-- Section - Sector público-->
+<!--Esta funcion del código muestra los logotipos de Sector público-->
 <div class="container mt-5 hidden-phone">
     <div style="border-left: 5px solid #2C4143;">
         <div class="row mb-3">
@@ -441,6 +448,7 @@ Inicio
                 </h3>
             </div>
         </div>
+        <!--codigo del logotipo de jalisco-->
         <div class="row align-items-center">
             <div class="col-md-2 col-sm-2 text-center"style="margin-right: -4%;">
                 <a href="https://www.jalisco.gob.mx/" target="_BLANK">
@@ -448,36 +456,42 @@ Inicio
                         alt="">
                 </a>
             </div>
+            <!--muestra el loggotipo de guadalajara-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://guadalajara.gob.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
                         width="70" alt="">
                 </a>
             </div>
+            <!--muestra el logotipo de zapopan-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
                         alt="">
                 </a>
             </div>
+            <!--muestra el logotipo de tonala-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://tonala.gob.mx/portal/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
                         alt="">
                 </a>
             </div>
+            <!--muestra el logotipo de tlajomulco-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://tlajomulco.gob.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/tlajomulco.jpg') }}" class="img-fluid" width="130"
                         alt="">
                 </a>
             </div>
+            <!--muestra el logotipo de inai-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href=" https://home.inai.org.mx/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/inai.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>
+            <!--muestra el logotipo de itei-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://www.itei.org.mx/v4/" target="_BLANK">
                     <img src="{{ asset('assets/img/home/sector-publico/itei.jpg') }}" class="img-fluid" width="100"
@@ -489,6 +503,7 @@ Inicio
 </div>
 
 <!-- Section - Sector Académico-->
+<!--Esta seccion muestra los logotipos de sector académico-->
 <div class="container mt-5 hidden-phone">
     <div style="border-left: 5px solid #D60000;">
         <div class="row mb-3">
@@ -515,6 +530,7 @@ Inicio
 </div>
 
 <!-- Section - Sector Privado-->
+<!--Esta seccion muestra los logotipos de sector privado-->
 <div class="container mt-5 hidden-phone">
     <div style="border-left: 5px solid #FFCE32;">
         <div class="row mb-3">
@@ -547,6 +563,7 @@ Inicio
 </div>
 
 <!-- Section - Sociedad Civil Organizada-->
+<!--Esta seccion muestra los logotipos de Sociedad civil-->
 <div class="container mt-5 hidden-phone">
     <div style="border-left: 5px solid #61A8BD;">
         <div class="row mb-3">
@@ -579,6 +596,7 @@ Inicio
 </div>
 
 <!-- Section - Aliados Estratégicos-->
+<!--Esta seccion muestra los logotipos de Aliados Estratégicos-->
 <div class="container mt-5 hidden-phone">
     <div style="border-left: 5px solid #D8D8CD;">
         <div class="row mb-3">
