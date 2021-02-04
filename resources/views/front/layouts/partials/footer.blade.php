@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <!-- Content -->
+                <!--En esta sección del codigo el para que se mueste los logitpos en el pie de página-->
                 <div class="row mb-4 align-items-center">
                     <div class="col-lg-5 col-md-5 col-sm-5 text-center">
                         <a href="https://infrastructuretransparency.org/" target="_BLANK">
@@ -89,7 +89,7 @@
             <!-- Grid column -->
 
             <div class="col-md-4 col-lg-4 mx-auto mb-md-0 md-4 text-white" style="margin-top:6%">
-                <!-- Links -->
+                <!--En está sección se muestra los Links de los contactos de cost -->
 
                 <p><i class="fas fa-mobile-alt mr-3 fa-lg"></i> <a href="tel:+3336305745">33 3630-5745 ext 1510</a></p>
 
@@ -141,7 +141,7 @@
 </footer>
 <!-- End Footer Desktop -->
 
-<!-- Footer Phone -->
+<!--En está sección del pie de página se muestra los iconos de las redes sociales-->
 <div class="container pt-5 hidden-desktop">
     <div class="row">
         <div class="col-md-12 bg-gris" style="border-bottom: 1px solid #000;">

@@ -13,6 +13,7 @@ Motor de búsqueda
 
 <div class="container-fluid">
     <!-- Section - Mapa de la localización -->
+    <!--En está sección mostramos el título del BUSCADOR-->
     <div class="row mt-3">
         <div class="col-md-8 col-12 px-0 py-1">
             <h3 class="py-2 font-weight-bold container-title">
@@ -21,14 +22,17 @@ Motor de búsqueda
         </div>
     </div>
     <div class="row fondo mt-3">
+        <!--Está parte del código es para mostrar el logo de inspeCoST-->
         <div class="col-md-6 hidden-desktop-mini">
             <br><br><br>
             <center>
                 <img src="{{asset('assets/img/login/Grupo928.png')}}" width="50%" alt="">
             </center>
         </div>
+        <!--En está seccion del código mostramos una selección de entidad o municipios-->
         <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt-4 mb-4">
             <form action="{{url('list-projects')}}" class="formulario-projects-search" method="get">
+            <!--A continuación mostramos la listas de las entidades y municipios que están dentro del select option-->
 
                 <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
@@ -159,19 +163,24 @@ Motor de búsqueda
                     <option value="Zapotlán el Grande">Zapotlán el Grande</option>
                 </select>
                 <div id="loading"></div>
+                <!--Está seccion del código mostramos una selección de sectores-->
                 <select name="id_sector" id="sector">
                     <option value="">Sectores</option>
                 </select>
                 <div id="loading2"></div>
+                <!--En está seccion del código mostramos una selección de Subsectores-->
                 <select name="id_subsector" id="sub_sector">
                     <option value="">Subsectores</option>
                 </select>
                 <div id="loading3"></div>
+                <!--Está parte del código mostramos una selección de Código postal-->
                 <select name="codigo_postal" id="codigo_postal">
                     <option value="">C.P.</option>
                 </select>
+                <!--Aquí mostramos un caja de texto en la cual se va ingrear presupuesto-->
                 <input type="text" name="presupuesto" placeholder="Presupuesto">
                 <center>
+                <!--Está parte se agregó un botón-->
                     <button id="boton">BUSCAR</button>
                 </center>
                 <a href="#" style="float: right; color: #2C4143">X</a>

@@ -58,7 +58,7 @@ Conoce más
 
 
 <div class="main">
-    <!-- Title - ¿Qúes es CoST? -->
+    <!--Mostramos el Titulo de Historia-->
     <div class="row mx-0 my-4" id="historia">
         <div class="col-md-6 px-0">
             <div class="text-white" >
@@ -67,7 +67,7 @@ Conoce más
         </div>
     </div>
 
-    <!-- Section - Descripción CoST -->
+    <!--En está Sección mostramos la Historia CoST -->
     <div class="container divcost">
         <div class="row" >
             <div class="col-md-12"  style="text-align: justify;" >
@@ -125,7 +125,7 @@ Conoce más
         </div>
     </div>
 
-    <!-- Title - Beneficios -->
+    <!--Mostramos el Titulo de ¿Qué es CoST?-->
     <div class="row mx-0 my-4" id="que-es-cost">
         <div class="col-md-6 px-0">
             <div class="text-white">
@@ -134,7 +134,7 @@ Conoce más
         </div>
     </div>
 
-    <!-- Section - Beneficios -->
+    <!-- En está sección mostramos la descripcion CoST -->
     <div class="container divcost">
         <div class="row">
             <div class="col-md-12">
@@ -154,7 +154,7 @@ Conoce más
         </div>
     </div>
 
-    <!-- Title - Beneficios -->
+    <!-- Mostramos el título de Beneficios-->
     <div class="row mx-0 my-4" id="beneficios">
         <div class="col-md-6 px-0">
             <div class="text-white">
@@ -162,7 +162,7 @@ Conoce más
             </div>
         </div>
     </div>
-
+    <!--Aquí mostramos los la descripción de los beneficios de CoST-->
     <div class="container divcost">
         <div class="row">
             <div class="col-md-12">
@@ -187,7 +187,7 @@ Conoce más
             </div>
         </div>
     </div>
-
+    <!-- Mostramos el título de Procesos de CoST-->
     <div class="row mx-0 my-4" id="procesos-de-cost">
         <div class="col-md-6 px-0">
             <div class="text-white">
@@ -195,7 +195,8 @@ Conoce más
             </div>
         </div>
     </div>
-
+    <!--En esta sección del código lo que se hizo es crear una tabla para que dentro de 
+    ella se agregaran 3 procesos de CoST-->
     <div class="container divcost">
         <div class="row">
             <div class="col-md-12">
@@ -218,13 +219,14 @@ Conoce más
             </tr>
             <tbody>
                <tr>
-               
+               <!--Mostramos la descripción de DIVULGACIÓN-->
                <td style="text-align: justify;"> 
                     Consiste en garantizar que la información sobre el propósito, alcance, costos y ejecución de los
                     proyectos de infraestructura
                     y obra pública esté abierta y accesible al público, divulgándola de manera oportuna a través de la
                     plataforma de divulgación.
                </td>
+                <!--En está parte mostramos la descrpción de ASEGURAMIENTO-->
                <td>
                Consiste en evaluar la credibilidad de la información divulgada a dos niveles:
                
@@ -241,6 +243,7 @@ Conoce más
                         </li>
                     </ul>
                </td>
+               <!--Mostramos la descrpción de AUTORIDAD SOCIAL-->
                <td>
 
                <p style="text-align: justify;">
