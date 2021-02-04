@@ -67,20 +67,19 @@ class NewsController extends Controller
                 'status_news'     => $request->status_news,
             ]);
         }
-        
-        
 
         return back()->with('status', '¡Noticia actualizada con éxito!');
     }
 
     public function destroy(News $news)
     {
+        // Eliminación de la noticia
         $news->delete();
         return back()->with('status', '¡Noticia eliminada con éxito!');
     }
 
     public function crear_periodico(Request $request){
-        
+        // Creación del periódico
         if($request->hasFile('rutaimg')){
 
                 $file=$request->file('rutaimg');
@@ -101,7 +100,7 @@ class NewsController extends Controller
         return back()->with('status', '¡Periódico guardado con éxito!');
     }
     public function delete_periodico($id_img){
-
+        // Eliminación del periódico
         DB::table('tbl_img')->where('id','=',$id_img)->delete();
         return back()->with('status', '¡Periódico eliminado con éxito!');
     }

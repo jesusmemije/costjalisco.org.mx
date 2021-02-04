@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class NewsletterController extends Controller
 {
+    // Controlador de boletines
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +18,7 @@ class NewsletterController extends Controller
      */
     public function index()
     {
+        // Muestra todos los boletines
         $newsletter = Newsletter::orderBy('created_at', 'desc')->get();
         return view('admin.newsletter.list_newsletter',['newsletter'=>$newsletter]);
     }
@@ -39,6 +41,7 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
+        // Creamos el boletín
         Newsletter::create([
             'title'   => $request->title,
             'status'   => 'Pendiente'
@@ -79,6 +82,7 @@ class NewsletterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Actualización del boletín
         $fechas=$request->date;
         $fs = str_split($fechas);
         $dias=$fs[0].$fs[1];
@@ -130,6 +134,7 @@ class NewsletterController extends Controller
     }
 
     public function mailsubscriber(){
+        // Mostramos todos los emails suscritos
         $subscribers=DB::table('subscribers')
         ->get();
 
@@ -137,12 +142,7 @@ class NewsletterController extends Controller
     }
 
     public function savemailsubscriber(Request $request){
-        /*
-        $s=DB::table('subscribers')
-        ->insert(['email'=>$request->email]);
-        return back()->with('status', 'Subscrito correctamente');
-        */
-
+    //    Guardamos el email del que se suscribe
         $existe=Subscriber::where('email',$request->email)->get();
         if(sizeof($existe)==0){
             $s=new Subscriber();
@@ -153,10 +153,9 @@ class NewsletterController extends Controller
             return back()->with('status', 'El correo ya se encuentra registrado');
         }
       
-
-      
     }
     public function destroymailsubscriber(Request $request){
+        // Eliminación del email
         $s=Subscriber::find($request->id)->delete();
         return back()->with('status', 'Subscriptor eliminado correctamente');
     }

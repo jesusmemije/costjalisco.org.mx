@@ -25,6 +25,7 @@ class NewsletterController extends Controller
 
     public function newsletters()
     {
+        // Consultamos todos los boletines
         $boletines=DB::table('newsletters')
         ->select('newsletters.*')
         ->where('status','=','Publicado')
@@ -34,6 +35,7 @@ class NewsletterController extends Controller
 
     public function newsletter_single($id)
     {
+        // Consultamos solo un boletín en específico
         $boletin=Newsletter::find($id);
         return view('front.newsletter-single',['boletin'=>$boletin]);
     }

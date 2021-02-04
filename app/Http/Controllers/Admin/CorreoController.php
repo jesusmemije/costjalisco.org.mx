@@ -15,7 +15,7 @@ class CorreoController extends Controller
 {
     public function store(){
         
-
+        //    Validamos y creamos un nuevo correo
         $sms=    request()->validate([
 
             'name'=>'required',
@@ -31,6 +31,7 @@ class CorreoController extends Controller
         
         ]);
 
+        // Consulta de suscriptores
         $suscriptores=DB::table('subscribers')
                 ->select('subscribers.*')
                 ->where('subscribers.status','=','suscrito')
@@ -43,8 +44,7 @@ class CorreoController extends Controller
             foreach ($suscriptores as $suscriptor) {
                 
                 Mail::to($suscriptor->email)->queue(new MessageReceived($sms));
-                // return new MessageReceived($sms); 
-                // return 'Mensaje enviado';
+              
                 
             }
 
