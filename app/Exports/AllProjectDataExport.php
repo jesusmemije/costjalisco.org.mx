@@ -9,6 +9,12 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use stdClass;
 
+/*
+Clase que hace uso de la librería 'Matwebsite para generar archivos CSV y excel dinámicamente.
+Para más información de la librería: https://docs.laravel-excel.com/
+El export generado será de todos los proyectos.
+*/
+
 class AllProjectDataExport implements FromArray,ShouldAutoSize 
 {
     /**
@@ -16,8 +22,8 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
     */
     public function array(): array
     {
-       
-
+      
+        
          $projects = DB::table('project')
         ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
         ->join('responsableproyecto','project.id','=','responsableproyecto.id_project')
@@ -25,16 +31,21 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
         ->join('locations','project_locations.id_location','=','locations.id')
         ->join('address', 'locations.id_address', '=', 'address.id')
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-        ->join('proyecto_ejecucion','project.id','=','proyecto_ejecucion.id_project')
-        ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+        ->leftJoin('proyecto_ejecucion','project.id','=','proyecto_ejecucion.id_project')
+        ->leftJoin('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
         ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
-        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-        ->select('project.*','generaldata.*','address.*','locations.*','locations.description as descriptionlocation',
-        'responsableproyecto.*','proyecto_contratacion.*','proyecto_contratacion.nombreresponsable as nr',
-        'proyecto_ejecucion.*','proyecto_finalizacion.*',
-        'organization.id as id_organization','organization.name as name_organization')
+        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')     
+        ->select('project.*','project.id as id_project',
+        'generaldata.responsable','generaldata.email','generaldata.organismo','generaldata.puesto','generaldata.involucrado','generaldata.puesto','generaldata.video','generaldata.observaciones as observaciones_datosgenerales',
+        'address.*',
+        'locations.*','locations.description as descriptionlocation',
+        'responsableproyecto.nombreresponsable','responsableproyecto.cargoresponsable','responsableproyecto.telefonoresponsable','responsableproyecto.correoresponsable','responsableproyecto.domicilioresponsable','responsableproyecto.horarioresponsable',
+        'proyecto_contratacion.nombreresponsable as nr','proyecto_contratacion.fechapublicacion','proyecto_contratacion.entidadadjudicacion','proyecto_contratacion.nombrecontacto','proyecto_contratacion.emailcontacto','proyecto_contratacion.telefonocontacto','proyecto_contratacion.domiciliocontacto','proyecto_contratacion.modalidadadjudicacion','proyecto_contratacion.tipocontrato','proyecto_contratacion.modalidadcontrato','proyecto_contratacion.estadoactual','proyecto_contratacion.empresasparticipantes','proyecto_contratacion.entidad_admin_contrato','proyecto_contratacion.titulocontrato','proyecto_contratacion.empresacontratada','proyecto_contratacion.viapropuesta','proyecto_contratacion.fechapresentacionpropuesta','proyecto_contratacion.montocontrato','proyecto_contratacion.alcancecontrato','proyecto_contratacion.fechainiciocontrato','proyecto_contratacion.duracionproyecto_contrato','proyecto_contratacion.observaciones as observaciones_contratacion',
+        'proyecto_ejecucion.variacionespreciocontrato','proyecto_ejecucion.razonescambiopreciocontrato','proyecto_ejecucion.variacionesduracioncontrato','proyecto_ejecucion.razonescambioduracioncontrato','proyecto_ejecucion.variacionesalcancecontrato','proyecto_ejecucion.razonescambiosalcancecontrato','proyecto_ejecucion.aplicacionescalatoria','proyecto_ejecucion.estadoactualproyecto','proyecto_ejecucion.observaciones as observaciones_ejecucion',
+        'proyecto_finalizacion.costofinalizacion','proyecto_finalizacion.fechafinalizacion','proyecto_finalizacion.alcancefinalizacion','proyecto_finalizacion.razonescambioproyecto','proyecto_finalizacion.referenciainforme',
+        'organization.id as id_organization','organization.name as name_organization')        
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->orderBy('project.created_at', 'desc')
         ->get();
@@ -129,70 +140,79 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
         ->first();
 
         $auxea=DB::table('estudiosambiental')
-        ->where('id_project','=',$project->id)
+        ->where('id_project','=',$project->id_project)
         ->get();
         
         $estudiosambiental=array();
         foreach($auxea as $aux){
+            $tipoAmbiental=DB::table('catambiental')
+            ->where('id','=',$aux->tipoAmbiental)
+            ->select('titulo')
+            ->first();
 
-            array_push($estudiosambiental,[
-                [
+            array_push($estudiosambiental,
+                
                 $aux->id,
-                 $aux->tipoAmbiental,
-                 $aux->fecharealizacionAmbiental,
-                 $aux->responsableAmbiental,
-                 $aux->numeros_ambiental,
+                $tipoAmbiental->titulo,
+                $aux->fecharealizacionAmbiental,
+                json_encode($aux->responsableAmbiental, JSON_UNESCAPED_UNICODE),
+                $aux->numeros_ambiental,
         
-                ]
-                ]);
+                
+                );
         }
-
         
+        $estudiosambiental=implode("|",$estudiosambiental);
         $auxef=DB::table('estudiosfactibilidad')
-        ->where('id_project','=',$project->id)
+        ->where('id_project','=',$project->id_project)
         ->get();
         
         $estudiosfactibilidad=array();
         foreach($auxef as $aux){
+            $tipoFactibilidad=DB::table('catfac')
+            ->where('id','=',$aux->tipoFactibilidad)
+            ->first();
 
-            array_push($estudiosfactibilidad,[
-                [
+            array_push($estudiosfactibilidad,
+                
                  $aux->id,
-                 $aux->tipoFactibilidad,
+                 $tipoFactibilidad->titulo,
                  $aux->fecharealizacionFactibilidad,
                  $aux->responsableFactibilidad,
                  $aux->numeros_factibilidad,
         
-                ]
-                ]);
+                
+                );
         }
-        
+        $estudiosfactibilidad=implode("|",$estudiosfactibilidad);
         $auxei=DB::table('estudiosimpacto')
-        ->where('id_project','=',$project->id)
+        ->where('id_project','=',$project->id_project)
         ->get();
         
         $estudiosimpacto=array();
         foreach($auxei as $aux){
-
-            array_push($estudiosimpacto,[
-                [
+            $tipoImpacto=DB::table('catimpactoterreno')
+            ->where('id','=',$aux->tipoImpacto)
+            ->first();
+            array_push($estudiosimpacto,
+                
                  $aux->id,
-                 $aux->tipoImpacto,
+                 $tipoImpacto->titulo,
                  $aux->fecharealizacionimpacto,
                  $aux->responsableImpacto,
                  $aux->numeros_impacto,
         
-                ]
-                ]);
+                
+                );
         }
-
+        $estudiosimpacto=implode("|",$estudiosimpacto);
   
 
         $auxrecurso = DB::table('project')
         ->join('project_budgetbreakdown', 'project.id', '=', 'project_budgetbreakdown.id_project')
         ->join('budget_breakdown', 'project_budgetbreakdown.id_budget', '=', 'budget_breakdown.id')
         ->join('period', 'budget_breakdown.id_period', '=', 'period.id')
-        ->where('project.id', '=', $project->id)
+        ->where('project.id', '=', $project->id_project)
         ->select(
             'budget_breakdown.description',
             'budget_breakdown.sourceParty_name',
@@ -205,17 +225,17 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
             $tipoRecurso = DB::table('catorigenrecurso')
             ->where('id', '=', $aux->description)
             ->first();
-            array_push($origenesRecurso,[
-                [
+            array_push($origenesRecurso,
+                
               
                  $tipoRecurso->titulo,
                  $aux->sourceParty_name,
                  $aux->iniciopresupuesto,
         
-                ]
-                ]);
+                
+                );
         }
-        
+        $origenesRecurso=implode("|",$origenesRecurso);
         $estadoactual=DB::table('contractingprocess_status')
         ->where('id','=',$project->estadoactual)
         ->first();
@@ -259,7 +279,7 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
 
         array_push($datos,[
       
-        [$project->id,
+        [$project->id_project,
         $project->responsable,
         $project->email,
         $project->organismo,
@@ -326,9 +346,6 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
         $project->razonescambioproyecto,
         $docs,
         
-        
-
-
         ]
         ]
         );
@@ -337,52 +354,5 @@ class AllProjectDataExport implements FromArray,ShouldAutoSize
         return $datos;
     }
 
-    public function collection()
-    {
-        //
-
-
-        $projects = DB::table('project')
-        ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
-        ->join('project_locations','project.id','=','project_locations.id_project')
-        ->join('locations','project_locations.id_location','=','locations.id')
-        ->join('address', 'locations.id_address', '=', 'address.id')
-        ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
-        ->join('projectsector', 'project.sector', '=', 'projectsector.id')
-        ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
-        ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-        ->select('project.*','organization.id as id_organization','organization.name as name_organization')
-        ->whereNotNull('proyecto_contratacion.montocontrato')
-        ->orderBy('project.created_at', 'desc')
-        ->get();
-        print_r($projects);
-        die();
-
-        $export=  new Collection();
-        //Titulos
-        $titulos = $export->pull('titulos');
-        $titulos[] = [
-
-            'id',
-            'nombre responsable'
-        ];
-        $datos=array();
-
-        $registros = $export->pull('registros');
-        
-        foreach($projects as $project){
-         
-            array_push($datos,$project->id);
-      
-        }
-        
-        $export->put('titulos',$titulos);
-        $export->put('registros',);
-    
-        
-
-
-        return $export;
-    }
+   
 }

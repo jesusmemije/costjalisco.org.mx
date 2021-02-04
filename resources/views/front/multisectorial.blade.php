@@ -24,7 +24,7 @@ Nosotros
 	    }
     }
 </style>
-<!-- Title - Grupo multisectorial-->
+<!-- Mostramos el título de Grupo multisectorial-->
 <div class="row mx-0">
     <div class="col-md-6 px-0 mt-md-2 mt-4">
         <div class="text-center text-white">
@@ -36,7 +36,7 @@ Nosotros
     </div>
 </div>
 
-<!-- Section - Descripción Grupo multisectorial-->
+<!-- En está sección mostramos la Descripción Grupo multisectorial-->
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-7 line-red-vertical">
@@ -51,6 +51,7 @@ Nosotros
                     implementación y supervisión de la iniciativa de CoST en Jalisco.</p>
             </div>
         </div>
+        <!-- En esta parte del códgo agregamos un botón, que dandole clic nos manda a otra vista-->
         <div class="col-md-5 text-center">
             <a href="{{ route('organizations') }}">
                 <img src="{{ asset('assets/img/home/mas-info.png') }}" class="img-fluid" width="240" alt="">
@@ -59,7 +60,7 @@ Nosotros
     </div>
 </div>
 
-<!-- Section - Sector público-->
+<!--En está sección mostramos el título de Sector público-->
 <div class="container mt-5">
     <div style="border-left: 5px solid #2C4143;">
         <div class="row mb-3">
@@ -68,6 +69,7 @@ Nosotros
                 </h3>
             </div>
         </div>
+       <!-- En esta parte mostramos todos los logotipos del sector público-->
         <div class="row align-items-center">
             <div class="col-md-2 col-3 text-center container-img-sector" style="margin-right: -4%;">
                 <img src="{{ asset('assets/img/home/sector-publico/jalisco.jpg') }}" class="img-fluid" width="100"
@@ -97,7 +99,7 @@ Nosotros
     </div>
 </div>
 
-<!-- Section - Sector Académico-->
+<!-- En está sección mostramos el título de Sector Académico-->
 <div class="container mt-5">
     <div style="border-left: 5px solid #D60000;">
         <div class="row mb-3">
@@ -106,6 +108,7 @@ Nosotros
                 </h3>
             </div>
         </div>
+        <!-- En esta parte mostramos todos los logotipos del sector académico-->
         <div class="row align-items-center">
             <div class="col-md-2 col-3 text-center container-img-sector">
                 <img src="{{ asset('assets/img/home/sector-academico/udg.jpg') }}" class="img-fluid" width="60" alt="">
@@ -118,7 +121,7 @@ Nosotros
     </div>
 </div>
 
-<!-- Section - Sector Privado-->
+<!--Título de Sector Privado-->
 <div class="container mt-5">
     <div style="border-left: 5px solid #FFCE32;">
         <div class="row mb-3">
@@ -127,6 +130,7 @@ Nosotros
                 </h3>
             </div>
         </div>
+        <!-- En está parte mostramos todos los logotipos del sector privado-->
         <div class="row align-items-center">
             <div class="col-md-2 col-3 text-center container-img-sector">
                 <img src="{{ asset('assets/img/home/sector-privado/cmic.jpg') }}" class="img-fluid" width="100" alt="">
@@ -141,7 +145,7 @@ Nosotros
     </div>
 </div>
 
-<!-- Section - Sociedad Civil Organizada-->
+<!-- En está sección mostramos el título de Sociedad Civil Organizada-->
 <div class="container mt-5">
     <div style="border-left: 5px solid #61A8BD;">
         <div class="row mb-3">
@@ -150,6 +154,7 @@ Nosotros
                     Organizada</h3>
             </div>
         </div>
+        <!-- En está parte mostramos todos los logotipos de Sociedad civil-->
         <div class="row align-items-center">
             <div class="col-md-2 col-3 text-center container-img-sector">
                 <img src="{{ asset('assets/img/home/sociedad-civil-organizada/cps.jpg') }}" class="img-fluid"
@@ -167,7 +172,7 @@ Nosotros
     </div>
 </div>
 
-<!-- Section - Aliados Estratégicos-->
+<!-- Mostramos el título de Aliados Estratégicos-->
 <div class="container mt-5" style="margin-bottom:5%">
     <div style="border-left: 5px solid #D8D8CD;">
         <div class="row mb-3">
@@ -176,6 +181,7 @@ Nosotros
                     Estratégicos</h3>
             </div>
         </div>
+        <!-- En esta parte mostramos el logotipo de aliados estratégicos-->
         <div class="row align-items-center">
             <div class="col-md-3 col-5 text-center container-img-sector">
                 <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"

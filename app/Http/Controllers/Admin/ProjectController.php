@@ -31,6 +31,10 @@ use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Block\Element\Document;
 use Maatwebsite\Excel\Facades\Excel;
 use stdClass;
+/**Contralador que contiene el CRUD de cada una de las fases de un proyecto, 
+ * así como funciones que procesan información relacionada a proyectos.
+ * 
+ */
 
 class ProjectController extends Controller
 {
@@ -43,11 +47,11 @@ class ProjectController extends Controller
 
     public function index()
     {
-        //
+        //Se verifica el tipo de usuario.
 
         $id_user = Auth::user()->role_id;
         //print_r($id_user);
-
+        //1=Admin. Obtiene todos los registros de proyectos sin restricción.
         if($id_user==1){
             $projects = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
@@ -87,15 +91,9 @@ class ProjectController extends Controller
             )
             ->get();
         }
-
-     
-
-        // $projects=Project::all()
-        // ->select('project.id as id_project');
-
-        // print_r($projects);
-
-
+        /**Esto es sólo para el caso de que no haya proyectos en la posición indicada
+         * y para que solo se obtengan los proyectos que un usuario determinado haya subido.
+         */
         if (empty($projects[0])) {
 
 
@@ -120,10 +118,9 @@ class ProjectController extends Controller
      */
 
 
-
+    //Está función no se implemento al final.
     public function create()
     {
-        //
 
         // $status=DB::table('projectstatus')->select('*')->get();
         $status = ProjectStatus::all();
@@ -150,27 +147,46 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    /**En todas las llamadas a vistas, se hace uso del parametro o variable
+     * 'nav', esta variable contiene el nombre del nav para indicarle en el archivo 
+     * 'admin->projects->phasesnav.blade.php' qué nav va estar activo.
+     * También se usa la variable 'edit' que permite saber si se trata de una edición o no 
+     * y con esto cambiar el nombre del botón de la fase. 
+     * Y también se hace uso de la variable 'ruta', que como en el caso anterior, guarda
+     * la ruta que irá en el action del formulario para saber si se hará una actualización o un nuevo
+     * registro.
+     */
+
+    //CRUD de la fase 'datos generales'.
     public function generaldata($id = null)
     {
 
-        //cuando ya hay datos.
+        //Sólo si se pasa un ID a dicha vista.
         if ($id != null) {
 
 
             $generaldata = DB::table('generaldata')
                 ->where('id_project', '=', $id)
                 ->first();
+            //Busca el proyecto, si existe, se mandan los datos de dicho proyecto para su edición.
+            $project=Project::find($id);
+            if($project!=null){
+                return view('admin.projects.generaldata', [
+                    'project' => Project::find($id),
+                    'nav' => 'generaldata',
+                    'edit' => true,
+                    'ruta' => 'project.updategeneraldata',
+                    'generaldata' => $generaldata,
+                ]);
+            }
 
-      
-
-            return view('admin.projects.generaldata', [
-                'project' => Project::find($id),
-                'nav' => 'generaldata',
-                'edit' => true,
-                'ruta' => 'project.updategeneraldata',
-                'generaldata' => $generaldata,
-            ]);
+         
         } else {
+            //Si no se pasa ningún id entonces se manda a la creación de uno nuevo.
+            /** Se genera una nueva clase stdClass para que no genere error la vista.
+             * Ya que se comparte la misma vista tanto cuando se va registrar nueva información
+             * así como cuando se va editar.
+             */
             $generaldata = new stdClass();
             $generaldata->id_project = '';
             $generaldata->descripcion = '';
@@ -192,7 +208,7 @@ class ProjectController extends Controller
     }
     public function savegeneraldata(Request $request)
     {
-
+        //Se crea un nuevo proyecto(basado en el modelo 'Project').
         $project = new Project();
 
         $request->validate([
@@ -204,9 +220,12 @@ class ProjectController extends Controller
             'involucrado' => 'required',
         ]);
 
-
+        //El estaus se guarda en 7 para indicar que se encuentra en la primera fase el proyecto...
         $project->status = 7;
-
+        /*Esta validación es para el caso de 'Agente multisectorial' ya que 
+        este tipo de usario se asocia a una organización, entonces la autoridad pública 
+        será la que tenga este usuario.
+        */
         if(Auth::user()->id_organization!=""){
             $project->publicAuthority_id=Auth::user()->id_organization;
         }
@@ -214,7 +233,7 @@ class ProjectController extends Controller
         $project->save();
 
 
-
+        //Se guardan las imagenes del proyecto.
         if ($request->hasFile('images')) {
 
             for ($i = 0; $i < sizeof($request->images); $i++) {
@@ -229,7 +248,7 @@ class ProjectController extends Controller
                 ]);
             }
         }
-
+        //Se guarda la información de datos generales.
         $r = DB::table('generaldata')
             ->insert([
                 'id_project' => $project->id,
@@ -243,7 +262,7 @@ class ProjectController extends Controller
                 'observaciones'=>$request->observaciones,
 
             ]);
-
+        //Se guarda la información del usuario que está registrando el proyecto.
         DB::table('doproject')
             ->insert([
                 'id_project' => $project->id,
@@ -252,7 +271,7 @@ class ProjectController extends Controller
 
         return redirect()->route('project.editidentificacion', ['project' => $project->id]);
     }
-
+    //Función que permite eliminar las imagenes previamente subidas de un proyecto.
     public function delimgproject($id_project){
         $projects_imgs = DB::table('projects_imgs')
                 ->where('id_project', '=', $id_project)
@@ -271,9 +290,7 @@ class ProjectController extends Controller
     }
     public function updategeneraldata(Request $request)
     {
-       
-
-
+    
 
         $request->validate([
 
@@ -283,32 +300,6 @@ class ProjectController extends Controller
             'puesto' => 'required',
             'involucrado' => 'required',
         ]);
-
-
-      
-           $aux_img= explode("|", $request->urlimgs);
-
-           
-   
-        $imagenes_proyecto=DB::table('projects_imgs')
-        ->where('id_project','=',$request->id_project)
-        ->get();
-
-       
-
-        for($i=0; $i<sizeof($aux_img)-1; $i++){
-            
-            if($aux_img[$i]==$imagenes_proyecto[$i]){
-               
-            }else{
-                DB::table('projects_imgs')->where('imgroute', '=', $aux_img[$i])->delete();
-            }
-        }
-        $imagenes_proyecto=DB::table('projects_imgs')
-        ->where('id_project','=',$request->id_project)
-        ->get();
-       
-
 
         if ($request->hasFile('images')) {
 
@@ -340,15 +331,13 @@ class ProjectController extends Controller
             ]);
 
 
-
-        return back()->with('status', '¡La fase de identificación ha sido actualizada correctamente!');
         return back()->with('status', '¡Los datos generales han sido actualizados correctamente!');
     }
 
+    /** Vista para registrar o editar los datos de  identificación */
+
     public function identificacion($id = null)
     {
-
-   
 
       
         $project = Project::find($id);
@@ -392,9 +381,6 @@ class ProjectController extends Controller
                     ->where('documents.description', '=', 'identificacion')
                     ->select('documents.url', 'documents.id','documents.documentType')
                     ->get();
-
-
-
 
                 $data_project = DB::table('project')
                     ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
@@ -450,76 +436,8 @@ class ProjectController extends Controller
         return redirect()->route('project.generaldata');
     }
     }
-    public function editidentificacion($id)
-    {
-
-        $p = Project::find($id);
-        if (!empty($p)) {
-
-            $sectors = ProjectSector::all();
-            $types = ProjectType::all();
-            $documentstype = DocumentType::all();
-            $autoridadPublica = Organization::all();
-
-            $documents = DB::table('project')
-                ->join('project_documents', 'project.id', '=', 'project_documents.id_project')
-                ->join('documents', 'project_documents.id_document', '=', 'documents.id')
-                ->where('project.id', '=', $id)
-                ->where('documents.description', '=', 'identificacion')
-                ->select('documents.url', 'documents.id')
-                ->get();
-
-
-
-
-            $data_project = DB::table('project')
-                ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
-                ->join('locations', 'project_locations.id_location', '=', 'locations.id')
-                ->join('address', 'locations.id_address', '=', 'address.id')
-                ->select(
-                    'project.*',
-                    'project.description as descripcionProyecto',
-                    'locations.lat',
-                    'locations.lng',
-                    'locations.description as description',
-                    'address.streetAddress',
-                    'address.locality',
-                    'address.region',
-                    'address.postalCode',
-                    'address.countryName'
-                )
-                ->where('project.id', '=', $id)
-                ->first();
-
-
-
-
-
-
-
-            return view(
-                'admin.projects.identificacion',
-                [
-                    'project' => $data_project,
-
-                    'documentstype' => $documentstype,
-                    'documents' => $documents,
-                    'nav' => 'identificacion',
-                    'sectors' => $sectors,
-                    'autoridadP' => $autoridadPublica,
-                    'types' => $types,
-                    'edit' => true,
-                    'ruta' => 'project.updateidentificacion',
-
-
-
-                ]
-            );
-        } else {
-            //
-            return redirect()->route('project.identificacion');
-        }
-    }
+    
+    /** Vista para registrar o editar los datos de  preparacion */
     public function preparacion($id = null)
     {
 
@@ -586,11 +504,7 @@ class ProjectController extends Controller
            if ($project == null) {
                return redirect()->route('project.identificacion');
            }
-
-
            
-           
-
            if($project->status>=1 && $project->status!=7){
 
          
@@ -629,6 +543,12 @@ class ProjectController extends Controller
         }
     }
 
+    /**Función que guarda los datos de un nuevo estudio ambiental */
+
+    /**Cuando se guarda un nuevo estudio por defecto se da por entendio que 
+     * la fase/estatus del proyecto cambia.
+     */
+
     public function guardarAmbiental(Request $request){
         $fecha_in = date('Y-m-d');
         $request->validate([
@@ -655,6 +575,7 @@ class ProjectController extends Controller
 
         return back()->with('status', '¡Nuevo estudio guardado correctamente!');
     }
+     /**Función que guarda los datos de un nuevo estudio de factibilidad */
     public function guardarFactibilidad(Request $request){
         $request->validate([
             
@@ -681,6 +602,7 @@ class ProjectController extends Controller
         return back()->with('status', '¡Nuevo estudio guardado correctamente!');
 
     }
+     /**Función que guarda los datos de un nuevo estudio de impacto */
     public function guardarImpacto(Request $request){
 
         $request->validate([
@@ -706,6 +628,7 @@ class ProjectController extends Controller
         ->update(['status' => 2]);
         return back()->with('status', '¡Nuevo estudio guardado correctamente!');
     }
+     /**Función que guarda los datos de un nuevo origen del recurso. */
     public function guardarRecurso(Request $request){
         $request->validate([
             
@@ -739,7 +662,7 @@ class ProjectController extends Controller
             ->update(['status' => 2]);
             return back()->with('status', '¡Nuevo recurso guardado correctamente!');
     }
-
+ /**Funciones que editan los estudios de la fase de "Preparación" */
     public function editarAmbiental(Request $request){
       
     
@@ -849,6 +772,9 @@ class ProjectController extends Controller
        }
        return back()->with('status', 'Origen del recurso actualizado correctamente!');
     }
+     /**Fin de las funciones que editan los estudios de la fase de "Preparación" */
+    
+     /**Funcion que elimina los estudios de la fase de "Preparación" */
     public function eliminarEstudio(Request $request){
 
 
@@ -870,12 +796,14 @@ class ProjectController extends Controller
         return back()->with('status', '¡Registro eliminado correctamente!');
 
     }
-
+    /**Función que guarda los documentos de la fase de preparación 
+     * y hace uso de la función 'havedocuments' propias del controlador.
+     */
     public function guardarDocumentosPreparacion(Request $request){
         ProjectController::havedocuments($request, 'preparacion');
         return back()->with('status', '¡Los documentos han sido guardados correctamente!');
     }
-
+    /*Función que actualiza las observaciones de la fase de preparación*/
     public function actualizarObservacionPreparacion(Request $request){
         
     
@@ -887,7 +815,7 @@ class ProjectController extends Controller
 
     return back()->with('status', '¡Las observaciones han sido actualizadas!');
     }
-
+    /**Función que registra o edita la fase de contratación */
     public function contratacion($id = null)
     {
         if (empty($id)) {
@@ -975,21 +903,11 @@ class ProjectController extends Controller
                 }
             }
             
-           
-            /*
-            $checkambiental = DB::table('estudiosambiental')
-                ->where('id_project', '=', $id)
-                ->get();
-            if (empty($checkambiental[0])) {
-
-                return redirect()->route('project.preparacion', ['project' => $id]);
-            }
-            */
-
+        
           
         }
     }
-
+ /**Función que registra o edita la fase de ejecución */
     public function ejecucion($id = null)
     {
 
@@ -1052,6 +970,7 @@ class ProjectController extends Controller
             }
         }
     }
+     /**Función que registra o edita la fase de finalización */
     public function finalizacion($id = null)
     {
         if ($id != null) {
@@ -1120,7 +1039,10 @@ class ProjectController extends Controller
             }
         }
     }
-
+    /*Función que procesa la solicitud de 'no aplica' en la fase preparación.
+    Lo que hace es actualizar el estatus del proyecto para avanzar a la siguiente fase.
+    Si ya hay un registro, el estatus no se actualiza y solo manda al usaurio a la siguiente fase.
+    */
     public function noaplica($id_project){
 
         //si el status es 1 
@@ -1145,7 +1067,7 @@ class ProjectController extends Controller
 
        
     }
-
+    /*Función que actualiza los registros de la fase de identificación*/
     public function updateidentificacion(Request $request)
     {
 
@@ -1267,6 +1189,8 @@ class ProjectController extends Controller
 
         return back()->with('status', '¡La fase de identificación ha sido actualizada correctamente!');
     }
+
+    /*Función que actualiza los registros de la fase de preparacion*/
     public function updatepreparacion(Request $request)
     {
         $fecha_in = date('Y-m-d');
@@ -1357,6 +1281,7 @@ class ProjectController extends Controller
 
         return back()->with('status', '¡La fase de preparación ha sido actualizada correctamente!');
     }
+     /*Función que actualiza los registros de la fase de contratación*/
     public function updatecontratacion(Request $request)
     {   
         $request->validate([
@@ -1418,7 +1343,7 @@ class ProjectController extends Controller
             return back()->with('status', 'La información no ha podido ser registrada');
         }
     }
-
+ /*Función que actualiza los registros de la fase de ejecución*/
     public function updateejecucion(Request $request)
     {
 
@@ -1452,6 +1377,7 @@ class ProjectController extends Controller
             return back()->with('status', '¡La fase de ejecución no ha podido actualizarse!');
         }
     }
+     /*Función que actualiza los registros de la fase de finalización*/
     public function updatefinalizacion(Request $request)
     {
 
@@ -1476,6 +1402,7 @@ class ProjectController extends Controller
             return back()->with('status', '¡La información no ha podido ser registrada!');
         }
     }
+     /*Función que guarda un nuevo registro de la fase de finalizacion*/
     public function savefinalizacion(Request $request)
     {
         /*
@@ -1520,6 +1447,7 @@ class ProjectController extends Controller
         } else {
         }
     }
+    /*Función que guarda un nuevo registro de la fase de ejecucion*/
     public function saveejecucion(Request $request)
     {
 
@@ -1568,7 +1496,7 @@ class ProjectController extends Controller
         } else {
         }
     }
-
+/*Función que guarda un nuevo registro de la fase de contratacion*/
     public function savecontratacion(Request $request)
     {
         /*
@@ -1664,7 +1592,7 @@ class ProjectController extends Controller
         } else {
         }
     }
-
+/*Función que guarda un nuevo registro de la fase de preparacion*/
     public function savepreparacion(Request $request)
     {
 
@@ -1760,7 +1688,7 @@ class ProjectController extends Controller
             'project' => $request->id_project,
         ]);
     }
-
+/*Función que guarda un nuevo registro de la fase de identificacion*/
     public function saveidentificacion(Request $request)
     {
 
@@ -1971,6 +1899,7 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+/**Función que elimina toda la información relacionada con un proyecto especifico(id) */
     public function destroy($id)
     {
         //
@@ -2060,6 +1989,9 @@ class ProjectController extends Controller
             return back()->with('status', '¡No se pudo procesar la petición!');
         }
     }
+    /**Función que permite eliminar un documento especifico por su id dentro 
+     * de todas las fases en las que se registren documentos.
+     */
     public function deletedocument(Request $request)
     {
 
@@ -2074,6 +2006,10 @@ class ProjectController extends Controller
         $document->delete();
         return back()->with('status', '¡Documento eliminado!');
     }
+    /**Función que valida el request para verificar que contenga documentos 
+     * recorre el array de documentos y los guarda en el servidor como en la base de datos 
+     * y se les agrega en la descripción la fase a la que hace referencia dicho documento.
+     */
     public static function havedocuments(Request $request, $fase)
     {
 
@@ -2102,7 +2038,7 @@ class ProjectController extends Controller
             }
         }
     }
-
+    /*Para fines de testeo en el mapa*/
     public function testmap()
     {
         return view('admin.testmap');
@@ -2119,6 +2055,9 @@ class ProjectController extends Controller
             'datos' => $_POST,
         ]);
     }
+    /**Función que permite cargar el csv de la fase de identifación que contiene el nombre, lat, lng
+     * de los puntos que se dibujaran en el mapa en base al csv subido mediante AJAX.
+     */
     public function uploadExcel()
     {
         // print_r($_FILES);

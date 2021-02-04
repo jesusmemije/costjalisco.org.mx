@@ -210,7 +210,8 @@ class ProjectController extends Controller
             'projects' => $projects
         ]);
     }
-
+    /**Función que realiza las consultas necesarias para obtener la información de un proyecto especifico
+     */
     public function project_single($id)
     {
         $project = Project::find($id);
@@ -282,7 +283,7 @@ class ProjectController extends Controller
             $estudiosAmbiental = DB::table('estudiosambiental')
                 ->where('id_project', '=', $id)
                 ->get();
-
+            
             $estudiosFactibilidad = DB::table('estudiosfactibilidad')
                 ->where('id_project', '=', $id)
                 ->get();
@@ -409,6 +410,9 @@ class ProjectController extends Controller
             return redirect()->route('list-projects');
         }
     }
+    /**Función que se llama mediante ajax en la vista 'project-single'
+     * que obtiene los documentos de determinada fase y determinado proyecto.
+     */
     public function getdocumentsproject()
     {
         $titulo = $_POST['titulo'];
@@ -426,7 +430,7 @@ class ProjectController extends Controller
 
         echo json_encode($data);
     }
-
+    /**Exportación de datos de un proyecto especifico a excel */
     public function export($id)
     {
         $name = 'data' . $id . '.xlsx';
@@ -435,12 +439,14 @@ class ProjectController extends Controller
         return $excel;
     
     }
+     /**Exportación de datos de todos los proyectos a excel */
     public function exportall(){
         $name = 'alldataprojects.xlsx';
 
         $excel = Excel::download(new AllProjectDataExport(), $name);
         return $excel;
     }
+     /**Exportación de datos de todos los proyectos a csv */
     public function exportallcsv(){
         $name = 'alldataprojects.csv';
 

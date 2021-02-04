@@ -1,3 +1,4 @@
+//Script que abre un modal para la eliminación de determinado documento
 $('#deleteUserModal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var id = button.data('id') // Extract info from data-* attributes

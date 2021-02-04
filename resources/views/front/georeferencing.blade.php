@@ -332,7 +332,9 @@ Georreferenciación
             layers: [osm],
             maxBounds: bounds
         });
-              
+        /**Obtiene los proyectos de la consulta previa del controlador Front->ProjectController
+         * recorre los registros y dibuja los marcadores/puntos en el mapa.
+         */
         const projects = @json($projects);
       
         projects.forEach(function(item, index) {

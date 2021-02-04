@@ -185,7 +185,7 @@
    
     <div class="cardfile" >
   <?php
-
+  /**Carga la imagen si ya contiene una el registro de organización */
   if(empty($ruta)){
     $ruta="";
   }else{

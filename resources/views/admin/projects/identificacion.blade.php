@@ -591,12 +591,12 @@ $id_organization=auth()->user()->id_organization;
 
 <script>
 
-
+//Con fines de pruebas.
 var org=document.querySelector('autoridadP');
+//console.log(org);
 
-console.log(org);
 
-//File Validation
+//Validación del archivo
 var fileInput = document.getElementById('excel');
  var xd;
 function fileValidation(){
@@ -614,7 +614,7 @@ if(!allowedExtensions.exec(filePath)){
 
 
 
-//ajax processing
+
 var mydata=[];
 var markers = new Array();
 var names=new Array();
@@ -625,7 +625,7 @@ var i = 0;
 var jsonFeatures = [];
 
 
-//icons
+//Iconos.
 
 var greenIcon = new L.Icon({
 iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
@@ -654,7 +654,8 @@ const myLatlng = {
 
             12);
 
-            
+  /**Se manda el el excel subido mediante AJAX. Procesa la respuesta en json y dibuja los puntos
+   * en el mapa y se construye la tabla. */    
   $('#formId').submit( function( e ) {
     e.preventDefault();
 
@@ -752,7 +753,7 @@ $.ajax({
 let l = document.getElementById('lat');
 let f = l.value.split(',')
 
-
+//Guarda los nombres de los inputs generados dinamicamente en un input que se mandará al servidor.
 function cambioinput(inputvalue){
 //alert("hola");
 let name = document.getElementById('name');
@@ -761,22 +762,13 @@ name.value = inputvalue + '|' + name.value;
 names.push(inputvalue);
 
 }
+/**Guarda la latlng del punto principal en su input asociado. */
 function puntop(lat,lng){
   //alert(val);
   let punto = document.getElementById('punto');
   punto.value=lat+'|'+lng;
 }
 
-
-
-
-
-/*
- let f= l.value.split(',')
-
- let lng = document.getElementById('lng');
- let f2= lng.value.split(',')
-*/
 
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -786,6 +778,7 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //this is for put the markes on the map getting the data from the inputs.
 L.control.scale().addTo(map);
 
+//Función que dibuja/pinta los puntos en el mapa mediante un json (obtenido del ajax que manda el excel).
 function pintarPuntos(data){
 
 
@@ -810,6 +803,10 @@ var geoJson = { type: 'FeatureCollection', features: jsonFeatures };
 L.geoJson(geoJson).addTo(map);
 }
 
+/**Función que elimina todos los puntos dibujados en el mapa previamente y limpia todos las
+ * cajas de texto o inputs en las que se haya guardado información referente a los puntos('nombres,lat
+ * lng,etc'). También limpia las filas de la tabla generada.
+ */
 $("#del").on('click', function(evt){
       evt.preventDefault(); 
       $(".leaflet-marker-icon").remove();
@@ -842,7 +839,9 @@ var subedit = $('#subedit').val();
 
     get_class_sections(secedit);
   }
-
+/**Función  que recibe el id del select que contiene los ids de los sectores 
+ * y lo manda mendiante ajax y rellena el select de los subsectores mediante la respuesta ajax.
+ */
   function get_class_sections(id) {
 
     var select = $("#sectorProyecto");
@@ -892,6 +891,7 @@ var subedit = $('#subedit').val();
 
   }
 
+  /**Previene el submit del form con 'enter' */
   $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
@@ -942,6 +942,7 @@ function myFunction() {
   }
 } 
   //here
+  //Dibuja los puntos en base a los inputs rellenados desde la base de datos (registros previos)
 	 let lf = document.getElementById('lat');
       
       let ff= lf.value.split('|')
@@ -976,7 +977,7 @@ function onMapClick(e) {
 
 /*Para concatenar los valores de latlng en los inputs correspondientes*/
   aux_marker = L.marker(e.latlng);
-  //aux_marker.setIcon(greenIcon);
+
     let l = document.getElementById('lat');
   l.value=l.value+e.latlng.lat+'|';
 
@@ -1018,7 +1019,7 @@ var auxfields = `<tr class=` + i + `>
 }
 
 
-
+//Función que pinta de color verde el marcador/punto del mapa seleccionado como 'punto principal'
 
 function greenpoint(event,index){
  
@@ -1052,7 +1053,9 @@ if(aux=="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/
 }
 */
 }
-
+/**Función que elimina la fila de la tabla generada dinámicamente con el botón "eliminar"
+ *dentro de la misma fila.
+  */
 function delrow(dato) {
   console.log(markers);
  

@@ -18,7 +18,7 @@ Nosotros
 
 <div class="main">
 
-    <!-- Title - CoST Jalisco -->
+    <!-- Mostramos el titulo de CoST Jalisco -->
     <div class="row mx-0 my-4" id="cost-jalisco">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
@@ -27,7 +27,7 @@ Nosotros
         </div>
     </div>
 
-    <!-- Section - CoST Jalisco -->
+    <!--En está sección mostramos la descripcion de CoST Jalisco -->
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -78,7 +78,7 @@ Nosotros
         </div>
     </div>
 
-    <!-- Title - Objetivo General -->
+    <!--Mostramos el título de Objetivo General -->
     <div class="row mx-0 my-4" id="objetivo-general">
         <div class="col-md-6 px-0">
             <div class="text-center text-white">
@@ -87,7 +87,7 @@ Nosotros
         </div>
     </div>
 
-    <!-- Section - Objetivo General -->
+    <!--En está sección mostramos la descripcion del Objetivo General -->
     <div class="container mb-md-5">
         <div class="row">
             <div class="col-md-12">

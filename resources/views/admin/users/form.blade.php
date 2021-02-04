@@ -96,6 +96,9 @@
 </div>
 
 <script>
+/**Script que permite mostrar/ocultar (según el caso) el select para seleccionar alguna organización
+ * en el caso de que el tipo de usuario seleccionado sea de tipo 'Agente sectorial'
+ */
   var sf=document.getElementById('rol').selectedOptions[0].text;
   if(sf=='Agente sectorial'){
     document.getElementById('divorg').style.display = 'block'
