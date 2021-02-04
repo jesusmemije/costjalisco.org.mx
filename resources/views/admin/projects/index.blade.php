@@ -47,7 +47,7 @@
               <tr>
                 <?php 
                 
-
+                /**switch para asociar un nombre al número de estatus del proyecto. */
                 switch($project->status){
                   case 1:
                     $status='Identificación';

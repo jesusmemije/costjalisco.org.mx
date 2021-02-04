@@ -1,4 +1,7 @@
 <?php 
+/**Archivo que procesa la fase en la que está el proyecto para habilitar/inhabilitar 
+ * la barra de navegación de fases.
+ */
 
 $generaldata='';
 $identificacion='disabled';

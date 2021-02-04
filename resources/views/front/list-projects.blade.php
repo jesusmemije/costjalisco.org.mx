@@ -40,7 +40,7 @@ Listado de obras
         @if (count($projects)==0)
             <div class="col-md-12">
                 <center>
-                    Nigún proyecto
+                    Ningún proyecto
                 </center>
             </div>
         @else

@@ -108,7 +108,7 @@ class HomeController extends Controller
            
         ]);
     }
-
+    /**Funciones que obtienen las vistas del frente del sitio */
     public function know_more()
     {
         return view('front.know-more');
@@ -129,6 +129,69 @@ class HomeController extends Controller
     {
         return view('front.resources');
     }
+    public function interest_sites()
+    {
+        return view('front.interest-sites');
+    }
+
+    public function account()
+    {
+       return view('auth.account');
+    }
+
+    public function contact_us()
+    {
+        return view('front.contact-us');
+    }
+    public function sitemap()
+    {
+        return view('front.sitemap');
+    }
+    
+    public function support_material()
+    {
+        $materials = SupportMaterial::orderBy('created_at', 'desc')->get();
+        return view('front.support-material',['materials'=>$materials]);
+    }
+    public function organizations()
+    {
+        $publicos = DB::table('dir_org')
+            ->where('sector', '=', 'Sector Público')
+            ->get();
+        $academicos = DB::table('dir_org')
+            ->where('sector', '=', 'Sector Académico')
+            ->get();
+        $privados = DB::table('dir_org')
+            ->where('sector', '=', 'Sector Privado')
+            ->get();
+        $organizados = DB::table('dir_org')
+            ->where('sector', '=', 'Sociedad Civil Organizada')
+            ->get();
+        $estrategicos = DB::table('dir_org')
+            ->where('sector', '=', 'Aliados Estratégicos')
+            ->get();
+
+        return view('front.organizations', [
+            'publicos' => $publicos,
+            'academicos' => $academicos,
+            'privados' => $privados,
+            'organizados' => $organizados,
+            'estrategicos' => $estrategicos,
+        ]);
+    }
+    public function supportmaterial(){
+        return view('front.supportmaterial');
+    }
+    public function journal(){
+        $journal=DB::table('news')
+        ->join('tbl_img','news.id_img','=','tbl_img.id')
+        ->select('news.*','tbl_img.*')
+        ->where('news.status_news','=','Publicado')
+        ->get();
+
+        return view('front.journal',['journal'=>$journal]);
+    }
+
 
     public function statistics()
     {
@@ -367,20 +430,7 @@ class HomeController extends Controller
         return view('front.statistics',['costofinalizacion_contrato'=>$costofinalizacion_contrato,'organizaciones_presupuesto'=>$organizaciones_presupuesto,'personas_beneficias'=>$personas_beneficias,'procedimiento_etapas'=>$procedimiento_etapas,'modalidad_adjudicacion'=>$modalidad_adjudicacion,'costofinalizacion_or'=>$costofinalizacion_or,'monto_contrato_or'=>$monto_contrato_or,'total_presupuesto_ejercido'=>$total_presupuesto_ejercido,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
     }
 
-    public function interest_sites()
-    {
-        return view('front.interest-sites');
-    }
-
-    public function account()
-    {
-       return view('auth.account');
-    }
-
-    public function contact_us()
-    {
-        return view('front.contact-us');
-    }
+    
 
     public function project_search(Request $request){
 
@@ -484,17 +534,7 @@ class HomeController extends Controller
             'projects' => $projects
         ]);
         }
-    public function sitemap()
-    {
-        return view('front.sitemap');
-    }
-    
-    public function support_material()
-    {
-        $materials = SupportMaterial::orderBy('created_at', 'desc')->get();
-        return view('front.support-material',['materials'=>$materials]);
-    }
-
+ 
     
     public function listworks(Request $request){
 
@@ -564,35 +604,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function organizations()
-    {
-        $publicos = DB::table('dir_org')
-            ->where('sector', '=', 'Sector Público')
-            ->get();
-        $academicos = DB::table('dir_org')
-            ->where('sector', '=', 'Sector Académico')
-            ->get();
-        $privados = DB::table('dir_org')
-            ->where('sector', '=', 'Sector Privado')
-            ->get();
-        $organizados = DB::table('dir_org')
-            ->where('sector', '=', 'Sociedad Civil Organizada')
-            ->get();
-        $estrategicos = DB::table('dir_org')
-            ->where('sector', '=', 'Aliados Estratégicos')
-            ->get();
-
-        return view('front.organizations', [
-            'publicos' => $publicos,
-            'academicos' => $academicos,
-            'privados' => $privados,
-            'organizados' => $organizados,
-            'estrategicos' => $estrategicos,
-        ]);
-    }
-    public function supportmaterial(){
-        return view('front.supportmaterial');
-    }
+ 
 
 
     public function sectores(Request $request){
@@ -669,13 +681,5 @@ class HomeController extends Controller
         }
     }
 
-    public function journal(){
-        $journal=DB::table('news')
-        ->join('tbl_img','news.id_img','=','tbl_img.id')
-        ->select('news.*','tbl_img.*')
-        ->where('news.status_news','=','Publicado')
-        ->get();
-
-        return view('front.journal',['journal'=>$journal]);
-    }
+   
 }

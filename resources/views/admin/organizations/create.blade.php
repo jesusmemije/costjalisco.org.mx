@@ -49,8 +49,10 @@
 @endsection
 
 @section('scripts')
+ 
 <script src="{{asset('plugins/dropify/js/dropify.min.js')}}"></script>
 <script>
+/**Script para la carga de imagenes */
   $('.dropify').dropify({
     messages: {
         'default': 'Arrastra y suelta tu imagen aquí o da un clic',
