@@ -313,7 +313,7 @@ Inicio
         <!--La función de este codigo es mostrar el logotipo de la infraestructura-->
         <div class="col-md-6 text-center">
             <br class="hidden-phone"><br class="hidden-phone">
-            <img src="{{ asset('assets/img/home/seccion.png') }}" class="img-fluid" width="460" alt="">
+            {{-- <img src="{{ asset('assets/img/home/seccion.png') }}" class="img-fluid" width="460" alt=""> --}}
             <br class="hidden-phone"><br>
             <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
                     https://infrastructuretransparency.org/</a></span>
@@ -356,6 +356,14 @@ Inicio
                 </p>
                 <br>
             </div>
+        </div>
+        <!--La función de este codigo es mostrar el logotipo de la infraestructura-->
+        <div class="col-md-6 text-center">
+            <br class="hidden-phone"><br class="hidden-phone">
+            <img src="{{ asset('assets/img/home/seccion.png') }}" class="img-fluid" width="460" alt="">
+            <br class="hidden-phone"><br>
+            {{-- <span><a href="https://infrastructuretransparency.org/" class="ver-mas-font" target="_BLANK">Ver más:
+                    https://infrastructuretransparency.org/</a></span> --}}
         </div>
     </div>
 </div>

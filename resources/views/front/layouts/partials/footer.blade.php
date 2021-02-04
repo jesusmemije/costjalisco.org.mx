@@ -97,7 +97,7 @@
                         href="mailto:jalisco@infrastructuretransparency.org">jalisco@infrastructuretransparency.org</a>
                 </p>
 
-                <p style="margin-left: 34px; margin-top: 34px;"> <a href="">REVISA EL AVISO DE PRIVACIDAD</a></p>
+                <p style="margin-left: 34px; margin-top: 34px;"> <a href="http://costjalisco.org.mx/documents/aviso-privacidad/Aviso%20de%20Privacidad%20Integral%20COST%20Jalisco.docx">REVISA EL AVISO DE PRIVACIDAD</a></p>
             </div>
 
             <!-- Grid column -->
