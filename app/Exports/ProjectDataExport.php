@@ -119,6 +119,105 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
    ->where('id_project',$this->id)
    ->first();
    
+        $auxea=DB::table('estudiosambiental')
+        ->where('id_project','=',$this->id)
+        ->get();
+
+       
+    
+        $estudiosambiental=array();
+        foreach($auxea as $aux){
+            $tipoAmbiental=DB::table('catambiental')
+            ->where('id','=',$aux->tipoAmbiental)
+            ->select('titulo')
+            ->first();
+
+            array_push($estudiosambiental,
+                
+                $aux->id,
+                $tipoAmbiental->titulo,
+                $aux->fecharealizacionAmbiental,
+                json_encode($aux->responsableAmbiental, JSON_UNESCAPED_UNICODE),
+                $aux->numeros_ambiental,
+        
+                
+                );
+        }
+       $estudiosambiental=implode("|",$estudiosambiental);
+
+       $auxef=DB::table('estudiosfactibilidad')
+       ->where('id_project','=',$this->id)
+       ->get();
+       $estudiosfactibilidad=array();
+       foreach($auxef as $aux){
+           $tipoFactibilidad=DB::table('catfac')
+           ->where('id','=',$aux->tipoFactibilidad)
+           ->first();
+
+           array_push($estudiosfactibilidad,
+               
+                $aux->id,
+                $tipoFactibilidad->titulo,
+                $aux->fecharealizacionFactibilidad,
+                $aux->responsableFactibilidad,
+                $aux->numeros_factibilidad,
+       
+               
+               );
+       }
+       $estudiosfactibilidad=implode("|",$estudiosfactibilidad);
+       $auxei=DB::table('estudiosimpacto')
+       ->where('id_project','=',$this->id)
+       ->get();
+       
+       $estudiosimpacto=array();
+       foreach($auxei as $aux){
+           $tipoImpacto=DB::table('catimpactoterreno')
+           ->where('id','=',$aux->tipoImpacto)
+           ->first();
+           array_push($estudiosimpacto,
+               
+                $aux->id,
+                $tipoImpacto->titulo,
+                $aux->fecharealizacionimpacto,
+                $aux->responsableImpacto,
+                $aux->numeros_impacto,
+       
+               
+               );
+       }
+       $estudiosimpacto=implode("|",$estudiosimpacto);
+
+
+       $auxrecurso = DB::table('project')
+       ->join('project_budgetbreakdown', 'project.id', '=', 'project_budgetbreakdown.id_project')
+       ->join('budget_breakdown', 'project_budgetbreakdown.id_budget', '=', 'budget_breakdown.id')
+       ->join('period', 'budget_breakdown.id_period', '=', 'period.id')
+       ->where('project.id', '=', $this->id)
+       ->select(
+           'budget_breakdown.description',
+           'budget_breakdown.sourceParty_name',
+           'period.startDate as iniciopresupuesto'
+       )
+       ->get();
+       
+       $origenesRecurso=array();
+       foreach($auxrecurso as $aux){
+           $tipoRecurso = DB::table('catorigenrecurso')
+           ->where('id', '=', $aux->description)
+           ->first();
+           array_push($origenesRecurso,
+               
+             
+                $tipoRecurso->titulo,
+                $aux->sourceParty_name,
+                $aux->iniciopresupuesto,
+       
+               
+               );
+       }
+       $origenesRecurso=implode("|",$origenesRecurso);
+
    $tipoAmbiental=DB::table('catambiental')
    ->where('id','=',$all->tipoAmbiental)
    ->select('titulo')
@@ -291,21 +390,10 @@ $export=  new Collection([
     ['Correo electrónico',$responsableproyecto->correoresponsable],
     ['Domicilio',$responsableproyecto->domicilioresponsable],
     ['Horario de oficina',$responsableproyecto->horarioresponsable],
-    ['Estudios de Impacto Ambiental',$tipoAmbiental->titulo],
-    ['Fecha de realización',$all->fecharealizacionAmbiental],
-    ['Responsable del estudio',$all->responsableAmbiental],
-    ['Número o números de identificación del estudio de impacto ambiental',$all->numeros_ambiental],
-    ['Estudios de Factibilidad',$tipoFactibilidad->titulo],
-    ['Fecha de realización',$all->fecharealizacionFactibilidad],
-    ['Responsable del estudio',$all->responsableFactibilidad],
-    ['Número o números de identificación del estudio de factibilidad',$all->numeros_factibilidad],
-    ['Estudios de Impacto en el terreno y asentamientos',$tipoImpacto->titulo],
-    ['Fecha de realización',$all->fecharealizacionimpacto],
-    ['Responsable del estudio',$all->responsableImpacto],
-    ['Número o números de identificación del estudio de factibilidad',$all->numeros_impacto],
-    ['Origen del recurso',$catorigenrecurso->titulo],
-    ['Fondo o fuente de financiamiento y partida presupuestal',$origenrecurso->sourceParty_name],
-    ['Fecha de aprobación del monto de recurso autorizado',$origenrecurso->startDate],
+    ['Estudios de Impacto Ambiental',$estudiosambiental],
+    ['Estudios de Factibilidad',$estudiosfactibilidad],
+    ['Estudios de Impacto en el terreno y asentamientos',$estudiosimpacto],  
+    ['Origen del recurso',$origenesRecurso],   
     ['Datos de contacto de la entidad de adjudicación',$all->datosdecontacto],
     ['Fecha de publicación',$all->fechapublicacion],
     ['Entidad de adjudicación',$all->entidadadjudicacion],

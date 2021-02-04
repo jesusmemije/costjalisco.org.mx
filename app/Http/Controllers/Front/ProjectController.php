@@ -280,7 +280,7 @@ class ProjectController extends Controller
             $estudiosAmbiental = DB::table('estudiosambiental')
                 ->where('id_project', '=', $id)
                 ->get();
-
+            
             $estudiosFactibilidad = DB::table('estudiosfactibilidad')
                 ->where('id_project', '=', $id)
                 ->get();
