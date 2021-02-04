@@ -16,9 +16,20 @@ Listado de obras
         <div class="col-lg-6 col-md-12 col-sm-12 background-title bg-rojo px-0 py-1">
             <span class="topic">Listado de Obras</span>
         </div>
+       
     </div>
-
+    
     <div class="container mt-5">
+    <div>
+
+        <a href="{{route('projectexportallcsv')}}"><i style="font-size: 30px; margin-right:1%" class="fas fa-file-csv"></i> </a>   
+
+
+        <a href="{{route('projectexportall')}}"><i style="font-size: 30px;" class="fa fa-file-excel-o" aria-hidden="true"></i></a>
+        
+        
+    </div>
+    <hr>
         @php
             $num1=0;
             $num2=0;

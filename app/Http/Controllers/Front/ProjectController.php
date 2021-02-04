@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Exports\AllProjectDataExport;
 use App\Exports\ProjectDataExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -426,10 +427,22 @@ class ProjectController extends Controller
 
     public function export($id)
     {
-
         $name = 'data' . $id . '.xlsx';
 
         $excel = Excel::download(new ProjectDataExport($id), $name);
+        return $excel;
+    
+    }
+    public function exportall(){
+        $name = 'alldataprojects.xlsx';
+
+        $excel = Excel::download(new AllProjectDataExport(), $name);
+        return $excel;
+    }
+    public function exportallcsv(){
+        $name = 'alldataprojects.csv';
+
+        $excel = Excel::download(new AllProjectDataExport(), $name);
         return $excel;
     }
 }
