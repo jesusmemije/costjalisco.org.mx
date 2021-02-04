@@ -72,7 +72,7 @@ Listado de obras
         @endif
 
         @if ($num1==1)
-        Decimos si num1 es igual a 1, es porque tiene proyectos y lo mostramos. Asi sucesivamente con los demas
+        {{-- Decimos si num1 es igual a 1, es porque tiene proyectos y lo mostramos. Asi sucesivamente con los demas --}}
             <div class="row mb-5">
                 <div class="col-lg-6">
                     <a href="">
