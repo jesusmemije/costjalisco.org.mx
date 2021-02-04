@@ -272,7 +272,7 @@ $id_organization=auth()->user()->id_organization;
             @enderror
             </div>
             <div class="form-group col-md-3">
-            <label for="porcentaje_obra">Porcentaje de avance la obra</label>
+            <label for="porcentaje_obra">Porcentaje de avance físico de la obra</label>
             <input required maxlength="3" placeholder="p.ej. 100" type="number" name="porcentaje_obra" id="porcentaje_obra" class="form-control @error('porcentaje_obra') is-invalid @enderror" value="{{old('porcentaje_obra',$project->porcentaje_obra)}}">
             
             @error('people')
@@ -295,10 +295,19 @@ $id_organization=auth()->user()->id_organization;
 <div class="col-md-9">
 
 <input class="btn btn-sm btn-outline-primary"  form="formId" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
-  <a class="btn btn-sm btn-outline-info" href="{{asset('documents/puntosdeejemplo.csv')}}" style="color:blue">Descargar formato</a>
+  <?php
+  $d='color:blue';
+  $url = public_path() . '/documents' . '/' . 'puntosdeejemplo.csv';
+        if (!file_exists(($url))) {
+       $d="pointer-events:none;";
+        }
+
+ 
+  ?>
+  <a class="btn btn-sm btn-outline-info"  style="<?php echo $d; ?>" href="{{asset('documents/puntosdeejemplo.csv')}}" style="color:blue">Descargar formato</a>
   <input type="hidden" id="ver">
   
-  <button type="submit" class="btn btn-outline-success btn-sm"  form="formId" id="subir">Subir</button>
+  <button type="submit"  class="btn btn-outline-success btn-sm"  form="formId" id="subir">Subir</button>
 </div>
 
 
