@@ -21,6 +21,7 @@ Georreferenciación
 
     <div class="row">
         <div class="col-md-12 bg-gris-phone">
+            {{-- Formulario de búsqueda  --}}
             <form action="{{url('georeferencing')}}" class="formulario-projects-search" method="get">
                 <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
@@ -182,7 +183,7 @@ Georreferenciación
         </div>
     </div>
     <div class="container">
-
+        {{-- Recorremos la consulta y mostramos los datos del proyecto --}}
         @foreach ($projects as $project)
 
         <div class="my-5 secciones-projects">
@@ -214,6 +215,7 @@ Georreferenciación
         $('#municipio').select2();
     });
 </script>
+{{-- buscamos en la base de datos los sectores del municipio seleccionado, y cargamos todos los resultados en el select --}}
 <script>
     $(document).ready(function(){
         $('#municipio').on('change',function(){
@@ -242,6 +244,7 @@ Georreferenciación
                 })
             }
         })
+        // Buscamos los sub sectores en la base de datos con el sector seleccionado
         $('#sector').on('change',function(){
             var sector_id = $(this).val();
             if ($.trim(sector_id) != ''){
@@ -265,6 +268,7 @@ Georreferenciación
                 })
             }
         })
+        // Buscamos los  en la base de datos los códigos postales con el sub sector seleccionado
         $('#sub_sector').on('change',function(){
             var sub_sector_id = $(this).val();
             if ($.trim(sub_sector_id) != ''){

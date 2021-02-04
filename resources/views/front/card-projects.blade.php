@@ -149,7 +149,7 @@ Proyectos
         </div>
         <div class="my-4">
             <div class="row">
-
+                {{-- Recorremos todos los proyectos de la consulta --}}
                 @foreach ($projects as $project)
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-5">
                     <div class="projets-pro">
@@ -157,6 +157,7 @@ Proyectos
                             <h5>
                                 <b style="text-transform: uppercase;">
                                     @php
+                                    // Cortamos el texto a la medida del encabezado
                                     $titulo=substr($project->title,0,25).'...';
                                     @endphp
                                     {{ $titulo }}
@@ -164,6 +165,7 @@ Proyectos
                             </h5>
                         </div>
                         @php
+                        // Consultamos las imagenes que esten relacionados con el proyecto y solo se muestra la ultima imagen
                         $imagen=DB::table('projects_imgs')
                         ->select('projects_imgs.imgroute')
                         ->where('projects_imgs.id_project','=',$project->id)
@@ -179,6 +181,7 @@ Proyectos
 
                         <div class="pie-project">
                             @php
+                            // Cortamos el texto a la medida del pie del card
                             $sector_rec=substr($project->sector,0,12).'..';
                             $subsector_rec=substr($project->subsector,0,35).'...';
                             @endphp

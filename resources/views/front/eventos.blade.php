@@ -28,6 +28,7 @@ Eventos
     <div class="row eventos" style="margin-bottom: 10%;">
         <div class="col-lg-3 col-md-3 col-12 part1">
             @php
+                // Con estas variables obtendremos el total de eventos que estan registrados
                 $cont1=0;
                 $cont2=0;
                 $cont3=0;
@@ -43,6 +44,7 @@ Eventos
             @endphp
 
             @foreach ($eventos as $evento)
+                {{-- Recorremos todos los eventos y verificamos de qué mes es el evento --}}
                 @php
                     $newDate = date("M", strtotime($evento->date_start));
                 @endphp
@@ -99,6 +101,7 @@ Eventos
             @endforeach
 
             @if ($cont1>=1)
+            {{-- Si el contador es mayor o igual a 1 entonces mostramos el boton --}}
             <button onclick="mostrar_dias('01','Enero')" class="row title" id="enero" style="margin-top:1%;">
                 <h6>Enero {{$cont1}} eventos</h6>
             </button>
@@ -273,6 +276,7 @@ Eventos
 
 @section('scripts')
 <script>
+    // Consultamos los días del mes seleccionado
     function mostrar_dias(mes,name)
     {
         if ($.trim(mes) != ''){
@@ -299,7 +303,7 @@ Eventos
             })
         }
     }
-
+    // Mostramos el contenido del evento del día seleccionado
     function mostrar_contenido(id_event)
     { 
         if ($.trim(id_event) != ''){
@@ -315,6 +319,7 @@ Eventos
             $("#ubicacion-phone").empty();
             $("#contacto-phone").empty();
             
+            // Mostramos la imagen de carga
             $('#titulo').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="30" style="margin-left: 30px; margin-top:15px;" />');
             $.ajax({
                     data: {

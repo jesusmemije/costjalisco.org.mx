@@ -30,17 +30,17 @@
         </div>
         <div class="col-md-6 date">
             @if (empty($boletin->date))
-            <center>No hay fecha</center>
+                <center>No hay fecha</center>
             @else
-            @php
-            setlocale(LC_TIME, "spanish");
-            $mi_fecha = $boletin->date;
-            $mi_fecha = str_replace("/", "-", $mi_fecha);
-            $Nueva_Fecha = date("d-M-Y", strtotime($mi_fecha));
-            $fecha_correcta = strftime("%d de %B de %Y", strtotime($Nueva_Fecha));
+                @php
+                // Código para mostrar la fecha en español
+                setlocale(LC_TIME, "spanish");
+                $mi_fecha = $boletin->date;
+                $mi_fecha = str_replace("/", "-", $mi_fecha);
+                $Nueva_Fecha = date("d-M-Y", strtotime($mi_fecha));
+                $fecha_correcta = strftime("%d de %B de %Y", strtotime($Nueva_Fecha));
 
-            // echo $Mes_Anyo;
-            @endphp
+                @endphp
             {{ $fecha_correcta }}
 
             @endif

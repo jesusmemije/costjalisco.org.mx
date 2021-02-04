@@ -37,16 +37,6 @@
             </tr>
 
             @php
-                /*$url = 'assets/img/documentos/';
-                $counter = 0;
-                $img_publico = array(
-                    0 => '6-jal-logo.jpg',
-                    1 => '7-gdl-logo.jpg',
-                    2 => '10-zapopan-logo.jpg',
-                    3 => '9-tonala-logo.jpg',
-                    4 => 'itei.jpg',
-                    5 => '8-tlajomulco-logo.jpg'
-                );*/
                 $url = 'assets/img/home/sector-publico/';
                 $counter = 0;
                 $img_publico = array(
