@@ -213,48 +213,7 @@ Inicio
 @endif
 
 <!-- Btn Agenda -->
-<!--
- <div class="btn-agenda">
-        <img src="{{ asset('assets/img/home/btn-eventos.png') }}" onclick="showEventosAgenda()" class="img-fluid"
-            style="cursor: pointer;" alt="Agenda CoST Jalisco">
-    </div> 
-    
-    <div id="panel-oculto" class="container-aventos-agenda">
-        <img src="{{ asset('assets/img/home/eventos-agenda.png') }}" class="img-fluid" alt="Agenda CoST Jalisco">
-        <div class="container-agenda-fechas">
-            <div class="row mx-0">
-                <div class="col-md-1"></div>
-                <div class="col-md-3 pl-1 pr-2 text-right">
-                    <div class="fecha">
-                        <label class="mr-3 agenda-day">01</label>
-                        <label class="agenda-mes">NOVIEMBRE</label><br>
-                        <label class="agenda-descripcion">Evento previo a día de muertos</label>
-                    </div>
-                    <div class="line-agenda-fechas"></div>
-                </div>
-                <div class="col-md-3 pl-1 pr-2 text-right">
-                    <div class="fecha">
-                        <label class="mr-3 agenda-day">12</label>
-                        <label class="agenda-mes">NOVIEMBRE</label><br>
-                        <label class="agenda-descripcion">"La insfraestructura y economía" Imparte: Luis Rosales. Auditorio
-                            Telmex 8:00 pm Cupo limitado</label>
-                    </div>
-                    <div class="line-agenda-fechas"></div>
-                </div>
-                <div class="col-md-3 pl-1 pr-2 text-right">
-                    <div class="fecha">
-                        <label class="mr-3 agenda-day">28</label>
-                        <label class="agenda-mes">NOVIEMBRE</label><br>
-                        <label class="agenda-descripcion">La insfraestructura y economía" Imparte: Luis Rosales. Auditorio
-                            Telmex 8:00 pm Cupo limitado</label>
-                    </div>
-                    <div class="line-agenda-fechas"></div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-    </div>
--->
+
 
 <!-- Section - Índices -->
 <!--Este parte del codigo tiene la funcion de tomar los registros que hay en la base de datos y mostrarlo-->
@@ -927,28 +886,6 @@ Inicio
 @endif
 
 <script>
-    // //Ejecutando funciones
-    // document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
-    // document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
-
-    //Declarando variables
-    // bars_search =       document.getElementById("ctn-bars-search");
-    // cover_ctn_search =  document.getElementById("cover-ctn-search");
-    //     document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
-
-    // function mostrar_menu(){
-
-    //     document.getElementById("move-content").classList.toggle('move-container-all');
-    //     document.getElementById("show-menu").classList.toggle('show-lateral');
-    // }
-
-    // //Ejecutando funciones
-    // document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
-    // document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
-
-    // //Declarando variables
-    // bars_search =       document.getElementById("ctn-bars-search");
-    // cover_ctn_search =  document.getElementById("cover-ctn-search");
     inputSearch =       document.getElementById("inputSearch");
     box_search =        document.getElementById("box-search");
 

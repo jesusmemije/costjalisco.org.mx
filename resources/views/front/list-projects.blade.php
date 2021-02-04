@@ -31,6 +31,7 @@ Listado de obras
     </div>
     <hr>
         @php
+        // Estas variables es para tomar la decision de mostrar o ocultar la organización que contenga proyectos
             $num1=0;
             $num2=0;
             $num3=0;
@@ -44,6 +45,7 @@ Listado de obras
                 </center>
             </div>
         @else
+            {{-- Con este foreach tomamos la decisión de que si en la consulta hay organizaciones con el id que se le está pasando manual, entonces le agregamos un 1 para darnos cuenta que la organización de ese id tiene proyectos. --}}
             @foreach ($projects as $project)
                 @if ($project->id_organization==2)
                     @php
@@ -70,28 +72,30 @@ Listado de obras
         @endif
 
         @if ($num1==1)
+        Decimos si num1 es igual a 1, es porque tiene proyectos y lo mostramos. Asi sucesivamente con los demas
             <div class="row mb-5">
                 <div class="col-lg-6">
                     <a href="">
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
                             <strong>GOBIERNO DEL ESTADO DE JALISCO (SIOP)</strong>
-                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
                         </div>
                     </a>
                 </div>
                 @php
+                // Estas variables es para ocultar mostrar un solo proyecto y ocultar los demas
                     $contar2=0;
                     $conta22=0;
                 @endphp
                 @foreach ($projects as $project)
                     
-                        
+                    {{-- Aqui tomamos la decisión, si en la consulta existe el id de la prganización en el que actualmente estamos, entonces el contador hacemos que aumente de 1 en 1.  --}}
                     @if ($project->id_organization==2)
                         @php
                             $contar2+=1;
                         @endphp
-                        {{-- <b>{{$contar}}</b> --}}
+
+                        {{-- Decimos si el contador es menor o igual a 1, entonces ocultamos los demas proyectos y mostramos los datos del primer proyecto --}}
                         @if ($contar2<=1)
                                 <style>
                                     #content2{
@@ -101,6 +105,7 @@ Listado de obras
                                 <div style="margin-left: 3%;" class="col-md-12">
                                     <div class="media" >
                                             @php
+                                            // Consultamos las imagenes segun el id del proyecto y solo mostramos el ultimo
                                             $imagen = DB::table('projects_imgs')
                                             ->select('projects_imgs.imgroute')
                                             ->where('projects_imgs.id_project','=',$project->id)
@@ -144,6 +149,7 @@ Listado de obras
                         @else
                             
                         @endif
+                        {{-- Decimos si el contador es mayor que 1 y el contador es menor que 3, entonces mostramos el boton --}}
                         @if ($contar2>1 && $contar2<3)
                             <div class="col-md-12">
                                 <button id="show2" style="background: slategrey; color: #fff; padding: 2px 15px 2px 15px; float: right; margin: 7px; border-radius: 20px;">Ver más</button>
@@ -162,9 +168,10 @@ Listado de obras
                             
                         @if ($project->id_organization==2)
                             @php
+                            // Con esta variable ocultaremos los demas proyectos 
                                 $conta22+=1;
                             @endphp
-                            {{-- <b>{{$conta2}}</b> --}}
+                            {{-- Si el contador2 es mayor que 1 entonces mostramos los proyectos. --}}
                             @if ($conta22>1)
                                     <div class="media" >
                                             @php
@@ -228,7 +235,6 @@ Listado de obras
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
                             <strong>AYUNTAMIENTO DE GUADALAJARA</strong>
-                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
                         </div>
                     </a>
                 </div>
@@ -243,7 +249,6 @@ Listado de obras
                             @php
                                 $contar7+=1;
                             @endphp
-                            {{-- <b>{{$contar}}</b> --}}
                             @if ($contar7<=1)
                                     <style>
                                         #content7{
@@ -379,7 +384,6 @@ Listado de obras
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
                             <strong>AYUNTAMIENTO DE ZAPOPAN</strong>
-                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
                         </div>
                     </a>
                 </div>
@@ -394,7 +398,6 @@ Listado de obras
                             @php
                                 $contar8+=1;
                             @endphp
-                            {{-- <b>{{$contar}}</b> --}}
                             @if ($contar8<=1)
                                 <style>
                                     #content8{
@@ -466,7 +469,6 @@ Listado de obras
                                 @php
                                     $conta28+=1;
                                 @endphp
-                                {{-- <b>{{$conta2}}</b> --}}
                                 @if ($conta28>1)
                                         <div class="media" >
                                                 @php
@@ -530,7 +532,6 @@ Listado de obras
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
                             <strong>AYUNTAMIENTO DE TONALÁ</strong>
-                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
                         </div>
                     </a>
                 </div>
@@ -545,7 +546,6 @@ Listado de obras
                             @php
                                 $contar9+=1;
                             @endphp
-                            {{-- <b>{{$contar}}</b> --}}
                             @if ($contar9<=1)
                                 <style>
                                     #content9{
@@ -617,7 +617,6 @@ Listado de obras
                                 @php
                                     $conta29+=1;
                                 @endphp
-                                {{-- <b>{{$conta2}}</b> --}}
                                 @if ($conta29>1)
                                         <div class="media" >
                                                 @php
@@ -681,7 +680,6 @@ Listado de obras
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
                             <strong>AYUNTAMIENTO DE TLAJOMULCO DE ZÚÑIGA</strong>
-                            {{-- <img src="{{ asset('assets/img/project/flecha.png') }}" class="img-fluid icon-arrow" alt=""> --}}
                         </div>
                     </a>
                 </div>
@@ -696,7 +694,6 @@ Listado de obras
                             @php
                                 $contar10+=1;
                             @endphp
-                            {{-- <b>{{$contar}}</b> --}}
                             @if ($contar10<=1)
                                     <style>
                                         #content10{
@@ -768,7 +765,6 @@ Listado de obras
                                 @php
                                     $conta210+=1;
                                 @endphp
-                                {{-- <b>{{$conta2}}</b> --}}
                                 @if ($conta210>1)
                                         <div class="media" >
                                                 @php
@@ -831,6 +827,7 @@ Listado de obras
 @endsection
 @section('scripts')
 <script>
+    // Al darle clic en el boton cerrar con id hide2 entonces ocultamos los proyectos
     $(document).ready(function(){
     $("#hide2").on('click', function() {
         $("#content2").hide();
@@ -839,7 +836,7 @@ Listado de obras
 
         return false;
     });
- 
+    // Al darle clic en el boton Ver más con id show2 mostramos los proyectos
     $("#show2").on('click', function() {
         $("#content2").show();
         $("#hide2").show();
