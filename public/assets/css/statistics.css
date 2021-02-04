@@ -71,7 +71,7 @@
 }
 
 .bg-background-total {
-    background-image: url('http://pice-software.com/costjalisco/public/assets/img/estadisticas/presupuesto-imagen.png');
+    background-image: url('/assets/img/estadisticas/presupuesto-imagen.png');
     text-align: right;
 }
 

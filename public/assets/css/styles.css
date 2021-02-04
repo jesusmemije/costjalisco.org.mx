@@ -9,7 +9,7 @@ body {
 
 .header-top {
   font-size: 12px;
-  background-image: url("http://pice-software.com/costjalisco/public/assets/img/header/menu-superior.jpg");
+  background-image: url("/assets/img/header/menu-superior.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -19,7 +19,7 @@ body {
 }
 
 .header-menu {
-  background-image: url("http://pice-software.com/costjalisco/public/assets/img/header/menu-principal.jpg");
+  background-image: url("/assets/img/header/menu-principal.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -32,6 +32,12 @@ body {
 .header-menu a:hover {
   color: #9EC2D5;
   text-decoration: none;
+}
+
+#header-phone {
+  background-image: url('/assets/img/header/background-movil.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; height: 56px;
 }
 
 #header-phone a {
@@ -104,13 +110,13 @@ a:hover {
 }
 
 .title-barra-roja {
-  background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-rojo.jpg");
+  background-image: url("/assets/img/background-rojo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .subtitle-barra-gris {
-  background-image: url("http://pice-software.com/costjalisco/public/assets/img/background-gris.jpg");
+  background-image: url("/assets/img/background-gris.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -119,7 +125,7 @@ a:hover {
   font-size: 32px;
   color: #fff;
   background-repeat: no-repeat;
-  background-image: url("http://pice-software.com/costjalisco/public/assets/img/project/background-title.png");
+  background-image: url("/assets/img/project/background-title.png");
   background-size: 102%;
 }
 
@@ -279,7 +285,7 @@ footer a:hover {
 
   .background-title {
     font-size: unset;
-    background-image: url("http://pice-software.com/costjalisco/public/assets/img/bg-gris-phone.jpg");
+    background-image: url("/assets/img/bg-gris-phone.jpg");
     background-size: 98%;
   }
 
@@ -289,13 +295,13 @@ footer a:hover {
   }
 
   .title-barra-roja {
-    background-image: url("http://pice-software.com/costjalisco/public/assets/img/bg-rojo-phone.jpg");
+    background-image: url("/assets/img/bg-rojo-phone.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }
 
   .subtitle-barra-gris {
-    background-image: url("http://pice-software.com/costjalisco/public/assets/img/bg-gris-phone.jpg");
+    background-image: url("/assets/img/bg-gris-phone.jpg");
   }
 
   .title-sector {

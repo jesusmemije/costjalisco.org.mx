@@ -920,6 +920,14 @@ $check="";
     </div>
   </div>
 
+ 
+
+            <div class="d-flex justify-content-end">
+     <a href="{{route('noaplica',$project->id)}}" class="btn btn-sm btn-primary shadow-sm" style="margin-right: 1%;"><i class="fa fa-arrow-right" aria-hidden="true"></i>
+Siguiente
+     </a>
+   
+    </div>
 
 @include('admin.projects.modalAmbiental')
 @include('admin.projects.modalFactibilidad')

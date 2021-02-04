@@ -175,7 +175,7 @@ Georreferenciación
     <!-- Section - Datos generales -->
     <div class="row mt-5">
         <div class="col-md-8 px-0 py-1">
-            <h3 class="py-2 font-weight-bold" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/project/barra-resultados.png'); background-repeat: no-repeat;
+            <h3 class="py-2 font-weight-bold" style="background-image: url('/assets/img/project/barra-resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
                 <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>
             </h3>
@@ -330,11 +330,25 @@ Georreferenciación
         });
               
         const projects = @json($projects);
-
+      
         projects.forEach(function(item, index) {
+            var latlng=item.principal;
+            var title = item.title;
+            //console.log(item.principal);
+            if(latlng==null){
+
+            }else{
+                var auxlatlng=latlng.split('|');
+           // console.log(auxlatlng);
+
             
-            var lat   = item.lat;
-            var lng   = item.lng;
+            L.marker( [auxlatlng[0],auxlatlng[1]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
+            }
+           
+           
+            /*
+            //var lat   = item.lat;
+            //var lng   = item.lng;
             var title = item.title;
 
             let lat_split = lat.split('|')
@@ -349,10 +363,10 @@ Georreferenciación
                     } else {
                         //console.log([lat_split[i], lng_split[i]])
                         console.log(title)
-                        L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="http://pice-software.com/costjalisco/public/index.php/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
+                        L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
                     }
                 } 
-            }
+            }*/
         }); 
     });
 </script>
