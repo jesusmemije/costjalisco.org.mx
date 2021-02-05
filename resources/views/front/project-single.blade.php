@@ -52,7 +52,7 @@ Datos del proyecto
         <div class="col-md-9 px-0">
             <div class="media-body">
                 <div id="titleproject" class="col-md-12 hidden-phone">
-                    <span>{{ $project->title }}</span>
+                    <span>{{ mb_strtoupper($project->title)}}</span>
                 </div>
                 <div id="benefited" class="col-md-12">
                     <div class="row mx-0 align-items-baseline">
@@ -605,7 +605,7 @@ Datos del proyecto
 <div class="row align-items-center" id="background-docs">
     <div class="col-md-6 col-6 text-center my-5">
         <p class="text-descargar"><strong>¡Descarga todos los documentos del proyecto!</strong></p>
-        <a href="">
+        <a href="#" data-toggle="modal" data-target="#modaldocuments">
             <img src="{{asset('/assets/img/project/icons/clic.png')}}" class="img-fluid icon-clic" width="50" alt="">
         </a>
     </div>
@@ -649,6 +649,55 @@ Datos del proyecto
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modaldocuments" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Documentos del proyecto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        <div class="table-responsive">
+                    <table class="table table-bordered display"  cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Documento</th>
+                                <th style="width: 30%;">Tipo de documento</th>
+                                <th style="width: 20%;">Descargar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tBody">
+                        @foreach($project_documents as $document)
+                        <tr>
+                        <?php 
+                        $tipo=DB::table('documenttype')
+                        ->where('id','=',$document->documentType)
+                        ->first();
+                        $ruta=asset('documents/'.$document->url);
+                        ?>
+                        
+                        <td>{{$document->url}}</td>
+                        <td>{{$tipo->titulo}}</td>
+                        <td>  <center><a class="btn btn-dark" href="{{$ruta}}"><i class="fas fa-download  fa-sm text-white-50"></i></a></center></td>
+                      
+                        
+                        </tr>
+
+                        @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+          
+        </div>
+       
+      </div>
+    </div>
+  </div>
 
 <input type="hidden" id="lat" value="{{$project->lat}}">
 <input type="hidden" id="lng" value="{{$project->lng}}">
