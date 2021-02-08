@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+<!--Mostramos el titulo de sector público-->
 
 <div class="container">
     <div class="row my">
@@ -17,6 +18,8 @@
             <h2 class="c1">Sector Público<h2>
         </div>
     </div>
+    <!--En esta sección lo que se hace es crear una tabla-->
+    <!---->
     <div class="row f">
         <table class="table col-md-12 table-bordered">
             <tr class="tr1">
@@ -76,6 +79,7 @@
             </tbody>
         </table>
     </div>
+    <!--Mostramos la tabla de sector académico-->
     <div class="row my2">
         <div class="color2"></div>
         <div class="tlt">
@@ -135,6 +139,7 @@
             </tbody>
         </table>
     </div>
+    <!--Mostramos la tabla de sector privado-->
     <div class="row my3">
         <div class="color3"></div>
         <div class="tlt">
@@ -195,6 +200,7 @@
             </tbody>
         </table>
     </div>
+    <!--Mostramos la tabla de la sociedad civil organizada-->
     <div class="row my4">
         <div class="color4"></div>
         <div class="tlt">
@@ -255,6 +261,7 @@
             </tbody>
         </table>
     </div>
+     <!--Mostramos la tabla de Aliados Estratégicos-->
     <div class="row my5">
         <div class="color5"></div>
         <div class="tlt">
