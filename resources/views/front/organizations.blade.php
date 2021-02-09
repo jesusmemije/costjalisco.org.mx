@@ -48,7 +48,8 @@
                     2 => 'zapopan.jpg',
                     3 => 'tonala.jpg',
                     4 => 'itei.jpg',
-                    5 => 'tlajomulco.jpg'
+                    5 => 'inai.jpg',
+                    6 => 'tlajomulco.jpg'
                 );
             @endphp
 
