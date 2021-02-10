@@ -96,7 +96,10 @@ class NewsletterController extends Controller
 
             $file=$request->file('img_rute_new');
             $name=time().'_'.$file->getClientOriginalName();
-            $file->move(public_path().'/news_imgs/',$name);
+
+            //$file->move('costjalisco.org.mx/news_imgs/',$name);
+            $url = $_SERVER['DOCUMENT_ROOT'].'\news_imgs';
+            $file->move($url,$name);
             $ruta='/news_imgs/'.$name;
         
         }

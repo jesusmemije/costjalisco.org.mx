@@ -84,8 +84,14 @@ class NewsController extends Controller
 
                 $file=$request->file('rutaimg');
                 $name=time().'_'.$file->getClientOriginalName();
-                $file->move(public_path().'/news_imgs/',$name);
                 
+                $url = $_SERVER['DOCUMENT_ROOT'].'\news_imgs';
+               
+            
+                //$file->move(public_path().'\\news_imgs\\',$name);
+                $file->move($url,$name);
+                
+               
             
 
                 DB::table('tbl_img')->insert([
