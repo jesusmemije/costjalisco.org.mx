@@ -95,12 +95,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
     //Extras
+    Route::post('/admin/deletecontrato', [AdminProjectController::class, 'deletecontrato'])->name('deletecontrato');
     Route::post('/admin/guardarAmbiental', [AdminProjectController::class, 'guardarAmbiental'])->name('guardarAmbiental');
     Route::post('/admin/guardarFactibilidad', [AdminProjectController::class, 'guardarFactibilidad'])->name('guardarFactibilidad');
     Route::post('/admin/guardarImpacto', [AdminProjectController::class, 'guardarImpacto'])->name('guardarImpacto');
     Route::post('/admin/guardarRecurso', [AdminProjectController::class, 'guardarRecurso'])->name('guardarRecurso');
 
     Route::get('/admin/noaplica/{id_project}', [AdminProjectController::class, 'noaplica'])->name('noaplica');
+    Route::post('/admin/siguientejecucion/', [AdminProjectController::class, 'siguientejecucion'])->name('siguientejecucion');
 
 
     Route::post('/admin/guardarDocumentosPreparacion', [AdminProjectController::class, 'guardarDocumentosPreparacion'])->name('guardarDocumentosPreparacion');

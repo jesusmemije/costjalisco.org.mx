@@ -57,7 +57,7 @@ class ProjectController extends Controller
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
             ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
-            ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+          //  ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
             ->join('doproject', 'project.id', '=', 'doproject.id_project')
             //  ->where('doproject.id_user', '=', $id_user)
             ->select(
@@ -65,7 +65,7 @@ class ProjectController extends Controller
                 'project.id as id_project',
                 'project.updated_at as fechap',
                 'organization.name  as orgname',
-                'proyecto_contratacion.montocontrato as montocontrato',
+        //        'proyecto_contratacion.montocontrato as montocontrato',
                 'generaldata.*'
             )
             ->get();
@@ -78,7 +78,7 @@ class ProjectController extends Controller
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
             ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
-            ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+            //->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
             ->join('doproject', 'project.id', '=', 'doproject.id_project')
             ->where('project.publicAuthority_id', '=', $id_organization)
             ->select(
@@ -86,7 +86,7 @@ class ProjectController extends Controller
                 'project.id as id_project',
                 'project.updated_at as fechap',
                 'organization.name  as orgname',
-                'proyecto_contratacion.montocontrato as montocontrato',
+       //         'proyecto_contratacion.montocontrato as montocontrato',
                 'generaldata.*'
             )
             ->get();
@@ -569,9 +569,14 @@ class ProjectController extends Controller
             'observaciones'=>$request->observaciones,
         ]);
 
-        DB::table('project')
-        ->where('id', $request->id_project)
-        ->update(['status' => 2]);
+        $project=Project::find($request->id_project);
+        if($project->status<=1){
+            DB::table('project')
+            ->where('id', $request->id_project)
+            ->update(['status' => 2]);
+        }
+
+      
 
         return back()->with('status', '¡Nuevo estudio guardado correctamente!');
     }
@@ -837,11 +842,12 @@ class ProjectController extends Controller
                     ->get();
     
                     $documentstype = DocumentType::orderBy('titulo', 'asc')->get();
-                $project = DB::table('proyecto_contratacion')
+                    
+                    $contratos = DB::table('proyecto_contratacion')
                     ->join('project', 'proyecto_contratacion.id_project', '=', 'project.id')
-                    ->select('proyecto_contratacion.*', 'project.status', 'project.id as id')
+                    ->select('proyecto_contratacion.*')
                     ->where('id_project', '=', $id)
-                    ->first();
+                    ->get();
     
                 $catmodalidad_adjudicacion = DB::table('catmodalidad_adjudicacion')->orderBy('titulo','asc')->get();
                 $cattipo_contrato = DB::table('cattipo_contrato')->orderBy('titulo','asc')->get();
@@ -850,7 +856,7 @@ class ProjectController extends Controller
     
           
     
-                if ($project == null) {
+                if (sizeof($contratos)==0) {
     
                     $project=Project::find($id);
                  
@@ -863,6 +869,7 @@ class ProjectController extends Controller
                         [
                             'project' => $project,
                             'nav' => 'contratacion',
+                            'contratos'=>$contratos,
                             'documents' => $documents,
                             'edit' => true,
                             'catmodalidad_adjudicacion' => $catmodalidad_adjudicacion,
@@ -877,11 +884,12 @@ class ProjectController extends Controller
                         ]
                     );
                 } else {
-                   
+                    $project=Project::find($id); 
                     return view(
                         'admin.projects.contratacion',
                         [
                             'project' => $project,
+                            'contratos'=>$contratos,
                             'nav' => 'contratacion',
                             'documents' => $documents,
                             'edit' => true,
@@ -890,7 +898,8 @@ class ProjectController extends Controller
                             'catmodalidad_contratacion' => $catmodalidad_contratacion,
                             'contractingprocess_status' => $contractingprocess_status,
                             'medit' => true,
-                            'ruta' => 'project.updatecontratacion',
+                            //'ruta' => 'project.updatecontratacion',
+                            'ruta' => 'project.savecontratacion',
                             'documentstype'=>$documentstype,
     
                         ]
@@ -913,12 +922,22 @@ class ProjectController extends Controller
 
         if (!empty($id)) {
 
+            $contratos = DB::table('proyecto_contratacion')
+            ->join('project', 'proyecto_contratacion.id_project', '=', 'project.id')
+            ->select('proyecto_contratacion.id')
+            ->where('id_project', '=', $id)
+            ->get();
 
-            $project = DB::table('proyecto_ejecucion')
+            $ejecuciones = DB::table('proyecto_ejecucion')
                 ->join('project', 'proyecto_ejecucion.id_project', '=', 'project.id')
                 ->select('proyecto_ejecucion.*', 'project.status', 'project.id as id')
                 ->where('id_project', '=', $id)
-                ->first();
+                ->get();
+
+
+            
+              
+    
             $documents = DB::table('project')
                 ->join('project_documents', 'project.id', '=', 'project_documents.id_project')
                 ->join('documents', 'project_documents.id_document', '=', 'documents.id')
@@ -927,7 +946,7 @@ class ProjectController extends Controller
                 ->select('documents.url', 'documents.id','documents.documentType')
                 ->get();
                 $documentstype = DocumentType::orderBy('titulo', 'asc')->get();
-            if ($project == null) {
+            if (sizeof($ejecuciones)==0) {
 
                 $project = Project::find($id);
                 $project->observaciones="";
@@ -935,9 +954,10 @@ class ProjectController extends Controller
                 if ($project == null) {
                     return redirect()->route('project.contratacion', ['project' => $id]);
                 } else {
-                    if ($project->status != 3) {
+                    if ($project->status <3 || $project->status==7) {
                         return redirect()->route('project.contratacion', ['project' => $id]);
                     }
+                 
 
                     return view(
                         'admin.projects.ejecucion',
@@ -945,24 +965,26 @@ class ProjectController extends Controller
                             'project' => $project,
                             'documents' => $documents,
                             'nav' => 'ejecucion',
+                            'contratos'=>$contratos,
                             'edit' => true,
                             'medit' => false,
-                            'ruta' => 'project.saveejecucion',
                             'documentstype'=>$documentstype,
 
                         ]
                     );
                 }
             } else {
+                $project = Project::find($id);
                 return view(
                     'admin.projects.ejecucion',
                     [
                         'project' => $project,
+                        'ejecuciones'=>$ejecuciones,
                         'documents' => $documents,
+                        'contratos'=>$contratos,
                         'nav' => 'ejecucion',
                         'edit' => true,
                         'medit' => true,
-                        'ruta' => 'project.updateejecucion',
                         'documentstype'=>$documentstype,
 
                     ]
@@ -1061,11 +1083,27 @@ class ProjectController extends Controller
             return redirect()->route('project.contratacion', [
                 'project' => $id_project,
             ]);
+        }  
+    }
+    public function siguientejecucion(Request $request){
+
+        $project=Project::find($request->id_project);
+
+        if($project->status<=3){
+            DB::table('project')
+            ->where('id', $request->id_project)
+            ->update(['status' => 4]);
+            return redirect()->route('project.finalizacion', [
+                'project' => $request->id_project,
+            ]);
+        }else{
+            return redirect()->route('project.finalizacion', [
+                'project' => $request->id_project,
+            ]);
         }
 
-    
-
        
+
     }
     /*Función que actualiza los registros de la fase de identificación*/
     public function updateidentificacion(Request $request)
@@ -1286,33 +1324,33 @@ class ProjectController extends Controller
     {   
         $request->validate([
 
-            'telefonocontacto'=>'max:10',
-            'montocontrato'=>'max:20',
+            'telefonocontactou'=>'max:10',
+            'montocontratou'=>'max:20',
         ]);
 
         if (!empty($request->fechapublicacion)) {
             $request->validate([
 
-                'fechapublicacion' => 'date|before:fechapresentacionpropuesta',
-                'fechapresentacionpropuesta' => 'date|before:fechainiciocontrato|after:fechapublicacion',
-                'fechainiciocontrato' => 'date|after:fechapresentacionpropuesta|after:fechapublicacion',
+                'fechapublicacionu' => 'date|before:fechapresentacionpropuestau',
+                'fechapresentacionpropuestau' => 'date|before:fechainiciocontratou|after:fechapublicacionu',
+                'fechainiciocontratou' => 'date|after:fechapresentacionpropuestau|after:fechapublicacionu',
 
             ]);
         }
 
 
         $procedimiento_contratacion = DB::table('proyecto_contratacion')
-            ->where('id_project', '=', $request->id_project)
+            ->where('id', '=', $request->id_contrato)
             ->update([
-                'id_project' => $request->id_project,
+               
                 'descripcion' => $request->descripcion,
-                'fechapublicacion' => $request->fechapublicacion,
+                'fechapublicacion' => $request->fechapublicacionu,
 
                 'entidadadjudicacion' => $request->entidadadjudicacion,
                 //'datosdecontacto' => $request->datosdecontacto,
                 'nombrecontacto'=>$request->nombrecontacto,
                 'emailcontacto'=>$request->emailcontacto,
-                'telefonocontacto'=>$request->telefonocontacto,
+                'telefonocontacto'=>$request->telefonocontactou,
                 'domiciliocontacto'=>$request->domiciliocontacto,
                 'nombreresponsable' => $request->nombreresponsable,
                 'modalidadadjudicacion' => $request->modalidadadjudicacion,
@@ -1324,10 +1362,10 @@ class ProjectController extends Controller
                 'titulocontrato' => $request->titulocontrato,
                 'empresacontratada' => $request->empresacontratada,
                 'viapropuesta' => $request->viapropuesta,
-                'fechapresentacionpropuesta' => $request->fechapresentacionpropuesta,
-                'montocontrato' => $request->montocontrato,
+                'fechapresentacionpropuesta' => $request->fechapresentacionpropuestau,
+                'montocontrato' => $request->montocontratou,
                 'alcancecontrato' => $request->alcancecontrato,
-                'fechainiciocontrato' => $request->fechainiciocontrato,
+                'fechainiciocontrato' => $request->fechainiciocontratou,
                 'duracionproyecto_contrato' => $request->duracionproyecto_contrato,
                 'observaciones'=>$request->observaciones,
 
@@ -1343,14 +1381,26 @@ class ProjectController extends Controller
             return back()->with('status', 'La información no ha podido ser registrada');
         }
     }
+/**Fución que elimina un contrato(id) de la fase de contratacion */
+
+public function deletecontrato(Request $request){
+
+    
+
+    $eliminar=DB::table('proyecto_contratacion')->where('id', '=', $request->eliminarcontrato)->delete();
+
+    return back()->with('status', '¡El contrato ha sido eliminado correctamente!');
+
+}
+
  /*Función que actualiza los registros de la fase de ejecución*/
     public function updateejecucion(Request $request)
     {
 
         $proyecto_ejecucion = DB::table('proyecto_ejecucion')
-            ->where('id_project', '=', $request->id_project)
+            ->where('id_contrato', '=', $request->id_contrato)
             ->update([
-                'id_project' => $request->id_project,
+              
                 'descripcion' => $request->descripcion,
                 'variacionespreciocontrato' => $request->variacionespreciocontrato,
                 'razonescambiopreciocontrato' => $request->razonescambiopreciocontrato,
@@ -1422,7 +1472,7 @@ class ProjectController extends Controller
             'costofinalizacion'=>'max:20',
         
         ]);
-
+        ProjectController::havedocuments($request, 'finalizacion');
         $proyecto_finalizacion = DB::table('proyecto_finalizacion')
             ->insert([
                 'id_project' => $request->id_project,
@@ -1436,7 +1486,7 @@ class ProjectController extends Controller
 
 
             ]);
-        ProjectController::havedocuments($request, 'finalizacion');
+       
 
         if ($proyecto_finalizacion) {
             DB::table('project')
@@ -1467,38 +1517,65 @@ class ProjectController extends Controller
         ]);  
      */
 
-        $proyecto_ejecucion = DB::table('proyecto_ejecucion')
-            ->insert([
-                'id_project' => $request->id_project,
-                'descripcion' => $request->descripcion,
-                'variacionespreciocontrato' => $request->variacionespreciocontrato,
-                'razonescambiopreciocontrato' => $request->razonescambiopreciocontrato,
-                'variacionesduracioncontrato' => $request->variacionesduracioncontrato,
-                'razonescambioduracioncontrato' => $request->razonescambioduracioncontrato,
-                'variacionesalcancecontrato' => $request->variacionesalcancecontrato,
-                'razonescambiosalcancecontrato' => $request->razonescambiosalcancecontrato,
-                'aplicacionescalatoria' => $request->aplicacionescalatoria,
-                'estadoactualproyecto' => $request->estadoactualproyecto,
-                'observaciones'=>$request->observaciones,
+   
+       if (empty($request->id_contrato)) {
+           // preguntamos si hay un valor en el campo id_contrato
+           return back()->with('status', '¡No hay contratos!');
+       } else {
+                //Validamos que tenga documentos.
+                ProjectController::havedocuments($request, 'ejecucion');
+               // Si hay id_contrato entonces lo recorremos
+          
 
+                   // Capturamos todos los datos que en variables o podemos pasarlos directamente
+               
+                   $proyecto_ejecucion = DB::table('proyecto_ejecucion')
+                   ->insert([
+                       'id_project' => $request->id_project,
+                       'id_contrato'=>$request->id_contrato,
+                       'descripcion' => $request->descripcion,
+                       'variacionespreciocontrato' => $request->variacionespreciocontrato,
+                       'razonescambiopreciocontrato' => $request->razonescambiopreciocontrato,
+                       'variacionesduracioncontrato' => $request->variacionesduracioncontrato,
+                       'razonescambioduracioncontrato' => $request->razonescambioduracioncontrato,
+                       'variacionesalcancecontrato' => $request->variacionesalcancecontrato,
+                       'razonescambiosalcancecontrato' => $request->razonescambiosalcancecontrato,
+                       'aplicacionescalatoria' => $request->aplicacionescalatoria,
+                       'estadoactualproyecto' => $request->estadoactualproyecto,
+                       'observaciones'=>$request->observaciones,
+       
+       
+                   ]);
+           
+               
+            
+        
 
-            ]);
-        ProjectController::havedocuments($request, 'ejecucion');
+  
+          
 
-        if ($proyecto_ejecucion) {
+        $project=Project::find($request->id_project);
+        if($project->status<=3){
             DB::table('project')
-                ->where('id', $request->id_project)
-                ->update(['status' => 4]);
-
-            return redirect()->route('project.finalizacion', [
-                'project' => $request->id_project,
-            ]);;
-        } else {
+            ->where('id', $request->id_project)
+            ->update(['status' => 4]);
         }
+
+    return redirect()->route('project.finalizacion', [
+        'project' => $request->id_project,
+    ]);;    
+          
+       }
+     
+    
+        
     }
 /*Función que guarda un nuevo registro de la fase de contratacion*/
     public function savecontratacion(Request $request)
     {
+
+      
+       
         /*
         $request->validate([
         
@@ -1544,6 +1621,7 @@ class ProjectController extends Controller
             ]);
         }
 
+        ProjectController::havedocuments($request, 'contratacion');
 
         $procedimiento_contratacion = DB::table('proyecto_contratacion')
             ->insert([
@@ -1577,14 +1655,24 @@ class ProjectController extends Controller
             ]);
 
 
-        ProjectController::havedocuments($request, 'contratacion');
 
 
 
         if ($procedimiento_contratacion) {
-            DB::table('project')
+
+            
+
+
+            $project=Project::find($request->id_project);
+            if($project->status<=2){
+                DB::table('project')
                 ->where('id', $request->id_project)
                 ->update(['status' => 3]);
+            }
+            
+          
+
+          
 
             return redirect()->route('project.ejecucion', [
                 'project' => $request->id_project,
@@ -1620,6 +1708,10 @@ class ProjectController extends Controller
 
         ]);
 
+  //Guardar el documento y la relación con su proyecto.
+
+
+    ProjectController::havedocuments($request, 'preparacion');
 
 
         DB::table('estudiosambiental')->insert([
@@ -1677,11 +1769,7 @@ class ProjectController extends Controller
             ]);
 
 
-        //Guardar el documento y la relación con su proyecto.
-
-
-        ProjectController::havedocuments($request, 'preparacion');
-
+      
 
 
         return redirect()->route('project.contratacion', [
@@ -1818,7 +1906,7 @@ class ProjectController extends Controller
         //Guardar el documento y la relación con su proyecto.
         if (!empty($request->docfase1)) {
 
-
+            $request->validate(['documenttype'=>'required']);
 
             for ($i = 0; $i < sizeof($request->docfase1); $i++) {
                 $nombre_img = $_FILES['docfase1']['name'][$i];
@@ -2015,6 +2103,10 @@ class ProjectController extends Controller
 
 
         if (!empty($request->documents)) {
+
+            $request->validate([
+                'documenttype'=>'required',
+            ]);
 
             for ($i = 0; $i < sizeof($request->documents); $i++) {
                 $nombre_img = $_FILES['documents']['name'][$i];

@@ -20,6 +20,9 @@ Listado de obras
     </div>
     
     <div class="container mt-5">
+    <div>
+
+      
         <div class="row mt-4">
             <div class="col-lg-6">
                 <a href="">
@@ -35,7 +38,7 @@ Listado de obras
         
         
                 <a href="{{route('projectexportall')}}"><i style="font-size: 30px;" class="fa fa-file-excel-o" aria-hidden="true"></i></a>
-                
+                <a href="{{route('jsonprojects')}}" target="_blank"><i style="font-size: 30px;" class="fa fa-file-alt" aria-hidden="true"></i></a>
                 
             </div>
         </div>

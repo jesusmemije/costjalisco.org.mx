@@ -451,7 +451,12 @@ Datos del proyecto
     <div class="row">
         <div class="col-md-6 mt-5">
             <i class="fas fa-hand-holding-usd"></i>
+            @if(gettype($project->variacionespreciocontrato)=='integer')
             <span><b>Variaciones en el precio del contrato:</b>{{number_format($project->variacionespreciocontrato)}}</span><br>
+            @else
+            <span><b>Variaciones en el precio del contrato:</b>{{number_format($project->variacionespreciocontrato)}}</span><br>
+            @endif
+         
             <i class="fas fa-file-alt"></i>
             <span><b>Razones de cambio en el precio del
                     contrato:</b>{{$project->razonescambiopreciocontrato}}</span><br>

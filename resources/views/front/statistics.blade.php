@@ -57,7 +57,7 @@
                         <span class="cuadros-title">{{$sector4[0]->titulo}} </span>
                     @endif
                 </label>
-                <img id="img-1phone"  src="assets/img/trust-logo.png" alt="">
+                <img id="img-1phone"  src="assets/img/infraestructu.png" alt="">
 
 
                 <label class="cuadro-2">
@@ -81,7 +81,7 @@
                         <span class="cuadros-title">{{$sector1[0]->titulo}} </span>
                     @endif
                 </label>
-                <img id="img-2phone"  src="assets/img/trust-logo.png" alt="">
+                <img id="img-2phone"  src="assets/img/63611.png" alt="">
 
 
                 <br class="hidden-desktop"><br class="hidden-desktop">
@@ -112,7 +112,7 @@
                         <span class="cuadros-title">{{$sector3[0]->titulo}} </span>
                     @endif
                 </label>
-                <img id="img-3phone"  src="assets/img/trust-logo.png" alt="">
+                <img id="img-3phone"  src="assets/img/urbano.png" alt="">
 
 
                 <label class="cuadro-4" >
@@ -134,7 +134,7 @@
                         <span class="cuadros-title">{{$sector2[0]->titulo}} </span>
                     @endif
                 </label>
-                <img id="img-4phone"  src="assets/img/trust-logo.png" alt="">
+                <img id="img-4phone"  src="assets/img/conservacion y restauracion.png" alt="">
             </div>
         </div>
         

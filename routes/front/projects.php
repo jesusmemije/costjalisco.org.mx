@@ -12,4 +12,5 @@ Route::get('/project-single/{id}', [FrontProjectController::class, 'project_sing
 Route::get('export/{id}',  [FrontProjectController::class, 'export'])->name('projectexport');
 Route::get('exportall',  [FrontProjectController::class, 'exportall'])->name('projectexportall');
 Route::get('exportallcsv',  [FrontProjectController::class, 'exportallcsv'])->name('projectexportallcsv');
+Route::get('jsonprojects',  [FrontProjectController::class, 'jsonprojects'])->name('jsonprojects');
 Route::post('getdocumentsproject', [FrontProjectController::class, 'getdocumentsproject'])->name('getdocumentsproject');
