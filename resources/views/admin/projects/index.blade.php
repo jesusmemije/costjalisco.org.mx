@@ -8,6 +8,11 @@
 @endsection
 @section('content')
 
+<?php
+
+
+
+?>
 
 
 
@@ -72,7 +77,14 @@
                     break;
                 }
 
+                 
+$monto = DB::table('proyecto_contratacion')
+->select(DB::raw('SUM(montocontrato) as monto_total'))
+->where('id_project','=',$project->id_project)
+->first();
 
+
+               
                 ?>
 
           
@@ -102,8 +114,8 @@
                 
                 <td>{{$status}}</td>
                 <td>
-                @if(!empty($project->montocontrato))
-                {{ number_format($project->montocontrato)}}
+                @if(!empty($monto->monto_total))
+                {{ number_format($monto->monto_total)}}
                 </td>
                 @else
                 <span class="badge badge-info">Sin información</span>

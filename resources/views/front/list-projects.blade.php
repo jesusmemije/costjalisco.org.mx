@@ -25,8 +25,9 @@ Listado de obras
         <a href="{{route('projectexportallcsv')}}"><i style="font-size: 30px; margin-right:1%" class="fas fa-file-csv"></i> </a>   
 
 
-        <a href="{{route('projectexportall')}}"><i style="font-size: 30px;" class="fa fa-file-excel-o" aria-hidden="true"></i></a>
+        <a href="{{route('projectexportall')}}"><i style="font-size: 30px; margin-right:1%" class="fa fa-file-excel-o" aria-hidden="true"></i></a>
         
+        <a href="{{route('jsonprojects')}}" target="_blank"><i style="font-size: 30px;" class="fa fa-file-alt" aria-hidden="true"></i></a>
         
     </div>
     <hr>

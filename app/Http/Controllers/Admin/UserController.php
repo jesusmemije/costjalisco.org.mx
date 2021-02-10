@@ -45,7 +45,7 @@ class UserController extends Controller
            
         }else{
            
-            $id_organization="";
+            $id_organization=0;
            
         }
       

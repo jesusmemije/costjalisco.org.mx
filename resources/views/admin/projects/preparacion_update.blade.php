@@ -974,7 +974,7 @@ $('#modalAmbiental').on('show.bs.modal', function(event) {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     
     var fecha=button.data('fecha');
-    
+    //alert(fecha);
     var responsable=button.data('responsable');
     var numeros=button.data('numeros');
     $('#id_estudio').val(id);
