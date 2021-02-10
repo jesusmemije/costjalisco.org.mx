@@ -84,7 +84,7 @@ class NewsController extends Controller
 
                 $file=$request->file('rutaimg');
                 $name=time().'_'.$file->getClientOriginalName();
-                $file->move(public_path().'/news_imgs/',$name);
+                $file->move(public_path().'..Respaldo/img/',$name);
                 
             
 

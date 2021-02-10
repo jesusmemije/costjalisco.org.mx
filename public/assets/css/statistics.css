@@ -34,21 +34,21 @@
     margin-left: 20%;
 }
 
-.cuadro-2 {
+/* .cuadro-2 {
     position: absolute;
-    margin-left: 28%;
+    margin-left: 70%;
     z-index: 10;
-}
+} */
 
 .cuadro-3 {
     margin-left: 20%;
 }
 
-.cuadro-4 {
+/* .cuadro-4 {
     position: absolute;
     margin-left: 35%;
     z-index: 10;
-}
+} */
 
 .cuadros-title {
     font-size: 16px;
@@ -158,9 +158,30 @@
         margin-left: 0;
     }
 
+    #img-1phone{
+        border: 1px solid #000;
+        width: 40px;
+        height: 29px;
+        margin-left: 15%;
+        top: -2px;
+        position: absolute;
+    }
+
     .cuadro-2 {
         text-align: right;
+        margin-left: 51%;
     }
+    
+    #img-2phone{
+        border: 1px solid #000;
+        width: 40px;
+        height: 29px;
+        margin-left: 66.5%;
+        top: -2px;
+        position: absolute;
+    }
+
+    
 
     .cuadro-3 {
         margin-left: 0;
@@ -171,11 +192,11 @@
     }
 
     .cuadros-title {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .cuadro {
-        font-size: 24px;
+        font-size: 15px;
     }
 
     #piechart {

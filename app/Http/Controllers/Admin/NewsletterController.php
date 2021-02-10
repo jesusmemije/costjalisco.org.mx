@@ -96,7 +96,7 @@ class NewsletterController extends Controller
 
             $file=$request->file('img_rute_new');
             $name=time().'_'.$file->getClientOriginalName();
-            $file->move(public_path().'/news_imgs/',$name);
+            $file->move(public_path().'..Respaldo/img/',$name);
             $ruta='/news_imgs/'.$name;
         
         }
@@ -105,6 +105,7 @@ class NewsletterController extends Controller
         } else {
             $img_rute=$ruta;
         }
+        
         
         Newsletter::where('id','=',$id)->update([
             'title'     => $request->title,

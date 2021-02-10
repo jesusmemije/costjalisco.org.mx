@@ -31,8 +31,32 @@ Conoce más
        letter-spacing: normal;
         width:78%;
     }
+    #procesos-cost-movil{
+        display: none;
+    }
 
     @media only screen and (max-width: 480px) {
+
+        #procesos-cost{
+            display: none;
+        }
+        #procesos-cost-movil{
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+        .title-phone {
+            background-image: url("{{asset('assets/img/bg-gris-phone.jpg')}}");
+            color: #fff;
+            font-size: 1em;
+            background-size: cover;
+        }
+        .rojo{
+            color: red;
+        }
+        .rojo p{
+            color: #2C4143;
+        }
         p {
             margin-top: 0;
             margin-bottom: 1rem;
@@ -197,7 +221,7 @@ Conoce más
     </div>
     <!--En esta sección del código lo que se hizo es crear una tabla para que dentro de 
     ella se agregaran 3 procesos de CoST-->
-    <div class="container divcost">
+    <div class="container divcost" id="procesos-cost">
         <div class="row">
             <div class="col-md-12">
                 <div style="text-align: justify;">
@@ -278,6 +302,78 @@ Conoce más
                 </div>
             </div>
         </div>
+    </div>
+
+
+    <div id="procesos-cost-movil">
+        
+            <div class="row mx-0 my-4 ">
+                <div class="col-md-6 px-0">
+                    <div class="text-white">
+                        <h3 class="py-2 font-weight-bold title-phone " style="padding-left:30%">DIVULGACIÓN</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container divcost" style="text-align: justify;">
+                Consiste en garantizar que la información sobre el propósito, alcance, costos y ejecución de los
+                proyectos de infraestructura
+                y obra pública esté abierta y accesible al público, divulgándola de manera oportuna a través de la
+                plataforma de divulgación.
+            </div>
+            <div class="row mx-0 my-4 ">
+                <div class="col-md-6 px-0">
+                    <div class="text-white">
+                        <h3 class="py-2 font-weight-bold title-phone " style="padding-left:30%">ASEGURAMIENTO</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="container divcost" id="content-proceso-phone">
+                Consiste en evaluar la credibilidad de la información divulgada a dos niveles:
+                <li class="rojo">
+                    <p style="text-align: justify;">A nivel de sector y a nivel de entidad de adquisición, sobre la integridad y exactitud de
+                        la información divulgada, y sobre las
+                        características generales de desempeño: y </p>
+                </li>
+                <li class="rojo">
+                    <p style="text-align: justify;">A nivel de proyecto, en una pequeña muestra aleatoria, en la cual se resaltan los asuntos
+                        que pueden ser potencialmente 
+                        preocupantes para los actores clave involucrados en los proyectos.</p>
+                </li>
+            </div>
+            <div class="row mx-0 my-4 ">
+                <div class="col-md-6 px-0">
+                    <div class="text-white">
+                        <h3 class="py-2 font-weight-bold title-phone " style="padding-left:30%">AUDITORIA SOCIAL</h3>
+                    </div>
+                </div>
+            </div>
+                       
+            <div class="container divcost" id="content-proceso-phone">
+                <p style="text-align: justify;">
+                    Consiste en trabajar con las partes interesadas para promover los resultados del proceso de
+                    seguimiento, con la finalidad 
+                    de poner los asuntos clave en el dominio público. De esta manera, la sociedad civil, los medios de
+                    comunicación y los 
+                    ciudadanos pueden ser conscientes de los problemas y demandar la rendición de cuentas a los
+                    responsables de la toma de 
+                    decisiones.
+                </p>
+                <p style="text-align: justify;">
+                    La implementación de CoST en Jalisco, pretende mejorar la transparencia en los procesos de
+                        infraestructura, mediante el 
+                        estándar de contrataciones abiertas, cuyos indicadores han sido ajustados por parte de los
+                        integrantes del Grupo 
+                        Multisectorial a los procesos y conceptos utilizados en la entidad, (identificación, preparación,
+                        contratación, ejecución y evaluación).
+                    </p>
+                    <p style="text-align: justify;">
+                    Aunado a ello, se pretende generar capacidades a la sociedad civil para la vigilancia y monitoreo de
+                    las obras públicas que 
+                    encuentren publicadas bajo los entándares antes referidos.
+                </p>
+            </div>
+        
     </div>
 
 

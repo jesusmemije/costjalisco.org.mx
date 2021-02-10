@@ -32,9 +32,260 @@
             </div>
         </div>
         <div class="my-md-5">
+            <style>
+                #chartdiv {
+                width: 100%;
+                height: 400px;
+                }	
+                #chartdiv a{
+                    display: none !important;
+                    
+                }
+                #img-1phone{
+                    border: 1px solid #000; 
+                    width: 48px; 
+                    height: 45px; 
+                    margin-left: 26%; 
+                    top: 0px; 
+                    position: absolute;"
+                }
+                .cuadro-2 {
+                    position: absolute;
+                    margin-left: 70%;
+                    z-index: 10;
+                }
+                #img-2phone{
+                    border: 1px solid #000; 
+                    width: 48px; 
+                    height: 45px; 
+                    margin-left: 76%; 
+                    top: 0px; 
+                    position: absolute;"
+                }	
+                #img-3phone{
+                    border: 1px solid #000; 
+                    width: 48px; 
+                    height: 45px; 
+                    margin-left: 26%; 
+                    bottom: 66px; 
+                    position: absolute;" 									
+
+                } 
+                .cuadro-4 {
+                    position: absolute;
+                    margin-left: 70%; 
+                    bottom: 10px;
+                    z-index: 10;
+                }
+                #img-4phone{
+                    border: 1px solid #000; 
+                    width: 48px; 
+                    height: 45px; 
+                    margin-left: 76%; 
+                    bottom: 66px; 
+                    position: absolute;"
+                }
+                
+                /* Modalidad de la adjudicación */
+                #circulo-list{
+                    height: 32px; 
+                    width: 32px; 
+                    border-radius: 40px; 
+                    margin: 8px;
+                    position: absolute;
+                }
+                
+
+                @media only screen and (max-width: 480px) {
+
+                    .seccion-project {
+                        padding: unset;
+                    }
+
+                    .title-estadisticas {
+                        font-size: 24px;
+                        margin-left: 50px;
+                    }
+
+                    .cuadro-1 {
+                        margin-left: 0;
+                    }
+
+                    #img-1phone{
+                        border: 1px solid #000;
+                        width: 40px;
+                        height: 29px;
+                        margin-left: 15%;
+                        top: -2px;
+                        position: absolute;
+                    }
+
+                    .cuadro-2 {
+                        text-align: right;
+                        margin-left: 51%;
+                    }
+
+                    #img-2phone{
+                        border: 1px solid #000;
+                        width: 40px;
+                        height: 29px;
+                        margin-left: 66.5%;
+                        top: -2px;
+                        position: absolute;
+                    }
+                    #chartdiv{
+                        margin-top: -50px;
+                        height: 250px;
+                        margin-left: 4%;
+                    }
+                    #chartdiv text{
+                        font-size: 12px !important;
+                    }
+
+
+                    .cuadro-3 {
+                        margin-left: 0;
+                    }
+                    #img-3phone{
+                        border: 1px solid #000;
+                        width: 40px;
+                        height: 29px;
+                        margin-left: 15%;
+                        bottom: 39px;
+                        position: absolute;
+                    }
+
+                    .cuadro-4 {
+                        text-align: right;
+                        margin-left: 51%;
+                        bottom: -14px;
+
+                    }
+                    #img-4phone{
+                        border: 1px solid #000;
+                        width: 40px;
+                        height: 29px;
+                        margin-left: 66.5%;
+                        bottom: 39px;
+                        position: absolute;
+                    }
+
+                    .cuadros-title {
+                        font-size: 11px;
+                    }
+
+                    .cuadro {
+                        font-size: 15px;
+                    }
+
+                    #piechart {
+                        width: 100%;
+                        height: auto;
+                        margin-left: 0;
+                    }
+
+                    .title-section {
+                        font-size: 26px;
+                    }
+
+                    .btn-conoce-mas {
+                        bottom: -10px;
+                    }
+
+                    .total-presupuesto {
+                        margin-left: unset;
+                    }
+
+                    .bg-background-total {
+                        background-size: cover;
+                    }
+
+                    /* Modalidad de la adjudicacion */
+                    #donutchartadjudicacion{
+                        width: 100%;
+                        height: 180px !important;
+                        margin-left: 0px !important;
+                        margin-top: -50px;
+                    }
+                    #donutchartadjudicacion text{
+                        font-size: 12px !important;
+                    }
+                    #donutchartadjudicacion-list{
+                        color: #000;
+                        position: static !important;
+                        margin-left: 4% !important;
+                        font-weight: 200;
+                        font-size: 12px !important;
+                    }
+                    #circulo-list{
+                        height: 18px !important; 
+                        width: 18px !important; 
+                        border-radius: 40px;
+                        position: absolute;
+                        
+                    }
+                    #text-ciculo{
+                        margin-left: 40px !important; 
+                        margin-top: 10px !important;
+                    }
+
+                    /* Procedimiento por etapas */
+                    #donutchartprocedimiento{
+                        width: 100%;
+                        height: 180px !important;
+                        margin-left: 0px !important;
+                        margin-top: -50px;
+                    }
+                    #donutchartprocedimiento text{
+                        font-size: 12px !important;
+                    }
+                    #donutchartprocedimiento-list{
+                        color: #000;
+                        position: static !important;
+                        margin-left: 4% !important;
+                        font-weight: 200;
+                        font-size: 12px !important;
+                    }
+
+                    /* Personas beneficiadas */
+                    #donutchartpresonasbeneficiadas{
+                        width: 100%;
+                        height: 180px !important;
+                        margin-left: 0px !important;
+                        margin-top: -50px;
+                    }
+                    #donutchartpresonasbeneficiadas text{
+                        font-size: 12px !important;
+                    }
+                    #donutchartpresonasbeneficiadas-list{
+                        color: #000;
+                        position: static !important;
+                        margin-left: 4% !important;
+                        font-weight: 200;
+                        font-size: 12px !important;
+                    }
+
+                    /* Proyectos en la iniciativa */
+                    #donutchartproyectosiniciativa{
+                        width: 100%;
+                        height: 180px !important;
+                        margin-left: 0px !important;
+                        margin-top: -50px;
+                    }
+                    #donutchartproyectosiniciativa text{
+                        font-size: 12px !important;
+                    }
+
+                    #resultado-estatics{
+                        text-align: center !important;
+                    }
+
+                }
+            </style>
             <div class="col-md-12">
                 {{-- Muestra la cantidad de proyectos que hay en cada sector y hacemos el cálculo del porcentaje, se repite en los 4 sectores --}}
-                <label class="cuadro-1">
+                
+                <label class="cuadro-1" style="position: absolute;">
                     @if (empty($sector4[0]->titulo))
                         @php
                         $sec_4=0;
@@ -45,16 +296,18 @@
                         <span class="cuadros-title">Proyectos de Infraestructura</span>
                     @else
                         @php
-                            $porcentajein=(count($sector4)*100) / ( count($sector1) + count($sector2) + count($sector3) + count($sector4));
+                            
                         
                             $sec_4=count($sector4);
                         @endphp
                         <span class="cuadro">
                             {{count($sector4)}}
                         </span><br><br class="hidden-phone">
-                        <span class="cuadros-title">{{$sector4[0]->titulo}} <br><span style="font-size: 30px"> {{number_format($porcentajein,1)}}%</span></span>
+                        <span class="cuadros-title">{{$sector4[0]->titulo}} </span>
                     @endif
                 </label>
+                <img id="img-1phone"  src="assets/img/trust-logo.png" alt="">
+
 
                 <label class="cuadro-2">
                     @if (empty($sector1[0]->titulo))
@@ -67,24 +320,27 @@
                         <span class="cuadros-title">Proyectos de Edificación</span>
                     @else
                         @php
-                            $porcentajeed=(count($sector1)*100) / ( count($sector1) + count($sector2) + count($sector3) + count($sector4));
+                           
 
                             $sec_1=count($sector1);
                         @endphp
                         <span class="cuadro">
                             {{count($sector1)}}
                         </span><br><br class="hidden-phone">
-                        <span class="cuadros-title">{{$sector1[0]->titulo}} <br><span style="font-size: 30px"> {{number_format($porcentajeed,1)}}%</span></span>
+                        <span class="cuadros-title">{{$sector1[0]->titulo}} </span>
                     @endif
                 </label>
+                <img id="img-2phone"  src="assets/img/trust-logo.png" alt="">
+
 
                 <br class="hidden-desktop"><br class="hidden-desktop">
 
                 {{-- muestra el gráfico sobre proyectos --}}
-                <div id="donutchartproyectos" style="width:95%; height: 350px;" ></div>
+                <div id="chartdiv"></div>
+                {{-- <div id="donutchartproyectos" style="width:95%; height: 350px;" ></div> --}}
                     
                 <br class="hidden-desktop">
-                <label class="cuadro-3">
+                <label class="cuadro-3" style="position: absolute; bottom: 10px">
                     @if (empty($sector3[0]->titulo))
                         @php
                             $sec_3=0;
@@ -95,18 +351,20 @@
                         <span class="cuadros-title">Proyectos Urbanos</span>
                     @else
                         @php
-                            $porcentajeur=(count($sector3)*100) / ( count($sector1) + count($sector2) + count($sector3) + count($sector4));
+                           
 
                             $sec_3 = count($sector3);
                         @endphp
                         <span class="cuadro">
                             {{count($sector3)}}
                         </span><br><br class="hidden-phone">
-                        <span class="cuadros-title">{{$sector3[0]->titulo}} <br><span style="font-size: 30px"> {{number_format($porcentajeur,1)}}%</span></span>
+                        <span class="cuadros-title">{{$sector3[0]->titulo}} </span>
                     @endif
                 </label>
+                <img id="img-3phone"  src="assets/img/trust-logo.png" alt="">
 
-                <label class="cuadro-4">
+
+                <label class="cuadro-4" >
                     @if (empty($sector2[0]->titulo))
                         @php
                             $sec_2 = 0;
@@ -117,18 +375,18 @@
                         <span class="cuadros-title">Proyectos Restauración y Conservación</span>
                     @else
                         @php
-                            $porcentajerc=(count($sector2)*100) / ( count($sector1) + count($sector2) + count($sector3) + count($sector4));
-                        
                             $sec_2=count($sector2);
                         @endphp
                         <span class="cuadro">
                             {{count($sector2)}}
                         </span><br><br class="hidden-phone">
-                        <span class="cuadros-title">{{$sector2[0]->titulo}} <br><span style="font-size: 30px">{{number_format($porcentajerc,1)}}%</span></span>
+                        <span class="cuadros-title">{{$sector2[0]->titulo}} </span>
                     @endif
                 </label>
+                <img id="img-4phone"  src="assets/img/trust-logo.png" alt="">
             </div>
         </div>
+        
         <!--Modalidad de la adjudicación-->
         <div class="col-md-12" style="margin-bottom: 100px"></div>
         <div class="my-1 seccion-project" id="presupuesto">
@@ -139,9 +397,120 @@
             </div>
         </div>
         <div class="my-md-5">
+            <style>
+                #donutchartadjudicacion {
+                    width: 100%;
+                    height: 400px;
+                    margin-left: -270px ;
+                    margin-top: -100px;
+                }	
+                #donutchartadjudicacion a{
+                    display: none !important;
+                    
+                }	
+                #donutchartadjudicacion-list{
+                    color: #000;
+                    z-index: 10;
+                    position: absolute;
+                    margin-left: 51%;
+                    font-weight: 200;
+                    font-size: 19px;
+                    bottom: 85px;
+                }
+                #donutchartprocedimiento{
+                    width: 100%;
+                    height: 400px;
+                    margin-left: -200px;
+                    margin-top: -100px;
+                }
+                #donutchartprocedimiento a{
+                    display: none !important;
+                    
+                }
+                #donutchartprocedimiento-list{
+                    color: #000;
+                    z-index: 10;
+                    position: absolute;
+                    margin-left: 60%;
+                    font-weight: 200;
+                    font-size: 19px;
+                    bottom: 85px;
+                }
+                #text-ciculo{
+                    margin-left: 55px; 
+                    margin-top: 10px
+                }
+                #donutchartpresonasbeneficiadas{
+                    width: 100%;
+                    height: 400px;
+                    margin-left: -550px;
+                    margin-top: -20px;
+                }
+                #donutchartpresonasbeneficiadas a{
+                    display: none !important;
+                    
+                }
+                #donutchartpresonasbeneficiadas-list{
+                    color: #000;
+                    z-index: 10;
+                    position: absolute;
+                    margin-left: 55%;
+                    font-weight: 200;
+                    font-size: 19px;
+                    bottom: 110px;
+                }
+                #donutchartproyectosiniciativa{
+                    width: 100%;
+                    height: 400px;
+                    margin-left: 0px ;
+                    margin-top: -70px;
+                }
+                #donutchartproyectosiniciativa a{
+                    display: none !important;
+                    
+                }
+                
+                
+            </style>
             <div class="col-md-12">
                 <br class="hidden-desktop"><br class="hidden-desktop">
-                <div id="donutchartadjudicacion" style="width:95%; height: 350px;"></div>
+                <div id="donutchartadjudicacion" ></div>
+
+                <div id="donutchartadjudicacion-list" >
+                    @if (count($modalidad_adjudicacion)==0)
+                        <center>Sin resultados</center>
+                    @else
+                        @php
+                            $cont_color=0;
+                        @endphp
+                        @foreach ($modalidad_adjudicacion as $item)
+                            @php
+                                $cont_color+=1;
+                            @endphp
+                            @if ($cont_color==1)
+                                <div  class="d-flex"><div id="circulo-list" style="background: #d60000;"></div><span id="text-ciculo" >{{$item->total_project}} Proyectos  {{$item->mod_adjudicacion}}</span> </div>
+                            @elseif($cont_color==2)
+                                <div  class="d-flex"><div id="circulo-list" style="background: #58707b;"></div><span id="text-ciculo" >{{$item->total_project}} Proyectos  {{$item->mod_adjudicacion}}</span> </div>
+                            @elseif($cont_color==3)
+                                <div  class="d-flex"><div id="circulo-list" style="background: #61a8bd;"></div><span id="text-ciculo" >{{$item->total_project}} Proyectos  {{$item->mod_adjudicacion}}</span> </div>
+
+                            @elseif($cont_color==4)
+                                <div   class="d-flex"><div id="circulo-list" style="background: #ffce32;"></div><span id="text-ciculo" >{{$item->total_project}} Proyectos  {{$item->mod_adjudicacion}}</span> </div>
+                            @elseif($cont_color==5)
+                                <div  class="d-flex"><div id="circulo-list" style="background: #a8a8a8;"></div><span id="text-ciculo" >{{$item->total_project}} Proyectos  {{$item->mod_adjudicacion}}</span> </div>
+                            @elseif($cont_color==6)
+                                <div  class="d-flex"><div id="circulo-list" style="background: #638e7f;"></div><span id="text-ciculo" >{{$item->total_project}} Proyectos  {{$item->mod_adjudicacion}}</span> </div>
+
+
+                            @else
+                                
+                            @endif
+                        @endforeach
+                    @endif
+                        
+                        
+                   
+                </div>
                 <br class="hidden-desktop">
             </div>
         </div>
@@ -159,7 +528,39 @@
             <div class="col-md-12">
 
                 <br class="hidden-desktop"><br class="hidden-desktop">
-                <div id="donutchartprocedimiento" style="width:95%; height: 350px;" ></div>
+                <div id="donutchartprocedimiento" ></div>
+                <div id="donutchartprocedimiento-list" >
+                    @if (count($procedimiento_etapas)==0)
+                        <center>Sin resultados</center>
+                    @else
+                        @php
+                            $cont_color=0;
+                        @endphp
+                        @foreach ($procedimiento_etapas as $procedimiento_e)
+                            @php
+                                $cont_color+=1;
+                            @endphp
+                            @if ($cont_color==1)
+                                <div class="d-flex"><div id="circulo-list" style="background: #d60000;"></div><span id="text-ciculo">Identificación {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
+                            @elseif($cont_color==2)
+                                <div class="d-flex"><div id="circulo-list" style="background: #58707b;"></div><span id="text-ciculo">Preparación {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
+                            @elseif($cont_color==3)
+                                <div class="d-flex"><div id="circulo-list" style="background: #61a8bd;"></div><span id="text-ciculo">Contratración {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
+
+                            @elseif($cont_color==4)
+                                <div  class="d-flex"><div id="circulo-list" style="background: #ffce32;"></div><span id="text-ciculo">Ejecución {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
+                            @elseif($cont_color==5)
+                                <div class="d-flex"><div id="circulo-list" style="background: #a8a8a8;"></div><span id="text-ciculo">Finalizado {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
+
+                            @else
+                                
+                            @endif
+                        @endforeach
+                    @endif
+                        
+                        
+                   
+                </div>
                 <br class="hidden-desktop">
 
             </div>
@@ -226,7 +627,39 @@
                     </div>
                 @endif
                 <br>
-                <div id="donutchartpresonasbeneficiadas" style="width:95%; height: 350px;" ></div>
+                <div id="donutchartpresonasbeneficiadas" ></div>
+                <div id="donutchartpresonasbeneficiadas-list" >
+                    @if (count($personas_beneficias)==0)
+                        <center>Sin resultados</center>
+                    @else
+                        @php
+                            $cont_color=0;
+                        @endphp
+                        @foreach ($personas_beneficias as $personas_b)
+                            @php
+                                $cont_color+=1;
+                            @endphp
+                            @if ($cont_color==1)
+                                <div class="d-flex"><div id="circulo-list" style="background: #d60000;"></div><span id="text-ciculo">{{$personas_b->name}} </span> </div>
+                            @elseif($cont_color==2)
+                                <div class="d-flex"><div id="circulo-list" style="background: #58707b;"></div><span id="text-ciculo">{{$personas_b->name}} </span> </div>
+                            @elseif($cont_color==3)
+                                <div class="d-flex"><div id="circulo-list" style="background: #61a8bd;"></div><span id="text-ciculo">{{$personas_b->name}} </span> </div>
+
+                            @elseif($cont_color==4)
+                                <div  class="d-flex"><div id="circulo-list" style="background: #ffce32;"></div><span id="text-ciculo">{{$personas_b->name}} </span> </div>
+                            @elseif($cont_color==5)
+                                <div class="d-flex"><div id="circulo-list" style="background: #a8a8a8;"></div><span id="text-ciculo">{{$personas_b->name}} </span> </div>
+
+                            @else
+                                
+                            @endif
+                        @endforeach
+                    @endif
+                        
+                        
+                   
+                </div>
             </center>
         </div>
         <div class="col-md-12" style="margin-bottom: 100px"></div>
@@ -286,7 +719,7 @@
                     </div>
                 @endif
                     <br>
-                    <div id="donutchartproyectosiniciativa" style="width:95%; height: 350px;" ></div>
+                    <div id="donutchartproyectosiniciativa" ></div>
                     
             </center>
             <a href="{{route('card-projects')}}" class="btn-conoce-mas">Conoce más</a>
@@ -417,6 +850,13 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
+{{-- <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script> --}}
+{{-- <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" /> --}}
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+
 
 <script>
     $(document).ready(function(){
@@ -433,170 +873,230 @@
     })
 </script>
 {{-- pasamos los datos del gráfico de proyectos --}}
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Titulo', 'porcentaje'],
-        ['Proyectos de Edificación', {{$sec_1}}],
-        ['Proyectos Restauración y Conservación', {{$sec_2}}],
-        ['Proyectos Urbanos', {{$sec_3}}],
-        ['Proyectos de Infraestructura', {{$sec_4}}]
-        
-      ]);
-
-      var options = {
-        chartArea: {'width': '100%', 'height': '100%'},
-        colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32'],
-        pieHole: 0.4,
-        fontSize: 22,
-        legend: 'none',
-        pieSliceTextStyle: {
-            color: 'black',
-            bold:true,
-          },
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('donutchartproyectos'));
-      chart.draw(data, options);
-    }
+<script>
+    var chart = AmCharts.makeChart( "chartdiv", {
+    "type": "pie",
+    "theme": "light",
+    // "titles": [ {
+    //     "text": "Visitors countries",
+    //     "size": 16
+    // } ],
+    "dataProvider": [ 
+    {
+        "sector": "Proyectos de Edificación",
+        "proyectos": {{$sec_1}}
+    }, {
+        "sector": "Proyectos Restauración y Conservación",
+        "proyectos": {{$sec_2}}
+    }, {
+        "sector": "Proyectos Urbanos",
+        "proyectos": {{$sec_3}}
+    }, {
+        "sector": "Proyectos de Infraestructura",
+        "proyectos": {{$sec_4}}
+    } ],
+    "valueField": "proyectos",
+    // "titleField": "sector",
+    "colors": ['#d60000', '#58707b', '#61a8bd', '#ffce32'],
+    "chartArea": {'width': '100%', 'height': '100%'},
+    "startEffect": "elastic",
+    "startDuration": 2,
+    "labelRadius": 15,
+    "innerRadius": "40%",
+    "depth3D": 10,
+    // "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+    "angle": 15,
+    "fontSize": 25,
+    
+    } );
 </script>
+
 {{-- pasamos los datos del gráfico de modalidad de la adjudicación --}}
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Modalidad', 'Total proyectos'],
-            @if (count($modalidad_adjudicacion)==0)
-            ['Sin proyectos', 0],
+<script>
+    var chart = AmCharts.makeChart( "donutchartadjudicacion", {
+    "type": "pie",
+    "theme": "light",
+    // "titles": [ {
+    //     "text": "Visitors countries",
+    //     "size": 16
+    // } ],
+    "dataProvider": [ 
+
+        @if (count($modalidad_adjudicacion)==0)
+            {"modalidad":'Sin proyectos',
+            "proyectos": 0
+             },
             @else
                 @foreach ($modalidad_adjudicacion as $modalidad_ad)
                     @if($modalidad_ad->total_project==1)
-                        ['{{$modalidad_ad->total_project}} proyecto {{$modalidad_ad->mod_adjudicacion}}  ', {{$modalidad_ad->total_project}}],
+                        {
+                            "modalidad":'{{$modalidad_ad->total_project}} proyecto {{$modalidad_ad->mod_adjudicacion}}  ',
+                            "proyectos":{{$modalidad_ad->total_project}}},
                     @else
-                        ['{{$modalidad_ad->total_project}} proyectos {{$modalidad_ad->mod_adjudicacion}}  ', {{$modalidad_ad->total_project}}],
+                        {
+                            "modalidad":'{{$modalidad_ad->total_project}} proyectos {{$modalidad_ad->mod_adjudicacion}}  ', 
+                            "proyectos":{{$modalidad_ad->total_project}}},
                     @endif
                 @endforeach
             @endif
-      ]);
-
-      var options = {
-        chartArea: {'width': '100%', 'height': '100%'},
-        colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
-        fontSize: 22,
-        legend: { textStyle: { fontSize: 20}},
-        pieHole: 0.4,
-        pieSliceTextStyle: {
-                color: 'black',
-                bold:true,
-            },
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('donutchartadjudicacion'));
-      chart.draw(data, options);
-    }
+            
+    ],
+    "valueField": "proyectos",
+    // "titleField": "modalidad",
+    "colors": ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
+    "chartArea": {'width': '100%', 'height': '100%'},
+    "startEffect": "elastic",
+    "startDuration": 2,
+    "labelRadius": 15,
+    "innerRadius": "40%",
+    "depth3D": 10,
+    // "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+    "angle": 15,
+    "fontSize": 25,
+    
+    } );
 </script>
-{{-- pasamos los datos del gráfico de modalidad de la adjudicación --}}
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Porcedimiento por etapa', 'Total proyectos'],
-            @if (count($procedimiento_etapas)==0)
-            ['Sin proyectos', 0],
+{{-- pasamos los datos del gráfico de procedimiento por etapas --}}
+<script>
+    var chart = AmCharts.makeChart( "donutchartprocedimiento", {
+    "type": "pie",
+    "theme": "light",
+    // "titles": [ {
+    //     "text": "Visitors countries",
+    //     "size": 16
+    // } ],
+    "dataProvider": [ 
+
+        @if (count($procedimiento_etapas)==0)
+            {   
+                "modalidad":'Sin proyectos',
+                "proyectos": 0
+            },
+            
             @else
                 @foreach ($procedimiento_etapas as $procedimiento_e)
                     @if($procedimiento_e->estatus==1)
-                        ['Identificación: {{$procedimiento_e->total_status_project}} proyectos', {{$procedimiento_e->total_status_project}}],
+                        {
+                            "procedimiento":'Identificación: {{$procedimiento_e->total_status_project}} proyectos', 
+                            "proyectos":{{$procedimiento_e->total_status_project}}
+                        },
                     @elseif($procedimiento_e->estatus==2)
-                        ['Preparación: {{$procedimiento_e->total_status_project}} proyectos', {{$procedimiento_e->total_status_project}}],
+                        {
+                            "procedimiento":'Preparación: {{$procedimiento_e->total_status_project}} proyectos', 
+                            "proyectos":{{$procedimiento_e->total_status_project}}
+                        },
                     @elseif($procedimiento_e->estatus==3)
-                        ['Contratración: {{$procedimiento_e->total_status_project}} proyectos', {{$procedimiento_e->total_status_project}}],
+                        {
+                            "procedimiento":'Contratración: {{$procedimiento_e->total_status_project}} proyectos',
+                            "proyectos": {{$procedimiento_e->total_status_project}}
+                        },
                     @elseif($procedimiento_e->estatus==4)
-                        ['Ejecución: {{$procedimiento_e->total_status_project}} proyectos', {{$procedimiento_e->total_status_project}}],
+                        {
+                            "procedimiento":'Ejecución: {{$procedimiento_e->total_status_project}} proyectos', 
+                            "proyectos":{{$procedimiento_e->total_status_project}}
+                        },
                     @elseif($procedimiento_e->estatus==5)
-                        ['Finalizado: {{$procedimiento_e->total_status_project}} proyectos', {{$procedimiento_e->total_status_project}}],
+                        {
+                            "procedimiento":'Finalizado: {{$procedimiento_e->total_status_project}} proyectos', 
+                            "proyectos":{{$procedimiento_e->total_status_project}}
+                        },
                     @elseif($procedimiento_e->estatus==7)
-                        ['Finalizado: {{$procedimiento_e->total_status_project}} proyectos', {{$procedimiento_e->total_status_project}}],
+                        {
+                            "procedimiento":'Finalizado: {{$procedimiento_e->total_status_project}} proyectos', 
+                            "proyectos":{{$procedimiento_e->total_status_project}}
+                        },
                     @endif
                 @endforeach
             @endif
-      ]);
-
-      var options = {
-        chartArea: {'width': '100%', 'height': '100%'},
-        colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
-        fontSize: 22,
-        legend: { textStyle: { fontSize: 20}},
-        pieHole: 0.4,
-        pieSliceTextStyle: {
-                color: 'black',
-                bold:true,
-            },
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('donutchartprocedimiento'));
-      chart.draw(data, options);
-    }
+            
+    ],
+    "valueField": "proyectos",
+    // "titleField": "procedimiento",
+    "colors": ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
+    "chartArea": {'width': '100%', 'height': '100%'},
+    "startEffect": "elastic",
+    "startDuration": 2,
+    "labelRadius": 15,
+    "innerRadius": "40%",
+    "depth3D": 10,
+    // "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+    "angle": 15,
+    "fontSize": 25,
+    
+    } );
 </script>
+
 {{-- pasamos los datos del gráfico de personas beneficiadas --}}
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Personas', 'Total'],
+<script>
+    var chart = AmCharts.makeChart( "donutchartpresonasbeneficiadas", {
+    "type": "pie",
+    "theme": "light",
+    // "titles": [ {
+    //     "text": "Visitors countries",
+    //     "size": 16
+    // } ],
+    "dataProvider": [ 
+
         @foreach ($personas_beneficias as $personas_b)
-        ['{{$personas_b->name}}',     {{$personas_b->total_people}}],     
-        @endforeach
-      ]);
-
-      var options = {
-        chartArea: {'width': '100%', 'height': '100%'},
-        colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
-        fontSize: 22,
-        legend: { textStyle: { fontSize: 20}},
-        pieHole: 0.4,
-        pieSliceTextStyle: {
-                color: 'black',
-                bold:true,
+            {
+                "personas":'{{$personas_b->name}}', 
+                "proyectos":{{$personas_b->total_people}}
             },
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('donutchartpresonasbeneficiadas'));
-      chart.draw(data, options);
-    }
-</script>
-{{-- Pasamos los datos del gráfico de proyectos de la iniciativa --}}
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        @foreach ($proyectos as $proyecto)
-        ['{{$proyecto->name}}',     {{$proyecto->total_proyectos}}],     
         @endforeach
-        
-      ]);
-
-      var options = {
-        chartArea: {'width': '100%', 'height': '100%'},
-        colors: ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
-        pieHole: 0.5,
-        fontSize: 22,
-        legend: 'none',
-        pieSliceTextStyle: {
-            color: 'black',
-            bold:true,
-          },
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('donutchartproyectosiniciativa'));
-      chart.draw(data, options);
-    }
+            
+    ],
+    "valueField": "proyectos",
+    // "titleField": "personas",
+    "colors": ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
+    "chartArea": {'width': '100%', 'height': '100%'},
+    "startEffect": "elastic",
+    "startDuration": 2,
+    "labelRadius": 15,
+    "innerRadius": "40%",
+    "depth3D": 10,
+    // "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+    "angle": 15,
+    "fontSize": 25,
+    "bold":true,
+    
+    } );
 </script>
+
+{{-- Pasamos los datos del gráfico de proyectos de la iniciativa --}}
+<script>
+    var chart = AmCharts.makeChart( "donutchartproyectosiniciativa", {
+    "type": "pie",
+    "theme": "light",
+    // "titles": [ {
+    //     "text": "Visitors countries",
+    //     "size": 16
+    // } ],
+    "dataProvider": [ 
+
+        @foreach ($proyectos as $proyecto)
+        {
+            "proyectos_ini":'{{$proyecto->name}}', 
+            "proyectos":{{$proyecto->total_proyectos}}},     
+        @endforeach
+            
+    ],
+    "valueField": "proyectos",
+    // "titleField": "proyectos_ini",
+    "colors": ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
+    "chartArea": {'width': '100%', 'height': '100%'},
+    "startEffect": "elastic",
+    "startDuration": 2,
+    "labelRadius": 15,
+    "innerRadius": "40%",
+    "depth3D": 10,
+    // "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+    "angle": 15,
+    "fontSize": 25,
+    "textStyle": {
+        // bold:true,
+    }
+    
+    } );
+</script>
+
 @endsection

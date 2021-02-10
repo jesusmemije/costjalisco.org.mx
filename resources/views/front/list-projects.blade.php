@@ -20,15 +20,25 @@ Listado de obras
     </div>
     
     <div class="container mt-5">
-    <div>
-
-        <a href="{{route('projectexportallcsv')}}"><i style="font-size: 30px; margin-right:1%" class="fas fa-file-csv"></i> </a>   
-
-
-        <a href="{{route('projectexportall')}}"><i style="font-size: 30px;" class="fa fa-file-excel-o" aria-hidden="true"></i></a>
+        <div class="row mt-4">
+            <div class="col-lg-6">
+                <a href="">
+                    <div class="container-item d-flex justify-content-between align-items-center text-white">
+                        {{-- <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt=""> --}}
+                        <strong>DESCARGA TODOS LOS PROYECTOS DE LA INICIATIVA</strong>
+                    </div>
+                </a>
+            </div>
+            <div style="margin-left: 3%;" class="col-md-12 mt-4">
+        
+                <a href="{{route('projectexportallcsv')}}"><i style="font-size: 30px; margin-right:1%" class="fas fa-file-csv"></i> </a>   
         
         
-    </div>
+                <a href="{{route('projectexportall')}}"><i style="font-size: 30px;" class="fa fa-file-excel-o" aria-hidden="true"></i></a>
+                
+                
+            </div>
+        </div>
     <hr>
         @php
         // Estas variables es para tomar la decision de mostrar o ocultar la organización que contenga proyectos
