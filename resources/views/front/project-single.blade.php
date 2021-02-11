@@ -25,7 +25,12 @@ Datos del proyecto
                 <div class="carousel-inner">
                     <div class="carousel-item d-flex align-items-center justify-content-center active">
                         <?php
-                        $ruta = asset('projects_imgs/' . $project_imgs[0]->imgroute);
+                        if(sizeof($project_imgs)!=0){
+                            $ruta = asset('projects_imgs/' . $project_imgs[0]->imgroute);
+                        }else{
+                            $ruta="";
+                        }
+                        
                         ?>
                         <img src="{{$ruta}}" class="d-block w-100" height="300" alt="">
                         <h2 class="hidden-desktop" style="position: absolute; text-align: center; color: #fff;">{{ $project->title }}
@@ -379,53 +384,81 @@ Datos del proyecto
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5" style="border-right:1px solid #628ea0;">
-
-            <span><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
-            <span><b>Nombre: </b>{{$project->nombrecontacto}}</span><br>
-            <span><b>Correo electrónico: </b>{{$project->emailcontacto}}</span><br>
-            <span><b>Télefono: </b>{{$project->telefonocontacto}}</span><br>
-            <span><b>Domicilio: </b>{{$project->domiciliocontacto}}</span><br>
+                @foreach($contratos as $contrato)
+                <span><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
+            <span><b>Nombre: </b>{{$contrato->nombrecontacto}}</span><br>
+            <span><b>Correo electrónico: </b>{{$contrato->emailcontacto}}</span><br>
+            <span><b>Télefono: </b>{{$contrato->telefonocontacto}}</span><br>
+            <span><b>Domicilio: </b>{{$contrato->domiciliocontacto}}</span><br>
 
             <br>
+            <?php 
+           $tipocontrato = DB::table('cattipo_contrato')
+           ->where('id', '=', $contrato->tipocontrato)
+           ->first();
+           $modalidadcontratacion = DB::table('catmodalidad_contratacion')
+           ->where('id', '=', $contrato->modalidadcontrato)
+           ->first();
+           $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
+           ->where('id', '=', $contrato->modalidadadjudicacion)
+           ->first();
+       $estadoactual = DB::table('contractingprocess_status')
+           ->where('id', '=', $contrato->estadoactual)
+           ->first();
+           if ($modalidadcontratacion == null) {
+            $modalidadcontratacion = new stdClass();
+            $modalidadcontratacion->titulo = "";
+        }
+        if ($tipocontrato == null) {
+            $tipocontrato = new stdClass();
+            $tipocontrato->titulo = "";
+        }
+        $empresas = $contrato->empresasparticipantes;
+        $empresasparticipantes = explode(",", $empresas);
+            ?>
+
             <i class="fas fa-file-alt"></i>
             <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
             <i class="fas fa-file-signature"></i>
             <span><b>Modalidad de contratación:</b> {{$modalidadcontratacion->titulo}}</span><br>
             <i class="fas fa-edit"></i>
-            <span><b>Entidad administradora del contrato:</b> {{$project->entidad_admin_contrato}}</span><br>
+            <span><b>Entidad administradora del contrato:</b> {{$contrato->entidad_admin_contrato}}</span><br>
             <i class="fas fa-file-invoice"></i>
-            <span><b>Título del contrato:</b> {{$project->titulocontrato}}</span><br>
+            <span><b>Título del contrato:</b> {{$contrato->titulocontrato}}</span><br>
             <i class="fas fa-print"></i>
-            <span><b>Vía por la que presenta su propuesta:</b> {{$project->viapropuesta}}</span><br>
+            <span><b>Vía por la que presenta su propuesta:</b> {{$contrato->viapropuesta}}</span><br>
             <i class="fas fa-hand-holding-usd"></i>
-            <span><b>Monto del contrato (cantidad estipulada):</b>${{number_format($project->montocontrato)}}</span><br>
+            <span><b>Monto del contrato (cantidad estipulada):</b>${{number_format($contrato->montocontrato)}}</span><br>
             <i class="fas fa-hard-hat"></i>
-            <span><b>Alcance del trabajo según el contrato:</b> {{$project->alcancecontrato}}</span><br>
+            <span><b>Alcance del trabajo según el contrato:</b> {{$contrato->alcancecontrato}}</span><br>
             <i class="far fa-clock"></i>
             <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b>
-                {{$project->duracionproyecto_contrato}}</span><br><br>
+                {{$contrato->duracionproyecto_contrato}}</span><br><br>
 
-            @if($project->observaciones4!="")
+          
+               
             <span><b>Observaciones de la sección:</b></label><br>
-                <span>{{$project->observaciones4}}</span>
-                @endif
+                <span>{{$project->observaciones}}</span><br>
+            
                 <br class="hidden-desktop">
+            
+          @endforeach
         </div>
 
         <div class="col-md-6 border-top-empresas">
             <br class="hidden-desktop">
             <h3 class="ml-4 title-empresas" style="font-weight: bold; color:#628ea0;">Empresas participantes</h3>
 
-            @foreach($empresasparticipantes as $empresa)
-            <div class="row py-4 border-left-empresas">
-                <div class="col-md-2 col-2">
-                    <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
-                </div>
-                <div class="col-md-10 col-10 px-0">
-                    <span style="font-weight: 700;">{{ $empresa }}</span><br>
-                </div>
-            </div>
-            @endforeach
+@foreach($empresasparticipantes as $empresa)
+<div class="row py-4 border-left-empresas">
+    <div class="col-md-2 col-2">
+        <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
+    </div>
+    <div class="col-md-10 col-10 px-0">
+        <span style="font-weight: 700;">{{ $empresa }}</span><br>
+    </div>
+</div>
+@endforeach
         </div>
     </div>
     <div class="row">
@@ -450,35 +483,37 @@ Datos del proyecto
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5">
+            @foreach($ejecuciones as $ejecucion)
             <i class="fas fa-hand-holding-usd"></i>
-            @if(gettype($project->variacionespreciocontrato)=='integer')
-            <span><b>Variaciones en el precio del contrato:</b>{{number_format($project->variacionespreciocontrato)}}</span><br>
+            @if(gettype($ejecucion->variacionespreciocontrato)=='integer')
+            <span><b>Variaciones en el precio del contrato:</b>{{number_format($ejecucion->variacionespreciocontrato)}}</span><br>
             @else
-            <span><b>Variaciones en el precio del contrato:</b>{{number_format($project->variacionespreciocontrato)}}</span><br>
+            <span><b>Variaciones en el precio del contrato:</b>{{($ejecucion->variacionespreciocontrato)}}</span><br>
             @endif
          
             <i class="fas fa-file-alt"></i>
             <span><b>Razones de cambio en el precio del
-                    contrato:</b>{{$project->razonescambiopreciocontrato}}</span><br>
+                    contrato:</b>{{$ejecucion->razonescambiopreciocontrato}}</span><br>
             <i class="fas fa-file-alt"></i>
-            <span><b>Variaciones en la duración del contrato:</b>{{$project->variacionesduracioncontrato }}</span><br>
+            <span><b>Variaciones en la duración del contrato:</b>{{$ejecucion->variacionesduracioncontrato }}</span><br>
             <i class="far fa-clock"></i>
             <span><b>Razones de cambio en la duración del
-                    contrato:</b>{{$project->razonescambioduracioncontrato}}</span><br>
+                    contrato:</b>{{$ejecucion->razonescambioduracioncontrato}}</span><br>
             <i class="fas fa-file-alt"></i>
-            <span><b>Variaciones en el alcance del contrato:</b>{{$project->variacionesalcancecontrato}}</span><br>
+            <span><b>Variaciones en el alcance del contrato:</b>{{$ejecucion->variacionesalcancecontrato}}</span><br>
             <i class="fas fa-file-alt"></i>
             <span><b>Razones de cambios en el alcance del
-                    contrato:</b>{{$project->razonescambiosalcancecontrato}}</span><br>
+                    contrato:</b>{{$ejecucion->razonescambiosalcancecontrato}}</span><br>
             <i class="fas fa-file-alt"></i>
-            <span><b>Aplicación de escalatoria:</b>{{$project->aplicacionescalatoria}}</span><br>
+            <span><b>Aplicación de escalatoria:</b>{{$ejecucion->aplicacionescalatoria}}</span><br>
             <i class="fas fa-check-square"></i>
-            <span><b>Estado actual del proyecto:</b>{{$project->estadoactualproyecto}}</span><br>
+            <span><b>Estado actual del proyecto:</b>{{$ejecucion->estadoactualproyecto}}</span><br>
             <br>
-            @if($project->observaciones5!="")
+          
             <span><b>Observaciones de la sección:</b></label><br>
-                <span>{{$project->observaciones5}}</span>
-                @endif
+                <span>{{$project->observaciones}}</span><br>
+              
+            @endforeach
         </div>
     </div>
     <br class="hidden-desktop">
@@ -594,7 +629,7 @@ Datos del proyecto
             &nbsp<span class="text-resumen">Inversión: $
 
                 @if($project->costofinalizacion=="")
-                {{number_format($project->montocontrato)}}
+          
                 @else
                 {{number_format($project->costofinalizacion)}}
 
