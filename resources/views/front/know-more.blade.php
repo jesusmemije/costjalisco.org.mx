@@ -330,16 +330,20 @@ Conoce más
             </div>
             <div class="container divcost" id="content-proceso-phone">
                 Consiste en evaluar la credibilidad de la información divulgada a dos niveles:
-                <li class="rojo">
-                    <p style="text-align: justify;">A nivel de sector y a nivel de entidad de adquisición, sobre la integridad y exactitud de
-                        la información divulgada, y sobre las
-                        características generales de desempeño: y </p>
-                </li>
-                <li class="rojo">
-                    <p style="text-align: justify;">A nivel de proyecto, en una pequeña muestra aleatoria, en la cual se resaltan los asuntos
-                        que pueden ser potencialmente 
-                        preocupantes para los actores clave involucrados en los proyectos.</p>
-                </li>
+                <div class="d-flex mt-3">
+                    <li class="rojo"></li>
+                        <p style="text-align: justify;">A nivel de sector y a nivel de entidad de adquisición, sobre la integridad y exactitud de
+                            la información divulgada, y sobre las
+                            características generales de desempeño: y </p>
+
+                </div>
+                <div class="d-flex">
+                    <li class="rojo"></li>
+                        <p style="text-align: justify;">A nivel de proyecto, en una pequeña muestra aleatoria, en la cual se resaltan los asuntos
+                            que pueden ser potencialmente 
+                            preocupantes para los actores clave involucrados en los proyectos.</p>
+                    
+                </div>
             </div>
             <div class="row mx-0 my-4 ">
                 <div class="col-md-6 px-0">
