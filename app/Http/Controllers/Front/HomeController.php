@@ -316,7 +316,7 @@ class HomeController extends Controller
             ->groupBy('project_organizations.id_organization','organization.name')
             ->get();
 
-            dd($proyectos);
+            // dd($proyectos);
 
 // -----aqui hacemos el cálculo para el presupuesto asignado
     
