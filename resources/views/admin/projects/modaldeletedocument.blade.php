@@ -15,10 +15,10 @@
             <i class="fas fa-times fa-sm text-white-50"></i>
             No, salir
           </button>
-          <form id="formDelete" action="{{ route('project.deletedocument') }}" method="POST">
-           
+          <form id="formDelete" action="{{route('project.deletedocument')}}" method="POST">
             @csrf
-            <input type="hidden" value="" id="doc_id" name="doc_id">
+           
+            <input type="hidden"  id="doc_id" name="doc_id">
             <button type="submit" class="btn btn-sm btn-danger shadow-sm">
               <i class="fas fa-trash fa-sm text-white-50"></i>
               Si, eliminar

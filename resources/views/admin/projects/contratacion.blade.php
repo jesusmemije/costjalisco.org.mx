@@ -296,9 +296,57 @@
                         <input type="text" name="observaciones" id="observaciones" class="form-control" value="">
                     </div>
 
-                   
+                 
+<div class="col-lg-6">
 
-                    @include('admin.projects.selectdocuments')
+    <div class="card shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a href="#collapseCardExample5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample5">
+
+            <h6 class="m-0 font-weight-bold text-primary">Documentos</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+
+        <div class="collapse show" id="collapseCardExample5">
+            <div class="card-body">
+
+             
+
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="">Seleccionar documentos</label>
+                            <input type="file" class="form-control" name="documents[]" multiple>
+
+
+                            <label for="documenttype">Tipo de documento</label>
+                            <select name="documenttype" id="documenttype" class="form-control @error('documenttype') is-invalid @enderror">
+                                <option value="">Selecciona un opción</option>
+                                @foreach($documentstype as $type)
+
+                                <option value="{{$type->id}}">{{$type->titulo}}</option>
+
+                                @endforeach
+
+                            </select>
+                            @error('documenttype')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+
+                    </div>
+            </div>
+
+
+        </div>
+    </div>
+
+   
+
+</div>
+                  
                     <div class="d-flex justify-content-end" style="margin-right: 2%;">
                     <input type="submit" class="btn btn-warning btnmas" style="color:black; font-weight:bold" value="Agregar">
                     </div>
@@ -311,7 +359,7 @@
                         Listado de contratos
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
 
                         <div class="col-md-12">
 
@@ -365,7 +413,19 @@
                                             {{number_format($contrato->montocontrato)}}
                                             @endif
                                         </td>
-
+                                    <?php
+                                    $contract_documents=DB::table('contract_documents')
+                                    ->join('documents','contract_documents.id_document','=','documents.id')
+                                    ->select('documents.id','documents.url','documents.documentType',
+                                    'contract_documents.id_document')
+                                    ->where('id_contrato','=',$contrato->id)
+                                    ->get();
+                                   
+                                    $data=array();
+                                    
+                                
+                                   
+                                    ?>
 
                                         <td>
                                             <div class="form-row">
@@ -378,13 +438,14 @@
                                                     '{{$contrato->empresasparticipantes}}','{{$contrato->entidad_admin_contrato}}','{{$contrato->titulocontrato}}',
                                                     '{{$contrato->empresacontratada}}','{{$contrato->viapropuesta}}','{{$contrato->fechapresentacionpropuesta}}','{{$contrato->montocontrato}}',
                                                     '{{$contrato->alcancecontrato}}','{{$contrato->fechainiciocontrato}}','{{$contrato->duracionproyecto_contrato}}','{{$contrato->observaciones}}',
-                                                    '{{$contrato->modalidadadjudicacion}}','{{$contrato->tipocontrato}}','{{$contrato->modalidadcontrato}}','{{$contrato->estadoactual}}'
+                                                    '{{$contrato->modalidadadjudicacion}}','{{$contrato->tipocontrato}}','{{$contrato->modalidadcontrato}}','{{$contrato->estadoactual}}',
+                                                    '{{json_encode($data)}}',
                                                     )" 
-                                                    class="btn btn-warning btn-sm btn-circle"><i class="fa fa-edit btnme"></i></a>
+                                                    class="btn btn-warning btn-sm btn-circle" style="color: black;"><i class="fa fa-edit btnme"></i></a>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <a data-toggle="modal"  onclick="eliminar('{{$contrato->id}}')" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash btnme"></i></a>
+                                                    <a data-toggle="modal" style="color: black;"  onclick="eliminar('{{$contrato->id}}')" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash btnme"></i></a>
                                                 </div>
 
                                             </div>
@@ -412,30 +473,40 @@
 
               
 
-                <div class="d-flex justify-content-end">
+              
+
+               
+                
+                </form>
+      
+                <form action="{{route('siguientecontratacion')}}" method="post">
+@csrf
+<input type="hidden" name="id_project" value="{{$project->id}}">
+<div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-sm btn-primary shadow-sm">
                         <i class="fas fa-edit fa-sm text-white-50"></i>
                         {{'Siguiente' }}
                     </button>
                 </div>
 
+</form>
         </div>
 
 
     </div>
 
-    </form>
+    
     <div class="modal fade" id="eliminarContrato" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Confirmar eliminación</h5>
+          <h5 class="modal-title" id="">Confirmar eliminación</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>¿Seguro que desea eliminar el contrato?</p>
+          <p id="pe"></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
@@ -453,25 +524,59 @@
             
           </form>
         </div>
+     
       </div>
     </div>
   </div>
 
     <!--end card-->
     @include('admin.projects.modaleditarContrato')
-    @include('admin.projects.modaldeletedocument')
+ 
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Seguro que desea eliminar el documento  <strong><span class="name-user"></span></strong>?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
+            <i class="fas fa-times fa-sm text-white-50"></i>
+            No, salir
+          </button>
+          <form id="formDelete" action="{{route('project.deletedocument')}}" method="POST">
+            @csrf
+           
+            <input type="hidden"  id="doc_id" name="doc_id">
+            <button type="submit" class="btn btn-sm btn-danger shadow-sm">
+              <i class="fas fa-trash fa-sm text-white-50"></i>
+              Si, eliminar
+            </button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
     @endsection
 
     @section('scripts')
     <script>
         function eliminar(dato){
             $('#eliminarcontrato').val(dato);
-            
+            $('#pe').html('¿Seguro que desea eliminar el contrato?'+'<b>#'+ dato+'</b');
             $('#eliminarContrato').modal('show')
         }
     
-        function mandar(dato1, dato2, dato3, dato4, dato5, dato6, dato7, dato8, dato9, dato10, dato11, dato12, dato13, dato14, dato15, dato16, dato17, dato18, dato19,dato20,dato21,dato22,dato23) {
+        function mandar(dato1, dato2, dato3, dato4, dato5, dato6, dato7, dato8, dato9, dato10, dato11, dato12, dato13, dato14, dato15, dato16, dato17, dato18, dato19,dato20,dato21,dato22,dato23,data) {
 
+            console.log(data);
           
             $('#id_contrato').val(dato1);
             $('#entidadadjudicacionmodal').val(dato2);
@@ -501,14 +606,67 @@
             $('#modalidadcontratomodal').val(dato22);
             $('#estadoactualmodal').val(dato23);
 
+
+            $('#id_contratomodal').val(dato1);
+
             //Para el título del modal.
 
             $('#modal-title').html('Actualizando contrato: '+dato1);
 
+          
+            /*Para llenar la tabla dinámicamente**/
+
+            $.ajax({
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id_contrato": dato1,
+                },
+                url: "{{ route('getdocsfromcontract') }}",
+                type: 'post',
+                dataType: "json",
+                success: function(resp) {
+
+                    /*una vez que el archivo recibe el request lo procesa y lo devuelve
+                    y  construye la tabla dentro del modal con el nombre y tipo del documento de 
+                    determinada fase
+                    */
+
+                    console.log(resp);
+                    
+                    $(".display tbody tr").remove();
+                    
+                    trHTML = '';
+                    $.each(resp, function(i, userData) {
+
+                        var public_path = "{{asset('documents/') }}";
+                        var f = public_path + "/" + resp[i].url
+                        trHTML +=
+                            '<tr><td >' +
+                            '<a  target="_blank" class="badge badge-pill badge-info" href="'+f+'">'+resp[i].url +' </a>'+    
+                            '<td>'+ resp[i].titulo +' </td>'+
+                            '</td>><td>' +
+                           ' <a id="deldoc" href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="'+resp[i].id+'" data-name="'+resp[i].url+'">'+
+                           '<i class="fa fa-trash"></i></a>'+ 
+                           '</tr>';
+                    });
+
+                    $('#cuerpodocumentos').append(trHTML);
+
+                    if (resp.length == 0) {
+                        trHTML += '<tr><td>Sin documentos</td><td></td></tr>';
+                        $('#cuerpodocumentos').append(trHTML);
+                    }
+                
+                },
+                error: function(response) {
+                  
+                }
+            });
+          
 
             $('#editarContrato').modal('show')
         }
     </script>
 
-    <script src="{{asset('js/deletemodaldocument.js')}}"></script>
+<script src="{{asset('js/deletemodaldocument.js')}}"></script>
     @endsection

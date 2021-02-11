@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\DocumentType;
+
+
 ?>
 <div class="col-lg-6">
 
@@ -98,5 +100,6 @@ use App\Models\DocumentType;
         </div>
     </div>
 
+   
 
 </div>

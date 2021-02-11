@@ -102,7 +102,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/admin/guardarRecurso', [AdminProjectController::class, 'guardarRecurso'])->name('guardarRecurso');
 
     Route::get('/admin/noaplica/{id_project}', [AdminProjectController::class, 'noaplica'])->name('noaplica');
+    Route::post('/admin/siguientecontratacion/', [AdminProjectController::class, 'siguientecontratacion'])->name('siguientecontratacion');
     Route::post('/admin/siguientejecucion/', [AdminProjectController::class, 'siguientejecucion'])->name('siguientejecucion');
+    Route::post('/admin/agregarArchivoContrato/', [AdminProjectController::class, 'agregarArchivoContrato'])->name('agregarArchivoContrato');
+    Route::post('/admin/getdocsfromcontract/', [AdminProjectController::class, 'getdocsfromcontract'])->name('getdocsfromcontract');
 
 
     Route::post('/admin/guardarDocumentosPreparacion', [AdminProjectController::class, 'guardarDocumentosPreparacion'])->name('guardarDocumentosPreparacion');

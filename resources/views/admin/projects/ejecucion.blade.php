@@ -5,17 +5,23 @@
 
 @section('content')
 @include('admin.projects.phasesnav')
-
+<?php
+use App\Models\DocumentType;
+?>
 
 @foreach($contratos as $contrato)
 <?php
     $ejecucion=DB::table('proyecto_ejecucion')
     ->where('id_contrato',$contrato->id)
     ->first();
+
+   
+
     $btn=false;
     $ruta='project.saveejecucion';
     if($ejecucion==null){
         $ejecucion=new stdClass();
+        $ejecucion->id="";
         $ejecucion->variacionespreciocontrato="";
         $ejecucion->razonescambiopreciocontrato="";
         $ejecucion->variacionesduracioncontrato="";
@@ -25,10 +31,28 @@
         $ejecucion->aplicacionescalatoria="";
         $ejecucion->estadoactualproyecto="";
         $ejecucion->observaciones="";
+        $contract_documents=DB::table('contract_documents')
+        ->join('documents','contract_documents.id_document','=','documents.id')
+        ->join('documenttype','documents.documenttype','=','documenttype.id')
+        ->select('documents.id','documents.url','documenttype.titulo',
+        'contract_documents.id_document')
+        ->where('id_contrato','=',$ejecucion->id)
+        ->get();
       
     }else{
         $btn=true;
         $ruta='project.updateejecucion';
+
+
+        $contract_documents=DB::table('contract_documents')
+    ->join('documents','contract_documents.id_document','=','documents.id')
+    ->join('documenttype','documents.documenttype','=','documenttype.id')
+    ->select('documents.id','documents.url','documenttype.titulo',
+    'contract_documents.id_document')
+    ->where('id_contrato','=',$ejecucion->id)
+    ->get();
+   
+   // die();
     }
 ?>
     
@@ -52,6 +76,9 @@
 
         <form action="{{route($ruta)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @if($ejecucion!=null)
+            <input type="hidden" value="{{$ejecucion->id}}" name="id_ejecucion">
+            @endif
             <input type="hidden" value="{{$project->id}}" name="id_project">
             <input type="hidden" value="{{$contrato->id}}" name="id_contrato">
             <div class="form-row">
@@ -145,8 +172,58 @@
         <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{$ejecucion->observaciones}}">
           </div>
         </div>
-            @include('admin.projects.selectdocuments')
     
+<div class="col-lg-6">
+
+    <div class="card shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a href="#collapseCardExample5" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample5">
+
+            <h6 class="m-0 font-weight-bold text-primary">Documentos</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+
+        <div class="collapse show" id="collapseCardExample5">
+            <div class="card-body">
+
+                <form>
+
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="">Seleccionar documentos</label>
+                            <input type="file" class="form-control" name="documents[]" multiple>
+
+
+                            <label for="documenttype">Tipo de documento</label>
+                            <select name="documenttype" id="documenttype" class="form-control @error('documenttype') is-invalid @enderror">
+                                <option value="">Selecciona un opción</option>
+                                @foreach($documentstype as $type)
+
+                                <option value="{{$type->id}}">{{$type->titulo}}</option>
+
+                                @endforeach
+
+                            </select>
+                            @error('documenttype')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                           
+                        </div>
+
+
+
+                    </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+    
+            
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-warning shadow-sm offset-md-10" style="color: black; font-weight:bold">
                  
@@ -162,6 +239,62 @@
 
 
     </form>
+
+    <div class="col-md-12 table-responsive">
+                                    <label for="">Lista de documentos</label>
+                                   
+                                
+                                 
+
+
+
+
+                                    <table class="display table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del documento</th>
+                                            <th>Tipo de documento</th>
+                                            <th>Acciones</th>
+                                        </tr>   
+                                     </thead>
+                                      
+
+
+                                        <tbody id="cuerpodocumentos">
+                                        @foreach($contract_documents as $document)
+                                            <?php
+                                          
+
+                                            $ruta = 'documents/' . $document->url;
+                                          
+                                           
+
+                                            ?>
+
+
+                                            <tr>
+                                                <td>
+                                                    <a target="_blank" class="badge badge-pill badge-info" href="{{asset($ruta)}}">{{$document->url}}</a>
+                                                </td>
+                                                <td>
+                                                 {{$document->titulo}}
+                                                </td>
+                                                <td>
+
+                                                    <a id="deldoc" href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal" data-id="{{ $document->id }}" data-name="{{ $document->url }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+
+
+                                                </td>
+                                            </tr>
+
+                                            @endforeach
+                                        </tbody>
+
+                                    </table>
+                                    </div>
+
     @include('admin.projects.modaldeletedocument')
 
 </div>

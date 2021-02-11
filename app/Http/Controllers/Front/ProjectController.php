@@ -223,6 +223,7 @@ class ProjectController extends Controller
                 ->where('id_project', '=', $id)
                 ->get();
 
+          
             $identificacion = array();
             $preparacion = array();
             $contratacion = array();
@@ -249,15 +250,16 @@ class ProjectController extends Controller
                         break;
                 }
             }
-
+            
+         
 
             $all = DB::table('project')
 
                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
                 ->join('project_locations', 'project.id', '=', 'project_locations.id_project')
                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
-                ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
-                ->leftJoin('proyecto_ejecucion', 'project.id', '=', 'proyecto_ejecucion.id_project')
+                //->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+                //->leftJoin('proyecto_ejecucion', 'project.id', '=', 'proyecto_ejecucion.id_project')
                 ->leftJoin('proyecto_finalizacion', 'project.id', '=', 'proyecto_finalizacion.id_project')
                 ->select(
                     'project.*',
@@ -267,15 +269,14 @@ class ProjectController extends Controller
                     'locations.lat as lat',
                     'locations.lng as lng',
                     'locations.description as descriptionlocation',
-                    'proyecto_contratacion.*',
-                    'proyecto_ejecucion.*',
-                    'proyecto_ejecucion.*',
+                  //  'proyecto_contratacion.*',
+                  //  'proyecto_ejecucion.*',
                     'proyecto_finalizacion.*',
                     'project.id as id_project',
                     'generaldata.observaciones as observaciones1',
                     'project.observaciones as observaciones2',
-                    'proyecto_contratacion.observaciones as observaciones4',
-                    'proyecto_ejecucion.observaciones as observaciones5',
+                  //  'proyecto_contratacion.observaciones as observaciones4',
+                  //  'proyecto_ejecucion.observaciones as observaciones5',
                     'proyecto_finalizacion.observaciones as observaciones6',
                 )
                 ->where('project.id', '=', $id)
@@ -314,8 +315,7 @@ class ProjectController extends Controller
                 ->get();
 
 
-            $empresas = $all->empresasparticipantes;
-            $empresasparticipantes = explode(",", $empresas);
+          
 
             $sector = DB::table('projectsector')
                 ->where('id', '=', $project->sector)
@@ -326,28 +326,19 @@ class ProjectController extends Controller
                 ->select('titulo')
                 ->first();
 
-            //validate null 
-            $tipocontrato = DB::table('cattipo_contrato')
-                ->where('id', '=', $all->tipocontrato)
-                ->first();
-            if ($tipocontrato == null) {
-                $tipocontrato = new stdClass();
-                $tipocontrato->titulo = "";
-            }
-            $modalidadcontratacion = DB::table('catmodalidad_contratacion')
-                ->where('id', '=', $all->modalidadcontrato)
-                ->first();
-            if ($modalidadcontratacion == null) {
-                $modalidadcontratacion = new stdClass();
-                $modalidadcontratacion->titulo = "";
-            }
+            //Del contrato
+            $contratos=DB::table('proyecto_contratacion')
+          //  ->leftJoin('contract_documents','proyecto_contratacion.id','=','contract_documents.id_contrato')
+            ->where('proyecto_contratacion.id_project','=',$id)
+            ->get();
 
-            $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
-                ->where('id', '=', $all->modalidadadjudicacion)
-                ->first();
-            $estadoactual = DB::table('contractingprocess_status')
-                ->where('id', '=', $all->estadoactual)
-                ->first();
+            //Ejecución
+            $ejecuciones=DB::table('proyecto_ejecucion')
+              ->where('proyecto_ejecucion.id_project','=',$id)
+              ->get();
+            
+            
+
 
             $project_imgs = DB::table('projects_imgs')
                 ->where('id_project', '=', $project->id)
@@ -375,6 +366,8 @@ class ProjectController extends Controller
                 ->where('id', '=', $all->type)
                 ->first();
 
+             
+
             return view('front.project-single', [
 
                 'project' => $all,
@@ -383,12 +376,14 @@ class ProjectController extends Controller
                 'contratacion' => $contratacion,
                 'ejecucion' => $ejecucion,
                 'finalizacion' => $finalizacion,
-                'empresasparticipantes' => $empresasparticipantes,
+                'contratos'=>$contratos,
+                'ejecuciones'=>$ejecuciones,
+               // 'empresasparticipantes' => $empresasparticipantes,
                 'subsector' => $subsector,
-                'tipocontrato' => $tipocontrato,
-                'modalidadcontratacion' => $modalidadcontratacion,
-                'modalidadadjudicacion' => $modalidadadjudicacion,
-                'estadoactual' => $estadoactual,
+                //'tipocontrato' => $tipocontrato,
+                //'modalidadcontratacion' => $modalidadcontratacion,
+                //'modalidadadjudicacion' => $modalidadadjudicacion,
+                //'estadoactual' => $estadoactual,
                 'project_documents' => $project_documents,
                 'project_imgs' => $project_imgs,
                 'responsableproyecto' => $responsableproyecto,

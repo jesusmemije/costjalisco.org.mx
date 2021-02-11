@@ -1085,6 +1085,27 @@ class ProjectController extends Controller
             ]);
         }  
     }
+
+    public function siguientecontratacion(Request $request){
+
+        $project=Project::find($request->id_project);
+
+        if($project->status<=2){
+            DB::table('project')
+            ->where('id', $request->id_project)
+            ->update(['status' => 3]);
+            return redirect()->route('project.ejecucion', [
+                'project' => $request->id_project,
+            ]);
+        }else{
+            return redirect()->route('project.ejecucion', [
+                'project' => $request->id_project,
+            ]);
+        }
+
+       
+
+    }
     public function siguientejecucion(Request $request){
 
         $project=Project::find($request->id_project);
@@ -1319,9 +1340,53 @@ class ProjectController extends Controller
 
         return back()->with('status', '¡La fase de preparación ha sido actualizada correctamente!');
     }
+    public function agregarArchivoContrato(Request $request){
+
+      
+
+        if (!empty($request->documentsupdate)) {
+
+            $request->validate([
+                'documenttypeupdate'=>'required',
+            ]);
+    
+    
+            for ($i = 0; $i < sizeof($request->documentsupdate); $i++) {
+                $nombre_img = $_FILES['documentsupdate']['name'][$i];
+                $nombre_img =str_replace(' ', '', $nombre_img);
+                move_uploaded_file($_FILES['documentsupdate']['tmp_name'][$i], 'documents/' . $nombre_img);
+                $url = $nombre_img;
+    
+    
+       
+    
+                $documents = new Documents();
+                $documents->documentType = $request->documenttypeupdate;
+                $documents->description = 'contratacion';
+                $documents->url = $url;
+                $documents->save();
+    
+                $projectdocuments = new ProjectDocuments();
+                $projectdocuments->id_project = $request->id_project;
+                $projectdocuments->id_document = $documents->id;
+                $projectdocuments->save();
+            }
+            //update
+          
+          
+            DB::table('contract_documents')
+            ->insert(
+                [
+                    'id_contrato'=>$request->id_contrato,
+                    'id_document'=>$documents->id
+                ]);
+                return back()->with('status', '¡Documento agregado al contrato correctamente!');
+        }
+    }
      /*Función que actualiza los registros de la fase de contratación*/
     public function updatecontratacion(Request $request)
     {   
+      
         $request->validate([
 
             'telefonocontactou'=>'max:10',
@@ -1373,7 +1438,11 @@ class ProjectController extends Controller
             ]);
 
 
-        ProjectController::havedocuments($request, 'contratacion');
+       // ProjectController::havedocuments($request, 'contratacion');
+
+
+ 
+
 
         if ($procedimiento_contratacion) {
             return back()->with('status', '¡La fase de contratación ha sido actualizada correctamente!');
@@ -1385,10 +1454,28 @@ class ProjectController extends Controller
 
 public function deletecontrato(Request $request){
 
+    $project_documents = DB::table('contract_documents')
+    ->join('documents', 'contract_documents.id_document', '=', 'documents.id')
+    ->where('contract_documents.id_contrato', '=', $request->eliminarcontrato)
+    ->get();
+
+
+foreach ($project_documents as $document) {
+
+    Documents::destroy($document->id);
+    $ruta = public_path() . '/documents' . '/' . $document->url;
+    if (file_exists(($ruta))) {
+        unlink($ruta);
+    }
+}
     
 
     $eliminar=DB::table('proyecto_contratacion')->where('id', '=', $request->eliminarcontrato)->delete();
-
+    $eliminar=DB::table('proyecto_ejecucion')->where('id_contrato', '=', $request->eliminarcontrato)->delete();
+    $eliminar=DB::table('contract_documents')->where('id_contrato', '=', $request->eliminarcontrato)->delete();
+    
+    
+    
     return back()->with('status', '¡El contrato ha sido eliminado correctamente!');
 
 }
@@ -1396,6 +1483,34 @@ public function deletecontrato(Request $request){
  /*Función que actualiza los registros de la fase de ejecución*/
     public function updateejecucion(Request $request)
     {
+
+        if (!empty($request->documents)) {
+
+            $request->validate([
+                'documenttype'=>'required',
+            ]);
+
+            for ($i = 0; $i < sizeof($request->documents); $i++) {
+                $nombre_img = $_FILES['documents']['name'][$i];
+                $nombre_img =str_replace(' ', '', $nombre_img);
+                move_uploaded_file($_FILES['documents']['tmp_name'][$i], 'documents/' . $nombre_img);
+                $url = $nombre_img;
+
+
+       
+
+                $documents = new Documents();
+                $documents->documentType = $request->documenttype;
+                $documents->description = 'ejecucion';
+                $documents->url = $url;
+                $documents->save();
+
+                $projectdocuments = new ProjectDocuments();
+                $projectdocuments->id_project = $request->id_project;
+                $projectdocuments->id_document = $documents->id;
+                $projectdocuments->save();
+            }
+        }
 
         $proyecto_ejecucion = DB::table('proyecto_ejecucion')
             ->where('id_contrato', '=', $request->id_contrato)
@@ -1415,8 +1530,20 @@ public function deletecontrato(Request $request){
 
             ]);
 
-        ProjectController::havedocuments($request, 'ejecucion');
+            if (!empty($request->documents)) {
+                $id_contrato = $request->id_ejecucion;
+              
+                DB::table('contract_documents')
+                ->insert(
+                    [
+                        'id_contrato'=>$id_contrato,
+                        'id_document'=>$documents->id
+                    ]);
+                    return back()->with('status', '¡La fase de ejecución ha sido actualizada correctamente!');
+                }
 
+        //ProjectController::havedocuments($request, 'ejecucion');
+      
 
 
         if ($proyecto_ejecucion) {
@@ -1523,7 +1650,36 @@ public function deletecontrato(Request $request){
            return back()->with('status', '¡No hay contratos!');
        } else {
                 //Validamos que tenga documentos.
-                ProjectController::havedocuments($request, 'ejecucion');
+                //ProjectController::havedocuments($request, 'ejecucion');
+
+                if (!empty($request->documents)) {
+
+                    $request->validate([
+                        'documenttype'=>'required',
+                    ]);
+        
+                    for ($i = 0; $i < sizeof($request->documents); $i++) {
+                        $nombre_img = $_FILES['documents']['name'][$i];
+                        $nombre_img =str_replace(' ', '', $nombre_img);
+                        move_uploaded_file($_FILES['documents']['tmp_name'][$i], 'documents/' . $nombre_img);
+                        $url = $nombre_img;
+        
+        
+               
+        
+                        $documents = new Documents();
+                        $documents->documentType = $request->documenttype;
+                        $documents->description = 'ejecucion';
+                        $documents->url = $url;
+                        $documents->save();
+        
+                        $projectdocuments = new ProjectDocuments();
+                        $projectdocuments->id_project = $request->id_project;
+                        $projectdocuments->id_document = $documents->id;
+                        $projectdocuments->save();
+                    }
+                }
+
                // Si hay id_contrato entonces lo recorremos
           
 
@@ -1547,7 +1703,15 @@ public function deletecontrato(Request $request){
        
                    ]);
            
-               
+                   if (!empty($request->documents)) {
+                    $id_contrato = DB::getPdo()->lastInsertId();
+                    DB::table('contract_documents')
+                    ->insert(
+                        [
+                            'id_contrato'=>$id_contrato,
+                            'id_document'=>$documents->id
+                        ]);
+                    }
             
         
 
@@ -1620,8 +1784,38 @@ public function deletecontrato(Request $request){
 
             ]);
         }
+        //No se usa la función ya que se necesita registrar en otra tabla.
+        //ProjectController::havedocuments($request, 'contratacion');
 
-        ProjectController::havedocuments($request, 'contratacion');
+
+        if (!empty($request->documents)) {
+
+            $request->validate([
+                'documenttype'=>'required',
+            ]);
+
+            for ($i = 0; $i < sizeof($request->documents); $i++) {
+                $nombre_img = $_FILES['documents']['name'][$i];
+                $nombre_img =str_replace(' ', '', $nombre_img);
+                move_uploaded_file($_FILES['documents']['tmp_name'][$i], 'documents/' . $nombre_img);
+                $url = $nombre_img;
+
+
+       
+
+                $documents = new Documents();
+                $documents->documentType = $request->documenttype;
+                $documents->description = 'contratacion';
+                $documents->url = $url;
+                $documents->save();
+
+                $projectdocuments = new ProjectDocuments();
+                $projectdocuments->id_project = $request->id_project;
+                $projectdocuments->id_document = $documents->id;
+                $projectdocuments->save();
+            }
+        }
+    
 
         $procedimiento_contratacion = DB::table('proyecto_contratacion')
             ->insert([
@@ -1654,8 +1848,15 @@ public function deletecontrato(Request $request){
 
             ]);
 
-
-
+            if (!empty($request->documents)) {
+        $id_contrato = DB::getPdo()->lastInsertId();
+        DB::table('contract_documents')
+        ->insert(
+            [
+                'id_contrato'=>$id_contrato,
+                'id_document'=>$documents->id
+            ]);
+        }
 
 
         if ($procedimiento_contratacion) {
@@ -1776,6 +1977,20 @@ public function deletecontrato(Request $request){
             'project' => $request->id_project,
         ]);
     }
+
+public function getdocsfromcontract(){
+    $id_contrato=$_POST['id_contrato'];
+    $contract_documents=DB::table('contract_documents')
+    ->join('documents','contract_documents.id_document','=','documents.id')
+    ->join('documenttype','documents.documenttype','=','documenttype.id')
+    ->select('documents.id','documents.url','documenttype.titulo',
+    'contract_documents.id_document')
+    ->where('id_contrato','=',$id_contrato)
+    ->get();
+    
+    echo json_encode($contract_documents);   
+}
+    
 /*Función que guarda un nuevo registro de la fase de identificacion*/
     public function saveidentificacion(Request $request)
     {
