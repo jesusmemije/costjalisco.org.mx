@@ -220,14 +220,14 @@ Inicio
 <div class="row mx-0">
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Instituciones públicas participantes</div>
-        <img src="{{ asset('assets/img/home/indices/org.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
+        <img src="{{ asset('assets/img/home/indices/org1.jpg') }}" class="img-fluid" alt="Indice de organizaciones">
         <div class="card-indice-counter">
             {{$total_organization}}
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Proyectos en la iniciativa</div>
-        <img src="{{ asset('assets/img/home/indices/proyectos.jpg') }}" class="img-fluid" alt="Indice de proyectos">
+        <img src="{{ asset('assets/img/home/indices/proyectos1.jpg') }}" class="img-fluid" alt="Indice de proyectos">
         <div class="card-indice-counter">
             {{$total_proyectos}}
         </div>
@@ -235,14 +235,14 @@ Inicio
 
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Personas beneficiadas</div>
-        <img src="{{ asset('assets/img/home/indices/personas.jpg') }}" class="img-fluid" alt="Indice de personas">
+        <img src="{{ asset('assets/img/home/indices/personas1.jpg') }}" class="img-fluid" alt="Indice de personas">
         <div class="card-indice-counter">
             {{number_format($total_beneficiarios)}}
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-0">
         <div class="card-indice-title">Presupuesto asignado</div>
-        <img src="{{ asset('assets/img/home/indices/presupuesto.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
+        <img src="{{ asset('assets/img/home/indices/presupuesto1.jpg') }}" class="img-fluid" alt="Indice de presupuesto">
         <div class="card-indice-counter presupuesto">
             ${{number_format($total_presupuesto_ejercido,2)}}
         </div>
