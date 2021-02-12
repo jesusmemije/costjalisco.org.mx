@@ -384,6 +384,10 @@ Datos del proyecto
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5" style="border-right:1px solid #628ea0;">
+        <?php
+        $empresasarray=array();
+        ?>
+        
                 @foreach($contratos as $contrato)
                 <span><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
             <span><b>Nombre: </b>{{$contrato->nombrecontacto}}</span><br>
@@ -413,8 +417,10 @@ Datos del proyecto
             $tipocontrato = new stdClass();
             $tipocontrato->titulo = "";
         }
+
         $empresas = $contrato->empresasparticipantes;
-        $empresasparticipantes = explode(",", $empresas);
+        array_push($empresasarray,$empresas);
+      
             ?>
 
             <i class="fas fa-file-alt"></i>
@@ -449,13 +455,22 @@ Datos del proyecto
             <br class="hidden-desktop">
             <h3 class="ml-4 title-empresas" style="font-weight: bold; color:#628ea0;">Empresas participantes</h3>
 
+<!--here-->
+@php
+$implode=implode(",",$empresasarray);
+$empresasparticipantes = explode(",", $implode);
+@endphp
+
 @foreach($empresasparticipantes as $empresa)
+
+
+
 <div class="row py-4 border-left-empresas">
     <div class="col-md-2 col-2">
         <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
     </div>
     <div class="col-md-10 col-10 px-0">
-        <span style="font-weight: 700;">{{ $empresa }}</span><br>
+        <span style="font-weight: 700;">{{$empresa}}</span><br>
     </div>
 </div>
 @endforeach
@@ -546,23 +561,26 @@ Datos del proyecto
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5">
+
+        @foreach($finalizaciones as  $finalizacion)
             <?php
 
-            if ($project->fechafinalizacion = "") {
+            if ($finalizacion->fechafinalizacion = "") {
                 $f = "";
             } else {
-                $f = strtotime($project->fechafinalizacion);
+                $f = strtotime($finalizacion->fechafinalizacion);
             }
             ?>
-            <span><b>Costo de finalización: </b>${{number_format($project->costofinalizacion)}}</span><br>
-            <span><b>Fecha de finalización: </b>@if($f=="")@else{{date('d/m/Y',$f)}}@endif</span><br>
-            <span><b>Alcance de la finalización: </b>{{$project->alcancefinalizacion}}</span><br>
-            <span><b>Razones de cambio en el proyecto: </b>{{$project->razonescambioproyecto}}</span><br>
+            <span><b>Costo de finalización: </b>${{number_format($finalizacion->costofinalizacion)}}</span><br>
+            <span><b>Fecha de finalización: </b>$finalizacion->fechafinalizacion</span><br>
+            <span><b>Alcance de la finalización: </b>{{$finalizacion->alcancefinalizacion}}</span><br>
+            <span><b>Razones de cambio en el proyecto: </b>{{$finalizacion->razonescambioproyecto}}</span><br>
             <br>
-            @if($project->observaciones6!="")
+          
             <span><b>Observaciones de la sección:</b></label><br>
-                <span>{{$project->observaciones6}}</span>
-                @endif
+                <span>{{$finalizacion->observaciones}}</span>
+        @endforeach
+  
         </div>
     </div>
     <br class="hidden-desktop">
@@ -587,22 +605,12 @@ Datos del proyecto
             </div>
         </div>
         <div class="col-md-3 text-inaguracion">
-            <?php
-            if ($project->fechafinalizacion = "") {
-                $f = "";
-            } else {
-                $f = strtotime($project->fechafinalizacion);
-            }
-
-
-            ?>
+         
             <span style="font-weight: 700;">Inagurada:
-                @if($f=="")
-                @else
-                {{date('d/m/Y',$f)}}
-                @endif
+          
 
             </span>
+           
         </div>
     </div>
 
@@ -627,13 +635,7 @@ Datos del proyecto
             <img src="{{ asset('/assets/img/project/icons/dinero.png') }}" class="img-fluid" width="24" alt="">
             <br class="hidden-desktop">
             &nbsp<span class="text-resumen">Inversión: $
-
-                @if($project->costofinalizacion=="")
           
-                @else
-                {{number_format($project->costofinalizacion)}}
-
-                @endif
 
             </span>
         </div>

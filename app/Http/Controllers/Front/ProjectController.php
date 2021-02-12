@@ -260,7 +260,7 @@ class ProjectController extends Controller
                 ->join('locations', 'project_locations.id_location', '=', 'locations.id')
                 //->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
                 //->leftJoin('proyecto_ejecucion', 'project.id', '=', 'proyecto_ejecucion.id_project')
-                ->leftJoin('proyecto_finalizacion', 'project.id', '=', 'proyecto_finalizacion.id_project')
+               // ->leftJoin('proyecto_finalizacion', 'project.id', '=', 'proyecto_finalizacion.id_project')
                 ->select(
                     'project.*',
                     'generaldata.*',
@@ -271,13 +271,13 @@ class ProjectController extends Controller
                     'locations.description as descriptionlocation',
                   //  'proyecto_contratacion.*',
                   //  'proyecto_ejecucion.*',
-                    'proyecto_finalizacion.*',
+                 //   'proyecto_finalizacion.*',
                     'project.id as id_project',
                     'generaldata.observaciones as observaciones1',
                     'project.observaciones as observaciones2',
                   //  'proyecto_contratacion.observaciones as observaciones4',
                   //  'proyecto_ejecucion.observaciones as observaciones5',
-                    'proyecto_finalizacion.observaciones as observaciones6',
+                  //  'proyecto_finalizacion.observaciones as observaciones6',
                 )
                 ->where('project.id', '=', $id)
                 ->first();
@@ -336,8 +336,13 @@ class ProjectController extends Controller
             $ejecuciones=DB::table('proyecto_ejecucion')
               ->where('proyecto_ejecucion.id_project','=',$id)
               ->get();
+
+            //Finalización
+            $finalizaciones=DB::table('proyecto_finalizacion')
+            ->where('proyecto_finalizacion.id_project','=',$id)
+            ->get();
             
-            
+         
 
 
             $project_imgs = DB::table('projects_imgs')
@@ -378,6 +383,7 @@ class ProjectController extends Controller
                 'finalizacion' => $finalizacion,
                 'contratos'=>$contratos,
                 'ejecuciones'=>$ejecuciones,
+                'finalizaciones'=>$finalizaciones,
                // 'empresasparticipantes' => $empresasparticipantes,
                 'subsector' => $subsector,
                 //'tipocontrato' => $tipocontrato,
