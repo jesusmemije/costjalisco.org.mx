@@ -553,6 +553,7 @@
             @csrf
            
             <input type="hidden"  id="doc_id" name="doc_id">
+        
             <button type="submit" class="btn btn-sm btn-danger shadow-sm">
               <i class="fas fa-trash fa-sm text-white-50"></i>
               Si, eliminar

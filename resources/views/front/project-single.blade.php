@@ -374,7 +374,7 @@ Datos del proyecto
 <!-- Section - Procedimiento de contratación -->
 <div class="row mt-5" id="contratacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
+        <span style="font-weight: 700; margin-left: 80px;">Procedimiento de contratación</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
