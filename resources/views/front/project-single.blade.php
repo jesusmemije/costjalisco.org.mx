@@ -382,84 +382,108 @@ Datos del proyecto
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 mt-5" style="border-right:1px solid #628ea0;">
-                @foreach($contratos as $contrato)
+    <div class="row d-flex">
+        @php
+            $contador=0;
+        @endphp
+        @foreach($contratos as $contrato)
+            <div class="col-md-6" style="border-right:1px solid #628ea0;">
+                <style>
+                    #vermas{
+                        display: none;
+                    }
+                </style>
+                
+                @php
+                    $contador+=1;
+                @endphp
+                <div class="background-title mb-4">
+                    <strong style="background: #628ea0; font-size: 20px !important">
+                        CONTRATO {{number_format($contador)}}
+                    </strong>
+                </div>
                 <span><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
-            <span><b>Nombre: </b>{{$contrato->nombrecontacto}}</span><br>
-            <span><b>Correo electrónico: </b>{{$contrato->emailcontacto}}</span><br>
-            <span><b>Télefono: </b>{{$contrato->telefonocontacto}}</span><br>
-            <span><b>Domicilio: </b>{{$contrato->domiciliocontacto}}</span><br>
+                <span><b>Nombre: </b>{{$contrato->nombrecontacto}}</span><br>
+                <button id="show" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
+                <div id="vermas">
 
-            <br>
-            <?php 
-           $tipocontrato = DB::table('cattipo_contrato')
-           ->where('id', '=', $contrato->tipocontrato)
-           ->first();
-           $modalidadcontratacion = DB::table('catmodalidad_contratacion')
-           ->where('id', '=', $contrato->modalidadcontrato)
-           ->first();
-           $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
-           ->where('id', '=', $contrato->modalidadadjudicacion)
-           ->first();
-       $estadoactual = DB::table('contractingprocess_status')
-           ->where('id', '=', $contrato->estadoactual)
-           ->first();
-           if ($modalidadcontratacion == null) {
-            $modalidadcontratacion = new stdClass();
-            $modalidadcontratacion->titulo = "";
-        }
-        if ($tipocontrato == null) {
-            $tipocontrato = new stdClass();
-            $tipocontrato->titulo = "";
-        }
-        $empresas = $contrato->empresasparticipantes;
-        $empresasparticipantes = explode(",", $empresas);
-            ?>
+                
+                    <span><b>Correo electrónico: </b>{{$contrato->emailcontacto}}</span><br>
+                    <span><b>Télefono: </b>{{$contrato->telefonocontacto}}</span><br>
+                    <span><b>Domicilio: </b>{{$contrato->domiciliocontacto}}</span><br>
 
-            <i class="fas fa-file-alt"></i>
-            <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
-            <i class="fas fa-file-signature"></i>
-            <span><b>Modalidad de contratación:</b> {{$modalidadcontratacion->titulo}}</span><br>
-            <i class="fas fa-edit"></i>
-            <span><b>Entidad administradora del contrato:</b> {{$contrato->entidad_admin_contrato}}</span><br>
-            <i class="fas fa-file-invoice"></i>
-            <span><b>Título del contrato:</b> {{$contrato->titulocontrato}}</span><br>
-            <i class="fas fa-print"></i>
-            <span><b>Vía por la que presenta su propuesta:</b> {{$contrato->viapropuesta}}</span><br>
-            <i class="fas fa-hand-holding-usd"></i>
-            <span><b>Monto del contrato (cantidad estipulada):</b>${{number_format($contrato->montocontrato)}}</span><br>
-            <i class="fas fa-hard-hat"></i>
-            <span><b>Alcance del trabajo según el contrato:</b> {{$contrato->alcancecontrato}}</span><br>
-            <i class="far fa-clock"></i>
-            <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b>
-                {{$contrato->duracionproyecto_contrato}}</span><br><br>
+                    <br>
+                    <?php 
+                    $tipocontrato = DB::table('cattipo_contrato')
+                    ->where('id', '=', $contrato->tipocontrato)
+                    ->first();
+                    $modalidadcontratacion = DB::table('catmodalidad_contratacion')
+                    ->where('id', '=', $contrato->modalidadcontrato)
+                    ->first();
+                    $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
+                    ->where('id', '=', $contrato->modalidadadjudicacion)
+                    ->first();
+                    $estadoactual = DB::table('contractingprocess_status')
+                    ->where('id', '=', $contrato->estadoactual)
+                    ->first();
+                    if ($modalidadcontratacion == null) {
+                        $modalidadcontratacion = new stdClass();
+                        $modalidadcontratacion->titulo = "";
+                    }
+                    if ($tipocontrato == null) {
+                        $tipocontrato = new stdClass();
+                        $tipocontrato->titulo = "";
+                    }
+                    $empresas = $contrato->empresasparticipantes;
+                    $empresasparticipantes = explode(",", $empresas);
+                        ?>
 
-          
-               
-            <span><b>Observaciones de la sección:</b></label><br>
-                <span>{{$project->observaciones}}</span><br>
-            
+                        <i class="fas fa-file-alt"></i>
+                        <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
+                        <i class="fas fa-file-signature"></i>
+                        <span><b>Modalidad de contratación:</b> {{$modalidadcontratacion->titulo}}</span><br>
+                        <i class="fas fa-edit"></i>
+                        <span><b>Entidad administradora del contrato:</b> {{$contrato->entidad_admin_contrato}}</span><br>
+                        <i class="fas fa-file-invoice"></i>
+                        <span><b>Título del contrato:</b> {{$contrato->titulocontrato}}</span><br>
+                        <i class="fas fa-print"></i>
+                        <span><b>Vía por la que presenta su propuesta:</b> {{$contrato->viapropuesta}}</span><br>
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span><b>Monto del contrato (cantidad estipulada):</b>${{number_format($contrato->montocontrato)}}</span><br>
+                        <i class="fas fa-hard-hat"></i>
+                        <span><b>Alcance del trabajo según el contrato:</b> {{$contrato->alcancecontrato}}</span><br>
+                        <i class="far fa-clock"></i>
+                        <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b>
+                            {{$contrato->duracionproyecto_contrato}}</span><br><br>
+
+                    
+                        
+                        <span><b>Observaciones de la sección:</b></label><br>
+                            <span>{{$project->observaciones}}</span><br>
+                        
+                        <button id="hide" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
+                
+
+                    <br class="hidden-desktop">
+                </div>
+            </div>
+
+            <div class="col-md-6 border-top-empresas">
                 <br class="hidden-desktop">
-            
-          @endforeach
-        </div>
+                <h3 class="ml-4 title-empresas" style="font-weight: bold; color:#628ea0;">Empresas participantes</h3>
 
-        <div class="col-md-6 border-top-empresas">
-            <br class="hidden-desktop">
-            <h3 class="ml-4 title-empresas" style="font-weight: bold; color:#628ea0;">Empresas participantes</h3>
-
-@foreach($empresasparticipantes as $empresa)
-<div class="row py-4 border-left-empresas">
-    <div class="col-md-2 col-2">
-        <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
-    </div>
-    <div class="col-md-10 col-10 px-0">
-        <span style="font-weight: 700;">{{ $empresa }}</span><br>
-    </div>
-</div>
-@endforeach
-        </div>
+                @foreach($empresasparticipantes as $empresa)
+                <div class="row py-4 border-left-empresas">
+                    <div class="col-md-2 col-2">
+                        <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
+                    </div>
+                    <div class="col-md-10 col-10 px-0">
+                        <span style="font-weight: 700;">{{ $empresa }}</span><br>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        @endforeach
     </div>
     <div class="row">
         <div class="col-md-12 text-right">
@@ -748,7 +772,9 @@ Datos del proyecto
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
+
 <script type="text/javascript">
+
     // listen for screen resize events
 
     window.addEventListener('load', function(event) {
@@ -863,5 +889,24 @@ Datos del proyecto
         })
 
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("#hide").on('click', function() {
+        $("#vermas").hide();
+        $("#show").show();
+        $("#hide").hide();
+
+        return false;
+    });
+    // Al darle clic en el boton Ver más con id show2 mostramos los proyectos
+    $("#show").on('click', function() {
+        $("#vermas").show();
+        $("#hide").show();
+        $("#show").hide();
+
+        return false;
+    });
+});
 </script>
 @endsection
