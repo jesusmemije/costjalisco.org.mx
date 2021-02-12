@@ -36,7 +36,7 @@ use App\Models\DocumentType;
         ->join('documenttype','documents.documenttype','=','documenttype.id')
         ->select('documents.id','documents.url','documenttype.titulo',
         'contract_documents.id_document')
-        ->where('id_contrato','=',$ejecucion->id)
+        ->where('id_ejecucion','=',$ejecucion->id)
         ->get();
       
     }else{
@@ -49,7 +49,7 @@ use App\Models\DocumentType;
     ->join('documenttype','documents.documenttype','=','documenttype.id')
     ->select('documents.id','documents.url','documenttype.titulo',
     'contract_documents.id_document')
-    ->where('id_contrato','=',$ejecucion->id)
+    ->where('id_ejecucion','=',$ejecucion->id)
     ->get();
    
    // die();
