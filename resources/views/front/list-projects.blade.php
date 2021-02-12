@@ -144,10 +144,10 @@ Listado de obras
                                             </div>
                                             <div class="form-row">
                                                 <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    <span style="margin-bottom: -55%;" class="organismo-publico">{{$project->name_organization}}</span>
                                                 </div>
                                                 <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                    <a href="{{ route('project-single', $project->id) }}" style="margin-bottom: 5%;" class="btn btn-sm btn-conoce-mas">
                                                         Conoce más
                                                     </a>
                                                 </div>
