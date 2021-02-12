@@ -19,18 +19,18 @@ Listado de obras
        
     </div>
     
-    <div class="container mt-5">
+    <div class="container" id="mtop-phone">
     <div>
 
       
-        <div class="row mt-4">
-            <div class="col-lg-6">
-                <a href="">
+        <div class="row" >
+            <div class="col-lg-6" >
+                
                     <div class="container-item d-flex justify-content-between align-items-center text-white">
                         {{-- <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt=""> --}}
-                        <strong>DESCARGA TODOS LOS PROYECTOS DE LA INICIATIVA</strong>
+                        <strong id="titulos-phone">DESCARGA TODOS LOS PROYECTOS DE LA INICIATIVA</strong>
                     </div>
-                </a>
+                
             </div>
             <div style="margin-left: 3%;" class="col-md-12 mt-4">
         
@@ -91,7 +91,7 @@ Listado de obras
                     <a href="">
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                            <strong>GOBIERNO DEL ESTADO DE JALISCO (SIOP)</strong>
+                            <strong id="titulos-phone">GOBIERNO DEL ESTADO DE JALISCO (SIOP)</strong>
                         </div>
                     </a>
                 </div>
@@ -144,10 +144,10 @@ Listado de obras
                                             </div>
                                             <div class="form-row">
                                                 <div class="mt-4 form-group col-md-7 col-sm-7 col-6 ml-5 container-organismo-publico">
-                                                    <span class="organismo-publico">{{$project->name_organization}}</span>
+                                                    <span style="margin-bottom: -55%;" class="organismo-publico">{{$project->name_organization}}</span>
                                                 </div>
                                                 <div class="form-group mt-4 col-md-3 col-sm-3 col-6 container-btn">
-                                                    <a href="{{ route('project-single', $project->id) }}" class="btn btn-sm btn-conoce-mas">
+                                                    <a href="{{ route('project-single', $project->id) }}" style="margin-bottom: 5%;" class="btn btn-sm btn-conoce-mas">
                                                         Conoce más
                                                     </a>
                                                 </div>
@@ -247,7 +247,7 @@ Listado de obras
                     <a href="">
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                            <strong>AYUNTAMIENTO DE GUADALAJARA</strong>
+                            <strong id="titulos-phone">AYUNTAMIENTO DE GUADALAJARA</strong>
                         </div>
                     </a>
                 </div>
@@ -396,7 +396,7 @@ Listado de obras
                     <a href="">
                         <div class="container-item d-flex justify-content-between align-items-center text-white">
                             <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt="">
-                            <strong>AYUNTAMIENTO DE ZAPOPAN</strong>
+                            <strong id="titulos-phone">AYUNTAMIENTO DE ZAPOPAN</strong>
                         </div>
                     </a>
                 </div>

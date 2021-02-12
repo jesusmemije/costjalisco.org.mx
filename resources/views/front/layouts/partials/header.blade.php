@@ -236,13 +236,22 @@
                         PROYECTOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownProyectos">
-                        <a class="dropdown-item" href="{{route('statistics')}}">Estadísticas</a>
+                        {{-- <a class="dropdown-item" href="{{route('statistics')}}">Estadísticas</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{route('search-engine')}}">Motor de búsqueda</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{route('georeferencing')}}">Georreferenciación</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('list-projects')}}">Listado de obras</a> --}}
+
                         <a class="dropdown-item" href="{{route('list-projects')}}">Listado de obras</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('georeferencing')}}">Georreferenciación</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('statistics')}}">Estadísticas</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('search-engine')}}">Motor de búsqueda</a>
+                        <div class="dropdown-divider"></div>
                     </div>
                 </li>
 

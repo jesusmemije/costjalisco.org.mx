@@ -111,6 +111,16 @@
 
     .background-title {
         font-size: 28px;
+        margin-top: 15px;
+    }
+
+    #mtop-phone{
+        margin-top: 5px !important;
+    }
+    #titulos-phone{
+        background: #d60000 !important;
+        font-size: 12px !important;
+        margin-left: 6px !important;
     }
 
     .topic {
@@ -153,6 +163,10 @@
 
     .title-obra {
         margin-left: 0 !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
+        text-transform: uppercase;
+        padding-left: 10px !important;
     }
 
     .description-obra {
