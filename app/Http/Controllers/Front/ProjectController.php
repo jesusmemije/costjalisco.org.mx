@@ -337,6 +337,9 @@ class ProjectController extends Controller
               ->where('proyecto_ejecucion.id_project','=',$id)
               ->get();
             
+            $finalizaciones=DB::table('proyecto_finalizacion')
+            ->where('proyecto_finalizacion.id_project','=',$id)
+            ->get();
             
 
 
@@ -378,6 +381,7 @@ class ProjectController extends Controller
                 'finalizacion' => $finalizacion,
                 'contratos'=>$contratos,
                 'ejecuciones'=>$ejecuciones,
+                'finalizaciones'=>$finalizaciones,
                // 'empresasparticipantes' => $empresasparticipantes,
                 'subsector' => $subsector,
                 //'tipocontrato' => $tipocontrato,
