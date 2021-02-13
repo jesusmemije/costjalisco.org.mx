@@ -627,10 +627,6 @@ Datos del proyecto
             <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='finalizacion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
         </div>
     </div>
-
-
-
-
 </div>
 
 <div class="container mt-5">
@@ -642,22 +638,12 @@ Datos del proyecto
             </div>
         </div>
         <div class="col-md-3 text-inaguracion">
-            <?php
-            if ($project->fechafinalizacion = "") {
-                $f = "";
-            } else {
-                $f = strtotime($project->fechafinalizacion);
-            }
-
-
-            ?>
+         
             <span style="font-weight: 700;">Inagurada:
-                @if($f=="")
-                @else
-                {{date('d/m/Y',$f)}}
-                @endif
+          
 
             </span>
+           
         </div>
     </div>
 
@@ -682,13 +668,7 @@ Datos del proyecto
             <img src="{{ asset('/assets/img/project/icons/dinero.png') }}" class="img-fluid" width="24" alt="">
             <br class="hidden-desktop">
             &nbsp<span class="text-resumen">Inversión: $
-
-                @if($project->costofinalizacion=="")
           
-                @else
-                {{number_format($project->costofinalizacion)}}
-
-                @endif
 
             </span>
         </div>
