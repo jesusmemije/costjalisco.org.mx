@@ -51,6 +51,7 @@ class UserController extends Controller
       
         User::create([
             'role_id'   => $request->rol,
+            'username'  => $request->username,
             'name'      => $request->name,
             'last_name' => $request->last_name,
             'address'   => $request->address,
@@ -90,6 +91,7 @@ class UserController extends Controller
         }
         $user->update([
             'role_id'   => $request->rol,
+            'username'  => $request->username,
             'name'      => $request->name,
             'last_name' => $request->last_name,
             'address'   => $request->address,
