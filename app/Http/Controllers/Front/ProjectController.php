@@ -32,7 +32,7 @@ class ProjectController extends Controller
                 ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
                 ->select('project.*','organization.id as id_organization','organization.name as name_organization')
                 ->whereNotNull('proyecto_contratacion.montocontrato')
-                ->orderBy('project.created_at', 'desc')
+                ->orderBy('project.id', 'desc')
                 ->get();
 
             } else {

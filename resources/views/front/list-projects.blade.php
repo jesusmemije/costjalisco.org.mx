@@ -23,7 +23,7 @@ Listado de obras
     <div>
 
       
-        <div class="row" >
+        <div class="row mt-4" >
             <div class="col-lg-6" >
                 
                     <div class="container-item d-flex justify-content-between align-items-center text-white">
@@ -99,6 +99,7 @@ Listado de obras
                 // Estas variables es para ocultar mostrar un solo proyecto y ocultar los demas
                     $contar2=0;
                     $conta22=0;
+                    $id_proyecto=0;
                 @endphp
                 @foreach ($projects as $project)
                     
@@ -186,6 +187,9 @@ Listado de obras
                             @endphp
                             {{-- Si el contador2 es mayor que 1 entonces mostramos los proyectos. --}}
                             @if ($conta22>1)
+                                @if ($id_proyecto==$project->id)
+                                    
+                                @else
                                     <div class="media" >
                                             @php
                                             $imagen = DB::table('projects_imgs')
@@ -227,13 +231,17 @@ Listado de obras
                                             </div>
                                         </div>
                                     </div>
-                                
+                                @endif
                             @else
                             
                             @endif
+                            @php
+                                $id_proyecto=$project->id;
+                            @endphp
                         @else
                         
                         @endif
+                        
                     @endforeach
                 </div>
             </div>  
@@ -254,6 +262,7 @@ Listado de obras
                     @php
                         $contar7=0;
                         $conta27=0;
+                        $id_proyecto7=0;
                     @endphp
                     @foreach ($projects as $project)
                         
@@ -335,6 +344,9 @@ Listado de obras
                                     $conta27+=1;
                                 @endphp
                                 @if ($conta27>1)
+                                    @if ($id_proyecto7==$project->id)
+                                        
+                                    @else
                                         <div class="media" >
                                                 @php
                                                 $imagen = DB::table('projects_imgs')
@@ -376,13 +388,18 @@ Listado de obras
                                                 </div>
                                             </div>
                                         </div>
+                                    @endif
                                     
                                 @else
                                 
                                 @endif
+                                @php
+                                    $id_proyecto7=$project->id;
+                                @endphp
                             @else
                             
                             @endif
+                            
                         @endforeach
                     </div>
             </div> 
@@ -403,6 +420,7 @@ Listado de obras
                     @php
                         $contar8=0;
                         $conta28=0;
+                        $id_proyecto8=0;
                     @endphp
                     @foreach ($projects as $project)
                         
@@ -483,6 +501,9 @@ Listado de obras
                                     $conta28+=1;
                                 @endphp
                                 @if ($conta28>1)
+                                    @if ($id_proyecto8==$project->id)
+                                        
+                                    @else
                                         <div class="media" >
                                                 @php
                                                 $imagen = DB::table('projects_imgs')
@@ -524,10 +545,14 @@ Listado de obras
                                                 </div>
                                             </div>
                                         </div>
+                                    @endif
                                     
                                 @else
                                 
                                 @endif
+                                @php
+                                    $id_proyecto8=$project->id;
+                                @endphp
                             @else
                             
                             @endif
@@ -551,6 +576,7 @@ Listado de obras
                     @php
                         $contar9=0;
                         $conta29=0;
+                        $id_proyecto9=0;
                     @endphp
                     @foreach ($projects as $project)
                         
@@ -631,6 +657,9 @@ Listado de obras
                                     $conta29+=1;
                                 @endphp
                                 @if ($conta29>1)
+                                    @if ($id_proyecto9==$project->id)
+                                            
+                                    @else
                                         <div class="media" >
                                                 @php
                                                 $imagen = DB::table('projects_imgs')
@@ -672,10 +701,14 @@ Listado de obras
                                                 </div>
                                             </div>
                                         </div>
+                                    @endif
                                     
                                 @else
                                 
                                 @endif
+                                @php
+                                    $id_proyecto9=$project->id;
+                                @endphp
                             @else
                             
                             @endif
@@ -699,6 +732,7 @@ Listado de obras
                     @php
                         $contar10=0;
                         $conta210=0;
+                        $id_proyecto10=0;
                     @endphp
                     @foreach ($projects as $project)
                         
@@ -779,6 +813,9 @@ Listado de obras
                                     $conta210+=1;
                                 @endphp
                                 @if ($conta210>1)
+                                    @if ($id_proyecto10==$project->id)
+                                            
+                                    @else
                                         <div class="media" >
                                                 @php
                                                 $imagen = DB::table('projects_imgs')
@@ -820,10 +857,13 @@ Listado de obras
                                                 </div>
                                             </div>
                                         </div>
-                                    
+                                    @endif
                                 @else
                                 
                                 @endif
+                                @php
+                                    $id_proyecto10=$project->id;
+                                @endphp
                             @else
                             
                             @endif

@@ -409,7 +409,9 @@ Datos del proyecto
                     </div>
                     <span style="padding-left: 20px;"><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
                     <span style="padding-left: 20px;"><b>Nombre: </b>{{$contrato->nombrecontacto}}</span><br>
+                    {{-- botón para mostrar el contenido  --}}
                     <button onclick="mostrar_contenido({{$contrato->id}})" id="show{{$contrato->id}}" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
+                    {{-- div que captura todos los datos que estarán ocultos al momento de iniciar la página --}}                    
                     <div id="vermas{{$contrato->id}}" style="display: none; padding-left: 20px;">
 
                     
@@ -466,6 +468,7 @@ Datos del proyecto
                             <span><b>Observaciones de la sección:</b></label><br>
                                 <span>{{$project->observaciones}}</span><br>
                             
+                            {{-- botón para ocultar el contenido --}}
                             <button onclick="ocultar_contenido({{$contrato->id}},'c')" id="hide{{$contrato->id}}" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
                     
 
@@ -501,7 +504,7 @@ Datos del proyecto
         </div>
 </div>
 
-<!-- Section - Procedimiento de contratación -->
+<!-- Section - Procedimiento de ejecución -->
 <div class="row mt-5" id="ejecucion">
     <div class="col-md-6 background-title px-0 py-1">
         <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
@@ -527,8 +530,9 @@ Datos del proyecto
                     @else
                     <span><b>Variaciones en el precio del contrato:</b>{{($ejecucion->variacionespreciocontrato)}}</span><br>
                     @endif
+                    {{-- botón para mostrar el contenido  --}}
                     <button onclick="mostrar_contenido_e({{$ejecucion->id}})" id="show-e{{$ejecucion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
-
+                    {{-- div que captura todos los datos que estarán ocultos al momento de iniciar la página --}}
                     <div id="vermas-e{{$ejecucion->id}}" style="display: none; padding-left: 20px;">
                         <i class="fas fa-file-alt"></i>
                         <span><b>Razones de cambio en el precio del
@@ -551,6 +555,8 @@ Datos del proyecto
                     
                         <span><b>Observaciones de la sección:</b></label><br>
                         <span>{{$project->observaciones}}</span><br>
+
+                        {{-- botón para ocultar el contenido --}}
                         <button onclick="ocultar_contenido_e({{$ejecucion->id}})" id="hide-e{{$ejecucion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
 
                     </div>
@@ -604,7 +610,9 @@ Datos del proyecto
                 }
                 ?>
                 <span style="padding-left: 20px;"><b>Costo de finalización: </b>${{number_format($finalizacion->costofinalizacion)}}</span><br>
+                {{-- botón para mostrar el contenido  --}}
                 <button onclick="mostrar_contenido_f({{$finalizacion->id}})" id="show-f{{$finalizacion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
+                {{-- div que captura todos los datos que estarán ocultos al momento de iniciar la página --}}
                 <div id="vermas-f{{$finalizacion->id}}" style="display: none; padding-left: 20px;">
                     <span><b>Fecha de finalización: </b>@if($f=="")@else{{date('d/m/Y',$f)}}@endif</span><br>
                     <span><b>Alcance de la finalización: </b>{{$finalizacion->alcancefinalizacion}}</span><br>
@@ -614,7 +622,9 @@ Datos del proyecto
                     <span><b>Observaciones de la sección:</b></label><br>
                         <span>{{$finalizacion->observaciones}}</span>
                     @endif
-                <button onclick="ocultar_contenido_f({{$finalizacion->id}})" id="hide-f{{$finalizacion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
+                    
+                    {{-- botón para ocultar el contenido --}}
+                    <button onclick="ocultar_contenido_f({{$finalizacion->id}})" id="hide-f{{$finalizacion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
                 </div>
 
             </div>
@@ -902,6 +912,7 @@ Datos del proyecto
     }
 </script>
 <script type="text/javascript">
+// funciones para mostrar y ocultar el contenido de contratacion
 function mostrar_contenido(id){
     $("#vermas"+id).show();
     $("#vermas-em"+id).show();
@@ -925,6 +936,8 @@ function ocultar_contenido(id){
 
     return false;
 }
+// funciones para mostrar y ocultar el contenido de ejecución
+
 function mostrar_contenido_e(id){
     $("#vermas-e"+id).show();
     // $("#vermas-em-e"+id).show();
@@ -946,6 +959,8 @@ function ocultar_contenido_e(id){
     return false;
 }
 
+// funciones para mostrar y ocultar el contenido de finalicación
+
 function mostrar_contenido_f(id){
     $("#vermas-f"+id).show();
     // $("#vermas-em-e"+id).show();
@@ -966,24 +981,5 @@ function ocultar_contenido_f(id){
 
     return false;
 }
-//     $(document).ready(function(){
-//     $("#hide").on('click', function() {
-//         $("#vermas").hide();
-//         $("#vermas-em").hide();
-//         $("#show").show();
-//         $("#hide").hide();
-
-//         return false;
-//     });
-    // Al darle clic en el boton Ver más con id show2 mostramos los proyectos
-    // $("#show").on('click', function() {
-    //     $("#vermas").show();
-    //     $("#vermas-em").show();
-    //     $("#hide").show();
-    //     $("#show").hide();
-
-    //     return false;
-    // });
-// });
 </script>
 @endsection

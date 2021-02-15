@@ -147,50 +147,61 @@ Proyectos
         <div class="my-4">
             <div class="row">
                 {{-- Recorremos todos los proyectos de la consulta --}}
+                @php
+                // Variable para ver si un proyecto es repetido, los resultados se repieten cuando un proyecto tiene más de un contrato
+                    $id_proyecto=0;
+                @endphp
                 @foreach ($projects as $project)
-                <div class="col-lg-3 col-md-6 col-sm-6 mb-5">
-                    <div class="projets-pro">
-                        <div class="encabezado-project" >
-                            <h5>
-                                <b style="text-transform: uppercase;">
-                                    @php
-                                    // Cortamos el texto a la medida del encabezado
-                                    $titulo=substr($project->title,0,25).'...';
-                                    @endphp
-                                    {{ $titulo }}
-                                </b>
-                            </h5>
-                        </div>
-                        @php
-                        // Consultamos las imagenes que esten relacionados con el proyecto y solo se muestra la ultima imagen
-                        $imagen=DB::table('projects_imgs')
-                        ->select('projects_imgs.imgroute')
-                        ->where('projects_imgs.id_project','=',$project->id)
-                        ->get();
-                        @endphp
-                        @if (count($imagen)==0)
-                        <img src="{{ asset('projects_imgs/sinimagen.png') }}" width="255" height="200"
-                            style="border: 2px solid rgb(180, 180, 180); width: 100%;" alt="">
-                        @else
-                        <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}" style="width: 100%;" width="255" height="230"
-                            alt="">
-                        @endif
+                    @if ($id_proyecto==$project->id)
+                        
+                    @else
+                        <div class="col-lg-3 col-md-6 col-sm-6 mb-5">
+                            <div class="projets-pro">
+                                <div class="encabezado-project" >
+                                    <h5>
+                                        <b style="text-transform: uppercase;">
+                                            @php
+                                            // Cortamos el texto a la medida del encabezado
+                                            $titulo=substr($project->title,0,25).'...';
+                                            @endphp
+                                            {{ $titulo }}
+                                        </b>
+                                    </h5>
+                                </div>
+                                @php
+                                // Consultamos las imagenes que esten relacionados con el proyecto y solo se muestra la ultima imagen
+                                $imagen=DB::table('projects_imgs')
+                                ->select('projects_imgs.imgroute')
+                                ->where('projects_imgs.id_project','=',$project->id)
+                                ->get();
+                                @endphp
+                                @if (count($imagen)==0)
+                                <img src="{{ asset('projects_imgs/sinimagen.png') }}" width="255" height="230"
+                                    style="border: 2px solid rgb(180, 180, 180); width: 100%;" alt="">
+                                @else
+                                <img src="{{ asset('projects_imgs/'.$imagen->last()->imgroute) }}"  width="255" height="230"
+                                    alt="">
+                                @endif
 
-                        <div class="pie-project">
-                            @php
-                            // Cortamos el texto a la medida del pie del card
-                            $sector_rec=substr($project->sector,0,12).'..';
-                            $subsector_rec=substr($project->subsector,0,35).'...';
-                            @endphp
-                            <p style="font-size: 20px"><b style="margin: 0; padding: 0;">Sector {{$sector_rec}}</b></p>
-                            <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">{{$subsector_rec}}</i></p>
+                                <div class="pie-project">
+                                    @php
+                                    // Cortamos el texto a la medida del pie del card
+                                    $sector_rec=substr($project->sector,0,12).'..';
+                                    $subsector_rec=substr($project->subsector,0,35).'...';
+                                    @endphp
+                                    <p style="font-size: 20px"><b style="margin: 0; padding: 0;">Sector {{$sector_rec}}</b></p>
+                                    <p style="padding-bottom: 5px"><i style="margin: 0; padding: 0;">{{$subsector_rec}}</i></p>
+                                </div>
+                                <div class="detalle-project">
+                                    <a href="{{ route('project-single', $project->id) }}"><i>Ver más >></i></a>
+                                </div>
+                            </div>
+                            <br>
                         </div>
-                        <div class="detalle-project">
-                            <a href="{{ route('project-single', $project->id) }}"><i>Ver más >></i></a>
-                        </div>
-                    </div>
-                    <br>
-                </div>
+                    @endif
+                    @php
+                        $id_proyecto=$project->id;
+                    @endphp
                 @endforeach
 
                 <div class="col-lg-3 col-md-6 col-sm-6 my-4">
