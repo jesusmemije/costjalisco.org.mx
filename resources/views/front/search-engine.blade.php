@@ -17,7 +17,7 @@ Motor de búsqueda
     <div class="row mt-3">
         <div class="col-md-8 col-12 px-0 py-1">
             <h3 class="py-2 font-weight-bold container-title">
-                <span class="title-buscador">Buscador</span>
+                <span class="title-buscador">Búsqueda</span>
             </h3>
         </div>
     </div>

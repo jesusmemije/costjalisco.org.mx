@@ -45,6 +45,7 @@
     font-size: 15px;
     padding: 2px 30px 2px 30px;
     border: 0;
+    font-weight: 600;
 }
 
 .formulario-projects-search button:hover {
@@ -132,6 +133,11 @@
 
     .title-buscador {
         margin-left: 80px;
+        font-size: 26px;
+    }
+
+    .formulario-projects-search {
+        padding: 20px 20px 5px 20px;
     }
 
 }

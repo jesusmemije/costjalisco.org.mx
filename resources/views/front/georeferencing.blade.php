@@ -178,7 +178,7 @@ Georreferenciación
         <div class="col-md-8 px-0 py-1">
             <h3 class="py-2 font-weight-bold" style="background-image: url('/assets/img/project/barra-resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
-                <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>
+                <span class="text-resultados">Resultados</span>
             </h3>
         </div>
     </div>

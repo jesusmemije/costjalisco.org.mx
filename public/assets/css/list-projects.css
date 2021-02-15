@@ -118,7 +118,6 @@
         margin-top: 5px !important;
     }
     #titulos-phone{
-        background: #d60000 !important;
         font-size: 12px !important;
         margin-left: 6px !important;
     }
@@ -137,6 +136,10 @@
 
     .description-obra {
         margin-left: 48px;
+    }
+
+    .m-text-description {
+        margin: 0;
     }
     
 }
@@ -166,7 +169,6 @@
         font-weight: 700 !important;
         font-size: 15px !important;
         text-transform: uppercase;
-        padding-left: 10px !important;
     }
 
     .description-obra {
@@ -205,6 +207,10 @@
 
     .container-organismo-publico {
         margin-left: 0 !important;
+    }
+
+    .m-text-description {
+        margin: 0px 20px;
     }
 
 }
