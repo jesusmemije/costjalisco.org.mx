@@ -113,6 +113,10 @@ Proyectos
                 color: rgb(204, 204, 204);
             }
 
+            .projets-pro-buscar a {
+                color: #fff;
+            }
+
             @media only screen and (max-width: 480px) {
 
                 .seccione-project {
@@ -121,16 +125,24 @@ Proyectos
 
                 .projets-pro {
                     margin: unset;
-                    padding: 20px 25px 0px 25px;
+                    /*padding: 20px 25px 0px 25px;*/
                 }
 
                 .encabezado-project {
-                    padding: 20px 0px 8px 0px;
+                    /*padding: 20px 0px 8px 0px;*/
                 }
 
                 .projets-pro-buscar {
                     width: 100%;
                     margin: unset;
+                }
+
+                .detalle-project {
+                    text-align: right;
+                }
+
+                .detalle-project a {
+                    margin-left: unset
                 }
 
             }

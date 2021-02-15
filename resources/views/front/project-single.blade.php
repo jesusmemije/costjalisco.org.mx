@@ -13,7 +13,7 @@ Datos del proyecto
 <!-- Section - Descripción General del proyecto -->
 <div class="container-fluid container-single pt-4">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="row mb-5 bg-gris-single-project">
+        <div class="row mb-md-5 mb-3  bg-gris-single-project">
             <div class="col-md-3 px-0">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -162,7 +162,7 @@ Datos del proyecto
 <!-- Section - Identificación -->
 <div class="row mt-5" id="identificacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
+        <span class="title-project-single">Identificación</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -239,7 +239,7 @@ Datos del proyecto
 <!-- Section - Preparación -->
 <div class="row mt-5" id="preparacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
+        <span class="title-project-single">Preparación</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -374,7 +374,7 @@ Datos del proyecto
 <!-- Section - Procedimiento de contratación -->
 <div class="row mt-5" id="contratacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Procedimiento de contratación</span>
+        <span class="title-project-single">Procedimiento de contratación</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -504,7 +504,7 @@ Datos del proyecto
 <!-- Section - Procedimiento de contratación -->
 <div class="row mt-5" id="ejecucion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
+        <span class="title-project-single">Ejecución</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -576,7 +576,7 @@ Datos del proyecto
 <!-- Section - Finalización -->
 <div class="row mt-5" id="finalizacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
+        <span class="title-project-single">Finalización</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;

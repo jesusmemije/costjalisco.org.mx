@@ -30,44 +30,34 @@ Recursos
 </div>
 
 <!-- Contenido - Cartas de apoyo -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CIMTRA.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/1-cimtra.png') }}">
-            </a>
-        </div>
+<div class="row mx-0">
+    <div class="col-md-1 px-0"></div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CIMTRA.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/1-cimtra.png') }}">
+        </a>
     </div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CMIC.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/2-cmic.png') }}">
-            </a>
-        </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CMIC.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/2-cmic.png') }}">
+        </a>
     </div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_COMCE.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/3-comce.png') }}">
-            </a>
-        </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_COMCE.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/3-comce.png') }}">
+        </a>
     </div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CPS.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/4-cps.png') }}">
-            </a>
-        </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_CPS.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/4-cps.png') }}">
+        </a>
     </div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_MARHNOS.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/5-marhno.png') }}">
-            </a>
-        </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_apoyo/Carta_Apoyo_MARHNOS.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/5-marhno.png') }}">
+        </a>
     </div>
-    <div class="col-md-1" style="background: blue; margin: 3px;"></div>
+    <div class="col-md-1 px-0"></div>
 </div>
 
 <!-- Sub-Title - Cartas de intención -->
@@ -79,48 +69,36 @@ Recursos
     </div>
 </div>
 <!-- Contenido - Cartas de intención -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Gob_del_Estado.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/carta-intencion-jalisco.png') }}">
-            </a>
-        </div>
+<div class="row mx-0">
+    <div class="col-md-1"></div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Gob_del_Estado.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/carta-intencion-jalisco.png') }}">
+        </a>
+    </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Guadalajara.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/carta-intencion-gdl.png') }}">
+        </a>
+    </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Tlajomulco.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/carta-intencion-tlajomulco.png') }}">
+        </a>
     </div>
 
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Guadalajara.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/carta-intencion-gdl.png') }}">
-            </a>
-        </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Tonala.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/carta-intencion-tonala.png') }}">
+        </a>
     </div>
 
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Tlajomulco.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/carta-intencion-tlajomulco.png') }}">
-            </a>
-        </div>
+    <div class="col-lg-2 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Zapopan.pdf" class="links-doc" target="_blank">
+            <img width="160px" src="{{ asset('assets/img/resources/carta-intencion-zapopan.png') }}">
+        </a>
     </div>
-
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Tonala.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/carta-intencion-tonala.png') }}">
-            </a>
-        </div>
-    </div>
-
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/cartas_intencion/Carta_intencion_Zapopan.pdf" class="links-doc" target="_blank">
-            <img img width="160px" style="margin-left:15%" src="{{ asset('assets/img/resources/carta-intencion-zapopan.png') }}">
-            </a>
-        </div>
-    </div>
-    <div class="col-md-1" style="background: blue; margin: 3px;"></div>
+    <div class="col-md-1"></div>
 </div>
 
 <!-- Sub-Title - Cartas de aplicación -->
@@ -133,14 +111,12 @@ Recursos
 </div>
 
 <!-- Contenido - Cartas de aplicación -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/Carta_Aplicacion_CoST_Jalisco.pdf" class="links-doc" target="_blank">
-            <img img width="400px" style="margin-left:15%" src="{{ asset('assets/img/resources/carta-aplicacion-cost.png') }}">
-            </a>
-        </div>
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/Carta_Aplicacion_CoST_Jalisco.pdf" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/carta-aplicacion-cost.png') }}">
+        </a>
     </div>
 </div>                    
 
@@ -155,14 +131,12 @@ Recursos
 
 <!-- Contenido - Cartas de aprobación -->
 
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/Carta_Aprobacion_CoST_Jalisco_181019.pdf" class="links-doc" target="_blank">
-            <img img width="400px" style="margin-left:15%" src="{{ asset('assets/img/resources/cartaaplicacioncost-fecha.png') }}">
-            </a>
-        </div>  
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/Carta_Aprobacion_CoST_Jalisco_181019.pdf" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/cartaaplicacioncost-fecha.png') }}">
+        </a>
     </div>
 </div>
 
@@ -176,15 +150,12 @@ Recursos
 </div>
 
 <!-- Contenido - Plan de trabajo -->
-
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/Plan_de_Trabajo_Aprobado.pdf" class="links-doc" target="_blank">
-            <img img width="400px" style="margin-left:15%" src="{{ asset('assets/img/resources/plan-de-trabajo-cost.png') }}">
-            </a>
-        </div>  
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/Plan_de_Trabajo_Aprobado.pdf" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/plan-de-trabajo-cost.png') }}">
+        </a> 
     </div>
 </div>
 
@@ -198,14 +169,12 @@ Recursos
 </div>
 
 <!-- Contenido - Actas -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/Acta_Instalacion_CoST_Jalisco.pdf" class="links-doc" target="_blank">
-            <img img width="400px" style="margin-left:15%" src="{{ asset('assets/img/resources/carta-instalacion-cost.png') }}">
-            </a>
-        </div>  
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/Acta_Instalacion_CoST_Jalisco.pdf" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/carta-instalacion-cost.png') }}">
+        </a>  
     </div>
 </div>
 
@@ -219,14 +188,12 @@ Recursos
 </div>
 
 <!-- Contenido - Informes de aseguramiento -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="#" class="links-doc" target="_blank">
-            <img img width="400px" style="margin-left:15%" src="{{ asset('assets/img/resources/informe-aseguramiento-pendiente.png') }}">
-            </a>
-        </div> 
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="#" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/informe-aseguramiento-pendiente.png') }}">
+        </a>
         <!--<div class="form-group col-lg-2 col-md-4 col-sm-5">
             <img width="160px" src="{{ asset('assets/img/documentos/cost-logo.jpg') }}">
         </div>
@@ -246,14 +213,12 @@ Recursos
 </div>
 
 <!-- Contenido - Reglamentos -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/Reglamento_Interno_Aprobado.pdf" class="links-doc" target="_blank">
-            <img img width="400px" src="{{ asset('assets/img/resources/reglamento-cost.png') }}">
-            </a>
-        </div>
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/Reglamento_Interno_Aprobado.pdf" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/reglamento-cost.png') }}">
+        </a>
     </div>
 </div>
 
@@ -267,14 +232,12 @@ Recursos
 </div>
 
 <!-- Contenido - Estándares -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/Estandar_de_Indicadores_CoST_Aprobado.pdf" class="links-doc" target="_blank">
-            <img img width="400px" src="{{ asset('assets/img/resources/estandar-indicadores-cost.png') }}">
-            </a>
-        </div>
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/Estandar_de_Indicadores_CoST_Aprobado.pdf" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/estandar-indicadores-cost.png') }}">
+        </a>
     </div>
 </div>
 
@@ -288,14 +251,12 @@ Recursos
 </div>
 
 <!-- Contenido - Mapa de sitio aprobado -->
-<div class="row" style="background: white; padding: 5px;">
-    <div class="col-md-1" style="background: white; margin: 3px;"></div>
-    <div class="col-md-2" style="background: white; margin: 3px;">
-        <div class="form-group col-lg-2 col-md-4 col-sm-7" style="margin-top:1%;">
-            <a href="https://www.itei.org.mx/cost/docs/Mapa_de_Sitio_Aprobado.pdf" class="links-doc" target="_blank">
-            <img img width="400px" style="margin-left:15%" src="{{ asset('assets/img/resources/mapa-sitio.png') }}">
-            </a>
-        </div>
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="https://www.itei.org.mx/cost/docs/Mapa_de_Sitio_Aprobado.pdf" class="links-doc" target="_blank">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/mapa-sitio.png') }}">
+        </a>
     </div>
 </div>
 
