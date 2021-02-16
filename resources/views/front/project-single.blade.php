@@ -13,7 +13,7 @@ Datos del proyecto
 <!-- Section - Descripción General del proyecto -->
 <div class="container-fluid container-single pt-4">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="row mb-5 bg-gris-single-project">
+        <div class="row mb-md-5 mb-3  bg-gris-single-project">
             <div class="col-md-3 px-0">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -162,7 +162,7 @@ Datos del proyecto
 <!-- Section - Identificación -->
 <div class="row mt-5" id="identificacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Identificación</span>
+        <span class="title-project-single">Identificación</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -239,7 +239,7 @@ Datos del proyecto
 <!-- Section - Preparación -->
 <div class="row mt-5" id="preparacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Preparación</span>
+        <span class="title-project-single">Preparación</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -374,7 +374,7 @@ Datos del proyecto
 <!-- Section - Procedimiento de contratación -->
 <div class="row mt-5" id="contratacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 80px;">Procedimiento de contratación</span>
+        <span class="title-project-single">Procedimiento de contratación</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -382,122 +382,132 @@ Datos del proyecto
     </div>
 </div>
 <div class="container">
-    <div class="row d-flex">
-        @php
-            $contador=0;
-        @endphp
         @foreach($contratos as $contrato)
-            <div class="col-md-6" style="border-right:1px solid #628ea0;">
-                <style>
-                    #vermas{
-                        display: none;
-                    }
-                </style>
+            <div class="row mt-4 mb-4">
                 
-                @php
-                    $contador+=1;
-                @endphp
-                <div class="background-title mb-4">
-                    <strong style="background: #628ea0; font-size: 20px !important">
-                        CONTRATO {{number_format($contador)}}
-                    </strong>
-                </div>
-                <span><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
-                <span><b>Nombre: </b>{{$contrato->nombrecontacto}}</span><br>
-                <button id="show" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
-                <div id="vermas">
-
-                
-                    <span><b>Correo electrónico: </b>{{$contrato->emailcontacto}}</span><br>
-                    <span><b>Télefono: </b>{{$contrato->telefonocontacto}}</span><br>
-                    <span><b>Domicilio: </b>{{$contrato->domiciliocontacto}}</span><br>
-
-                    <br>
-                    <?php 
-                    $tipocontrato = DB::table('cattipo_contrato')
-                    ->where('id', '=', $contrato->tipocontrato)
-                    ->first();
-                    $modalidadcontratacion = DB::table('catmodalidad_contratacion')
-                    ->where('id', '=', $contrato->modalidadcontrato)
-                    ->first();
-                    $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
-                    ->where('id', '=', $contrato->modalidadadjudicacion)
-                    ->first();
-                    $estadoactual = DB::table('contractingprocess_status')
-                    ->where('id', '=', $contrato->estadoactual)
-                    ->first();
-                    if ($modalidadcontratacion == null) {
-                        $modalidadcontratacion = new stdClass();
-                        $modalidadcontratacion->titulo = "";
-                    }
-                    if ($tipocontrato == null) {
-                        $tipocontrato = new stdClass();
-                        $tipocontrato->titulo = "";
-                    }
-                    $empresas = $contrato->empresasparticipantes;
-                    $empresasparticipantes = explode(",", $empresas);
-                        ?>
-
-                        <i class="fas fa-file-alt"></i>
-                        <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
-                        <i class="fas fa-file-signature"></i>
-                        <span><b>Modalidad de contratación:</b> {{$modalidadcontratacion->titulo}}</span><br>
-                        <i class="fas fa-edit"></i>
-                        <span><b>Entidad administradora del contrato:</b> {{$contrato->entidad_admin_contrato}}</span><br>
-                        <i class="fas fa-file-invoice"></i>
-                        <span><b>Título del contrato:</b> {{$contrato->titulocontrato}}</span><br>
-                        <i class="fas fa-print"></i>
-                        <span><b>Vía por la que presenta su propuesta:</b> {{$contrato->viapropuesta}}</span><br>
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span><b>Monto del contrato (cantidad estipulada):</b>${{number_format($contrato->montocontrato)}}</span><br>
-                        <i class="fas fa-hard-hat"></i>
-                        <span><b>Alcance del trabajo según el contrato:</b> {{$contrato->alcancecontrato}}</span><br>
-                        <i class="far fa-clock"></i>
-                        <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b>
-                            {{$contrato->duracionproyecto_contrato}}</span><br><br>
+                <div class="col-md-6" style="border-right:1px solid #628ea0;">
+                    <style>
+                        .visible{
+                            visibility: visible; /* Al alterar las márgenes y el height no es necesaria esta propiedad */
+                            opacity: 1;
+                            height: auto;
+                            padding: 15px 0px;
+                            transition: 3s;
+                            /* background: red; */
+                        }
+                        .container-item {
+                            background: linear-gradient(45deg, #2C4143 35%, #58707B 35%);
+                            padding: 5px 20px;
+                            border-radius: 20px;
+                            color: #fff;
+                        }
+                    </style>
+                    <div class="container-item mb-4">
+                        <strong style=" font-size: 20px !important">
+                        {{$contrato->titulocontrato}}
+                        </strong>
+                    </div>
+                    <span style="padding-left: 20px;"><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
+                    <span style="padding-left: 20px;"><b>Nombre: </b>{{$contrato->nombrecontacto}}</span><br>
+                    {{-- botón para mostrar el contenido  --}}
+                    <button onclick="mostrar_contenido({{$contrato->id}})" id="show{{$contrato->id}}" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
+                    {{-- div que captura todos los datos que estarán ocultos al momento de iniciar la página --}}                    
+                    <div id="vermas{{$contrato->id}}" style="display: none; padding-left: 20px;">
 
                     
-                        
-                        <span><b>Observaciones de la sección:</b></label><br>
-                            <span>{{$project->observaciones}}</span><br>
-                        
-                        <button id="hide" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
-                
+                        <span><b>Correo electrónico: </b>{{$contrato->emailcontacto}}</span><br>
+                        <span><b>Télefono: </b>{{$contrato->telefonocontacto}}</span><br>
+                        <span><b>Domicilio: </b>{{$contrato->domiciliocontacto}}</span><br>
 
+                        <br>
+                        <?php 
+                        $tipocontrato = DB::table('cattipo_contrato')
+                        ->where('id', '=', $contrato->tipocontrato)
+                        ->first();
+                        $modalidadcontratacion = DB::table('catmodalidad_contratacion')
+                        ->where('id', '=', $contrato->modalidadcontrato)
+                        ->first();
+                        $modalidadadjudicacion = DB::table('catmodalidad_adjudicacion')
+                        ->where('id', '=', $contrato->modalidadadjudicacion)
+                        ->first();
+                        $estadoactual = DB::table('contractingprocess_status')
+                        ->where('id', '=', $contrato->estadoactual)
+                        ->first();
+                        if ($modalidadcontratacion == null) {
+                            $modalidadcontratacion = new stdClass();
+                            $modalidadcontratacion->titulo = "";
+                        }
+                        if ($tipocontrato == null) {
+                            $tipocontrato = new stdClass();
+                            $tipocontrato->titulo = "";
+                        }
+                        $empresas = $contrato->empresasparticipantes;
+                        $empresasparticipantes = explode(",", $empresas);
+                            ?>
+
+                            <i class="fas fa-file-alt"></i>
+                            <span><b>Tipo de contrato:</b> {{$tipocontrato->titulo}}</span><br>
+                            <i class="fas fa-file-signature"></i>
+                            <span><b>Modalidad de contratación:</b> {{$modalidadcontratacion->titulo}}</span><br>
+                            <i class="fas fa-edit"></i>
+                            <span><b>Entidad administradora del contrato:</b> {{$contrato->entidad_admin_contrato}}</span><br>
+                            <i class="fas fa-file-invoice"></i>
+                            <span><b>Título del contrato:</b> {{$contrato->titulocontrato}}</span><br>
+                            <i class="fas fa-print"></i>
+                            <span><b>Vía por la que presenta su propuesta:</b> {{$contrato->viapropuesta}}</span><br>
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span><b>Monto del contrato (cantidad estipulada):</b>${{number_format($contrato->montocontrato)}}</span><br>
+                            <i class="fas fa-hard-hat"></i>
+                            <span><b>Alcance del trabajo según el contrato:</b> {{$contrato->alcancecontrato}}</span><br>
+                            <i class="far fa-clock"></i>
+                            <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b>
+                                {{$contrato->duracionproyecto_contrato}}</span><br><br>
+
+                        
+                            
+                            <span><b>Observaciones de la sección:</b></label><br>
+                                <span>{{$project->observaciones}}</span><br>
+                            
+                            {{-- botón para ocultar el contenido --}}
+                            <button onclick="ocultar_contenido({{$contrato->id}},'c')" id="hide{{$contrato->id}}" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
+                    
+
+                        <br class="hidden-desktop">
+                    </div>
+                </div>
+
+                <div class="col-md-6 border-top-empresas">
                     <br class="hidden-desktop">
-                </div>
-            </div>
+                    <h3 class="ml-4 title-empresas" style="font-weight: bold; color:#628ea0;">Empresas participantes</h3>
+                    <div id="vermas-em{{$contrato->id}}" style="display: none">
 
-            <div class="col-md-6 border-top-empresas">
-                <br class="hidden-desktop">
-                <h3 class="ml-4 title-empresas" style="font-weight: bold; color:#628ea0;">Empresas participantes</h3>
-
-                @foreach($empresasparticipantes as $empresa)
-                <div class="row py-4 border-left-empresas">
-                    <div class="col-md-2 col-2">
-                        <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
-                    </div>
-                    <div class="col-md-10 col-10 px-0">
-                        <span style="font-weight: 700;">{{ $empresa }}</span><br>
-                    </div>
+                            @foreach($empresasparticipantes as $empresa)
+                            <div class="row py-4 border-left-empresas">
+                                <div class="col-md-2 col-2">
+                                    <img src="{{ asset('/assets/img/project/icons/fabrica.png') }}" class="img-fluid mx-1" width="50" alt="">
+                                </div>
+                                <div class="col-md-10 col-10 px-0">
+                                    <span style="font-weight: 700;">{{ $empresa }}</span><br>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                 </div>
-                @endforeach
+            
             </div>
         @endforeach
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-            <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='contratacion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='contratacion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
+            </div>
         </div>
-    </div>
-
 </div>
 
-<!-- Section - Procedimiento de contratación -->
+<!-- Section - Procedimiento de ejecución -->
 <div class="row mt-5" id="ejecucion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Ejecución</span>
+        <span class="title-project-single">Ejecución</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -505,48 +515,63 @@ Datos del proyecto
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 mt-5">
-            @foreach($ejecuciones as $ejecucion)
-            <i class="fas fa-hand-holding-usd"></i>
-            @if(gettype($ejecucion->variacionespreciocontrato)=='integer')
-            <span><b>Variaciones en el precio del contrato:</b>{{number_format($ejecucion->variacionespreciocontrato)}}</span><br>
-            @else
-            <span><b>Variaciones en el precio del contrato:</b>{{($ejecucion->variacionespreciocontrato)}}</span><br>
-            @endif
-         
-            <i class="fas fa-file-alt"></i>
-            <span><b>Razones de cambio en el precio del
-                    contrato:</b>{{$ejecucion->razonescambiopreciocontrato}}</span><br>
-            <i class="fas fa-file-alt"></i>
-            <span><b>Variaciones en la duración del contrato:</b>{{$ejecucion->variacionesduracioncontrato }}</span><br>
-            <i class="far fa-clock"></i>
-            <span><b>Razones de cambio en la duración del
-                    contrato:</b>{{$ejecucion->razonescambioduracioncontrato}}</span><br>
-            <i class="fas fa-file-alt"></i>
-            <span><b>Variaciones en el alcance del contrato:</b>{{$ejecucion->variacionesalcancecontrato}}</span><br>
-            <i class="fas fa-file-alt"></i>
-            <span><b>Razones de cambios en el alcance del
-                    contrato:</b>{{$ejecucion->razonescambiosalcancecontrato}}</span><br>
-            <i class="fas fa-file-alt"></i>
-            <span><b>Aplicación de escalatoria:</b>{{$ejecucion->aplicacionescalatoria}}</span><br>
-            <i class="fas fa-check-square"></i>
-            <span><b>Estado actual del proyecto:</b>{{$ejecucion->estadoactualproyecto}}</span><br>
-            <br>
-          
-            <span><b>Observaciones de la sección:</b></label><br>
-                <span>{{$project->observaciones}}</span><br>
-              
-            @endforeach
+        @foreach($ejecuciones as $ejecucion)
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <div class="container-item mb-4">
+                        <strong style=" font-size: 20px !important">
+                        {{$ejecucion->estadoactualproyecto}}
+                        </strong>
+                    </div>
+                    
+                    <i class="fas fa-hand-holding-usd" style="padding-left: 20px;"></i>
+                    @if(gettype($ejecucion->variacionespreciocontrato)=='integer')
+                    <span ><b>Variaciones en el precio del contrato:</b>{{number_format($ejecucion->variacionespreciocontrato)}}</span><br>
+                    @else
+                    <span><b>Variaciones en el precio del contrato:</b>{{($ejecucion->variacionespreciocontrato)}}</span><br>
+                    @endif
+                    {{-- botón para mostrar el contenido  --}}
+                    <button onclick="mostrar_contenido_e({{$ejecucion->id}})" id="show-e{{$ejecucion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
+                    {{-- div que captura todos los datos que estarán ocultos al momento de iniciar la página --}}
+                    <div id="vermas-e{{$ejecucion->id}}" style="display: none; padding-left: 20px;">
+                        <i class="fas fa-file-alt"></i>
+                        <span><b>Razones de cambio en el precio del
+                                contrato:</b>{{$ejecucion->razonescambiopreciocontrato}}</span><br>
+                        <i class="fas fa-file-alt"></i>
+                        <span><b>Variaciones en la duración del contrato:</b>{{$ejecucion->variacionesduracioncontrato }}</span><br>
+                        <i class="far fa-clock"></i>
+                        <span><b>Razones de cambio en la duración del
+                                contrato:</b>{{$ejecucion->razonescambioduracioncontrato}}</span><br>
+                        <i class="fas fa-file-alt"></i>
+                        <span><b>Variaciones en el alcance del contrato:</b>{{$ejecucion->variacionesalcancecontrato}}</span><br>
+                        <i class="fas fa-file-alt"></i>
+                        <span><b>Razones de cambios en el alcance del
+                                contrato:</b>{{$ejecucion->razonescambiosalcancecontrato}}</span><br>
+                        <i class="fas fa-file-alt"></i>
+                        <span><b>Aplicación de escalatoria:</b>{{$ejecucion->aplicacionescalatoria}}</span><br>
+                        <i class="fas fa-check-square"></i>
+                        <span><b>Estado actual del proyecto:</b>{{$ejecucion->estadoactualproyecto}}</span><br>
+                        <br>
+                    
+                        <span><b>Observaciones de la sección:</b></label><br>
+                        <span>{{$project->observaciones}}</span><br>
+
+                        {{-- botón para ocultar el contenido --}}
+                        <button onclick="ocultar_contenido_e({{$ejecucion->id}})" id="hide-e{{$ejecucion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
+
+                    </div>
+                    
+                </div>
+            </div>
+        @endforeach
+        <br class="hidden-desktop">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='ejecucion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
+            </div>
         </div>
-    </div>
-    <br class="hidden-desktop">
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
-            <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='ejecucion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
-        </div>
-    </div>
+    
 </div>
 
 <!-- <div class="col-md-2 text-right">
@@ -557,7 +582,7 @@ Datos del proyecto
 <!-- Section - Finalización -->
 <div class="row mt-5" id="finalizacion">
     <div class="col-md-6 background-title px-0 py-1">
-        <span style="font-weight: 700; margin-left: 140px;">Finalización</span>
+        <span class="title-project-single">Finalización</span>
     </div>
     <div class="col-md-6 px-0">
         <div class="" style="margin-top: 25px;
@@ -568,30 +593,43 @@ Datos del proyecto
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 mt-5">
+    @foreach ($finalizaciones as $finalizacion)    
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <div class="container-item mb-4">
+                    <strong style=" font-size: 20px !important">
+                    {{$finalizacion->alcancefinalizacion}}
+                    </strong>
+                </div>
+                <?php
 
-        @foreach($finalizaciones as  $finalizacion)
-            <?php
+                if ($finalizacion->fechafinalizacion = "") {
+                    $f = "";
+                } else {
+                    $f = strtotime($finalizacion->fechafinalizacion);
+                }
+                ?>
+                <span style="padding-left: 20px;"><b>Costo de finalización: </b>${{number_format($finalizacion->costofinalizacion)}}</span><br>
+                {{-- botón para mostrar el contenido  --}}
+                <button onclick="mostrar_contenido_f({{$finalizacion->id}})" id="show-f{{$finalizacion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0;">Ver más</button>
+                {{-- div que captura todos los datos que estarán ocultos al momento de iniciar la página --}}
+                <div id="vermas-f{{$finalizacion->id}}" style="display: none; padding-left: 20px;">
+                    <span><b>Fecha de finalización: </b>@if($f=="")@else{{date('d/m/Y',$f)}}@endif</span><br>
+                    <span><b>Alcance de la finalización: </b>{{$finalizacion->alcancefinalizacion}}</span><br>
+                    <span><b>Razones de cambio en el proyecto: </b>{{$finalizacion->razonescambioproyecto}}</span><br>
+                    <br>
+                    @if($finalizacion->observaciones!="")
+                    <span><b>Observaciones de la sección:</b></label><br>
+                        <span>{{$finalizacion->observaciones}}</span>
+                    @endif
+                    
+                    {{-- botón para ocultar el contenido --}}
+                    <button onclick="ocultar_contenido_f({{$finalizacion->id}})" id="hide-f{{$finalizacion->id}}" style="float: right; color: #628ea0; background: transparent; border: 0; display: none;">Cerrar</button>
+                </div>
 
-            if ($finalizacion->fechafinalizacion = "") {
-                $f = "";
-            } else {
-                $f = strtotime($finalizacion->fechafinalizacion);
-            }
-            ?>
-            <span><b>Costo de finalización: </b>${{number_format($finalizacion->costofinalizacion)}}</span><br>
-            <span><b>Fecha de finalización: </b>$finalizacion->fechafinalizacion</span><br>
-            <span><b>Alcance de la finalización: </b>{{$finalizacion->alcancefinalizacion}}</span><br>
-            <span><b>Razones de cambio en el proyecto: </b>{{$finalizacion->razonescambioproyecto}}</span><br>
-            <br>
-          
-            <span><b>Observaciones de la sección:</b></label><br>
-                <span>{{$finalizacion->observaciones}}</span>
-        @endforeach
-  
+            </div>
         </div>
-    </div>
+    @endforeach
     <br class="hidden-desktop">
     <div class="row">
         <div class="col-md-12 text-right">
@@ -599,10 +637,6 @@ Datos del proyecto
             <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='finalizacion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
         </div>
     </div>
-
-
-
-
 </div>
 
 <div class="container mt-5">
@@ -878,22 +912,74 @@ Datos del proyecto
     }
 </script>
 <script type="text/javascript">
-    $(document).ready(function(){
-    $("#hide").on('click', function() {
-        $("#vermas").hide();
-        $("#show").show();
-        $("#hide").hide();
+// funciones para mostrar y ocultar el contenido de contratacion
+function mostrar_contenido(id){
+    $("#vermas"+id).show();
+    $("#vermas-em"+id).show();
+    $("#hide"+id).show();
+    $("#show"+id).hide();
 
-        return false;
-    });
-    // Al darle clic en el boton Ver más con id show2 mostramos los proyectos
-    $("#show").on('click', function() {
-        $("#vermas").show();
-        $("#hide").show();
-        $("#show").hide();
 
-        return false;
-    });
-});
+    $("#vermas"+id).addClass("visible");
+    $("#vermas-em"+id).addClass("visible");
+    
+    return false;
+}
+
+function ocultar_contenido(id){
+    $("#vermas"+id).hide();
+    $("#vermas-em"+id).hide();
+    $("#show"+id).show();
+    $("#hide"+id).hide();
+    $("#vermas"+id).removeClass("visible"); 
+    $("#vermas-em"+id).removeClass("visible"); 
+
+    return false;
+}
+// funciones para mostrar y ocultar el contenido de ejecución
+
+function mostrar_contenido_e(id){
+    $("#vermas-e"+id).show();
+    // $("#vermas-em-e"+id).show();
+    $("#hide-e"+id).show();
+    $("#show-e"+id).hide();
+
+    $("#vermas-e"+id).addClass("visible");
+
+    return false;
+}
+
+function ocultar_contenido_e(id){
+    $("#vermas-e"+id).hide();
+    // $("#vermas-em"+id).hide();
+    $("#show-e"+id).show();
+    $("#hide-e"+id).hide();
+    $("#vermas-e"+id).removeClass("visible"); 
+
+    return false;
+}
+
+// funciones para mostrar y ocultar el contenido de finalicación
+
+function mostrar_contenido_f(id){
+    $("#vermas-f"+id).show();
+    // $("#vermas-em-e"+id).show();
+    $("#hide-f"+id).show();
+    $("#show-f"+id).hide();
+
+    $("#vermas-f"+id).addClass("visible");
+
+    return false;
+}
+
+function ocultar_contenido_f(id){
+    $("#vermas-f"+id).hide();
+    // $("#vermas-em"+id).hide();
+    $("#show-f"+id).show();
+    $("#hide-f"+id).hide();
+    $("#vermas-f"+id).removeClass("visible"); 
+
+    return false;
+}
 </script>
 @endsection

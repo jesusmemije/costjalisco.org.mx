@@ -178,27 +178,47 @@ Georreferenciación
         <div class="col-md-8 px-0 py-1">
             <h3 class="py-2 font-weight-bold" style="background-image: url('/assets/img/project/barra-resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
-                <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>
+                <span class="text-resultados">Resultados</span>
             </h3>
         </div>
     </div>
     <div class="container">
         {{-- Recorremos la consulta y mostramos los datos del proyecto --}}
-        @foreach ($projects as $project)
-
-        <div class="my-5 secciones-projects">
-            <h5><b>{{ $project->title }}</b></h5>
-            {{ $project->description }}
-            <div class="row mt-3">
-                <div class="col-md-12 ">
-                    <a href="#" class="links-color">Sector Público</a> <span class="links-color">/</span>
-                    <a href="#" class="links-color">Ayuntamiento de Zapopan</a>
-                    <a href="{{ route('project-single', $project->id) }}" class="btn-conoce-mas">Conoce más</a>
+        @if (count($projects)==0)
+            <div class="my-5 secciones-projects">
+                <div class="row mt-3">
+                    <div class="col-md-12 ">
+                        <center>Sin resultados</center>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        @endforeach
+        @else
+            @php
+                $id_proyecto=0;
+            @endphp
+            @foreach ($projects as $project)
+                
+                @if ($id_proyecto==$project->id)
+                    
+                @else
+                    <div class="my-5 secciones-projects">
+                        <h5><b style="text-transform: uppercase">{{ $project->title }}</b></h5>
+                        {{ $project->description }}
+                        <div class="row mt-3">
+                            <div class="col-md-12 ">
+                                <a href="#" class="links-color">{{$project->sector}}</a> <span class="links-color">/</span>
+                                <a href="#" class="links-color">{{$project->organizacion}}</a>
+                                <a href="{{ route('project-single', $project->id) }}" class="btn-conoce-mas">Conoce más</a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @php
+                    $id_proyecto=$project->id;
+                @endphp
+            @endforeach
+        @endif
+       
 
     </div>
     <br><br class="hidden-phone"><br class="hidden-phone">
@@ -246,6 +266,7 @@ Georreferenciación
         })
         // Buscamos los sub sectores en la base de datos con el sector seleccionado
         $('#sector').on('change',function(){
+            
             var sector_id = $(this).val();
             if ($.trim(sector_id) != ''){
                 $('#loading2').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="20" style="margin-left: 45%; margin-top:15px;" />');

@@ -27,7 +27,7 @@ Inicio
                     <h5 class="modal-title" id="exampleModalLabel">Super Inspe-CoST</h5>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">x</button>
                 </div>
-                <form>
+                {{-- <form> --}}
                     <div class="modal-body">
                         <label for="message-text" class="col-form-label">Busca por una palabra clave</label>
                         <div class="input-group">
@@ -43,7 +43,7 @@ Inicio
                                 </div>
                             </div>
                             <!--Esta parte lo que hace es buscar la palabra que el usuario le ingrese-->
-                            <ul id="box-search">
+                            <ul id="box-search" style="overflow-y: scroll; height: 300px;;">
                                 <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inico >
                                         Nosotros</a></li>
                                 <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más >
@@ -121,7 +121,7 @@ Inicio
                         </div>
                         <br><br><br>
                     </div>
-                </form>
+                {{-- </form> --}}
             </div>
         </div>
     </div>

@@ -25,10 +25,17 @@
                 value="{{ old('last_name', $user->last_name) }}">
             </div>
           </div>
-          <div class="form-group">
-            <label for="address">Dirección (opcional)</label>
-            <input type="text" name="address" class="form-control" id="address" placeholder="1234 Principal St"
-              value="{{ old('address', $user->address) }}">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="username">Nombre de usuario (login)</label>
+              <input type="text" name="username" class="form-control" id="username" placeholder="username"
+                value="{{ old('username', $user->username) }}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="address">Dirección (opcional)</label>
+              <input type="text" name="address" class="form-control" id="address" placeholder="1234 Principal St"
+                value="{{ old('address', $user->address) }}">
+            </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
