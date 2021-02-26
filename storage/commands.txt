@@ -1,0 +1,11 @@
+
+======Limpiar cache======
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+
+======Optimizar datos (cache)======
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache

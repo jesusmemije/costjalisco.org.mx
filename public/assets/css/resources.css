@@ -1,0 +1,51 @@
+.links-doc {
+    color: darkslategrey;
+    font-weight: bold;
+}
+
+.subtitle-barra-gris {
+    padding-left: 32%;
+}
+
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    .subtitle-barra-gris {
+        padding-left: 22%;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    .subtitle-barra-gris {
+        padding-left: 16%;
+    }
+    
+}
+
+/* Phone */
+@media only screen and (max-width: 480px) {
+
+    .title-barra-roja {
+        font-size: 24px;
+        background-size: 98%;
+    }
+
+    .subtitle-barra-gris {
+        font-size: 20px;
+        background-size: 80%;
+        padding-left: 40px;
+    }
+
+    .listStyle {
+        padding: 0;
+    }
+
+    .form-row {
+        -ms-flex-wrap: initial;
+        flex-wrap: initial;
+    }
+
+}

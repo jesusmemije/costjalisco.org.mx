@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Log::info('Ejecución de seeder');
+
+        $this->call([
+           // ProjectSectorSeeder::class,
+            ProjectTypeSeeder::class,
+            DocumentTypeSeeder::class,
+        ]);
+
+        Log::info('Tablas con datos - success');
     }
 }

@@ -1,0 +1,102 @@
+.seccion-project {
+    padding: 20px 0px 0px 0px;
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    margin-top: 50px;
+}
+
+.date {
+    margin-top: 3%;
+    color: #fff;
+    padding: 1% 0px 1% 5%;
+    margin-bottom: 3%;
+    background-repeat: no-repeat;
+    background-image: url("/assets/img/newsletters/background-fecha.png");
+}
+
+.container-boletin {
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 0px;
+    margin-bottom: 50px;
+
+}
+
+.ver-mas {
+    float: right;
+    color: #2C4143;
+    font-weight: bold;
+}
+
+.ver-mas:hover {
+    float: right;
+    color: #547477;
+    font-weight: bold;
+}
+
+.btn-tbl-link {
+    background: #d9dbb9;
+    width: 55px;
+    height: 50px;
+    font-weight: bold;
+    border: 0px;
+    font-size: 19px;
+    color: #3e6b72;
+    float: right;
+}
+
+.btn-tbl-link:hover {
+    color: #274a50;
+}
+
+.contador {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 11px;
+    float: right;
+}
+
+.border-red-left {
+    border-left: 5px solid red;
+    padding-left: 10px;
+}
+
+.title-boletin {
+    font-size: 25px;
+}
+
+.media-body {
+    background-color: #d8d8cd;
+    /*margin-top:1%;*/
+    margin-top: 0;
+}
+
+.content {
+    text-align: justify;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .seccion-project {
+        all: unset;
+    }
+
+    .border-red-left {
+        all: unset;
+    }
+
+    .container-boletin {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .title-boletin {
+        font-size: 20px;
+    }
+
+    .media-body {
+        margin-top: 0;
+    }
+
+}
