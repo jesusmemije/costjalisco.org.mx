@@ -59,7 +59,8 @@ class ProjectController extends Controller
                 ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
                 ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
                 //  ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
-                ->join('doproject', 'project.id', '=', 'doproject.id_project')
+                //Para la tabla doproject es el usuario que registra el proyecto.
+                ->leftJoin('doproject', 'project.id', '=', 'doproject.id_project')
                 //  ->where('doproject.id_user', '=', $id_user)
                 ->select(
                     'project.*',
@@ -80,7 +81,7 @@ class ProjectController extends Controller
                 ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
                 ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
                 //->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
-                ->join('doproject', 'project.id', '=', 'doproject.id_project')
+                ->leftJoin('doproject', 'project.id', '=', 'doproject.id_project')
                 ->where('project.publicAuthority_id', '=', $id_organization)
                 ->select(
                     'project.*',
@@ -389,6 +390,8 @@ class ProjectController extends Controller
                     ->select(
                         'project.*',
                         'project.description as descripcionProyecto',
+                        'locations.principal',
+                        'locations.names',
                         'locations.lat',
                         'locations.lng',
                         'locations.description as description',
@@ -404,12 +407,20 @@ class ProjectController extends Controller
                         'responsableproyecto.telefonoresponsable',
                         'responsableproyecto.correoresponsable',
                         'responsableproyecto.domicilioresponsable',
-                        'responsableproyecto.horarioresponsable'
+                        'responsableproyecto.horarioresponsable',
+
+                        'responsableproyecto.streetAddressc',
+                        'responsableproyecto.streetNumc',
+                        'responsableproyecto.localityc',
+                        'responsableproyecto.suburbc',
+                        'responsableproyecto.postalCodec',
+                    
+
                     )
                     ->where('project.id', '=', $id)
                     ->first();
 
-
+                  
 
                 return view(
                     'admin.projects.identificacion',
@@ -845,10 +856,14 @@ class ProjectController extends Controller
 
                     $contratos = DB::table('proyecto_contratacion')
                         ->join('project', 'proyecto_contratacion.id_project', '=', 'project.id')
-                        ->select('proyecto_contratacion.*')
+                        ->leftJoin('address','proyecto_contratacion.id_address','=','address.id')
+                        ->select('proyecto_contratacion.*',
+                        'address.id as id_address',
+                        'address.streetAddress','address.streetNum','address.suburb','address.locality','address.postalCode')
                         ->where('id_project', '=', $id)
                         ->get();
 
+                     
                     $catmodalidad_adjudicacion = DB::table('catmodalidad_adjudicacion')->orderBy('titulo', 'asc')->get();
                     $cattipo_contrato = DB::table('cattipo_contrato')->orderBy('titulo', 'asc')->get();
                     $catmodalidad_contratacion = DB::table('catmodalidad_contratacion')->orderBy('titulo', 'asc')->get();
@@ -1132,8 +1147,16 @@ class ProjectController extends Controller
 
         $request->validate([
             'people' => 'required|max:11',
-            'porcentaje_obra' => 'required|max:11',
+            'porcentaje_obra' => 'required|max:10',
             'telefonoresponsable' => 'max:20',
+            
+         
+            'cargoresponsable' => 'required|max:50',
+            'telefonoresponsable' => 'required|max:20',
+            'correoresponsable' => 'required|max:100',
+            //'domicilioresponsable' => 'required|max:100',
+            'horarioresponsable' => 'required|max:50',
+
         ]);
 
         $fecha_in = date('Y-m-d');
@@ -1174,6 +1197,7 @@ class ProjectController extends Controller
 
         $locations = Locations::find($project_location->id_location);
 
+     
 
         $locations->description = $request->description;
         $locations->id_geometry = 1;
@@ -1215,6 +1239,13 @@ class ProjectController extends Controller
                 'correoresponsable' => $request->correoresponsable,
                 'domicilioresponsable' => $request->domicilioresponsable,
                 'horarioresponsable' => $request->horarioresponsable,
+
+                
+            'streetAddressc' => $request->streetAddressc,
+            'streetNumc'=>$request->streetNumc,
+            'suburbc' => $request->suburbc,
+            'localityc' => $request->localityc,
+            'postalCodec' => $request->postalCodec,
 
             ]);
 
@@ -1395,7 +1426,7 @@ class ProjectController extends Controller
         $request->validate([
 
             'telefonocontactou' => 'max:10',
-            'montocontratou' => 'max:20',
+            'montocontratou' => 'max:65',
         ]);
 
         if (!empty($request->fechapublicacion)) {
@@ -1407,7 +1438,16 @@ class ProjectController extends Controller
 
             ]);
         }
-
+        $address = Address::find($request->id_address);
+        $address->streetAddress = $request->streetAddress;
+        $address->streetNum=$request->streetNum;
+        $address->suburb = $request->suburb;
+        //$address->state = $request->state;
+        $address->locality = $request->locality;
+        //$address->region = $request->region;
+        $address->postalCode = $request->postalCode;
+        //$address->countryName = $request->countryName;
+        $address->save();
 
         $procedimiento_contratacion = DB::table('proyecto_contratacion')
             ->where('id', '=', $request->id_contrato)
@@ -1439,6 +1479,8 @@ class ProjectController extends Controller
                 'duracionproyecto_contrato' => $request->duracionproyecto_contrato,
                 'observaciones' => $request->observaciones,
 
+                'id_address'=>$request->id_address,
+
 
             ]);
 
@@ -1449,7 +1491,7 @@ class ProjectController extends Controller
 
 
 
-        if ($procedimiento_contratacion) {
+        if ($procedimiento_contratacion || $address) {
             return back()->with('status', '¡La fase de contratación ha sido actualizada correctamente!');
         } else {
             return back()->with('status', 'La información no ha podido ser registrada');
@@ -1561,7 +1603,11 @@ class ProjectController extends Controller
     /*Función que actualiza los registros de la fase de finalización*/
     public function updatefinalizacion(Request $request)
     {
+        $request->validate([
 
+            'costofinalizacion' => 'max:65',
+
+        ]);
         if (!empty($request->documents)) {
 
             $request->validate([
@@ -1647,7 +1693,7 @@ class ProjectController extends Controller
         */
         $request->validate([
 
-            'costofinalizacion' => 'max:20',
+            'costofinalizacion' => 'max:65',
 
         ]);
 
@@ -1873,8 +1919,9 @@ class ProjectController extends Controller
         */
         $request->validate([
 
+            'duracionproyecto_contrato'=>'required',
             'telefonocontacto' => 'max:10',
-            'montocontrato' => 'max:22',
+            'montocontrato' => 'max:65',
         ]);
 
         if (!empty($request->fechapublicacion)) {
@@ -1892,9 +1939,19 @@ class ProjectController extends Controller
                 'documenttype' => 'required',
             ]);
         }
-        //No se usa la función ya que se necesita registrar en otra tabla.
+        
         //ProjectController::havedocuments($request, 'contratacion');
-
+        $address = new Address();
+        $address->streetAddress = $request->streetAddress;
+        $address->streetNum=$request->streetNum;
+        $address->suburb = $request->suburb;
+        //$address->state = $request->state;
+        $address->locality = $request->locality;
+        //$address->region = $request->region;
+        $address->postalCode = $request->postalCode;
+        //$address->countryName = $request->countryName;
+        $address->save();
+        
         $procedimiento_contratacion = DB::table('proyecto_contratacion')
             ->insert([
                 'id_project' => $request->id_project,
@@ -1907,6 +1964,8 @@ class ProjectController extends Controller
                 'telefonocontacto' => $request->telefonocontacto,
                 'domiciliocontacto' => $request->domiciliocontacto,
                 'nombreresponsable' => $request->nombreresponsable,
+
+
                 'modalidadadjudicacion' => $request->modalidadadjudicacion,
                 'tipocontrato' => $request->tipocontrato,
                 'modalidadcontrato' => $request->modalidadcontrato,
@@ -1923,9 +1982,15 @@ class ProjectController extends Controller
                 'duracionproyecto_contrato' => $request->duracionproyecto_contrato,
                 'observaciones' => $request->observaciones,
 
+                'id_address'=>$address->id
+
 
             ]);
         $id_contrato = DB::getPdo()->lastInsertId();
+
+       
+
+
         if (!empty($request->documents)) {
 
 
@@ -2131,7 +2196,7 @@ class ProjectController extends Controller
             'locality' => 'required',
             'region' => 'required',
             'state' => 'required',
-            'postalCode' => 'required|max:50',
+            'postalCode' => 'required|max:6',
             'countryName' => 'required',
             'description' => 'required',
             'people' => 'required|max:50',
@@ -2140,10 +2205,16 @@ class ProjectController extends Controller
             'cargoresponsable' => 'required|max:50',
             'telefonoresponsable' => 'required|max:20',
             'correoresponsable' => 'required|max:100',
-            'domicilioresponsable' => 'required|max:100',
+            //'domicilioresponsable' => 'required|max:100',
             'horarioresponsable' => 'required|max:50',
 
-
+            
+            'streetAddressc' => 'required',
+            'streetNumc'=>'required',
+            'suburbc' => 'required',
+            'localityc' => 'required',
+            'postalCodec' => 'required|max:6',
+           
 
 
 
@@ -2187,6 +2258,13 @@ class ProjectController extends Controller
             'domicilioresponsable' => $request->domicilioresponsable,
             'horarioresponsable' => $request->horarioresponsable,
             'id_project' => $request->id_project,
+
+            'streetAddressc' => $request->streetAddressc,
+            'streetNumc'=>$request->streetNumc,
+            'suburbc' => $request->suburbc,
+            'localityc' => $request->localityc,
+            'postalCodec' => $request->postalCodec,
+           
         ]);
 
 
@@ -2200,6 +2278,7 @@ class ProjectController extends Controller
 
         $address = new Address();
         $address->streetAddress = $request->streetAddress;
+
         $address->suburb = $request->suburb;
         $address->state = $request->state;
         $address->locality = $request->locality;
@@ -2492,14 +2571,54 @@ class ProjectController extends Controller
 
         $file = $_FILES['excel']['name'];
         $file = str_replace(' ', '', $file);
+
+        	//Reemplazamos la A y a
+		$file = str_replace(
+            array('Á', 'À', 'Â', 'Ä', 'á', 'à', 'ä', 'â', 'ª'),
+            array('A', 'A', 'A', 'A', 'a', 'a', 'a', 'a', 'a'),
+            $file
+            );
+     
+            //Reemplazamos la E y e
+            $file = str_replace(
+            array('É', 'È', 'Ê', 'Ë', 'é', 'è', 'ë', 'ê'),
+            array('E', 'E', 'E', 'E', 'e', 'e', 'e', 'e'),
+            $file );
+     
+            //Reemplazamos la I y i
+            $file = str_replace(
+            array('Í', 'Ì', 'Ï', 'Î', 'í', 'ì', 'ï', 'î'),
+            array('I', 'I', 'I', 'I', 'i', 'i', 'i', 'i'),
+            $file );
+     
+            //Reemplazamos la O y o
+            $file = str_replace(
+            array('Ó', 'Ò', 'Ö', 'Ô', 'ó', 'ò', 'ö', 'ô'),
+            array('O', 'O', 'O', 'O', 'o', 'o', 'o', 'o'),
+            $file );
+     
+            //Reemplazamos la U y u
+            $cadena = str_replace(
+            array('Ú', 'Ù', 'Û', 'Ü', 'ú', 'ù', 'ü', 'û'),
+            array('U', 'U', 'U', 'U', 'u', 'u', 'u', 'u'),
+            $file );
+     
+            //Reemplazamos la N, n, C y c
+            $file = str_replace(
+            array('Ñ', 'ñ', 'Ç', 'ç'),
+            array('N', 'n', 'C', 'c'),
+            $file
+            );
+
+
+
         $aux_file = time() . $file;
 
 
-
         //move_uploaded_file($file,asset('documents/'.$file));
-        move_uploaded_file($_FILES['excel']['tmp_name'], 'documents/' . $aux_file);
+        move_uploaded_file($_FILES['excel']['tmp_name'], 'projects_geo/' . $aux_file);
 
-        $file = asset('documents/' . $aux_file);
+        $file = asset('projects_geo/' . $aux_file);
 
 
         $csv = file_get_contents($file);

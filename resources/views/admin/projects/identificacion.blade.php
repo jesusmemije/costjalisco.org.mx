@@ -90,6 +90,10 @@
     font-weight: 500;
     padding: 6px 12px;
   }
+  .transparente{
+    color: #000; /* Fallback for older browsers */
+    color: rgba(0, 0, 0, 0.5);
+  }
 </style>
 @endsection
 
@@ -121,7 +125,7 @@
                 <label for="tituloProyecto">
                   Título del proyecto
                 </label>
-                <input required maxlength="255" placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
+                <input required placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
                  @error('tituloProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -246,7 +250,7 @@ $id_organization=auth()->user()->id_organization;
 
               <div class="form-row">
 
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
               <label for="tipoProyecto">Tipo de proyecto</label>
               <select required name="tipoProyecto" id="tipoProyecto" class="form-control @error('tipoProyecto') is-invalid @enderror">
                 <option value="">Seleccione un tipo</option>
@@ -271,11 +275,11 @@ $id_organization=auth()->user()->id_organization;
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
             <label for="porcentaje_obra">Porcentaje de avance físico de la obra</label>
             <input required maxlength="3" placeholder="p.ej. 100" type="number" name="porcentaje_obra" id="porcentaje_obra" class="form-control @error('porcentaje_obra') is-invalid @enderror" value="{{old('porcentaje_obra',$project->porcentaje_obra)}}">
             
-            @error('people')
+            @error('porcentaje_obra')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -297,14 +301,15 @@ $id_organization=auth()->user()->id_organization;
 <input class="btn btn-sm btn-outline-primary"  form="formId" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
   <?php
   $d='color:blue';
+
   $url = public_path() . '/documents' . '/' . 'puntosdeejemplo.csv';
         if (!file_exists(($url))) {
-       $d="pointer-events:none;";
+      // $d="pointer-events:none;";
         }
 
  
   ?>
-  <a class="btn btn-sm btn-outline-info"  style="<?php echo $d; ?>" href="{{asset('documents/puntosdeejemplo.csv')}}" style="color:blue">Descargar formato</a>
+  <a class="btn btn-sm btn-outline-info"  style="<?php //echo $d; ?>" href="{{asset('documents/puntosdeejemplo.csv')}}" style="color:blue">Descargar formato</a>
   <input type="hidden" id="ver">
   
   <button type="submit"  class="btn btn-outline-success btn-sm"  form="formId" id="subir">Subir</button>
@@ -331,7 +336,7 @@ $id_organization=auth()->user()->id_organization;
      <hr> 
      <label for="myInput">Buscar:</label>
      <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombre..">
-
+     <div class="">
             <table id="myTable" class="table">
     <thead>
       <tr>
@@ -348,14 +353,15 @@ $id_organization=auth()->user()->id_organization;
   
     </tbody>
   </table>
+  </table>
   <hr>
 
             <div class="row">
               <div class="col-lg-4">
-              <input  type="hidden"name="names" id="name" >
+              <input  type="hidden" name="names" id="name" value="{{old('names',$project->names)}}">
                 <input type="hidden" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
                 <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
-                <input type="hidden" name="principal" id="punto" >
+                <textarea hidden name="principal" id="punto"   >{{old('principal',$project->principal)}}</textarea>
 
                 <label for="streetAddress">Calle </label>
                 <input required  placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
@@ -441,24 +447,44 @@ $id_organization=auth()->user()->id_organization;
               </div>
               <div class="form-group col-md-8">
               <label for="correoresponsable">Correo electrónico</label>
-            <input required type="text" class="form-control" name="correoresponsable" value="{{old('correoresponsable',$project->correoresponsable)}}">
+            <input required type="email" class="form-control" name="correoresponsable" value="{{old('correoresponsable',$project->correoresponsable)}}">
             </div>
 
             </div>
            
-           <div class="form-row">
+           
+                      <label for="domiciliocontacto" class="m-0 font-weight-bold text-primary">Domicilio</label>
+                        <div class="form-row">
+                        
+                            <div class="form-group col-md-5">
+                                
+                                <!--<input type="text" id="domiciliocontacto" name="domiciliocontacto" class="form-control" value="">-->
 
-           <div class="form-group col-md-8">
-           <label for="domicilioresponsable">Domicilio</label>
-            <input  required type="text" class="form-control" name="domicilioresponsable" value="{{old('domicilioresponsable',$project->domicilioresponsable)}}">
-           </div>
-
-           <div class="form-group col-md-4">
-           <label for="horarioresponsable">Horario de oficina</label>
-            <input required type="text" class="form-control" name="horarioresponsable" value="{{old('horarioresponsable',$project->horarioresponsable)}}">
-</div>
-
-           </div>
+                                <label for="streetAddress" >Calle</label>
+                                <input type="text" id="streetAddress" name="streetAddressc" class="form-control" value="{{old('streetAddressc',$project->streetAddressc )}}">
+                                
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="streetNum">Número</label>
+                                <input type="text" id="streetNum" name="streetNumc" class="form-control"value="{{old('streetNumc',$project->streetNumc)}}">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="suburb">Colonia</label>
+                                <input type="text" id="suburb" name="suburbc" class="form-control"value="{{old('suburb',$project->suburbc)}}">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="locality">Municipio</label>
+                                <input type="text" id="locality" name="localityc" class="form-control" value="{{old('localityc',$project->localityc)}}">
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="postalCode">Código postal</label>
+                                <input type="text" minlength="5" maxlength="5" id="postalCode" name="postalCodec" class="form-control" value="{{old('postalCodec',$project->postalCodec)}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                            <label for="horarioresponsable">Horario de oficina</label>
+                            <input required type="text" class="form-control" name="horarioresponsable" value="{{old('horarioresponsable',$project->horarioresponsable)}}">
+                            </div>
+                        </div>
            
           
 
@@ -472,12 +498,14 @@ $id_organization=auth()->user()->id_organization;
               <div class="form-group col-md-4">
 
                 <label for="docfase1">Documentos</label>
-                <input type="file" class="form-control @error('docfase1') is-invalid @enderror" id="docfase1" name="docfase1[]" multiple>
+               
+                <input type="file" class="form-control @error('docfase1') is-invalid @enderror" id="docfase1" name="docfase1[]"  multiple onchange="return validateSize()">
                  @error('docfase1')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
-
+              
+            
             
             
               <div class="form-group col-md-6">
@@ -498,7 +526,8 @@ $id_organization=auth()->user()->id_organization;
 
             
               </div>
-            
+              <p><small>El tamaño de los archivos debe ser menor a 20MB</small></p>
+
                
             </div>
             @if(isset($documents))
@@ -532,7 +561,9 @@ $id_organization=auth()->user()->id_organization;
             </td>
 
             <td>
+              @if($tipo!=null)
               {{$tipo->titulo}}
+              @endif
             </td>
            
             <td>
@@ -593,12 +624,54 @@ $id_organization=auth()->user()->id_organization;
 
 </div>
 
+
+
+
 @include('admin.projects.modaldeletedocument')
 
 @section('scripts')
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
 
 <script>
+
+
+/**Para validación de tamaño de archivos */
+
+function validateSize(){
+  if (!window.FileReader) { // This is VERY unlikely, browser support is near-universal
+        console.log("The file API isn't supported on this browser yet.");
+        return false;
+    }
+
+    var input = document.getElementById('docfase1');
+    if (!input.files) { // This is VERY unlikely, browser support is near-universal
+        console.error("This browser doesn't seem to support the `files` property of file inputs.");
+        return false;
+    } else if (!input.files[0]) {
+        //addPara("Please select a file before clicking 'Load'");
+        alert("Debe seleccionar al menos un archivo");
+        return false;
+    } else {
+        var file = input.files[0];
+        let finalSize=0;
+       // addPara("File " + file.name + " is " + file.size + " bytes in size");
+       //alert("File " + file.name + " is " + file.size + " bytes in size");
+
+       for(let i=0; i<input.files.length;i++){
+          finalSize=file.size+finalSize;
+       }
+
+       if(finalSize>=20971520){
+        alert('El tamaño total de los archivos supera los 20MB');
+
+        input.value='';
+        return false;
+       }
+
+      
+    }
+}
+
 
 //Con fines de pruebas.
 var org=document.querySelector('autoridadP');
@@ -869,6 +942,7 @@ var subedit = $('#subedit').val();
       success: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
 
         var bop = document.createElement("option");
+        bop.value="";
         $(bop).html('Selecciona un subsector');
         $(bop).appendTo("#subsector");
 
@@ -953,28 +1027,81 @@ function myFunction() {
   //here
   //Dibuja los puntos en base a los inputs rellenados desde la base de datos (registros previos)
 	 let lf = document.getElementById('lat');
+
+
       
       let ff= lf.value.split('|')
      
       let lngf = document.getElementById('lng');
       let f2= lngf.value.split('|')
-     
-  console.log(ff);
+
+      //Para el registro de 'nombres' (nombre del punto de ubicación)
+
+      let aux_name=document.getElementById('name');
+
+      let name=aux_name.value.split('|');
+
+      //para el punto principal
+
+      var principal=document.getElementById('punto');
+      principal=principal.value.split('|');
+      var checked="";
+
+
+      console.log(ff[0]);
+      console.log(principal[0]);
+      
+
 
        if(ff[0]!=""){
           
          
-           for(var i=0;i<=ff.length;i++){
+           for(var index=0;index<=ff.length;index++){
            
-           if(ff[i]=="" || ff[i]==undefined || ff[i]==null){
+           if(ff[index]=="" || ff[index]==undefined || ff[index]==null){
             
            }else{
-            var marker = L.marker([ff[i],f2[i]]).addTo(map);
+
+            if(ff[index]==principal[0]){
+              checked="checked";
+            }
+
+            var marker = L.marker([ff[index],f2[index]]);
+
+            markers.push(marker);
+
+            if(name[index]==undefined || name[index]==''){
+              name[index]="Sin nombre";
+            }
+           
+
+            marker.addTo(map);
+
+            //Para cargar de datos la tabla con la información de la bd
+            var auxfields = `<tr class=` + index + `>
+       <td> <label class='transparente' id=`+i+` >`+name[index]+`</label>
+      <td>` +ff[index]+ `</td>
+        <td>` +f2[index]+ `</td>
+        
+        <td><i class="fas fa-eye"></i><input  type="checkbox"   class="gg"  onchange='greenpoint(event,` + (index) + `)'></td>
+        </td>
+        </td>
+        <td> <div class="form-check">
+<input required type="radio" name="inputs" ` +checked+ ` class="form-check-input exampleCheck1" onchange='puntop(`+ff[index]+`,`+f2[index]+`)'>
+ 
+</div></td>
+    </tr>`;
+    
+    i=markers.length;
+
+  flashCardList.insertAdjacentHTML("beforeend", auxfields );
+
            }
            
 
-
+checked="";
 }
+
 
        }
 
@@ -1002,7 +1129,10 @@ function onMapClick(e) {
   i=index;
    fromfile=false;
    x=true;
+ 
   }
+  console.log('el indice es:'+i);
+  console.log('el número de elementos del array es:'+markers);
 var auxfields = `<tr class=` + i + `>
     <td>  <input required id=`+i+` type="text" name="array[]"  onchange='cambioinput(this.value)'></td>
       <td>` + e.latlng.lat + `</td>

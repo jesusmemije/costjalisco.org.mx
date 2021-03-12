@@ -1,4 +1,3 @@
-//Script que abre un modal para el crud de determinados catalogos.
 window.onload = function() {
 
     $('#deleteUserModal').on('show.bs.modal', function(event) {

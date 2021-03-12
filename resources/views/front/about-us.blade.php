@@ -54,13 +54,13 @@ Nosotros
                 <p>
                     Derivado de lo anterior, el Instituto de Transparencia, Información, Pública y Protección de Datos Personales del Estado de
                     Jalisco (ITEI) logró captar el interés del Gobierno del Estado de Jalisco y de los gobiernos municipales de Guadalajara,
-                    Tlajumulco de Zuñiga, Tonalá y Zapopan para combatir las prácticas de corrupción dentro de sus proyectos de
+                    Tlajomulco de Zúñiga, Tonalá y Zapopan para combatir las prácticas de corrupción dentro de sus proyectos de
                     Infraestructura; por lo cual, aplicó en septiembre de 2019 para adherirse como miembro de la iniciativa internacional "CoST", 
                     con el apoyo de instituciones del sector público y privado, así como de organizaciones de la sociedad civil.
                 </p>
                 <p>
                     Como resultado del proceso de aplicación, el 18 de octubre de 2019, mediante una carta de aprobación expedida por la 
-                    Junta de CoST Internacional, el ITEI fue notificado sobre la aprobación para que, por su conducto, el estado de Jalisco, forme 
+                    Junta de CoST Internacional, el ITEI fue notificado sobre la aprobación para que, por su conducto, el estado de Jalisco forme 
                     parte de esta iniciativa internacional.
                 </p>
                 <p>

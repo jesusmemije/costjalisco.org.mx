@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Documents;
+use App\Models\Project;
 use App\Models\SupportMaterial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -129,4 +131,112 @@ class DashboardController extends Controller
     }
 
     /**Fin del CRUD para los materiales de apoyo */
+
+    //Obtiene la vista del listado de descargables(proyectos)
+
+    public function downloadable(){
+         //Se verifica el tipo de usuario.
+
+         $id_user = Auth::user()->role_id;
+         //print_r($id_user);
+         //1=Admin. Obtiene todos los registros de proyectos sin restricción.
+         if ($id_user == 1) {
+             $projects = DB::table('project')
+                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+                 ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+                 ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
+                 //  ->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+                 ->join('doproject', 'project.id', '=', 'doproject.id_project')
+                 //  ->where('doproject.id_user', '=', $id_user)
+                 ->select(
+                     'project.*',
+                     'project.id as id_project',
+                     'project.updated_at as fechap',
+                     'organization.name  as orgname',
+                     //        'proyecto_contratacion.montocontrato as montocontrato',
+                     'generaldata.*'
+                 )
+                 ->get();
+         }
+         //Agente sectorial
+         if ($id_user == 3) {
+ 
+             $id_organization = Auth::user()->id_organization;
+             $projects = DB::table('project')
+                 ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+                 ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+                 ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
+                 //->leftJoin('proyecto_contratacion', 'project.id', '=', 'proyecto_contratacion.id_project')
+                 ->join('doproject', 'project.id', '=', 'doproject.id_project')
+                 ->where('project.publicAuthority_id', '=', $id_organization)
+                 ->select(
+                     'project.*',
+                     'project.id as id_project',
+                     'project.updated_at as fechap',
+                     'organization.name  as orgname',
+                     //         'proyecto_contratacion.montocontrato as montocontrato',
+                     'generaldata.*'
+                 )
+                 ->get();
+         }
+         /**Esto es sólo para el caso de que no haya proyectos en la posición indicada
+          * y para que solo se obtengan los proyectos que un usuario determinado haya subido.
+          */
+         if (empty($projects[0])) {
+ 
+ 
+             $projects = Project::orderBy('project.created_at', 'desc')
+                 ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+                 ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
+                 ->join('doproject', 'project.id', '=', 'doproject.id_project')
+                 ->where('doproject.id_user', '=', $id_user)
+                 ->select('project.*', 'project.id as id_project', 'organization.name  as orgname')
+                 ->get();
+         }
+ 
+ 
+ 
+         return view('admin.downloadable', ['projects' => $projects]);
+    }
+
+    public function downloadQR(Request $request){
+
+   
+
+        
+        $dimensiones="";
+
+        switch($request->dimensiones){
+            case "1":
+                $dimensiones="150x150";
+                break;
+            case "2":
+                $dimensiones="250x250";
+                break;
+            case "3":
+                $dimensiones="350x350";
+                break;
+            case "4":
+                $dimensiones="500x500";
+                break;
+            default:
+                $dimensiones="300x300";
+
+        }
+
+      
+        $url="http://costjalisco.org.mx/project-single/".$request->id;
+      
+        $src="https://chart.googleapis.com/chart?chs=".$dimensiones."&cht=qr&chl=".$url."&choe=UTF-8";
+
+        header('Content-Type: image/png');
+header('Content-Disposition: attachment; filename=QR'.$request->id.'.png');
+$image = file_get_contents($src);
+header('Content-Length: ' . strlen($image));
+echo $image;
+
+   
+
+    }
+ 
 }

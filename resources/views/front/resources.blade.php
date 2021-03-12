@@ -135,7 +135,7 @@ Recursos
     <div class="col-md-1 col-1"></div>
     <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
         <a href="https://www.itei.org.mx/cost/docs/Carta_Aprobacion_CoST_Jalisco_181019.pdf" class="links-doc" target="_blank">
-            <img class="img-fluid" src="{{ asset('assets/img/resources/cartaaplicacioncost-fecha.png') }}">
+            <img class="img-fluid" src="{{ asset('assets/img/resources/cartas de aprobacion.png') }}">
         </a>
     </div>
 </div>
@@ -238,6 +238,27 @@ Recursos
         <a href="https://www.itei.org.mx/cost/docs/Estandar_de_Indicadores_CoST_Aprobado.pdf" class="links-doc" target="_blank">
             <img class="img-fluid" src="{{ asset('assets/img/resources/estandar-indicadores-cost.png') }}">
         </a>
+    </div>
+</div>
+
+
+
+<!-- Sub-Title - Memos -->
+<div class="row mx-0 mt-3" id="estandares">
+    <div class="col-lg-6 col-md-9 col-sm-9 px-0">
+        <div class="text-white" id="estandares">
+            <h3 class="py-2 font-weight-bold subtitle-barra-gris">Memorándums</h3>
+        </div>
+    </div>
+</div>
+
+<!-- Memos -->
+<div class="row mx-0">
+    <div class="col-md-1 col-1"></div>
+    <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
+        <a href="{{asset('documents/Memorandum_Entendimiento.pdf')}}" class="links-doc" target="_blank">
+        <img class="img-fluid" src="{{ asset('assets/img/resources/memoentendimiento.png') }}">
+        </a>    
     </div>
 </div>
 

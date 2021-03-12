@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 text-center">
                         <a href="https://www.itei.org.mx/v4/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/inspect-cost.png') }}" class="img-fluid" width="60"
+                            <img src="{{ asset('assets/img/footer/itel-logo.png') }}" class="img-fluid" width="64"
                                 alt="">
                         </a>
                     </div>
@@ -130,10 +130,13 @@
         @endphp
         <div class="row mx-0">
             <div class="col-lg-12">
+                <div style="position: absolute; bottom: 50px;">
+                    <img src="{{ asset('assets/img/footer/sitio-desarrollado.png') }}" class="img-fluid" alt="">
+                </div>
                 <div class="container-footer d-flex justify-content-between align-items-center ">
                     <img src="{{ asset('assets/img/footer/sitiowebfinanciado.png') }}" class="img-fluid" alt="">
                     <strong>CoST Jalisco {{$fechaActual}} | Todos los derechos reservados</strong>
-                    <strong style="margin-left: 200px;">CÓDIGO ABIERTO</strong>
+                  <a href="https://github.com/costjalisco/cost" target="_blank"> <strong style="margin-left: 200px;" >CÓDIGO ABIERTO</strong></a> 
                 </div>
             </div>
         </div>

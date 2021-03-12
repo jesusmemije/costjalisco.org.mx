@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
     <div class="sidebar-brand-icon">
-      <img src="{{asset('assets/img/cost logo bnc.png') }}" width="200" alt="logo costjalisco">
+      <img src="{{asset('assets/img/cost logo bnc.png') }}" class="img-fluid" width="200" alt="logo costjalisco">
     </div>
     <!--<div class="sidebar-brand-text mx-3">COST <sup>Jalisco</sup></div>-->
   </a>
@@ -153,17 +153,25 @@ use Illuminate\Support\Facades\Auth;
     <i class="fas fa-image"></i>
       <span>Carrusel</span></a>
   </li>
+  <!--
   <li class="nav-item">
     <a class="nav-link" href="{{ route('complements.edit') }}">
     <i class="fas fa-image"></i>
       <span>complementos</span></a>
   </li>
+  -->
 
   
 
   <!-- Divider -->
-  <hr class="sidebar-divider">
+
   @endif
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('downloadable') }}">
+    <i class="fa fa-qrcode" aria-hidden="true"></i>
+      <span>Descargables</span></a>
+  </li>
+  <hr class="sidebar-divider">
   <!-- Heading -->
   @if(Auth::user()->role_id==1)
   

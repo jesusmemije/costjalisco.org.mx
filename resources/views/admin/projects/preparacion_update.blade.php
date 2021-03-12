@@ -213,14 +213,15 @@ $check="";
     @if(sizeof($ambiental)!=0)
     <div class="form-row">
     
-                            <div class="form-group">
+                            <div class="form-group  table-responsive">
                                
                                 <label for="">Listado de estudios</label>
 
 
-                                <div class="col-md-12">
-
-                                    <table class="table table-sm">
+                                <div class="col-md-12" >
+                     
+                                  
+                                    <table class="table table-sm" width="100%" >
                                         <tr>
                                             <th>Nombre del estudio</th>
                                             <th>Fecha de realización</th>
@@ -272,6 +273,7 @@ $check="";
                                         </tbody>
 
                                     </table>
+                                  
                                 </div>
                             
 
@@ -355,7 +357,7 @@ $check="";
     @if(isset($factibilidad))
     @if(sizeof($factibilidad)!=0)
     <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group  table-responsive">
                                
                                 <label for="">Listado de estudios</label>
 
@@ -497,7 +499,7 @@ $check="";
     @if(isset($impactos))
     @if(sizeof($impactos)!=0)
     <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group  table-responsive">
                                
                                 <label for="">Listado de estudios</label>
 
@@ -614,7 +616,7 @@ $check="";
     </div>
     <div class="form-group col-md-4">
     <label for="">Fondo o fuente de financiamiento y partida presupuestal</label>
-    <input required maxlength="255" type="text" class="form-control @error('fuenterecurso') is-invalid @enderror" name="fuenterecurso">
+    <input required type="text" class="form-control @error('fuenterecurso') is-invalid @enderror" name="fuenterecurso">
     @error('fuenterecurso')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -636,14 +638,14 @@ $check="";
     @if(isset($origen_recurso))
     @if(sizeof($origen_recurso)!=0)
     <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group  table-responsive">
                                
                                 <label for="">Listado de recursos</label>
 
 
                                 <div class="col-md-12">
 
-                                    <table class="table table-sm">
+                                    <table class="table table-sm table-responsive">
                                         <tr>
                                             <th>Origen del recurso</th>
                                             <th>Fondo o fuente de financiamiento y partida presupuestal</th>
@@ -742,7 +744,7 @@ $check="";
 
 <form action="{{route('guardarDocumentosPreparacion')}}" enctype="multipart/form-data" method="POST">
 @csrf  
-<div class="col-lg-6">
+<div class="col-lg-8">
 <input hidden   type="text" value="{{$project->id}}" name="id_project">
 <div class="card shadow mb-4">
     <!-- Card Header - Accordion -->
@@ -761,7 +763,8 @@ $check="";
                 <div class="form-row">
                     <div class="form-group">
                         <label for="">Seleccionar documentos</label>
-                        <input type="file" class="form-control" name="documents[]" multiple>
+                        <p><small>El tamaño de los archivos debe ser menor a 20MB</small></p>
+                        <input type="file" class="form-control" id="_documents" name="documents[]" multiple onchange="return validateSize()">
                         <label>Tipo de documento</label>
                         <select name="documenttype" id="documenttype" class="form-control @error('documenttype') is-invalid @enderror">
                 <option value="">Selecciona un opción</option>
@@ -923,7 +926,7 @@ $check="";
  
 
             <div class="d-flex justify-content-end">
-     <a href="{{route('noaplica',$project->id)}}" class="btn btn-sm btn-primary shadow-sm" style="margin-right: 1%;"><i class="fa fa-arrow-right" aria-hidden="true"></i>
+     <a href="{{route('noaplica',$project->id)}}" class="btn btn-sm btn-primary shadow-sm" style="margin-right: 1%;"><i class="fas fa-edit fa-sm text-white-50" aria-hidden="true"></i>
 Siguiente
      </a>
    
@@ -937,6 +940,46 @@ Siguiente
 @section('scripts')
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
 <script>
+
+
+        /**Para validación de tamaño de archivos */
+
+        function validateSize(){
+  if (!window.FileReader) { // This is VERY unlikely, browser support is near-universal
+        console.log("The file API isn't supported on this browser yet.");
+        return false;
+    }
+
+    var input = document.getElementById('_documents');
+    if (!input.files) { // This is VERY unlikely, browser support is near-universal
+        console.error("This browser doesn't seem to support the `files` property of file inputs.");
+        return false;
+    } else if (!input.files[0]) {
+        //addPara("Please select a file before clicking 'Load'");
+        alert("Debe seleccionar al menos un archivo");
+        return false;
+    } else {
+        var file = input.files[0];
+        let finalSize=0;
+       // addPara("File " + file.name + " is " + file.size + " bytes in size");
+       //alert("File " + file.name + " is " + file.size + " bytes in size");
+
+       for(let i=0; i<input.files.length;i++){
+          finalSize=file.size+finalSize;
+       }
+
+       if(finalSize>=20971520){
+        alert('El tamaño total de los archivos supera los 20MB');
+
+        input.value='';
+        return false;
+       }
+
+      
+    }
+}
+
+
 
 $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
@@ -974,7 +1017,7 @@ $('#modalAmbiental').on('show.bs.modal', function(event) {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     
     var fecha=button.data('fecha');
-    //alert(fecha);
+    
     var responsable=button.data('responsable');
     var numeros=button.data('numeros');
     $('#id_estudio').val(id);

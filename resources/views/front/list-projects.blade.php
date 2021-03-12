@@ -27,7 +27,7 @@ Listado de obras
             <div class="col-lg-6" >
                 
                     <div class="container-item d-flex justify-content-between align-items-center text-white">
-                        {{-- <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="36" alt=""> --}}
+                        {{-- <img src="{{ asset('assets/img/project/institucion.png') }}" class="img-fluid" width="20" alt=""> --}}
                         <strong id="titulos-phone">DESCARGA TODOS LOS PROYECTOS DE LA INICIATIVA</strong>
                     </div>
                 
@@ -102,6 +102,8 @@ Listado de obras
                     $id_proyecto=0;
                 @endphp
                 @foreach ($projects as $project)
+
+          
                     
                     {{-- Aqui tomamos la decisión, si en la consulta existe el id de la prganización en el que actualmente estamos, entonces el contador hacemos que aumente de 1 en 1.  --}}
                     @if ($project->id_organization==2)
@@ -269,6 +271,8 @@ Listado de obras
                         $id_proyecto7=0;
                     @endphp
                     @foreach ($projects as $project)
+
+                 
                         
                             
                         @if ($project->id_organization==7)
@@ -689,7 +693,17 @@ Listado de obras
                                                 @endif
                                 
                                                 @php
-                                                    $title = substr($project->title,0,36).'...';
+                                                
+                                                    $long=strlen($project->title);
+
+                                                  
+                                                    if($long<50){
+                                                        $title=$project->title;
+                                                    }else{
+                                                        $title = substr($project->title,0,36).'...';
+                                                    }
+
+                                                   
                                                     $description = substr($project->description,0,120).'...';
                                                 @endphp
                                 

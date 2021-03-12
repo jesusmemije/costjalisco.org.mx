@@ -50,7 +50,7 @@ use App\Models\DocumentType;
 
                                 <div class="form-group col-md-3">
                                     <label for="telefonocontactou">Télefono</label>
-                                    <input type="number" name="telefonocontactou" id="telefonocontactomodalu" class="form-control" value="">
+                                    <input type="text" minlength="10" maxlength="10" name="telefonocontactou" id="telefonocontactomodalu" class="form-control" value="">
                                 </div>
 
 
@@ -59,8 +59,34 @@ use App\Models\DocumentType;
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="domiciliocontacto">Domicilio</label>
-                            <input type="text" id="domiciliocontactomodal" name="domiciliocontacto" class="form-control" value="">
+                        <label for="domiciliocontacto" style="font-weight:bold;">Domicilio</label>
+                        <div class="form-row">
+                        
+                            <div class="form-group col-md-5">
+                                
+                                <!--<input type="text" id="domiciliocontacto" name="domiciliocontacto" class="form-control" value="">-->
+                                <input type="hidden" name="id_address" id="id_address">
+                                <label for="streetAddressmodal" >Calle</label>
+                                <input type="text" id="streetAddressmodal" name="streetAddress" class="form-control" value="">
+                                
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="streetNummodal">Número</label>
+                                <input type="text" id="streetNummodal" name="streetNum" class="form-control" value="">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="suburbmodal">Colonia</label>
+                                <input type="text" id="suburbmodal" name="suburb" class="form-control" value="">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="localitymodal">Municipio</label>
+                                <input type="text" id="localitymodal" name="locality" class="form-control" value="">
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="postalCodemodal">Código postal</label>
+                                <input type="text" minlength="5" maxlength="5" id="postalCodemodal" name="postalCode" class="form-control" value="">
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -75,7 +101,7 @@ use App\Models\DocumentType;
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Nombre del responsable</label>
-                            <input maxlength="50" type="text" class="form-control @error('nombreresponsable') is-invalid @enderror" name="nombreresponsable" id="nombreresponsablemodal" value="">
+                            <input  type="text" class="form-control @error('nombreresponsable') is-invalid @enderror" name="nombreresponsable" id="nombreresponsablemodal" value="">
                             @error('nombreresponsable')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -168,7 +194,7 @@ use App\Models\DocumentType;
                         <div class="form-group col-md-6">
 
                             <label for="">Empresas participantes</label>
-                            <input maxlength="250" type="text" class="form-control @error('empresasparticipantes') is-invalid @enderror" name="empresasparticipantes" id="empresasparticipantesmodal" value="">
+                            <input type="text" class="form-control @error('empresasparticipantes') is-invalid @enderror" name="empresasparticipantes" id="empresasparticipantesmodal" value="">
                             @error('empresasparticipantes')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -177,7 +203,7 @@ use App\Models\DocumentType;
 
                         <div class="form-group col-md-6">
                             <label for=""> Entidad administradora del contrato</label>
-                            <input maxlength="50" type="text" name="entidad_admin_contrato" id="entidad_admin_contratomodal" value="" class="form-control @error('entidad_admin_contrato') is-invalid @enderror" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
+                            <input type="text" name="entidad_admin_contrato" id="entidad_admin_contratomodal" value="" class="form-control @error('entidad_admin_contrato') is-invalid @enderror" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
                             @error('entidad_admin_contrato')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -185,7 +211,7 @@ use App\Models\DocumentType;
                         <div class="form-group col-md-6">
 
                             <label for="">Título del contrato</label>
-                            <input maxlength="50" type="text" name="titulocontrato" id="titulocontratomodal" value="" class="form-control @error('titulocontrato') is-invalid @enderror" placeholder="Nombre o título de contrato">
+                            <input  type="text" name="titulocontrato" id="titulocontratomodal" value="" class="form-control @error('titulocontrato') is-invalid @enderror" placeholder="Nombre o título de contrato">
                             @error('titulocontrato')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -197,7 +223,7 @@ use App\Models\DocumentType;
 
                         <div class="form-group col-md-6">
                             <label for="">Empresa contratada</label>
-                            <input maxlength="250" type="text" class="form-control @error('empresacontratada') is-invalid @enderror" name="empresacontratada" id="empresacontratadamodal" value="">
+                            <input  type="text" class="form-control @error('empresacontratada') is-invalid @enderror" name="empresacontratada" id="empresacontratadamodal" value="">
                             @error('empresacontratada')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -205,7 +231,7 @@ use App\Models\DocumentType;
 
                         <div class="form-group col-md-6">
                             <label for="">Vía por la que presenta su propuesta</label>
-                            <input maxlength="50" type="text" class="form-control @error('viapropuesta') is-invalid @enderror" name="viapropuesta" id="viapropuestamodal" value="">
+                            <input type="text" class="form-control @error('viapropuesta') is-invalid @enderror" name="viapropuesta" id="viapropuestamodal" value="">
                             @error('viapropuesta')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -236,7 +262,7 @@ use App\Models\DocumentType;
                         <div class="form-group col-md-6">
 
                             <label for="">Alcance del trabajo según el contrato</label>
-                            <input maxlength="50" type="text" class="form-control @error('alcancecontrato') is-invalid @enderror" name="alcancecontrato" id="alcancecontratomodal">
+                            <input  type="text" class="form-control @error('alcancecontrato') is-invalid @enderror" name="alcancecontrato" id="alcancecontratomodal">
                             @error('alacancecontrato')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -307,11 +333,16 @@ use App\Models\DocumentType;
                             <input type="hidden" name="id_project" value="{{$project->id}}">
 
                                 <div class="form-row">
-
+                                    <div class="col-md-12">
                                     <label for="">Seleccionar documentos</label>
-                                    <input required type="file" class="form-control" name="documentsupdate[]" multiple>
+                                  
+                                    <p><small>El tamaño de los archivos debe ser menor a 20MB</small></p>
+                                    <input required type="file" class="form-control" id="_documents" name="documentsupdate[]" multiple onchange="return validateSizeModal()">
 
-
+                                    </div >
+                                    
+                                    <div class=col-md-12>
+                                    
                                     <label for="documenttype">Tipo de documento</label>
                                     <select name="documenttypeupdate" required id="documenttypeupdate" class="form-control @error('documenttype') is-invalid @enderror">
                                         <option value="">Selecciona un opción</option>
@@ -322,6 +353,7 @@ use App\Models\DocumentType;
                                         @endforeach
 
                                     </select>
+                                    </div>
                                     @error('documenttype')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -375,4 +407,41 @@ use App\Models\DocumentType;
         </div>
     </div>
 
-    
+    <script>
+    /**Para validación de tamaño de archivos */
+
+function validateSizeModal(){
+  if (!window.FileReader) { // This is VERY unlikely, browser support is near-universal
+        console.log("The file API isn't supported on this browser yet.");
+        return false;
+    }
+
+    var input = document.getElementById('_documents');
+    if (!input.files) { // This is VERY unlikely, browser support is near-universal
+        console.error("This browser doesn't seem to support the `files` property of file inputs.");
+        return false;
+    } else if (!input.files[0]) {
+        //addPara("Please select a file before clicking 'Load'");
+        alert("Debe seleccionar al menos un archivo");
+        return false;
+    } else {
+        var file = input.files[0];
+        let finalSize=0;
+       // addPara("File " + file.name + " is " + file.size + " bytes in size");
+       //alert("File " + file.name + " is " + file.size + " bytes in size");
+
+       for(let i=0; i<input.files.length;i++){
+          finalSize=file.size+finalSize;
+       }
+
+       if(finalSize>=20971520){
+        alert('El tamaño total de los archivos supera los 20MB');
+
+        input.value='';
+        return false;
+       }
+
+      
+    }
+}
+    </script>

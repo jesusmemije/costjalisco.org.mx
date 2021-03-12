@@ -104,7 +104,7 @@ Conoce más
                     responsabilidad en la infraestructura pública en ocho países.</p>
                     
                 <p style="font-weight: 600;">
-                    Actualmente CoST trabaja globalmente con miembros distribuidos en 15 países de cuatro continentes,
+                    Actualmente CoST trabaja globalmente con miembros distribuidos en 20 países de cuatro continentes,
                     sus
                     miembros son de gobiernos subnacionales y nacionales y representan economías emergentes y de bajos
                     ingresos e
@@ -121,14 +121,14 @@ Conoce más
                     Transparency International, Open Government Partnership e Hivos.
                 </p>
                 <p style="font-weight: 600;">
-                   Esta Iniciativa trabaja con el Gobierno, la Industia y la sociedad civil para promover le
+                   Esta Iniciativa trabaja con el Gobierno, la Industria y la sociedad civil para promover le
                     divulgación, validación e 
                     interpretación de datos de proyectos de infraestructura.
                 </p>
                 <p>
                     CoST tiene una trayectoria en ahorros de costos, reformas legales e institucionales y en el
                     desarrollo de capacidades de 
-                    grupos interesados. Esto hace que la iniciativa esté idealmente posicionado para dirigir esfuerzos
+                    grupos interesados. Esto hace que la iniciativa esté idealmente posicionada para dirigir esfuerzos
                     futuros de aumento de la
                     transparencia, rendición de cuentas, así como la mejora en el costo/efectividad en la entrega de la
                     infraestructura pública.
@@ -137,9 +137,9 @@ Conoce más
                     entre sus tareas se
                     encuentran; el aprobar la estrategia y los presupuestos, establecer los principios y los estándares
                     para la participación y la
-                    admisión de nuevos países a la iniciativa de CoST.La Junta nombra
+                    admisión de nuevos países a la iniciativa de CoST. La Junta nombra
                         una Secretaria Internacional para proveer apoyo
-                        administrativo para el prograrna internacional de CoST, apoyar a los países interesados en
+                        administrativo para el programa internacional de CoST, apoyar a los países interesados en
                         unirse a CoST, proveer
                         guía y asistencia técnica a los programas nacionales y administrar fondos
                         internacionales.</span>
@@ -170,7 +170,7 @@ Conoce más
                 </p>
                 <p>
                 Actualmente, tiene presencia en 19 países distribuidos en cuatro continentes, donde trabaja directamente con el Gobierno, la
-                sociedad civil y la industra del ramo de la construcción para promover la divulgación, validación e interpretación de datos de 
+                sociedad civil y la industria del ramo de la construcción para promover la divulgación, validación e interpretación de datos de 
                 proyectos de infraestructura y obra pública.
                 </p>
                 </div>
@@ -198,12 +198,12 @@ Conoce más
                 </p>
                 <p style="font-weight: 600;">
                 CoST representa un mejor valor para las comunidades porque asegura una entrega de infraestructura eficiente en 
-                costos y con un majoer calidad, capaz de cambiar vidas. Las comunidades ganan acceso a trabajo y mercados a 
+                costos y con una mejor calidad, capaz de cambiar vidas. Las comunidades ganan acceso a trabajo y mercados a 
                 través de carreteras y calles mejoradas, agua potable limpia, educación en escuelas bien construidas o tratamiento
                 médico en hospitales seguros, entre otras.
                 </p>
                 <p>
-                Esto ayuda a inforarmar y empoderar a los ciudadanos, permitiéndoles exigirles cuentas a los tomadores de decisiones.
+                Esto ayuda a informar y empoderar a los ciudadanos, permitiéndoles exigirles cuentas a los tomadores de decisiones.
                 Ciudadanos informados e instituciones públicas receptivas pueden liderar la introducción de reformas que reducirán la mala
                 gestión, ineficiencia, corrupción y el riesgo planteado al público como resultado de la mala infraestructura.
                 </p>
@@ -238,7 +238,7 @@ Conoce más
                 </th>
                 <th class="th-enlace" style="text-align: center; width:40%;">
                    
-                <h5 style="font-weight: 600;">AUDITORIA SOCIAL</h5>
+                <h5 style="font-weight: 600;">AUDITORÍA SOCIAL</h5>
                 </th>
             </tr>
             <tbody>
@@ -291,7 +291,7 @@ Conoce más
                 <p style="text-align: justify;">
                     Aunado a ello, se pretende generar capacidades a la sociedad civil para la vigilancia y monitoreo de
                     las obras públicas que 
-                    encuentren publicadas bajo los entándares antes referidos.
+                    encuentren publicadas bajo los estándares antes referidos.
                 </p>
                
                </td>

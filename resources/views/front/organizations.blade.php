@@ -262,8 +262,10 @@
             </tbody>
         </table>
     </div>
+
      <!--Mostramos la tabla de Aliados Estratégicos-->
-    <div class="row my5">
+
+    <!--<div class="row my5">
         <div class="color5"></div>
         <div class="tlt">
             <h2 class="c5">Aliados Estratégicos<h2>
@@ -322,7 +324,8 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div>-->
+    
 </div><br><br class="hidden-phone">
 
 @endsection

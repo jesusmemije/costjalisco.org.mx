@@ -282,6 +282,7 @@ class OrganizationsController extends Controller
         $organization->id_partyRole=$request->partyRole;
         $organization->save();
 
+     
         /*Se verifica si recibe una imagen a actualizar.
         La 'mueve' al servidor y elimina la imagen que ya tenia asociada 
         en base a la información de la tabla orglogos.
@@ -294,10 +295,14 @@ class OrganizationsController extends Controller
             $orglogo=DB::table('orglogos')
             ->where('id_organization','=',$organization->id)
             ->first();
-            $ruta='orglogos/'.$orglogo->imgroute;
-            if(file_exists(($ruta))){
-               unlink($ruta);
+            if($orglogo!=null){
+                $ruta='orglogos/'.$orglogo->imgroute;
+                if(file_exists(($ruta))){
+                    unlink($ruta);
+                 }
             }
+           
+          
 
             DB::table('orglogos')
             ->updateOrInsert(
@@ -325,7 +330,7 @@ class OrganizationsController extends Controller
         $orglogos=DB::table('orglogos')
         ->where('id_organization','=',$organization->id)
         ->get();
-      
+   
         foreach($orglogos as $orglogo){
             $ruta='orglogos/'.$orglogo->imgroute;
             if(file_exists(($ruta))){
@@ -334,7 +339,7 @@ class OrganizationsController extends Controller
             
             
         }
-
+      
 
         if(!empty($organization)){
             Organization::destroy($id);

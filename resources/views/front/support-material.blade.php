@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<!--Esta parte del código muestra el titulo material de apoyo con una imagen-->
+
 <div class="container">
     <div class="row my2" style="margin-bottom: 5%;">
         <div class="color2"></div>
@@ -21,7 +21,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="container">
 

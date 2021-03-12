@@ -43,7 +43,7 @@ Inicio
                                 </div>
                             </div>
                             <!--Esta parte lo que hace es buscar la palabra que el usuario le ingrese-->
-                            <ul id="box-search" style="overflow-y: scroll; height: 300px;;">
+                            <ul id="box-search" >
                                 <li><a href="{{url('/#inicio-nosotros')}}"><i class="fas fa-search"></i>Inico >
                                         Nosotros</a></li>
                                 <li><a href="{{url('know-more')}}"><i class="fas fa-search"></i>Conoce más >
@@ -115,11 +115,14 @@ Inicio
                                 <li><a href="{{url('resources#mapasitio')}}"><i class="fas fa-search"></i>Mapa de sitio aprobado</a></li>
                                 <li><a href="{{url('support-material#seminarioabierto')}}"><i class="fas fa-search"></i>Seminarios de datos abiertos</a></li>
                                 <li><a href="{{url('eventos#enero')}}"><i class="fas fa-search"></i>Eventos de enero</a></li>
-
                             </ul>
                             <div id="cover-ctn-search"></div>
                         </div>
-                        <br><br><br>
+                        <br>
+                        <label id="sin_resultados" style="margin-left: 16px; display: none;"><span class="ml-1 mr-2" style=" color: slategray; font-size: 20px; font-weight: bold;">X</span> Sin resultados</label>
+                        <br>
+                        
+                        
                     </div>
                 {{-- </form> --}}
             </div>
@@ -135,7 +138,7 @@ Inicio
     <!--La funcion de este código es para que se muestre el carrusel en el el home-->
     <div id="carouselHome" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
             <li data-target="#carouselHome" data-slide-to="1"></li>
             <li data-target="#carouselHome" data-slide-to="2"></li>
         </ol>
@@ -303,7 +306,7 @@ Inicio
                 <p style="text-align: justify;">
                     Actualmente, tiene presencia en 19 países distribuidos en 
                     cuatro continentes, donde trabaja directamente con el Gobierno, 
-                    la sociedad civil y la industria del ramo de la contrucción para 
+                    la sociedad civil y la industria del ramo de la construcción para 
                     promover la divulgación, validación e interpretación de datos de 
                     proyectos de infraestructura y obra pública.
                 </p>
@@ -563,8 +566,7 @@ Inicio
 </div>
 
 <!-- Section - Aliados Estratégicos-->
-<!--Esta seccion muestra los logotipos de Aliados Estratégicos-->
-<div class="container mt-5 hidden-phone">
+<!--<div class="container mt-5 hidden-phone">
     <div style="border-left: 5px solid #D8D8CD;">
         <div class="row mb-3">
             <div class="col-md-12">
@@ -575,13 +577,13 @@ Inicio
         <div class="row align-items-center">
             <div class="col-md-3 col-sm-3 text-center">
                 <a href="http://transversalthinktank.org/about" target="_BLANK">
-                    <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" class="img-fluid"
+                    <img src="{{ asset('assets/img/home/aliados-estrategicos/transversal.jpg') }}" style="opacity: 0;" class="img-fluid"
                         width="200" alt="">
                 </a>
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 <!-- Section - Sector público-->
 <div class="container mt-5 hidden-desktop">
@@ -674,7 +676,7 @@ Inicio
                 </div>
             </div>
         </div>
-        <div style="border-left: 5px solid #D8D8CD; margin-bottom: 3rem;">
+        <!--<div style="border-left: 5px solid #D8D8CD; margin-bottom: 3rem;">
             <div class="row mb-3">
                 <div class="col-md-12">
                     <h3 style="color: #D8D8CD;" class="title-sector">Aliados Estratégicos
@@ -690,7 +692,7 @@ Inicio
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 
     <div class="row">
@@ -767,7 +769,7 @@ Inicio
                                         {{number_format($project->montocontrato,2)}}</p>
                                     <p class="hidden-desktop-mini"><img src="{{ asset('assets/img/home/slider-proyectos/icons/reloj.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
-                                        <strong>&nbsp; Periodo de construcción: </strong> {{$project->period}}</p>
+                                        <strong>&nbsp; Periodo de construcción: </strong>{{$project->duracionproyecto_contrato}}</p>
                                     <p><img src="{{ asset('assets/img/home/slider-proyectos/icons/ubicacion.png') }}"
                                             class="img-fluid icon-img-carousel" alt="">
                                         <strong>&nbsp; Ubicación: </strong>{{ $ubicacion }}</p>
@@ -862,7 +864,7 @@ Inicio
         <div class="col-md-7 pt-4">
             <img src="{{ asset('assets/img/home/barra-visitas.jpg') }}" class="img-fluid" alt="">
             <div class="text-white visitantes-counter" style="font-size: 38px;">
-                <img src="https://counter8.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh"
+                <img src="https://counter12.stat.ovh/private/contadorvisitasgratis.php?c=697yd224qzc47tqjsdxlbnlhb32un2kh"
                     border="0">
             </div>
         </div>
@@ -898,17 +900,20 @@ Inicio
 <script>
     inputSearch =       document.getElementById("inputSearch");
     box_search =        document.getElementById("box-search");
+    sin_resultado =     document.getElementById("sin_resultados");
 
 
     //Funcion para mostrar el buscador
     function mostrar_buscador(){
-
+        sin_resultado.style.display="block";
         bars_search.style.top = "80px";
         cover_ctn_search.style.display = "block";
         inputSearch.focus();
 
         if (inputSearch.value === ""){
             box_search.style.display = "none";
+            sin_resultado.style.display =" block";
+
         }
 
     }
@@ -919,7 +924,7 @@ Inicio
         bars_search.style.top = "-10px";
         cover_ctn_search.style.display = "none";
         inputSearch.value = "";
-        box_search.style.display = "none";
+        sin_resultado.style.display =" block";
 
     }
 
@@ -946,10 +951,13 @@ Inicio
 
                 if (inputSearch.value === ""){
                     box_search.style.display = "none";
+                    sin_resultado.style.display =" block";
                 }
 
             }else{
                 li[i].style.display = "none";
+                sin_resultado.style.display =" block";
+
             }
         }
     }

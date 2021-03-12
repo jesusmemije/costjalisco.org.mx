@@ -40,11 +40,11 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for=""><b>Datos de contacto de la entidad de adjudicación:</b></label>
+                                <label for="" ><b>Datos de contacto de la entidad de adjudicación:</b></label>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="">Entidad de adjudicación</label>
-                                        <input maxlength="50" type="text" class="form-control @error('entidadadjudicacion') is-invalid @enderror" name="entidadadjudicacion" value="">
+                                        <input type="text" class="form-control @error('entidadadjudicacion') is-invalid @enderror" name="entidadadjudicacion" value="">
                                         @error('entidadadjudicacion')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -67,19 +67,43 @@
 
                                     <div class="form-group col-md-3">
                                         <label for="telefonocontacto">Télefono</label>
-                                        <input type="number" name="telefonocontacto" id="telefonocontacto" class="form-control" value="">
+                                        <input type="text" minlength="10" maxlength="10" name="telefonocontacto" id="telefonocontacto" class="form-control" value="">
                                     </div>
 
 
                                 </div>
                             </div>
                         </div>
+
+                        <label for="domiciliocontacto" style="font-weight:bold;">Domicilio</label>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="domiciliocontacto">Domicilio</label>
-                                <input type="text" id="domiciliocontacto" name="domiciliocontacto" class="form-control" value="">
+                        
+                            <div class="form-group col-md-5">
+                                
+                                <!--<input type="text" id="domiciliocontacto" name="domiciliocontacto" class="form-control" value="">-->
+
+                                <label for="streetAddress" >Calle</label>
+                                <input type="text" id="streetAddress" name="streetAddress" class="form-control" value="">
+                                
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="streetNum">Número</label>
+                                <input type="text" id="streetNum" name="streetNum" class="form-control" value="">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="suburb">Colonia</label>
+                                <input type="text" id="suburb" name="suburb" class="form-control" value="">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="locality">Municipio</label>
+                                <input type="text" id="locality" name="locality" class="form-control" value="">
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="postalCode">Código postal</label>
+                                <input type="text" minlength="5" maxlength="5" id="postalCode" name="postalCode" class="form-control" value="">
                             </div>
                         </div>
+
                         <div class="form-row">
 
                             <div class="form-group col-md-6">
@@ -97,7 +121,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="">Nombre del responsable</label>
-                                <input maxlength="50" type="text" class="form-control @error('nombreresponsable') is-invalid @enderror" name="nombreresponsable" value="">
+                                <input  type="text" class="form-control @error('nombreresponsable') is-invalid @enderror" name="nombreresponsable" value="">
                                 @error('nombreresponsable')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -187,7 +211,7 @@
                             <div class="form-group col-md-4">
 
                                 <label for="">Empresas participantes</label>
-                                <input maxlength="250" type="text" class="form-control @error('empresasparticipantes') is-invalid @enderror" name="empresasparticipantes" value="">
+                                <input type="text" class="form-control @error('empresasparticipantes') is-invalid @enderror" name="empresasparticipantes" value="">
                                 @error('empresasparticipantes')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -196,7 +220,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for=""> Entidad administradora del contrato</label>
-                                <input maxlength="50" type="text" name="entidad_admin_contrato" value="" class="form-control @error('entidad_admin_contrato') is-invalid @enderror" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
+                                <input type="text" name="entidad_admin_contrato" value="" class="form-control @error('entidad_admin_contrato') is-invalid @enderror" placeholder="Nombre del área o dependencia responsable de la administración y seguimiento del contrato">
                                 @error('entidad_admin_contrato')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -207,7 +231,7 @@
                             <div class="form-group col-md-4">
 
                                 <label for="">Título del contrato</label>
-                                <input maxlength="50" type="text" name="titulocontrato" value="" class="form-control @error('titulocontrato') is-invalid @enderror" placeholder="Nombre o título de contrato">
+                                <input type="text" name="titulocontrato" value="" class="form-control @error('titulocontrato') is-invalid @enderror" placeholder="Nombre o título de contrato">
                                 @error('titulocontrato')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -215,7 +239,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for="">Empresa contratada</label>
-                                <input maxlength="250" type="text" class="form-control @error('empresacontratada') is-invalid @enderror" name="empresacontratada" value="">
+                                <input  type="text" class="form-control @error('empresacontratada') is-invalid @enderror" name="empresacontratada" value="">
                                 @error('empresacontratada')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -223,7 +247,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for="">Vía por la que presenta su propuesta</label>
-                                <input maxlength="50" type="text" class="form-control @error('viapropuesta') is-invalid @enderror" name="viapropuesta" value="">
+                                <input  type="text" class="form-control @error('viapropuesta') is-invalid @enderror" name="viapropuesta" value="">
                                 @error('viapropuesta')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -254,7 +278,7 @@
                             <div class="form-group col-md-4">
 
                                 <label for="">Alcance del trabajo según el contrato</label>
-                                <input maxlength="50" type="text" class="form-control @error('alcancecontrato') is-invalid @enderror" name="alcancecontrato">
+                                <input type="text" class="form-control @error('alcancecontrato') is-invalid @enderror" name="alcancecontrato">
                                 @error('alacancecontrato')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -276,7 +300,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="">Duración del proyecto de acuerdo con lo establecido en el contrato</label>
-                                <input maxlength="50" type="text" class="form-control @error('duracionproyecto_contrato') is-invalid @enderror" name="duracionproyecto_contrato" value="">
+                                <input maxlength="50" required type="text" class="form-control @error('duracionproyecto_contrato') is-invalid @enderror" name="duracionproyecto_contrato" value="">
                                 @error('duracionproyecto_contrato')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -316,7 +340,8 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="">Seleccionar documentos</label>
-                            <input type="file" class="form-control" name="documents[]" multiple>
+                            <p><small>El tamaño de los archivos debe ser menor a 20MB</small></p>
+                            <input type="file" class="form-control" id='documents' name="documents[]" multiple onchange="return validateSize()">
 
 
                             <label for="documenttype">Tipo de documento</label>
@@ -413,34 +438,49 @@
                                             {{number_format($contrato->montocontrato)}}
                                             @endif
                                         </td>
-                                    <?php
-                                    $contract_documents=DB::table('contract_documents')
-                                    ->join('documents','contract_documents.id_document','=','documents.id')
-                                    ->select('documents.id','documents.url','documents.documentType',
-                                    'contract_documents.id_document')
-                                    ->where('id_contrato','=',$contrato->id)
-                                    ->get();
-                                   
-                                    $data=array();
-                                    
-                                
-                                   
-                                    ?>
-
+                             
                                         <td>
                                             <div class="form-row">
-                                         
+                                             
+                                  
 
                                                 <div class="form-group">
-                                                    <a data-toggle="modal" onclick="mandar('{{$contrato->id}}','{{$contrato->entidadadjudicacion}}',
-                                                    '{{$contrato->nombrecontacto}}','{{$contrato->emailcontacto}}','{{$contrato->telefonocontacto}}',
-                                                    '{{$contrato->domiciliocontacto}}','{{$contrato->fechapublicacion}}','{{$contrato->nombreresponsable}}',
-                                                    '{{$contrato->empresasparticipantes}}','{{$contrato->entidad_admin_contrato}}','{{$contrato->titulocontrato}}',
-                                                    '{{$contrato->empresacontratada}}','{{$contrato->viapropuesta}}','{{$contrato->fechapresentacionpropuesta}}','{{$contrato->montocontrato}}',
-                                                    '{{$contrato->alcancecontrato}}','{{$contrato->fechainiciocontrato}}','{{$contrato->duracionproyecto_contrato}}','{{$contrato->observaciones}}',
-                                                    '{{$contrato->modalidadadjudicacion}}','{{$contrato->tipocontrato}}','{{$contrato->modalidadcontrato}}','{{$contrato->estadoactual}}',
-                                                    '{{json_encode($data)}}',
-                                                    )" 
+                                                    <a data-toggle="modal" data-target="#editarContrato"  
+                                                    data-id="{{$contrato->id}}"
+                                                   data-entidadadjudicacion="{{$contrato->entidadadjudicacion}}"
+                                                   data-nombrecontacto="{{$contrato->nombrecontacto}}"
+                                                   data-emailcontacto="{{$contrato->emailcontacto}}"
+                                                   data-telefonocontacto="{{$contrato->telefonocontacto}}"
+                                                   data-domiciliocontacto="{{$contrato->domiciliocontacto}}"
+                                                   data-fechapublicacion="{{$contrato->fechapublicacion}}"
+                                                   data-nombreresponsable="{{$contrato->nombreresponsable}}"
+                                                   data-entidad_admin_contrato="{{$contrato->entidad_admin_contrato}}"
+                                                   data-titulocontrato="{{$contrato->titulocontrato}}"
+                                                   data-empresacontratada="{{$contrato->empresacontratada}}"
+                                                   data-viapropuesta="{{$contrato->viapropuesta}}"
+                                                   data-fechapresentacionpropuesta="{{$contrato->fechapresentacionpropuesta}}"
+                                                   data-montocontrato="{{$contrato->montocontrato}}"
+                                                   data-alcancecontrato="{{$contrato->alcancecontrato}}"
+                                                   data-fechainiciocontrato="{{$contrato->fechainiciocontrato}}"
+                                                   data-duracionproyecto_contrato="{{$contrato->duracionproyecto_contrato}}"
+                                                   data-observaciones="{{$contrato->observaciones}}"
+                                                   data-modalidadadjudicacion="{{$contrato->modalidadadjudicacion}}"
+                                                   data-tipocontrato="{{$contrato->tipocontrato}}"
+                                                   data-modalidadcontrato="{{$contrato->modalidadcontrato}}"
+                                                   data-estadoactual="{{$contrato->estadoactual}}"
+                                                   
+                                                  
+                                                   data-streetaddress="{{$contrato->streetAddress}}"
+                                                   data-streetnum="{{$contrato->streetNum}}"
+                                                   data-suburb="{{$contrato->suburb}}"
+                                                   data-locality="{{$contrato->locality}}"
+                                                   data-postalcode="{{$contrato->postalCode}}"
+                                                   data-idaddress="{{$contrato->id_address}}"
+
+                                                   
+
+                                                    
+                                                    data-empresas="{{$contrato->empresasparticipantes}}"
                                                     class="btn btn-warning btn-sm btn-circle" style="color: black;"><i class="fa fa-edit btnme"></i></a>
                                                 </div>
 
@@ -569,50 +609,107 @@
 
     @section('scripts')
     <script>
+
+        /**Para validación de tamaño de archivos */
+
+function validateSize(){
+  if (!window.FileReader) { // This is VERY unlikely, browser support is near-universal
+        console.log("The file API isn't supported on this browser yet.");
+        return false;
+    }
+
+    var input = document.getElementById('documents');
+    if (!input.files) { // This is VERY unlikely, browser support is near-universal
+        console.error("This browser doesn't seem to support the `files` property of file inputs.");
+        return false;
+    } else if (!input.files[0]) {
+        //addPara("Please select a file before clicking 'Load'");
+        alert("Debe seleccionar al menos un archivo");
+        return false;
+    } else {
+        var file = input.files[0];
+        let finalSize=0;
+       // addPara("File " + file.name + " is " + file.size + " bytes in size");
+       //alert("File " + file.name + " is " + file.size + " bytes in size");
+
+       for(let i=0; i<input.files.length;i++){
+          finalSize=file.size+finalSize;
+       }
+
+       if(finalSize>=20971520){
+        alert('El tamaño total de los archivos supera los 20MB');
+
+        input.value='';
+        return false;
+       }
+
+      
+    }
+}
+
+
         function eliminar(dato){
             $('#eliminarcontrato').val(dato);
             $('#pe').html('¿Seguro que desea eliminar el contrato?'+'<b>#'+ dato+'</b');
             $('#eliminarContrato').modal('show')
         }
-    
-        function mandar(dato1, dato2, dato3, dato4, dato5, dato6, dato7, dato8, dato9, dato10, dato11, dato12, dato13, dato14, dato15, dato16, dato17, dato18, dato19,dato20,dato21,dato22,dato23,data) {
 
-            console.log(data);
+        $('#editarContrato').on('show.bs.modal', function(event) {
+
+            var button = $(event.relatedTarget);
+
+
+            $('#id_contrato').val(button.data('id'));
+            $('#entidadadjudicacionmodal').val(button.data('entidadadjudicacion'));
+            $('#nombrecontactomodal').val(button.data('nombrecontacto'));
+            $('#emailcontactomodal').val(button.data('emailcontacto'));
+            $('#telefonocontactomodalu').val(button.data('telefonocontacto'));
+            $('#domiciliocontactomodal').val(button.data('domiciliocontacto'));
+            $('#fechapublicacionmodalu').val(button.data('fechapublicacion'));
+            $('#nombreresponsablemodal').val(button.data('nombreresponsable'));
+
+            // $('#empresasparticipantesmodal').val(dato9);
+
+            $('#entidad_admin_contratomodal').val(button.data('entidad_admin_contrato'));
+            $('#titulocontratomodal').val(button.data('titulocontrato'));
+            $('#empresacontratadamodal').val(button.data('empresacontratada'));
+            $('#empresasparticipantesmodal').val(button.data('empresas'));
+            $('#viapropuestamodal').val(button.data('viapropuesta'));
+            $('#fechapresentacionpropuestamodalu').val(button.data('fechapresentacionpropuesta'));
+            $('#montocontratomodalu').val(button.data('montocontrato'));
+            $('#alcancecontratomodal').val(button.data('alcancecontrato'));
+            $('#fechainiciocontratomodalu').val(button.data('fechainiciocontrato'));
+            $('#duracionproyecto_contratomodal').val(button.data('duracionproyecto_contrato'));
+            $('#observacionesmodal').val(button.data('observaciones'));
+
+            /**Para el domicilio del contacto. */
+
           
-            $('#id_contrato').val(dato1);
-            $('#entidadadjudicacionmodal').val(dato2);
-            $('#nombrecontactomodal').val(dato3);
-            $('#emailcontactomodal').val(dato4);
-            $('#telefonocontactomodalu').val(dato5);
-            $('#domiciliocontactomodal').val(dato6);
-            $('#fechapublicacionmodalu').val(dato7);
-            $('#nombreresponsablemodal').val(dato8);
-            $('#empresasparticipantesmodal').val(dato9);
-            $('#entidad_admin_contratomodal').val(dato10);
-            $('#titulocontratomodal').val(dato11);
-            $('#empresacontratadamodal').val(dato12);
-            $('#viapropuestamodal').val(dato13);
-            $('#fechapresentacionpropuestamodalu').val(dato14);
-            $('#montocontratomodalu').val(dato15);
-            $('#alcancecontratomodal').val(dato16);
-            $('#fechainiciocontratomodalu').val(dato17);
-            $('#duracionproyecto_contratomodal').val(dato18);
-            $('#observacionesmodal').val(dato19);
+
+           $('#streetAddressmodal').val(button.data('streetaddress'));
+            $('#streetNummodal').val(button.data('streetnum'));
+            $('#suburbmodal').val(button.data('suburb'));
+            $('#localitymodal').val(button.data('locality'));
+            $('#postalCodemodal').val(button.data('postalcode'));
+            
+            $('#id_address').val(button.data('idaddress'));
+
+
 
             /**Para los select del modal */
            
             //document.getElementById('modalidadadjudicacionmodal').value=dato20;//js pure.
-            $('#modalidadadjudicacionmodal').val(dato20);
-            $('#tipocontratomodal').val(dato21);
-            $('#modalidadcontratomodal').val(dato22);
-            $('#estadoactualmodal').val(dato23);
+            $('#modalidadadjudicacionmodal').val(button.data('modalidadadjudicacion'));
+            $('#tipocontratomodal').val(button.data('tipocontrato'));
+            $('#modalidadcontratomodal').val(button.data('modalidadcontrato'));
+            $('#estadoactualmodal').val(button.data('estadoactual'));
 
 
-            $('#id_contratomodal').val(dato1);
+            $('#id_contratomodal').val(button.data('id'));
 
             //Para el título del modal.
 
-            $('#modal-title').html('Actualizando contrato: '+dato1);
+            $('#modal-title').html('Actualizando contrato: '+button.data('id'));
 
           
             /*Para llenar la tabla dinámicamente**/
@@ -620,7 +717,7 @@
             $.ajax({
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    "id_contrato": dato1,
+                    "id_contrato": button.data('id'),
                 },
                 url: "{{ route('getdocsfromcontract') }}",
                 type: 'post',
@@ -631,8 +728,6 @@
                     y  construye la tabla dentro del modal con el nombre y tipo del documento de 
                     determinada fase
                     */
-
-                    console.log(resp);
                     
                     $(".display tbody tr").remove();
                     
@@ -665,8 +760,10 @@
             });
           
 
-            $('#editarContrato').modal('show')
-        }
+          
+     
+        })
+       
     </script>
 
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>

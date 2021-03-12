@@ -41,6 +41,8 @@ Route::namespace('Front')->group(function () {
     Route::get('/account', [HomeController::class, 'account'])->name('account');
     Route::get('/sitemap', [HomeController::class, 'sitemap'])->name('sitemap');
 
+    Route::get('/RedJalisco', [HomeController::class, 'RedJalisco'])->name('RedJalisco');
+
     //Projects
     require 'front/projects.php';
 
@@ -120,6 +122,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     
 
     Route::post('/admin/actualizarObservacionPreparacion', [AdminProjectController::class, 'actualizarObservacionPreparacion'])->name('actualizarObservacionPreparacion');
+
+     //descargables
+     Route::get('/admin/downloadable/', [DashboardController::class, 'downloadable'])->name('downloadable');
+     Route::post('/admin/downloadQR/', [DashboardController::class, 'downloadQR'])->name('downloadQR');
+
 
 
     Route::get('/admin/delimgproject/{id_project}', [AdminProjectController::class, 'delimgproject'])->name('delimgproject');

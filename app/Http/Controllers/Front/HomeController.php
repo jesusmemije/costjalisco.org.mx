@@ -56,6 +56,7 @@ class HomeController extends Controller
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
 
+
         if (empty($personas_beneficiadas[0]->total_p_beneficiada)) {
             $total_beneficiarios=0;
         } else {
@@ -154,15 +155,16 @@ class HomeController extends Controller
         ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
         ->join('projectsector', 'project.sector', '=', 'projectsector.id')
         ->join('subsector', 'project.subsector', '=', 'subsector.id')
-        ->select('project.*','project.id as id_project', 'address.*','proyecto_contratacion.montocontrato') 
+        ->select('project.*','project.id as id_project', 'address.*','proyecto_contratacion.montocontrato',
+        'proyecto_contratacion.duracionproyecto_contrato') 
         ->whereNotNull('proyecto_contratacion.montocontrato')
         ->get();
         
             $h=DB::table('documents')
             ->where('description','=','carrusel')
             ->get();
-
-          
+        
+         
         return view('front.home', [
             'projects' => $projects,
             'h'=>$h,
@@ -210,7 +212,7 @@ class HomeController extends Controller
     
     public function support_material()
     {
-        $materials = SupportMaterial::orderBy('created_at', 'desc')->get();
+        $materials = SupportMaterial::orderBy('created_at', 'ASC')->get();
         return view('front.support-material',['materials'=>$materials]);
     }
     public function organizations()
@@ -459,33 +461,165 @@ class HomeController extends Controller
             // ->whereNotNull('proyecto_finalizacion.costofinalizacion')
             ->groupBy('catmodalidad_adjudicacion.titulo')
             ->get();
-
+        /*
         $procedimiento_etapas = DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
             ->join('locations','project_locations.id_location','=','locations.id')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->leftJoin('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->leftJoin('proyecto_ejecucion','project.id','=','proyecto_ejecucion.id_project')
             ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
-            ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-            ->select(DB::raw('count(*) as total_status_project, project.status as estatus'))
-            ->groupBy('project.status')
+            ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
+           // ->select(DB::raw('count(*) as total_status_project, project.status as estatus'))
+           // ->groupBy('project.status')
             ->get();
-        
-        $personas_beneficias = DB::table('project')
+
+          //  print_r($procedimiento_etapas->count());
+        */
+
+
+        /*
+            $identificacion=DB::table('project')
             ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
             ->join('project_locations','project.id','=','project_locations.id_project')
             ->join('locations','project_locations.id_location','=','locations.id')
             ->join('projectsector', 'project.sector', '=', 'projectsector.id')
             ->join('subsector', 'project.subsector', '=', 'subsector.id')
-            ->join('project_organizations', 'project.id', '=', 'project_organizations.id_project')
-            ->join('organization', 'project_organizations.id_organization', '=', 'organization.id')
-            ->select(DB::raw('SUM(project.people) as total_people,project_organizations.id_organization,organization.name'))
-            ->groupBy('project_organizations.id_organization','organization.name')
             ->get();
+
+            $count_i=$identificacion->count();
+
+            $preparacion=DB::table('project')
+         
+         
+            ->leftJoin('estudiosambiental','project.id','=','estudiosambiental.id_project')
+            ->rightJoin('estudiosfactibilidad','project.id','=','estudiosfactibilidad.id_project')
+            ->rightJoin('estudiosimpacto','project.id','=','estudiosimpacto.id_project')
+            ->rightJoin('project_budgetbreakdown','project.id','=','project_budgetbreakdown.id_project')
+            ->get();
+
+          
+
+            $count_p=$preparacion->count();
+
+
+            $contratacion=DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->get();
+            $count_c=$contratacion->count();
+
+
+
+            $ejecucion=DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->join('proyecto_ejecucion','project.id','=','proyecto_ejecucion.id_project')
+            ->get();
+            $count_e=$ejecucion->count();
+
+            $finalizacion=DB::table('project')
+            ->join('proyecto_finalizacion','project.id','=','proyecto_finalizacion.id_project')
+            ->get();
+
+
+            $count_f=$finalizacion->count();
+        */
+
+            $project1= DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->where('project.status','=','1')
+            ->get();
+
+            $project2= DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->where('project.status','=','2')
+            ->get();
+            
+            $project3= DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->where('project.status','=','3')
+            ->get();
+
+            $project4= DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->where('project.status','=','4')
+            ->get();
+
+            $project5= DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->where('project.status','=','5')
+            ->get();
+
+
+         
+
+         
+
+           // $finalización="";
         
-      
-        return view('front.statistics',['costofinalizacion_contrato'=>$costofinalizacion_contrato,'organizaciones_presupuesto'=>$organizaciones_presupuesto,'personas_beneficias'=>$personas_beneficias,'procedimiento_etapas'=>$procedimiento_etapas,'modalidad_adjudicacion'=>$modalidad_adjudicacion,'costofinalizacion_or'=>$costofinalizacion_or,'monto_contrato_or'=>$monto_contrato_or,'total_presupuesto_ejercido'=>$total_presupuesto_ejercido,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4]);
+        $personas_beneficias = DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+           ->leftJoin('project_organizations', 'project.id', '=', 'project_organizations.id_project')
+            ->leftJoin('organization', 'project_organizations.id_organization', '=', 'organization.id')
+            ->select(DB::raw('SUM(project.people) as total_people,project_organizations.id_organization,organization.name'))
+           
+           ->groupBy('project_organizations.id_organization','organization.name')
+            ->whereNotNull('proyecto_contratacion.montocontrato')
+            ->get();
+
+            $beneficiadas = DB::table('project')
+            ->join('generaldata', 'project.id', '=', 'generaldata.id_project')
+            ->join('project_locations','project.id','=','project_locations.id_project')
+            ->join('locations','project_locations.id_location','=','locations.id')
+            ->join('proyecto_contratacion','project.id','=','proyecto_contratacion.id_project')
+            ->join('projectsector', 'project.sector', '=', 'projectsector.id')
+            ->join('subsector', 'project.subsector', '=', 'subsector.id')
+            ->select(DB::raw('SUM(project.people) as total_p_beneficiada'))
+            ->whereNotNull('proyecto_contratacion.montocontrato')
+            ->get();
+
+        
+
+           // $beneficiadas=$beneficiadas[0]->total_p_beneficiada;
+           
+        return view('front.statistics',['costofinalizacion_contrato'=>$costofinalizacion_contrato,
+         'project1'=>$project1->count() ,'project2'=>$project2->count() ,'project3'=>$project3->count() ,'project4'=>$project4->count() ,'project5'=>$project5->count() ,
+        'organizaciones_presupuesto'=>$organizaciones_presupuesto,'personas_beneficias'=>$personas_beneficias,/*'procedimiento_etapas'=>$procedimiento_etapas,*/'modalidad_adjudicacion'=>$modalidad_adjudicacion,'costofinalizacion_or'=>$costofinalizacion_or,'monto_contrato_or'=>$monto_contrato_or,'total_presupuesto_ejercido'=>$total_presupuesto_ejercido,'proyectos'=>$proyectos,'sector1'=>$sector1,'sector2'=>$sector2,'sector3'=>$sector3,'sector4'=>$sector4,'beneficiadas'=>$beneficiadas]);
     }
 
     

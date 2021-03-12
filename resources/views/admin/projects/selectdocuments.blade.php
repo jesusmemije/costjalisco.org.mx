@@ -4,7 +4,7 @@ use App\Models\DocumentType;
 
 
 ?>
-<div class="col-lg-6">
+<div>
 
     <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->

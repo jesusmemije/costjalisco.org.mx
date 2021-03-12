@@ -65,7 +65,7 @@ Origen del recurso
     </div>
     <div class="card-body">
       <div class="tablescroll">
-        <table class="table table-bordered table-sm  table-hover" id=""  width="100%" cellspacing="0">
+        <table class="table table-bordered table-sm table-responsive table-hover" id=""  width="100%" cellspacing="0">
           <thead>
             <tr>
               <th style="width: 20%;">Nombre</th>
@@ -136,7 +136,7 @@ Origen del recurso
         <form id="formnew" action="" method="POST">
         @csrf
         <label for="name" id="lbl"></label>
-          <input required maxlength="100" type="text" name="titulo" id="name" class="form-control">
+          <input required  type="text" name="titulo" id="name" class="form-control">
           <input type="hidden" id="name_sector" name="name_sector">
          
        

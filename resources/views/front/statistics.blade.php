@@ -6,6 +6,8 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{asset("assets/css/statistics.css")}}">
+
+
 @endsection
 
 @section('content')
@@ -22,12 +24,96 @@
         </div>
     </div>
     <div class="container">
+
+    <div class="col-md-12" style="margin-bottom: 100px"></div>
+        <!--Proyectos de la iniciativa-->
+        <div class="my-1 seccion-project" id="iniciativa">
+            <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
+                <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
+                    <span class="title-section"><b> Proyectos en la iniciativa</b></span>
+                </h2><br>
+            </div>
+        </div>
+
+        <div style="margin-left: 20px; position: relative; bottom: 20px">
+            <div class="col-md-9 background-title bg-background-total px-0 py-1">
+                <span class="total-presupuesto">Total: 31</span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <center>
+                
+                @if (count($proyectos)==0)
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <center>Ningún resultado</center>
+                        </div>
+                    </div>
+                @else
+                    <div class="row">
+                        @php
+                            $total_numero_proyectos = 0;
+                        @endphp
+                        @foreach ($proyectos as $pro)
+                            @php
+
+                                // consultamos la imagen de la organiacion
+                                $imagen=DB::table('orglogos')
+                                    ->select('orglogos.imgroute')
+                                    ->where('orglogos.id_organization','=',$pro->id_organization)
+                                    ->get();
+
+                            @endphp
+                            
+                            <div class="col-md-3">
+                                {{-- muetra la imagen de cada organización correspondiente --}}
+                                @if (count($imagen)==0)
+                                    <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
+                                @else
+                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="90" height="90" alt="">
+                                @endif
+                                <hr id="hr-statistic" >
+                                <div id="name-organization" ><b>{{$pro->name}}</b></div>
+                                
+                                <div class="col-md-12 mb-4" id="resultado-estatics">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img id="imagen-subtitulo" style="background:#2c4143; padding:7px 6px 7px 6px;" src="{{ asset('assets/img/project/institucion.png') }}" width="37"  alt="" >
+                                        </div>
+                                        <div class="col-md-10" id="subtitulo">
+                                            <span >Proyectos </span><br>
+                                            @php
+                                                $total = $pro->total_proyectos;
+                                                $total_numero_proyectos = $total_numero_proyectos + $total;
+                                            @endphp
+                                            <b> {{number_format( $total )}}</b>
+                                        </div>
+                                    </div>
+                                </div>                            
+                            </div>
+                        @endforeach
+                        
+                        @php
+                            $show_number_projects = number_format($total_numero_proyectos);
+                        @endphp
+
+                    </div>
+                @endif
+                    <br>
+                    <div id="donutchartproyectosiniciativa" ></div>
+                 
+                    
+            </center>
+            <a href="{{route('card-projects')}}" class="btn-conoce-mas">Conoce más</a>
+        </div>
         
         <!-- proyectos---->
         <div class="my-md-5 my-3 seccion-project">
             <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
                 <h2 class="my-4 py-0 font-weight-bold" style="padding: 0" id="project">
-                    <span class="title-section"><b> Proyectos</b></span>
+                    <span class="title-section"><b> Proyectos por sector</b></span>
                 </h2><br>
             </div>
         </div>
@@ -203,39 +289,18 @@
         </div>
         <div class="my-md-5">
             <div class="col-md-12">
-
+            
                 <br class="hidden-desktop"><br class="hidden-desktop">
                 <div id="donutchartprocedimiento" ></div>
                 <div id="donutchartprocedimiento-list" >
-                    @if (count($procedimiento_etapas)==0)
-                        <center>Sin resultados</center>
-                    @else
-                        @php
-                            $cont_color=0;
-                        @endphp
-                        @foreach ($procedimiento_etapas as $procedimiento_e)
-                            @php
-                                $cont_color+=1;
-                            @endphp
-                            @if ($cont_color==1)
-                                <div class="d-flex"><div id="circulo-list" style="background: #d60000;"></div><span id="text-ciculo">Identificación {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
-                            @elseif($cont_color==2)
-                                <div class="d-flex"><div id="circulo-list" style="background: #58707b;"></div><span id="text-ciculo">Preparación {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
-                            @elseif($cont_color==3)
-                                <div class="d-flex"><div id="circulo-list" style="background: #61a8bd;"></div><span id="text-ciculo">Contratración {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
-
-                            @elseif($cont_color==4)
-                                <div  class="d-flex"><div id="circulo-list" style="background: #ffce32;"></div><span id="text-ciculo">Ejecución {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
-                            @elseif($cont_color==5)
-                                <div class="d-flex"><div id="circulo-list" style="background: #a8a8a8;"></div><span id="text-ciculo">Finalizado {{$procedimiento_e->total_status_project}} Proyectos </span> </div>
-
-                            @else
-                                
-                            @endif
-                        @endforeach
-                    @endif
-                        
-                        
+                <div class="d-flex"><div id="circulo-list" style="background: #d60000;"></div><span id="text-ciculo">Identificación {{$project1}} Proyectos </span> </div>
+                <div class="d-flex"><div id="circulo-list" style="background: #58707b;"></div><span id="text-ciculo">Preparación {{$project2}}  Proyectos </span> </div>   
+                <div class="d-flex"><div id="circulo-list" style="background: #61a8bd;"></div><span id="text-ciculo">Contratración {{$project3}} Proyectos </span> </div>
+                <div  class="d-flex"><div id="circulo-list" style="background: #ffce32;"></div><span id="text-ciculo">Ejecución {{$project4}} Proyectos </span> </div>
+                <div class="d-flex"><div id="circulo-list" style="background: #a8a8a8;"></div><span id="text-ciculo">Finalizado {{$project5}}  Proyectos </span> </div>
+                   
+   
+   
                    
                 </div>
                 <br class="hidden-desktop">
@@ -251,6 +316,13 @@
                 </h2><br>
             </div>
         </div>
+
+        <div style="margin-left: 20px; position: relative; bottom: 20px">
+            <div class="col-md-9 background-title bg-background-total px-0 py-1">
+                <span class="total-presupuesto" id="total_personas_beneficiadas">Total: 17,043,045</span> <!-- 17,043,045 -->
+            </div>
+        </div>
+
         <div class="col-md-12">
             <center>
                
@@ -265,15 +337,27 @@
                     </div>
                 @else
                     <div class="row">
+                        @php 
+                            $extra=0; 
+                            $total_personas_beneficiadas = 0;
+                        @endphp
                         @foreach ($personas_beneficias as $personas_b)
+
+
                             @php
                                 $imagen=DB::table('orglogos')
                                     ->select('orglogos.imgroute')
                                     ->where('orglogos.id_organization','=',$personas_b->id_organization)
                                     ->get();
 
+                                if($personas_b->id_organization==""){
+                                    $extra=$personas_b->total_people;
+                                }
+
+                                
+
                             @endphp
-                            
+                            @if($personas_b->id_organization!="")
                             <div class="col-md-3 mb-3">
                                 @if (count($imagen)==0)
                                     <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
@@ -290,17 +374,29 @@
                                         </div>
                                         <div class="col-md-10" id="subtitulo">
                                             <span >Personas beneficiadas: </span><br>
-                                            <b> {{number_format($personas_b->total_people)}}</b>
+                                            @php
+                                                $total=$personas_b->total_people+$extra;
+
+                                                $total_personas_beneficiadas = $total_personas_beneficiadas + $total;
+
+                                            @endphp
+
+                                            <b> {{number_format($total)}}</b>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
                             
                             </div>
-                            
-                                
+                            @endif
+
+                            @php
+                                if($personas_b->id_organization!=""){
+                                    $extra=0;
+                                }
+                            @endphp
+                           
                         @endforeach
+                      
                     </div>
                 @endif
                 <br>
@@ -339,68 +435,7 @@
                 </div>
             </center>
         </div>
-        <div class="col-md-12" style="margin-bottom: 100px"></div>
-        <!--Proyectos de la iniciativa-->
-        <div class="my-1 seccion-project" id="iniciativa">
-            <div class="" style="border-left: 5px solid red; padding-left: 15px; ">
-                <h2 class="my-4 py-0 font-weight-bold" style="padding: 0">
-                    <span class="title-section"><b> Proyectos en la iniciativa</b></span>
-                </h2><br>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <center>
-                
-                @if (count($proyectos)==0)
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <center>Ningún resultado</center>
-                        </div>
-                    </div>
-                @else
-                    <div class="row">
-                        @foreach ($proyectos as $pro)
-                            @php
-                                // consultamos la imagen de la organiacion
-                                $imagen=DB::table('orglogos')
-                                    ->select('orglogos.imgroute')
-                                    ->where('orglogos.id_organization','=',$pro->id_organization)
-                                    ->get();
-
-                            @endphp
-                            
-                            <div class="col-md-3">
-                                {{-- muetra la imagen de cada organización correspondiente --}}
-                                @if (count($imagen)==0)
-                                    <img src="{{ asset('orglogos/no-imagen.jpg')}}" width="70"  alt="">
-                                @else
-                                    <img src="{{ asset('orglogos/'.$imagen->last()->imgroute) }}" width="90" height="90" alt="">
-                                @endif
-                                <hr id="hr-statistic" >
-                                <div id="name-organization" ><b>{{$pro->name}}</b></div>
-                                
-                                <div class="col-md-12 mb-4" id="resultado-estatics">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img id="imagen-subtitulo" style="background:#2c4143; padding:7px 6px 7px 6px;" src="{{ asset('assets/img/project/institucion.png') }}" width="37"  alt="" >
-                                        </div>
-                                        <div class="col-md-10" id="subtitulo">
-                                            <span >Proyectos </span><br>
-                                            <b> {{number_format($pro->total_proyectos)}}</b>
-                                        </div>
-                                    </div>
-                                </div>                            
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-                    <br>
-                    <div id="donutchartproyectosiniciativa" ></div>
-                    
-            </center>
-            <a href="{{route('card-projects')}}" class="btn-conoce-mas">Conoce más</a>
-        </div>
+       
         <div class="col-md-12" style="margin-bottom: 100px"></div>
         {{-- Presupuesto ejercido --}}
         <div class="my-1 seccion-project" id="presupuesto">
@@ -415,6 +450,8 @@
                 <span class="total-presupuesto">$ {{number_format($total_presupuesto_ejercido,2)}}</span>
             </div>
         </div>
+
+       
         <div class="col-md-12" style="margin-left: 2%">
             <center>
                 {{-- Recorremos todas las organizaciones --}}
@@ -519,9 +556,14 @@
                 
             </center>
         </div>
+                
+        <div id="mychart"></div>
+       
         <div class="col-md-12 hidden-phone" style="margin-bottom: 100px"></div>
     </div>
+ 
 </div>
+
 @endsection
 
 @section('scripts')
@@ -532,6 +574,75 @@
 {{-- <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script> --}}
 {{-- <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" /> --}}
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<script>
+
+    console.log(document.getElementById('mychart'));
+
+    let chart2 = AmCharts.makeChart( "mychart", {
+    "type": "pie",
+    "theme": "light",
+    // "titles": [ {
+    //     "text": "Visitors countries",
+    //     "size": 16
+    // } ],
+    "dataProvider": [ 
+     
+     {
+        
+         "nproyectos":{{$project1}}
+     }, 
+     
+     {
+        
+        "nproyectos":{{$project2}}
+    },     
+
+    {
+        
+        "nproyectos":{{$project3}}
+    },    
+
+    {
+        
+        "nproyectos":{{$project4}}
+    },    
+
+    {
+        
+        "nproyectos":{{$project5}}
+    },    
+  
+   
+         
+ ],
+    "valueField": "nproyectos",
+    // "titleField": "proyectos_ini",
+    "colors": ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
+    "chartArea": {'width': '100%', 'height': '100%'},
+    "startEffect": "elastic",
+    "startDuration": 2,
+    "labelRadius": 15,
+    "innerRadius": "40%",
+    "depth3D": 10,
+    // "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+    "angle": 15,
+    "fontSize": 25,
+    "textStyle": {
+        // bold:true,
+    }
+    
+    } );
+
+    
+
+</script>
+
+
+<script>
+    //$('#total_personas_beneficiadas').text('<?php //echo $show_number_projects;?>');
+</script>
+
 
 
 
@@ -643,50 +754,35 @@
     //     "size": 16
     // } ],
     "dataProvider": [ 
+     
+     {
+        
+         "proyectos":{{$project1}}
+     }, 
+     
+     {
+        
+        "proyectos":{{$project2}}
+    },     
 
-        @if (count($procedimiento_etapas)==0)
-            {   
-                "modalidad":'Sin proyectos',
-                "proyectos": 0
-            },
-            
-            @else
-                @foreach ($procedimiento_etapas as $procedimiento_e)
-                    @if($procedimiento_e->estatus==1)
-                        {
-                            "procedimiento":'Identificación: {{$procedimiento_e->total_status_project}} proyectos', 
-                            "proyectos":{{$procedimiento_e->total_status_project}}
-                        },
-                    @elseif($procedimiento_e->estatus==2)
-                        {
-                            "procedimiento":'Preparación: {{$procedimiento_e->total_status_project}} proyectos', 
-                            "proyectos":{{$procedimiento_e->total_status_project}}
-                        },
-                    @elseif($procedimiento_e->estatus==3)
-                        {
-                            "procedimiento":'Contratración: {{$procedimiento_e->total_status_project}} proyectos',
-                            "proyectos": {{$procedimiento_e->total_status_project}}
-                        },
-                    @elseif($procedimiento_e->estatus==4)
-                        {
-                            "procedimiento":'Ejecución: {{$procedimiento_e->total_status_project}} proyectos', 
-                            "proyectos":{{$procedimiento_e->total_status_project}}
-                        },
-                    @elseif($procedimiento_e->estatus==5)
-                        {
-                            "procedimiento":'Finalizado: {{$procedimiento_e->total_status_project}} proyectos', 
-                            "proyectos":{{$procedimiento_e->total_status_project}}
-                        },
-                    @elseif($procedimiento_e->estatus==7)
-                        {
-                            "procedimiento":'Finalizado: {{$procedimiento_e->total_status_project}} proyectos', 
-                            "proyectos":{{$procedimiento_e->total_status_project}}
-                        },
-                    @endif
-                @endforeach
-            @endif
-            
-    ],
+    {
+        
+        "proyectos":{{$project3}}
+    },    
+
+    {
+        
+        "proyectos":{{$project4}}
+    },    
+
+    {
+        
+        "proyectos":{{$project5}}
+    },    
+  
+   
+         
+ ],
     "valueField": "proyectos",
     // "titleField": "procedimiento",
     "colors": ['#d60000', '#58707b', '#61a8bd', '#ffce32','#a8a8a8','#638e7f'],
@@ -712,13 +808,27 @@
     //     "text": "Visitors countries",
     //     "size": 16
     // } ],
+   
+
     "dataProvider": [ 
 
+        @php $add=0; @endphp
+       
         @foreach ($personas_beneficias as $personas_b)
+        @php
+        if($personas_b->id_organization==""){
+            $add=$personas_b->total_people;
+        }
+        @endphp
             {
                 "personas":'{{$personas_b->name}}', 
-                "proyectos":{{$personas_b->total_people}}
+                "proyectos":{{$personas_b->total_people+$add}}
             },
+            @php
+        if($personas_b->id_organization!=""){
+            $add=0;
+        }
+        @endphp
         @endforeach
             
     ],
@@ -737,6 +847,10 @@
     "bold":true,
     
     } );
+
+
+   
+
 </script>
 
 {{-- Pasamos los datos del gráfico de proyectos de la iniciativa --}}
@@ -775,5 +889,7 @@
     
     } );
 </script>
+
+
 
 @endsection

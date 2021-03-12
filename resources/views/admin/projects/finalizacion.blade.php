@@ -16,8 +16,11 @@
 <br>
 <?php
 use App\Models\DocumentType;
+$num_doc=0;
 ?>
+    @include('admin.layouts.partials.validation-error')
 
+@include('admin.layouts.partials.session-flash-status')
 @foreach($contratos as $contrato)
 <?php
     $finalizacion=DB::table('proyecto_finalizacion')
@@ -64,9 +67,7 @@ use App\Models\DocumentType;
 ?>
 
 <div class="card mb-4">
-    @include('admin.layouts.partials.validation-error')
 
-    @include('admin.layouts.partials.session-flash-status')
     <div class="card-header text-primary font-weight-bold m-0">
         Información referente a la finalización del proyecto
     </div>
@@ -92,8 +93,18 @@ use App\Models\DocumentType;
                 </div>
 
                 <div class="form-group col-md-2">
+                    @php 
+
+                    if($finalizacion->fechafinalizacion==null ||$finalizacion->fechafinalizacion=="" ){
+                        $finalizacion->fechafinalizacion="0000-00-00 00:00:00";
+                    }
+
+                    $date = date('Y-m-d', strtotime($finalizacion->fechafinalizacion));
+                    @endphp
+
+
                     <label for="">Fecha de finalización</label>
-                    <input  maxlength="50" type="date" class="form-control @error('fechafinalizacion') is-invalid @enderror" name="fechafinalizacion" value="{{old('fechafinalizacion',$finalizacion->fechafinalizacion)}}">
+                    <input  maxlength="50" type="date" class="form-control @error('fechafinalizacion') is-invalid @enderror" name="fechafinalizacion" value="{{old('fechafinalizacion',$date)}}">
                     @error('fechafinalizacion')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -123,7 +134,7 @@ use App\Models\DocumentType;
                 <div class="form-group col-md-4">
 
                     <label for="">Referencia a informes de auditoría y evaluación</label>
-                    <input maxlength="50" name="referenciainforme" type="file" class="form-control form-control-sm @error('referenciainforme') is-invalid @enderror" value="{{old('referenciainforme',$finalizacion->referenciainforme)}}">
+                    <input maxlength="50" name="referenciainforme" type="text" class="form-control form-control-sm @error('referenciainforme') is-invalid @enderror" value="{{old('referenciainforme',$finalizacion->referenciainforme)}}">
                     @error('referenciainforme')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -158,7 +169,8 @@ use App\Models\DocumentType;
                     <div class="form-row">
                         <div class="form-group">
                             <label for="">Seleccionar documentos</label>
-                            <input type="file" class="form-control" name="documents[]" multiple>
+                            <p><small>El tamaño de los archivos debe ser menor a 20MB</small></p>
+                            <input type="file" class="form-control" id="<?php echo "documents".$num_doc; ?>" name="documents[]" multiple onchange='return validateSize(<?php echo "documents".$num_doc?>)'>
 
 
                             <label for="documenttype">Tipo de documento</label>
@@ -261,6 +273,11 @@ use App\Models\DocumentType;
 
 </div>
 
+@php
+
+$num_doc++;
+@endphp
+
 @endforeach
 
 
@@ -274,4 +291,43 @@ use App\Models\DocumentType;
 
 @section('scripts')
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
+
+<script>
+/**Para validación de tamaño de archivos */
+
+function validateSize(data){
+  if (!window.FileReader) { // This is VERY unlikely, browser support is near-universal
+        console.log("The file API isn't supported on this browser yet.");
+        return false;
+    }
+
+    var input = document.getElementById(data.id);
+    if (!input.files) { // This is VERY unlikely, browser support is near-universal
+        console.error("This browser doesn't seem to support the `files` property of file inputs.");
+        return false;
+    } else if (!input.files[0]) {
+        //addPara("Please select a file before clicking 'Load'");
+        alert("Debe seleccionar al menos un archivo");
+        return false;
+    } else {
+        var file = input.files[0];
+        let finalSize=0;
+       // addPara("File " + file.name + " is " + file.size + " bytes in size");
+       //alert("File " + file.name + " is " + file.size + " bytes in size");
+
+       for(let i=0; i<input.files.length;i++){
+          finalSize=file.size+finalSize;
+       }
+
+       if(finalSize>=20971520){
+        alert('El tamaño total de los archivos supera los 20MB');
+
+        input.value='';
+        return false;
+       }
+
+      
+    }
+}
+</script>
 @endsection

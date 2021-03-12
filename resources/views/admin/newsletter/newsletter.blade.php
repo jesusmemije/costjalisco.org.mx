@@ -106,7 +106,7 @@ Editar boletín
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardContent" class="d-block card-header py-3" data-toggle="collapse"
                     role="button" aria-expanded="true" aria-controls="collapseCardContent">
-                    <h6 class="m-0 font-weight-bold text-primary">Imegen del boletín</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Imagen del boletín</h6>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardContent">

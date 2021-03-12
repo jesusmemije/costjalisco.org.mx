@@ -7,10 +7,16 @@
 @include('admin.projects.phasesnav')
 <?php
 use App\Models\DocumentType;
-?>
+$num_doc=0;
 
+?>
+<br>
+@include('admin.layouts.partials.validation-error')
+@include('admin.layouts.partials.session-flash-status')
 @foreach($contratos as $contrato)
 <?php
+
+
     $ejecucion=DB::table('proyecto_ejecucion')
     ->where('id_contrato',$contrato->id)
     ->first();
@@ -64,9 +70,7 @@ use App\Models\DocumentType;
 
 <br>
 <div class="card mb-4">
-    @include('admin.layouts.partials.validation-error')
-
-    @include('admin.layouts.partials.session-flash-status')
+    
     <div class="card-header text-primary font-weight-bold m-0">
         Información de la fase de ejecución del proyecto. Contrato #{{$contrato->id}}
     </div>
@@ -192,7 +196,8 @@ use App\Models\DocumentType;
                     <div class="form-row">
                         <div class="form-group">
                             <label for="">Seleccionar documentos</label>
-                            <input type="file" class="form-control" name="documents[]" multiple>
+                            <p><small>El tamaño de los archivos debe ser menor a 20MB</small></p>
+                            <input type="file" class="form-control" id="<?php echo "documents".$num_doc; ?>" name="documents[]" multiple onchange='return validateSize(<?php echo "documents".$num_doc?>)'>
 
 
                             <label for="documenttype">Tipo de documento</label>
@@ -299,6 +304,11 @@ use App\Models\DocumentType;
 
 </div>
 
+@php
+
+$num_doc++;
+@endphp
+
 @endforeach
 <form action="{{route('siguientejecucion')}}" method="post">
 @csrf
@@ -316,4 +326,49 @@ use App\Models\DocumentType;
 
 @section('scripts')
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
+
+
+<script>
+
+/**Para validación de tamaño de archivos */
+
+function validateSize(data){
+
+    
+    
+  if (!window.FileReader) { // This is VERY unlikely, browser support is near-universal
+        console.log("The file API isn't supported on this browser yet.");
+        return false;
+    }
+
+    var input = document.getElementById(data.id);
+    if (!input.files) { // This is VERY unlikely, browser support is near-universal
+        console.error("This browser doesn't seem to support the `files` property of file inputs.");
+        return false;
+    } else if (!input.files[0]) {
+        //addPara("Please select a file before clicking 'Load'");
+        alert("Debe seleccionar al menos un archivo");
+        return false;
+    } else {
+        var file = input.files[0];
+        let finalSize=0;
+       // addPara("File " + file.name + " is " + file.size + " bytes in size");
+       //alert("File " + file.name + " is " + file.size + " bytes in size");
+
+       for(let i=0; i<input.files.length;i++){
+          finalSize=file.size+finalSize;
+       }
+
+       if(finalSize>=20971520){
+        alert('El tamaño total de los archivos supera los 20MB');
+
+        input.value='';
+        return false;
+       }
+
+      
+    }
+
+}
+</script>
 @endsection

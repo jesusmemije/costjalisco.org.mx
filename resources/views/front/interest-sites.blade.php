@@ -122,7 +122,7 @@ Sitios de Interés
             </div>
         </div>
     </div>
-    <div style="border-left: 5px solid #D8D8CD;">
+    <!--<div style="border-left: 5px solid #D8D8CD;">
         <div class="row mb-3">
             <div class="col-md-12">
                 <h3 class="title-sector" style="color: #D8D8CD;">Aliados Estratégicos
@@ -137,7 +137,7 @@ Sitios de Interés
                 </ul>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 @endsection
 

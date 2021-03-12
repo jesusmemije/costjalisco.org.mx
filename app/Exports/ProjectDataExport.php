@@ -106,7 +106,7 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
         ->select(
             'project.*',
             'generaldata.*',
-            'locations.*',
+            'locations.*','locations.id_address as myaddress',
             'locations.description as descriptionlocation',
             'estudiosambiental.*',
             'estudiosfactibilidad.*',
@@ -119,6 +119,8 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
         )
         ->where('project.id', '=', $this->id)
         ->first();
+
+
         
   
 
@@ -300,7 +302,7 @@ class ProjectDataExport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
     $projecttype=$projecttype->titulo;
 
     $address=DB::table('address')
-    ->where('id','=',$all->id_address)
+    ->where('id','=',$all->myaddress)
     ->first();
 
   
