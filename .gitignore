@@ -1,12 +1,6 @@
 /node_modules
 /public/hot
 /public/storage
-/public/vendors
-/public/plugins
-/public/js/dompdf
-/public/markercluster
-/public/admin_assets/plugins
-/public/admin_assets/vendor
 /storage/*.key
 /vendor
 .env
