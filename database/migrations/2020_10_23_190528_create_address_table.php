@@ -15,11 +15,14 @@ class CreateAddressTable extends Migration
     {
         Schema::create('address', function (Blueprint $table) {
             $table->id();
-            $table->string('streetAddress',100)->nullable();
-            $table->string('locality',100)->nullable();
-            $table->string('region',100)->nullable();
-            $table->string('postalCode',100)->nullable();
-            $table->string('countryName',100)->nullable();
+            $table->text('streetAddress')->nullable();
+            $table->text('locality')->nullable();
+            $table->text('suburb')->nullable();
+
+            $table->text('region')->nullable();
+            $table->text('state')->nullable();
+            $table->string('postalCode',6)->nullable();
+            $table->text('countryName')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

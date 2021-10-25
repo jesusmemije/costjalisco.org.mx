@@ -183,10 +183,8 @@ class ProjectController extends Controller
 
 
 
-
         return view('front.list-projects', [
             'projects' => $projects
-
         ]);
     }
 
@@ -223,7 +221,6 @@ class ProjectController extends Controller
                 ->where('id_project', '=', $id)
                 ->get();
 
-
             $identificacion = array();
             $preparacion = array();
             $contratacion = array();
@@ -250,6 +247,8 @@ class ProjectController extends Controller
                         break;
                 }
             }
+            
+         
 
 
 
@@ -316,7 +315,6 @@ class ProjectController extends Controller
 
 
 
-
             $sector = DB::table('projectsector')
                 ->where('id', '=', $project->sector)
                 ->first();
@@ -373,6 +371,7 @@ class ProjectController extends Controller
                 ->first();
 
 
+             
 
             return view('front.project-single', [
 

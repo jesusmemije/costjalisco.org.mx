@@ -753,6 +753,103 @@ $puntos = DB::table('RedJalisco')
 
                 <br class="hidden-desktop">
         </div>
+        <span style="padding-left: 20px;"><b>Datos de contacto de la entidad de adjudicación:</b></span><br>
+        <span style="padding-left: 20px;"><b>Entidad de adjudiación: </b></span><br>
+        <span style="padding-left: 20px;"><b>Nombre: </b></span><br>
+      
+
+
+            <span style="padding-left: 20px;"><b>Correo electrónico: </b></span><br>
+            <span style="padding-left: 20px;"><b>Télefono: </b></span><br><br>
+
+          
+            <span style=" font-weight:bold; padding-left: 20px;" >Domicilio del contacto</span><br>
+           
+            <span style="padding-left: 20px;"><b>Calle: </b></span>
+          
+            <span style="padding-left: 20px;"><b>Número: </b></span>
+          
+            <span style="padding-left: 20px;"><b>Colonia: </b></span>
+          
+            <span style="padding-left: 20px;"><b>Municipio: </b></span>
+           
+            <span style="padding-left: 20px;"><b>CP: </b></span><br>
+           
+            <br>
+            <br>
+            <i class="fas fa-calendar-alt"></i>
+            <span><b>Fecha de publicación:</b></span><br>
+            <i class="fas fa-user-tie"></i>
+            <span><b>Nombre del responsable:</b></span><br>
+            <i class="fas fa-file-alt"></i>
+            <span><b>Modalidad de la adjudicación:</b></span><br>
+
+
+
+            <i class="fas fa-file-alt"></i>
+            <span><b>Tipo de contrato:</b></span><br>
+        
+
+            <i class="fas fa-file-alt"></i>
+            <span><b> Estado actual de la contratación:</b></span><br>
+            <i class="fas fa-file-signature"></i>
+            <span><b>Modalidad de contratación:</b> </span><br>
+            <i class="fas fa-edit"></i>
+            <span><b>Entidad administradora del contrato:</b></span><br>
+
+            
+            <i class="fas fa-briefcase"></i>
+            <span><b>Empresa contratada:</b></span><br>
+
+            <i class="fas fa-file-invoice"></i>
+            <span><b>Título del contrato:</b></span><br>
+
+            
+
+
+            <i class="fas fa-print"></i>
+            <span><b>Vía por la que presenta su propuesta:</b></span><br>
+
+            
+            <i class="fas fa-calendar-alt"></i>
+            <span><b>Fecha de presentación de su propuesta:</b></span><br>
+            <i class="fas fa-hand-holding-usd"></i>
+            <span><b>Monto del contrato (cantidad estipulada):</b></span><br>
+            <i class="fas fa-hard-hat"></i>
+            <span><b>Alcance del trabajo según el contrato:</b> </span><br>
+
+            
+
+            <i class="fas fa-calendar-alt"></i>
+            <span><b>Fecha de inicio del contrato:</b> </span><br>
+            <i class="far fa-clock"></i>
+            <span><b>Duración del proyecto de acuerdo con lo establecido del contrato:</b>
+               </span><br><br>
+
+
+
+            <span><b>Observaciones de la sección:</b></label><br>
+                <span></span><br>
+
+              
+
+
+                <br class="hidden-desktop">
+        </div>
+    </div>
+
+
+
+
+            @endif
+
+
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <img src="{{asset('assets/img/project/icons/icono.png')}}" class="img-fluid" width="32">
+                    <button data-toggle="modal" data-target="#deleteUserModal" data-titulo='contratacion' data-idproject="{{$project->id_project}}" class="btn btn-sm btn-documents" style="font-size: 11px;">DESCARGA LOS DATOS DE ESTA SECCIÓN</button>
+                </div>
+            </div>
     </div>
 
 

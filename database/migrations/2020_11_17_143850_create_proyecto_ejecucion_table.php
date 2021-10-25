@@ -28,6 +28,7 @@ class CreateProyectoEjecucionTable extends Migration
             $table->string('razonescambiosalcancecontrato',100)->nullable();
             $table->string('aplicacionescalatoria',100)->nullable();
             $table->string('estadoactualproyecto',100)->nullable();
+            $table->text('observaciones')->nullable();
             
             $table->timestamps();
         });

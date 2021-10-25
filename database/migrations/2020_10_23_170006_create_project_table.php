@@ -27,7 +27,8 @@ class CreateProjectTable extends Migration
             $table->foreignId('subsector')->nullable();
             $table->text('purpose')->nullable();
             $table->foreignId('type')->nullable();
-            $table->foreignId('assetlifetime')->nullable(true);;
+            $table->foreignId('assetlifetime')->nullable(true);
+            $table->text('observaciones')->nullable();
             $table->double('budget_amount', 10, 2)->nullable(true);	
             $table->dateTime('budget_requestDate', 0)->nullable(true);
             $table->dateTime('budget_approvalDate', 0)->nullable(true);

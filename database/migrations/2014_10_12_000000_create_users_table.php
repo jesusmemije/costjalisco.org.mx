@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('status', 20)->default('Activo');
+            $table->foreignId('id_organization',20)->nullable();
+            $table->string('user', 120)->unique();
             $table->string('email', 120)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

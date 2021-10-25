@@ -746,7 +746,6 @@ var chart = AmCharts.makeChart('elchart', {
     "fontSize": 25,
     
     } );
-
 </script>
 
 {{-- pasamos los datos del gráfico de modalidad de la adjudicación --}}

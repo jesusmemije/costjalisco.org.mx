@@ -23,7 +23,12 @@ class CreateProyectoContratacionTable extends Migration
             $table->date('fechapublicacion',0)->nullable();
             $table->string('entidadadjudicacion',255)->nullable();
             $table->string('datosdecontacto',50)->nullable();
-            $table->string('nombreresponsable',50)->nullable();
+            $table->text('nombrecontacto')->nullable();
+            $table->string('emailcontacto',150)->nullable();
+            $table->integer('telefonocontacto',10)->nullable()->autoIncrement(false);;
+            $table->text('domiciliocontacto')->nullable();
+
+            $table->string('nombreresponsable',200)->nullable();
             $table->foreignId('modalidadadjudicacion')->nullable();
             $table->foreignId('tipocontrato')->nullable();
             $table->foreignId('modalidadcontrato')->nullable();
@@ -36,16 +41,16 @@ class CreateProyectoContratacionTable extends Migration
             
 
             $table->text('empresasparticipantes')->nullable();
-            $table->string('entidad_admin_contrato',250)->nullable();
-            $table->string('titulocontrato',250)->nullable();
+            $table->text('entidad_admin_contrato')->nullable();
+            $table->text('titulocontrato')->nullable();
             $table->text('empresacontratada')->nullable();
-            $table->string('viapropuesta',50)->nullable();
+            $table->text('viapropuesta')->nullable();
             $table->date('fechapresentacionpropuesta',0)->nullable();
             $table->decimal('montocontrato',20,2)->nullable();
             $table->string('alcancecontrato',200)->nullable();
             $table->date('fechainiciocontrato',0)->nullable();
             $table->string('duracionproyecto_contrato',50)->nullable();
-
+            $table->text('observaciones')->nullable();
 
             $table->timestamps();
         });

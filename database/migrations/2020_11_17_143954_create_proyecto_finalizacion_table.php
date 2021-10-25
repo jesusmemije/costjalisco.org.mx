@@ -25,6 +25,7 @@ class CreateProyectoFinalizacionTable extends Migration
             $table->string('razonescambioproyecto',100)->nullable();
             $table->string('referenciainforme',100)->nullable();
             $table->timestamps();
+            $table->text('observaciones')->nullable();
         });
     }
 

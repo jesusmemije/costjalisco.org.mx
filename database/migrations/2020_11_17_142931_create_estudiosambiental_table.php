@@ -23,6 +23,7 @@ class CreateEstudiosambientalTable extends Migration
             $table->date('fecharealizacionAmbiental',0);
             $table->string('responsableAmbiental',255);
             $table->text('numeros_ambiental')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }
