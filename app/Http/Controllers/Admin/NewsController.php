@@ -10,12 +10,16 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    
+    // Funciones de noticias y periódicos
     public function index()
     {
-        $news = News::orderBy('created_at', 'desc')->get();
+     $news = News::orderBy('created_at', 'DESC')->get();
+  
+     
+      
         $periodicos = DB::table('tbl_img')
             ->select('tbl_img.*')
+            ->orderBy('created_at','DESC')
             ->get();  
             // dd($periodicos);
         
@@ -24,7 +28,7 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        // Creamos la noticia
         $fechaActual = date('Y-m-d h:i');
         News::create([
             'title'   => $request->title,
@@ -39,6 +43,7 @@ class NewsController extends Controller
 
     public function edit(News $news)
     {
+        // Consulta de las imagenes del periodico para asignarle a la noticia
         $periodicos = DB::table('tbl_img')
             ->select('tbl_img.*')
             ->orderBy('tbl_img.nombreperiodico','asc')
@@ -48,7 +53,7 @@ class NewsController extends Controller
 
     public function update(Request $request, News $news)
     {   
-
+        // Actualizamos la noticia
         $fechaActual = date('Y-m-d h:i');
         if ($request->status_news=='Publicado') {
             $news->update([
@@ -66,27 +71,31 @@ class NewsController extends Controller
                 'status_news'     => $request->status_news,
             ]);
         }
-        
-        
 
         return back()->with('status', '¡Noticia actualizada con éxito!');
     }
 
     public function destroy(News $news)
     {
+        // Eliminación de la noticia
         $news->delete();
         return back()->with('status', '¡Noticia eliminada con éxito!');
     }
 
     public function crear_periodico(Request $request){
-        // dd($request->all());
-
+        // Creación del periódico
         if($request->hasFile('rutaimg')){
 
                 $file=$request->file('rutaimg');
                 $name=time().'_'.$file->getClientOriginalName();
-                $file->move(public_path().'/news_imgs/',$name);
                 
+                $url = $_SERVER['DOCUMENT_ROOT'].'\news_imgs';
+               
+            
+                //$file->move(public_path().'\\news_imgs\\',$name);
+                $file->move($url,$name);
+                
+               
             
 
                 DB::table('tbl_img')->insert([
@@ -101,7 +110,7 @@ class NewsController extends Controller
         return back()->with('status', '¡Periódico guardado con éxito!');
     }
     public function delete_periodico($id_img){
-
+        // Eliminación del periódico
         DB::table('tbl_img')->where('id','=',$id_img)->delete();
         return back()->with('status', '¡Periódico eliminado con éxito!');
     }

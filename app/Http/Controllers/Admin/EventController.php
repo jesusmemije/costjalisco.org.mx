@@ -12,6 +12,7 @@ class EventController extends Controller
 
     public function index()
     {
+        // Mostramos todos los eventos
         $events = Event::orderBy('created_at', 'desc')->get();
 
         return view( 'admin.events.index', ['events' => $events]);
@@ -19,6 +20,7 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
+        // Creamos un nuevo evento
         Event::create([
             'title'   => $request->title,
             'status'   => 'Pendiente'
@@ -34,6 +36,7 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
+        // Convertimos la fecha al formato requerido
         $fechas=$request->date_start;
         $fs = str_split($fechas);
         $dias=$fs[0].$fs[1];
@@ -42,8 +45,7 @@ class EventController extends Controller
         $hs=$fs[11].$fs[12];
         $ms=$fs[14].$fs[15];
         $fecha_hora = $años.'-'.$mess.'-'.$dias.' '.$hs.':'.$ms.':00';
-
-        // dd($fecha_hora);
+        // Hacemos la actualización del evento
         $event->update([
             'title'       => $request->title,
             'description' => $request->description,
@@ -58,6 +60,7 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
+        // Eliminación del evento
         $event->delete();
         return back()->with('status', '¡Evento eliminado con éxito!');
     }

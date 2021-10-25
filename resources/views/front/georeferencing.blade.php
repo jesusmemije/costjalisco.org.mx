@@ -1,86 +1,29 @@
 @extends('front.layouts.app')
- 
+
 @section('title')
 Georreferenciación
 @endsection
 
 @section('styles')
-
-    {{-- <script
-        src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous">
-    </script> --}}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-
+<link rel="stylesheet" href="{{asset("css/select2.min.css")}}">
+<link href="{{asset("assets/css/georeferencing.css")}}" rel="stylesheet">
 @endsection
 
-
 @section('content')
-<link rel="stylesheet" href="{{asset("css/select2.min.css")}}">
-<script src="{{asset("js/select2.min.js")}}"></script>
-<style>
-    .formulario-projects-search{
-        background: rgb(255, 255, 255);
-        padding: 20px 20px 5px 20px;
-        border-radius: 0px 30px 0px 0px;
-        position: absolute; 
-        float: left; 
-        z-index: 100;
-        width: 250px;
-        box-shadow: 5px 5px 2px #999;
-        top: 90px;
-        left: 40px;
-    }
-    .mapa{
-        z-index: 1;
-    }
-    .formulario-projects-search select{
-        width: 95%;
-        height: 32px;
-        margin-top: 9px;
-        border-radius: 50px;
-        padding: 5px 0px 5px 5px;
-        font-size: 14px;
-        font-weight: bold;
-        color: darkslategrey;
-    }
-    .formulario-projects-search input{
-        width: 95%;
-        height: 27px;
-        margin-top: 9px;
-        padding: 5px 0px 5px 9px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #628ea0;
-        border: 1px solid #628ea0;
-    }
-    .formulario-projects-search button{
-        margin-top: 25px;
-        margin-bottom: 5px;
-        background: #2C4143;
-        color: #fff;
-        border-radius: 50px;
-        font-size: 13px;
-        padding: 4px 24px;
-        border: 0;
-        font-weight: bold;
-    }
-
-    .content-label{
-        text-align: left;
-        color: #2C4143;
-        font-size: 12px;
-    }
-    
-</style>
 
 <div class="container-fluid pt-4">
     <!-- Section - Mapa de la localización -->
-    <div class="row" >
-        <div class="col-md-12">
+
+    <div id="map" class="row mapa"></div>
+
+    <br class="hidden-desktop">
+
+    <div class="row">
+        <div class="col-md-12 bg-gris-phone">
+            {{-- Formulario de búsqueda  --}}
             <form action="{{url('georeferencing')}}" class="formulario-projects-search" method="get">
-                <select name="municipio" id="municipio" >
+                <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
                     <option value="Acatic">Acatic</option>
                     <option value="Acatlán de Juárez">Acatlán de Juárez</option>
@@ -208,100 +151,91 @@ Georreferenciación
                     <option value="Zapotlán del Rey">Zapotlán del Rey</option>
                     <option value="Zapotlán el Grande">Zapotlán el Grande</option>
                 </select>
-                
                 <div id="loading"></div>
                 <select name="id_sector" id="sector">
-                    <option value="">No hay sectores</option>
+                    <option value="">Sectores</option>
                 </select>
                 <div id="loading2"></div>
                 <select name="id_subsector" id="sub_sector">
-                    <option value="">No hay subsectores</option>
+                    <option value="">Subsectores</option>
                 </select>
                 <div id="loading3"></div>
                 <select name="codigo_postal" id="codigo_postal">
-                    <option value="">No hay C.P.</option>
-    
+                    <option value="">C.P.</option>
                 </select>
                 {{-- <input type="text" name="presupuesto" placeholder="Presupuesto"> --}}
                 <input type="text" name="nombre_proyecto" placeholder="Nombre del proyecto">
                 <center>
-                    <button type="submit">BÚSQUEDA</button>
+                    <button id="boton" type="submit">BÚSQUEDA</button>
                 </center>
-                <a href="#" style="float: right; color: #2C4143">X</a>
+                <a href="#" class="hidden-phone" style="float: right; color: #2C4143">X</a>
             </form>
-            
         </div>
     </div>
-    <div id="map" class="row mapa"></div>
     
-
-
     <!-- Section - Datos generales -->
     <div class="row mt-5">
         <div class="col-md-8 px-0 py-1">
-            <h3 class="py-2 font-weight-bold" style="background-image: url('http://pice-software.com/costjalisco/public/assets/img/project/barra resultados.png'); background-repeat: no-repeat;
+            <h3 class="py-2 font-weight-bold" style="background-image: url('/assets/img/project/barra-resultados.png'); background-repeat: no-repeat;
                 background-size: cover;">
-            <span style="font-weight: 700; margin-left: 115px; color: white;">Resultados</span>    
+                <span class="text-resultados">Resultados</span>
             </h3>
-            
         </div>
     </div>
     <div class="container">
-        <style>
-            .links-color{
-                color: #628ea0;
-                font-weight: bold;
-            }
-            .btn-conoce-mas{
-                float: right;
-                background: red;
-                padding: 5px 30px 5px 30px;
-                border-radius: 50px;
-                box-shadow: 5px 5px 2px #999;
-
-            }
-            .btn-conoce-mas:hover{
-                background: rgba(218, 3, 3, 0.904);
-                color: rgb(230, 230, 230);
-            }
-            .secciones-projects{
-                padding: 25px 40px 20px 40px; 
-                border-top: 1px solid #628ea0; 
-                border-left: 8px solid #628ea0; 
-                border-right: 1px solid #628ea0;
-            }
-        </style>
-
-        @foreach ($projects as $project)
-            
-        <div class="my-5 secciones-projects">
-            <h5><b>{{ $project->title }}</b></h5>
-            {{ $project->description }}
-            <div class="row mt-3">
-                <div class="col-md-12 ">
-                    <a href="#" class="links-color">Sector Público</a> <span class="links-color">/</span>
-                    <a href="#" class="links-color">Ayuntamiento de Zapopan</a>
-                    <a href="{{ route('project-single', $project->id) }}" class="btn-conoce-mas">Conoce más</a>
+        {{-- Recorremos la consulta y mostramos los datos del proyecto --}}
+        @if (count($projects)==0)
+            <div class="my-5 secciones-projects">
+                <div class="row mt-3">
+                    <div class="col-md-12 ">
+                        <center>Sin resultados</center>
+                    </div>
                 </div>
             </div>
-        </div>
+        @else
+            @php
+                $id_proyecto=0;
+            @endphp
+            @foreach ($projects as $project)
+                
+                @if ($id_proyecto==$project->id)
+                    
+                @else
+                    <div class="my-5 secciones-projects">
+                        <h5><b style="text-transform: uppercase">{{ $project->title }}</b></h5>
+                        {{ $project->description }}
+                        <div class="row mt-3">
+                            <div class="col-md-12 ">
+                                <a href="#" class="links-color">{{$project->sector}}</a> <span class="links-color">/</span>
+                                <a href="#" class="links-color">{{$project->organizacion}}</a>
+                                <a href="{{ route('project-single', $project->id) }}" class="btn-conoce-mas">Conoce más</a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @php
+                    $id_proyecto=$project->id;
+                @endphp
+            @endforeach
+        @endif
+       
 
-        @endforeach
-
-        
-        
     </div>
-    <br><br><br>
+    <br><br class="hidden-phone"><br class="hidden-phone">
 </div>
 
 @endsection
 
 @section('scripts')
+
+<script src="{{asset("js/select2.min.js")}}"></script>
+
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#prueba').select2();
+        $('#municipio').select2();
     });
 </script>
+{{-- buscamos en la base de datos los sectores del municipio seleccionado, y cargamos todos los resultados en el select --}}
 <script>
     $(document).ready(function(){
         $('#municipio').on('change',function(){
@@ -315,13 +249,24 @@ Georreferenciación
                     $('#sub_sector').append("<option value=''>No se encontraron subsectores</option>");
                     $('#sector').append("<option value=''>Seleccione Sector</option>");
                     $.each(sectores, function (index, value){
+                        if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                         $('#sector').append("<option value='"+index+"'>"+value+"</option>")
                     })
                     
                 })
             }
         })
+        // Buscamos los sub sectores en la base de datos con el sector seleccionado
         $('#sector').on('change',function(){
+            
             var sector_id = $(this).val();
             if ($.trim(sector_id) != ''){
                 $('#loading2').html('<img src="{{asset('assets/img/project/carga.gif')}}" alt="loading" width="20" style="margin-left: 45%; margin-top:15px;" />');
@@ -330,11 +275,21 @@ Georreferenciación
                     $('#sub_sector').empty();
                     $('#sub_sector').append("<option value=''>Seleccione subsector</option>");
                     $.each(subsectores, function (index, value){
+                        if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                         $('#sub_sector').append("<option value='"+index+"'>"+value+"</option>")
                     })
                 })
             }
         })
+        // Buscamos los  en la base de datos los códigos postales con el sub sector seleccionado
         $('#sub_sector').on('change',function(){
             var sub_sector_id = $(this).val();
             if ($.trim(sub_sector_id) != ''){
@@ -344,6 +299,15 @@ Georreferenciación
                     $('#codigo_postal').empty();
                     $('#codigo_postal').append("<option value=''>Seleccione codigo postal</option>");
                     $.each(codigo_postales, function (index, value){
+                        if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                         $('#codigo_postal').append("<option value='"+index+"'>"+value+"</option>")
                     })
                 })
@@ -355,71 +319,83 @@ Georreferenciación
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-<style>
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-        background: #d5d6be;
-        width: 200px;
-        color: #628ea0;
-        font-weight: bold;
-        border-radius: 0px 20px 0px 0px;
-        box-shadow: 5px 5px 2px #999;
-        font-size: 13px;
-    }
-
-    .leaflet-container a.leaflet-popup-close-button {
-        padding: 10px 22px 0 0;
-        color: #2C4143;
-    }
-
-    .leaflet-btn-detalle-project {
-        background: #2C4143;
-        color: #fff!important;
-        border-radius: 50px;
-        font-size: 13px;
-        padding: 4px 20px;
-        border: 0;
-    }
-
-</style>
-
 <script type="text/javascript">
     // listen for screen resize events
-      var zona = 0;
-      window.addEventListener('load', function(event){
-          // get the width of the screen after the resize event
-          var width = document.documentElement.clientWidth;
-          // tablets are between 768 and 922 pixels wide
-          // phones are less than 768 pixels wide
-          if (width < 1550) {
-              // set the zoom level to 10
-              zona = 7;
-          }  else {
-              // set the zoom level to 8
-              zona = 8;
-          }        
-            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                          osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib }),
-                          bounds = new L.LatLngBounds(new L.LatLng(22.629, -103.886), new L.LatLng(18.489, -102.940));
-  
-              var map = new L.Map('map', {
-                  scrollWheelZoom: false,
-                  center: bounds.getCenter(),
-                  zoom: zona,
-                  layers: [osm],
-                  maxBounds: bounds
-              });
-              
-            const projects = @json($projects);
+    var zona = 0;
+    window.addEventListener('load', function(event){
+        // get the width of the screen after the resize event
+        var width = document.documentElement.clientWidth;
+        // tablets are between 768 and 922 pixels wide
+        // phones are less than 768 pixels wide
+        if (width < 1550) {
+            // set the zoom level to 10
+            zona = 7;
+        }  else {
+            // set the zoom level to 8
+            zona = 8;
+        }
 
-            projects.forEach(function(item, index) {
-                L.marker([item.lat,item.lng]).addTo(map).bindPopup('<p>' + item.title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> Guadalajara, Centro</span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> 251,256 personas</span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
-            });
+        //Marker icon
+        var icon = L.icon({
+            iconUrl: '{{asset('/assets/img/map/marker.png')}}',
+            iconSize: [25, 35], // size of the icon
+        });
+
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            osm = L.tileLayer(osmUrl, { maxZoom: 14, attribution: osmAttrib }),
+            bounds = new L.LatLngBounds(new L.LatLng(22.629, -103.886), new L.LatLng(18.489, -102.940));
+  
+        var map = new L.Map('map', {
+            scrollWheelZoom: false,
+            center: bounds.getCenter(),
+            zoom: zona,
+            layers: [osm],
+            maxBounds: bounds
+        });
+        /**Obtiene los proyectos de la consulta previa del controlador Front->ProjectController
+         * recorre los registros y dibuja los marcadores/puntos en el mapa.
+         */
+        const projects = @json($projects);
+      
+        projects.forEach(function(item, index) {
+            var latlng=item.principal;
+            var title = item.title;
+            //console.log(item.principal);
+            if(latlng==null){
+
+            }else{
+                var auxlatlng=latlng.split('|');
+           // console.log(auxlatlng);
+
             
-            /*L.marker(["19.8463034","-104.4560014"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Catedral de Guadalajara</b></a><br>Guadalajara, Centro");
-            L.marker(["20.8811927","-103.8440796"]).addTo(map).bindPopup("<a href='http://pice-software.com'><b>Tequila Jalisco</b></a><br>Zapopan");*/
+            L.marker( [auxlatlng[0],auxlatlng[1]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
+            }
+           
+           
+            /*
+            //var lat   = item.lat;
+            //var lng   = item.lng;
+            var title = item.title;
+
+            let lat_split = lat.split('|')
+            let lng_split = lng.split('|')
+
+            title = title.substr(0, 60) + "...";
+
+            if( lat_split[0] != "" ){
+                for(var i=0; i<=lat_split.length; i++){
+                    if( lat_split[i] == "" || lat_split[i] == undefined || lat_split[i] == null ){
+                        //console.log("Última localización de cada proyecto.")
+                    } else {
+                        //console.log([lat_split[i], lng_split[i]])
+                        console.log(title)
+                        L.marker( [lat_split[i], lng_split[i]], {icon: icon} ).addTo(map).bindPopup('<p>' + title +'</p><div class="content-label"><span><img width="15px" src="{{asset("assets/img/project/icons/pen-icon.png")}}"> </span><br><span><img width="15px" src="{{asset("assets/img/project/icons/usuario-icon.png")}}"> </span></div><center><a href="/project-single/'+ item.id +'"><button class="leaflet-btn-detalle-project">Ver detalles</button></a></center>');
+                    }
+                } 
+            }*/
+        }); 
     });
 </script>
 
-  
 @endsection

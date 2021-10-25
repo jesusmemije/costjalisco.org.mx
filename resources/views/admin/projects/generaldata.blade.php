@@ -96,6 +96,9 @@
     font-weight: 500;
     padding: 6px 12px;
   }
+  .delete-image{
+    display: none;
+  }
 </style>
 @endsection
 
@@ -131,35 +134,35 @@
             <input  type="text" name="descripcion" id="descripcion" class="form-control" value="{{old('descripcion',$generaldata->descripcion)}}">
            -->
             <label for="nombreresponsable">Nombre de la persona que registra el proyecto</label>
-            <input required maxlength="50" type="text" name="nombreresponsable" id="nombreresponsable" class="form-control @error('nombreresponsable') is-invalid @enderror" value="{{old('nombreresponsable',$generaldata->responsable)}}">
+            <input required  type="text" name="nombreresponsable" id="nombreresponsable" class="form-control @error('nombreresponsable') is-invalid @enderror" value="{{old('nombreresponsable',$generaldata->responsable)}}">
             @error('nombreresponsable')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <label for="email">Correo electrónico (Institucional)</label>
-            <input required maxlength="50" placeholder="Institucional" type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email',$generaldata->email)}}">
+            <input required  placeholder="Institucional" type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email',$generaldata->email)}}">
             @error('email')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <label for="organismo">Organismo al que pertenece</label>
-            <input required maxlength="255" type="text" name="organismo" class="form-control @error('organismo') is-invalid @enderror" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
+            <input required type="text" name="organismo" class="form-control @error('organismo') is-invalid @enderror" id="organismo" value="{{old('organismo',$generaldata->organismo)}}">
             @error('organismo')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <label for="puesto">Puesto que desempeña dentro del organismo</label>
-            <input required maxlength="255" type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
+            <input required  type="text" name="puesto" class="form-control @error('puesto') is-invalid @enderror" id="puesto" value="{{old('puesto',$generaldata->puesto)}}">
              @error('puesto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <label for="involucrado">En caso de haber una persona más involucrada en el registro del proyecto favor de mencionar</label>
-            <input required maxlength="50" placeholder="Este archivo es de carácter opcional" type="text" name="involucrado" class="form-control @error('involucrado') is-invalid @enderror" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
+            <input required placeholder="Este archivo es de carácter opcional" type="text" name="involucrado" class="form-control @error('involucrado') is-invalid @enderror" id="involucrado" value="{{old('involucrado',$generaldata->involucrado)}}">
             @error('involucrado')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -173,21 +176,8 @@
       <div class="card shadow mb-4">
         <!-- Card Header - Accordion -->
         <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample2">
-         
-
-
-
-          <h6 class="m-0 font-weight-bold text-primary">Imagénes de la obra</h6>
-        </a>
-        <!-- Card Content - Collapse -->
-      
-
-        <div class="collapse show" id="collapseCardExample2">
-          <div class="card-body">
-  
-        
-         
-          @php
+        @php
+        //Verifica si el proyecto ya tiene imagenes asociadas.
             $imagen_obra=DB::table('projects_imgs')
             // ->join('projects_imgs','project.id','=','projects_imgs.id_project')
             ->select('projects_imgs.imgroute')
@@ -195,18 +185,41 @@
             ->get();
           @endphp
 
+        <div class="form-row">
 
-          @if (count($imagen_obra)==0)
+        <div class="form-group col-md-10">
+        <h6 class="m-0 font-weight-bold text-primary">Imagenes de la obra</h6>
+        </div>
+        <!--Si ya tiene imagenes éstas se pueden eliminar (se habilita el botón) -->
+        @if (count($imagen_obra)!=0)
+        
+        <div class="form-group d-flex justify-content-end">
+        <button class="btn btn-danger btn-sm" onclick="document.location.href=this.getAttribute('href');" href="{{route('delimgproject',$generaldata->id_project)}}">Eliminar imagenes</button>
+        </div>
+        @endif
+        </div>
+
+         
+      
+        </a>
+        <!-- Card Content - Collapse -->
+      
+
+        <div class="collapse show" id="collapseCardExample2">
+          <div class="card-body">
+  
+         @if (count($imagen_obra)==0)
         
           <div id="imagesdiv" class="input-images"></div>  
           @else
               <script>
-                var images=new Array();
-function rellenar(img){
-  images.push(img);
-}
+              /**Script que rellena el array images con las rutas de las imagenes asociadas al proyecto */
+              var images=new Array();
+              function rellenar(img){
+               images.push(img);
+              }
 
-</script>
+              </script>
           
               @foreach ($imagen_obra as $imagen)
             
@@ -230,16 +243,26 @@ function rellenar(img){
        
 
         
-
-
-
+        <br>
+   
+        <div class="col-md-6">
+        <label for="video">URL vídeo:</label>
+        <input type="text" name="video" name="video" class="form-control" value="{{old('video',$generaldata->video)}}">
+        </div>
+       
+        <div class="col-md-12">
+        <label for="observaciones">Observaciones:</label>
+        <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{old('observaciones',$generaldata->observaciones)}}">
+        </div>
 
           </div>
 
         </div>
- 
 
+    
       </div> <!-- end of card -->
+      
+
       <div class="d-flex justify-content-end">
               <button id="send" type="submit"  class="btn btn-sm btn-primary shadow-sm">
                 <i class="fas {{ $edit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
@@ -247,12 +270,14 @@ function rellenar(img){
               </button>
 
             </div>
+            <br>
             
     </form>
 
 </div>
 
 </div>
+
 
 
 @include('admin.projects.modaldeletedocument')
@@ -262,6 +287,9 @@ function rellenar(img){
 
 <script>
 
+/**Verifica que al menos se haya seleccionado 1 imágen. */
+
+var x = document.getElementById("myDIV");
 $('#phase1').on('submit', function(event) {
 
 
@@ -292,7 +320,12 @@ $('#phase1').on('submit', function(event) {
 
 let preloaded = [];
 
+var imagenescontrol=new Array();
 
+
+/**Se rellena el array preloaded con las rutas del array images.
+ * Si ya tiene imagenes entonces se manda el array a la propiedad 'preloaded' del script imageUploader.
+ */
 
 if(typeof images!='undefined'){
 
@@ -328,7 +361,7 @@ $('.input-images').imageUploader(
 
 
 
-
+/**Previene el submit del formulario con la tecla 'enter' */
   $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
@@ -346,8 +379,10 @@ $('.input-images').imageUploader(
     }
   });
 
- 
+  
 
+
+   
 </script>
 
 @endsection

@@ -268,7 +268,7 @@ Sectores-subsectores
   <script>
 
 
-
+//Función que añade el evento clic a cada una de las filas de la tabla de sectores
 function addRowHandlers() {
   var table = document.getElementById("dataTable");
   var rows = table.getElementsByTagName("tr");
@@ -284,7 +284,12 @@ function addRowHandlers() {
     currentRow.onclick = createClickHandler(currentRow);
   }
 }
-
+/**Función en donde se manda el nombre del sector seleccionado en la tabla que contiene 
+todos los sectores.
+El nombre del sector seleccionado se manda a la función getdatafromnamesector, del
+'CatalogsController y retorna un json con los subsectores asociados al nombre del sector
+y construye el tbody de la tabla de subsectores.
+ */
 function sendname(name){
 
   $('#name_sector').val(name);

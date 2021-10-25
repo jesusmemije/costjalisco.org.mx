@@ -21,6 +21,10 @@ class CreateLocationsTable extends Migration
             $table->string('uri',300)->nullable();
             $table->foreignId('id_address')->nullable();
             $table->foreign('id_address')->references('id')->on('address')->onDelete('cascade')->onUpdate('cascade');
+           
+           
+            $table->text('principal')->nullable();
+            $table->text('names')->nullable();
             $table->text('lat')->nullable();
             $table->text('lng')->nullable();
             $table->timestamps();

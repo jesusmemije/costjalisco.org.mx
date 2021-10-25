@@ -5,86 +5,35 @@ Motor de búsqueda
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+<link rel="stylesheet" type="text/css" href="{{asset("css/select2.min.css")}}">
+<link rel="stylesheet" type="text/css" href="{{asset("assets/css/search-engine.css")}}">
 @endsection
 
 @section('content')
-<style>
-    .formulario-projects-search {
-        background: rgb(255, 255, 255);
-        padding: 20px 20px 5px 20px;
-        border-radius: 0px 30px 0px 0px;
-        /* position: absolute;  */
-        /* float: left;  */
-        /* z-index: 100; */
-        width: 335px;
-        box-shadow: 8px 5px 2px #999;
-        /* top: 90px;
-        left: 40px; */
-    }
-
-    .formulario-projects-search select {
-        width: 98%;
-        height: 35px;
-        margin-top: 13px;
-        border-radius: 50px;
-        padding: 5px 0px 5px 5px;
-        font-size: 15px;
-        font-weight: bold;
-        color: darkslategrey;
-    }
-
-    .formulario-projects-search input {
-        width: 98%;
-        height: 35px;
-        margin-top: 13px;
-        padding: 5px 0px 5px 9px;
-        font-size: 15px;
-        font-weight: bold;
-        color: #628ea0;
-        border: 1px solid #628ea0;
-    }
-
-    .formulario-projects-search button {
-        margin: 30px auto;
-        background: rgb(206, 0, 0);
-        color: #fff;
-        border-radius: 50px;
-        font-size: 15px;
-        padding: 2px 30px 2px 30px;
-        border: 0;
-    }
-
-    .formulario-projects-search button:hover {
-        background: rgb(182, 1, 1);
-    }
-
-    .fondo {
-        background: #d9ebf3;
-        padding: 120px;
-    }
-</style>
 
 <div class="container-fluid">
     <!-- Section - Mapa de la localización -->
+    <!--En está sección mostramos el título del BUSCADOR-->
     <div class="row mt-3">
-        <div class="col-md-8 px-0 py-1">
-            <h3 class="py-2 font-weight-bold" style="color:#fff; background-image: url('http://pice-software.com/costjalisco/public/assets/img/titulo.png'); background-repeat: no-repeat;
-                background-size: cover;">
-                <span style="font-weight: 700; margin-left: 115px;">Buscador</span>
+        <div class="col-md-8 col-12 px-0 py-1">
+            <h3 class="py-2 font-weight-bold container-title">
+                <span class="title-buscador">Búsqueda</span>
             </h3>
         </div>
     </div>
     <div class="row fondo mt-3">
-        <div class="col-md-6">
+        <!--Está parte del código es para mostrar el logo de inspeCoST-->
+        <div class="col-md-6 hidden-desktop-mini">
             <br><br><br>
             <center>
                 <img src="{{asset('assets/img/login/Grupo928.png')}}" width="50%" alt="">
             </center>
         </div>
-        <div class="col-md-6 mt-4 mb-4">
+        <!--En está seccion del código mostramos una selección de entidad o municipios-->
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt-4 mb-4">
             <form action="{{url('list-projects')}}" class="formulario-projects-search" method="get">
-                
+            <!--A continuación mostramos la listas de las entidades y municipios que están dentro del select option-->
+
                 <select name="municipio" id="municipio">
                     <option value="">Seleccione entidad o municipio</option>
                     <option value="Acatic">Acatic</option>
@@ -214,20 +163,25 @@ Motor de búsqueda
                     <option value="Zapotlán el Grande">Zapotlán el Grande</option>
                 </select>
                 <div id="loading"></div>
+                <!--Está seccion del código mostramos una selección de sectores-->
                 <select name="id_sector" id="sector">
-                    <option value="">No hay sectores</option>
+                    <option value="">Sectores</option>
                 </select>
                 <div id="loading2"></div>
+                <!--En está seccion del código mostramos una selección de Subsectores-->
                 <select name="id_subsector" id="sub_sector">
-                    <option value="">No hay subsectores</option>
+                    <option value="">Subsectores</option>
                 </select>
                 <div id="loading3"></div>
+                <!--Está parte del código mostramos una selección de Código postal-->
                 <select name="codigo_postal" id="codigo_postal">
-                    <option value="">No hay C.P.</option>
+                    <option value="">C.P.</option>
                 </select>
+                <!--Aquí mostramos un caja de texto en la cual se va ingrear presupuesto-->
                 <input type="text" name="presupuesto" placeholder="Presupuesto">
                 <center>
-                    <button>BUSCAR</button>
+                <!--Está parte se agregó un botón-->
+                    <button id="boton">BUSCAR</button>
                 </center>
                 <a href="#" style="float: right; color: #2C4143">X</a>
                 <br>
@@ -240,8 +194,9 @@ Motor de búsqueda
 
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="{{asset("js/select2.js")}}"></script>
+{{-- buscamos en la base de datos los sectores del municipio seleccionado, y cargamos todos los resultados en el select --}}
 <script>
-
     $(document).ready(function(){
             $('#municipio').on('change',function(){
                 
@@ -256,12 +211,23 @@ Motor de búsqueda
                         $('#sub_sector').append("<option value=''>No se encontraron subsectores</option>");
                         $('#codigo_postal').append("<option value=''>No se encontraron C.P</option>");
                         $('#sector').append("<option value=''>Seleccione Sector</option>");
+                        
                         $.each(sectores, function (index, value){
+                            if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                             $('#sector').append("<option value='"+index+"'>"+value+"</option>")
                         })
                     });
                 }
             })
+            // Buscamos los sub sectores en la base de datos con el sector seleccionado
             $('#sector').on('change',function(){
                 var sector_id = $(this).val();
                 if ($.trim(sector_id) != ''){
@@ -271,11 +237,21 @@ Motor de búsqueda
                         $('#sub_sector').empty();
                         $('#sub_sector').append("<option value=''>Seleccione subsector</option>");
                         $.each(subsectores, function (index, value){
+                            if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                             $('#sub_sector').append("<option value='"+index+"'>"+value+"</option>")
                         })
                     })
                 }
             })
+            // Buscamos los  en la base de datos los códigos postales con el sub sector seleccionado
             $('#sub_sector').on('change',function(){
                 var sub_sector_id = $(this).val();
                 if ($.trim(sub_sector_id) != ''){
@@ -285,11 +261,28 @@ Motor de búsqueda
                         $('#codigo_postal').empty();
                         $('#codigo_postal').append("<option value=''>Seleccione codigo postal</option>");
                         $.each(codigo_postales, function (index, value){
+                            if (value=='Sin resultados') {
+                                $('#boton').attr("disabled", true);
+                                $('#boton').empty();
+                                $('#boton').append("Sin resultados");
+                            } else {
+                                $('#boton').attr("disabled", false);
+                                $('#boton').empty();
+                                $('#boton').append("BUSCAR");
+                            }
                             $('#codigo_postal').append("<option value='"+index+"'>"+value+"</option>")
                         })
                     })
                 }
             })
         })
+
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+			$('#municipio').select2();
+	});
+</script>
+
 @endsection

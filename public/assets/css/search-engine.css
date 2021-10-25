@@ -1,0 +1,143 @@
+.formulario-projects-search {
+    background: rgb(255, 255, 255);
+    padding: 40px 20px 5px 20px;
+    border-radius: 0px 30px 0px 0px;
+    /* position: absolute;  */
+    /* float: left;  */
+    /* z-index: 100; */
+    width: 335px;
+    box-shadow: 8px 5px 2px #999;
+    /* top: 90px;
+    left: 40px; */
+    margin-left: unset;
+    margin-right: unset;
+}
+
+.formulario-projects-search select {
+    width: 98%;
+    height: 35px;
+    margin-top: 13px;
+    border-radius: 50px;
+    padding: 5px 0px 5px 5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: darkslategrey;
+    border-style: ridge;
+    background: #fff;
+}
+
+.formulario-projects-search input {
+    width: 98%;
+    height: 35px;
+    margin-top: 13px;
+    padding: 5px 0px 5px 9px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #628ea0;
+    border: 1px solid #628ea0;
+}
+
+.formulario-projects-search button {
+    margin: 30px auto;
+    background: rgb(206, 0, 0);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 15px;
+    padding: 2px 30px 2px 30px;
+    border: 0;
+    font-weight: 600;
+}
+
+.formulario-projects-search button:hover {
+    background: rgb(182, 1, 1);
+}
+
+.fondo {
+    background: #d9ebf3;
+    padding: 120px;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    height: 35px;
+    border-radius: 50px;
+    padding: 2px 0px 5px 5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: darkslategrey !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+}
+
+.container-title {
+    color: #fff;
+    background-image: url('/assets/img/titulo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-buscador {
+    font-weight: 700;
+    margin-left: 115px;
+}
+
+/* Desktop */
+@media only screen and (max-width: 992px) {
+
+    .formulario-projects-search {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 766px) {
+
+    
+}
+
+/* Phone */
+@media only screen and (max-width: 480px) {
+
+    .fondo {
+        background: #F7F7F7;
+        padding: unset;
+    }
+
+    .formulario-projects-search {
+        background: #F7F7F7;
+        box-shadow: unset;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .formulario-projects-search select {
+        background: #F7F7F7;
+    }
+
+    .container-title {
+        background-size: 90%;
+    }
+
+    .select2-container--default .select2-selection--single {
+        background-color: #F7F7F7;
+    }
+
+    .title-buscador {
+        margin-left: 80px;
+        font-size: 26px;
+    }
+
+    .formulario-projects-search {
+        padding: 20px 20px 5px 20px;
+    }
+
+}

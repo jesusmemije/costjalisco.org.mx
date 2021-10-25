@@ -1,26 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 //Class Front
 use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Front\NewsletterController;
-use App\Http\Controllers\Front\SearchController;
-use App\Http\Controllers\Front\ProjectController as FrontProjectController;
 
 //Class Admin
-use App\Http\Controllers\Admin\Catalogs\AdjudicationController;
-use App\Http\Controllers\Admin\Catalogs\ContractingController;
-use App\Http\Controllers\Admin\Catalogs\ContractingStatusController;
-use App\Http\Controllers\Admin\Catalogs\ContractTypeController;
-use App\Http\Controllers\Admin\Catalogs\DocumentTypeController;
-use App\Http\Controllers\Admin\Catalogs\ProjectTypeController;
-use App\Http\Controllers\Admin\Catalogs\ResourceController;
-use App\Http\Controllers\Admin\CatalogsController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\OrganizationsController;
+use App\Http\Controllers\Admin\CKEditorController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -33,19 +22,18 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 |
 */
 
+
+
+
 /*============= Front ============= */
 Route::namespace('Front')->group(function () {
-
-    //Home
-
    
 
+    //Interiors
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/know-more', [HomeController::class, 'know_more'])->name('know-more');
     Route::get('/about-us', [HomeController::class, 'about_us'])->name('about-us');
-
     Route::get('/multisectorial', [HomeController::class, 'multisectorial'])->name('multisectorial');
-
     Route::get('/resources', [HomeController::class, 'resources'])->name('resources');
     Route::get('/interest-sites', [HomeController::class, 'interest_sites'])->name('interest-sites');
     Route::get('/journal', [HomeController::class, 'journal'])->name('journal');
@@ -54,167 +42,111 @@ Route::namespace('Front')->group(function () {
     Route::get('/organizations', [HomeController::class, 'organizations'])->name('organizations');
     Route::get('/contact-us', [HomeController::class, 'contact_us'])->name('contact-us');
     Route::get('/statistics', [HomeController::class, 'statistics'])->name('statistics');
-
     Route::get('/account', [HomeController::class, 'account'])->name('account');
-
     Route::get('/sitemap', [HomeController::class, 'sitemap'])->name('sitemap');
 
-   
-    //Newsletter
-    Route::get('/eventos', [NewsletterController::class, 'eventos'])->name('eventos');
-    Route::get('/mostrar_dias', [NewsletterController::class, 'mostrar_dias'])->name('mostrar_dias');
-    Route::post('/mostrar_contenido', [NewsletterController::class, 'mostrar_contenido'])->name('mostrar_contenido');
-    
-    Route::get('/newsletters', [NewsletterController::class, 'newsletters'])->name('newsletters');
-    Route::get('/newsletter-single', [NewsletterController::class, 'newsletter_single'])->name('newsletter-single');
-    Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+    Route::get('/RedJalisco', [HomeController::class, 'RedJalisco'])->name('RedJalisco');
 
-    //Project
-    Route::get('/list-projects', [FrontProjectController::class, 'list_projects'])->name('list-projects');
-    Route::get('/card-projects', [FrontProjectController::class, 'card_projects'])->name('card-projects');
-    Route::get('/project-single/{id}', [FrontProjectController::class, 'project_single'])->name('project-single');
+    //Projects
+    require 'front/projects.php';
 
     //Search
-    Route::get('/search-engine', [SearchController::class, 'search_engine'])->name('search-engine');
-    Route::get('/georeferencing', [SearchController::class, 'georeferencing'])->name('georeferencing');
+    require 'front/search.php';
 
-    /* Fines de programación */
-    Route::post('getdocumentsproject', [FrontProjectController::class, 'getdocumentsproject'])->name('getdocumentsproject');
-
-    Route::get('/sectores', [SearchController::class, 'sectores'])->name('home.sectores');
-    Route::get('/subsectores', [SearchController::class, 'subsectores'])->name('home.subsectores');
-    Route::get('/codigo_postales', [SearchController::class, 'codigo_postales'])->name('home.codigo_postales');
+    //Newsletters
+    require 'front/newsletters.php';
 });
 
 
 /*=============  Dashboard ============== */
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    //Banner
-
-    Route::get('/admin/admincarousel', [DashboardController::class, 'admincarousel'])->name('admincarousel');
-
-
-    Route::get('/admin/testmap', [AdminProjectController::class, 'testmap'])->name('testmap');
-    Route::get('/admin/testmap2', [AdminProjectController::class, 'testmap2'])->name('testmap2');
-   
-    Route::post('/admin/uploadExcel', [AdminProjectController::class, 'uploadExcel'])->name('uploadExcel');
-   
-
-    Route::post('/admin/tm', [AdminProjectController::class, 'tm'])->name('tm');
-
     //Dashboard
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
     //Projects
-    Route::get('/admin/projects/', [AdminProjectController::class, 'index'])->name('project.index');
-    Route::get('/admin/projects/create', [AdminProjectController::class, 'create'])->name('project.create');
-    Route::post('/admin/projects/', [AdminProjectController::class, 'store'])->name('project.store');
-    Route::get('/admin/projects/test', [AdminProjectController::class, 'test'])->name('project.test');
+    require 'admin/projects.php';
 
-    //Routes studies
-    Route::get('/admin/catalogs/studies', [CatalogsController::class, 'studies'])->name('catalogs.studies');
-    Route::post('/admin/catalogs/saveestudioFactibilidad', [CatalogsController::class, 'saveestudioFactibilidad'])->name('catalogs.saveestudioFactibilidad');
-    Route::post('/admin/catalogs/deleteestudioFactibilidad', [CatalogsController::class, 'deleteestudioFactibilidad'])->name('catalogs.deleteestudioFactibilidad');
-    Route::post('/admin/catalogs/editestudioFactibilidad', [CatalogsController::class, 'editestudioFactibilidad'])->name('catalogs.editestudioFactibilidad');
-    Route::post('/admin/catalogs/saveestudioImpacto', [CatalogsController::class, 'saveestudioImpacto'])->name('catalogs.saveestudioImpacto');
-    Route::post('/admin/catalogs/deleteestudioImpacto', [CatalogsController::class, 'deleteestudioImpacto'])->name('catalogs.deleteestudioImpacto');
-    Route::post('/admin/catalogs/editestudioImpacto', [CatalogsController::class, 'editestudioImpacto'])->name('catalogs.editestudioImpacto');
-
-    Route::post('/admin/catalogs/saveestudioAmbiental', [CatalogsController::class, 'saveestudioAmbiental'])->name('catalogs.saveestudioAmbiental');
-    Route::post('/admin/catalogs/deleteestudioAmbiental', [CatalogsController::class, 'deleteestudioAmbiental'])->name('catalogs.deleteestudioAmbiental');
-    Route::post('/admin/catalogs/editestudioAmbiental', [CatalogsController::class, 'editestudioAmbiental'])->name('catalogs.editestudioAmbiental');
-
-    //Routes projec type
-    Route::resource('/admin/catalogs/projecttype', ProjectTypeController::class);
-    //Routes origin resource
-    Route::resource('/admin/catalogs/resource', ResourceController::class);
-    //Routes adjudication
-    Route::resource('/admin/catalogs/adjudication', AdjudicationController::class);
-    //Routes contract type    
-    Route::resource('/admin/catalogs/contracttype', ContractTypeController::class);
-    //Routes mod contract
-    Route::resource('/admin/catalogs/contracting', ContractingController::class);
-    //Routes contract status 
-    Route::resource('/admin/catalogs/contractstatus', ContractingStatusController::class);
-    //Routes document type
-    Route::resource('/admin/catalogs/documenttype', DocumentTypeController::class);
-
-    //Sectores/Subsectores
-    Route::get('/admin/catalogs/sectors', [CatalogsController::class, 'cat_sectors'])->name('catalogs.cat_sectors');
-    Route::post('/admin/catalogs/getdatafromnamesector', [CatalogsController::class, 'getdatafromnamesector'])->name('catalogs.getdatafromnamesector');
-    Route::post('/admin/catalogs/savesector', [CatalogsController::class, 'savesector'])->name('catalogs.savesector');
-    Route::post('/admin/catalogs/deletesector', [CatalogsController::class, 'deletesector'])->name('catalogs.deletesector');
-    Route::post('/admin/catalogs/deletesubsector', [CatalogsController::class, 'deletesubsector'])->name('catalogs.deletesubsector');
-    Route::post('/admin/catalogs/editsector', [CatalogsController::class, 'editsector'])->name('catalogs.editsector');
-    Route::post('/admin/catalogs/editsubsector', [CatalogsController::class, 'editsubsector'])->name('catalogs.editsubsector');
-    Route::post('/admin/catalogs/savesubsector', [CatalogsController::class, 'savesubsector'])->name('catalogs.savesubsector');
-    Route::post('/admin/catalogs/subsectores', [CatalogsController::class, 'subsectores'])->name('catalogs.subsec');
-
-    //nav views project phases
-
-    Route::get('/admin/projects/generaldata/{project?}', [AdminProjectController::class, 'generaldata'])->name('project.generaldata2');
-    Route::get('/admin/projects/generaldata/', [AdminProjectController::class, 'generaldata'])->name('project.generaldata');
-
-
-
-    Route::get('/admin/projects/identificacion/{project?}', [AdminProjectController::class, 'identificacion'])->name('project.identificacion');
-    Route::get('/admin/projects/preparacion/{project?}', [AdminProjectController::class, 'preparacion'])->name('project.preparacion');
-    Route::get('/admin/projects/contratacion/{project?}', [AdminProjectController::class, 'contratacion'])->name('project.contratacion');
-    Route::get('/admin/projects/ejecucion/{project?}', [AdminProjectController::class, 'ejecucion'])->name('project.ejecucion');
-    Route::get('/admin/projects/finalizacion/{project?}', [AdminProjectController::class, 'finalizacion'])->name('project.finalizacion');
-
-    //edit phases project
-    Route::get('/admin/projects/identificacion/{project}/', [AdminProjectController::class, 'editidentificacion'])->name('project.editidentificacion');
-
-    //save phases project
-    Route::post('/admin/projects/savegeneraldata/', [AdminProjectController::class, 'savegeneraldata'])->name('project.savegeneraldata');
-    Route::post('/admin/projects/saveidentificacion', [AdminProjectController::class, 'saveidentificacion'])->name('project.saveidentificacion');
-    Route::post('/admin/projects/savepreparacion', [AdminProjectController::class, 'savepreparacion'])->name('project.savepreparacion');
-    Route::post('/admin/projects/savecontratacion', [AdminProjectController::class, 'savecontratacion'])->name('project.savecontratacion');
-    Route::post('/admin/projects/saveejecucion', [AdminProjectController::class, 'saveejecucion'])->name('project.saveejecucion');
-    Route::post('/admin/projects/savefinalizacion', [AdminProjectController::class, 'savefinalizacion'])->name('project.savefinalizacion');
-
-    //update phases project
-    Route::post('/admin/projects/updategeneraldata/', [AdminProjectController::class, 'updategeneraldata'])->name('project.updategeneraldata');
-    Route::post('/admin/projects/updateidentificacion/', [AdminProjectController::class, 'updateidentificacion'])->name('project.updateidentificacion');
-    Route::post('/admin/projects/updatepreparacion/', [AdminProjectController::class, 'updatepreparacion'])->name('project.updatepreparacion');
-    Route::post('/admin/projects/updatecontratacion/', [AdminProjectController::class, 'updatecontratacion'])->name('project.updatecontratacion');
-    Route::post('/admin/projects/updateejecucion/', [AdminProjectController::class, 'updateejecucion'])->name('project.updateejecucion');
-    Route::post('/admin/projects/updatefinalizacion/', [AdminProjectController::class, 'updatefinalizacion'])->name('project.updatefinalizacion');
-    Route::delete('/admin/projects/{id}', [AdminProjectController::class, 'destroy'])->name('project.destroy');
-
-
-    //delete project documents
-    Route::post('/admin/projects/deletedocument/', [AdminProjectController::class, 'deletedocument'])->name('project.deletedocument');
-
-
-    //Organizaciones
-    Route::middleware(['knowroute'])->group(function () {
-        Route::get('/admin/organizations/', [OrganizationsController::class, 'index'])->name('organizations.index');
-        Route::get('/admin/organizations/create', [OrganizationsController::class, 'create'])->name('organizations.create');
-        Route::get('/admin/organizations/edit/{organization}', [OrganizationsController::class, 'edit'])->name('organizations.edit');
-        Route::post('/admin/organizations/update/', [OrganizationsController::class, 'update'])->name('organizations.update');
-
-        Route::post('/admin/organizations/', [OrganizationsController::class, 'store'])->name('organizations.store');
-        Route::delete('/admin/organizations/{id}', [OrganizationsController::class, 'destroy'])->name('organizations.destroy');
-
-        //Rol organization
-        Route::get('/admin/organizations/createRol', [OrganizationsController::class, 'createRol'])->name('organizations.createRol');
-        Route::post('/admin/organizations/storeRol', [OrganizationsController::class, 'storeRol'])->name('organizations.storeRol');
-        Route::post('/admin/organizations/updateRol/', [OrganizationsController::class, 'updateRol'])->name('organizations.updateRol');
-        Route::post('/admin/organizations/destroyRol/', [OrganizationsController::class, 'destroyRol'])->name('organizations.destroyRol');
-    });
-
-    //Routes Users
+    //Users
     require 'admin/users.php';
 
-    //Routes News
+    //News
     require 'admin/news.php';
 
-    //Routes Events
+    //Events
     require 'admin/events.php';
+
+    //Newsletter
+    require 'admin/newsletter.php';
+
+    //Complements
+    require 'admin/complements.php';
+
+    //Organizations
+    require 'admin/organizations.php';
+
+    //Catalogs
+    require 'admin/catalogs.php';
+
+    //Newsletter subscribers
+    require 'admin/subscribers.php';
+
+    //Support material
+    require 'admin/support-material.php';
+    
+    //Banner
+    require 'admin/banner.php';
 
     //Uploads images the CKEditor
     Route::post('/ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
+
+    //Extras
+    Route::post('/admin/deletecontrato', [AdminProjectController::class, 'deletecontrato'])->name('deletecontrato');
+    Route::post('/admin/guardarAmbiental', [AdminProjectController::class, 'guardarAmbiental'])->name('guardarAmbiental');
+    Route::post('/admin/guardarFactibilidad', [AdminProjectController::class, 'guardarFactibilidad'])->name('guardarFactibilidad');
+    Route::post('/admin/guardarImpacto', [AdminProjectController::class, 'guardarImpacto'])->name('guardarImpacto');
+    Route::post('/admin/guardarRecurso', [AdminProjectController::class, 'guardarRecurso'])->name('guardarRecurso');
+
+    Route::get('/admin/noaplica/{id_project}', [AdminProjectController::class, 'noaplica'])->name('noaplica');
+    Route::post('/admin/siguientecontratacion/', [AdminProjectController::class, 'siguientecontratacion'])->name('siguientecontratacion');
+    Route::post('/admin/siguientejecucion/', [AdminProjectController::class, 'siguientejecucion'])->name('siguientejecucion');
+    Route::post('/admin/agregarArchivoContrato/', [AdminProjectController::class, 'agregarArchivoContrato'])->name('agregarArchivoContrato');
+    Route::post('/admin/getdocsfromcontract/', [AdminProjectController::class, 'getdocsfromcontract'])->name('getdocsfromcontract');
+
+
+    Route::post('/admin/guardarDocumentosPreparacion', [AdminProjectController::class, 'guardarDocumentosPreparacion'])->name('guardarDocumentosPreparacion');
+
+    Route::post('/admin/editarAmbiental', [AdminProjectController::class, 'editarAmbiental'])->name('editarAmbiental');
+    Route::post('/admin/editarFactibilidad', [AdminProjectController::class, 'editarFactibilidad'])->name('editarFactibilidad');
+    Route::post('/admin/editarImpacto', [AdminProjectController::class, 'editarImpacto'])->name('editarImpacto');
+    Route::post('/admin/editarRecurso', [AdminProjectController::class, 'editarRecurso'])->name('editarRecurso');
+    Route::post('/admin/eliminarEstudio', [AdminProjectController::class, 'eliminarEstudio'])->name('eliminarEstudio');
+    
+    
+    
+
+    Route::post('/admin/actualizarObservacionPreparacion', [AdminProjectController::class, 'actualizarObservacionPreparacion'])->name('actualizarObservacionPreparacion');
+
+     //descargables
+     Route::get('/admin/downloadable/', [DashboardController::class, 'downloadable'])->name('downloadable');
+     Route::post('/admin/downloadQR/', [DashboardController::class, 'downloadQR'])->name('downloadQR');
+     Route::get('/admin/downloadLona/', [DashboardController::class, 'downloadLona'])->name('downloadLona');
+
+
+    Route::get('/admin/delimgproject/{id_project}', [AdminProjectController::class, 'delimgproject'])->name('delimgproject');
+    Route::get('/admin/testmap', [AdminProjectController::class, 'testmap'])->name('testmap');
+    Route::get('/admin/testmap2', [AdminProjectController::class, 'testmap2'])->name('testmap2');
+
+    Route::post('/admin/uploadExcel', [AdminProjectController::class, 'uploadExcel'])->name('uploadExcel');
+
+    Route::post('/admin/tm', [AdminProjectController::class, 'tm'])->name('tm');
+});
+
+/*=============  Clear cache commands ============== */
+
+Route::get('/clear-cache', function () {
+    echo Artisan::call('config:clear');
+    echo Artisan::call('config:cache');
+    echo Artisan::call('cache:clear');
+    echo Artisan::call('route:clear');
 });

@@ -240,7 +240,7 @@ Tipos de estudios
             <div class="form-row">
 
 <div class="form-group" style="margin-right: 5px; margin-left:15%;">
-<button data-title="Editar estudio de impacto ambiental" data-labelbi='Nombre del estudio' data-labeltxt='sector' data-id='{{$estudio->id}}' data-btn='Editar estudio de impacto' data-toggle="modal" data-name='{{$estudio->titulo}}' data-target="#modaleditData" data-route='{{route("catalogs.editestudioFactibilidad")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
+<button data-title="Editar estudio de impacto ambiental" data-labelbi='Nombre del estudio' data-labeltxt='sector' data-id='{{$estudio->id}}' data-btn='Editar estudio de impacto' data-toggle="modal" data-name='{{$estudio->titulo}}'  data-route='{{route("catalogs.editestudioFactibilidad")}}' data-target="#modaleditData" class="btn btn-sm btn-info shadow-sm">
   <i class="fas fa-edit fa-sm text-white-50"></i>
   
 </button>

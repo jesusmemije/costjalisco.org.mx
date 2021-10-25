@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Location;
 
+/** Controlador para el CRUD de Organizaciones */
+
 class OrganizationsController extends Controller
 {
     /**
@@ -45,7 +47,6 @@ class OrganizationsController extends Controller
     {
         //
 
-
         $users=User::all();
         $party_rol=OrganizationsRol::all();
         
@@ -66,8 +67,8 @@ class OrganizationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
+        //Validación de los campos.
+            $request->validate([
             'name'=>'required|max:255',
             'partyRole'=>'required|max:50',
 
@@ -87,26 +88,23 @@ class OrganizationsController extends Controller
         ]);
        
 
-
+        //Se registra un nuevo identificador para la nueva organización a registrar
         $identifier=new Identifier();
-
         $identifier->scheme="ocid/x".$request->name;
         $identifier->_id="X";
         $identifier->legalName=$request->name;
-
         $identifier->save();
-
-        $address=new Address(); //obtiene los datos
+        //Dirección de la organización.
+        $address=new Address();
         
         $address->streetAddress=$request->streetAddress;
         $address->locality=$request->locality;
         $address->region=$request->region;
         $address->postalCode=$request->postalCode;
         $address->countryName=$request->countryName;
-        //$address->countryName=$request->description;
+     
         $address->save();
-
-
+        //Datos de contacto para esa organización.
         $contact_point=new ContactPoint();
         $contact_point->name=$request->nameContact;
         $contact_point->email=$request->emailContact;
@@ -114,14 +112,14 @@ class OrganizationsController extends Controller
         $contact_point->faxNumber=$request->faxNumber;
         $contact_point->url=$request->url;
         $contact_point->save();
-
+        //Relación entre una dirección(Address) y una localización de esa dirección(Locations)
         $location=new Locations();
         $location->description=$request->description;
         $location->id_address=$address->id;
         $location->save();
         
        
-
+        //Datos de la organización que contiene el id de la dirección y los datos de contacto.
         $organization=new Organization();
         $organization->name=$request->name;
         $organization->_id='X';
@@ -133,7 +131,9 @@ class OrganizationsController extends Controller
 
 
 
-        //to save the image logo org
+        /*Guarda la imagene en el servidor y en la tabla que 'orglogos' que asocia
+        las imagenes a su respectiva organización.
+        */
         if(!empty($request->imgOrg)){        
             $nombre_img = $_FILES['imgOrg']['name'];
             $url=time().$nombre_img;
@@ -174,16 +174,15 @@ class OrganizationsController extends Controller
     {  
 
        
-
+       
         $dataorg=DB::table('organization')
         ->join('contact_point','organization.id_contact_point','=','contact_point.id')
         ->join('address','organization.id_address','=','address.id')
         ->join('party_role','organization.id_partyRole','=','party_role.id')
-        ->join('locations','address.id','=','locations.id_address')
+        ->leftJoin('locations','address.id','=','locations.id_address')
         ->where('organization.id','=',$organization->id)
         ->select('organization.name as orgname','organization.id as id_organization','contact_point.*','address.*','party_role.id as partyid','locations.description as description')
         ->first();
-       
        
        
        
@@ -199,6 +198,8 @@ class OrganizationsController extends Controller
 
         $users=User::all();
         $party_rol=OrganizationsRol::all();
+     
+      
         return view('admin.organizations.edit',[
             'organization'=>$dataorg,
             'users'=>$users,
@@ -218,10 +219,7 @@ class OrganizationsController extends Controller
      */
     public function update(Request $request)
     {
-        //
-
-
-       
+        //Se realiza la busca del registro.
         $id_organization=$request->id_organization;
        
         $id_identifier=Organization::find($id_organization)->id_identifier;
@@ -247,14 +245,22 @@ class OrganizationsController extends Controller
         $address->countryName=$request->countryName;
         $address->save();
 
-
+        /*Se realiza la busqueda de en la tabla locations con el id la dirección(previamente registrada)
+        para comprobar que exista y así actualizar la descripción del lugar donde se ubica 
+        dicha organización.
+        */
         $locations=DB::table('locations')
         ->where('id_address','=',$address->id)
         ->first();
         
-        $l=DB::table('locations')
-        ->where('id_address','=',$locations->id_address)
-        ->update(['description'=>$request->description]);
+        if($locations==null){
+        }else{
+            $l=DB::table('locations')
+            ->where('id_address','=',$locations->id_address)
+            ->update(['description'=>$request->description]);
+        }
+        
+        
 
         
 
@@ -276,19 +282,33 @@ class OrganizationsController extends Controller
         $organization->id_partyRole=$request->partyRole;
         $organization->save();
 
-        
+     
+        /*Se verifica si recibe una imagen a actualizar.
+        La 'mueve' al servidor y elimina la imagen que ya tenia asociada 
+        en base a la información de la tabla orglogos.
+        */
 
         if(!empty($request->imgOrg)){        
             $nombre_img = $_FILES['imgOrg']['name'];
             $url=time().$nombre_img;
             move_uploaded_file($_FILES['imgOrg']['tmp_name'],'orglogos/'.$url);
-
-            DB::table('orglogos')->insert([
-                'id_organization'=>$organization->id,
-                'imgroute'=>$url,
-            ]);
-    
+            $orglogo=DB::table('orglogos')
+            ->where('id_organization','=',$organization->id)
+            ->first();
+            if($orglogo!=null){
+                $ruta='orglogos/'.$orglogo->imgroute;
+                if(file_exists(($ruta))){
+                    unlink($ruta);
+                 }
+            }
            
+          
+
+            DB::table('orglogos')
+            ->updateOrInsert(
+                ['id_organization'=>$organization->id],
+                ['imgroute'=>$url]
+            );
                
             
             }
@@ -310,7 +330,7 @@ class OrganizationsController extends Controller
         $orglogos=DB::table('orglogos')
         ->where('id_organization','=',$organization->id)
         ->get();
-      
+   
         foreach($orglogos as $orglogo){
             $ruta='orglogos/'.$orglogo->imgroute;
             if(file_exists(($ruta))){
@@ -319,7 +339,7 @@ class OrganizationsController extends Controller
             
             
         }
-
+      
 
         if(!empty($organization)){
             Organization::destroy($id);
@@ -341,7 +361,7 @@ class OrganizationsController extends Controller
 
 
     }
-
+    //CRUD para los roles de organizaciones
     public function createRol(){
         $roles=DB::table('party_role')->get();
 
@@ -376,6 +396,8 @@ class OrganizationsController extends Controller
         OrganizationsRol::destroy($request->delete_id);
         return back()->with('status', '¡Rol eliminado correctamente!');
     }
+
+     //Fin del CRUD para los roles de organizaciones
 
   
 }

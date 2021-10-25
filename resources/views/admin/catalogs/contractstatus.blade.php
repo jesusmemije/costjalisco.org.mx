@@ -39,6 +39,7 @@ Estados de un contrato
 
   <!-- content -->
   <?php 
+  /**Contenido para la vista content.blade.php */
   $ruta = route('contractstatus.store');
   $rutaedit = 'contractstatus.update';
   $rutadestroy ='contractstatus.destroy';

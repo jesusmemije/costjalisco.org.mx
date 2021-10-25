@@ -8,12 +8,14 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/*
+Controlador que incluye los crud's de los catálagos relacionados con los estudios 
+de los proyectos
+*/
+
 class CatalogsController extends Controller
 {
-    //
-
-
-    //Vista que se manda a llamar en  donde están "todos" los cátalogos.
+    
     public function cat_sectors(){
         $sectores=DB::table('projectsector')->get();
        
@@ -24,10 +26,9 @@ class CatalogsController extends Controller
         [
             'sectores'=>$sectores,
            
-        
         ]);
     }
-    /** Project Type   *****/
+    /** CRUD PROJECT TYPE *****/
     public function projecttype(){
 
         $tipos=DB::table('projecttype')->get();
@@ -76,7 +77,8 @@ class CatalogsController extends Controller
         }
     }
 
-    /** End Projec Type */
+    /** FIN CRUD Project Type */
+    /* Vista estudios para el CRUD de estudies */
     public function studies(){
         $estudiosambiental=DB::table('catambiental')->get();
         $estudiosfactibilidad=DB::table('catfac')->get();
@@ -128,8 +130,8 @@ class CatalogsController extends Controller
     }
 
     public function deleteestudioAmbiental(Request $request){
-        
-        $r=DB::table('catambiental')->delete($request->to_id);
+     
+        $r=DB::table('catambiental')->delete($request->delete_id);
         if($r){
             
             return back()->with('status', '¡Estudio eliminado correctamente!');
@@ -138,7 +140,7 @@ class CatalogsController extends Controller
         }
     }
 
-    /** END ESTUDIO AMBIENTAL */
+    /** FIN ESTUDIO AMBIENTAL */
 
     
     /*** CRUD ESTUDIO FACTIBILIDAD */
@@ -181,8 +183,8 @@ class CatalogsController extends Controller
         }
     
         public function deleteestudioFactibilidad(Request $request){
-            
-            $r=DB::table('catfac')->delete($request->to_id);
+          
+            $r=DB::table('catfac')->delete($request->delete_id);
             if($r){
                 
                 return back()->with('status', '¡Estudio eliminado correctamente!');
@@ -191,7 +193,7 @@ class CatalogsController extends Controller
             }
         }
     
-        /** END ESTUDIO FACTIBILIDAD */
+        /** FIN ESTUDIO FACTIBILIDAD */
 
           /*** CRUD ESTUDIO IMPACTO TERRENO */
     public function saveestudioImpacto(Request $request){
@@ -242,13 +244,13 @@ class CatalogsController extends Controller
             }
         }
     
-        /** END ESTUDIO IMPACTO TERRENO */
-    
-    
-
-   
-
-    
+        /** FIN ESTUDIO IMPACTO TERRENO */
+    /**
+     * 
+     * Función llamada mediante ajax en la vista 'Catalogs->sectors.blade.php'.
+     * Obtiene los subsectores relacionados a un nombre de sector pasado mendiante 
+     * post y retorna un json con todos los subsectores asociados a un nombre de sector.
+     */
 
     public function getdatafromnamesector(){
         $name=$_POST['name'];
@@ -268,12 +270,13 @@ class CatalogsController extends Controller
        
 
     }
+    /**CRUD SUBSECTOR */
     public function deletesubsector(Request $request){
         
        
 
         $del=DB::table('subsector')
-        ->where('id','=',$request->to_id)
+        ->where('id','=',$request->delete_id)
         ->delete();
 
         if($del){
@@ -314,6 +317,7 @@ class CatalogsController extends Controller
         }
 
     }
+    /** FIN CRUD SUBSECTOR */
   /*****************  CRUD SECTOR  ********************/
 
     public function editsector(Request $request){
@@ -381,7 +385,7 @@ class CatalogsController extends Controller
             return back()->with('status', 'El sector no pudo registrarse');
         }
     }
-    /*****************   END CRUD SSECTOR ********************/
+    /*****************   FIN CRUD SSECTOR ********************/
    
 
     public function subsectores(){
@@ -393,6 +397,7 @@ class CatalogsController extends Controller
         ->join('subsector','sectorsubsector.id_subsector','=','subsector.id')
         ->where('id_sector','=',$id)
         ->select('subsector.id','titulo')
+        ->orderBy('titulo', 'asc')
         ->get();
 
       return $data;

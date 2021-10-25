@@ -36,7 +36,7 @@ Tipos de adjudicación
   <!-- Page Heading -->
   
   
-  @include('admin.layouts.partials.validation-error')
+@include('admin.layouts.partials.validation-error')
 
 @include('admin.layouts.partials.session-flash-status')
   

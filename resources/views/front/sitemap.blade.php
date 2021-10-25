@@ -1,41 +1,33 @@
 @extends('front.layouts.app')
- 
+
 @section('title')
-Revestimiento y saneamiento del canal de aguas pluviales
+Mapa del sitio
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
-
-
-
-          
-
-<!--\cost\costjalisco\public\assets\img\mapa.png-->
-
-@endsection
-
 <style>
-#sitio{
-  margin-top: 5%;
-  margin-bottom: 5%
-}
+  @media only screen and (max-width: 480px) {
+    .title-barra-roja {
+      background-size: 98%;
+      font-size: 20px;
+    }
+  }
 </style>
+@endsection
 
 @section('content')
-
-
- <center> 
-
-  <div style="margin-left:8%;"><img id="sitio" src="{{asset('assets/img/mapa.png')}}" width=" " height="650">
+<div class="row mx-0">
+  <div class="col-md-6 col-12 px-0 mt-md-2 mt-4">
+    <div class="text-center text-white">
+      <h3 class="py-2 font-weight-bold title-barra-roja">Mapa del Sitio CoST Jalisco</h3>
+    </div>
+  </div>
 </div>
-  
- </center> 
-
- 
-
-@endsection
-
-@section('scripts')
-
+<div class="container">
+  <div class="row mx-0">
+    <div class="col-md-12 col-12 text-center px-0">
+      <img src="{{asset('assets/img/mapa.png')}}" class="img-fluid my-md-5 my-3">
+    </div>
+  </div>
+</div>
 @endsection

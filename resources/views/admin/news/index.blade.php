@@ -41,7 +41,7 @@ Noticias
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Título</th>
@@ -55,6 +55,7 @@ Noticias
                 </thead>
                 <tbody>
                     @foreach ($news as $new)
+                  
                     <tr>
                         <td><small>{{ $new->title }}</small></td>
                         <td style="width: 160px;">
@@ -88,7 +89,9 @@ Noticias
                             @endif
                             {{-- {{ $new->status_news }} --}}
                         </td>
-                        <td style="font-size: 11px;">{{ $new->created_at->format('d-M-Y h:i A') }}</td>
+                        <td style="font-size: 11px;">
+                        {{$new->created_at}}
+                    </td>
                         <td>
                             <a href="{{ route('news.edit', $new->id) }}" class="btn btn-warning btn-circle btn-sm">
                                 <i class="fas fa-edit"></i>
@@ -200,7 +203,7 @@ Noticias
                             Periódicos registrados
                         </h5>
                         <div style="overflow-y:scroll; height: 200px;">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                 <thead>
                                     <th>#</th>
                                     <th>Periódico</th>
@@ -250,7 +253,61 @@ Noticias
 <script src="{{asset("admin_assets/vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
 
 <!-- Page level custom scripts -->
-<script src="{{asset("admin_assets/js/demo/datatables-demo.js")}}"></script>
+
+<script>
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTable1').DataTable({
+    language: {
+      "decimal": "",
+      "emptyTable": "No hay información",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+      "infoPostFix": "",
+      "thousands": ",",
+      "lengthMenu": "Mostrar _MENU_ Entradas",
+      "loadingRecords": "Cargando...",
+      "processing": "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords": "Sin resultados encontrados",
+      "paginate": {
+          "first": "Primero",
+          "last": "Ultimo",
+          "next": "Siguiente",
+          "previous": "Anterior"
+      }
+    },
+    "order": [[ 4, "desc" ]]
+  });
+  $('#dataTable2').DataTable({
+    language: {
+      "decimal": "",
+      "emptyTable": "No hay información",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+      "infoPostFix": "",
+      "thousands": ",",
+      "lengthMenu": "Mostrar _MENU_ Entradas",
+      "loadingRecords": "Cargando...",
+      "processing": "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords": "Sin resultados encontrados",
+      "paginate": {
+          "first": "Primero",
+          "last": "Ultimo",
+          "next": "Siguiente",
+          "previous": "Anterior"
+      }
+    }
+  });
+});
+
+
+
+</script>
+
 
 <!-- CDN Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

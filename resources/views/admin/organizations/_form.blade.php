@@ -155,7 +155,7 @@
     
       <div class="form-group col-md-4">
       <label>Código Postal </label>
-    <input required maxlength="50" type="text" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{ old('postalCode', $organization->postalCode) }}">
+    <input required  type="text" maxlength="6" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{ old('postalCode', $organization->postalCode) }}">
     @error('postalCode')
     <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -185,7 +185,7 @@
    
     <div class="cardfile" >
   <?php
-
+  /**Carga la imagen si ya contiene una el registro de organización */
   if(empty($ruta)){
     $ruta="";
   }else{

@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @extends("admin.layouts.app")
 
 
@@ -89,6 +90,10 @@
     font-weight: 500;
     padding: 6px 12px;
   }
+  .transparente{
+    color: #000; /* Fallback for older browsers */
+    color: rgba(0, 0, 0, 0.5);
+  }
 </style>
 @endsection
 
@@ -120,7 +125,7 @@
                 <label for="tituloProyecto">
                   Título del proyecto
                 </label>
-                <input required maxlength="255" placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
+                <input required placeholder="Título del acto público en Jalisco" required id="tituloProyecto" type="text" class="form-control @error('tituloProyecto') is-invalid @enderror" name="tituloProyecto" value="{{old('tituloProyecto',$project->title)}}">
                  @error('tituloProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -141,13 +146,22 @@
                 <label for="descripcionProyecto">
                   Descripción
                 </label>
-                <textarea required maxlength="255" placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->descripcionProyecto}}</textarea>
+                <textarea required placeholder="Descripción del acto público en Jalisco" class="form-control @error('descripcionProyecto') is-invalid @enderror" rows="1" id="descripcionProyecto" name="descripcionProyecto">{{$project->descripcionProyecto}}</textarea>
                 @error('descripcionProyecto')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
 
               <div class="form-group col-md-6">
+              <?php
+
+use App\Models\DocumentType;
+
+
+$id_organization=auth()->user()->id_organization;
+             
+              ?>
+              @if($id_organization=="")
                 <label for="autoridadP">Autoridad Pública</label>
                 <select required id="autoridadP" name="autoridadP" class="form-control @error('autoridadP') is-invalid @enderror">
                   <option value="">Seleccionar</option>
@@ -165,11 +179,30 @@
                  @error('autoridadP')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+            @else
+            <div style="display: none;">
+           
+            <label for="autoridadP">Autoridad Pública</label>
+                <select  required id="autoridadP" name="autoridadP" class="form-control @error('autoridadP') is-invalid @enderror">
+                  <option value="">Seleccionar</option>
+                  @foreach($autoridadP as $autoridad)
+
+                  @if($autoridad->id==$id_organization)
+
+                  <option value="{{$autoridad->id}}" selected>{{$autoridad->name}}</option>
+                  @else
+                  <option value="{{$autoridad->id}}">{{$autoridad->name}}</option>
+                  @endif
+                  @endforeach
+
+                </select>
+                </div>    
+            @endif
               </div>
             </div>
 
             <label for="propositoProyecto">
-              Próposito
+              Propósito
             </label>
             <input required maxlength="100" placeholder="Objetivo del proyecto" type="text" class="form-control @error('propositoProyecto') is-invalid @enderror" id="propositoProyecto" name="propositoProyecto" value="{{old('propositoProyecto',$project->purpose)}}">
              @error('propositoProyecto')
@@ -217,7 +250,7 @@
 
               <div class="form-row">
 
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
               <label for="tipoProyecto">Tipo de proyecto</label>
               <select required name="tipoProyecto" id="tipoProyecto" class="form-control @error('tipoProyecto') is-invalid @enderror">
                 <option value="">Seleccione un tipo</option>
@@ -242,6 +275,14 @@
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
+            <div class="form-group col-md-4">
+            <label for="porcentaje_obra">Porcentaje de avance físico de la obra</label>
+            <input required maxlength="3" placeholder="p.ej. 100" type="number" name="porcentaje_obra" id="porcentaje_obra" class="form-control @error('porcentaje_obra') is-invalid @enderror" value="{{old('porcentaje_obra',$project->porcentaje_obra)}}">
+            
+            @error('porcentaje_obra')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            </div>
             
    </div>
             
@@ -252,16 +293,28 @@
 </sup></h6><br>
            
     
-<div id="here" style="border: 1px solid green;" class="row">
+<div id="here" class="row">
 
 
 <div class="col-md-9">
-<input class="btn btn-sm btn-outline-primary" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
-  <button class="btn btn-sm btn-outline-info">Descargar formato</button>
+
+<input class="btn btn-sm btn-outline-primary"  form="formId" type="file" name="excel"  id="excel" value="Cargar Excel" onchange="return fileValidation()">
+  <?php
+  $d='color:blue';
+
+  $url = public_path() . '/documents' . '/' . 'puntosdeejemplo.csv';
+        if (!file_exists(($url))) {
+      // $d="pointer-events:none;";
+        }
+
+ 
+  ?>
+  <a class="btn btn-sm btn-outline-info"  style="<?php //echo $d; ?>" href="{{asset('documents/puntosdeejemplo.csv')}}" style="color:blue">Descargar formato</a>
   <input type="hidden" id="ver">
   
-  <button class="btn btn-outline-success btn-sm" id="subir">Subir</button>
+  <button type="submit"  class="btn btn-outline-success btn-sm"  form="formId" id="subir">Subir</button>
 </div>
+
 
   <div class="col-md-3">
   <button id="del" class="btn btn-outline-danger btn-sm d-flex justify-content-end">Eliminar puntos del mapa</button>
@@ -280,34 +333,72 @@
               <span id="place-address"></span>
             </div>
           
+     <hr> 
+     <label for="myInput">Buscar:</label>
+     <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombre..">
+     <div class="">
+            <table id="myTable" class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Acciones</th>
+        <th>Punto Principal</th>
+      </tr>
+    </thead>
+
+    <tbody id="cuerpo">
+  
+  
+    </tbody>
+  </table>
+  </table>
+  <hr>
 
             <div class="row">
-              <div class="col-lg-6">
-
+              <div class="col-lg-4">
+              <input  type="hidden" name="names" id="name" value="{{old('names',$project->names)}}">
                 <input type="hidden" id="lat" name="lat" value="{{old('lat',$project->lat)}}">
                 <input type="hidden" id="lng" name="lng" value="{{old('lng',$project->lng)}}">
+                <textarea hidden name="principal" id="punto"   >{{old('principal',$project->principal)}}</textarea>
 
                 <label for="streetAddress">Calle </label>
-                <input required maxlength="50" placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
+                <input required  placeholder="Lugar en el cual se ejecutará el proyecto (calle, colonia, municipio)" required type="text" id="streetAddress" name="streetAddress" class="form-control @error('streetAddress') is-invalid @enderror" value="{{old('streetAddress',$project->streetAddress)}}">
                  @error('streetAddress')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-4">
+                <label for="suburb" >Colonia </label>
+                <input required type="text" id="suburb" name="suburb" class="form-control @error('suburb') is-invalid @enderror" value="{{old('suburb',$project->suburb)}}">
+                 @error('suburb')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+              </div>
+              <div class="col-lg-4">
                 <label for="locality" >Localidad </label>
-                <input required maxlength="50" type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
+                <input required type="text" id="locality" name="locality" class="form-control @error('locality') is-invalid @enderror" value="{{old('locality',$project->locality)}}">
                  @error('locality')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-4">
                 <label  for="region">Región </label>
-                <input required maxlength="50" type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
+                <input required  type="text" id="region" name="region" class="form-control @error('region') is-invalid @enderror" value="{{old('region',$project->region)}}">
                  @error('region')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
+              <div class="col-lg-4">
+                <label  for="state">Estado </label>
+                <input required  type="text" id="state" name="state" class="form-control @error('state') is-invalid @enderror" value="{{old('state',$project->state)}}">
+                 @error('state')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+              </div>
+
               <div class="col-lg-2">
                 <label  for="postalCode">Código Postal </label>
                 <input required minlength="5" maxlength="5" type="text" id="postalCode" name="postalCode" class="form-control @error('postalCode') is-invalid @enderror" value="{{old('postalCode',$project->postalCode)}}">
@@ -325,7 +416,7 @@
             </div>
 
             <label for="description">Descripción del lugar</label>
-            <textarea required maxlength="50" name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror">{{$project->description}}</textarea>
+            <textarea required  name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror">{{$project->description}}</textarea>
              @error('description')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -344,10 +435,6 @@
 
             </div>
             
-            
-           
-
-
              </div>
 
              <div>
@@ -360,26 +447,46 @@
               </div>
               <div class="form-group col-md-8">
               <label for="correoresponsable">Correo electrónico</label>
-            <input required type="text" class="form-control" name="correoresponsable" value="{{old('correoresponsable',$project->correoresponsable)}}">
+            <input required type="email" class="form-control" name="correoresponsable" value="{{old('correoresponsable',$project->correoresponsable)}}">
             </div>
 
             </div>
            
-           <div class="form-row">
-
-           <div class="form-group col-md-8">
-           <label for="domicilioresponsable">Domicilio</label>
-            <input  required type="text" class="form-control" name="domicilioresponsable" value="{{old('domicilioresponsable',$project->domicilioresponsable)}}">
-           </div>
-
-           <div class="form-group col-md-4">
-           <label for="horarioresponsable">Horario de oficina</label>
-            <input required type="text" class="form-control" name="horarioresponsable" value="{{old('horarioresponsable',$project->horarioresponsable)}}">
-</div>
-
-           </div>
            
+                      <label for="domiciliocontacto" class="m-0 font-weight-bold text-primary">Domicilio</label>
+                        <div class="form-row">
+                        
+                            <div class="form-group col-md-5">
+                                
+                                <!--<input type="text" id="domiciliocontacto" name="domiciliocontacto" class="form-control" value="">-->
+
+                                <label for="streetAddress" >Calle</label>
+                                <input type="text" id="streetAddress" name="streetAddressc" class="form-control" value="{{old('streetAddressc',$project->streetAddressc )}}">
+                                
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="streetNum">Número</label>
+                                <input type="text" id="streetNum" name="streetNumc" class="form-control"value="{{old('streetNumc',$project->streetNumc)}}">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="suburb">Colonia</label>
+                                <input type="text" id="suburb" name="suburbc" class="form-control"value="{{old('suburb',$project->suburbc)}}">
+                            </div>
+                            <div class="form-group col-md-5" >
+                                <label for="locality">Municipio</label>
+                                <input type="text" id="locality" name="localityc" class="form-control" value="{{old('localityc',$project->localityc)}}">
+                            </div>
+                            <div class="form-group col-md-2" >
+                                <label for="postalCode">Código postal</label>
+                                <input type="text" minlength="5" maxlength="5" id="postalCode" name="postalCodec" class="form-control" value="{{old('postalCodec',$project->postalCodec)}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                            <label for="horarioresponsable">Horario de oficina</label>
+                            <input required type="text" class="form-control" name="horarioresponsable" value="{{old('horarioresponsable',$project->horarioresponsable)}}">
+                            </div>
+                        </div>
            
+          
 
 
 
@@ -391,12 +498,14 @@
               <div class="form-group col-md-4">
 
                 <label for="docfase1">Documentos</label>
-                <input type="file" class="form-control @error('docfase1') is-invalid @enderror" id="docfase1" name="docfase1[]" multiple>
+               
+                <input type="file" class="form-control @error('docfase1') is-invalid @enderror" id="docfase1" name="docfase1[]"  multiple onchange="return validateSize()">
                  @error('docfase1')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
               </div>
-
+              
+            
             
             
               <div class="form-group col-md-6">
@@ -414,8 +523,11 @@
                  @error('documenttype')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-              </div>
+
             
+              </div>
+              <p><small>El tamaño de los archivos debe ser menor a 20MB</small></p>
+
                
             </div>
             @if(isset($documents))
@@ -428,6 +540,7 @@
             <table class="table table-sm">
             <tr>
             <th>Nombre del documento</th>
+            <th>Tipo de documento</th>
             <th>Acciones</th>
             </tr>
         
@@ -436,6 +549,8 @@
             @foreach($documents as $document)
             <?php 
               $ruta='documents/'.$document->url;
+              $tipo=DocumentType::find($document->documentType);
+            
              
             ?>
 
@@ -443,6 +558,12 @@
             <tr>
             <td>
             <a target="_blank" class="badge badge-pill badge-info" href="{{asset($ruta)}}">{{$document->url}}</a>
+            </td>
+
+            <td>
+              @if($tipo!=null)
+              {{$tipo->titulo}}
+              @endif
             </td>
            
             <td>
@@ -469,7 +590,12 @@
           @endif
           @endif
            
-           
+          <div class="form-row">
+          <div class="form-group col-md-12">
+        <label for="observaciones">Observaciones:</label>
+        <input type="text" name="observaciones" id="observaciones" class="form-control" value="{{old('observaciones',$project->observaciones)}}">
+          </div>
+        </div>
            
             <hr>
             <div class="d-flex justify-content-end">
@@ -491,11 +617,15 @@
         </div>
 
     </form>
+    <form  id='formId'>@csrf</form>
   </div>
 
 </div>
 
 </div>
+
+
+
 
 @include('admin.projects.modaldeletedocument')
 
@@ -503,104 +633,251 @@
 <script src="{{asset('js/deletemodaldocument.js')}}"></script>
 
 <script>
-  
 
 
- //excel to json map part.
+/**Para validación de tamaño de archivos */
 
-//File Validation
-var fileInput = document.getElementById('excel');
-     var xd;
-    function fileValidation(){
-        xd=  document.getElementById("excel").files[0].name; 
-        $('#ver').val(xd);
-    var filePath = fileInput.value;
-    var allowedExtensions = /(.xlsx|.csv)$/i;
-    if(!allowedExtensions.exec(filePath)){
-        alert('Please upload file having extensions .xlsx or .csv');
-        fileInput.value = '';
+function validateSize(){
+  if (!window.FileReader) { // This is VERY unlikely, browser support is near-universal
+        console.log("The file API isn't supported on this browser yet.");
         return false;
     }
-    }
 
-    
+    var input = document.getElementById('docfase1');
+    if (!input.files) { // This is VERY unlikely, browser support is near-universal
+        console.error("This browser doesn't seem to support the `files` property of file inputs.");
+        return false;
+    } else if (!input.files[0]) {
+        //addPara("Please select a file before clicking 'Load'");
+        alert("Debe seleccionar al menos un archivo");
+        return false;
+    } else {
+        var file = input.files[0];
+        let finalSize=0;
+       // addPara("File " + file.name + " is " + file.size + " bytes in size");
+       //alert("File " + file.name + " is " + file.size + " bytes in size");
 
-
-    //ajax processing
-    var mydata=[];
-
-    
-   
-
-    $("#subir").on('click', function(evt){
-      evt.preventDefault();  
-      if( $('#ver').val()!=""){
-  
-    $.ajax({
-      data: {
-        "_token": "{{ csrf_token() }}",
-        "excel": xd,
-       
-      }, //datos que se envian a traves de ajax
-      url: "{{ route('uploadExcel') }}", //archivo que recibe la peticion
-      type: 'post', //método de envio
-      dataType: "json",
-      success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-       
-        for (let index = 0; index < resp.length; index++) {
-        
-       
-       if((resp[index][0])=='Latitud' || resp[index][1]=="Longitud" || resp[index][0]==null || resp[index][1]==undefined){
-     
-       }else{
-        mydata.push({latitud:resp[index][0],longitud:resp[index][1]});
-
-        let l = document.getElementById('lat');
-           l.value = resp[index][0] + '|' + l.value;
-
-         let lng = document.getElementById('lng');
-           lng.value = resp[index][1] + '|' + lng.value;
-
-        
+       for(let i=0; i<input.files.length;i++){
+          finalSize=file.size+finalSize;
        }
+
+       if(finalSize>=20971520){
+        alert('El tamaño total de los archivos supera los 20MB');
+
+        input.value='';
+        return false;
+       }
+
       
-            
-        }
-                    
-      console.log(mydata);
-
-      pintarPuntos(mydata);
-
-      },
-      error: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-
-       // alert("Ha ocurrido un error, intente de nuevo.");
-        //console.log(response);
-      }
-    });
-      }else{
-        alert("Debe seleccionar un archivo .csv para colocar los puntos en el mapa");
-      }
- });
+    }
+}
 
 
-function pintarPuntos(data){
-    var jsonFeatures = [];
+//Con fines de pruebas.
+var org=document.querySelector('autoridadP');
+//console.log(org);
 
-data.forEach(function(point){
-    var lat = point.latitud;
-    var lon = point.longitud;
 
-    var feature = {type: 'Feature',
-        properties: point,
-        geometry: {
-            type: 'Point',
-           
-            coordinates: [lon,lat]
-        }
+//Validación del archivo
+var fileInput = document.getElementById('excel');
+ var xd;
+function fileValidation(){
+    xd=  document.getElementById("excel").files[0].name; 
+    $('#ver').val(xd);
+var filePath = fileInput.value;
+var allowedExtensions = /(.xlsx|.csv)$/i;
+if(!allowedExtensions.exec(filePath)){
+    alert('Please upload file having extensions .xlsx or .csv');
+    fileInput.value = '';
+    return false;
+}
+}
+
+
+
+
+
+var mydata=[];
+var markers = new Array();
+var names=new Array();
+var fromfile=false;
+var fromclic=false;
+var index=0;
+var i = 0;
+var jsonFeatures = [];
+
+
+//Iconos.
+
+var greenIcon = new L.Icon({
+iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+iconSize: [25, 41],
+iconAnchor: [12, 41],
+popupAnchor: [1, -34],
+shadowSize: [41, 41]
+});
+var blueIcon = new L.Icon({
+iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+iconSize: [25, 41],
+iconAnchor: [12, 41],
+popupAnchor: [1, -34],
+shadowSize: [41, 41]
+});
+
+const myLatlng = {
+      lat: 20.6566500419128,
+      lng: -103.35528485969786
     };
 
-    jsonFeatures.push(feature);
+  var map = L.map('map',{scrollWheelZoom: false,}).
+        setView(myLatlng,
+
+            12);
+
+  /**Se manda el el excel subido mediante AJAX. Procesa la respuesta en json y dibuja los puntos
+   * en el mapa y se construye la tabla. */    
+  $('#formId').submit( function( e ) {
+    e.preventDefault();
+
+    var data = new FormData();
+jQuery.each(jQuery('#formId')[0].files, function(i, file) {
+    data.append('file-'+i, file);
+});
+
+
+    
+    
+    var fileform = new FormData(this); // <-- 'this' is your form element
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+ 
+$.ajax({
+      headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  },
+      cache: false,
+    contentType: false,
+    processData: false,
+            url: "{{ route('uploadExcel') }}",
+            data: fileform,
+            type: 'POST',   
+           dataType:'json',
+           success: function(resp) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+    console.log(resp);
+    for (; index < resp.length; index++) {
+    
+   
+   if((resp[index][1])=='Latitud' || (resp[index][0])=='Nombre' || resp[index][2]=="Longitud" || resp[index][0]==null || resp[index][1]==undefined){
+ 
+   }else{
+  
+
+
+    mydata.push({latitud:resp[index][1],longitud:resp[index][2]});
+
+    let ll=resp[index][1];
+    let lgg=resp[index][2];
+   let= aux_marker = L.marker([ll,lgg]);
+
+
+    markers.push(aux_marker)
+    
+
+    names.push(resp[index][0]);
+    let name = document.getElementById('name');
+       name.value = resp[index][0] + '|' + name.value;
+
+    let l = document.getElementById('lat');
+       l.value = resp[index][1] + '|' + l.value;
+
+     let lng = document.getElementById('lng');
+       lng.value = resp[index][2] + '|' + lng.value;
+
+       var auxfields = `<tr class=` + index + `>
+       <td> <label id=`+index+` >`+resp[index][0]+`</label>
+      <td>` +resp[index][1]+ `</td>
+        <td>` +resp[index][2] + `</td>
+        
+        <td><i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + (index-1) + `)'></td>
+        </td>
+        </td>
+        <td> <div class="form-check">
+<input required type="radio" name="inputs" class="form-check-input exampleCheck1" onchange='puntop(`+resp[index][1]+`,`+resp[index][2]+`)'>
+
+</div></td>
+    </tr>`;
+    
+
+  flashCardList.insertAdjacentHTML("beforeend", auxfields );
+  aux_marker.addTo(map);
+   }
+  
+        
+    }
+                
+  //console.log(mydata);
+
+ // pintarPuntos(mydata);
+
+  },
+          
+  })
+  
+  });
+
+   
+          
+
+
+
+let l = document.getElementById('lat');
+let f = l.value.split(',')
+
+//Guarda los nombres de los inputs generados dinamicamente en un input que se mandará al servidor.
+function cambioinput(inputvalue){
+//alert("hola");
+let name = document.getElementById('name');
+name.value = inputvalue + '|' + name.value;
+
+names.push(inputvalue);
+
+}
+/**Guarda la latlng del punto principal en su input asociado. */
+function puntop(lat,lng){
+  //alert(val);
+  let punto = document.getElementById('punto');
+  punto.value=lat+'|'+lng;
+}
+
+
+
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+  maxZoom: 15
+}).addTo(map);
+//this is for put the markes on the map getting the data from the inputs.
+L.control.scale().addTo(map);
+
+//Función que dibuja/pinta los puntos en el mapa mediante un json (obtenido del ajax que manda el excel).
+function pintarPuntos(data){
+
+
+data.forEach(function(point){
+var lat = point.latitud;
+var lon = point.longitud;
+
+var feature = {type: 'Feature',
+    properties: point,
+    geometry: {
+        type: 'Point',
+       
+        coordinates: [lon,lat]
+    }
+};
+
+jsonFeatures.push(feature);
 });
 
 var geoJson = { type: 'FeatureCollection', features: jsonFeatures };
@@ -608,7 +885,10 @@ var geoJson = { type: 'FeatureCollection', features: jsonFeatures };
 L.geoJson(geoJson).addTo(map);
 }
 
-
+/**Función que elimina todos los puntos dibujados en el mapa previamente y limpia todos las
+ * cajas de texto o inputs en las que se haya guardado información referente a los puntos('nombres,lat
+ * lng,etc'). También limpia las filas de la tabla generada.
+ */
 $("#del").on('click', function(evt){
       evt.preventDefault(); 
       $(".leaflet-marker-icon").remove();
@@ -616,21 +896,34 @@ $("#del").on('click', function(evt){
 
       $("#lat").val("");
       $("#lng").val("");
+      $("#name").val("");
+      $("#cuerpo").empty();
+
+      markers=new Array();
+      names=new Array();
+      index=0;
+      i=0;
+      x=false;
+      fromfile=false;
+
+
+      console.log(names);
+
+
 });
 
 
 
-
-
-
-  var subedit = $('#subedit').val();
+var subedit = $('#subedit').val();
   var secedit = $('#secedit').val();
 
   if (subedit != '') {
 
     get_class_sections(secedit);
   }
-
+/**Función  que recibe el id del select que contiene los ids de los sectores 
+ * y lo manda mendiante ajax y rellena el select de los subsectores mediante la respuesta ajax.
+ */
   function get_class_sections(id) {
 
     var select = $("#sectorProyecto");
@@ -649,6 +942,7 @@ $("#del").on('click', function(evt){
       success: function(response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
 
         var bop = document.createElement("option");
+        bop.value="";
         $(bop).html('Selecciona un subsector');
         $(bop).appendTo("#subsector");
 
@@ -680,9 +974,7 @@ $("#del").on('click', function(evt){
 
   }
 
-
-
-
+  /**Previene el submit del form con 'enter' */
   $('#pac-input').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
@@ -700,89 +992,279 @@ $("#del").on('click', function(evt){
     }
   });
 
-      let l = document.getElementById('lat');
+
+
+var flashCardList  = document.getElementById('cuerpo')
+
+var tr = new Array();
+var td;
+var inputvalues=new Array();
+var x=false;
+//var lat;
+//var lng;
+
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+} 
+  //here
+  //Dibuja los puntos en base a los inputs rellenados desde la base de datos (registros previos)
+	 let lf = document.getElementById('lat');
+
+
       
-      let f= l.value.split('|')
+      let ff= lf.value.split('|')
      
-      let lng = document.getElementById('lng');
-      let f2= lng.value.split('|')
-     
-  
+      let lngf = document.getElementById('lng');
+      let f2= lngf.value.split('|')
 
-  const myLatlng = {
-      lat: 20.6566500419128,
-      lng: -103.35528485969786
-    };
+      //Para el registro de 'nombres' (nombre del punto de ubicación)
 
-  var map = L.map('map').
-        setView(myLatlng,
-            12);
+      let aux_name=document.getElementById('name');
 
-            
+      let name=aux_name.value.split('|');
 
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-            maxZoom: 18
-        }).addTo(map);
+      //para el punto principal
+
+      var principal=document.getElementById('punto');
+      principal=principal.value.split('|');
+      var checked="";
 
 
-        L.control.scale().addTo(map);
-       
-       if(f[0]!=""){
+      console.log(ff[0]);
+      console.log(principal[0]);
+      
+
+
+       if(ff[0]!=""){
           
          
-           for(var i=0;i<=f.length;i++){
+           for(var index=0;index<=ff.length;index++){
            
-           if(f[i]=="" || f[i]==undefined || f[i]==null){
+           if(ff[index]=="" || ff[index]==undefined || ff[index]==null){
             
            }else{
-            var marker = L.marker([f[i],f2[i]]).addTo(map);
+
+            if(ff[index]==principal[0]){
+              checked="checked";
+            }
+
+            var marker = L.marker([ff[index],f2[index]]);
+
+            markers.push(marker);
+
+            if(name[index]==undefined || name[index]==''){
+              name[index]="Sin nombre";
+            }
+           
+
+            marker.addTo(map);
+
+            //Para cargar de datos la tabla con la información de la bd
+            var auxfields = `<tr class=` + index + `>
+       <td> <label class='transparente' id=`+i+` >`+name[index]+`</label>
+      <td>` +ff[index]+ `</td>
+        <td>` +f2[index]+ `</td>
+        
+        <td><i class="fas fa-eye"></i><input  type="checkbox"   class="gg"  onchange='greenpoint(event,` + (index) + `)'></td>
+        </td>
+        </td>
+        <td> <div class="form-check">
+<input required type="radio" name="inputs" ` +checked+ ` class="form-check-input exampleCheck1" onchange='puntop(`+ff[index]+`,`+f2[index]+`)'>
+ 
+</div></td>
+    </tr>`;
+    
+    i=markers.length;
+
+  flashCardList.insertAdjacentHTML("beforeend", auxfields );
+
            }
            
 
+checked="";
+}
+
+
+       }
+
+
+//function to draw the markers on the map.
+function onMapClick(e) {
+
+  fromclic=true;
+
+/*Para concatenar los valores de latlng en los inputs correspondientes*/
+  aux_marker = L.marker(e.latlng);
+
+    let l = document.getElementById('lat');
+  l.value=l.value+e.latlng.lat+'|';
+
+  let lng = document.getElementById('lng');
+  lng.value=lng.value+e.latlng.lng+'|';
+
+
+  markers.push(aux_marker);
+ 
+
+  //Para rellenar la tabla con los inputs en base a la selección de puntos en el mapa.
+  if(fromfile){
+  i=index;
+   fromfile=false;
+   x=true;
+ 
+  }
+  console.log('el indice es:'+i);
+  console.log('el número de elementos del array es:'+markers);
+var auxfields = `<tr class=` + i + `>
+    <td>  <input required id=`+i+` type="text" name="array[]"  onchange='cambioinput(this.value)'></td>
+      <td>` + e.latlng.lat + `</td>
+        <td>` + e.latlng.lng + `</td>
+        <td><button style="margin-right:2%;"  onclick='delrow(` + i + `)'>Eliminar</button>
+        <i class="fas fa-eye"></i><input  type="checkbox" class="gg"  onchange='greenpoint(event,` + i + `)'>
+        </td>
+        <td> <div class="form-check">
+<input required type="radio" class="form-check-input exampleCheck1" name="inlineRadioOptions" onchange='puntop(`+e.latlng.lat+`,`+e.latlng.lng+`)'>
+
+
+</div></td>
+    </tr>`;
+    
+  
+
+
+
+  aux_marker.addTo(map);
+  flashCardList.insertAdjacentHTML("beforeend", auxfields );
+
+  i++;
+}
+
+
+//Función que pinta de color verde el marcador/punto del mapa seleccionado como 'punto principal'
+
+function greenpoint(event,index){
+ 
+  if(x){
+    index=index-2;
+   
+  }
+
+
+  //console.log(index);
+  console.log(markers);
+  //if(index)
+  var checkbox = event.target;
+
+if (checkbox.checked) {
+//Checkbox has been checked
+markers[index].setIcon(greenIcon);
+
+} else {
+//Checkbox has been unchecked
+markers[index].setIcon(blueIcon);
+}
+/*
+markers[index].setIcon(greenIcon);
+aux=markers[index].options.icon;
+aux=aux.options.iconUrl
+console.log(aux);
+
+if(aux=="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png"){
+  console.log('si');
+}
+*/
+}
+/**Función que elimina la fila de la tabla generada dinámicamente con el botón "eliminar"
+ *dentro de la misma fila.
+  */
+function delrow(dato) {
+  console.log(markers);
+ 
+  auxdato=dato;
+  var c=0;
+   if(x){
+    dato=dato-2;
+    c=dato;
+  }
+
+ 
+
+  $('.' + auxdato).remove();
+
+
+console.log(dato);
+markers[dato].remove();
+
+
+
+  delete markers[dato];
+  delete names[dato];
+
+
+  console.log(names);
+
+
+
+let b = "";
+  let name = document.getElementById('name');
+  for (let i=0; i< names.length; i++) {
+    if (names[i] != null) {
+
+
+      b = names[i]+ '|' + b;
+    }
+  }
+  name.value = b;
+
+ 
+  let m = "";
+  let l = document.getElementById('lat');
+  for (let i=0; i < markers.length; i++) {
+   
+    if (markers[i] != null) {
+
+
+      m = markers[i]._latlng.lat + '|' + m;
+    }
+  }
+ 
+  l.value = m;
+
+
+  let n = "";
+  let lng = document.getElementById('lng');
+  for (let i=0;i< markers.length; i++) {
+    if (markers[i] != null) {
+
+      n = markers[i]._latlng.lng + '|' + n;
+    }
+  }
+  lng.value = n;
 
 }
 
-       }
-
-       
-       
 
 
-       function onMapClick(e) {
-
-
-           var marker=L.marker(e.latlng, {
-               draggable: false
-           }).addTo(map);
-
-           marker.addClass('selectedMarker');
-           
-
-
-           let l = document.getElementById('lat');
-           l.value = e.latlng.lat + '|' + l.value;
-
-           let lng = document.getElementById('lng');
-           lng.value = e.latlng.lng + '|' + lng.value;
-       }
-
-       map.on('click', onMapClick);
-
-
-       var here=document.getElementsByName('selectedMarker');
-       console.log(here);
-       for (const key in here) {
-        key.addEventListener('contextmenu', function(ev) {
-    ev.preventDefault();
-    alert('success!');
-    return false;
-}, false);
-       }
-     
-
+map.on('click', onMapClick);
 </script>
-
 @endsection
 
 

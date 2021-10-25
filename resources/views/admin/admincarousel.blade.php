@@ -102,9 +102,9 @@
 
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   <br>
-
+  @include('admin.layouts.partials.session-flash-status')
   <div class="col-lg-12">
-    <form id="phase1" method="POST" action="" enctype="multipart/form-data">
+    <form id="phase1" method="POST" action="{{route('savecarousel')}}" enctype="multipart/form-data">
       @csrf
     <!-- end of card -->
 
@@ -122,10 +122,44 @@
 
         <div class="collapse show" id="collapseCardExample2">
           <div class="card-body">
-  
+    
+          @php
+          $h=DB::table('documents')
+        ->where('description','=','carrusel')
+        ->get();
+          @endphp
+
+
+          @if (count($h)==0)
     
           <div id="imagesdiv" class="input-images"></div>  
-       
+          @else
+              <script>
+                var images=new Array();
+function rellenar(img){
+  images.push(img);
+}
+
+</script>
+          
+              @foreach ($h as $imagen)
+            
+                <?php 
+                $ruta=asset('assets/img/home/slider-main/'.$imagen->url) ;
+                
+
+                echo "<script>rellenar('$ruta'); </script>"; 
+                ?>
+              @endforeach
+
+              <label for="">Agregar nueva imágen</label>
+              <br>
+              <div id="imagesdiv"  class="input-images"></div>  
+          @endif
+
+         
+
+         
       
           </div>
 
@@ -136,24 +170,61 @@
       <div class="d-flex justify-content-end">
               <button id="send" type="submit"  class="btn btn-sm btn-primary shadow-sm">
                 <i class="fas {{ $edit ? 'fa-save' : 'fa-edit' }} fa-sm text-white-50"></i>
-                {{ $edit ? 'Actualizar' : 'Siguiente' }}
+                {{ $edit ? 'Actualizar' : 'Guardar' }}
               </button>
+              <a style="margin-left: 1%; color:white" class="btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteUserModal" >
+              <i class="fas fa-trash fa-sm text-white-50 "></i>
+              Eliminar</a>
 
             </div>
             
     </form>
-
+    
 </div>
 
 </div>
 
 
-@include('admin.projects.modaldeletedocument')
+
+
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Seguro que desea eliminar el carrusel principal del sitio <strong><span class="name-user"></span></strong>?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary shadow-sm" data-dismiss="modal">
+            <i class="fas fa-times fa-sm text-white-50"></i>
+            No, salir
+          </button>
+          <form id="formDelete" action="{{ route('deletecarousel') }}" method="POST">
+          
+            @csrf
+            <button type="submit" class="btn btn-sm btn-danger shadow-sm">
+              <i class="fas fa-trash fa-sm text-white-50"></i>
+              Si, eliminar
+            </button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @section('scripts')
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 <script>
+
+
+
 
 $('#phase1').on('submit', function(event) {
 
@@ -162,8 +233,8 @@ $('#phase1').on('submit', function(event) {
 
   var numItems = $('.uploaded-image').length;
 
-  if(numItems==0){
-    alert("Debes seleccionar al menos 1 imágen.");
+  if(numItems>3){
+    alert("Sólo se admiten 3 imágenes");
   }else{
     event.currentTarget.submit();
   }
