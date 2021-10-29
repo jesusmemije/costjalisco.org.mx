@@ -55,12 +55,12 @@
                 <div class="row mb-4 align-items-center">
                     <div class="col-lg-2 col-md-3 col-sm-3">
                         <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/zapopan.png') }}" class="img-fluid" width="50" alt="">
+                            <img src="{{ asset('assets/img/footer/zapopan_logo.png') }}" class="img-fluid" width="60" alt="">
                         </a>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3">
                         <a href="https://guadalajara.gob.mx/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/guadalajara.png') }}" class="img-fluid" width="60"
+                            <img src="{{ asset('assets/img/footer/guadalajara_logo.png') }}" class="img-fluid" width="60"
                                 alt="">
                         </a>
                     </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3">
                         <a href="https://tonala.gob.mx/portal/" target="_BLANK">
-                            <img src="{{ asset('assets/img/footer/tonala.png') }}" class="img-fluid" width="50" alt="">
+                            <img src="{{ asset('assets/img/footer/tonala_logo.png') }}" class="img-fluid" width="70" alt="">
                         </a>
                     </div>
                      <!--

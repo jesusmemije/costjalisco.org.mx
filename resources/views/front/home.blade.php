@@ -429,21 +429,21 @@ Inicio
             <!--muestra el loggotipo de guadalajara-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://guadalajara.gob.mx/" target="_BLANK">
-                    <img src="{{ asset('assets/img/home/sector-publico/guadalajara.jpg') }}" class="img-fluid"
-                        width="70" alt="">
+                    <img src="{{ asset('assets/img/home/sector-publico/guadalajara_logo.jpg') }}" class="img-fluid"
+                        width="80" alt="">
                 </a>
             </div>
             <!--muestra el logotipo de zapopan-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://www.zapopan.gob.mx/v3/" target="_BLANK">
-                    <img src="{{ asset('assets/img/home/sector-publico/zapopan.jpg') }}" class="img-fluid" width="70"
+                    <img src="{{ asset('assets/img/home/sector-publico/zapopan_logo.jpg') }}" class="img-fluid" width="80"
                         alt="">
                 </a>
             </div>
             <!--muestra el logotipo de tonala-->
             <div class="col-md-2 col-sm-2 text-center" style="margin-right: -4%;">
                 <a href="https://tonala.gob.mx/portal/" target="_BLANK">
-                    <img src="{{ asset('assets/img/home/sector-publico/tonala.jpg') }}" class="img-fluid" width="80"
+                    <img src="{{ asset('assets/img/home/sector-publico/tonala_logo.jpg') }}" class="img-fluid" width="100"
                         alt="">
                 </a>
             </div>

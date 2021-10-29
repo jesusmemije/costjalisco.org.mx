@@ -44,9 +44,9 @@
                 $counter = 0;
                 $img_publico = array(
                     0 => 'jalisco.jpg',
-                    1 => 'guadalajara.jpg',
-                    2 => 'zapopan.jpg',
-                    3 => 'tonala.jpg',
+                    1 => 'guadalajara_logo.jpg',
+                    2 => 'zapopan_logo.jpg',
+                    3 => 'tonala_logo.jpg',
                     4 => 'tlajomulco.jpg ',
                     5 => 'itei.jpg',
                     6 => 'inai.jpg'
