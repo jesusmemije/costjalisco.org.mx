@@ -216,7 +216,7 @@ Recursos
 <div class="row mx-0">
     <div class="col-md-1 col-1"></div>
     <div class="col-lg-3 col-md-3 col-6 text-center mb-3 px-0">
-        <a href="https://www.itei.org.mx/cost/docs/Reglamento_Interno_Aprobado.pdf" class="links-doc" target="_blank">
+        <a href="{{asset('documents/Reglamento_Interno_Aprobado_Reformado.pdf')}}" class="links-doc" target="_blank">
             <img class="img-fluid" src="{{ asset('assets/img/resources/reglamento-cost.png') }}">
         </a>
     </div>
